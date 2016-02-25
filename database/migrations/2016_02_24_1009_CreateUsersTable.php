@@ -24,8 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('zipcode');
             $table->integer('country_id')->unsigned();
-            $table->integer('role_id')->unsigned();
-            $table->tinyInteger('notification_settings ');
+            $table->tinyInteger('notification_settings');
             $table->integer('membership_plane_id')->unsigned();
             $table->integer('membership_status');
             $table->rememberToken();
@@ -34,11 +33,6 @@ class CreateUsersTable extends Migration
             $table->foreign('country_id')
                 ->references('id')->on('countries')
                 ->onDelete('cascade');
-
-            $table->foreign('role_id')
-                ->references('id')->on('roles')
-                ->onDelete('cascade');
-
             $table->foreign('membership_plane_id')
                 ->references('id')->on('membership_planes')
                 ->onDelete('cascade');

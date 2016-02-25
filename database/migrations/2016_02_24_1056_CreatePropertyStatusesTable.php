@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePropertyDocumentsTable extends Migration
+class CreatePropertyStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreatePropertyDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_documents', function (Blueprint $table) {
+        Schema::create('property_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('property_id')->unsigned();
-            $table->string('type');
-            $table->text('path');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreatePropertyDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('property_documents');
+        Schema::drop('property_statuses');
     }
 }
