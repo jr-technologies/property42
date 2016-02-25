@@ -6,6 +6,23 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreateAgenciesTable' => $baseDir . '/database/migrations/2016_02_24_1011_CreateAgenciesTable.php',
+    'CreateAgencyCitiesTable' => $baseDir . '/database/migrations/2016_02_24_1013_CreateAgencyCitiesTable.php',
+    'CreateCityTable' => $baseDir . '/database/migrations/2016_02_24_1004_CreateCityTable.php',
+    'CreateCountryTable' => $baseDir . '/database/migrations/2016_02_24_1001_CreateCountryTable.php',
+    'CreateLandUnitsTable' => $baseDir . '/database/migrations/2016_02_24_1055_CreateLandUnitsTable.php',
+    'CreateLocationsTable' => $baseDir . '/database/migrations/2016_02_24_1054_CreateLocationsTable.php',
+    'CreateMembershipPlaneTable' => $baseDir . '/database/migrations/2016_02_24_1003_CreateMembershipPlaneTable.php',
+    'CreatePropertiesTable' => $baseDir . '/database/migrations/2016_02_24_1057_CreatePropertiesTable.php',
+    'CreatePropertyDocumentsTable' => $baseDir . '/database/migrations/2016_02_24_1058_CreatePropertyDocumentsTable.php',
+    'CreatePropertyPurposesTable' => $baseDir . '/database/migrations/2016_02_24_1051_CreatePropertyPurposesTable.php',
+    'CreatePropertyStatusesTable' => $baseDir . '/database/migrations/2016_02_24_1056_CreatePropertyStatusesTable.php',
+    'CreatePropertySubTypesTable' => $baseDir . '/database/migrations/2016_02_24_1053_CreatePropertySubTypesTable.php',
+    'CreatePropertyTypesTable' => $baseDir . '/database/migrations/2016_02_24_1052_CreatePropertyTypesTable.php',
+    'CreateRoleTable' => $baseDir . '/database/migrations/2016_02_24_1002_CreateRoleTable.php',
+    'CreateUserMembershipHistoryTable' => $baseDir . '/database/migrations/2016_02_24_1012_CreateUserMembershipHistoryTable.php',
+    'CreateUserRolesTable' => $baseDir . '/database/migrations/2016_02_24_1010_CreateUserRolesTable.php',
+    'CreateUsersTable' => $baseDir . '/database/migrations/2016_02_24_1009_CreateUsersTable.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
