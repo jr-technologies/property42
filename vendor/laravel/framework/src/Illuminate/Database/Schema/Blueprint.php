@@ -10,7 +10,7 @@ use Illuminate\Database\Schema\Grammars\Grammar;
 
 class Blueprint
 {
-    use SchemaBuilderHelper
+    use SchemaBuilderHelper;
     /**
      * The table the blueprint describes.
      *
