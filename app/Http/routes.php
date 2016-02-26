@@ -10,9 +10,82 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+use App\Property;
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    $property = (new Property())->find(1);
+    $property = json_decode($property->json);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    echo $property->property_sub_type->property_type->type_name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 /*
