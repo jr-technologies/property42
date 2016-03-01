@@ -2,6 +2,7 @@
 
 namespace Illuminate\Database\Schema;
 
+use App\Traits\Database\SchemaBuilderHelper;
 use Closure;
 use Illuminate\Support\Fluent;
 use Illuminate\Database\Connection;
@@ -9,6 +10,7 @@ use Illuminate\Database\Schema\Grammars\Grammar;
 
 class Blueprint
 {
+    use SchemaBuilderHelper;
     /**
      * The table the blueprint describes.
      *
