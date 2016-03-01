@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePropertyFeatureValuesTable extends Migration
+class CreatePropertyJsonTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,13 @@ class CreatePropertyFeatureValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_feature_values', function (Blueprint $table) {
+        Schema::create('property_json', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('property_id')->unsigned();
-            $table->integer('property_feature_id')->unsigned();
-            $table->string('value');
-            $table->timestamps();
+            $table->string('json');
 
             $table->foreign('property_id')
                 ->references('id')->on('properties')
-                ->onDelete('cascade');
-            $table->foreign('property_feature_id')
-                ->references('id')->on('property_features')
                 ->onDelete('cascade');
         });
     }
@@ -35,6 +30,6 @@ class CreatePropertyFeatureValuesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('property_feature_values');
+        Schema::drop('property_json');
     }
 }

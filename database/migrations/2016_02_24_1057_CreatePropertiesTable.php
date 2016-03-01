@@ -26,7 +26,9 @@ class CreatePropertiesTable extends Migration
             $table->integer('property_status_id')->unsigned();    //complete
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('is_hot')->default(0);
-
+            $table->integer('total_views');
+            $table->integer('rating');
+            $table->integer('total_likes');
             $table->softDeletes();
             $table->integer('deleted_by')->unsigned();
 

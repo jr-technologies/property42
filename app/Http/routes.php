@@ -11,81 +11,17 @@
 |
 */
 use App\Property;
+use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     //return view('welcome');
-    $property = (new Property())->find(1);
-    $property = json_decode($property->json);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    echo $property->property_sub_type->property_type->type_name;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*    $country = (new \App\Country())->find(1);
+    $country_obj = json_decode($country->country);
+    $country_obj->email = "waqas@gmail.com";
+    $country_json = json_encode($country_obj);
+    //dd($country_json);
+    DB::table('countries')
+        ->where('id', 1)
+        ->update(['country' => $country_json]);*/
 });
 
 /*
