@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePropertyTypeAssignFeaturesTable extends Migration
+class CreatePropertySubTypeAssignFeaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePropertyTypeAssignFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_type_assign_features', function (Blueprint $table) {
+        Schema::create('property_sub_type_assigned_features', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('property_sub_type_id')->unsigned();
             $table->integer('property_feature_id')->unsigned();
@@ -35,6 +35,6 @@ class CreatePropertyTypeAssignFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('property_type_assign_features');
+        Schema::drop('property_sub_type_assigned_features');
     }
 }

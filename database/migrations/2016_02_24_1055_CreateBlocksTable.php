@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocationsTable extends Migration
+class CreateBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('blocks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('city_id')->unsigned();
-            $table->string('location');
+            $table->integer('society_id')->unsigned();
+            $table->string('block');
             $table->timestamps();
 
-            $table->foreign('city_id')
-                ->references('id')->on('cities')
+            $table->foreign('society_id')
+                ->references('id')->on('societies')
                 ->onDelete('cascade');
         });
     }
@@ -31,6 +31,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('locations');
+        Schema::drop('blocks');
     }
 }

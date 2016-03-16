@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePropertyFeatureValidationRulesTable extends Migration
+class CreateSocietiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,15 @@ class CreatePropertyFeatureValidationRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_feature_validation_rules', function (Blueprint $table) {
+        Schema::create('societies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rule');
-            $table->text('description');
+            $table->integer('city_id')->unsigned();
+            $table->string('society');
             $table->timestamps();
+
+            $table->foreign('city_id')
+                ->references('id')->on('cities')
+                ->onDelete('cascade');
         });
     }
 
@@ -27,6 +31,6 @@ class CreatePropertyFeatureValidationRulesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('property_feature_validation_rules');
+        Schema::drop('societies');
     }
 }

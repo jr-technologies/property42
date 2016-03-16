@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFeatureSectionsTable extends Migration
+class CreateAppMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateFeatureSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('feature_sections', function (Blueprint $table) {
+        Schema::create('app_messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('section');
-            $table->integer('priority');
+            $table->string('short_message');
+            $table->string('long_message');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateFeatureSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feature_sections');
+        Schema::drop('app_messages');
     }
 }

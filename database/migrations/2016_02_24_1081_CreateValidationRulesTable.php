@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFeatureSectionsTable extends Migration
+class CreateValidationRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,9 @@ class CreateFeatureSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('feature_sections', function (Blueprint $table) {
+        Schema::create('validation_rules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('section');
-            $table->integer('priority');
+            $table->string('rule');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateFeatureSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feature_sections');
+        Schema::drop('validation_rules');
     }
 }

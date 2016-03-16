@@ -14,12 +14,11 @@ class CreatePropertyFeaturesTable extends Migration
     {
         Schema::create('property_features', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('feature');
             $table->integer('feature_section_id')->unsigned();
-            $table->string('item_type');
-            $table->integer('prority');
-            $table->integer('property_feature_validation_role_id')->unsigned();
-            $table->string('value');
+            $table->string('feature');
+            $table->integer('html_structure_id')->unsigned();
+            $table->string('possible_values');
+            $table->integer('priority');
             $table->timestamps();
 
 
@@ -27,9 +26,10 @@ class CreatePropertyFeaturesTable extends Migration
                 ->references('id')->on('feature_sections')
                 ->onDelete('cascade');
 
-            $table->foreign('property_feature_validation_role_id')
-                ->references('id')->on('property_feature_validation_rules')
+            $table->foreign('html_structure_id')
+                ->references('id')->on('html_structures')
                 ->onDelete('cascade');
+
         });
     }
 

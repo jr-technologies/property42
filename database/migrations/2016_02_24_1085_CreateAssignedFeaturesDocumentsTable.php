@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnableAddFeatureButtonTable extends Migration
+class CreateAssignedFeaturesDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,15 @@ class CreateEnableAddFeatureButtonTable extends Migration
      */
     public function up()
     {
-        Schema::create('enable_add_feature_buttons', function (Blueprint $table) {
+        Schema::create('assigned_features_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('property_sub_type_id')->unsigned();
-            $table->integer('enable_feature');
+            $table->text('document');
             $table->timestamps();
 
-            $table->foreign('property_sub_type_id')
+            $table->foreign('property_sub_type_id','property_sub_types_fk')
                 ->references('id')->on('property_sub_types')
                 ->onDelete('cascade');
-
         });
     }
 
@@ -32,6 +31,6 @@ class CreateEnableAddFeatureButtonTable extends Migration
      */
     public function down()
     {
-        Schema::drop('enable_add_feature_buttons');
+        Schema::drop('assigned_features_documents');
     }
 }

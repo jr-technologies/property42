@@ -4,10 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Property extends Model
+class Rule extends Model
 {
     //
-    protected $table = "properties";
-
-
 }

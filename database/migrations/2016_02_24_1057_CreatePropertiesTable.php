@@ -17,7 +17,7 @@ class CreatePropertiesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('purpose_id')->unsigned();  //completed
             $table->integer('property_sub_type_id')->unsigned();  //completed
-            $table->integer('location_id')->unsigned();  //complete
+            $table->integer('block_id')->unsigned();  //complete
             $table->string('title');
             $table->text('description');
             $table->double('price');
@@ -43,8 +43,8 @@ class CreatePropertiesTable extends Migration
             $table->foreign('property_sub_type_id')
                 ->references('id')->on('property_sub_types')
                 ->onDelete('cascade');
-            $table->foreign('location_id')
-                ->references('id')->on('locations')
+            $table->foreign('block_id')
+                ->references('id')->on('blocks')
                 ->onDelete('cascade');
             $table->foreign('land_unit_id')
                 ->references('id')->on('land_units')
