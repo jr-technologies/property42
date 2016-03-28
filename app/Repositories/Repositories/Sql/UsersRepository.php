@@ -26,6 +26,9 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     public function getFirst(array $where = [])
     {
         $user = User::where($where)->with('document')->get()->first();
+        if($user == null || $user->document == null)
+            return null;
+
         return ($user->document->json == null)?null:$this->userTransformer->transform($user->document->decode());
     }
 
@@ -39,6 +42,13 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         return $this->getFirst(['access_token'=>$token]);
     }
 
+    public function all()
+    {
+        return User::with('country')
+                ->with('membershipPlan')
+                ->with('agencies')
+                ->get();
+    }
     public function update($id, $info)
     {
         return User::where('id','=',$id)->update($info);

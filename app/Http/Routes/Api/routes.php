@@ -12,9 +12,13 @@
 */
 
 
-Route::post('/get/user',
+Route::get('/users',
     [
-        'uses'=>'UsersController@getUser'
+        'middleware'=>
+            [
+                'apiAuthenticate:getUsersRequest'
+            ],
+        'uses'=>'UsersController@index'
     ]
 );
 

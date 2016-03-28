@@ -18,7 +18,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class UsersController extends ApiController
 {
     private $userTransformer;
-    private $userRepo;
+    private $users;
     private $agencyRepo;
     public $response;
     public function __construct
@@ -29,15 +29,16 @@ class UsersController extends ApiController
     {
         $this->response = $apiResponse;
         $this->userTransformer = $userTransformer;
-        $this->userRepo = $usersRepository;
+        $this->users = $usersRepository;
         $this->agencyRepo = $agenciesRepository;
     }
 
-    public function getUser()
+    public function index()
     {
-        $user = $this->userRepo->fetchUserWithRelations(17);
+        $users = $this->users->all();
         return $this->response->respond(['data'=>[
-            'user'=>$this->userTransformer->transformDocument($user)
+            'total' => sizeof($users),
+            'users'=>$users
         ]]);
     }
 

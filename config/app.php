@@ -216,6 +216,7 @@ return [
         'RegistrationRequest' => \App\Http\Requests\Requests\Auth\RegistrationRequest::class,
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
+        'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
     ],
 
 ];
