@@ -11,9 +11,7 @@ namespace App\Http\Requests\Requests\User;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\UserValidators\AddUserValidator;
-use App\Transformers\Request\AddUserTransformer;
-use App\Transformers\Request\GetUsersTransformer;
+use App\Transformers\Request\User\GetUsersTransformer;
 
 class GetUsersRequest extends Request implements RequestInterface{
 

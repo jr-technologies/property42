@@ -6,8 +6,10 @@
  * Time: 9:54 PM
  */
 
-namespace App\Transformers\Request;
+namespace App\Transformers\Request\User;
 
+
+use App\Transformers\Request\RequestTransformer;
 
 class GetUsersTransformer extends RequestTransformer{
 

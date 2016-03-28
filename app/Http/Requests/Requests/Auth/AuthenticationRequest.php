@@ -11,7 +11,7 @@ namespace App\Http\Requests\Requests\Auth;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Transformers\Request\AuthenticateUserTransformer;
+use App\Transformers\Request\Auth\AuthenticateUserTransformer;
 
 class AuthenticationRequest extends Request implements RequestInterface{
 

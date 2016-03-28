@@ -12,8 +12,8 @@ namespace App\Http\Requests\Requests\Auth;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\UserValidators\AddUserValidator;
-use App\Transformers\Request\AuthenticateUserTransformer;
-use App\Transformers\Request\RegisterUserTransformer;
+use App\Transformers\Request\Auth\AuthenticateUserTransformer;
+use App\Transformers\Request\Auth\RegisterUserTransformer;
 
 class RegistrationRequest extends Request implements RequestInterface{
 
