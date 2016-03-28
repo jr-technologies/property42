@@ -11,5 +11,8 @@ namespace App\Libs\Auth;
 
 class Web extends Authenticate implements AuthInterface
 {
-
+    public function authenticate()
+    {
+        return false;
+    }
 }

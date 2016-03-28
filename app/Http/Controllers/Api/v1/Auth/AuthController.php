@@ -60,10 +60,9 @@ class AuthController extends Controller
             if(!$this->storeAgency($request->getAgencyInfo(), $userId))
                 return $this->response->respondInternalServerError();
 
-        $response = [
-            'user'=>$this->userTransformer
-                ->transformDocument($this->users->getUserDocument($userId))
-        ];
+        $response = ['data'=>[
+            'user'=>$this->userTransformer->transformDocument($this->users->getUserDocument($userId))
+        ]];
 
         return $this->response->respond($response);
     }

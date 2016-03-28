@@ -11,5 +11,5 @@ namespace App\Libs\Auth;
 
 interface AuthInterface
 {
-
+    public function authenticate();
 }

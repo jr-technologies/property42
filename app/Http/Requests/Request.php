@@ -39,10 +39,6 @@ abstract class Request
         return request();
     }
 
-    public function authenticate(){
-        return true;
-    }
-
     /*
      * tells weather the request is authentic.
      */

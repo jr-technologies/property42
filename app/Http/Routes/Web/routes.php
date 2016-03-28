@@ -22,18 +22,18 @@ Route::get('/user/add',
         'uses'=>'UsersController@store'
     ]
 );
-Route::get('/property/update',
+Route::get('/dashboard',
     [
-//        dd('e'),
         'middleware'=>
             [
                 'webAuthenticate:updatePropertyRequest',
                 'webAuthorize:updatePropertyRequest',
                 'webValidate:updatePropertyRequest'
             ],
-        'uses'=>'PropertiesController@update'
+        'uses'=>'AppsController@frontView'
     ]
 );
+
 
 
 /*

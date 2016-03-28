@@ -19,13 +19,15 @@ use Illuminate\Support\Facades\Event;
 class UsersRepository extends SqlRepository implements UsersRepoInterface
 {
     private $userTransformer;
+    private $users = null;
     public function __construct(){
         $this->userTransformer = new UserTransformer();
+        $this->users = new User();
     }
 
     public function getFirst(array $where = [])
     {
-        $user = User::where($where)->with('document')->get()->first();
+        $user = $this->users->where($where)->with('document')->get()->first();
         if($user == null || $user->document == null)
             return null;
 
@@ -44,38 +46,38 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function all()
     {
-        return User::with('country')
+        return $this->users->with('country')
                 ->with('membershipPlan')
                 ->with('agencies')
                 ->get();
     }
     public function update($id, $info)
     {
-        return User::where('id','=',$id)->update($info);
+        return $this->users->where('id','=',$id)->update($info);
     }
 
     public function store($userInfo)
     {
-        $user = User::create($userInfo);
+        $user = $this->users->create($userInfo);
         Event::fire(new UserCreated($this->fetchUserWithRelations($user->id)));
         return ($user == null)?null:$user->id;
     }
 
     public function delete($userId)
     {
-        User::destroy($userId);
+        $this->users->destroy($userId);
         return true;
     }
 
     public function getUserDocument($userId)
     {
-        $user = User::where('id','=',$userId)->with('document')->get()->first();
+        $user = $this->users->where('id','=',$userId)->with('document')->get()->first();
         return ($user->document == null)?null:$this->userTransformer->transform($user->document->decode());
     }
 
     public function fetchUserWithRelations($userId)
     {
-        $user = User::where('id','=', $userId)
+        $user = $this->users->where('id','=', $userId)
             ->with('country')
             ->with('membershipPlan')
             ->with('agencies')
