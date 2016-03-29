@@ -44,7 +44,7 @@ abstract class AppValidator
         return array_merge($messages, $sub_messages);
     }
 
-    public function validate(){
+    public  function validate(){
         $validator = Validator::make($this->request->all(), $this->rules(), $this->messages());
         if($validator->fails()){
             $this->setValidationMessages($validator->messages()->all());

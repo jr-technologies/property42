@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
+use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Auth\AuthenticationRequest;
 use App\Http\Requests\Requests\Auth\LoginRequest;
@@ -13,7 +14,7 @@ use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Transformers\Response\UserTransformer;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     private $auth;
     private $users;

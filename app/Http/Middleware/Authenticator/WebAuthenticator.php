@@ -17,14 +17,17 @@ class WebAuthenticator
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param   $customRequest
      * @return mixed
      */
     public function handle($request, Closure $next, $customRequest)
     {
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
-        if(!$customRequest->authenticate())
-            return $this->response->setView('authenticationFails')->respond(['error'=>'user not authenticated']);
-            return $next($request);
+        if($customRequest->isNotAuthentic())
+            return 'putter kinda chore a tu?';
+            //return $this->response->respondAuthenticationFailed();
+
+        return $next($request);
     }
 }

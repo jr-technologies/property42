@@ -27,7 +27,7 @@ class WebResponse extends AppResponse implements ResponseInterface
     public function respond(array $response, array $headers = []){
         $http_status = $this->getHttpStatus();
         $response['status'] = ($http_status == 200)?1:0;
-        $response['message'] = (isset($data['message']))?$data['message']:Config::get('constants.SUCCESS_MESSAGE');
+        $response['message'] = (isset($data['message']))?$data['message']:config('constants.SUCCESS_MESSAGE');
         return view($this->getView())->with('response',$response);
     }
 

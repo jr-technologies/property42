@@ -1,25 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-Route::get('/user/add',
+Route::get('/login',
     [
-        'middleware'=>
-            [
-                'webAuthenticate:addUserRequest',
-                'webAuthorize:addUserRequest',
-                'webValidate:addUserRequest'
-            ],
-        'uses'=>'UsersController@store'
+        'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
     ]
 );
 Route::get('/dashboard',
@@ -35,18 +18,28 @@ Route::get('/dashboard',
 );
 
 
+Route::post('/login',
+    [
+        'middleware'=>
+            [
+                'webValidate:loginRequest'
+            ],
+        'uses'=>'Auth\AuthController@login', 'as' =>'login'
+    ]
+);
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+Route::get('/register',
+    [
+        'uses'=>'Auth\AuthController@showRegisterPage'
+    ]
+);
+Route::post('/register',
+    [
+        'middleware'=>
+            [
+                'webValidate:registrationRequest'
+            ],
+        'uses'=>'Auth\AuthController@register',
+        'as' => 'register'
+    ]
+);

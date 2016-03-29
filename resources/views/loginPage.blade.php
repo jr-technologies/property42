@@ -38,7 +38,14 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">{{$data['city_name']}}</div>
+                <?php
+                    var_dump((\Session::get('errors')));
+                ?>
+                <form method="post" action="{{route('login')}}">
+                    <input type="text" name="email">
+                    <input type="text" name="password">
+                    <input type="submit" name="submit">
+                </form>
             </div>
         </div>
     </body>

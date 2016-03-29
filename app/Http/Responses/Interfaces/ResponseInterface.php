@@ -12,5 +12,4 @@ namespace App\Http\Responses\Interfaces;
 interface ResponseInterface
 {
     public function respond(array $response, array $headers = []);
-    public function respondWithErrors(array $messages = []);
 }

@@ -11,12 +11,23 @@ namespace App\Http\Requests\Requests\Auth;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
+use App\Http\Validators\Validators\AuthValidators\LoginValidator;
 use App\Transformers\Request\Auth\AuthenticateUserTransformer;
 
 class LoginRequest extends Request implements RequestInterface{
 
+    public $validator = null;
     public function __construct(){
         parent::__construct(new AuthenticateUserTransformer($this->getOriginalRequest()));
+        $this->validator = new LoginValidator($this->getOriginalRequest());
+    }
+
+    public function getCredentials()
+    {
+        return [
+            'email' => $this->get('email'),
+            'password' => $this->get('password'),
+        ];
     }
 
     public function authorize(){
@@ -24,6 +35,6 @@ class LoginRequest extends Request implements RequestInterface{
     }
 
     public function validate(){
-        return true;
+        return $this->validator->validate();
     }
 } 

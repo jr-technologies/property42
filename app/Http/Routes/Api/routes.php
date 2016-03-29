@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/users',
     [
         'middleware'=>

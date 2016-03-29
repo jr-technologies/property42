@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         //web routes
-        $router->group(['prefix'=>'web', 'namespace' => $this->webNamespace], function ($router) {
+        $router->group(['prefix'=>'web', 'middleware'=>['web'], 'namespace' => $this->webNamespace], function ($router) {
             require app_path('Http/Routes/Web/routes.php');
         });
 

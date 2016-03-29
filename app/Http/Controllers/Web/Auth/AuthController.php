@@ -2,71 +2,71 @@
 
 namespace App\Http\Controllers\Web\Auth;
 
+use App\Http\Controllers\Web\WebController;
+use App\Http\Requests\Request;
+use App\Http\Requests\Requests\Auth\LoginRequest;
+use App\Http\Requests\Requests\Auth\RegistrationRequest;
+use App\Http\Responses\Responses\WebResponse;
+use App\Libs\Auth\Web as Authenticator;
+use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
+use App\Repositories\Transformers\Sql\UserTransformer;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+
+class AuthController extends WebController
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $auth;
+    private $users;
+    private $userTransformer;
+    public $response;
+    public function __construct
+    (
+        WebResponse $response, Authenticator $authenticator,
+        UsersRepoInterface $usersRepository, UserTransformer $userTransformer
+    )
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->auth = $authenticator;
+        $this->users = $usersRepository;
+        $this->response = $response;
+        $this->userTransformer = $userTransformer;
+    }
+    public function showLoginPage()
+    {
+        return $this->response->setView('loginPage')->respond([]);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function login(LoginRequest $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+
+        if(!$this->auth->attempt($request->getCredentials())){
+            return $this->response->respondInvalidCredentials();
+        }
+
+        $authenticatedUser = $this->auth->login(['email'=>$request->getCredentials()['email']]);
+        if($authenticatedUser == null)
+            $this->response->respondInternalServerError();
+
+        return $this->response->setView('welcome')->respond(['data'=>[
+            'authUser' => $authenticatedUser
+        ]]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
+    public function showRegisterPage()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return $this->response->setView('register')->respond([]);
+    }
+    public function register(RegistrationRequest $request)
+    {
+        $userId = $this->users->store($request->getUserInfo());
+
+        if($userId == null)
+            return $this->response->respondInternalServerError();
+
+        return redirect()->back();
     }
 }

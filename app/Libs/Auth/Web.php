@@ -11,8 +11,22 @@ namespace App\Libs\Auth;
 
 class Web extends Authenticate implements AuthInterface
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function login(array $credentials){
+        return $this->users->getFirst($credentials);
+    }
+
     public function authenticate()
     {
-        return false;
+        return ($this->user() == null)?false: true;
+    }
+
+    public function user()
+    {
+        return (object)['email'=>'waqas@gamil.com'];
     }
 }

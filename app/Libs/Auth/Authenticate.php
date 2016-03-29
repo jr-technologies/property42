@@ -24,7 +24,6 @@ abstract class Authenticate
     public function attempt(array $credentials)
     {
         $user = User::where('email','=',$credentials['email'])->get()->first();
-
         if(!$user)
             return false;
 

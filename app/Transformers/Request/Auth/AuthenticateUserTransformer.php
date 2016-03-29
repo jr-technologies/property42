@@ -14,9 +14,6 @@ use App\Transformers\Request\RequestTransformer;
 class AuthenticateUserTransformer extends RequestTransformer{
 
     public function transform($data){
-        return [
-            'email'=>$data['email'],
-            'password'=>$data['password']
-        ];
+        return $data;
     }
 } 

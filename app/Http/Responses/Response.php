@@ -9,10 +9,15 @@
 namespace App\Http\Responses;
 
 
+use App\Traits\RequestHelper;
+
 abstract class Response
 {
+    use RequestHelper;
+
     public $CUSTOM_STATUS = 0;
     public $HTTP_STATUS = 200;
+    public $ERROR_MESSAGES = [];
 
     public function setHttpStatus($status){
         $this->HTTP_STATUS = $status;
@@ -28,48 +33,79 @@ abstract class Response
     public function getCustomStatus(){
         return $this->CUSTOM_STATUS;
     }
-
-    public function respondWithErrors(array $messages=[]){
-        return $this->respond([
-            'status' => 0,
-            'error' => [
-                'messages'=>$messages,
-                'code' => $this->getCustomStatus()
-            ],
-            'data' => null
-        ]);
+    public function setErrorMessages($messages){
+        $this->ERROR_MESSAGES = $messages;
+        return $this;
+    }
+    public function getErrorMessages(){
+        return $this->ERROR_MESSAGES;
     }
 
     public function respondNotFound($messages=["record not found"])
     {
-        return $this->setHttpStatus(404)->setCustomStatus(404)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondInternalServerError($messages=["Something went wrong with the server!"])
     {
-        return $this->setHttpStatus(500)->setCustomStatus(505)->respondWithErrors($messages);
+        return $this->setHttpStatus(500)->setCustomStatus(505)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondValidationFails($messages=["Your request did not passed our server requirements!"])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondAuthenticationFailed($messages=["Dear user you are not logged in."])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondInvalidCredentials($messages=["Invalid username or password"])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondAccessTokenNotProvided($messages=["Session expired, please login again."])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondInvalidAccessToken($messages=["Session expired, please login again."])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondOwnershipConstraintViolation($messages=["Ownership Constraint Violation."])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->respondWithErrors($messages);
+        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
+    }
+
+    public function respondWithErrors(){
+        if($this->isWeb())
+            return $this->webErrorResponse();
+        else
+            return $this->apiErrorResponse();
+    }
+
+    public function apiErrorResponse()
+    {
+        return $this->respond([
+            'status' => 0,
+            'error' => [
+                'messages'=>$this->getErrorMessages(),
+                'code' => $this->getCustomStatus(),
+                'http_status' => $this->getHttpStatus(),
+            ],
+            'data' => null
+        ]);
+    }
+    public function webErrorResponse()
+    {
+        return $this->redirectBackWithErrors()->withInput();
+    }
+
+    public function redirectBack()
+    {
+        return redirect()->back();
+    }
+
+    public function redirectBackWithErrors()
+    {
+        \Session::flash('errors',$this->getErrorMessages());
+        return $this->redirectBack();
     }
 }
