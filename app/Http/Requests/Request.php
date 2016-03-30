@@ -14,7 +14,7 @@ abstract class Request
     public $authenticator = null;
     public function __construct(Transformer $transformer){
         $this->transformer = $transformer;
-        $this->transformedValues = $this->transformer->transform(request()->all());
+        $this->transformedValues = $this->transformer->transform();
         $this->authenticator = $this->getRequestAuthenticator();
     }
 

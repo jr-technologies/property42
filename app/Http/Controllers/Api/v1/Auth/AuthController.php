@@ -37,6 +37,7 @@ class AuthController extends ApiController
             return $this->response->respondInvalidCredentials();
 
         $authenticatedUser = $this->auth->login(['email'=>$request->getCredentials()['email']]);
+
         if($authenticatedUser == null)
             $this->response->respondInternalServerError();
 
@@ -57,7 +58,7 @@ class AuthController extends ApiController
                 return $this->response->respondInternalServerError();
 
         $response = ['data'=>[
-            'user'=>$this->userTransformer->transformDocument($this->users->getUserDocument($userId))
+            'user'=>$this->userTransformer->transform($this->users->getById($userId))
         ]];
 
         return $this->response->respond($response);

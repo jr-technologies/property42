@@ -6,13 +6,13 @@
  * Time: 11:46 AM
  */
 
-namespace App\Libs\Json\Prototypes\Prototypes;
-
+namespace App\Libs\Json\Prototypes\Prototypes\User;
 
 use App\Libs\Json\Prototypes\Interfaces\JsonPrototypeInterface;
+use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
 use App\Models\Sql\User;
 
-class UserJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
+class UserBasicInfoJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
     private $user;
 
@@ -33,26 +33,8 @@ class UserJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
             'fax' => $this->user->fax,
             'address' => $this->user->address,
             'zipCode' => $this->user->zipcode,
-            'country' => $this->user->country->country,
-            'membershipPlan' => $this->membershipPlan(),
-            'agencies' => $this->agencies()
+            'access_token' => $this->user->access_token,
         ];
         return json_encode($jsonObj);
-    }
-
-    public function membershipPlan()
-    {
-        return (object)[
-            'id' => $this->user->membershipPlan->id,
-            'plan_name' => $this->user->membershipPlan->plan_name,
-            'hot' => $this->user->membershipPlan->hot,
-            'featured' => $this->user->membershipPlan->featured,
-            'description' => $this->user->membershipPlan->description,
-        ];
-    }
-
-    public function agencies()
-    {
-        return (object)$this->user->agencies->toArray();
     }
 }

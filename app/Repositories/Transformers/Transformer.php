@@ -12,5 +12,8 @@ namespace App\Repositories\Transformers;
 use App\Transformers\Transformer as AppTransformer;
 abstract class Transformer extends AppTransformer
 {
-
+    public function transformCollection(array $collection){
+        return array_map([$this, 'transform'], $collection);
+    }
+    public abstract function transform($item);
 }

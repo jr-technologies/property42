@@ -1,57 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
+<head>
+    <title>Laravel</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+    <style>
+        html, body {
+            height: 100%;
+        }
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+        .container {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+            z-index: 999999999;
+        }
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+        .content {
+            text-align: center;
+            display: inline-block;
+        }
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                @if(\Session::has('errors'))
-                    @foreach(\Session::get('errors') as $error)
-                        {{$error}}
-                    @endforeach;
-                @endif;
-
-                <form method="post" action="{{route('register')}}">
-                    <input type="text" name="f_name">
-                    <input type="text" name="l_name">
-                    <input type="text" name="email">
-                    <input type="text" name="password">
-                    <input type="submit" name="submit">
-                </form>
-            </div>
-        </div>
-    </body>
+        .title {
+            font-size: 96px;
+        }
+    </style>
+</head>
+<body>
+<div class="background-image">
+</div>
+<div class="container">
+    <div class="content">
+        @if(\Session::has('errors'))
+            @foreach(\Session::get('errors') as $error)
+                {{$error}}
+            @endforeach
+        @endif
+        <form method="post" action="{{route('register')}}">
+            <input type="text" name="fName">
+            <input type="text" name="lName">
+            <input type="text" name="email">
+            <input type="text" name="password">
+            <input type="submit" name="submit">
+        </form>
+    </div>
+</div>
+</body>
 </html>

@@ -20,7 +20,7 @@ class RegistrationRequest extends Request implements RequestInterface{
     public $validator = null;
     public function __construct(){
         parent::__construct(new RegisterUserTransformer($this->getOriginalRequest()));
-        $this->validator = new AddUserValidator($this->getOriginalRequest());
+        $this->validator = new AddUserValidator($this);
     }
 
     public function authorize(){

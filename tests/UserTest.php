@@ -24,10 +24,10 @@ class UserTest extends TestCase
     public function testUserRegistration()
     {
         $this->json('POST', $this->apiRoute('register'), [
-            'f_name' => 'unit',
-            'l_name'=>'test',
+            'fName' => 'unit',
+            'lName'=>'test',
             'email'=>$this->generateUniqueEmail(),
-            'password'=>$this->userPassword
+            'pass'=>$this->userPassword
         ])->seeJson([
             'status' =>1,
         ]);
@@ -55,6 +55,18 @@ class UserTest extends TestCase
             'password'=>$this->userPassword
         ])->seeJson([
             'status' => 1,
+        ]);
+    }
+
+    /**
+     * Testing user login
+     *
+     * @return void
+     */
+    public function testGetAllUsers()
+    {
+        $this->json('GET', $this->apiRoute('users'))->seeJson([
+            'status' => 1
         ]);
     }
 }

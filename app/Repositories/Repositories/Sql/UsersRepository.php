@@ -28,10 +28,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     public function getFirst(array $where = [])
     {
         $user = $this->users->where($where)->with('document')->get()->first();
-        if($user == null || $user->document == null)
-            return null;
-
-        return ($user->document->json == null)?null:$this->userTransformer->transform($user->document->decode());
+        return $this->userTransformer->transform($user);
     }
 
     public function getById($id)
@@ -46,11 +43,10 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function all()
     {
-        return $this->users->with('country')
-                ->with('membershipPlan')
-                ->with('agencies')
-                ->get();
+        $users = $this->users->with('document')->get()->all();
+        return $this->userTransformer->transformCollection($users);
     }
+
     public function update($id, $info)
     {
         return $this->users->where('id','=',$id)->update($info);

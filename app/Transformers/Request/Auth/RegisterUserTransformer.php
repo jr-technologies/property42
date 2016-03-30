@@ -13,7 +13,12 @@ use App\Transformers\Request\RequestTransformer;
 
 class RegisterUserTransformer extends RequestTransformer{
 
-    public function transform($data){
-        return $this->request->all();
+    public function transform(){
+        return [
+            'f_name'=>$this->request->input('fName'),
+            'l_name'=>$this->request->input('lName'),
+            'email'=>$this->request->input('email'),
+            'password'=>$this->request->input('pass'),
+        ];
     }
 } 

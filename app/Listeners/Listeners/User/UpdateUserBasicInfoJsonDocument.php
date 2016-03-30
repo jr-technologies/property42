@@ -3,14 +3,14 @@
 namespace App\Listeners\Listeners\User;
 
 use App\Events\Events\User\UserCreated;
-use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
+use App\Libs\Json\Creators\Creators\User\UserBasicInfoJsonCreator;
 use App\Listeners\Interfaces\ListenerInterface;
 use App\Listeners\Listeners\Listener;
 use App\Repositories\Repositories\Sql\UsersJsonRepository;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CreateUserJsonDocument extends Listener implements ListenerInterface
+class CreateUserBasicInfoJsonDocument extends Listener implements ListenerInterface
 {
     private $usersJsonRepository = null;
 
@@ -31,8 +31,12 @@ class CreateUserJsonDocument extends Listener implements ListenerInterface
      */
     public function handle(UserCreated $event)
     {
-        $userJsonCreator = new UserJsonCreator($event->user);
-        $userJson = $userJsonCreator->create();
+        $jsonCreator = new UserBasicInfoJsonCreator($event->user);
+        $userBasicInfoJson = $jsonCreator->create();
+
+        
+
+
         $this->usersJsonRepository->store($event->user->id, $userJson);
     }
 }
