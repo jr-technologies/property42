@@ -33,10 +33,6 @@ class CreateUserBasicInfoJsonDocument extends Listener implements ListenerInterf
     {
         $jsonCreator = new UserBasicInfoJsonCreator($event->user);
         $userBasicInfoJson = $jsonCreator->create();
-
-        
-
-
-        $this->usersJsonRepository->store($event->user->id, $userJson);
+        dd('to be continued...');
     }
 }
