@@ -33,15 +33,10 @@ class AuthController extends ApiController
     }
     public function login(LoginRequest $request)
     {
-        $credentials = [
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-        ];
-
-        if(!$this->auth->attempt($credentials))
+        if(!$this->auth->attempt($request->getCredentials()))
             return $this->response->respondInvalidCredentials();
 
-        $authenticatedUser = $this->auth->login(['email'=>$credentials['email']]);
+        $authenticatedUser = $this->auth->login(['email'=>$request->getCredentials()['email']]);
         if($authenticatedUser == null)
             $this->response->respondInternalServerError();
 
