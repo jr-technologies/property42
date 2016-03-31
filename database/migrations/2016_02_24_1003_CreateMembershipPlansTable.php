@@ -14,7 +14,7 @@ class CreateMembershipPlansTable extends Migration
     {
         Schema::create('membership_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('plane_name');
+            $table->string('plan_name');
             $table->integer('hot');
             $table->integer('featured');
             $table->text('description');
