@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMembershipPlanesTable extends Migration
+class CreateMembershipPlansTable extends Migration
 {
     /**
      * Run the migrations.

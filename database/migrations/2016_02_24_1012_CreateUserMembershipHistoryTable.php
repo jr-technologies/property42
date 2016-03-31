@@ -15,7 +15,7 @@ class CreateUserMembershipHistoryTable extends Migration
         Schema::create('user_membership_history', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('membership_plane_id')->unsigned();
+            $table->integer('membership_plan_id')->unsigned();
             $table->integer('from');
             $table->integer('to');
             $table->timestamps();
@@ -24,8 +24,8 @@ class CreateUserMembershipHistoryTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('membership_plane_id')
-                ->references('id')->on('membership_planes')
+            $table->foreign('membership_plan_id')
+                ->references('id')->on('membership_plans')
                 ->onDelete('cascade');
 
         });
