@@ -10,7 +10,7 @@ use App\Repositories\Repositories\Sql\UsersJsonRepository;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CreateUserBasicInfoJsonDocument extends Listener implements ListenerInterface
+class UpdateUserBasicInfoJsonDocument extends Listener implements ListenerInterface
 {
     private $usersJsonRepository = null;
 
@@ -33,6 +33,6 @@ class CreateUserBasicInfoJsonDocument extends Listener implements ListenerInterf
     {
         $jsonCreator = new UserBasicInfoJsonCreator($event->user);
         $userBasicInfoJson = $jsonCreator->create();
-        dd('to be continued...');
+        dd($userBasicInfoJson);
     }
 }
