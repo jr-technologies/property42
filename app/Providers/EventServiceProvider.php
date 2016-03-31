@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
+use App\Listeners\Listeners\User\CreateUserJsonDocument;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -14,7 +16,10 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\Events\User\UserCreated' => [
-            'App\Listeners\Listeners\User\CreateUserJsonDocument',
+            CreateUserJsonDocument::class,
+        ],
+        'App\Events\Events\User\UserBasicInfoUpdated' => [
+            UpdateUserBasicInfoJsonDocument::class
         ],
     ];
 

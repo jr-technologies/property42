@@ -14,10 +14,10 @@ class UserBasicInfoUpdated extends Event
 
     public $user = null;
     /**
-     * @param User $user
+     * @param $user
      * Create a new event instance.
      */
-    public function __construct(User $user)
+    public function __construct($user)
     {
         $this->user = $user;
     }

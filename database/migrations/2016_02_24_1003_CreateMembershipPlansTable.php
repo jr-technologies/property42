@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMembershipPlanesTable extends Migration
+class CreateMembershipPlansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateMembershipPlanesTable extends Migration
     {
         Schema::create('membership_plans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('plane_name');
+            $table->string('plan_name');
             $table->integer('hot');
             $table->integer('featured');
             $table->text('description');

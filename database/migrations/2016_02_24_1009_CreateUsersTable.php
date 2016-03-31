@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
                 ->references('id')->on('countries')
                 ->onDelete('cascade');
             $table->foreign('membership_plan_id')
-                ->references('id')->on('membership_planes')
+                ->references('id')->on('membership_plans')
                 ->onDelete('cascade');
 
 
