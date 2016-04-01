@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\DB\SQL\SQLFactoryProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\User\AddUserRequest;
 use App\Http\Requests\Requests\User\DeleteUserRequest;
@@ -35,6 +36,10 @@ class UsersController extends ApiController
 
     public function index()
     {
+        $sfp = new SQLFactoryProvider();
+        $userFactory = $sfp->user();
+        dd($userFactory->find(1));
+
         $users = $this->users->all();
         return $this->response->respond(['data'=>[
             'total' => sizeof($users),
