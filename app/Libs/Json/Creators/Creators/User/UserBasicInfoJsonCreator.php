@@ -11,21 +11,28 @@ namespace App\Libs\Json\Creators\Creators\User;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\UserBasicInfoJsonPrototype;
-use App\Libs\Json\Prototypes\Prototypes\UserJsonPrototype;
-use App\Models\Sql\User;
+use App\Objects\User;
 
 class UserBasicInfoJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
-    private $user = null;
-    private $prototype = null;
     public function __construct(User $user)
     {
-        $this->user = $user;
-        $this->prototype = new UserBasicInfoJsonPrototype($this->user);
+        $this->model = $user;
+        $this->prototype = new UserBasicInfoJsonPrototype();
     }
 
     public function create()
     {
-        return $this->prototype->prototype();
+        $this->prototype->id = $this->model->id;
+        $this->prototype->email = $this->model->email;
+        $this->prototype->fName = $this->model->fName;
+        $this->prototype->lName = $this->model->fName;
+        $this->prototype->phone = $this->model->phone;
+        $this->prototype->mobile = $this->model->mobile;
+        $this->prototype->fax = $this->model->fax;
+        $this->prototype->address = $this->model->address;
+        $this->prototype->zipCode = $this->model->zipCode;
+
+        return $this->prototype;
     }
 }

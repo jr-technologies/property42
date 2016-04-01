@@ -9,6 +9,7 @@
 namespace App\Repositories\Repositories\Sql;
 
 
+use App\Collections\Collections\UserCollection;
 use App\Events\Events\User\UserCreated;
 use App\Libs\Json\Creators\Creators\UserJsonCreator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
@@ -25,26 +26,39 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         $this->users = new User();
     }
 
-    public function getFirst(array $where = [])
+    public function getWithRelations(array $where = [])
     {
-        $user = $this->users->where($where)->with('document')->get()->first();
+        return  $this->users->where($where)
+                ->with('country')
+                ->with('membershipPlan')
+                ->with('agencies')
+                ->get();
+    }
+    public function getFirstWithRelations(array $where = [])
+    {
+        $user = $this->getWithRelations($where)->first();
         return $this->userTransformer->transform($user);
     }
 
     public function getById($id)
     {
-        return $this->getFirst(['id'=>$id]);
+        return $this->getFirstWithRelations(['id'=>$id]);
     }
 
     public function getByToken($token)
     {
-        return $this->getFirst(['access_token'=>$token]);
+        return $this->getFirstWithRelations(['access_token'=>$token]);
+    }
+
+    public function getByCredentials(array $credentials)
+    {
+        return $this->getFirstWithRelations($credentials);
     }
 
     public function all()
     {
-        $users = $this->users->with('document')->get()->all();
-        return $this->userTransformer->transformCollection($users);
+        $users = $this->getWithRelations()->all();
+        return new UserCollection($this->userTransformer->transformCollection($users));
     }
 
     public function update($id, $info)
@@ -55,7 +69,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     public function store($userInfo)
     {
         $user = $this->users->create($userInfo);
-        Event::fire(new UserCreated($this->fetchUserWithRelations($user->id)));
+        Event::fire(new UserCreated($this->getById($user->id)));
         return ($user == null)?null:$user->id;
     }
 
@@ -63,21 +77,5 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     {
         $this->users->destroy($userId);
         return true;
-    }
-
-    public function getUserDocument($userId)
-    {
-        $user = $this->users->where('id','=',$userId)->with('document')->get()->first();
-        return ($user->document == null)?null:$this->userTransformer->transform($user->document->decode());
-    }
-
-    public function fetchUserWithRelations($userId)
-    {
-        $user = $this->users->where('id','=', $userId)
-            ->with('country')
-            ->with('membershipPlan')
-            ->with('agencies')
-            ->get()->first();
-        return $user;
     }
 }

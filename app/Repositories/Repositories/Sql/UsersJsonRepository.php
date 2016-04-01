@@ -10,6 +10,7 @@ namespace App\Repositories\Repositories\Sql;
 
 
 use App\Events\Events\User\UserCreated;
+use App\Models\Sql\UserDocument;
 use App\Models\Sql\UserJson;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Models\Sql\User;
@@ -20,36 +21,31 @@ use Illuminate\Support\Facades\Event;
 class UsersJsonRepository extends SqlRepository implements UsersRepoInterface
 {
     private $userJsonTransformer;
+    private $userDocuments = null;
     public function __construct(){
         $this->userJsonTransformer = new UserJsonTransformer();
+        $this->userDocuments = new UserDocument();
     }
 
     public function getFirst(array $where = [])
     {
-        $userJson = UserJson::where($where)->get()->first();
-        return $this->userJsonTransformer->transform($userJson);
+        $userJson = $this->userDocuments->where($where)->get()->first();
+        return $userJson;
     }
 
     public function update($userJson)
     {
-        return true;
+        return $this->userDocuments->update($userJson);
     }
 
-    public function store($userId, $userJson)
+    public function store($userDocument)
     {
-        $userJson = UserJson::create(['user_id' => $userId, 'json'=>$userJson]);
-        return ($userJson == null)?null:$userJson->id;
+        $userDocument = $this->userDocuments->create($userDocument);
+        return ($userDocument == null)?null:$userDocument->id;
     }
 
-    public function deleteUser($userId)
+    public function getByUserId($userId)
     {
-        User::destroy($userId);
-        return true;
-    }
-
-    public function getUserDocument($userId)
-    {
-        $user = User::where('id','=',$userId)->with('document')->get()->first();
-        return ($user->document == null)?null:$this->userTransformer->transform($user->document->decode());
+        return $this->getFirst(['user_id'=>$userId]);
     }
 }

@@ -26,7 +26,7 @@ class Api extends Authenticate implements AuthInterface
 
     public function login(array $credentials){
         $this->setAccessToken($this->generateToken($credentials));
-        $authenticatedUser = $this->users->getFirst($credentials);
+        $authenticatedUser = $this->users->getbyCredentials($credentials);
         $authenticatedUser->access_token = $this->getAccessToken();
         if(!$this->users->update($authenticatedUser->id, ['access_token'=> $authenticatedUser->access_token]))
             return false;

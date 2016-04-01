@@ -13,5 +13,5 @@ use App\Repositories\Transformers\Transformer as RepositoriesTransformer;
 
 abstract class SqlTransformer extends RepositoriesTransformer
 {
-    
+
 }

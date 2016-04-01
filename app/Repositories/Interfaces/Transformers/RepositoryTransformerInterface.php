@@ -9,6 +9,7 @@
 namespace App\Repositories\Interfaces\Transformers;
 
 
+use App\Models\Models\Sql\Model;
 use App\Models\Sql\UserDocument;
 
 interface RepositoryTransformerInterface

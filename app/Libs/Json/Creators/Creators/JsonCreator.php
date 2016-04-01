@@ -9,7 +9,20 @@
 namespace App\Libs\Json\Creators\Creators;
 
 
+use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
+
 abstract class JsonCreator
 {
+    protected $model = null;
+    protected  $prototype = null;
 
+    public function setModel($model)
+    {
+        $this->model = $model;
+        return $this;
+    }
+    public function setPrototype(JsonPrototype $prototype)
+    {
+        $this->prototype = $prototype;
+    }
 }

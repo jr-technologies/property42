@@ -12,18 +12,13 @@ use App\Libs\Json\Prototypes\Interfaces\JsonPrototypeInterface;
 use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
 use App\Models\Sql\User;
 
-class UserBasicInfoJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
+class MembershipPlanJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
     public $id = null;
-    public $email = "";
-    public $fName = "";
-    public $lName = "";
-    public $phone = "";
-    public $mobile = "";
-    public $fax = "";
-    public $address = "";
-    public $zipCode = "";
-    public $access_token = "";
+    public $name = "";
+    public $hot = 0;
+    public $featured = 0;
+    public $description = "";
 
     public function __construct()
     {
