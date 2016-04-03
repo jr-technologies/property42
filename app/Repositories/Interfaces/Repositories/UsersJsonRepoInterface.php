@@ -9,6 +9,8 @@
 namespace App\Repositories\Interfaces\Repositories;
 
 
+use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
+
 interface UsersJsonRepoInterface
 {
     function find($id);
@@ -17,5 +19,5 @@ interface UsersJsonRepoInterface
 
     function update($user);
     function delete($id);
-    function store($user);
+    function store(UserJsonPrototype $user);
 }

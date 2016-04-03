@@ -11,7 +11,7 @@ namespace App\Libs\Json\Creators\Creators\User;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\UserBasicInfoJsonPrototype;
-use App\Objects\User;
+use App\DB\Providers\SQL\Models\User;
 
 class UserBasicInfoJsonCreator extends JsonCreator implements JsonCreatorInterface
 {

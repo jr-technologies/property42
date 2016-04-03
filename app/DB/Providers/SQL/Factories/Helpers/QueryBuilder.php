@@ -24,6 +24,23 @@ abstract class QueryBuilder {
         return $this->first([$column => $value]);
     }
 
+    /*
+     * function returns multiple records based on conditions..
+     */
+    public function getWhere(array $where)
+    {
+        $result = DB::table($this->table)->where($where)->get();
+        return $result;
+    }
+
+    /*
+     * function returns multiple records based on conditions..
+     */
+    public function getBy($column, $value)
+    {
+        return $this->getWhere([$column => $value]);
+    }
+
     public function find($id)
     {
         return $this->first(['id'=>$id]);

@@ -6,20 +6,21 @@
  * Time: 9:34 PM
  */
 
-namespace App\DB\Providers\SQL\Factories\Factories\User;
+namespace App\DB\Providers\SQL\Factories\Factories\UserJson;
 
 use App\DB\Providers\SQL\Factories\Factories\UserJson\Gateways\UserJsonQueryBuilder;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\Gateways\UserQueryBuilder;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
-use App\Objects\User as UserModel;
+use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
+use App\Models\Sql\UserJson;
 
 class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     private $tableGateway = null;
     public function __construct()
     {
-        $this->model = new UserModel();
+        $this->model = new UserJsonPrototype();
         $this->tableGateway = new UserJsonQueryBuilder();
     }
 
@@ -50,33 +51,32 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param UserModel $user
+     * @param UserJsonPrototype $user
      * @return int
      **/
-    public function store(UserModel $user)
+    public function store(UserJsonPrototype $user)
     {
         return $this->tableGateway->insert($this->mapUserOnTable($user));
     }
 
     /**
      * @param $result
-     * @return UserModel::class
+     * @return UserJsonPrototype::class
      **/
     public function map($result)
     {
+        $result = json_decode($result->json);
+
         $user = $this->model;
         $user->id = $result->id;
         $user->fName = $result->fName;
         $user->lName = $result->lName;
         $user->email = $result->email;
-        $user->password = $result->password;
-        $user->access_token = $result->access_token;
         $user->fax = $result->fax;
         $user->phone = $result->phone;
         $user->mobile = $result->mobile;
         $user->country = $result->country;
         $user->membershipPlan = $result->membershipPlan;
-        $user->membershipStatus = $result->membershipStatus;
         $user->agencies = $result->agencies;
         $user->createdAt = $result->createdAt;
         $user->updatedAt = $result->updatedAt;
@@ -84,11 +84,11 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
 
-    private function mapUserOnTable(UserModel $user)
+    private function mapUserOnTable(UserJsonPrototype $user)
     {
         return [
             'user_id' => $user->id,
-            'json' => $user->toJson(),
+            'json' => $user->encode(),
             'updated_at' => $user->updatedAt,
             'created_at' => $user->createdAt,
         ];

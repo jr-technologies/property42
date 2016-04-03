@@ -9,14 +9,15 @@
 namespace App\Repositories\Repositories\Sql;
 
 
+use App\DB\Providers\SQL\Factories\Factories\UserJson\UserJsonFactory;
 use App\Events\Events\User\UserCreated;
+use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
 use App\Models\Sql\UserDocument;
 use App\Models\Sql\UserJson;
 use App\Repositories\Interfaces\Repositories\UsersJsonRepoInterface;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Models\Sql\User;
 use App\Repositories\Transformers\Sql\UserJsonTransformer;
-use App\Repositories\Transformers\Sql\UserTransformer;
 use Illuminate\Support\Facades\Event;
 
 class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterface
@@ -25,7 +26,7 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     private $factory = null;
     public function __construct(){
         $this->userJsonTransformer = new UserJsonTransformer();
-        $this->factory = new UserDocument();
+        $this->factory = new UserJsonFactory();
     }
 
     public function all()
@@ -43,9 +44,9 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
 
     }
 
-    public function store($user)
+    public function store(UserJsonPrototype $user)
     {
-
+        return $this->factory->store($user);
     }
 
     public function update($user)

@@ -11,6 +11,7 @@ namespace App\DB\Providers\SQL\Models;
 
 class Agency {
     public $id = 0;
+    public $userId = 0;
     public $name = "";
     public $description = "";
     public $mobile = "";

@@ -11,7 +11,7 @@ namespace App\Libs\Json\Creators\Creators\User;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\AgencyJsonPrototype;
-use App\Objects\Agency;
+use App\DB\Providers\SQL\Models\Agency;
 
 class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
@@ -25,7 +25,7 @@ class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
     {
         $this->prototype->id = $this->model->id;
         $this->prototype->address = $this->model->address;
-        $this->prototype->description  = $this->model->address;
+        $this->prototype->description  = $this->model->description;
         $this->prototype->email = $this->model->email;
         $this->prototype->mobile = $this->model->mobile;
         $this->prototype->name = $this->model->name;

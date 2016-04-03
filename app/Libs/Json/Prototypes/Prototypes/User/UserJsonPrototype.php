@@ -10,7 +10,7 @@ namespace App\Libs\Json\Prototypes\Prototypes\User;
 
 use App\Libs\Json\Prototypes\Interfaces\JsonPrototypeInterface;
 use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
-use App\Models\Sql\User;
+use App\Libs\Json\Prototypes\Prototypes\User\MembershipPlanJsonPrototype;
 
 class UserJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
@@ -24,7 +24,11 @@ class UserJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
     public $address = "";
     public $zipCode = "";
     public $country = "";
+    /**
+     * @var MembershipPlanJsonPrototype::class
+     * */
     public $membershipPlan = null;
     public $agencies = [];
-
+    public $createdAt = "";
+    public $updatedAt = "";
 }

@@ -8,10 +8,12 @@
 
 namespace App\Libs\Json\Creators\Creators\User;
 
+use App\DB\Providers\SQL\Models\Agency;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
 use App\DB\Providers\SQL\Models\User;
+use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\CountriesRepository;
 use App\Repositories\Repositories\Sql\MembershipPlansRepository;
 
@@ -22,6 +24,7 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     private $countries = null;
     private $membershipPlans = null;
+    private $agencies = null;
     public function __construct(User $user = null)
     {
         $this->model = $user;
@@ -32,6 +35,7 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
 
         $this->countries = new CountriesRepository();
         $this->membershipPlans = new MembershipPlansRepository();
+        $this->agencies = new AgenciesRepository();
     }
 
     public function create()
@@ -48,6 +52,8 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->country = $this->country();
         $this->prototype->membershipPlan = $this->membershipPlan();
         $this->prototype->agencies = $this->agencies();
+        $this->prototype->createdAt = $this->model->createdAt;
+        $this->prototype->updatedAt = $this->model->updatedAt;
         return $this->prototype;
     }
 
@@ -64,13 +70,12 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     public function agencies()
     {
-        return [];
-        $agencies = [];
-        $userAgencies = $this->model->agencies;
-        foreach($userAgencies as $agency)
+        $agencies = $this->agencies->getByUser($this->model->id);
+        $agenciesJson = [];
+        foreach($agencies as $agency) /* @var $agency Agency::class */
         {
-            $agencies[] = $this->agencyJsonCreator->setModel($agency)->create();
+            $agenciesJson[] = $this->agencyJsonCreator->setModel($agency)->create();
         }
-        return $agencies;
+        return $agenciesJson;
     }
 }

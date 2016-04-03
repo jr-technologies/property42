@@ -50,14 +50,11 @@ class AuthController extends ApiController
     {
         $userId = $this->users->store($request->getUserModel());
 
-        if($request->userIsAgent())
-            if(!$this->storeAgency($request->getAgencyInfo(), $userId))
-                return $this->response->respondInternalServerError();
+//        if($request->userIsAgent())
+//            $this->agencies->store($request->getAgencyModel());
 
-        $response = ['data'=>[
-            'user'=>$this->userTransformer->transform($this->users->getById($userId))
-        ]];
-
-        return $this->response->respond($response);
+        return $this->response->respond(['data'=>[
+            'user'=>$this->users->getById($userId)
+        ]]);
     }
 }
