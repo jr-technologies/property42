@@ -5,40 +5,28 @@
  * Date: 4/1/2016
  * Time: 9:28 PM
  */
-namespace App\DB\SQL\Factories;
+namespace App\DB\Providers\SQL\Factories\Helpers;
 
-use Illuminate\Support\Facades\DB;
-
-abstract class QueryBuilder {
+use App\DB\Providers\SQL\Models\User;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
+abstract class Eloquent extends EloquentModel{
     protected $table = "";
     protected $fillable = [];
     protected $model = null;
-    public function __construct(){}
 
-    public function first(array $where)
+    public function find($id)
     {
-        $user = DB::table($this->table)->where($where)->first();
-        return $user;
-    }
-
-    protected function find($id)
-    {
-        return $this->map($this->first(['id'=>$id]));
+        return $this->map(parent::find($id));
     }
 
     public function insert(array $record)
     {
-
-    }
-
-    public function all()
-    {
-        return [];
+        return $this->map(parent::create($record));
     }
 
     public function get()
     {
-        return $this->all();
+
     }
 
     public function map($result)
@@ -55,4 +43,4 @@ abstract class QueryBuilder {
     {
         return array_map([$this, 'map'], $results);
     }
-}
+} 

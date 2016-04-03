@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\DB\SQL\SQLFactoryProvider;
+use App\Repositories\Repositories\Sql\UsersRepository;
+use App\DB\Providers\SQL\SQLFactoryProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\User\AddUserRequest;
 use App\Http\Requests\Requests\User\DeleteUserRequest;
@@ -19,6 +20,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class UsersController extends ApiController
 {
     private $userTransformer;
+    /**
+     * @var UsersRepository::class
+     */
     private $users;
     private $agencyRepo;
     public $response;
@@ -36,14 +40,10 @@ class UsersController extends ApiController
 
     public function index()
     {
-        $sfp = new SQLFactoryProvider();
-        $userFactory = $sfp->user();
-        dd($userFactory->find(1));
-
         $users = $this->users->all();
         return $this->response->respond(['data'=>[
-            'total' => sizeof($users),
-            'users'=>$users
+            'total' => $users->count(),
+            'users'=>$users->all()
         ]]);
     }
 

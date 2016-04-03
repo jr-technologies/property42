@@ -11,11 +11,11 @@ namespace App\Libs\Json\Creators\Creators\User;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\MembershipPlanJsonPrototype;
-use App\Objects\MembershipPlan;
+use App\DB\Providers\SQL\Models\MembershipPlan;
 
 class MembershipPlanJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
-    public function __construct(MembershipPlan $plan)
+    public function __construct(MembershipPlan $plan = null)
     {
         $this->model = $plan;
         $this->prototype = new MembershipPlanJsonPrototype();
@@ -28,7 +28,6 @@ class MembershipPlanJsonCreator extends JsonCreator implements JsonCreatorInterf
         $this->prototype->hot = $this->model->hot;
         $this->prototype->featured = $this->model->featured;
         $this->prototype->description = $this->model->description;
-
         return $this->prototype;
     }
 }

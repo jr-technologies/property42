@@ -23,7 +23,7 @@ class AuthController extends ApiController
     public function __construct
     (
         ApiResponse $response, Authenticator $authenticator,
-        UsersRepoInterface $usersRepository, UserTransformer $userTransformer
+        UsersRepository $usersRepository, UserTransformer $userTransformer
     )
     {
         $this->auth = $authenticator;
@@ -48,10 +48,7 @@ class AuthController extends ApiController
 
     public function register(RegistrationRequest $request)
     {
-        $userId = $this->users->store($request->getUserInfo());
-
-        if($userId == null)
-            return $this->response->respondInternalServerError();
+        $userId = $this->users->store($request->getUserModel());
 
         if($request->userIsAgent())
             if(!$this->storeAgency($request->getAgencyInfo(), $userId))

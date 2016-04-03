@@ -3,7 +3,7 @@
 namespace App\Events\Events\User;
 
 use App\Events\Events\Event;
-use App\Objects\User;
+use App\DB\Providers\SQL\Models\User;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;

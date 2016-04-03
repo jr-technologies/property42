@@ -10,20 +10,21 @@ namespace App\Repositories\Repositories\Sql;
 
 
 use App\Collections\Collections\UserCollection;
+use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\Events\Events\User\UserCreated;
 use App\Libs\Json\Creators\Creators\UserJsonCreator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
-use App\Models\Sql\User;
+use App\DB\Providers\SQL\Models\User;
 use App\Repositories\Transformers\Sql\UserTransformer;
 use Illuminate\Support\Facades\Event;
 
 class UsersRepository extends SqlRepository implements UsersRepoInterface
 {
     private $userTransformer;
-    private $users = null;
+    private $factory = null;
     public function __construct(){
         $this->userTransformer = new UserTransformer();
-        $this->users = new User();
+        $this->factory = new UserFactory();
     }
 
     public function getWithRelations(array $where = [])
@@ -34,6 +35,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
                 ->with('agencies')
                 ->get();
     }
+
     public function getFirstWithRelations(array $where = [])
     {
         $user = $this->getWithRelations($where)->first();
@@ -42,12 +44,12 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function getById($id)
     {
-        return $this->getFirstWithRelations(['id'=>$id]);
+        return $this->factory->find($id);
     }
 
     public function getByToken($token)
     {
-        return $this->getFirstWithRelations(['access_token'=>$token]);
+        return $this->factory->findByToken($token);
     }
 
     public function getByCredentials(array $credentials)
@@ -57,7 +59,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function all()
     {
-        $users = $this->getWithRelations()->all();
+        $users = $this->factory->all();
         return new UserCollection($this->userTransformer->transformCollection($users));
     }
 
@@ -66,11 +68,11 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         return $this->users->where('id','=',$id)->update($info);
     }
 
-    public function store($userInfo)
+    public function store(User $user)
     {
-        $user = $this->users->create($userInfo);
-        Event::fire(new UserCreated($this->getById($user->id)));
-        return ($user == null)?null:$user->id;
+        $user->id = $this->factory->store($user);
+        Event::fire(new UserCreated($user));
+        return $user->id;
     }
 
     public function delete($userId)

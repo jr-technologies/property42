@@ -32,7 +32,8 @@ class CreateUserJsonDocument extends Listener implements ListenerInterface
     public function handle(UserCreated $event)
     {
         $userJsonCreator = new UserJsonCreator($event->user);
-        $userJson = $userJsonCreator->create()->encode();
+        $userJson = $userJsonCreator->create();
+        dd($userJson);
         return $this->usersJsonRepository->store(['user_id'=>$event->user->id, 'json' => $userJson]);
     }
 }

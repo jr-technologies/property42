@@ -12,40 +12,49 @@ namespace App\Repositories\Repositories\Sql;
 use App\Events\Events\User\UserCreated;
 use App\Models\Sql\UserDocument;
 use App\Models\Sql\UserJson;
+use App\Repositories\Interfaces\Repositories\UsersJsonRepoInterface;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Models\Sql\User;
 use App\Repositories\Transformers\Sql\UserJsonTransformer;
 use App\Repositories\Transformers\Sql\UserTransformer;
 use Illuminate\Support\Facades\Event;
 
-class UsersJsonRepository extends SqlRepository implements UsersRepoInterface
+class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterface
 {
     private $userJsonTransformer;
-    private $userDocuments = null;
+    private $factory = null;
     public function __construct(){
         $this->userJsonTransformer = new UserJsonTransformer();
-        $this->userDocuments = new UserDocument();
+        $this->factory = new UserDocument();
     }
 
-    public function getFirst(array $where = [])
+    public function all()
     {
-        $userJson = $this->userDocuments->where($where)->get()->first();
-        return $userJson;
+
     }
 
-    public function update($userJson)
+    public function search()
     {
-        return $this->userDocuments->update($userJson);
+
     }
 
-    public function store($userDocument)
+    public function find($id)
     {
-        $userDocument = $this->userDocuments->create($userDocument);
-        return ($userDocument == null)?null:$userDocument->id;
+
     }
 
-    public function getByUserId($userId)
+    public function store($user)
     {
-        return $this->getFirst(['user_id'=>$userId]);
+
+    }
+
+    public function update($user)
+    {
+
+    }
+
+    public function delete($id)
+    {
+
     }
 }

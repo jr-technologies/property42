@@ -6,12 +6,12 @@
  * Time: 9:38 PM
  */
 
-namespace App\DB\SQL;
+namespace App\DB\Providers\SQL;
 
 
 use App\DB\FactoryProvider;
 use App\DB\Interfaces\FactoryProviderInterface;
-use App\DB\SQL\Factories\User\User;
+use App\DB\Providers\SQL\Factories\Factories\User\UserFactory as User;
 
 class SQLFactoryProvider extends FactoryProvider implements FactoryProviderInterface{
 

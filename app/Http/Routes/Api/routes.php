@@ -15,7 +15,7 @@ Route::get('/users',
     [
         'middleware'=>
             [
-                'apiAuthenticate:getUsersRequest'
+                //'apiAuthenticate:getUsersRequest'
             ],
         'uses'=>'UsersController@index'
     ]

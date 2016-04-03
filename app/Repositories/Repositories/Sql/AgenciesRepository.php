@@ -18,17 +18,9 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
 
     }
 
-    public function getFirst(array $where)
+    public function getById($id)
     {
-        return (object)[
-            'agency'=>'jr property',
-            'email' => 'nomantufail100@gmail.com'
-        ];
-    }
-
-    public function updateAgency($user)
-    {
-        return true;
+        return $this->factory->find($id);
     }
 
     public function storeAgency($agencyInfo, $userId)

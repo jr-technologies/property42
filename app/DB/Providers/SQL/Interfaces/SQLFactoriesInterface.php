@@ -6,7 +6,7 @@
  * Time: 10:03 PM
  */
 
-namespace App\DB\SQL\Interfaces;
+namespace App\DB\Providers\SQL\Interfaces;
 
 
 interface SQLFactoriesInterface {

@@ -35,4 +35,9 @@ class User extends Object{
         $this->country = new Country();
         $this->membershipPlan = new MembershipPlan();
     }
+
+    public function toJson()
+    {
+        return json_encode($this);
+    }
 } 
