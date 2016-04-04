@@ -40,6 +40,15 @@ Route::post('/register',
         'uses'=>'Auth\AuthController@register'
     ]
 );
+Route::post('/country',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:addCountryRequest'
+            ],
+        'uses'=>'CountriesController@store'
+    ]
+);
 
 
 
