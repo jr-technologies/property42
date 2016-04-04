@@ -39,4 +39,14 @@ class CountryTest extends TestCase
     {
         $this->seeInDatabase('countries', ['country' =>'usa']);
     }
+
+    public function testUpdateCountry()
+    {
+        $this->json('POST',$this->apiRoute('country/update'),[
+            'id' => '1',
+            'country_name' => 'usa',
+        ])->seeJson([
+            'status' => 1
+        ]);
+    }
 }
