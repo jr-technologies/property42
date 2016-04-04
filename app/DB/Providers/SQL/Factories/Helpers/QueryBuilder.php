@@ -41,6 +41,10 @@ abstract class QueryBuilder {
         return $this->getWhere([$column => $value]);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         return $this->first(['id'=>$id]);
@@ -60,6 +64,7 @@ abstract class QueryBuilder {
     {
         return $this->updateWhere(['id' => $id], $data);
     }
+
     public function updateWhere(array $conditions, array $data)
     {
         $query = DB::table($this->table);

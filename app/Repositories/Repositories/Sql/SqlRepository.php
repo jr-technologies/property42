@@ -8,6 +8,7 @@
 
 namespace App\Repositories\Repositories\Sql;
 
+use App\DB\Providers\SQL\SQLFactoryProvider;
 use App\Repositories\Repositories\Repository;
 
 abstract class SqlRepository extends Repository
