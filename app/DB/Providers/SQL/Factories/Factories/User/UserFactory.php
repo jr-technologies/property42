@@ -31,6 +31,11 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         return $this->map($this->tableGateway->findBy('access_token', $token));
     }
 
+    public function findWhere(array $conditions)
+    {
+        return $this->map($this->tableGateway->getWhere($conditions)->first());
+    }
+
     /**
      * @return array UserModel::class
      **/
@@ -49,11 +54,31 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
+     * @param string $column
+     * @param string $value
+     * @return UserModel::class
+     **/
+    public function findBy($column, $value)
+    {
+        return $this->map($this->tableGateway->findBy($column, $value));
+    }
+
+    /**
+     * @param string $email
+     * @return UserModel::class
+     **/
+    public function findByEmail($email)
+    {
+        return $this->findBy('email', $email);
+    }
+
+    /**
      * @param UserModel $user
      * @return bool
      **/
     public function update(UserModel $user)
     {
+        $user->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->update($user->id, $this->mapUserOnTable($user));
     }
 
@@ -73,6 +98,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function store(UserModel $user)
     {
+        $user->createdAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapUserOnTable($user));
     }
 
@@ -85,6 +111,20 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         $user = $this->model;
         $user->id = $result->id;
         $user->fName = $result->f_name;
+        $user->lName = $result->l_name;
+        $user->email = $result->email;
+        $user->password = $result->password;
+        $user->access_token = $result->access_token;
+        $user->phone = $result->phone;
+        $user->mobile = $result->mobile;
+        $user->address = $result->address;
+        $user->zipCode = $result->zipcode;
+        $user->fax = $result->fax;
+        $user->countryId = $result->country_id;
+        $user->membershipPlanId = $result->membership_plan_id;
+        $user->membershipStatus = $result->membership_status;
+        $user->notificationSettings = $result->notification_settings;
+
         return $user;
     }
 

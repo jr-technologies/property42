@@ -43,6 +43,26 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         return $this->userTransformer->transform($user);
     }
 
+
+    /**
+     * @param string $column
+     * @param string $value
+     * @return User
+     */
+    public function findBy($column, $value)
+    {
+        return $this->factory->findBy($column, $value);
+    }
+
+    /**
+     * @param string $email
+     * @return User
+     */
+    public function findByEmail($email = "")
+    {
+        return $this->factory->findByEmail($email);
+    }
+
     public function getById($id)
     {
         return $this->factory->find($id);
@@ -55,18 +75,18 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function getByCredentials(array $credentials)
     {
-        return $this->getFirstWithRelations($credentials);
+        return $this->factory->findWhere($credentials);
     }
 
     public function all()
     {
         $users = $this->factory->all();
-        return new UserCollection($this->userTransformer->transformCollection($users));
+        return new UserCollection($users);
     }
 
-    public function update($id, $info)
+    public function update(User $user)
     {
-        return $this->users->where('id','=',$id)->update($info);
+        return $this->factory->update($user);
     }
 
     public function store(User $user)

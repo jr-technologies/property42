@@ -36,10 +36,7 @@ class AuthController extends ApiController
         if(!$this->auth->attempt($request->getCredentials()))
             return $this->response->respondInvalidCredentials();
 
-        $authenticatedUser = $this->auth->login(['email'=>$request->getCredentials()['email']]);
-
-        if($authenticatedUser == null)
-            $this->response->respondInternalServerError();
+        $authenticatedUser = $this->auth->login($this->users->findByEmail($request->get('email')));
 
         return $this->response->respond(['data'=>[
             'authUser' => $authenticatedUser
