@@ -15,6 +15,7 @@ class User {
     public $lName = "";
     public $email = "";
     public $password = "";
+    public $access_token = "";
     public $phone = "";
     public $mobile = "";
     public $fax = "";

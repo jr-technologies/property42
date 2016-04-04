@@ -49,28 +49,12 @@ class UsersController extends ApiController
 
     public function store(AddUserRequest $request)
     {
-        $userId = $this->users->store($request->getUserInfo());
 
-        if($userId == null)
-            return $this->response->respondInternalServerError();
-
-        if($request->userIsAgent())
-            if(!$this->storeAgency($request->getAgencyInfo(), $userId))
-                return $this->response->respondInternalServerError();
-
-        return $this->response->respond(['data' => [
-            'user'=>$this->userTransformer->transformDocument($this->users->getUserDocument($userId))
-        ]]);
     }
 
     private function storeAgency(array $agencyInfo, $userId)
     {
-        if(!$this->agencyRepo->storeAgency($agencyInfo, $userId))
-        {
-            $this->users->delete($userId);
-            return false;
-        }
-        return true;
+
     }
 
 }

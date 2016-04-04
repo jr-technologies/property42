@@ -17,10 +17,4 @@ class UserQueryBuilder extends QueryBuilder{
     public function __construct(){
         $this->table = "users";
     }
-
-    public function findBy($column, $value)
-    {
-        return DB::table($this->table)->where($column, '=', $value)->get()->first();
-    }
-
 }
