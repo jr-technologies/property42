@@ -31,4 +31,6 @@ class User {
         $this->createdAt = date('Y-m-d h:i:s');
         $this->updatedAt = $this->createdAt;
     }
+
+
 } 

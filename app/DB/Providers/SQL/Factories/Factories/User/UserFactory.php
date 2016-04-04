@@ -40,7 +40,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @return UserModel::class
      **/
     public function find($id)
@@ -88,7 +88,10 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         return $user;
     }
 
-
+    /**
+     * @param UserModel $user
+     * @return array
+     **/
     private function mapUserOnTable(UserModel $user)
     {
         return [

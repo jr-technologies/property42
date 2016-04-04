@@ -85,7 +85,7 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return [
             'country' => $country->name,
-            'updatedAt' => $country->updatedAt,
+            'updated_at' => $country->updatedAt,
         ];
     }
 }

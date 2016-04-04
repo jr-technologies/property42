@@ -12,6 +12,10 @@ class UserCreated extends Event
 {
     use SerializesModels;
 
+
+    /**
+     * @var $user User
+     */
     public $user = null;
     /**
      * @param User $user

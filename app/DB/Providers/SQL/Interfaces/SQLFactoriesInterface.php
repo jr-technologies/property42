@@ -13,4 +13,5 @@ interface SQLFactoriesInterface {
     function map($result);
     function find($id);
     function all();
+
 }

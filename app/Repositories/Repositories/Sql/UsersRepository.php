@@ -11,6 +11,7 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\Collections\Collections\UserCollection;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
+use App\DB\Providers\SQL\SQLFactoryProvider;
 use App\Events\Events\User\UserCreated;
 use App\Libs\Json\Creators\Creators\UserJsonCreator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
@@ -24,7 +25,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     private $factory = null;
     public function __construct(){
         $this->userTransformer = new UserTransformer();
-        $this->factory = new UserFactory();
+        $this->factory = SQLFactoryProvider::user();
     }
 
     public function getWithRelations(array $where = [])
