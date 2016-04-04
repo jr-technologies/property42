@@ -23,6 +23,7 @@ class CountriesController extends ApiController
     }
     public function store(AddCountryRequest $request)
     {
+
         return $this->response->respond(['data' => [
             'country' => $this->country->store($request->getCountryModel())
         ]]);

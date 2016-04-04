@@ -44,7 +44,7 @@ Route::post('/country',
     [
         'middleware'=>
             [
-                //'apiValidate:addCountryRequest'
+                'apiValidate:addCountryRequest'
             ],
         'uses'=>'CountriesController@store'
     ]

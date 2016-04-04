@@ -217,6 +217,7 @@ return [
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
+        'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
     ],
 
 ];

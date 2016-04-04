@@ -17,7 +17,7 @@ class AddCountriesTransformer extends RequestTransformer
  public function transform()
  {
      return [
-         'country'=>'country_name'
+         'country'=>$this->request->input('country_name')
      ];
  }
 }

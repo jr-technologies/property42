@@ -22,6 +22,7 @@ class ApiValidator
      */
     public function handle($request, Closure $next, $customRequest)
     {
+
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
         if(!$customRequest->validate())
