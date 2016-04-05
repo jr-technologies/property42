@@ -75,6 +75,11 @@ abstract class QueryBuilder {
         return $query->update($data);
     }
 
+    public function delete($id)
+    {
+        return DB::table($this->table)->where('id','=',$id)->delete();
+    }
+
     public function all()
     {
         return DB::table($this->table)->get();
