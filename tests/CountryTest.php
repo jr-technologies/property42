@@ -49,4 +49,10 @@ class CountryTest extends TestCase
             'status' => 1
         ]);
     }
+
+    public function testDeleteCountry()
+    {
+        $this->json('POST',$this->apiRoute('countries'),['id'=>3])->seeJson(['status'=> 1]);
+    }
+
 }

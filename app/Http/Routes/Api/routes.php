@@ -49,9 +49,33 @@ Route::post('/country',
         'uses'=>'CountriesController@store'
     ]
 );
-
-
-
+Route::post('country/update',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:addCountryRequest'
+            ],
+        'uses'=>'CountriesController@update'
+    ]
+);
+Route::post('country/delete',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:addCountryRequest'
+            ],
+        'uses'=>'CountriesController@delete'
+    ]
+);
+Route::post('countries',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:addCountryRequest'
+            ],
+        'uses'=>'CountriesController@all'
+    ]
+);
 
 
 /*

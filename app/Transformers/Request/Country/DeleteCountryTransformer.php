@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: JR Tech
  * Date: 4/5/2016
- * Time: 9:17 AM
+ * Time: 10:27 AM
  */
 
 namespace App\Transformers\Request\Country;
@@ -11,13 +11,12 @@ namespace App\Transformers\Request\Country;
 
 use App\Transformers\Request\RequestTransformer;
 
-class UpdateCountryTransformer extends RequestTransformer
+class DeleteCountryTransformer extends RequestTransformer
 {
   public function transform()
   {
       return[
-          'id'=>$this->request->input('country_id'),
-          'country'=>$this->request->input('country_name')
+          'id'=>$this->request->input('country_id')
       ];
   }
 }

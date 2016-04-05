@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\Requests\Country\AddCountryRequest;
+use App\Http\Requests\Requests\Country\DeleteCountryRequest;
+use App\Http\Requests\Requests\Country\UpdateCountryRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\CountriesRepository;
 use App\Transformers\Response\CountryTransformer;
@@ -27,6 +29,24 @@ class CountriesController extends ApiController
 
         return $this->response->respond(['data' => [
             'country' => $this->country->store($request->getCountryModel())
+        ]]);
+    }
+    public function update(UpdateCountryRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'country'=>$this->country->update($request->getCountryModel())
+        ]]);
+    }
+    public function delete(DeleteCountryRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'country'=>$this->country->delete($request->getCountryModel())
+        ]]);
+    }
+    public function all()
+    {
+        return $this->response->respond(['data'=>[
+            'country'=>$this->country->all()
         ]]);
     }
 }
