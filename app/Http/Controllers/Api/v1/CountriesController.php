@@ -15,7 +15,8 @@ class CountriesController extends ApiController
     public function __construct
     (
         ApiResponse $response,CountryTransformer $countryTransformer,
-        CountriesRepository $countriesRepository )
+        CountriesRepository $countriesRepository
+    )
     {
         $this->country =  $countriesRepository;
         $this->userTransformer = $countryTransformer;
