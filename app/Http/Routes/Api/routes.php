@@ -44,6 +44,7 @@ Route::post('/country',
     [
         'middleware'=>
             [
+                //'apiAuthenticate:addCountryRequest',
                 'apiValidate:addCountryRequest'
             ],
         'uses'=>'CountriesController@store'
@@ -53,7 +54,7 @@ Route::post('country/update',
     [
         'middleware'=>
             [
-                //'apiValidate:addCountryRequest'
+                'apiValidate:updateCountryRequest'
             ],
         'uses'=>'CountriesController@update'
     ]
@@ -62,7 +63,7 @@ Route::post('country/delete',
     [
         'middleware'=>
             [
-                //'apiValidate:addCountryRequest'
+                //'apiValidate:deleteCountryRequest'
             ],
         'uses'=>'CountriesController@delete'
     ]
@@ -71,7 +72,7 @@ Route::post('countries',
     [
         'middleware'=>
             [
-                //'apiValidate:addCountryRequest'
+                'apiValidate:getAllCountriesRequest'
             ],
         'uses'=>'CountriesController@all'
     ]

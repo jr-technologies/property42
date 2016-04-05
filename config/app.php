@@ -218,6 +218,9 @@ return [
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
+        'UpdateCountryRequest' => \App\Http\Requests\Requests\Country\UpdateCountryRequest::class,
+        'DeleteCountryRequest' => \App\Http\Requests\Requests\Country\DeleteCountryRequest::class,
+        'GetAllCountriesRequest' => \App\Http\Requests\Requests\Country\GetAllCountriesRequest::class,
     ],
 
 ];

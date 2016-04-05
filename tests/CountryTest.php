@@ -43,7 +43,7 @@ class CountryTest extends TestCase
     public function testUpdateCountry()
     {
         $this->json('POST',$this->apiRoute('country/update'),[
-            'id' => '1',
+            'country_id' => '1',
             'country_name' => 'usa',
         ])->seeJson([
             'status' => 1
@@ -52,7 +52,7 @@ class CountryTest extends TestCase
 
     public function testDeleteCountry()
     {
-        $this->json('POST',$this->apiRoute('countries'),['id'=>3])->seeJson(['status'=> 1]);
+        $this->json('POST',$this->apiRoute('country/delete'),['country_id'=>3])->seeJson(['status'=> 1]);
     }
 
 }

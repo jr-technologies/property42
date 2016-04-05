@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\Requests\Country\AddCountryRequest;
 use App\Http\Requests\Requests\Country\DeleteCountryRequest;
+use App\Http\Requests\Requests\Country\GetAllCountriesRequest;
 use App\Http\Requests\Requests\Country\UpdateCountryRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\CountriesRepository;
@@ -43,7 +44,7 @@ class CountriesController extends ApiController
             'country'=>$this->country->delete($request->getCountryModel())
         ]]);
     }
-    public function all()
+    public function all(GetAllCountriesRequest $request)
     {
         return $this->response->respond(['data'=>[
             'country'=>$this->country->all()

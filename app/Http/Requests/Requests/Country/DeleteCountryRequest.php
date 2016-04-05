@@ -12,15 +12,18 @@ namespace App\Http\Requests\Requests\Country;
 use App\DB\Providers\SQL\Models\Country;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
+use App\Http\Validators\Validators\CountryValidators\DeleteCountriesValidator;
 use App\Repositories\Repositories\Sql\CountriesRepository;
 use App\Transformers\Request\Country\DeleteCountryTransformer;
 
 class DeleteCountryRequest extends Request implements RequestInterface
 {
     private $countries = null;
+    public $validator = null;
     public function __construct()
     {
         parent::__construct(new DeleteCountryTransformer($this->getOriginalRequest()));
+        $this->validator = new DeleteCountriesValidator($this);
         $this->countries = new CountriesRepository();
     }
     public function getCountryModel()
@@ -30,5 +33,8 @@ class DeleteCountryRequest extends Request implements RequestInterface
     }
     public function authorize(){}
 
-    public function validate(){}
+    public function validate()
+    {
+        return $this->validator->validate();
+    }
 }

@@ -13,7 +13,7 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Transformers\Request\Country\GetCountriesTransformer;
 
-class GetCountryRequest extends Request implements RequestInterface
+class GetAllCountriesRequest extends Request implements RequestInterface
 {
     public function __construct()
     {

@@ -33,9 +33,8 @@ class CountriesRepository extends SqlRepository implements UsersRepoInterface
 
     public function update(Country $country)
     {
-        // update karwana hai abi...
-
-        return $this->getById($country->id);
+        $this->factory->update($country);
+        return $this->factory->find($country->id);
     }
 
     public function store(Country $country)
@@ -46,8 +45,6 @@ class CountriesRepository extends SqlRepository implements UsersRepoInterface
 
     public function delete(Country $country)
     {
-        echo('Delete functionality is not implemented');
-        //$this->factory->delete($country);
-        return true;
+        return $this->factory->delete($country);
     }
 }
