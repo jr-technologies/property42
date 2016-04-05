@@ -217,10 +217,13 @@ return [
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
+        /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
         'UpdateCountryRequest' => \App\Http\Requests\Requests\Country\UpdateCountryRequest::class,
         'DeleteCountryRequest' => \App\Http\Requests\Requests\Country\DeleteCountryRequest::class,
         'GetAllCountriesRequest' => \App\Http\Requests\Requests\Country\GetAllCountriesRequest::class,
+        /* City Requests */
+        'AddCityRequest' => \App\Http\Requests\Requests\City\AddCityRequest::class,
     ],
 
 ];

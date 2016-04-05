@@ -40,6 +40,10 @@ Route::post('/register',
         'uses'=>'Auth\AuthController@register'
     ]
 );
+
+/**
+ * Countries Crud
+ **/
 Route::post('/country',
     [
         'middleware'=>
@@ -78,6 +82,46 @@ Route::post('countries',
     ]
 );
 
+/**
+ * Cities Crud
+ **/
+Route::post('/city',
+    [
+        'middleware'=>
+            [
+                'apiAuthenticate:addCityRequest',
+                'apiValidate:addCityRequest'
+            ],
+        'uses'=>'CitiesController@store'
+    ]
+);
+Route::post('city/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateCityRequest'
+            ],
+        'uses'=>'CitiesController@update'
+    ]
+);
+Route::post('City/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteCityRequest'
+            ],
+        'uses'=>'CitiesController@delete'
+    ]
+);
+Route::post('cities',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllCitiesRequest'
+            ],
+        'uses'=>'CitiesController@all'
+    ]
+);
 
 /*
 |--------------------------------------------------------------------------
