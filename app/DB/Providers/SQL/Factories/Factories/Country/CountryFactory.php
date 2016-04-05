@@ -44,6 +44,7 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function update(Country $country)
     {
+        $country->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->update($country->id, $this->mapCountryOnTable($country));
     }
 
@@ -63,7 +64,17 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function store(Country $country)
     {
+        $country->createdAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapCountryOnTable($country));
+    }
+
+    /**
+     * @param Country $country
+     * @return int
+     **/
+    public function delete(Country $country)
+    {
+        return $this->tableGateway->delete($country->id);
     }
 
     /**
@@ -75,12 +86,15 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
         $country = $this->model;
         $country->id = $result->id;
         $country->name = $result->country;
-        $country->createdAt = $result->updated_at;
         $country->createdAt = $result->created_at;
+        $country->updatedAt = $result->updated_at;
         return $country;
     }
 
-
+    /**
+     * @param Country $country
+     * @return array
+     */
     private function mapCountryOnTable(Country $country)
     {
         return [
