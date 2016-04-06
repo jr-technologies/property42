@@ -19,6 +19,22 @@ abstract class QueryBuilder {
         return $result;
     }
 
+    /**
+     * @return string
+     */
+    public function getTable()
+    {
+        return $this->table;
+    }
+
+    /**
+     * @param string $table
+     */
+    public function setTable($table)
+    {
+        $this->table = $table;
+    }
+
     public function findBy($column, $value)
     {
         return $this->first([$column => $value]);
@@ -59,8 +75,7 @@ abstract class QueryBuilder {
     {
         return DB::table($this->table)->insert($records);
     }
-
-    public function update($id, $data)
+    public function update($id, array $data)
     {
         return $this->updateWhere(['id' => $id], $data);
     }

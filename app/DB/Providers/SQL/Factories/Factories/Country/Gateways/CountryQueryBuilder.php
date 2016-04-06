@@ -17,5 +17,11 @@ class CountryQueryBuilder extends QueryBuilder{
     public function __construct(){
         $this->table = "countries";
     }
-
+    public function getBySociety()
+    {
+        $city = DB::table('soci')
+                    ->leftJoin('contacts', 'users.id', '=', 'contacts.user_id')
+                    ->select('users.*', 'contacts.phone', 'orders.price')
+                    ->get();
+    }
 }

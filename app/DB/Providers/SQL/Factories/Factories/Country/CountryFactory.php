@@ -81,7 +81,7 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
      * @param $result
      * @return Country::class
      **/
-    public function map($result)
+    public function map(array $result)
     {
         $country = $this->model;
         $country->id = $result->id;
@@ -98,7 +98,7 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
     private function mapCountryOnTable(Country $country)
     {
         return [
-            'country' => $country->name,
+            'city' => $country->name,
             'updated_at' => $country->updatedAt,
         ];
     }
