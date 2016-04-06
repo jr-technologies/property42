@@ -37,9 +37,9 @@ class UpdateCityRequest extends Request implements RequestInterface{
     public function getCityModel()
     {
         $city = new City();
-        $city->id = $this->get('city_id');
+        $city->id = $this->get('id');
         $city->name = $this->get('name');
-        $city->country_id = $this->get('country_id');
+        $city->countryId = $this->get('country_id');
         return $city;
     }
 

@@ -47,4 +47,16 @@ class CitiesController extends ApiController
             'country'=>$this->cities->all()
         ]]);
     }
+    public function getByCountry(GetByCountryRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'country'=>$this->cities->all()
+        ]]);
+    }
+    public function GetBySociety(GetBySocietyRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'country'=>$this->cities->all()
+        ]]);
+    }
 }

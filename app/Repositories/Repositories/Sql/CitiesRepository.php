@@ -10,7 +10,6 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Models\City;
-use App\DB\Providers\SQL\Models\Country;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 
 class CitiesRepository extends SqlRepository implements UsersRepoInterface
