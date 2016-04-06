@@ -10,6 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+/*This route use for testing through postman
+
+//Route::Post('get-city-test', function(){
+//    $cityFactory = new \App\DB\Providers\SQL\Factories\Factories\City\CityFactory();
+//    $city = new \App\DB\Providers\SQL\Models\City();
+//
+//    $id = request()->get('society_id');
+//    //$city->countryId = request()->get('country_id');
+//    //$city->name = request()->get('city_name');
+//
+//    return response()->json($cityFactory->getBySociety($id));
+//});
+
+
 
 Route::get('/users',
     [
@@ -40,6 +54,10 @@ Route::post('/register',
         'uses'=>'Auth\AuthController@register'
     ]
 );
+
+/**
+ * Countries Crud
+ **/
 Route::post('/country',
     [
         'middleware'=>
@@ -78,6 +96,46 @@ Route::post('countries',
     ]
 );
 
+/**
+ * Cities Crud
+ **/
+Route::post('/city',
+    [
+        'middleware'=>
+            [
+                'apiAuthenticate:addCityRequest',
+                'apiValidate:addCityRequest'
+            ],
+        'uses'=>'CitiesController@store'
+    ]
+);
+Route::post('city/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateCityRequest'
+            ],
+        'uses'=>'CitiesController@update'
+    ]
+);
+Route::post('City/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteCityRequest'
+            ],
+        'uses'=>'CitiesController@delete'
+    ]
+);
+Route::post('cities',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllCitiesRequest'
+            ],
+        'uses'=>'CitiesController@all'
+    ]
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +148,9 @@ Route::post('countries',
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(/**
+ *
+ */
+    ['middleware' => ['web']], function () {
     //
 });
