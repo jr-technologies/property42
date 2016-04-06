@@ -11,7 +11,7 @@ namespace App\Http\Validators\Validators\CityValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class AddCityValidator extends CityValidator implements ValidatorsInterface
+class UpdateCityValidator extends CityValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -20,8 +20,9 @@ class AddCityValidator extends CityValidator implements ValidatorsInterface
     public function rules()
     {
         return[
-            'country_id' => 'required',
-            'name'=>'required'
+            'id' => 'required',
+            'name'=>'required',
+            'country_id' => 'required'
         ];
     }
 }

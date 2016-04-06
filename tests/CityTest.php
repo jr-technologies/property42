@@ -44,7 +44,8 @@ class CityTest extends TestCase
     public function testUpdateCity()
     {
         $this->json('POST',$this->apiRoute('city/update'),[
-            'city_id' => '1',
+            'city_id' => 1,
+            'country_id' => 1,
             'city_name' => 'usa',
         ])->seeJson([
             'status' => 1

@@ -8,7 +8,8 @@
 
 namespace App\Repositories\Repositories\Sql;
 
-use App\DB\Providers\SQL\Factories\Factories\Country\CountryFactory;
+use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
+use App\DB\Providers\SQL\Models\City;
 use App\DB\Providers\SQL\Models\Country;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 
@@ -37,14 +38,24 @@ class CitiesRepository extends SqlRepository implements UsersRepoInterface
         return $this->factory->find($city->id);
     }
 
-    public function store(Country $country)
+    public function store(City $city)
     {
-        $country->id = $this->factory->store($country);
-        return $country;
+        $city->id = $this->factory->store($city);
+        return $city;
     }
 
-    public function delete(Country $country)
+    public function delete(City $city)
     {
-        return $this->factory->delete($country);
+        return $this->factory->delete($city);
+    }
+
+    public function getByCountry($countryId)
+    {
+        return $this->factory->getByCountry($countryId);
+    }
+
+    public function getBySociety($societyId)
+    {
+        return $this->factory->getBySociety($societyId);
     }
 }

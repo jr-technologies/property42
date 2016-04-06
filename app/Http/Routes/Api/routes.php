@@ -104,7 +104,7 @@ Route::post('city/update',
         'uses'=>'CitiesController@update'
     ]
 );
-Route::post('City/delete',
+Route::post('city/delete',
     [
         'middleware'=>
             [
@@ -113,7 +113,7 @@ Route::post('City/delete',
         'uses'=>'CitiesController@delete'
     ]
 );
-Route::post('cities',
+Route::get('cities',
     [
         'middleware'=>
             [

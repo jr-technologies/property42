@@ -6,7 +6,7 @@
  * Time: 4:18 PM
  */
 
-namespace App\Http\Validators\Validators\CountryValidators;
+namespace App\Http\Validators\Validators\CityValidators;
 
 use App\Http\Validators\Validators\AppValidator;
 

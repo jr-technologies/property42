@@ -12,15 +12,15 @@ namespace App\Http\Requests\Requests\City;
 use App\DB\Providers\SQL\Models\City;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\CityValidators\AddCityValidator;
-use App\Transformers\Request\City\AddCityTransformer;
+use App\Http\Validators\Validators\CityValidators\UpdateCityValidator;
+use App\Transformers\Request\City\UpdateCityTransformer;
 
-class AddCityRequest extends Request implements RequestInterface{
+class UpdateCityRequest extends Request implements RequestInterface{
 
     public $validator = null;
     public function __construct(){
-        parent::__construct(new AddCityTransformer($this->getOriginalRequest()));
-        $this->validator = new AddCityValidator($this);
+        parent::__construct(new UpdateCityTransformer($this->getOriginalRequest()));
+        $this->validator = new UpdateCityValidator($this);
     }
 
     public function authorize(){
@@ -37,6 +37,7 @@ class AddCityRequest extends Request implements RequestInterface{
     public function getCityModel()
     {
         $city = new City();
+        $city->id = $this->get('city_id');
         $city->name = $this->get('name');
         $city->country_id = $this->get('country_id');
         return $city;

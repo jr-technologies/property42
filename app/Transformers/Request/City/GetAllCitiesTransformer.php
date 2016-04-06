@@ -12,13 +12,10 @@ namespace App\Transformers\Request\City;
 use App\Transformers\Request\RequestTransformer;
 
 
-class AddCityTransformer extends RequestTransformer
+class GetAllCitiesTransformer extends RequestTransformer
 {
     public function transform()
     {
-        return [
-            'name'=>$this->request->input('city_name'),
-            'country_id' => $this->request->input('country_id')
-        ];
+        return [];
     }
 }
