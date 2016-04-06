@@ -224,6 +224,9 @@ return [
         'GetAllCountriesRequest' => \App\Http\Requests\Requests\Country\GetAllCountriesRequest::class,
         /* City Requests */
         'AddCityRequest' => \App\Http\Requests\Requests\City\AddCityRequest::class,
+        'UpdateCityRequest' => \App\Http\Requests\Requests\City\UpdateCityRequest::class,
+        'DeleteCityRequest' => \App\Http\Requests\Requests\City\DeleteCityRequest::class,
+        'GetAllCitiesRequest' => \App\Http\Requests\Requests\City\GetAllCitiesRequest::class,
     ],
 
 ];

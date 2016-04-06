@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\Requests\City\AddCityRequest;
+use App\Http\Requests\Requests\City\DeleteCityRequest;
+use App\Http\Requests\Requests\City\GetAllCitiesRequest;
+use App\Http\Requests\Requests\City\UpdateCityRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Repositories\Sql\CitiesRepository;
 use App\Transformers\Response\CityTransformer;
 
 class CitiesController extends ApiController
@@ -25,22 +29,22 @@ class CitiesController extends ApiController
             'country' => $this->cities->store($request->getCityModel())
         ]]);
     }
-    public function update(UpdateCountryRequest $request)
+    public function update(UpdateCityRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->country->update($request->getCountryModel())
+            'country'=>$this->cities->update($request->getCityModel())
         ]]);
     }
-    public function delete(DeleteCountryRequest $request)
+    public function delete(DeleteCityRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->country->delete($request->getCountryModel())
+            'country'=>$this->cities->delete($request->getCityModel())
         ]]);
     }
-    public function all(GetAllCountriesRequest $request)
+    public function all(GetAllCitiesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->country->all()
+            'country'=>$this->cities->all()
         ]]);
     }
 }
