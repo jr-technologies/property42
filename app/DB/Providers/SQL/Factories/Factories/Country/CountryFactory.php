@@ -98,7 +98,7 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
     private function mapCountryOnTable(Country $country)
     {
         return [
-            'city' => $country->name,
+            'country' => $country->name,
             'updated_at' => $country->updatedAt,
         ];
     }

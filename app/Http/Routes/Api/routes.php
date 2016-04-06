@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-/*This route use for testing through postman
+/*This route use for testing through postman*/
 
 //Route::Post('get-city-test', function(){
 //    $cityFactory = new \App\DB\Providers\SQL\Factories\Factories\City\CityFactory();
