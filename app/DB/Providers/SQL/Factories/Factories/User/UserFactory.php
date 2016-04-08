@@ -139,8 +139,18 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
             'l_name' => $user->lName,
             'email' => $user->email,
             'password' => $user->password,
+            'phone' => $user->phone,
+            'address' => $user->address,
+            'zipcode' => $user->zipCode,
+            'mobile' => $user->mobile,
+            'fax' => $user->fax,
+            'access_token' => $user->access_token,
+            'notification_settings' => $user->notificationSettings,
+            'membership_status' => $user->membershipStatus,
             'country_id' => $user->countryId,
-            'membership_plan_id' => $user->membershipPlanId
+            'membership_plan_id' => $user->membershipPlanId,
+            'created_at' => $user->createdAt,
+            'updated_at' => $user->updatedAt,
         ];
     }
 }

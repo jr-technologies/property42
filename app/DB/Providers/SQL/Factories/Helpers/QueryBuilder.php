@@ -71,9 +71,10 @@ abstract class QueryBuilder {
         return DB::table($this->table)->insertGetId($record);
     }
 
-    public function insertMultiple(array $records)
+    public function insertMultiple(array $records, $table = null)
     {
-        return DB::table($this->table)->insert($records);
+        $table = ($table != null)?$table:$this->table;
+        return DB::table($table)->insert($records);
     }
     public function update($id, array $data)
     {
