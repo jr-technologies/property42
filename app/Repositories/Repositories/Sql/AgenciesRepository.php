@@ -36,9 +36,14 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
         return $this->factory->getByUser($userId);
     }
 
-    public function storeAgency($agencyInfo, $userId)
+    public function storeAgency(Agency $agency)
     {
+        return $this->factory->store($agency);
+    }
 
+    public function addCities($agencyId, $cityIds)
+    {
+        return $this->factory->addCities($agencyId, $cityIds);
     }
 
 }

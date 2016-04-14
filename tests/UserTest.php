@@ -27,7 +27,13 @@ class UserTest extends TestCase
             'fName' => 'unit',
             'lName'=>'test',
             'email'=>$this->generateUniqueEmail(),
-            'pass'=>$this->userPassword
+            'password'=>$this->userPassword,
+            'passwordAgain' => $this->userPassword,
+            'phone' => '03154379760',
+            'address' => 'Lahore, Punjab, Pakistan',
+            'userRoles' => [1],
+            'securityCode' => '123',
+            'termsConditions' => 1
         ])->seeJson([
             'status' =>1,
         ]);

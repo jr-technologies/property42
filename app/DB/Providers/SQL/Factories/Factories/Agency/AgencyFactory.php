@@ -21,6 +21,11 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
         $this->tableGateway = new AgencyQueryBuilder();
     }
 
+    public function findWhere(array $conditions)
+    {
+        return $this->map($this->tableGateway->getWhere($conditions)->first());
+    }
+
     /**
      * @return array Agency::class
      **/
@@ -30,7 +35,7 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param string $id
+     * @param int $id
      * @return Agency::class
      **/
     public function find($id)
@@ -39,13 +44,18 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param string $userId
-     * @description: function returns multiple instances of Agency Model
+     * @param string $column
+     * @param string $value
      * @return Agency::class
      **/
+    public function findBy($column, $value)
+    {
+        return $this->map($this->tableGateway->findBy($column, $value));
+    }
+
     public function getByUser($userId)
     {
-        return $this->mapCollection($this->tableGateway->getBy('user_id', $userId));
+        return $this->mapCollection($this->tableGateway->getWhere(['user_id' => $userId]));
     }
 
     /**
@@ -54,7 +64,8 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function update(Agency $agency)
     {
-        return $this->tableGateway->update($agency->id, $this->mapCountryOnTable($agency));
+        $agency->updatedAt = date('Y-m-d h:i:s');
+        return $this->tableGateway->update($agency->id, $this->mapAgencyOnTable($agency));
     }
 
     /**
@@ -73,7 +84,19 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function store(Agency $agency)
     {
-        return $this->tableGateway->insert($this->mapCountryOnTable($agency));
+        $agency->createdAt = date('Y-m-d h:i:s');
+        $agency->updatedAt = date('Y-m-d h:i:s');
+        return $this->tableGateway->insert($this->mapAgencyOnTable($agency));
+    }
+
+    /**
+     * @param int $agencyId
+     * @param int $cityIds
+     * @return int
+     **/
+    public function addCities($agencyId, $cityIds)
+    {
+        return $this->tableGateway->addCities($agencyId, $cityIds);
     }
 
     /**
@@ -83,32 +106,34 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     public function map($result)
     {
         $agency = $this->model;
-        $agency->id = $result->id;
-        $agency->userId = $result->user_id;
-        $agency->name = $result->agency;
-        $agency->description = $result->description;
-        $agency->address = $result->address;
-        $agency->mobile = $result->mobile;
-        $agency->phone = $result->phone;
-        $agency->email = $result->email;
-        $agency->updatedAt = $result->updated_at;
-        $agency->createdAt = $result->created_at;
+        $agency->name = $result['agency'];
+        $agency->description = $result['description'];
+        $agency->mobile = $result['mobile'];
+        $agency->phone = $result['phone'];
+        $agency->address = $result['address'];
+        $agency->email = $result['email'];
+        $agency->userId = $result['user_id'];
+        $agency->createdAt = $result['created_at'];
+        $agency->updatedAt = $result['updated_at'];
         return $agency;
     }
 
-
-    private function mapCountryOnTable(Agency $agency)
+    /**
+     * @param Agency $agency
+     * @return array
+     **/
+    private function mapAgencyOnTable(Agency $agency)
     {
         return [
-            'id' => $agency->id,
-            'user_id' => $agency->userId,
             'agency' => $agency->name,
             'description' => $agency->description,
-            'address' => $agency->address,
-            'phone' => $agency->phone,
-            'email' => $agency->email,
             'mobile' => $agency->mobile,
+            'phone' => $agency->phone,
+            'address' => $agency->address,
+            'email' => $agency->email,
+            'user_id' => $agency->userId,
             'updated_at' => $agency->updatedAt,
+            'created_at' => $agency->createdAt,
         ];
     }
 }

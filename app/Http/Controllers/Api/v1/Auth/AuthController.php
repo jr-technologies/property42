@@ -11,23 +11,27 @@ use App\Http\Responses\Responses\ApiResponse;
 use App\Libs\Auth\Api as Authenticator;
 use App\Models\Sql\User;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
+use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Transformers\Response\UserTransformer;
 
 class AuthController extends ApiController
 {
-    private $auth;
-    private $users;
+    private $auth = null;
+    private $users = null;
+    private $agencies = null;
     private $userTransformer;
     public $response;
     public function __construct
     (
         ApiResponse $response, Authenticator $authenticator,
-        UsersRepository $usersRepository, UserTransformer $userTransformer
+        UsersRepository $usersRepository, AgenciesRepository $agenciesRepository,
+        UserTransformer $userTransformer
     )
     {
         $this->auth = $authenticator;
         $this->users = $usersRepository;
+        $this->agencies = $agenciesRepository;
         $this->response = $response;
         $this->userTransformer = $userTransformer;
     }
@@ -46,7 +50,13 @@ class AuthController extends ApiController
     public function register(RegistrationRequest $request)
     {
         $userId = $this->users->store($request->getUserModel());
-
+        if($request->userIsAgent())
+        {
+            $agency = $request->getAgencyModel();
+            $agency->userId = $userId;
+            $agencyId = $this->agencies->storeAgency($agency);
+            $this->agencies->addCities($agencyId, $request->getAgencyCities());
+        }
         return $this->response->respond(['data'=>[
             'user'=>$this->users->getById($userId)
         ]]);

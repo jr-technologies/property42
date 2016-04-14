@@ -19,11 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('access_token', 60)->nullable();
-            $table->string('phone');
-            $table->string('mobile');
-            $table->string('fax');
-            $table->string('address');
-            $table->string('zipcode');
+            $table->string('phone')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('address')->nullable();
+            $table->string('zipcode')->nullable();
             $table->integer('country_id')->unsigned();
             $table->tinyInteger('notification_settings');
             $table->integer('membership_plan_id')->unsigned();

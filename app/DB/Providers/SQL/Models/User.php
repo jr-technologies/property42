@@ -22,6 +22,7 @@ class User {
     public $address = "";
     public $zipCode = "";
     public $countryId = 0;
+    public $userRoles = [];
     public $notificationSettings  = 0;
     public $membershipPlanId = 0;
     public $membershipStatus = 0;

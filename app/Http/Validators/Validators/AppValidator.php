@@ -66,4 +66,9 @@ abstract class AppValidator
             return true;
         });
     }
+    public function registerEqualsRule(){
+        Validator::extend('equals',function($attribute, $value, $parameters, $validator){
+            return ($value == $parameters[0])?true:false;
+        });
+    }
 }
