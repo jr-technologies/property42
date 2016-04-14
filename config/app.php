@@ -227,6 +227,28 @@ return [
         'UpdateCityRequest' => \App\Http\Requests\Requests\City\UpdateCityRequest::class,
         'DeleteCityRequest' => \App\Http\Requests\Requests\City\DeleteCityRequest::class,
         'GetAllCitiesRequest' => \App\Http\Requests\Requests\City\GetAllCitiesRequest::class,
+        /* City Requests */
+        'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,
+        'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
+        'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
+        'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,
+        /* Block Requests */
+        'AddBlockRequest' => \App\Http\Requests\Requests\Block\AddBlockRequest::class,
+        'UpdateBlockRequest' => \App\Http\Requests\Requests\Block\UpdateBlockRequest::class,
+        'DeleteBlockRequest' => \App\Http\Requests\Requests\Block\DeleteBlockRequest::class,
+        'GetAllBlocksRequest' => \App\Http\Requests\Requests\Block\GetAllBlocksRequest::class,
+        /* PropertyPurpose Requests */
+        'AddPropertyPurposeRequest' => \App\Http\Requests\Requests\PropertyPurposes\AddPropertyPurposeRequest::class,
+        'UpdatePropertyPurposeRequest' => \App\Http\Requests\Requests\PropertyPurposes\UpdatePropertyPurposeRequest::class,
+        'DeletePropertyPurposeRequest' => \App\Http\Requests\Requests\PropertyPurposes\DeletePropertyPurposeRequest::class,
+        'GetAllPropertyPurposesRequest' => \App\Http\Requests\Requests\PropertyPurposes\GetAllPropertyPurposesRequest::class,
+
+        /* PropertyType Requests */
+        'AddPropertyTypeRequest' => \App\Http\Requests\Requests\PropertyType\AddPropertyTypeRequest::class,
+        'UpdatePropertyTypeRequest' => \App\Http\Requests\Requests\PropertyType\UpdatePropertyTypeRequest::class,
+        'DeletePropertyTypeRequest' => \App\Http\Requests\Requests\PropertyType\DeletePropertyTypeRequest::class,
+        'GetAllPropertyTypesRequest' => \App\Http\Requests\Requests\PropertyType\GetAllPropertyTypesRequest::class,
+
     ],
 
 ];

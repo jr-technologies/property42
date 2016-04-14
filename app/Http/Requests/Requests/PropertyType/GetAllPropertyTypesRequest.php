@@ -6,20 +6,18 @@
  * Time: 9:56 PM
  */
 
-namespace App\Http\Requests\Requests\City;
+namespace App\Http\Requests\Requests\PropertyType;
 
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\CityValidators\GetAllCitiesValidator;
-use App\Transformers\Request\City\GetAllCitiesTransformer;
 
-class GetAllCitiesRequest extends Request implements RequestInterface{
+class GetAllPropertyTypesRequest extends Request implements RequestInterface{
 
     public $validator = null;
     public function __construct(){
-        parent::__construct(new GetAllCitiesTransformer($this->getOriginalRequest()));
-        $this->validator = new GetAllCitiesValidator($this);
+        parent::__construct(new GetAllPropertyTypesTransformer($this->getOriginalRequest()));
+        $this->validator = new GetAllPropertyTypesValidator($this);
     }
 
     public function authorize(){

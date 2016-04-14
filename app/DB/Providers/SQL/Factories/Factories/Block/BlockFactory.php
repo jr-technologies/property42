@@ -1,24 +1,25 @@
 <?php
-namespace App\DB\Providers\SQL\Factories\Factories\Society;
+namespace App\DB\Providers\SQL\Factories\Factories\Block;
 /**
  * Created by PhpStorm.
  * User: JR Tech
  * Date: 4/6/2016
  * Time: 9:58 AM
  */
-use App\DB\Providers\SQL\Factories\Factories\Society\Gateways\SocietyQueryBuilder;
+
+use App\DB\Providers\SQL\Factories\Factories\Block\Gateways\BlockQueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
-use App\DB\Providers\SQL\Models\City;
-use App\DB\Providers\SQL\Models\Society;
+use App\DB\Providers\SQL\Models\Block;
 
-class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
+
+class BlockFactory extends SQLFactory implements SQLFactoriesInterface
 {
     private $tableGateway = null;
     public function __construct()
     {
-        $this->model = new Society();
-        $this->tableGateway = new SocietyQueryBuilder();
+        $this->model = new Block();
+        $this->tableGateway = new BlockQueryBuilder();
     }
     /**
      * @return array Country::class
@@ -30,7 +31,7 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
 
     /**
      * @param string $id
-     * @return Country::class
+     * @return Block::class
      **/
     public function find($id)
     {
@@ -38,13 +39,13 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
     }
 
     /**
-     * @param Society $society
+     * @param Block $block
      * @return bool
      **/
-    public function update(Society $society)
+    public function update(Block $block)
     {
-        $society->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->update($society->id, $this->mapSocietyOnTable($society));
+        $block->updatedAt = date('Y-m-d h:i:s');
+        return $this->tableGateway->update($block->id, $this->mapBlockOnTable($block));
     }
 
     /**
@@ -64,35 +65,35 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $this->tableGateway->setTable($table);
     }
-    public function store(Society $society)
+    public function store(Block $block)
     {
-        $society->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->insert($this->mapSocietyOnTable($society));
+        $block->updatedAt = date('Y-m-d h:i:s');
+        return $this->tableGateway->insert($this->mapBlockOnTable($block));
     }
     /**
-     * @param Society $society
+     * @param Block $block
      * @return int
      **/
-    public function delete(Society $society)
+    public function delete(Block $block)
     {
-        return $this->tableGateway->delete($society->id);
+        return $this->tableGateway->delete($block->id);
     }
     public function map($result)
     {
         $society = $this->model;
         $society->id = $result->id;
-        $society->name = $result->society;
-        $society->cityId = $result->city_id;
+        $society->name = $result->block;
+        $society->societyId = $result->society_id;
         $society->createdAt = $result->created_at;
         $society->updatedAt = $result->updated_at;
         return $society;
     }
-    private function mapSocietyOnTable(Society $society)
+    private function mapBlockOnTable(Block $block)
     {
         return [
-            'society'    => $society->name,
-            'city_id'    => $society->cityId,
-            'updated_at' => $society->updatedAt,
+            'block'     => $block->name,
+            'society_id'=> $block->societyId,
+            'updated_at'=> $block->updatedAt,
         ];
     }
 }
