@@ -6,11 +6,12 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\CityValidators;
+namespace App\Http\Validators\Validators\BlockValidators;
+
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class GetAllCitiesValidator extends CityValidator implements ValidatorsInterface
+class UpdateBlockValidator extends BlockValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -18,7 +19,11 @@ class GetAllCitiesValidator extends CityValidator implements ValidatorsInterface
     }
     public function rules()
     {
-        return[];
+        return[
+            'id' => 'required',
+            'block'=>'required',
+            'societyId' => 'required'
+        ];
     }
 }
 

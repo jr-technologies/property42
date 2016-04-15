@@ -12,7 +12,7 @@ use App\Transformers\Response\CountryTransformer;
 
 class CountriesController extends ApiController
 {
-    private $country = null;
+    private $countries = null;
     private $userTransformer = null;
     public $response = null;
     public function __construct
@@ -21,33 +21,32 @@ class CountriesController extends ApiController
         CountriesRepository $countriesRepository
     )
     {
-        $this->country =  $countriesRepository;
+        $this->countries =  $countriesRepository;
         $this->userTransformer = $countryTransformer;
         $this->response = $response;
     }
     public function store(AddCountryRequest $request)
     {
-
         return $this->response->respond(['data' => [
-            'country' => $this->country->store($request->getCountryModel())
+            'country' => $this->countries->store($request->getCountryModel())
         ]]);
     }
     public function update(UpdateCountryRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->country->update($request->getCountryModel())
+            'country'=>$this->countries->update($request->getCountryModel())
         ]]);
     }
     public function delete(DeleteCountryRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->country->delete($request->getCountryModel())
+            'country'=>$this->countries->delete($request->getCountryModel())
         ]]);
     }
     public function all(GetAllCountriesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->country->all()
+            'country'=>$this->countries->all()
         ]]);
     }
 }

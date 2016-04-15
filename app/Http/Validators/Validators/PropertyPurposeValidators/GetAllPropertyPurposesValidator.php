@@ -1,16 +1,19 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Created by Waqas Qureshi.
  * User: JR Tech
  * Date: 4/4/2016
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\CityValidators;
+namespace App\Http\Validators\Validators\SocietyValidators;
+
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Http\Validators\Validators\PropertyPurposeValidators\PropertyPurposeValidator;
 
-class GetAllCitiesValidator extends CityValidator implements ValidatorsInterface
+
+class GetAllPropertyPurposeValidator extends PropertyPurposeValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {

@@ -1,5 +1,5 @@
 <?php
-namespace App\DB\Providers\SQL\Factories\Factories\Society\Gateways;
+namespace App\DB\Providers\SQL\Factories\Factories\PropertyPurpose\Gateways;
 /**
  * Created by WAQAS.
  * User: JR Tech
@@ -8,10 +8,10 @@ namespace App\DB\Providers\SQL\Factories\Factories\Society\Gateways;
  */
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 
-class SocietyQueryBuilder extends QueryBuilder
+class PropertyPurposeQueryBuilder extends QueryBuilder
 {
     public function __Construct()
     {
-        $this->table = 'societies';
+        $this->table = 'property_purposes';
     }
 }

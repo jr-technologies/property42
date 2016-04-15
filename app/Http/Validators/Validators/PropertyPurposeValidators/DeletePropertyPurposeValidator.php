@@ -1,16 +1,17 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Created by Waqas
  * User: JR Tech
  * Date: 4/4/2016
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\CityValidators;
+namespace App\Http\Validators\Validators\PropertyPurposeValidators;
+
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class GetAllCitiesValidator extends CityValidator implements ValidatorsInterface
+class DeletePropertyPurposeValidator extends PropertyPurposeValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -18,7 +19,9 @@ class GetAllCitiesValidator extends CityValidator implements ValidatorsInterface
     }
     public function rules()
     {
-        return[];
+        return[
+            'id' => 'required',
+        ];
     }
 }
 

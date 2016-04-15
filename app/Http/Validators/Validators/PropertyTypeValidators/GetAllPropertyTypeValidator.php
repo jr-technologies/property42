@@ -6,11 +6,12 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\CityValidators;
+namespace App\Http\Validators\Validators\PropertyTypeValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Http\Validators\Validators\PropertyPurposeValidators\PropertyPurposeValidator;
 
-class GetAllCitiesValidator extends CityValidator implements ValidatorsInterface
+class GetAllPropertyTypesValidator extends PropertyPurposeValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {

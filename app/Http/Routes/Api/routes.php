@@ -131,6 +131,172 @@ Route::get('cities',
     ]
 );
 
+
+/**
+ * Society Crud
+ **/
+Route::post('/society',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addSocietyRequest'
+            ],
+        'uses'=>'SocietiesController@store'
+    ]
+);
+Route::post('society/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateSocietyRequest'
+            ],
+        'uses'=>'SocietiesController@update'
+    ]
+);
+Route::post('society/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteSocietyRequest'
+            ],
+        'uses'=>'SocietiesController@delete'
+    ]
+);
+Route::get('societies',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllSocietiesRequest'
+            ],
+        'uses'=>'SocietiesController@all'
+    ]
+);
+
+/**
+ * Block Crud
+ **/
+Route::post('/block',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+               // 'apiValidate:addBlockRequest'
+            ],
+        'uses'=>'BlocksController@store'
+    ]
+);
+Route::post('block/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateBlockRequest'
+            ],
+        'uses'=>'BlocksController@update'
+    ]
+);
+Route::post('block/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteBlockRequest'
+            ],
+        'uses'=>'BlocksController@delete'
+    ]
+);
+Route::get('blocks',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllBlockRequest'
+            ],
+        'uses'=>'BlocksController@all'
+    ]
+);
+
+/**
+ * Property Purpose Crud
+ **/
+Route::post('/property/purpose',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addPropertyPurposeRequest'
+            ],
+        'uses'=>'PropertyPurposeController@store'
+    ]
+);
+Route::post('property/purpose/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updatePropertyPurposeRequest'
+            ],
+        'uses'=>'PropertyPurposeController@update'
+    ]
+);
+Route::post('property/purpose/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertyPurposeRequest'
+            ],
+        'uses'=>'PropertyPurposeController@delete'
+    ]
+);
+Route::get('property/purposes',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllPropertyPurposeRequest'
+            ],
+        'uses'=>'PropertyPurposeController@all'
+    ]
+);
+
+
+/**
+ * Property Purpose Crud
+ **/
+Route::post('/property/type',
+
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addPropertyTypeRequest'
+            ],
+        'uses'=>'PropertyTypeController@store'
+    ]
+);
+Route::post('property/type/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updatePropertyTypeRequest'
+            ],
+        'uses'=>'PropertyTypeController@update'
+    ]
+);
+Route::post('property/type/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertyTypeRequest'
+            ],
+        'uses'=>'PropertyTypeController@delete'
+    ]
+);
+Route::get('property/types',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllPropertyTypeRequest'
+            ],
+        'uses'=>'PropertyTypeController@all'
+    ]
+);
 /*
 |--------------------------------------------------------------------------
 | Application Routes
