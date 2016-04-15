@@ -13,8 +13,17 @@
 /*This route use for testing through postman*/
 
 Route::post('release', function(){
-    $file = new \App\Libs\File\FileRelease('users\66f041e16a60928b05a7e228a89c3799\agencies\a8f669293c683f48cf258aad5a4c460b\a8f669293c683f48cf258aad5a4c460b.jpg');
-    $file->release(2);
+//    (new App\Libs\File\FileRelease('users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg'))
+//        ->release();
+
+
+
+    $files = [
+        'users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg',
+        'users\1679091c5a880faf6fb5e6087eb1b2dc\agencies\1e59acc6a1d0b87111da81a47741e1b1\1e59acc6a1d0b87111da81a47741e1b1.jpeg'
+    ];
+
+    \App\Libs\File\FileRelease::multiRelease($files);
 });
 
 

@@ -21,10 +21,13 @@ class FileRelease
     private $file = null;
     private $log = true;
     private $releasedFiles = null;
-    public function __construct($filePath)
+    public function __construct($filePath = null)
     {
-        $this->setFilePath($filePath);
-        $this->setFile(new File($this->getCompleteFilePath()));
+        if($filePath != null)
+        {
+            $this->setFilePath($filePath);
+            $this->setFile(new File($this->getCompleteFilePath()));
+        }
         $this->releasedFiles = new ReleasedFilesRepository();
     }
 
@@ -46,36 +49,62 @@ class FileRelease
         $releasedFile = $this->map([
             'path' => $secureName,
             'deadline' =>$deadline,
+            'createdAt' => Carbon::createFromFormat('Y-m-d h:i:s', date('Y-m-d h:i:s'))->addHours(5)->toDateTimeString(),
             'updatedAt' => date('Y-m-d h:i:s'),
         ]);
 
         return ($this->log)?$this->logInDb($releasedFile):$releasedFile;
     }
 
-    public function multiRelease($paths, $minutes = null)
+    public static function multiRelease($paths, $minutes = null)
     {
         $releasedFiles = [];
         foreach($paths as $path)
         {
             $releasedFiles[] = (new FileRelease($path))->doNotLog()->release($minutes);
         }
-        return $this->multiLogInDb($releasedFiles);
+        return (new FileRelease())->multiLogInDb($releasedFiles);
     }
 
     private function defaultDeadline()
     {
         return Carbon::createFromFormat('Y-m-d h:i:s', date('Y-m-d h:i:s'))->addHours(24);
     }
+
     public function multiLogInDb(array $files)
     {
-        $this->releasedFiles->storeMultiple($files);
+        $this->releasedFiles->storeMultiple($this->notAlreadyLoggedFiles($files));
         return $this->releasedFiles->getByPaths(Helper::propertyToArray($files, 'path'));
+    }
+
+    private function notAlreadyLoggedFiles(array $files)
+    {
+        $alreadyLoggedFiles = $this->releasedFiles->getByPaths(Helper::propertyToArray($files, 'path'));
+        $finalFiles = [];
+        foreach($files as $file){
+            if(!$this->isAlreadyLogged($file, $alreadyLoggedFiles))
+                $finalFiles[] = $file;
+        }
+        return $finalFiles;
+    }
+
+    private function isAlreadyLogged(ReleasedFile $file, $alreadyLoggedFiles = [])
+    {
+        foreach($alreadyLoggedFiles as $alreadyLoggedFile){
+            if($file->path == $alreadyLoggedFile->path){
+                return true;
+            }
+        }
+        return false;
     }
 
     public function logInDb(ReleasedFile $releasedFile)
     {
-        $id = $this->releasedFiles->store($releasedFile);
-        $releasedFile->id = $id;
+        if($this->isAlreadyLogged($releasedFile, $this->releasedFiles->getByPaths([$releasedFile->path])))
+            $releasedFile->id = $this->releasedFiles->getByPaths([$releasedFile->path])[0];
+        else
+            $releasedFile->id = $this->releasedFiles->store($releasedFile);
+
         return $releasedFile;
     }
 
@@ -91,7 +120,7 @@ class FileRelease
 
     public function secureName()
     {
-        return urlencode(bcrypt($this->getFilePath())).'.'.$this->getFile()->getExtension();
+        return md5($this->getFilePath()).'.'.$this->getFile()->getExtension();
     }
 
     /**

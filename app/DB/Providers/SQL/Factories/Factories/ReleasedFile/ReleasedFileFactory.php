@@ -90,7 +90,7 @@ class ReleasedFileFactory extends SQLFactory implements SQLFactoriesInterface
 
     function map($result)
     {
-        $file            = $this->model;
+        $file            = clone($this->model);
         $file->id = $result->id;
         $file->path = $result->file;
         $file->deadline = $result->deadline;
