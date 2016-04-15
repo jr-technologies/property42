@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by WAQAS.
- * User: JR Tech
+ * User: waqas
  * Date: 4/7/2016
  * Time: 11:10 AM
  */
@@ -29,9 +29,11 @@ class BlocksController extends ApiController
     }
     public function store(AddBlockRequest $request)
     {
-
-        return $this->response->respond(['data'=>['block'=>
-                $this->block->store($request->getBlockModel())]]);
+        $block =$request->getBlockModel();
+        $block->id = $this->block->store($block);
+        return $this->response->respond(['data' => [
+            'Block' => $block
+        ]]);
     }
     public function all(GetAllBlocksRequest $request)
     {
@@ -47,8 +49,10 @@ class BlocksController extends ApiController
     }
     public function update(UpdateBlockRequest $request)
     {
-        return $this->response->respond(['data'=>[
-            'block'=>$this->block->update($request->getBlockModel())
+        $block =$request->getBlockModel();
+        $this->block->store($block);
+        return $this->response->respond(['data' => [
+            'Block' => $block
         ]]);
     }
 }

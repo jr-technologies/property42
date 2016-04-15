@@ -4,7 +4,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertyType;
 
 /**
  * Created by PhpStorm.
- * User: JR Tech
+ * User: waqas
  * Date: 4/6/2016
  * Time: 9:58 AM
  */

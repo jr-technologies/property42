@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by WAQAS.
- * User: JR Tech
+ * User: waqas
  * Date: 4/7/2016
  * Time: 11:10 AM
  */
@@ -29,25 +29,32 @@ class SocietiesController extends ApiController
     }
     public function store(AddSocietyRequest $request)
     {
-        return $this->response->respond(['data'=>['society'=>
-            $this->society->store($request->getSocietyModel())]]);
+        $society = $request->getSocietyModel();
+        $societyId = $this->society->store($society);
+        $society->id = $societyId;
+        return $this->response->respond(['data'=>[
+            'Society'=>$society
+        ]]);
+
     }
     public function all(GetAllSocietiesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->society->all()
+            'Society'=>$this->society->all()
         ]]);
     }
     public function delete(DeleteSocietyRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->society->delete($request->getSocietyModel())
+            'Society'=>$this->society->delete($request->getSocietyModel())
         ]]);
     }
     public function update(UpdateSocietyRequest $request)
     {
+        $society = $request->getSocietyModel();
+        $this->society->update($society);
         return $this->response->respond(['data'=>[
-            'country'=>$this->society->update($request->getSocietyModel())
+            'Society'=>$society
         ]]);
     }
 }

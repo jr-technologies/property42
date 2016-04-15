@@ -2,7 +2,7 @@
 namespace App\DB\Providers\SQL\Factories\Factories\Society\Gateways;
 /**
  * Created by WAQAS.
- * User: JR Tech
+ * User: waqas
  * Date: 4/6/2016
  * Time: 10:07 AM
  */

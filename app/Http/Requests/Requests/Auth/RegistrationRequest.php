@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by Noman Tufail.
- * User: Jr Tech
+ * User: waqas
  * Date: 3/15/2016
  * Time: 9:56 PM
  */

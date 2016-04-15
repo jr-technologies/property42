@@ -27,15 +27,15 @@ class CountriesController extends ApiController
     }
     public function store(AddCountryRequest $request)
     {
-        return $this->response->respond(['data' => [
-            'country' => $this->countries->store($request->getCountryModel())
-        ]]);
+        $country =$request->getCountryModel();
+        $country->id = $this->countries->store($country);
+        return $this->response->respond(['data'=>['country' =>$country]]);
     }
     public function update(UpdateCountryRequest $request)
     {
-        return $this->response->respond(['data'=>[
-            'country'=>$this->countries->update($request->getCountryModel())
-        ]]);
+        $country =$request->getCountryModel();
+        $this->countries->store($country);
+        return $this->response->respond(['data'=>['country' =>$country]]);
     }
     public function delete(DeleteCountryRequest $request)
     {

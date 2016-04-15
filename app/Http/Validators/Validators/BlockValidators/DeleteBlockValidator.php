@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by Waqas
- * User: JR Tech
+ * User: waqas
  * Date: 4/4/2016
  * Time: 4:15 PM
  */

@@ -25,38 +25,42 @@ class CitiesController extends ApiController
     }
     public function store(AddCityRequest $request)
     {
+        $city = $request->getCityModel();
+        $city->id = $this->cities->store($city);
         return $this->response->respond(['data' => [
-            'country' => $this->cities->store($request->getCityModel())
+            'country' => $city
         ]]);
     }
     public function update(UpdateCityRequest $request)
     {
-        return $this->response->respond(['data'=>[
-            'country'=>$this->cities->update($request->getCityModel())
+        $city =$request->getCityModel();
+        $this->cities->store($city);
+        return $this->response->respond(['data' => [
+            'city' => $city
         ]]);
     }
     public function delete(DeleteCityRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->cities->delete($request->getCityModel())
+            'city'=>$this->cities->delete($request->getCityModel())
         ]]);
     }
     public function all(GetAllCitiesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->cities->all()
+            'city'=>$this->cities->all()
         ]]);
     }
-    public function getByCountry(GetByCountryRequest $request)
-    {
-        return $this->response->respond(['data'=>[
-            'country'=>$this->cities->all()
-        ]]);
-    }
-    public function GetBySociety(GetBySocietyRequest $request)
-    {
-        return $this->response->respond(['data'=>[
-            'country'=>$this->cities->all()
-        ]]);
-    }
+//    public function getByCountry(GetByCountryRequest $request)
+//    {
+//        return $this->response->respond(['data'=>[
+//            'city'=>$this->cities->all()
+//        ]]);
+//    }
+//    public function GetBySociety(GetBySocietyRequest $request)
+//    {
+//        return $this->response->respond(['data'=>[
+//            'city'=>$this->cities->all()
+//        ]]);
+//    }
 }

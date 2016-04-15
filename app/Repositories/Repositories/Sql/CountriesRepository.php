@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: JR Tech
+ * User: waqas
  * Date: 3/16/2016
  * Time: 9:57 AM
  */
@@ -39,8 +39,7 @@ class CountriesRepository extends SqlRepository implements UsersRepoInterface
 
     public function store(Country $country)
     {
-        $country->id = $this->factory->store($country);
-        return $country;
+        return $this->factory->store($country);
     }
 
     public function delete(Country $country)

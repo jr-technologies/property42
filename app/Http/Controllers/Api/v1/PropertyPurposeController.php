@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by WAQAS.
- * User: JR Tech
+ * User: waqas
  * Date: 4/7/2016
  * Time: 11:10 AM
  */
@@ -31,9 +31,12 @@ class PropertyPurposeController extends ApiController
     }
     public function store(AddPropertyPurposeRequest $request)
     {
-        return $this->response->respond(['data'=>['PropertyPurpose'=>
-                $this->propertyPurposeRepository->store($request->getPropertyPurposeModel())]]);
+        $propertyPurpose =$request->getPropertyPurposeModel();
+        $propertyPurposeId = $this->propertyPurposeRepository->store($propertyPurpose);
+        $propertyPurpose->id = $propertyPurposeId;
+        return $this->response->respond(['data'=>['PropertyPurpose' =>$propertyPurpose]]);
     }
+
     public function all(GetAllPropertyPurposesRequest $request)
     {
         return $this->response->respond(['data'=>[
@@ -48,8 +51,9 @@ class PropertyPurposeController extends ApiController
     }
     public function update(UpdatePropertyPurposeRequest $request)
     {
-        return $this->response->respond(['data'=>[
-            'PropertyPurpose'=>$this->propertyPurposeRepository->update($request->getPropertyPurposeModel())
-        ]]);
+        $propertyPurpose =$request->getPropertyPurposeModel();
+        $this->propertyPurposeRepository->store($propertyPurpose);
+        return $this->response->respond(['data'=>['PropertyPurpose' =>$propertyPurpose]]);
+
     }
 }

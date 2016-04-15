@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by WAQAS.
- * User: JR Tech
+ * User: waqas
  * Date: 4/7/2016
  * Time: 11:10 AM
  */
@@ -29,9 +29,13 @@ class PropertyTypeController extends ApiController
     }
     public function store(AddPropertyTypeRequest $request)
     {
-        return $this->response->respond(['data'=>['propertyType'=>
-                $this->propertyTypeRepository->store($request->getPropertyTypeModel())]]);
-    }
+        $propertyType = $request->getPropertyTypeModel();
+        $propertyTypeId = $this->propertyTypeRepository->store($propertyType);
+        $propertyType->id = $propertyTypeId;
+        return $this->response->respond(['data'=>[
+            'propertyType'=>$propertyType
+        ]]);
+        }
     public function all(GetAllPropertyPurposesRequest $request)
     {
         return $this->response->respond(['data'=>[
@@ -46,8 +50,10 @@ class PropertyTypeController extends ApiController
     }
     public function update(UpdatePropertyTypeRequest $request)
     {
-        return $this->response->respond(['data'=>[
-            'propertyType'=>$this->propertyTypeRepository->update($request->getPropertyTypeModel())
-        ]]);
-    }
+         $propertyType = $request->getPropertyTypeModel();
+         $this->propertyTypeRepository->update($propertyType);
+         return $this->response->respond(['data'=>[
+            'propertyType'=>$propertyType
+         ]]);
+       }
 }

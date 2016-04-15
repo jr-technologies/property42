@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: JR Tech
+ * User: waqas
  * Date: 3/16/2016
  * Time: 9:57 AM
  */
@@ -39,8 +39,7 @@ class CitiesRepository extends SqlRepository implements UsersRepoInterface
 
     public function store(City $city)
     {
-        $city->id = $this->factory->store($city);
-        return $city;
+        return $this->factory->store($city);
     }
 
     public function delete(City $city)

@@ -263,7 +263,7 @@ Route::get('property/purposes',
 
 
 /**
- * Property Purpose Crud
+ * Property Type Crud
  **/
 Route::post('/property/type',
 
@@ -303,6 +303,134 @@ Route::get('property/types',
         'uses'=>'PropertyTypeController@all'
     ]
 );
+
+/**
+ * Property Sub Type Crud
+ **/
+Route::post('/property/subtype',
+
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addPropertySubTypeRequest'
+            ],
+        'uses'=>'PropertySubTypeController@store'
+    ]
+);
+Route::post('property/subtype/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updatePropertySubTypeRequest'
+            ],
+        'uses'=>'PropertySubTypeController@update'
+    ]
+);
+Route::post('property/subtype/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertySubTypeRequest'
+            ],
+        'uses'=>'PropertySubTypeController@delete'
+    ]
+);
+Route::get('property/subtypes',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllPropertySubTypeRequest'
+            ],
+        'uses'=>'PropertySubTypeController@all'
+    ]
+);
+
+/**
+ * LandUnit Crud
+ **/
+Route::post('/landUnit',
+
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addLandUnitRequest'
+            ],
+        'uses'=>'LandUnitController@store'
+    ]
+);
+Route::post('landUnit/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateLandUnitRequest'
+            ],
+        'uses'=>'LandUnitController@update'
+    ]
+);
+Route::post('landUnit/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteLandUnitRequest'
+            ],
+        'uses'=>'LandUnitController@delete'
+    ]
+);
+Route::get('landUnits',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllLandUnitsRequest'
+            ],
+        'uses'=>'LandUnitController@all'
+    ]
+);
+
+
+/**
+ * PropertyStatus Crud
+ **/
+Route::post('property/status',
+
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addPropertyStatusRequest'
+            ],
+        'uses'=>'PropertyStatusController@store'
+    ]
+);
+Route::post('property/status/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updatePropertyStatusRequest'
+            ],
+        'uses'=>'PropertyStatusController@update'
+    ]
+);
+Route::post('property/status/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertyStatusRequest'
+            ],
+        'uses'=>'PropertyStatusController@delete'
+    ]
+);
+Route::get('property/statuses',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllPropertyStatusRequest'
+            ],
+        'uses'=>'PropertyStatusController@all'
+    ]
+);
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

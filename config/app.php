@@ -249,6 +249,25 @@ return [
         'DeletePropertyTypeRequest' => \App\Http\Requests\Requests\PropertyType\DeletePropertyTypeRequest::class,
         'GetAllPropertyTypesRequest' => \App\Http\Requests\Requests\PropertyType\GetAllPropertyTypesRequest::class,
 
+        /* PropertySubType Requests */
+        'AddPropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\AddPropertySubTypeRequest::class,
+        'UpdatePropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\UpdatePropertySubTypeRequest::class,
+        'DeletePropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\DeletePropertySubTypeRequest::class,
+        'GetAllPropertySubTypesRequest' => \App\Http\Requests\Requests\PropertySubType\GetAllPropertySubTypesRequest::class,
+
+        /* LandUnit Requests */
+        'AddLandUnitRequest' => \App\Http\Requests\Requests\LandUnit\AddLandUnitRequest::class,
+        'UpdateLandUnitRequest' => \App\Http\Requests\Requests\LandUnit\UpdateLandUnitRequest::class,
+        'DeleteLandUnitRequest' => \App\Http\Requests\Requests\LandUnit\DeleteLandUnitRequest::class,
+        'GetAllLandUnitsRequest' => \App\Http\Requests\Requests\LandUnit\GetAllLandUnitsRequest::class,
+
+        /* Property Status Requests */
+        'AddPropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\AddPropertyStatusRequest::class,
+        'UpdatePropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\UpdatePropertyStatusRequest::class,
+        'DeletePropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\DeletePropertyStatusRequest::class,
+        'GetAllPropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\GetAllPropertyStatusRequest::class,
+
+
     ],
 
 ];
