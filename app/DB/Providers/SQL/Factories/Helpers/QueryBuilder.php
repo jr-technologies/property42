@@ -96,9 +96,24 @@ abstract class QueryBuilder {
         return DB::table($this->table)->where('id','=',$id)->delete();
     }
 
+    public function deleteByIds(array $ids)
+    {
+        return (sizeof($ids)> 0)?DB::table($this->table)->whereIn('id', $ids)->delete():true;
+    }
+
+    public function deleteWhere(array $conditions)
+    {
+        return DB::table($this->table)->where($conditions)->delete();
+    }
+
     public function all()
     {
         return DB::table($this->table)->get();
+    }
+
+    public function getWhereIn($column, array $conditions)
+    {
+        return DB::table($this->table)->whereIn($column, $conditions)->get();
     }
 
     public function get()

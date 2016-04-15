@@ -24,11 +24,14 @@ class UserJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
     public $address = "";
     public $zipCode = "";
     public $country = "";
+
     /**
      * @var MembershipPlanJsonPrototype::class
      * */
     public $membershipPlan = null;
+
     public $agencies = [];
+
     public $createdAt = "";
     public $updatedAt = "";
 }

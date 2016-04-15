@@ -96,9 +96,13 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         return $user->id;
     }
 
+    public function addRoles($userId, $userRoles)
+    {
+        return $this->factory->addRoles($userId, $userRoles);
+    }
+
     public function delete($userId)
     {
-        $this->users->destroy($userId);
-        return true;
+        dd('dead end..');
     }
 }

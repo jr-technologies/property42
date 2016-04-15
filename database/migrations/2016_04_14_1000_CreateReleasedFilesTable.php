@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserJsonTable extends Migration
+class CreateReleasedFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,11 @@ class CreateUserJsonTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_json', function (Blueprint $table) {
+        Schema::create('released_files', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->mediumText('json');
+            $table->text('file');
+            $table->dateTime('deadline');
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateUserJsonTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_json');
+        Schema::drop('released_files');
     }
 }

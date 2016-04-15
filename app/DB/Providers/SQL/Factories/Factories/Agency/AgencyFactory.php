@@ -132,6 +132,7 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
             'address' => $agency->address,
             'email' => $agency->email,
             'user_id' => $agency->userId,
+            'logo' => $agency->logo,
             'updated_at' => $agency->updatedAt,
             'created_at' => $agency->createdAt,
         ];

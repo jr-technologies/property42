@@ -9,12 +9,9 @@
 namespace App\DB\Providers\SQL\Factories\Factories\UserJson;
 
 use App\DB\Providers\SQL\Factories\Factories\UserJson\Gateways\UserJsonQueryBuilder;
-use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
-use App\DB\Providers\SQL\Factories\Factories\User\Gateways\UserQueryBuilder;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
-use App\Models\Sql\UserJson;
 
 class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     private $tableGateway = null;
@@ -33,8 +30,8 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param string $id
-     * @return UserModel::class
+     * @param int $id
+     * @return UserJsonPrototype::class
      **/
     public function find($id)
     {
@@ -42,10 +39,10 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param UserModel $user
+     * @param UserJsonPrototype $user
      * @return bool
      **/
-    public function update(UserModel $user)
+    public function update(UserJsonPrototype $user)
     {
         return $this->tableGateway->updateWhere(['user_id'=>$user->id], $this->mapUserOnTable($user));
     }
@@ -66,7 +63,6 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     public function map($result)
     {
         $result = json_decode($result->json);
-
         $user = $this->model;
         $user->id = $result->id;
         $user->fName = $result->fName;

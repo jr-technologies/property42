@@ -103,6 +103,16 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
+     * @param int $userId
+     * @param array $roleIds
+     * @return int
+     **/
+    public function addRoles($userId, $roleIds)
+    {
+        return $this->tableGateway->addRoles($userId, $roleIds);
+    }
+
+    /**
      * @param $result
      * @return UserModel::class
      **/

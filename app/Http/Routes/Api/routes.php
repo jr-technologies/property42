@@ -12,16 +12,19 @@
 */
 /*This route use for testing through postman*/
 
-//Route::Post('get-city-test', function(){
-//    $cityFactory = new \App\DB\Providers\SQL\Factories\Factories\City\CityFactory();
-//    $city = new \App\DB\Providers\SQL\Models\City();
-//
-//    $id = request()->get('society_id');
-//    //$city->countryId = request()->get('country_id');
-//    //$city->name = request()->get('city_name');
-//
-//    return response()->json($cityFactory->getBySociety($id));
-//});
+Route::post('release', function(){
+//    (new App\Libs\File\FileRelease('users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg'))
+//        ->release();
+
+
+
+    $files = [
+        'users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg',
+        'users\1679091c5a880faf6fb5e6087eb1b2dc\agencies\1e59acc6a1d0b87111da81a47741e1b1\1e59acc6a1d0b87111da81a47741e1b1.jpeg'
+    ];
+
+    \App\Libs\File\FileRelease::multiRelease($files);
+});
 
 
 

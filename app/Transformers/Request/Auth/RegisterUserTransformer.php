@@ -45,7 +45,7 @@ class RegisterUserTransformer extends RequestTransformer{
             'companyMobile' => $this->request->input('companyMobile'),
             'companyAddress' => $this->request->input('companyAddress'),
             'companyEmail' => $this->request->input('companyEmail'),
-            'companyLogo' => $this->request->input('companyLogo'),
+            'companyLogo' => $this->request->file('companyLogo'),
         ];
     }
 } 

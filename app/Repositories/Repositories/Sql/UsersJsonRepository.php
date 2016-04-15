@@ -41,7 +41,7 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
 
     public function find($id)
     {
-
+        return $this->factory->find($id);
     }
 
     public function store(UserJsonPrototype $user)
@@ -51,7 +51,7 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
 
     public function update($user)
     {
-
+        return $this->factory->update($user);
     }
 
     public function delete($id)
