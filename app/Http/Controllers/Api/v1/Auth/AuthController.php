@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Auth;
 
+use App\DB\Providers\SQL\Models\Agency;
 use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Auth\AuthenticationRequest;
@@ -49,16 +50,54 @@ class AuthController extends ApiController
 
     public function register(RegistrationRequest $request)
     {
-        $userId = $this->users->store($request->getUserModel());
+        $userId = $this->saveUser($request);
         if($request->userIsAgent())
         {
-            $agency = $request->getAgencyModel();
-            $agency->userId = $userId;
-            $agencyId = $this->agencies->storeAgency($agency);
-            $this->agencies->addCities($agencyId, $request->getAgencyCities());
+            $this->saveUserAgency($request, $userId);
         }
-        return $this->response->respond(['data'=>[
-            'user'=>$this->users->getById($userId)
-        ]]);
+        return $this->response->respond(['data'=>['user'=>$this->users->getById($userId)]]);
+    }
+
+    private function saveUser(RegistrationRequest $request)
+    {
+        $userId = $this->users->store($request->getUserModel());
+        $this->users->addRoles($userId, $request->getUserRoles());
+        return $userId;
+    }
+
+    private function saveUserAgency(RegistrationRequest $request, $userId)
+    {
+        $agency = $request->getAgencyModel();
+        $agency->userId = $userId;
+        $logoPath = null;
+        if($request->hasCompanyLogo()){
+            $logoPath = $this->saveLogo($agency, $request->getCompanyLogo());
+        }
+        $agency->logo = $logoPath;
+        $agencyId = $this->agencies->storeAgency($agency);
+        $this->agencies->addCities($agencyId, $request->getAgencyCities());
+        return $agencyId;
+    }
+
+    private function saveLogo(Agency $agency, $logo)
+    {
+        $newName = $this->getCompanyLogoName($agency, $logo);
+        $logo->move($this->getCompanyLogoStoragePath($agency), $newName);
+        return $this->inStorageLogoPath($agency).'/'.$newName;
+    }
+
+    private function getCompanyLogoName(Agency $agency, $logo)
+    {
+        return md5($agency->name).'.'.$logo->getClientOriginalExtension();
+    }
+
+    private function getCompanyLogoStoragePath(Agency $agency)
+    {
+        return storage_path('app/'.$this->inStorageLogoPath($agency).'/');
+    }
+
+    private function inStorageLogoPath(Agency $agency)
+    {
+        return 'users/'.md5($agency->userId).'/agencies/'.md5($agency->name);
     }
 }

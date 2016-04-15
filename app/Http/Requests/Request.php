@@ -34,6 +34,15 @@ abstract class Request
         return request()->all();
     }
 
+    public function file($file)
+    {
+        $this->getOriginalRequest()->file($file);
+    }
+
+    public function has($file)
+    {
+        return ($this->file($file) != null)?true:false;
+    }
     public function getOriginalRequest()
     {
         return request();

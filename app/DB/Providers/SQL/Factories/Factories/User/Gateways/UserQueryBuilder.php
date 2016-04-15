@@ -10,11 +10,22 @@ namespace App\DB\Providers\SQL\Factories\Factories\User\Gateways;
 
 
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
-use App\DB\Providers\SQL\Models\User;
-use Illuminate\Support\Facades\DB;
 
 class UserQueryBuilder extends QueryBuilder{
     public function __construct(){
         $this->table = "users";
+    }
+
+    public function addRoles($userId, $roles)
+    {
+        $userRoles = [];
+        foreach($roles as $roleId){
+            $userRoles[] = [
+                'user_id' => $userId, 'role_id' => $roleId,
+                'created_at'=>date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')
+            ];
+        }
+
+        return $this->insertMultiple($userRoles, 'user_roles');
     }
 }

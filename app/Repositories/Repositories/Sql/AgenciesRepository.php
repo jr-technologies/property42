@@ -10,8 +10,10 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
 use App\DB\Providers\SQL\Models\Agency;
+use App\Events\Events\Agency\AgencyCreated;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Event;
 
 class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
 {
@@ -38,7 +40,9 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
 
     public function storeAgency(Agency $agency)
     {
-        return $this->factory->store($agency);
+        $agency->id = $this->factory->store($agency);
+        Event::fire(new AgencyCreated($agency));
+        return $agency->id;
     }
 
     public function addCities($agencyId, $cityIds)

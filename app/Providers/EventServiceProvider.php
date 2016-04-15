@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\Events\Agency\AgencyCreated;
+use App\Events\Events\User\UserBasicInfoUpdated;
+use App\Events\Events\User\UserCreated;
+use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
 use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
 use App\Listeners\Listeners\User\CreateUserJsonDocument;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
@@ -15,11 +19,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Events\User\UserCreated' => [
+        UserCreated::class=> [
             CreateUserJsonDocument::class,
         ],
-        'App\Events\Events\User\UserBasicInfoUpdated' => [
+        UserBasicInfoUpdated::class => [
             UpdateUserBasicInfoJsonDocument::class
+        ],
+        AgencyCreated::class => [
+            AddNewAgencyInUserJson::class
         ],
     ];
 

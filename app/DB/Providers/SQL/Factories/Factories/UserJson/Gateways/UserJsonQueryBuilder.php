@@ -19,7 +19,6 @@ class UserJsonQueryBuilder extends QueryBuilder{
 
     public function findByUser($id)
     {
-        $user = DB::table($this->table)->where('user_id','=',$id)->get()->first();
-        return json_decode($user->json());
+        return DB::table($this->table)->where('user_id','=',$id)->first();
     }
 }

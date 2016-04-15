@@ -12,16 +12,10 @@
 */
 /*This route use for testing through postman*/
 
-//Route::Post('get-city-test', function(){
-//    $cityFactory = new \App\DB\Providers\SQL\Factories\Factories\City\CityFactory();
-//    $city = new \App\DB\Providers\SQL\Models\City();
-//
-//    $id = request()->get('society_id');
-//    //$city->countryId = request()->get('country_id');
-//    //$city->name = request()->get('city_name');
-//
-//    return response()->json($cityFactory->getBySociety($id));
-//});
+Route::post('release', function(){
+    $file = new \App\Libs\File\FileRelease('users\66f041e16a60928b05a7e228a89c3799\agencies\a8f669293c683f48cf258aad5a4c460b\a8f669293c683f48cf258aad5a4c460b.jpg');
+    $file->release(2);
+});
 
 
 

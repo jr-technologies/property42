@@ -44,12 +44,12 @@ class RegistrationRequest extends Request implements RequestInterface{
         $user->mobile = $this->get('mobile');
         $user->address = $this->get('address');
         $user->zipCode = $this->get('zipCode');
-        $user->userRoles = $this->get('userRoles');
         $user->countryId = 1;
         $user->membershipPlanId = 1;
         $user->notificationSettings = ($this->get('wantNotifications') == null)?0:$this->get('wantNotifications');
         return $user;
     }
+
     public function getAgencyModel()
     {
         $agency = new Agency();
@@ -58,8 +58,23 @@ class RegistrationRequest extends Request implements RequestInterface{
         $agency->phone = $this->get('companyPhone');
         $agency->mobile = $this->get('companyMobile');
         $agency->email = $this->get('companyEmail');
-        $agency->logo = $this->get('companyLogo');
+        $agency->address = $this->get('companyAddress');
         return $agency;
+    }
+
+    public function file($file)
+    {
+        return $this->get($file);
+    }
+
+    public function getCompanyLogo()
+    {
+        return $this->file('companyLogo');
+    }
+
+    public function hasCompanyLogo()
+    {
+        return $this->has('companyLogo');
     }
 
     public function getAgencyCities()
@@ -67,8 +82,15 @@ class RegistrationRequest extends Request implements RequestInterface{
         return [1]; //we just deal in lahore
     }
 
+    public function getUserRoles()
+    {
+        return (is_array($this->get('userRoles')))?$this->get('userRoles'):[1];
+    }
     public function userIsAgent()
     {
-        return ($this->get('isAgent') == '1')? true : false;
+        if(is_array($this->get('userRoles')))
+            return (in_array(3,$this->get('userRoles')))?true:false;
+        else
+            return false;
     }
 }
