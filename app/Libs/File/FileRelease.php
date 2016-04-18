@@ -44,13 +44,14 @@ class FileRelease
         $this->copyTo($releasePath);
 
         /* log it in db */
-        $deadline = ($minutes != null)?Carbon::createFromFormat('Y-m-d h:i:s', date('Y-m-d h:i:s'))->addHours(5)->addMinutes($minutes):null;
+        $now = Carbon::createFromFormat('Y-m-d h:i:s', date('Y-m-d h:i:s'))->addHours(5);
+        $deadline = ($minutes != null)?$now->addMinutes($minutes):null;
         $deadline = ($deadline != null)?$deadline:$this->defaultDeadline();
         $releasedFile = $this->map([
             'path' => $secureName,
             'deadline' =>$deadline,
-            'createdAt' => Carbon::createFromFormat('Y-m-d h:i:s', date('Y-m-d h:i:s'))->addHours(5)->toDateTimeString(),
-            'updatedAt' => date('Y-m-d h:i:s'),
+            'createdAt' => $now->toDateTimeString(),
+            'updatedAt' => $now->toDateTimeString(),
         ]);
 
         return ($this->log)?$this->logInDb($releasedFile):$releasedFile;
