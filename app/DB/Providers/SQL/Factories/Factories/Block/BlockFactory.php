@@ -78,6 +78,10 @@ class BlockFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->delete($block->id);
     }
+    public function getBySociety($id)
+    {
+        return $this->tableGateway->getBySociety($id);
+    }
     public function map($result)
     {
         $society = $this->model;

@@ -17,7 +17,14 @@ class BlockQueryBuilder extends QueryBuilder
         $this->table = 'blocks';
     }
 
-
-
-
+    public function getBySociety($blockId)
+    {
+        $societyFactory = new SocietyFactory();
+        $societyTable = $societyFactory->getTable();
+        return  DB::table($this->table)
+            ->leftjoin($societyTable,$this->table.'.society_id','=',$societyTable.'.id')
+            ->select($societyTable.'.*')
+            ->where($this->table.'.id','=',$blockId)
+            ->first();
+    }
 }

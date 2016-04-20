@@ -57,7 +57,7 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function  getByCountry($id)
     {
-        return $this->map($this->tableGateway->first(['country_id'=>$id]));
+        return $this->mapCollection($this->tableGateway->getWhere(['country_id'=>$id]));
     }
     public function getBySociety($id)
     {
@@ -65,7 +65,7 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
     }
     function map($result)
     {
-        $city            = $this->model;
+        $city            = new City();
         $city->id        = $result->id;
         $city->name      = $result->city;
         $city->countryId = $result->country_id;

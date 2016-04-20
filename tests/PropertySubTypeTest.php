@@ -52,14 +52,22 @@ class PropertySubTypeTest extends TestCase
             'status' => 1
         ]);
     }
+    public function testSubTypesByType()
+    {
+        $this->json('POST',$this->apiRoute('subtype-by-type'),[
+            'type_id'=>1
+        ])->seeJson([
+            'status'=>1
+        ]);
+    }
+    public function GetAllPropertyType()
+    {
+        $this->json('post',$this->apiRoute('property/subtypes'),[])->seeJson(['status'=>1]);
+    }
 
     public function testDeletePropertySubType()
     {
         $this->json('POST',$this->apiRoute('property/subtype/delete'),['p_sub_type_id'=>1])->seeJson(['status'=> 1]);
     }
 
-    public function GetAllPropertyType()
-    {
-        $this->json('post',$this->apiRoute('property/subtypes'),[])->seeJson(['status'=>1]);
-    }
 }

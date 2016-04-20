@@ -47,4 +47,8 @@ class BlocksRepository extends SqlRepository implements BlocksRepoInterface
     {
         return $this->factory->delete($block);
     }
+    public function getBySociety($id)
+    {
+        return $this->factory->getBySociety($id);
+    }
 }

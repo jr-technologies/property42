@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\Requests\City\AddCityRequest;
 use App\Http\Requests\Requests\City\DeleteCityRequest;
 use App\Http\Requests\Requests\City\GetAllCitiesRequest;
+use App\Http\Requests\Requests\City\GetCitiesByCountryRequest;
+use App\Http\Requests\Requests\City\GetCitiesBySocietyRequest;
 use App\Http\Requests\Requests\City\UpdateCityRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\CitiesRepository;
+use App\Transformers\Request\City\GetCitiesByCountryTransformer;
 use App\Transformers\Response\CityTransformer;
 
 class CitiesController extends ApiController
@@ -51,16 +54,16 @@ class CitiesController extends ApiController
             'city'=>$this->cities->all()
         ]]);
     }
-//    public function getByCountry(GetByCountryRequest $request)
-//    {
-//        return $this->response->respond(['data'=>[
-//            'city'=>$this->cities->all()
-//        ]]);
-//    }
-//    public function GetBySociety(GetBySocietyRequest $request)
-//    {
-//        return $this->response->respond(['data'=>[
-//            'city'=>$this->cities->all()
-//        ]]);
-//    }
+    public function getByCountry(GetCitiesByCountryRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'city'=>$this->cities->getByCountry($request->get('countryId'))
+        ]]);
+    }
+    public function getBySociety(GetCitiesBySocietyRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+               'city'=>$this->cities->getBySociety($request->get('societyId'))
+        ]]);
+    }
 }

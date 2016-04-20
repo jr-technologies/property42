@@ -75,4 +75,8 @@ class PropertyTypeFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $this->tableGateway->setTable($table);
     }
+    public function getBySubType($id)
+    {
+        return $this->tableGateway->getBySubType($id);
+    }
 }

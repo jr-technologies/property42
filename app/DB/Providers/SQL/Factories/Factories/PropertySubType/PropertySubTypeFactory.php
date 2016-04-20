@@ -45,6 +45,11 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->delete($propertySubType->id);
     }
+    public function getByType($id)
+    {
+        return $this->tableGateway->getWhere(['property_type_id'=>$id]);
+    }
+
     private function mapPropertyTypeOnTable(PropertySubType $propertySubType)
     {
         return [
@@ -60,7 +65,7 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
 
     function map($result)
     {
-        $propertySubType = $this->model;
+        $propertySubType = new PropertySubType();
         $propertySubType->id=$result->id;
         $propertySubType->name= $result->sub_type;
         $propertySubType->propertyTypeId= $result->property_type_id;
