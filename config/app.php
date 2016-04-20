@@ -217,26 +217,31 @@ return [
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
+
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
         'UpdateCountryRequest' => \App\Http\Requests\Requests\Country\UpdateCountryRequest::class,
         'DeleteCountryRequest' => \App\Http\Requests\Requests\Country\DeleteCountryRequest::class,
         'GetAllCountriesRequest' => \App\Http\Requests\Requests\Country\GetAllCountriesRequest::class,
+
         /* City Requests */
         'AddCityRequest' => \App\Http\Requests\Requests\City\AddCityRequest::class,
         'UpdateCityRequest' => \App\Http\Requests\Requests\City\UpdateCityRequest::class,
         'DeleteCityRequest' => \App\Http\Requests\Requests\City\DeleteCityRequest::class,
         'GetAllCitiesRequest' => \App\Http\Requests\Requests\City\GetAllCitiesRequest::class,
+
         /* City Requests */
         'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
         'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,
+
         /* Block Requests */
         'AddBlockRequest' => \App\Http\Requests\Requests\Block\AddBlockRequest::class,
         'UpdateBlockRequest' => \App\Http\Requests\Requests\Block\UpdateBlockRequest::class,
         'DeleteBlockRequest' => \App\Http\Requests\Requests\Block\DeleteBlockRequest::class,
         'GetAllBlocksRequest' => \App\Http\Requests\Requests\Block\GetAllBlocksRequest::class,
+
         /* PropertyPurpose Requests */
         'AddPropertyPurposeRequest' => \App\Http\Requests\Requests\PropertyPurposes\AddPropertyPurposeRequest::class,
         'UpdatePropertyPurposeRequest' => \App\Http\Requests\Requests\PropertyPurposes\UpdatePropertyPurposeRequest::class,
@@ -267,7 +272,8 @@ return [
         'DeletePropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\DeletePropertyStatusRequest::class,
         'GetAllPropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\GetAllPropertyStatusRequest::class,
 
-
+        /* Property Status Requests */
+        'AddPropertyRequest' => \App\Http\Requests\Requests\Property\AddPropertyRequest::class,
     ],
 
 ];

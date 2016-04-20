@@ -14,7 +14,7 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('owner_id')->unsigned();
             $table->integer('purpose_id')->unsigned();  //completed
             $table->integer('property_sub_type_id')->unsigned();  //completed
             $table->integer('block_id')->unsigned();  //complete
@@ -24,17 +24,25 @@ class CreatePropertiesTable extends Migration
             $table->double('land_area');
             $table->integer('land_unit_id')->unsigned();    //complete
             $table->integer('property_status_id')->unsigned();    //complete
+
+            $table->string('contact_person')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('email')->nullable();
+
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('is_hot')->default(0);
-            $table->integer('total_views');
-            $table->integer('rating');
-            $table->integer('total_likes');
+            $table->integer('total_views')->default(0);
+            $table->integer('rating')->default(0);
+            $table->integer('total_likes')->default(0);
             $table->softDeletes();
-            $table->integer('deleted_by')->unsigned();
-
+            $table->integer('created_by')->unsigned();
+            $table->integer('deleted_by')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')
+            /* Foreign Keys */
+            $table->foreign('owner_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->foreign('purpose_id')
@@ -52,7 +60,7 @@ class CreatePropertiesTable extends Migration
             $table->foreign('property_status_id')
                 ->references('id')->on('property_statuses')
                 ->onDelete('cascade');
-            $table->foreign('deleted_by')
+            $table->foreign('created_by')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
 
