@@ -55,8 +55,15 @@ class PropertyTypeTest extends TestCase
     {
         $this->json('POST',$this->apiRoute('property/type/delete'),['p_type_id'=>1])->seeJson(['status'=> 1]);
     }
-
-    public function GetAllPropertyType()
+    public function testTypeBySubtype()
+    {
+        $this->json('POST',$this->apiRoute('type-by-subtype'),[
+            'sub_type_id'=>1
+        ])->seeJson([
+            'status'=>1
+        ]);
+    }
+        public function GetAllPropertyType()
     {
         $this->json('post',$this->apiRoute('property/types'),[])->seeJson(['status'=>1]);
     }

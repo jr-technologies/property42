@@ -6,7 +6,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertyType\Gateways;
  * Date: 4/6/2016
  * Time: 10:07 AM
  */
-use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 class PropertyTypeQueryBuilder extends QueryBuilder
@@ -17,14 +17,14 @@ class PropertyTypeQueryBuilder extends QueryBuilder
         $this->table = 'property_types';
     }
 
-//    public function getBySociety($societyId)
-//    {
-//        $societyFactory = new SocietyFactory();
-//        $societyTable = $societyFactory->getTable();
-//        return  DB::table($societyTable)
-//                ->leftjoin($this->table,$societyTable.'.city_id','=',$this->table.'.id')
-//                ->select($this->table.'.*')
-//                ->where($societyTable.'.id','=',$societyId)
-//                ->first();
-//    }
+    public function getBySubType($subTypeId)
+    {
+        $subTypeFactory = new PropertySubTypeFactory();
+        $subTypeTable = $subTypeFactory->getTable();
+        return  DB::table($subTypeTable)
+                ->leftjoin($this->table,$subTypeTable.'.property_type_id','=',$this->table.'.id')
+                ->select($this->table.'.*')
+                ->where($subTypeTable.'.id','=',$subTypeId)
+                ->first();
+    }
 }

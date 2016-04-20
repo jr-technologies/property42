@@ -229,8 +229,10 @@ return [
         'UpdateCityRequest' => \App\Http\Requests\Requests\City\UpdateCityRequest::class,
         'DeleteCityRequest' => \App\Http\Requests\Requests\City\DeleteCityRequest::class,
         'GetAllCitiesRequest' => \App\Http\Requests\Requests\City\GetAllCitiesRequest::class,
+        'GetCitiesBySocietyRequest' => \App\Http\Requests\Requests\City\GetCitiesBySocietyRequest::class,
+        'GetCitiesByCountryRequest' => \App\Http\Requests\Requests\City\GetCitiesByCountryRequest::class,
 
-        /* City Requests */
+        /* Society Requests */
         'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
@@ -253,12 +255,14 @@ return [
         'UpdatePropertyTypeRequest' => \App\Http\Requests\Requests\PropertyType\UpdatePropertyTypeRequest::class,
         'DeletePropertyTypeRequest' => \App\Http\Requests\Requests\PropertyType\DeletePropertyTypeRequest::class,
         'GetAllPropertyTypesRequest' => \App\Http\Requests\Requests\PropertyType\GetAllPropertyTypesRequest::class,
+        'GetTypeBySubTypeRequest' => \App\Http\Requests\Requests\PropertyType\GetTypeBySubTypeRequest::class,
 
         /* PropertySubType Requests */
         'AddPropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\AddPropertySubTypeRequest::class,
         'UpdatePropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\UpdatePropertySubTypeRequest::class,
         'DeletePropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\DeletePropertySubTypeRequest::class,
         'GetAllPropertySubTypesRequest' => \App\Http\Requests\Requests\PropertySubType\GetAllPropertySubTypesRequest::class,
+        'GetSubTypesByTypeRequest' => \App\Http\Requests\Requests\PropertySubType\GetSubTypesByTypeRequest::class,
 
         /* LandUnit Requests */
         'AddLandUnitRequest' => \App\Http\Requests\Requests\LandUnit\AddLandUnitRequest::class,
@@ -274,6 +278,13 @@ return [
 
         /* Property Status Requests */
         'AddPropertyRequest' => \App\Http\Requests\Requests\Property\AddPropertyRequest::class,
+
+        /* Feature Section Requests */
+        'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,
+        'UpdateFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest::class,
+        'DeleteFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\DeleteFeatureSectionRequest::class,
+        'GetAllFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest::class,
+
     ],
 
 ];

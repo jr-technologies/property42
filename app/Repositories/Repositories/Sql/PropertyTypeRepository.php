@@ -49,4 +49,8 @@ class PropertyTypeRepository extends SqlRepository implements PropertyTypeRepoIn
     {
         return $this->factory->delete($propertyType);
     }
+    public function getBySubType($id)
+    {
+        return $this->factory->getBySubType($id);
+    }
 }

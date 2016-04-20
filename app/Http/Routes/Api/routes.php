@@ -139,7 +139,25 @@ Route::get('cities',
         'uses'=>'CitiesController@all'
     ]
 );
+Route::post('cities-by-society',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getCitiesBySocietyRequest'
+            ],
+        'uses'=>'CitiesController@getBySociety'
+    ]
+);
 
+Route::post('cities-by-country',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getCitiesByCountryRequest'
+            ],
+        'uses'=>'CitiesController@getByCountry'
+    ]
+);
 
 /**
  * Society Crud
@@ -322,6 +340,15 @@ Route::get('property/types',
     ]
 );
 
+Route::post('type-by-subtype',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getTypeBySubTypeRequest'
+            ],
+        'uses'=>'PropertyTypeController@getBySubType'
+    ]
+);
 /**
  * Property Sub Type Crud
  **/
@@ -364,6 +391,15 @@ Route::get('property/subtypes',
     ]
 );
 
+Route::post('subtype-by-type',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getSubTypesByTypeRequest'
+            ],
+        'uses'=>'PropertySubTypeController@getByType'
+    ]
+);
 /**
  * LandUnit Crud
  **/
@@ -446,6 +482,52 @@ Route::get('property/statuses',
                 'apiValidate:getAllPropertyStatusRequest'
             ],
         'uses'=>'PropertyStatusController@all'
+    ]
+);
+
+
+
+/**
+ * feature Section Crud
+ **/
+Route::post('feature/section',
+
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addFeatureSectionRequest'
+            ],
+
+        'uses'=>'FeatureSectionsController@store'
+
+    ]
+);
+Route::post('feature/section/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateFeatureSectionRequest'
+            ],
+        'uses'=>'FeatureSectionsController@update'
+    ]
+);
+Route::post('feature/section/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteFeatureSectionRequest'
+            ],
+        'uses'=>'FeatureSectionsController@delete'
+    ]
+);
+Route::get('feature/sections',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllFeatureSectionRequest'
+            ],
+        'uses'=>'FeatureSectionsController@all'
     ]
 );
 

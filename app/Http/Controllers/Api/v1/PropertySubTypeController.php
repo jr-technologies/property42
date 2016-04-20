@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\Requests\PropertySubType\GetSubTypesByTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\AddPropertySubTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\DeletePropertySubTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\GetAllPropertySubTypesRequest;
@@ -59,4 +60,11 @@ class PropertySubTypeController extends ApiController
         ]]);
     }
 
+    public function getByType(GetSubTypesByTypeRequest $request)
+    {
+        return $this->response->respond([
+            'data'=>['propertySubType'=>$this->propertySubTypes->getByType($request->get('typeId'))
+        ]]);
+
+    }
 }

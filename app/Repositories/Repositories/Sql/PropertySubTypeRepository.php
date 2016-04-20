@@ -50,4 +50,8 @@ class PropertySubTypeRepository extends SqlRepository implements PropertySubType
     {
         return $this->factory->delete($propertySubType);
     }
+    public function getByType($id)
+    {
+        return $this->factory->getByType($id);
+    }
 }

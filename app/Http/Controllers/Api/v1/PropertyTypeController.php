@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\Requests\PropertyPurposes\GetAllPropertyPurposesRequest;
 use App\Http\Requests\Requests\PropertyType\AddPropertyTypeRequest;
 use App\Http\Requests\Requests\PropertyType\DeletePropertyTypeRequest;
+use App\Http\Requests\Requests\PropertyType\GetTypeBySubTypeRequest;
 use App\Http\Requests\Requests\PropertyType\UpdatePropertyTypeRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\PropertyTypeRepository;
@@ -56,4 +57,10 @@ class PropertyTypeController extends ApiController
             'propertyType'=>$propertyType
          ]]);
        }
+    public function getBySubType(GetTypeBySubTypeRequest $request)
+    {
+        return $this->response->respond(['data'=>['propertyType'
+        =>$this->propertyTypeRepository->getBySubType($request->get('subTypeId'))
+        ]]);
+    }
 }

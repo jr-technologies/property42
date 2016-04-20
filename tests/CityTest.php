@@ -57,6 +57,22 @@ class CityTest extends TestCase
         ]);
     }
 
+    public function testCitiesByCountry()
+    {
+        $this->json('POST',$this->apiRoute('cities-by-country'),[
+            'country_id'=>1
+        ])->seeJson([
+            'status'=>1
+        ]);
+    }
+    public function testCitiesBySociety()
+    {
+        $this->json('POST',$this->apiRoute('cities-by-society'),[
+            'society_id'=>1
+        ])->seeJson([
+            'status'=>1
+        ]);
+    }
     public function testDeleteCity()
     {
         $this->json('POST',$this->apiRoute('city/delete'),['city_id'=>2])->seeJson(['status'=> 1]);

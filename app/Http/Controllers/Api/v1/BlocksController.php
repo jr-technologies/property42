@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\Block\AddBlockRequest;
 use App\Http\Requests\Requests\Block\DeleteBlockRequest;
 use App\Http\Requests\Requests\Block\GetAllBlocksRequest;
 use App\Http\Requests\Requests\Block\UpdateBlockRequest;
+use App\Http\Requests\Requests\City\GetBlocksBySocietyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\BlocksRepository;
 
@@ -50,9 +51,16 @@ class BlocksController extends ApiController
     public function update(UpdateBlockRequest $request)
     {
         $block =$request->getBlockModel();
-        $this->block->store($block);
+        $this->block->update($block);
         return $this->response->respond(['data' => [
             'Block' => $block
         ]]);
+    }
+
+    public function getBySociety(GetBlocksBySocietyRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'Block'=>$this->block->getBySociety($request->get('societyId'))
+            ]]);
     }
 }
