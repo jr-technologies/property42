@@ -37,7 +37,7 @@ class CitiesController extends ApiController
     public function update(UpdateCityRequest $request)
     {
         $city =$request->getCityModel();
-        $this->cities->store($city);
+        $this->cities->update($city);
         return $this->response->respond(['data' => [
             'city' => $city
         ]]);

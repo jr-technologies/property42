@@ -276,6 +276,11 @@ return [
         'UpdateFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest::class,
         'DeleteFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\DeleteFeatureSectionRequest::class,
         'GetAllFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest::class,
+
+        /* Agency Requests */
+        'AddAgencyRequest' => \App\Http\Requests\Requests\Agency\AddAgencyRequest::class,
+        'UpdateAgencyRequest' => \App\Http\Requests\Requests\Agency\UpdateAgencyRequest::class,
+
     ],
 
 ];
