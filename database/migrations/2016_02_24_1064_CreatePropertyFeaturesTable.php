@@ -16,6 +16,7 @@ class CreatePropertyFeaturesTable extends Migration
             $table->increments('id');
             $table->integer('feature_section_id')->unsigned();
             $table->string('feature');
+            $table->string('input_name')->unique();
             $table->integer('html_structure_id')->unsigned();
             $table->string('possible_values');
             $table->integer('priority');

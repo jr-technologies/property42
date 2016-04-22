@@ -10,20 +10,25 @@ namespace App\Http\Requests\Requests\Property;
 
 
 use App\DB\Providers\SQL\Models\City;
+use App\DB\Providers\SQL\Models\Features\Feature;
+use App\DB\Providers\SQL\Models\Features\PropertyFeatureValue;
 use App\DB\Providers\SQL\Models\Property;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\AddCityValidator;
 use App\Http\Validators\Validators\PropertyValidators\AddPropertyValidator;
+use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Transformers\Request\City\AddCityTransformer;
 use App\Transformers\Request\Property\AddPropertyTransformer;
 
 class AddPropertyRequest extends Request implements RequestInterface{
 
     public $validator = null;
+    private $features = null;
     public function __construct(){
         parent::__construct(new AddPropertyTransformer($this->getOriginalRequest()));
         $this->validator = new AddPropertyValidator($this);
+        $this->features = new FeaturesRepository();
     }
 
     public function getPropertyModel()
@@ -47,6 +52,39 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->createdBy = 1;
 
         return $property;
+    }
+
+    public function getFeaturesValues($propertyId)
+    {
+        $submittedFeatures = $this->getSubmittedPropertyFeatures();
+        $featureValues = [];
+        foreach($submittedFeatures as $feature /* @var $feature Feature */)
+        {
+            $featureValue = new PropertyFeatureValue();
+            $featureValue->propertyId = $propertyId;
+            $featureValue->propertyFeatureId = $feature->id;
+            $featureValue->value = $this->getFeature($feature->inputName);
+            $featureValue->updatedAt = date('Y-m-d h:i:s');
+            $featureValues[] = $featureValue;
+        }
+        return $featureValues;
+    }
+
+    public function getSubmittedPropertyFeatures()
+    {
+        $features = $this->features->getBySubType($this->get('subTypeId'));
+        $finalFeatures = [];
+        foreach($features as $feature /* @var $feature Feature */)
+        {
+            if($this->getFeature($feature->inputName) != null)
+                $finalFeatures[] = $feature;
+        }
+        return $finalFeatures;
+    }
+
+    public function getFeature($featureName)
+    {
+        return $this->getOriginal($featureName);
     }
 
     public function authorize(){

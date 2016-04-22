@@ -28,6 +28,7 @@ class BlocksController extends ApiController
         $this->block  = $blocksRepository;
         $this->response = $response;
     }
+
     public function store(AddBlockRequest $request)
     {
         $block =$request->getBlockModel();
@@ -36,6 +37,7 @@ class BlocksController extends ApiController
             'Block' => $block
         ]]);
     }
+
     public function all(GetAllBlocksRequest $request)
     {
         return $this->response->respond(['data'=>[

@@ -36,7 +36,7 @@ class PropertyValidator extends AppValidator
             'landArea.required' => 'land area is required',
             'contactPerson.required' => 'contact person is required',
             'phone.required' => 'company phone is required',
-            'email' => 'company email is required',
+            'email.required' => 'company email is required',
         ];
     }
 
