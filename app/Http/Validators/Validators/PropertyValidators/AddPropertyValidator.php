@@ -10,12 +10,15 @@ namespace App\Http\Validators\Validators\PropertyValidators;
 
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Repositories\Repositories\Sql\FeaturesRepository;
 
 class AddPropertyValidator extends PropertyValidator implements ValidatorsInterface
 {
+    private $featuresRepository = null;
     public function __construct($request)
     {
         parent::__construct($request);
+        $this->featuresRepository = new FeaturesRepository();
     }
 
 
@@ -45,6 +48,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
 
     public function rules()
     {
+        dd($this->featuresRepository->assignedFeaturesWithValidationRules($this->request->get('subTypeId')));
         return array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules());
     }
 }

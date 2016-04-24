@@ -13,17 +13,12 @@ class FeatureWithValidationRules {
     public $featureId = 0;
     public $featureName;
     public $featureInputName;
-    public $validationRules;
 
-    public $createdAt = '0000-00-00 00:00:00';
-    public $updatedAt = '0000-00-00 00:00:00';
+    /* array ValidationRuleWithErrorMessage::class */
+    public $validationRules = [];
 
-    public function __construct()
-    {
-        $this->possibleValues = '';
+    public $priority = 0;
 
-        $this->createdAt = date('Y-m-d h:i:s');
-        $this->updatedAt = $this->createdAt;
-    }
+    public function __construct(){}
 } 
 

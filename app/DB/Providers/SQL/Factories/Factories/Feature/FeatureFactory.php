@@ -12,8 +12,11 @@ use App\DB\Providers\SQL\Factories\Factories\Feature\Gateways\FeatureQueryBuilde
 
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
+use App\DB\Providers\SQL\Models\AppMessage;
 use App\DB\Providers\SQL\Models\Features\Feature;
+use App\DB\Providers\SQL\Models\Features\FeatureWithValidationRules;
 use App\DB\Providers\SQL\Models\FeatureSection;
+use App\DB\Providers\SQL\Models\ValidationRules\ValidationRuleWithErrorMessage;
 
 class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
 {
@@ -58,7 +61,51 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
 
     public function assignedFeaturesWithValidationRules($subTypeId)
     {
+        $rawFeatures = $this->tableGateway->assignedFeaturesWithValidationRules($subTypeId);
+        return $this->mapAssignedFeaturesWithValidationRules($rawFeatures);
 
+    }
+
+    private function mapAssignedFeaturesWithValidationRules($rawFeatures)
+    {
+        $collection = collect($rawFeatures);
+        $grouped = $collection->groupBy('featureId');
+        $groupedFeaturesArray = $grouped->toArray();
+        $featuresWithValidationRules = [];
+        foreach($groupedFeaturesArray as $featureId => $features)
+        {
+            $featureWithValidationRules = new FeatureWithValidationRules();
+            $featureWithValidationRules->featureId = $features[0]->featureId;
+            $featureWithValidationRules->featureName = $features[0]->featureName;
+            $featureWithValidationRules->featureInputName = $features[0]->featureInputName;
+            $featureWithValidationRules->priority = $features[0]->featurePriority;
+
+            /* mapping rules with message */
+            $featureRules = [];
+            foreach($features as $feature)
+            {
+                if($feature->ruleId != null)
+                {
+                    $validationRuleWithErrors = new ValidationRuleWithErrorMessage();
+                    $validationRuleWithErrors->ruleId = $feature->ruleId;
+                    $validationRuleWithErrors->name = $feature->ruleName;
+
+                    $validationErrorMessage = new AppMessage();
+                    $validationErrorMessage->id = $feature->appMessageId;
+                    $validationErrorMessage->shortMessage = $feature->shortMessage;
+                    $validationErrorMessage->longMessage = $feature->longMessage;
+
+                    $validationRuleWithErrors->errorMessage = $validationErrorMessage;
+
+                    $featureRules[] = $validationRuleWithErrors;
+                }
+            }
+            $featureWithValidationRules->validationRules = $featureRules;
+
+            $featuresWithValidationRules[] = $featureWithValidationRules;
+        }
+
+        return $featuresWithValidationRules;
     }
 
     private function mapFeatureOnTable(Feature $feature)

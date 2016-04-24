@@ -23,5 +23,13 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertySubTypeTable::class);
         $this->call(LandUnitTable::class);
         $this->call(PropertyStatusTable::class);
+        $this->call(HtmlStructuresTableSeeder::class);
+        $this->call(FeatureSectionsTableSeeder::class);
+        $this->call(PropertyFeaturesTableSeeder::class);
+        $this->call(PropertySubTypeAssignedFeaturesTableSeeder::class);
+        $this->call(ValidationRulesTableSeeder::class);
+        $this->call(AppMessagesTableSeeder::class);
+        $this->call(ValidationErrorMessagesTableSeeder::class);
+        $this->call(AssignedFeatureValidationsTableSeeder::class);
     }
 }
