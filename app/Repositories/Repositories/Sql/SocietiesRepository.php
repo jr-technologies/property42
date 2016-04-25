@@ -39,6 +39,7 @@ class SocietiesRepository extends SqlRepository implements SocietiesRepoInterfac
     public function update(Society $society)
     {
         $this->factory->update($society);
+
         return $this->factory->find($society->id);
     }
 

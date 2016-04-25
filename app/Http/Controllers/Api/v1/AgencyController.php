@@ -6,6 +6,7 @@ use App\Http\Requests\Requests\Agency\AddAgencyRequest;
 use App\Http\Requests\Requests\Agency\UpdateAgencyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
+use Illuminate\Support\Facades\File;
 
 class AgencyController extends ApiController
 {
@@ -36,5 +37,10 @@ class AgencyController extends ApiController
             'Agency' => $agency
         ]]);
     }
-
+    public function delete(UpdateAgencyRequest $request)
+    {
+        $this->agency->deleteAgency($request->getAgencyModel());
+        File::delete(storage_path('app/'.$request->getAgencyModel()->logo));
+        return $this->response->respond(['data'=>[],'message'=>'deleted successfully']);
+    }
 }

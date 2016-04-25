@@ -541,6 +541,12 @@ Route::post('agency/update',
     ]
 );
 
+//Route::post('find',
+//
+//    [
+//        'uses'=>'UserJsonFactory@find'
+//    ]
+//);
 /*
 |--------------------------------------------------------------------------
 | Application Routes

@@ -17,14 +17,14 @@ class AddAgencyTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'user_id'=>$this->request->input('user_id'),
-            'agency_name' => $this->request->input('agency_name'),
-            'description'=>$this->request->input('description'),
-            'mobile' => $this->request->input('mobile'),
-            'phone'=>$this->request->input('phone'),
-            'address' => $this->request->input('address'),
-            'email'=>$this->request->input('email'),
-            'logo' => $this->request->input('logo'),
+                'userId'=>$this->request->input('user_id'),
+                'agencyName' => $this->request->input('agency_name'),
+                'description'=>$this->request->input('description'),
+                'companyMobile' => $this->request->input('mobile'),
+                'companyPhone'=>$this->request->input('phone'),
+                'companyAddress' => $this->request->input('address'),
+                'companyEmail'=>$this->request->input('email'),
+                'companyLogo' => $this->request->input('logo'),
         ];
     }
 }

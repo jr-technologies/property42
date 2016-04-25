@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Repositories\Sql\ReleasedFilesRepository;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\File;
 
 class RemoveExpiredFiles extends Command
@@ -40,7 +39,6 @@ class RemoveExpiredFiles extends Command
         }
         File::delete($filePaths);
         $releasedFiles->deleteByIds(Helper::propertyToArray($expiredFiles, 'id'));
-
         echo "Expired files removed successfully";
         return true;
     }

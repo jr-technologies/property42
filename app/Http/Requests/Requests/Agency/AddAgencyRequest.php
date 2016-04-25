@@ -37,14 +37,14 @@ class AddAgencyRequest extends Request implements RequestInterface{
     public function getAgencyModel()
     {
         $Agency= new Agency();
-        $Agency->userId= $this->get('user_id');
-        $Agency->name= $this->get('agency_name');
+        $Agency->userId= $this->get('userId');
+        $Agency->name= $this->get('agencyName');
         $Agency->description= $this->get('description');
-        $Agency->mobile= $this->get('mobile');
-        $Agency->phone= $this->get('phone');
-        $Agency->address= $this->get('address');
-        $Agency->email= $this->get('email');
-        $Agency->logo= $this->get('logo');
+        $Agency->mobile= $this->get('companyMobile');
+        $Agency->phone= $this->get('companyPhone');
+        $Agency->address= $this->get('companyAddress');
+        $Agency->email= $this->get('companyEmail');
+        $Agency->logo= $this->get('companyLogo');
         return $Agency;
     }
 

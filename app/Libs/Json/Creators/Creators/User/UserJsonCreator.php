@@ -21,7 +21,7 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
     private $membershipPlanJsonCreator = null;
     private $agencyJsonCreator = null;
-
+    protected $model = null;
     private $countries = null;
     private $membershipPlans = null;
     private $agencies = null;

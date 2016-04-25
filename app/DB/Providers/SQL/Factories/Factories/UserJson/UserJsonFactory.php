@@ -62,20 +62,21 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function map($result)
     {
-        $result = json_decode($result->json);
+        /* @var $userJson UserJsonPrototype */
+        $userJson = json_decode($result->json);
         $user = $this->model;
-        $user->id = $result->id;
-        $user->fName = $result->fName;
-        $user->lName = $result->lName;
-        $user->email = $result->email;
-        $user->fax = $result->fax;
-        $user->phone = $result->phone;
-        $user->mobile = $result->mobile;
-        $user->country = $result->country;
-        $user->membershipPlan = $result->membershipPlan;
-        $user->agencies = $result->agencies;
-        $user->createdAt = $result->createdAt;
-        $user->updatedAt = $result->updatedAt;
+        $user->id = $userJson->id;
+        $user->fName = $userJson->fName;
+        $user->lName = $userJson->lName;
+        $user->email = $userJson->email;
+        $user->fax = $userJson->fax;
+        $user->phone = $userJson->phone;
+        $user->mobile = $userJson->mobile;
+        $user->country = $userJson->country;
+        $user->membershipPlan = $userJson->membershipPlan;
+        $user->agencies = $userJson->agencies;
+        $user->createdAt = $userJson->createdAt;
+        $user->updatedAt = $userJson->updatedAt;
         return $user;
     }
 

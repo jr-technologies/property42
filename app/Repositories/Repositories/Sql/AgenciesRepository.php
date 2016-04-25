@@ -11,6 +11,8 @@ namespace App\Repositories\Repositories\Sql;
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
 use App\DB\Providers\SQL\Models\Agency;
 use App\Events\Events\Agency\AgencyCreated;
+use App\Events\Events\Agency\AgencyDeleted;
+use App\Events\Events\Agency\AgencyUpdated;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Event;
@@ -51,7 +53,20 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
     }
     public function updateAgency(Agency $agency)
     {
-        return $this->factory->update($agency);
+        $this->factory->update($agency);
+        Event::fire(new AgencyUpdated($agency));
+        return $this->factory->find($agency->id);
+    }
+
+    /**
+     * @param Agency $agency
+     * @return mixed
+     */
+    public function deleteAgency(Agency $agency)
+    {
+        $agency = $this->factory->delete($agency);
+        Event::fire(new AgencyDeleted($agency));
+        return $agency;
     }
 
 }
