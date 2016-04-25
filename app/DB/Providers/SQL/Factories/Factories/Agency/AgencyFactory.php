@@ -100,6 +100,14 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
+     * @param Agency $agency
+     */
+    public function delete(Agency $agency)
+    {
+        return $this->tableGateway->delete($agency->id);
+    }
+
+    /**
      * @param $result
      * @return Agency::class
      **/

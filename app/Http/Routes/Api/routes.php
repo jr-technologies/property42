@@ -12,19 +12,19 @@
 */
 /*This route use for testing through postman*/
 
-Route::post('release', function(){
+//Route::post('release', function(){
 //    (new App\Libs\File\FileRelease('users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg'))
 //        ->release();
-
-
-
-    $files = [
-        'users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg',
-        'users\1679091c5a880faf6fb5e6087eb1b2dc\agencies\1e59acc6a1d0b87111da81a47741e1b1\1e59acc6a1d0b87111da81a47741e1b1.jpeg'
-    ];
-
-    \App\Libs\File\FileRelease::multiRelease($files);
-});
+//
+//
+//
+//    $files = [
+//        'users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg',
+//        'users\1679091c5a880faf6fb5e6087eb1b2dc\agencies\1e59acc6a1d0b87111da81a47741e1b1\1e59acc6a1d0b87111da81a47741e1b1.jpeg'
+//    ];
+//
+//    \App\Libs\File\FileRelease::multiRelease($files);
+//});
 
 
 
@@ -530,7 +530,38 @@ Route::get('feature/sections',
         'uses'=>'FeatureSectionsController@all'
     ]
 );
+/*
+ Agency Crud
+ */
+Route::post('agency',
 
+    [
+        'middleware'=>
+            [
+                'apiValidate:AddAgencyRequest'
+            ],
+        'uses'=>'AgencyController@store'
+    ]
+);
+
+
+Route::post('agency/update',
+
+    [
+        'middleware'=>
+            [
+                'apiValidate:UpdateAgencyRequest'
+            ],
+        'uses'=>'AgencyController@update'
+    ]
+);
+
+//Route::post('find',
+//
+//    [
+//        'uses'=>'UserJsonFactory@find'
+//    ]
+//);
 /*
 |--------------------------------------------------------------------------
 | Application Routes
