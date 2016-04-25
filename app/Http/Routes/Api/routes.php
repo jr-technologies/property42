@@ -242,6 +242,21 @@ Route::get('blocks',
 );
 
 /**
+ * Properties routes
+ */
+
+Route::post('/property',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:addPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@store'
+    ]
+);
+
+/**
  * Property Purpose Crud
  **/
 Route::post('/property/purpose',

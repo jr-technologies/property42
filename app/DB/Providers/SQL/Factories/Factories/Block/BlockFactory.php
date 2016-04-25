@@ -1,11 +1,11 @@
 <?php
-namespace App\DB\Providers\SQL\Factories\Factories\Block;
 /**
  * Created by PhpStorm.
  * User: waqas
  * Date: 4/6/2016
  * Time: 9:58 AM
  */
+namespace App\DB\Providers\SQL\Factories\Factories\Block;
 
 use App\DB\Providers\SQL\Factories\Factories\Block\Gateways\BlockQueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
