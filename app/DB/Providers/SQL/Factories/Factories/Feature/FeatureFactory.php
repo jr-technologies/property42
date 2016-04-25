@@ -95,7 +95,8 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
                     $validationErrorMessage->shortMessage = $feature->shortMessage;
                     $validationErrorMessage->longMessage = $feature->longMessage;
 
-                    $validationRuleWithErrors->errorMessage = $validationErrorMessage;
+                    if($validationErrorMessage->id != null)
+                        $validationRuleWithErrors->errorMessage = $validationErrorMessage;
 
                     $featureRules[] = $validationRuleWithErrors;
                 }
