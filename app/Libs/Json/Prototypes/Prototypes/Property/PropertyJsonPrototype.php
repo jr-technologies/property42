@@ -25,7 +25,7 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     public $title = "";
     public $description = "";
     public $price ="";
-    /* @var $land PropertyLandJson0Prototype::class */
+    /* @var $land PropertyLandJsonPrototype::class */
     public $land = "";
     /* @var $propertyStatus PropertyStatusJsonPrototype::class*/
     public $propertyStatus =null;
