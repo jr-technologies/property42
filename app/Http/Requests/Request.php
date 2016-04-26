@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Traits\RequestHelper;
 use App\Transformers\Transformer;
 
@@ -12,12 +13,17 @@ abstract class Request
     private $transformedValues = [];
     private $transformer = null;
     public $authenticator = null;
+    public $user = null;
     public function __construct(Transformer $transformer){
         $this->transformer = $transformer;
         $this->transformedValues = $this->transformer->transform();
         $this->authenticator = $this->getRequestAuthenticator();
+        $this->user = new UsersRepository();
     }
-
+    public function user()
+    {
+       return $this->user->getByToken($this->authenticator->getAccessToken());
+    }
     public function get($key){
         return (isset($this->transformedValues[$key]))?$this->transformedValues[$key]:null;
     }

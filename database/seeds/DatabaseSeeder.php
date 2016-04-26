@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AppMessagesTableSeeder::class);
         $this->call(ValidationErrorMessagesTableSeeder::class);
         $this->call(AssignedFeatureValidationsTableSeeder::class);
+        //$this->call(PropertyDocumentTableSeeder::class);
     }
 }

@@ -66,4 +66,5 @@ class CitiesController extends ApiController
                'city'=>$this->cities->getBySociety($request->get('societyId'))
         ]]);
     }
+
 }

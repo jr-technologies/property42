@@ -289,6 +289,10 @@ return [
         'AddAgencyRequest' => \App\Http\Requests\Requests\Agency\AddAgencyRequest::class,
         'UpdateAgencyRequest' => \App\Http\Requests\Requests\Agency\UpdateAgencyRequest::class,
 
+        /* Property Like Requests */
+        'AddPropertyLikeRequest' => \App\Http\Requests\Requests\PropertyLike\AddPropertyLikeRequest::class,
+        'UpdatePropertyLikeRequest' => \App\Http\Requests\Requests\PropertyLike\UpdatePropertyLikeRequest::class,
+
     ],
 
 ];

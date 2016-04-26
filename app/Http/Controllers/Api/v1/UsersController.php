@@ -56,5 +56,4 @@ class UsersController extends ApiController
     {
 
     }
-
 }

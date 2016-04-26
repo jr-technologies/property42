@@ -27,7 +27,6 @@
 //});
 
 
-
 Route::get('/users',
     [
         'middleware'=>
@@ -556,12 +555,30 @@ Route::post('agency/update',
     ]
 );
 
-//Route::post('find',
-//
-//    [
-//        'uses'=>'UserJsonFactory@find'
-//    ]
-//);
+/**
+ * Property Like Crud
+ **/
+Route::post('property/like/increment',
+
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:addCityRequest',
+                'apiValidate:AddPropertyLikeRequest'
+            ],
+        'uses'=>'PropertyLikeController@store'
+    ]
+);
+Route::post('property/like/decrement',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertyLikeRequest'
+            ],
+        'uses'=>'PropertyLikeController@delete'
+    ]
+);
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

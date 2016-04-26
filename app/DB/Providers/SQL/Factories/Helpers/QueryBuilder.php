@@ -70,17 +70,34 @@ abstract class QueryBuilder {
     {
         return DB::table($this->table)->insertGetId($record);
     }
-
+    public function count($record)
+    {
+        $pois = DB::select(DB:raw("*, (SELECT count(*) from $this->table WHERE $record = stamps.poi_id) nbr_stamps"))
+        ->from($this->table)
+        ->orderBy('nbr_stamps', 'DESC')
+        ->limit(3);
+    }
     public function insertMultiple(array $records, $table = null)
     {
         $table = ($table != null)?$table:$this->table;
         return DB::table($table)->insert($records);
     }
+
+    /**
+     * @param $id
+     * @param array $data
+     * @return mixed
+     */
     public function update($id, array $data)
     {
         return $this->updateWhere(['id' => $id], $data);
     }
 
+    /**
+     * @param array $conditions
+     * @param array $data
+     * @return mixed
+     */
     public function updateWhere(array $conditions, array $data)
     {
         $query = DB::table($this->table);
@@ -91,31 +108,54 @@ abstract class QueryBuilder {
         return $query->update($data);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function delete($id)
     {
         return DB::table($this->table)->where('id','=',$id)->delete();
     }
 
+    /**
+     * @param array $ids
+     * @return bool
+     */
     public function deleteByIds(array $ids)
     {
         return (sizeof($ids)> 0)?DB::table($this->table)->whereIn('id', $ids)->delete():true;
     }
 
+    /**
+     * @param array $conditions
+     * @return mixed
+     */
     public function deleteWhere(array $conditions)
     {
         return DB::table($this->table)->where($conditions)->delete();
     }
 
+    /**
+     * @return mixed
+     */
     public function all()
     {
         return DB::table($this->table)->get();
     }
 
+    /**
+     * @param $column
+     * @param array $conditions
+     * @return mixed
+     */
     public function getWhereIn($column, array $conditions)
     {
         return DB::table($this->table)->whereIn($column, $conditions)->get();
     }
 
+    /**
+     * @return mixed
+     */
     public function get()
     {
         return $this->all();

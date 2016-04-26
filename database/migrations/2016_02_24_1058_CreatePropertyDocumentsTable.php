@@ -17,6 +17,7 @@ class CreatePropertyDocumentsTable extends Migration
             $table->integer('property_id')->unsigned();
             $table->string('type');
             $table->text('path');
+            $table->string('title');
             $table->timestamps();
 
             $table->foreign('property_id')
@@ -24,6 +25,7 @@ class CreatePropertyDocumentsTable extends Migration
                 ->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.

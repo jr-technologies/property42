@@ -20,7 +20,7 @@ class AddUserRequest extends Request implements RequestInterface{
     public function __construct(){
         parent::__construct(new AddUserTransformer($this->getOriginalRequest()));
 
-        $this->validator = new AddUserValidator($this->getOriginalRequest());
+        //$this->validator = new AddUserValidator($this->getOriginalRequest());
     }
 
     public function authorize(){
