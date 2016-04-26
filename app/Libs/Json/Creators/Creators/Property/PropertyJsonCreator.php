@@ -11,18 +11,22 @@ namespace App\Libs\Json\Creators\Creators\Property;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
 use App\Libs\Json\Creators\Creators\JsonCreator;
+use App\Libs\Json\Creators\Creators\Property\Owner\PropertyOwnerJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
+use App\Repositories\Repositories\Sql\UsersRepository;
 
 class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
     private $featuresRepository = null;
+    private $usersRepository = null;
     public function __construct(Property $property = null)
     {
         $this->model = $property;
         $this->prototype = new PropertyJsonPrototype();
         $this->featuresRepository = new FeaturesRepository();
+        $this->usersRepository = new UsersRepository();
     }
 
     public function create()
@@ -80,7 +84,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     private function getOwnerJson()
     {
-        return 'owner json yahan aye ge';
+        return (new PropertyOwnerJsonCreator($this->usersRepository->getById($this->model->ownerId)))->create();
     }
 
     private function getPropertyType()

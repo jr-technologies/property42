@@ -14,6 +14,7 @@ class PropertyAgencyJsonPrototype extends JsonPrototype implements JsonPrototype
 {
     public $id = "";
     public $name = "";
+    public $address = "";
     public $phone ="";
     public $mobile = "";
     public $fax  = "";
