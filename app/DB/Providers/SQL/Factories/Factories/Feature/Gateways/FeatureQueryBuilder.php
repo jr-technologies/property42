@@ -50,4 +50,28 @@ class FeatureQueryBuilder extends QueryBuilder
             ->where($propertySubTypeAssignedFeatures.'.property_sub_type_id','=',$subTypeId)
             ->get();
     }
+
+    /**
+     * @param int $propertyId
+     * @return array
+     * Desc: below function returns all given features of a property
+     *          with sections
+     * */
+    public function getAPropertyFeaturesWithValues($propertyId)
+    {
+        $propertyFeatureValues = 'property_feature_values';
+        $propertyFeatures = $this->table;
+        $featureSections = 'feature_sections';
+        return  DB::table($propertyFeatureValues)
+            ->leftjoin($propertyFeatures,$propertyFeatureValues.'.property_feature_id','=',$propertyFeatures.'.id')
+            ->leftjoin($featureSections,$propertyFeatures.'.feature_section_id','=',$featureSections.'.id')
+            ->select(
+                $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.possible_values as possibleValues',
+                $propertyFeatureValues.'.value as value', $featureSections.'.id as sectionId', $featureSections.'.section as sectionName',
+                $propertyFeatureValues.'.property_id as propertyId'
+            )
+            ->where($propertyFeatureValues.'.property_id','=',$propertyId)
+            ->get();
+    }
+
 }

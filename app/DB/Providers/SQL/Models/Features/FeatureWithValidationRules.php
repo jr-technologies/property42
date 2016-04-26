@@ -8,6 +8,8 @@
 
 namespace App\DB\Providers\SQL\Models\Features;
 
+use App\DB\Providers\SQL\Models\ValidationRules\ValidationRuleWithErrorMessage;
+
 class FeatureWithValidationRules {
 
     public $featureId = 0;
@@ -20,5 +22,46 @@ class FeatureWithValidationRules {
     public $priority = 0;
 
     public function __construct(){}
+
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        $featureRules = [];
+        foreach($this->validationRules as $rule /* @var $rule ValidationRuleWithErrorMessage::class*/)
+        {
+            $featureRules[] = $rule->name;
+        }
+        return $featureRules;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function rulesToString()
+    {
+        $featureRules = [];
+        foreach($this->validationRules as $rule /* @var $rule ValidationRuleWithErrorMessage::class*/)
+        {
+            $featureRules[] = $rule->name;
+        }
+        return join('|',$featureRules);
+    }
+
+    public function customErrorMessages()
+    {
+        $customMessages = [];
+        foreach($this->validationRules as $rule /* @var $rule ValidationRuleWithErrorMessage::class*/)
+        {
+            if($rule->errorMessage != null)
+            {
+                $customMessages[$this->featureInputName.'.'.$rule->name] = $this->featureName.' '.$rule->errorMessage->longMessage;
+            }
+        }
+        return $customMessages;
+    }
 } 
 

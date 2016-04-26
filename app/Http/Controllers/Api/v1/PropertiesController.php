@@ -7,10 +7,12 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\Events\Property\PropertyCreated;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
+use Illuminate\Support\Facades\Event;
 
 class PropertiesController extends ApiController
 
@@ -28,8 +30,11 @@ class PropertiesController extends ApiController
 
     public function store(AddPropertyRequest $request)
     {
-        $propertyId = $this->properties->store($request->getPropertyModel());
+        $property = $request->getPropertyModel();
+        $propertyId = $this->properties->store($property);
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
+        $property->id = $propertyId;
+        Event::fire(new PropertyCreated($property));
         return $this->response->respond(['data' => [
             'property' => $request->getPropertyModel(),
             'features' => $request->getFeaturesValues($propertyId),

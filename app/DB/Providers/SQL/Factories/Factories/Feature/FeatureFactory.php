@@ -15,6 +15,7 @@ use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\DB\Providers\SQL\Models\AppMessage;
 use App\DB\Providers\SQL\Models\Features\Feature;
 use App\DB\Providers\SQL\Models\Features\FeatureWithValidationRules;
+use App\DB\Providers\SQL\Models\Features\PropertyFeatureValueAndSection;
 use App\DB\Providers\SQL\Models\FeatureSection;
 use App\DB\Providers\SQL\Models\ValidationRules\ValidationRuleWithErrorMessage;
 
@@ -63,7 +64,6 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $rawFeatures = $this->tableGateway->assignedFeaturesWithValidationRules($subTypeId);
         return $this->mapAssignedFeaturesWithValidationRules($rawFeatures);
-
     }
 
     private function mapAssignedFeaturesWithValidationRules($rawFeatures)
@@ -95,7 +95,8 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
                     $validationErrorMessage->shortMessage = $feature->shortMessage;
                     $validationErrorMessage->longMessage = $feature->longMessage;
 
-                    $validationRuleWithErrors->errorMessage = $validationErrorMessage;
+                    if($validationErrorMessage->id != null)
+                        $validationRuleWithErrors->errorMessage = $validationErrorMessage;
 
                     $featureRules[] = $validationRuleWithErrors;
                 }
@@ -106,6 +107,42 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
         }
 
         return $featuresWithValidationRules;
+    }
+
+
+    /**
+     * @param int $propertyId
+     * @return array
+     * Desc: below function returns all given features of a property
+     *          with sections
+     * */
+    public function getAPropertyFeaturesWithValues($propertyId)
+    {
+        return $this->mapAPropertyFeaturesWithValues($this->tableGateway->getAPropertyFeaturesWithValues($propertyId));
+    }
+
+    private function mapAPropertyFeaturesWithValues($features)
+    {
+        $finalFeatures = [];
+        foreach($features as $feature)
+        {
+            $featureWithValueAndSection = new PropertyFeatureValueAndSection();
+            $featureWithValueAndSection->featureId = $feature->featureId;
+            $featureWithValueAndSection->featureName = $feature->featureName;
+            $featureWithValueAndSection->featureInputName = $feature->featureInputName;
+            $featureWithValueAndSection->possibleValues = $feature->possibleValues;
+            $featureWithValueAndSection->propertyId = $feature->propertyId;
+            $featureWithValueAndSection->value = $feature->value;
+
+            $section = new FeatureSection();
+            $section->id = $feature->sectionId;
+            $section->name = $feature->sectionName;
+
+            $featureWithValueAndSection->section = $section;
+
+            $finalFeatures[] = $featureWithValueAndSection;
+        }
+        return $finalFeatures;
     }
 
     private function mapFeatureOnTable(Feature $feature)

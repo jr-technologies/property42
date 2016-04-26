@@ -12,13 +12,13 @@ use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
 
 class PropertyOwnerJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
-    public $Id = null;
-    public $name = "";
+    public $id = null;
+    public $fName = "";
+    public $lName = "";
     public $email = "";
-    public $phone  = "";
-    public $mobile  = "";
-    public $address  = "";
+    public $phone = "";
+    public $mobile = "";
+    public $address = "";
     /* @var $agency PropertyAgencyJsonPrototype ::class*/
     public $agency  = null;
-    public $role =[];
 }

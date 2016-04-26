@@ -58,6 +58,17 @@ class FeaturesRepository extends SqlRepository implements FeaturesRepoInterface
         return $this->factory->assignedFeaturesWithValidationRules($subTypeId);
     }
 
+    /**
+     * @param int $propertyId
+     * @return array
+     * Desc: below function returns all given features of a property
+     *          with sections
+     * */
+    public function getAPropertyFeaturesWithValues($propertyId)
+    {
+        return $this->factory->getAPropertyFeaturesWithValues($propertyId);
+    }
+
 //    public function getBySociety($id)
 //    {
 //        return $this->factory->getBySociety($id);

@@ -14,25 +14,54 @@ use App\Transformers\Request\RequestTransformer;
 
 class AddPropertyTransformer extends RequestTransformer
 {
+    public function transformExtraFeatures()
+    {
+        $extraFeatures = [];
+        foreach($this->request->all() as $input => $value)
+        {
+            if(!in_array($input,$this->staticInputs()))
+                $extraFeatures[$input] = $value;
+        }
+        return $extraFeatures;
+    }
     public function transform()
     {
-       return [
+       return array_merge([
            /* property info */
-           'ownerId' => $this->request->get('owner_id'),
-           'purposeId' => $this->request->get('purpose_id'),
-           'subTypeId' => $this->request->get('sub_type_id'),
-           'blockId' => $this->request->get('block_id'),
-           'title' => $this->request->get('title'),
-           'description' => $this->request->get('description'),
-           'price' => $this->request->get('price'),
-           'landArea' => $this->request->get('land_area'),
-           'landUnitId' => $this->request->get('land_unit_id'),
+           'ownerId' => $this->request->input('owner_id'),
+           'purposeId' => $this->request->input('purpose_id'),
+           'subTypeId' => $this->request->input('sub_type_id'),
+           'blockId' => $this->request->input('block_id'),
+           'title' => $this->request->input('title'),
+           'description' => $this->request->input('description'),
+           'price' => $this->request->input('price'),
+           'landArea' => $this->request->input('land_area'),
+           'landUnitId' => $this->request->input('land_unit_id'),
 
            /* contact information */
-           'contactPerson' => $this->request->get('contact_person'),
-           'phone' => $this->request->get('phone'),
-           'mobile' => $this->request->get('mobile'),
-           'email' => $this->request->get('email'),
+           'contactPerson' => $this->request->input('contact_person'),
+           'phone' => $this->request->input('phone'),
+           'mobile' => $this->request->input('mobile'),
+           'email' => $this->request->input('email'),
+        ], $this->transformExtraFeatures());
+    }
+
+    private function staticInputs()
+    {
+        return [
+            'owner_id',
+            'purpose_id',
+            'sub_type_id',
+            'block_id',
+            'title',
+            'description',
+            'price',
+            'land_area',
+            'land_unit_id',
+            'contact_person',
+            'phone',
+            'mobile',
+            'email'
         ];
     }
 }

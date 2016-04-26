@@ -12,7 +12,9 @@ namespace App\Repositories\Repositories\Sql;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyType;
+use App\Events\Events\Property\PropertyCreated;
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
+use Illuminate\Support\Facades\Event;
 
 
 class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInterface
@@ -25,7 +27,10 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
 
     public function store(Property $property)
     {
-        return $this->factory->store($property);
+        $propertyId = $this->factory->store($property);
+        $property->id = $propertyId;
+        //Event::fire(new PropertyCreated($property));
+        return $propertyId;
     }
 
     public function getById($id)
