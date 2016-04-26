@@ -11,7 +11,6 @@ namespace App\Libs\Json\Creators\Creators\Property\Owner;
 use App\DB\Providers\SQL\Models\User;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
-use App\Libs\Json\Prototypes\Prototypes\Property\Owner\PropertyAgencyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\Property\Owner\PropertyOwnerJsonPrototype;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 
