@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: WAQAS
  * Date: 4/25/2016
- * Time: 11:38 AM
+ * Time: 10:26 AM
  */
 
-namespace App\Libs\Json\Prototypes\Prototypes\Property;
+namespace App\Libs\Json\Prototypes\Prototypes\Property\Location;
+
 use App\Libs\Json\Prototypes\Interfaces\JsonPrototypeInterface;
 use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
-
-class PropertyStatusJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
+class PropertyCityJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
-    public $id = 0;
+    public $id = "";
     public $name = "";
 }

@@ -12,7 +12,7 @@ use App\DB\Providers\SQL\Models\PropertyStatus;
 use App\Repositories\Interfaces\Repositories\LandUnitRepoInterface;
 
 
-class PropertyStatusRepository extends SqlRepository implements LandUnitRepoInterface
+class PropertyStatusesRepository extends SqlRepository implements LandUnitRepoInterface
 {
     private $factory;
     public function __construct()
@@ -24,7 +24,6 @@ class PropertyStatusRepository extends SqlRepository implements LandUnitRepoInte
     {
         return $this->factory->store($propertyStatus);
     }
-
 
     public function getById($id)
     {

@@ -12,7 +12,7 @@ use App\DB\Providers\SQL\Factories\Factories\PropertyDocument\PropertyDocumentFa
 use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
 
-class PropertyDocumentRepository extends SqlRepository implements AgenciesRepoInterface
+class PropertyDocumentsRepository extends SqlRepository implements AgenciesRepoInterface
 {
     private $factory;
 
@@ -68,12 +68,12 @@ class PropertyDocumentRepository extends SqlRepository implements AgenciesRepoIn
     }
 
     /**
-     * @param PropertyDocument $propertyDocument
+     * @param int $propertyId
      * @return mixed
      */
-    public function getByProperty(propertyDocument $propertyDocument)
+    public function getByProperty($propertyId)
     {
-        return $this->factory->getByProperty($propertyDocument);
+        return $this->factory->getByProperty($propertyId);
     }
 
     /**

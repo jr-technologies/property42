@@ -16,7 +16,7 @@ use App\DB\Providers\SQL\Models\LandUnit;
 use App\Repositories\Interfaces\Repositories\LandUnitRepoInterface;
 
 
-class LandUnitRepository extends SqlRepository implements LandUnitRepoInterface
+class LandUnitsRepository extends SqlRepository implements LandUnitRepoInterface
 {
     private $factory;
     public function __construct()

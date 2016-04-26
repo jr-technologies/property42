@@ -13,8 +13,13 @@ use App\DB\Providers\SQL\Factories\Factories\Property\Gateways\PropertyQueryBuil
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 
+use App\DB\Providers\SQL\Models\Block;
+use App\DB\Providers\SQL\Models\City;
+use App\DB\Providers\SQL\Models\Country;
 use App\DB\Providers\SQL\Models\Property;
+use App\DB\Providers\SQL\Models\Property\PropertyCompleteLocation;
 use App\DB\Providers\SQL\Models\PropertyType;
+use App\DB\Providers\SQL\Models\Society;
 
 class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
 {
@@ -50,6 +55,42 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     public function delete(PropertyType $propertyType)
     {
         return $this->tableGateway->delete($propertyType->id);
+    }
+
+    public function getCompleteLocation($propertyId)
+    {
+        return $this->mapPropertyCompleteLocation($this->tableGateway->getCompleteLocation($propertyId));
+    }
+
+    private function mapPropertyCompleteLocation($rawLocation)
+    {
+        $propertyCompleteLocation = new PropertyCompleteLocation();
+
+        $country = new Country();
+        $country->id = $rawLocation->countryId;
+        $country->name = $rawLocation->countryName;
+
+        $city = new City();
+        $city->id = $rawLocation->cityId;
+        $city->name = $rawLocation->cityName;
+        $city->countryId = $rawLocation->countryId;
+
+        $society = new Society();
+        $society->id = $rawLocation->societyId;
+        $society->name = $rawLocation->societyName;
+        $society->cityId = $rawLocation->cityId;
+
+        $block = new Block();
+        $block->id = $rawLocation->blockId;
+        $block->name = $rawLocation->blockName;
+        $block->societyId = $rawLocation->societyId;
+
+        $propertyCompleteLocation->country = $country;
+        $propertyCompleteLocation->city = $city;
+        $propertyCompleteLocation->society = $society;
+        $propertyCompleteLocation->block = $block;
+
+        return $propertyCompleteLocation;
     }
 
     private function mapPropertyOnTable(Property $property)

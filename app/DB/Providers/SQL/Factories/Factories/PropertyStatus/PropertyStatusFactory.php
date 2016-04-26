@@ -23,14 +23,15 @@ class PropertyStatusFactory extends SQLFactory implements SQLFactoriesInterface
         $this->tableGateway = new PropertyStatusQueryBuilder();
     }
 
-    function find($id)
+    public function find($id)
     {
         return $this->map($this->tableGateway->find($id));
     }
-    function all()
+    public function all()
     {
        return $this->mapCollection($this->tableGateway->all());
     }
+
     public function update(PropertyStatus $propertyStatus)
     {
         $propertyStatus->updatedAt = date('Y-m-d h:i:s');
@@ -39,13 +40,13 @@ class PropertyStatusFactory extends SQLFactory implements SQLFactoriesInterface
     public function store(PropertyStatus $propertyStatus)
     {
         $propertyStatus->createdAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->insert($this->mapPropertyTypeOnTable($propertyStatus));
+        return $this->tableGateway->insert($this->mapPropertyStatusOnTable($propertyStatus));
     }
     public function delete(PropertyStatus $propertyStatus)
     {
         return $this->tableGateway->delete($propertyStatus->id);
     }
-    private function mapPropertyTypeOnTable(PropertyStatus $propertyStatus)
+    private function mapPropertyStatusOnTable(PropertyStatus $propertyStatus)
     {
         return [
             'status'=>$propertyStatus->name,

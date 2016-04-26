@@ -13,6 +13,7 @@ use App\DB\Providers\SQL\Models\City;
 use App\DB\Providers\SQL\Models\Features\Feature;
 use App\DB\Providers\SQL\Models\Features\PropertyFeatureValue;
 use App\DB\Providers\SQL\Models\Property;
+use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\AddCityValidator;
@@ -80,6 +81,20 @@ class AddPropertyRequest extends Request implements RequestInterface{
                 $finalFeatures[] = $feature;
         }
         return $finalFeatures;
+    }
+
+    public function getPropertyDocuments($propertyId = null)
+    {
+        $documents = [];
+
+        $document = new PropertyDocument();
+        $document->propertyId = $propertyId;
+        $document->path = 'its a path';
+        $document->title = 'bedrooms';
+
+        $documents[] = $document;
+
+        return $documents;
     }
 
     public function getFeature($featureName)

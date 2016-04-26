@@ -101,6 +101,7 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
 
     /**
      * @param Agency $agency
+     * @return bool
      */
     public function delete(Agency $agency)
     {
@@ -114,15 +115,15 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     public function map($result)
     {
         $agency = $this->model;
-        $agency->name = $result['agency'];
-        $agency->description = $result['description'];
-        $agency->mobile = $result['mobile'];
-        $agency->phone = $result['phone'];
-        $agency->address = $result['address'];
-        $agency->email = $result['email'];
-        $agency->userId = $result['user_id'];
-        $agency->createdAt = $result['created_at'];
-        $agency->updatedAt = $result['updated_at'];
+        $agency->name = $result->agency;
+        $agency->description = $result->description;
+        $agency->mobile = $result->mobile;
+        $agency->phone = $result->phone;
+        $agency->address = $result->address;
+        $agency->email = $result->email;
+        $agency->userId = $result->user_id;
+        $agency->createdAt = $result->created_at;
+        $agency->updatedAt = $result->updated_at;
         return $agency;
     }
 

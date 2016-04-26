@@ -102,4 +102,13 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
             'updated_at' => $country->updatedAt,
         ];
     }
+
+    public function getTable()
+    {
+        return $this->tableGateway->getTable();
+    }
+    private function setTable($table)
+    {
+        $this->tableGateway->setTable($table);
+    }
 }
