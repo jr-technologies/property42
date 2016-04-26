@@ -8,5 +8,7 @@
 
 return [
     'SUCCESS_MESSAGE'=>'Request completed successfully',
-    'ERROR_MESSAGE'=>'Request Failed'
+    'ERROR_MESSAGE'=>'Request Failed',
+
+    'PROPERTY_PURPOSES' => [1 => 'for sale',2 => 'rent',3 => 'wanted']
 ];

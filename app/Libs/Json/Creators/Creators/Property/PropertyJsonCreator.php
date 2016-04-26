@@ -6,76 +6,103 @@
  * Time: 11:39 AM
  */
 
-namespace App\Libs\Json\Creators\Creators\User;
+namespace App\Libs\Json\Creators\Creators\Property;
 
-use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\Property;
+use App\DB\Providers\SQL\Models\PropertyPurpose;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
-use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
-use App\DB\Providers\SQL\Models\User;
-use App\Repositories\Repositories\Sql\AgenciesRepository;
-use App\Repositories\Repositories\Sql\CountriesRepository;
-use App\Repositories\Repositories\Sql\MembershipPlansRepository;
+use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
+use App\Repositories\Repositories\Sql\FeaturesRepository;
 
-class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
+class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
-    private $membershipPlanJsonCreator = null;
-    private $agencyJsonCreator = null;
-    protected $model = null;
-    private $countries = null;
-    private $membershipPlans = null;
-    private $agencies = null;
-    public function __construct(User $user = null)
+    private $featuresRepository = null;
+    public function __construct(Property $property = null)
     {
-        $this->model = $user;
-        $this->prototype = new UserJsonPrototype();
-
-        $this->membershipPlanJsonCreator = new MembershipPlanJsonCreator();
-        $this->agencyJsonCreator = new AgencyJsonCreator();
-
-        $this->countries = new CountriesRepository();
-        $this->membershipPlans = new MembershipPlansRepository();
-        $this->agencies = new AgenciesRepository();
+        $this->model = $property;
+        $this->prototype = new PropertyJsonPrototype();
+        $this->featuresRepository = new FeaturesRepository();
     }
 
     public function create()
     {
         $this->prototype->id = $this->model->id;
-        $this->prototype->email = $this->model->email;
-        $this->prototype->fName = $this->model->fName;
-        $this->prototype->lName = $this->model->lName;
-        $this->prototype->phone = $this->model->phone;
-        $this->prototype->mobile = $this->model->mobile;
-        $this->prototype->fax = $this->model->fax;
-        $this->prototype->address = $this->model->address;
-        $this->prototype->zipCode = $this->model->zipCode;
-        $this->prototype->country = $this->country();
-        $this->prototype->membershipPlan = $this->membershipPlan();
-        $this->prototype->agencies = $this->agencies();
-        $this->prototype->createdAt = $this->model->createdAt;
-        $this->prototype->updatedAt = $this->model->updatedAt;
+
+        $this->prototype->owner = $this->getOwnerJson();
+        $this->prototype->purpose = $this->getPurpose()->name;
+        $this->prototype->type = $this->getPropertyType();
+        $this->prototype->location = $this->getPropertyLocation();
+
+        $this->prototype->title = $this->model->title;
+        $this->prototype->description = $this->model->description;
+        $this->prototype->price = $this->model->price;
+        $this->prototype->land = $this->getLand();
+        $this->prototype->propertyStatus = $this->getPropertyStatus();
+        $this->prototype->isFeatured = $this->model->isFeatured;
+        $this->prototype->isHot = $this->model->isHot;
+        $this->prototype->isDeleted = $this->isDeleted();
+        $this->prototype->createdBy = $this->model->createdBy;
+        $this->prototype->totalViews = $this->model->totalViews;
+        $this->prototype->rating = $this->model->ratings;
+        $this->prototype->totalLikes = $this->model->totalLikes;
+        $this->prototype->documents = $this->getDocuments();
+        $this->prototype->features = $this->getFeatures();
+
         return $this->prototype;
     }
 
-    public function country()
+    private function getFeatures()
     {
-        return $this->countries->getById($this->model->countryId)->name;
+        $featuresJsonCreator = new PropertyFeaturesJsonCreator($this->featuresRepository->getAPropertyFeaturesWithValues($this->model->id));
+        return $featuresJsonCreator->create();
     }
 
-    public function membershipPlan()
+    private function getDocuments()
     {
-        $plan = $this->membershipPlans->getById($this->model->membershipPlanId);
-        return $this->membershipPlanJsonCreator->setModel($plan)->create();
+        return 'property documents object aye ga';
     }
 
-    public function agencies()
+    private function isDeleted()
     {
-        $agencies = $this->agencies->getByUser($this->model->id);
-        $agenciesJson = [];
-        foreach($agencies as $agency) /* @var $agency Agency::class */
-        {
-            $agenciesJson[] = $this->agencyJsonCreator->setModel($agency)->create();
-        }
-        return $agenciesJson;
+        return false;
+    }
+
+    private function getPropertyStatus()
+    {
+        return 'yahan property status ka object aye ga.';
+    }
+
+    private function getLand()
+    {
+        return 'yahan property land ka object aye ga';
+    }
+
+    private function getOwnerJson()
+    {
+        return 'owner json yahan aye ge';
+    }
+
+    private function getPropertyType()
+    {
+        return 'property type ka object aye ga';
+    }
+
+    private function getPropertyLocation()
+    {
+        return 'property location ka object aye ga';
+    }
+
+    /**
+     * @return PropertyPurpose
+     */
+    private function getPurpose()
+    {
+        $thisPropertyPurpose = config('constants.PROPERTY_PURPOSES')[$this->model->purposeId];
+        $purpose = new PropertyPurpose();
+        $purpose->id = $this->model->purposeId;
+        $purpose->name = $thisPropertyPurpose;
+
+        return $purpose;
     }
 }

@@ -1,27 +1,28 @@
 <?php
 
-namespace App\Events\Events\Agency;
+namespace App\Events\Events\Property;
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\Property;
 use App\Events\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
-class AgencyUpdated extends Event
+class PropertyCreated extends Event
 {
     use SerializesModels;
 
 
     /**
-     * @var $agency Agency
+     * @var $property Property
      */
-    public $agency = null;
+    public $property = null;
     /**
-     * @param Agency $agency
+     * @param Property $property
      * Create a new event instance.
      */
-    public function __construct(Agency $agency)
+    public function __construct(Property $property)
     {
-        $this->agency = $agency;
+        $this->property = $property;
     }
 
     /**

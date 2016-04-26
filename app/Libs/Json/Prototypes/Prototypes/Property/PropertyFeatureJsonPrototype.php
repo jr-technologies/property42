@@ -10,11 +10,10 @@ namespace App\Libs\Json\Prototypes\Prototypes\Property;
 use App\Libs\Json\Prototypes\Interfaces\JsonPrototypeInterface;
 use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
 
-class PropertyFeaturesJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
+class PropertyFeatureJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
     public $id="";
     public $name="";
     public $inputName="";
     public $value="";
-
 }
