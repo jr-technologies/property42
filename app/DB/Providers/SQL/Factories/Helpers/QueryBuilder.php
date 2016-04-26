@@ -72,10 +72,10 @@ abstract class QueryBuilder {
     }
     public function count($record)
     {
-        $pois = DB::select(DB:raw("*, (SELECT count(*) from $this->table WHERE $record = stamps.poi_id) nbr_stamps"))
-        ->from($this->table)
-        ->orderBy('nbr_stamps', 'DESC')
-        ->limit(3);
+//        $pois = DB::select(DB:raw("*, (SELECT count(*) from $this->table WHERE $record = stamps.poi_id) nbr_stamps"))
+//        ->from($this->table)
+//        ->orderBy('nbr_stamps', 'DESC')
+//        ->limit(3);
     }
     public function insertMultiple(array $records, $table = null)
     {
