@@ -15,7 +15,7 @@ class CreatePropertyJsonTable extends Migration
         Schema::create('property_json', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('property_id')->unsigned();
-            $table->string('json');
+            $table->longText('json');
             $table->timestamps();
 
             $table->foreign('property_id')

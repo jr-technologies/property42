@@ -9,13 +9,17 @@
 namespace App\Repositories\Repositories\Sql;
 
 
+use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
+use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
+use App\Repositories\Interfaces\Repositories\PropertiesJsonRepoInterface;
+
 class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRepoInterface
 {
     private $userJsonTransformer;
     private $factory = null;
     public function __construct(){
-        $this->userJsonTransformer = new PropertyJsonTransformer();
-        $this->factory = new UserJsonFactory();
+        $this->userJsonTransformer = null;
+        $this->factory = new PropertyJsonFactory();
     }
 
     public function all()
@@ -33,9 +37,9 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
         return $this->factory->find($id);
     }
 
-    public function store(UserJsonPrototype $user)
+    public function store(PropertyJsonPrototype $property)
     {
-        return $this->factory->store($user);
+        return $this->factory->store($property);
     }
 
     public function update($user)

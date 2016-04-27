@@ -61,7 +61,7 @@ class PropertyStatusFactory extends SQLFactory implements SQLFactoriesInterface
     function map($result)
     {
         $propertyStatus = $this->model;
-        $propertyStatus->id=$result->id;
+        $propertyStatus->id = $result->id;
         $propertyStatus->name = $result->status;
         $propertyStatus->createdAt = $result->created_at;
         $propertyStatus->updatedAt = $result->updated_at;
