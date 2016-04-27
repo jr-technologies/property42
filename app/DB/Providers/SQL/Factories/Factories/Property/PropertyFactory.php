@@ -127,7 +127,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->id        = $result->id;
 
         $property->purposeId = $result->purpose_id;
-        $property->subTypeId =  $result->sub_type_id;
+        $property->subTypeId =  $result->property_sub_type_id;
         $property->blockId =  $result->block_id;
         $property->title =  $result->title;
         $property->description =  $result->description;
@@ -140,6 +140,12 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->mobile =  $result->mobile;
         $property->email =  $result->email;
         $property->ownerId = $result->owner_id;
+
+        $property->statusId = $result->property_status_id;
+        $property->totalViews = $result->total_views;
+        $property->totalLikes = $result->total_likes;
+        $property->ratings = $result->rating;
+
         $property->createdBy = $result->created_by;
 
         $property->createdAt = $result->created_at;

@@ -6,6 +6,7 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Listeners\Interfaces\ListenerInterface;
 use App\Listeners\Listeners\Listener;
+use App\Repositories\Repositories\Sql\PropertiesJsonRepository;
 
 class CreatePropertyJsonDocument extends Listener implements ListenerInterface
 {
@@ -13,7 +14,7 @@ class CreatePropertyJsonDocument extends Listener implements ListenerInterface
 
     public function __construct()
     {
-
+        $this->propertiesJsonRepository = new PropertiesJsonRepository();
     }
 
     /**

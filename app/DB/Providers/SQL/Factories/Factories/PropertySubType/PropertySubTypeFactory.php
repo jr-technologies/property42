@@ -12,7 +12,9 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertySubType;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\Gateways\PropertySubTypeQueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
+use App\DB\Providers\SQL\Models\Property\PropertyCompleteType;
 use App\DB\Providers\SQL\Models\PropertySubType;
+use App\DB\Providers\SQL\Models\PropertyType;
 
 class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
 {
@@ -27,10 +29,22 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($id));
     }
+
     function all()
     {
        return $this->mapCollection($this->tableGateway->all());
     }
+
+    /**
+     * @param int $propertyId
+     * @Desc: return property type with parent and sub type .
+     * @return PropertyCompleteType::class
+     */
+    public function propertyCompleteType($propertyId)
+    {
+        return $this->mapPropertyCompleteLocation($this->tableGateway->propertyCompleteType($propertyId));
+    }
+
     public function update(PropertySubType $propertySubType)
     {
         $propertySubType->updatedAt = date('Y-m-d h:i:s');
@@ -48,6 +62,25 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
     public function getByType($id)
     {
         return $this->tableGateway->getWhere(['property_type_id'=>$id]);
+    }
+
+    private function mapPropertyCompleteLocation($result)
+    {
+        $propertyCompleteType = new PropertyCompleteType();
+
+        $propertyParentType = new PropertyType();
+        $propertyParentType->id = $result->parentTypeId;
+        $propertyParentType->name = $result->parentTypeName;
+
+        $propertyCompleteType->parentType = $propertyParentType;
+
+        $propertySubType = new PropertySubType();
+        $propertySubType->id = $result->subTypeId;
+        $propertySubType->name = $result->subTypeName;
+
+        $propertyCompleteType->subType = $propertySubType;
+
+        return $propertyCompleteType;
     }
 
     private function mapPropertyTypeOnTable(PropertySubType $propertySubType)

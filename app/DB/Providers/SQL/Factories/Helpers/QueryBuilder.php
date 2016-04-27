@@ -29,10 +29,12 @@ abstract class QueryBuilder {
 
     /**
      * @param string $table
+     * @return $this
      */
     public function setTable($table)
     {
         $this->table = $table;
+        return $this;
     }
 
     public function findBy($column, $value)
@@ -70,19 +72,15 @@ abstract class QueryBuilder {
     {
         return DB::table($this->table)->insertGetId($record);
     }
-    public function count($record)
+    public function count($condition)
     {
-//        $pois = DB::select(DB:raw("*, (SELECT count(*) from $this->table WHERE $record = stamps.poi_id) nbr_stamps"))
-//        ->from($this->table)
-//        ->orderBy('nbr_stamps', 'DESC')
-//        ->limit(3);
+        return DB::table($this->table)->where($condition)->count();
     }
     public function insertMultiple(array $records, $table = null)
     {
         $table = ($table != null)?$table:$this->table;
         return DB::table($table)->insert($records);
     }
-
     /**
      * @param $id
      * @param array $data
@@ -107,7 +105,10 @@ abstract class QueryBuilder {
         }
         return $query->update($data);
     }
-
+    public function incrementValuesWhereIn($whereColumn, $in , $incrementColumn)
+    {
+        return DB::table($this->table)->whereIn($whereColumn, $in)->increment($incrementColumn);
+    }
     /**
      * @param $id
      * @return mixed

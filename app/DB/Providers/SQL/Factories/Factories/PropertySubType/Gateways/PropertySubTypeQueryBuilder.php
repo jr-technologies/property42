@@ -6,7 +6,9 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertySubType\Gateways;
  * Date: 4/6/2016
  * Time: 10:07 AM
  */
-use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
+use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyType\PropertyTypeFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 class PropertySubTypeQueryBuilder extends QueryBuilder
@@ -17,14 +19,19 @@ class PropertySubTypeQueryBuilder extends QueryBuilder
         $this->table = 'property_sub_types';
     }
 
-//    public function getBySociety($societyId)
-//    {
-//        $societyFactory = new SocietyFactory();
-//        $societyTable = $societyFactory->getTable();
-//        return  DB::table($societyTable)
-//                ->leftjoin($this->table,$societyTable.'.city_id','=',$this->table.'.id')
-//                ->select($this->table.'.*')
-//                ->where($societyTable.'.id','=',$societyId)
-//                ->first();
-//    }
+    public function propertyCompleteType($propertyId)
+    {
+        $propertyTypes = (new PropertyTypeFactory())->getTable();
+        $propertySubTypes = (new PropertySubTypeFactory())->getTable();
+        $properties = (new PropertyFactory())->getTable();
+        return  DB::table($properties)
+            ->leftjoin($propertySubTypes,$properties.'.property_sub_type_id','=',$propertySubTypes.'.id')
+            ->leftjoin($propertyTypes,$propertySubTypes.'.property_type_id','=',$propertyTypes.'.id')
+            ->select(
+                $propertyTypes.'.id as parentTypeId',$propertyTypes.'.type as parentTypeName',
+                $propertySubTypes.'.id as subTypeId',$propertySubTypes.'.sub_type as subTypeName'
+            )
+            ->where($properties.'.id','=',$propertyId)
+            ->first();
+    }
 }

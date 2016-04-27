@@ -37,10 +37,11 @@ class PropertiesController extends ApiController
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
         $this->propertyDocuments->storeMultiple($request->getPropertyDocuments($propertyId));
 
-        $property->id = $propertyId;
+        $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
+
         return $this->response->respond(['data' => [
-            'property' => $request->getPropertyModel(),
+            'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),
         ]]);
     }

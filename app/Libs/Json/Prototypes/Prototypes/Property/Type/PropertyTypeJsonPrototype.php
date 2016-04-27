@@ -12,6 +12,6 @@ use App\Libs\Json\Prototypes\Prototypes\JsonPrototype;
 
 class PropertyTypeJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
-    public $parentType = "";
-    public $subType = "";
+    public $parentType = null;
+    public $subType = null;
 }
