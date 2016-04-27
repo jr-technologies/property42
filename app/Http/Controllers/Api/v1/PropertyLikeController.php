@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\Requests\PropertyLike\AddPropertyLikeRequest;
 use App\Http\Requests\Requests\PropertyLike\DeletePropertyLikeRequest;
 use App\Http\Requests\Requests\PropertyLike\GetAllPropertyLikeRequest;
-use App\Http\Requests\Requests\PropertyLike\UpdatePropertyLikeRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\PropertyLikeRepository;
 use App\Transformers\Response\CityTransformer;
 
 class PropertyLikeController extends ApiController
 {
-    private $PropertyLike = null;
+    private $propertyLike = null;
     public $response = null;
     public function __construct
     (
@@ -20,32 +19,29 @@ class PropertyLikeController extends ApiController
         PropertyLikeRepository $PropertyLikeRepository
     )
     {
-        $this->PropertyLike =  $PropertyLikeRepository;
+        $this->propertyLike =  $PropertyLikeRepository;
         $this->response = $response;
     }
     public function store(AddPropertyLikeRequest $request)
     {
         $propertyLike = $request->getPropertyLikeModel();
-        $propertyLike->id = $this->PropertyLike->store($propertyLike);
-        $this->PropertyLike->getTotalLikes($propertyLike);
+        $propertyLike->id = $this->propertyLike->store($propertyLike);
+        $totalLikes = $this->propertyLike->getTotalLikes($propertyLike);
         return $this->response->respond(['data' => [
-            'propertyLike' => $propertyLike
+          'totalLikes'=>$totalLikes
         ]]);
     }
 
     public function delete(DeletePropertyLikeRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'propertyLike'=>$this->PropertyLike->delete($request->getPropertyLikeModel())
+            'propertyLike'=>$this->propertyLike->delete($request->getPropertyLikeModel())
         ]]);
     }
     public function all(GetAllPropertyLikeRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'propertyLike'=>$this->PropertyLike->all()
+            'propertyLike'=>$this->propertyLike->all()
         ]]);
     }
-
-
-
 }

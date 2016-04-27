@@ -26,6 +26,29 @@
 //    \App\Libs\File\FileRelease::multiRelease($files);
 //});
 
+use App\DB\Providers\SQL\Models\PropertyViews;
+use App\Repositories\Repositories\Sql\PropertyViewsRepository;
+
+Route::get('/increment/views', function(){
+    $repo = new PropertyViewsRepository();
+    dd($repo->incrementViews([1,3]));
+});
+Route::get('/insert',function(){
+
+    $repo = new PropertyViewsRepository();
+
+
+        $model = new PropertyViews();
+        $model2 = new PropertyViews();
+        $result = [];
+            $model->propertyId = 1;
+            $model->ipAddress = '192.168.1.1';
+
+            $model2->propertyId = 3;
+            $model2->ipAddress = '192.168.1.2';
+    $result = [$model,$model2];
+    dd($repo->insertMultiple($result));
+});
 
 Route::get('/users',
     [
