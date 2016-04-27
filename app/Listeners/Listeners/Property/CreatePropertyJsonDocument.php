@@ -26,8 +26,6 @@ class CreatePropertyJsonDocument extends Listener implements ListenerInterface
     {
         $propertyJsonCreator = new PropertyJsonCreator($event->property);
         $propertyJson = $propertyJsonCreator->create();
-
-        dd($propertyJson);
         return $this->propertiesJsonRepository->store($propertyJson);
     }
 }
