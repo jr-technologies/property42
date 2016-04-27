@@ -10,6 +10,7 @@ namespace App\Repositories\Repositories\Sql;
 
 
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyType;
 use App\Events\Events\Property\PropertyCreated;
@@ -20,9 +21,11 @@ use Illuminate\Support\Facades\Event;
 class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInterface
 {
     private $factory;
+    private $propertySubTypeFactory;
     public function __construct()
     {
-         $this->factory = new PropertyFactory();
+        $this->factory = new PropertyFactory();
+        $this->propertySubTypeFactory = new PropertySubTypeFactory();
     }
 
     public function store(Property $property)
@@ -41,6 +44,11 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     public function all()
     {
         return $this->factory->all();
+    }
+
+    public function propertyCompleteType($propertyId)
+    {
+        return $this->propertySubTypeFactory->propertyCompleteType($propertyId);
     }
 
     public function update(PropertyType $propertyType)

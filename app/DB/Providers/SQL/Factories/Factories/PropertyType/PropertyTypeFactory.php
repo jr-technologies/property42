@@ -32,6 +32,7 @@ class PropertyTypeFactory extends SQLFactory implements SQLFactoriesInterface
     {
        return $this->mapCollection($this->tableGateway->all());
     }
+
     public function update(PropertyType $propertyType)
     {
         $propertyType->updatedAt = date('Y-m-d h:i:s');

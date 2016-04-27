@@ -9,12 +9,12 @@
 namespace App\Libs\Json\Creators\Creators\Property;
 
 use App\DB\Providers\SQL\Models\Property;
-use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Location\PropertyLocationJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Owner\PropertyOwnerJsonCreator;
+use App\Libs\Json\Creators\Creators\Property\Type\PropertyTypeJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
@@ -82,7 +82,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     private function isDeleted()
     {
-        return false;
+        return 'under development...';
     }
 
     private function getPropertyStatus()
@@ -103,7 +103,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     private function getPropertyType()
     {
-        return 'its under construction...';
+        return (new PropertyTypeJsonCreator($this->propertiesRepository->propertyCompleteType($this->model->id)))->create();
     }
 
     private function getPropertyLocation()
