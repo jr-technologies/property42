@@ -10,6 +10,7 @@ namespace App\Libs\Json\Creators\Creators\Property;
 
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
+use App\DB\Providers\SQL\Models\PropertyStatus;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Location\PropertyLocationJsonCreator;
@@ -17,6 +18,7 @@ use App\Libs\Json\Creators\Creators\Property\Owner\PropertyOwnerJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Type\PropertyTypeJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
+use App\Libs\Json\Prototypes\Prototypes\Property\PropertyStatusJsonPrototype;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
@@ -57,7 +59,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->propertyStatus = $this->getPropertyStatus();
         $this->prototype->isFeatured = $this->model->isFeatured;
         $this->prototype->isHot = $this->model->isHot;
-        $this->prototype->isDeleted = $this->isDeleted();
+        $this->prototype->isDeleted = $this->isDeleted($this->prototype->propertyStatus);
         $this->prototype->createdBy = $this->model->createdBy;
         $this->prototype->totalViews = $this->model->totalViews;
         $this->prototype->rating = $this->model->ratings;
@@ -80,9 +82,9 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         return (new PropertyDocumentsJsonCreator($propertyDocuments))->create();
     }
 
-    private function isDeleted()
+    private function isDeleted(PropertyStatusJsonPrototype $status)
     {
-        return 'under development...';
+        return ($status->name == 'deleted');
     }
 
     private function getPropertyStatus()
