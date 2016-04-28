@@ -12,7 +12,7 @@ namespace App\DB\Providers\SQL\Models;
 class PropertyViews {
     public $id = 0;
     public $ipAddress = 0;
-    public $propertyId = "";
+    public $propertyId = 0;
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

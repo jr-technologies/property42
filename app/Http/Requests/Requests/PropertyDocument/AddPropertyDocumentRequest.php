@@ -24,12 +24,12 @@ class AddPropertyDocumentRequest extends Request implements  RequestInterface
     }
     public function getPropertyDocumentModel()
     {
-        $PropertyDocument = new PropertyDocument();
-        $PropertyDocument->propertyId = $this->get('property_id');
-        $PropertyDocument->type = $this->get('type');
-        $PropertyDocument->path = $this->get('path');
-        $PropertyDocument->title = $this->get('title');
-        return $PropertyDocument;
+        $propertyDocument = new PropertyDocument();
+        $propertyDocument->propertyId = $this->get('property_id');
+        $propertyDocument->type = $this->get('type');
+        $propertyDocument->path = $this->get('path');
+        $propertyDocument->title = $this->get('title');
+        return $propertyDocument;
     }
     public function authorize(){}
 

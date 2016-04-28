@@ -35,10 +35,9 @@ class UpdateLandUnitRequest extends Request implements RequestInterface{
      * */
     public function getLandUnitModel()
     {
-        $LandUnit = new LandUnit();
-        $LandUnit->id = $this->get('id');
-        $LandUnit->name = $this->get('LandUnit');
-        return $LandUnit;
+        $landUnit = new LandUnit();
+        $landUnit->id = $this->get('id');
+        $landUnit->name = $this->get('landUnit');
+        return $landUnit;
     }
-
-} 
+}

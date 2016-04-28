@@ -47,5 +47,9 @@ class PropertyLikeRepository extends SqlRepository implements FeatureSectionRepo
     {
         return $this->factory->delete($propertyLike);
     }
+    public function getById($id)
+    {
+        return $this->factory->getById($id);
+    }
 
 }

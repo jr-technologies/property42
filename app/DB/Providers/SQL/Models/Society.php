@@ -13,7 +13,7 @@ class Society
 {
     public $id = 0;
     public $name ="";
-    public $cityId ="";
+    public $cityId =0;
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

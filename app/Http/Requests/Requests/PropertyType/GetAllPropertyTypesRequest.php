@@ -11,6 +11,8 @@ namespace App\Http\Requests\Requests\PropertyType;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
+use App\Http\Validators\Validators\PropertyTypeValidators\GetAllPropertyTypesValidator;
+use App\Transformers\Request\PropertyType\GetAllPropertyTypesTransformer;
 
 class GetAllPropertyTypesRequest extends Request implements RequestInterface{
 

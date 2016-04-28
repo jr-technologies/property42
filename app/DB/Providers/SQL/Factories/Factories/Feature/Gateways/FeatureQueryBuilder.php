@@ -28,7 +28,7 @@ class FeatureQueryBuilder extends QueryBuilder
     }
 
 
-    public function assignedFeaturesWithValidationRules($subTypeId)
+    public function getAssignedFeaturesWithValidationRules($subTypeId)
     {
         $propertySubTypeAssignedFeatures = 'property_sub_type_assigned_features';
         $assignedFeatureValidations = 'assigned_feature_validations';

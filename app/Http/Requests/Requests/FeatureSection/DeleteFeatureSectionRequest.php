@@ -18,11 +18,11 @@ use App\Transformers\Request\FeatureSection\DeleteFeatureSectionTransformer;
 class DeleteFeatureSectionRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $FeatureSection = null;
+    private $featureSection = null;
     public function __construct(){
         parent::__construct(new DeleteFeatureSectionTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteFeatureSectionValidator($this);
-        $this->FeatureSection = new FeatureSectionRepository();
+        $this->featureSection = new FeatureSectionRepository();
     }
 
     public function authorize(){
@@ -35,7 +35,7 @@ class DeleteFeatureSectionRequest extends Request implements RequestInterface{
 
     public function getFeatureSectionModel()
     {
-        return $this->FeatureSection->getById($this->get('id'));
+        return $this->featureSection->getById($this->get('id'));
     }
 
 } 

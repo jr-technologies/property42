@@ -15,15 +15,4 @@ class PropertyStatusQueryBuilder extends QueryBuilder
     {
         $this->table = 'property_statuses';
     }
-
-//    public function getBySociety($societyId)
-//    {
-//        $societyFactory = new SocietyFactory();
-//        $societyTable = $societyFactory->getTable();
-//        return  DB::table($societyTable)
-//                ->leftjoin($this->table,$societyTable.'.city_id','=',$this->table.'.id')
-//                ->select($this->table.'.*')
-//                ->where($societyTable.'.id','=',$societyId)
-//                ->first();
-//    }
 }

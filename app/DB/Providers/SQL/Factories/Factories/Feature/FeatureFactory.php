@@ -62,7 +62,7 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
 
     public function assignedFeaturesWithValidationRules($subTypeId)
     {
-        $rawFeatures = $this->tableGateway->assignedFeaturesWithValidationRules($subTypeId);
+        $rawFeatures = $this->tableGateway->getAssignedFeaturesWithValidationRules($subTypeId);
         return $this->mapAssignedFeaturesWithValidationRules($rawFeatures);
     }
 

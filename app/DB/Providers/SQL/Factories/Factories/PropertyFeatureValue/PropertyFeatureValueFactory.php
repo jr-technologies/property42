@@ -54,12 +54,12 @@ class PropertyFeatureValueFactory extends SQLFactory implements SQLFactoriesInte
 
     public function storeMultiple(array $featureValues)
     {
-        $storeableFeatureValues = [];
+        $storeAbleFeatureValues = [];
         foreach($featureValues as $feature)
         {
-            $storeableFeatureValues[] = $this->mapPropertyFeatureValueOnTable($feature);
+            $storeAbleFeatureValues[] = $this->mapPropertyFeatureValueOnTable($feature);
         }
-        return $this->tableGateway->insertMultiple($storeableFeatureValues);
+        return $this->tableGateway->insertMultiple($storeAbleFeatureValues);
     }
 
     public function delete(PropertyFeatureValue $feature)

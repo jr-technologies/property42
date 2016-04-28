@@ -12,17 +12,17 @@ namespace App\Http\Requests\Requests\PropertyStatus;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\PropertyStatusValidators\DeletePropertyStatusValidator;
-use App\Repositories\Repositories\Sql\PropertyStatusRepository;
+use App\Repositories\Repositories\Sql\PropertyStatusesRepository;
 use App\Transformers\Request\PropertyStatus\DeletePropertyStatusTransformer;
 
 class DeletePropertyStatusRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $PropertyStatus = null;
+    private $propertyStatus = null;
     public function __construct(){
         parent::__construct(new DeletePropertyStatusTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertyStatusValidator($this);
-        $this->PropertyStatus= new PropertyStatusRepository();
+        $this->propertyStatus= new PropertyStatusesRepository();
     }
 
     public function authorize(){
@@ -35,7 +35,7 @@ class DeletePropertyStatusRequest extends Request implements RequestInterface{
 
     public function getPropertyStatusModel()
     {
-        return $this->PropertyStatus->getById($this->get('id'));
+        return $this->propertyStatus->getById($this->get('id'));
     }
 
 } 

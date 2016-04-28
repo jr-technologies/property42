@@ -38,7 +38,10 @@ class PropertyLikeFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->mapCollection($this->tableGateway->getBySubType($subTypeId));
     }
-
+    public function getById($id)
+    {
+        return $this->map($this->tableGateway->find($id));
+    }
     public function update(PropertyLike $propertyLike)
     {
         $propertyLike->updatedAt = date('Y-m-d h:i:s');

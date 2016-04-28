@@ -13,6 +13,9 @@ use App\Transformers\Request\RequestTransformer;
 
 class UpdateSocietyTransformer extends RequestTransformer
 {
+    /**
+     * @return array
+     */
     public function transform()
     {
         return [
