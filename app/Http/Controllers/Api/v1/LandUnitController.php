@@ -13,6 +13,7 @@ use App\Http\Requests\Requests\LandUnit\DeleteLandUnitRequest;
 use App\Http\Requests\Requests\LandUnit\GetAllLandUnitsRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Repositories\Sql\LandUnitRepository;
+use App\Repositories\Repositories\Sql\LandUnitsRepository;
 
 class LandUnitController extends ApiController
 {
@@ -21,7 +22,7 @@ class LandUnitController extends ApiController
 
     public function __construct
     (
-        LandUnitRepository $landUnitRepository,
+        LandUnitsRepository $landUnitRepository,
         ApiResponse $response
     )
     {

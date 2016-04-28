@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Events\Events\Property\PropertyCreated;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
-use App\Repositories\Repositories\Sql\PropertiesRepository;
+use App\Providers\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use Illuminate\Support\Facades\Event;
@@ -22,9 +22,9 @@ class PropertiesController extends ApiController
     private $propertyFeatureValues = null;
     public $response = null;
     private $propertyDocuments = null;
-    public function __construct(PropertiesRepository $properties,ApiResponse $response)
+    public function __construct(PropertiesRepoProvider $repoProvider,ApiResponse $response)
     {
-        $this->properties = $properties;
+        $this->properties = $repoProvider->repo();
         $this->response = $response;
         $this->propertyFeatureValues = new PropertyFeatureValuesRepository();
         $this->propertyDocuments = new PropertyDocumentsRepository();
