@@ -1,11 +1,11 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var app = angular.module('dashboard',['ngRoute', 'ui.router', 'firebase']);
+var app = angular.module('dashboard',['ngRoute', 'ui.router', 'firebase','ui.select2']);
 
 
 app.run(function($rootScope, $location, $AuthService, $state) {
-    $rootScope.AUTH_TOKEN = null;
+    $rootScope.AUTH_TOKEN = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";

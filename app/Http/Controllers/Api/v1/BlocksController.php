@@ -41,7 +41,7 @@ class BlocksController extends ApiController
     public function all(GetAllBlocksRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'block'=>$this->block->all()
+            'blocks'=>$this->block->all()
         ]]);
     }
     public function delete(DeleteBlockRequest $request)

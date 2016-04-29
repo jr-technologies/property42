@@ -8,7 +8,7 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
             var headerInfo = {
                 Authorization:$AuthService.getAppToken()
             };
-            $rootScope.APP_STATUS = 'fetching users...';
+            $rootScope.APP_STATUS = 'fetching blocks...';
             var promise = $http({
                 method: 'GET',
                 url: apiPath+'users',

@@ -1,10 +1,10 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var domain = "http://localhost/production/jr-technologies/property42/public/";
+var domain = "http://localhost/property42/public/";
 var api = "api/v1/";
 var apiPath = domain+api;
-var views = "/production/jr-technologies/property42/public/ng-apps/dashboard/v1/views";
+var views = domain+"ng-apps/dashboard/v1/views";
 var app = angular.module('dashboard');
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/home/properties/all");
