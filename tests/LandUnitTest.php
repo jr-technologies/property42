@@ -38,7 +38,7 @@ class LandUnitTest extends TestCase
      */
     public function testLandUnitInsertionInDb()
     {
-        $this->seeInDatabase('land_units', ['unit' =>'usa']);
+        $this->seeInDatabase('land_units', ['unit' =>'waqas']);
     }
 
     public function testUpdateLandUnit()

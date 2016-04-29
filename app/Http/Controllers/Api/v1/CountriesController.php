@@ -8,7 +8,6 @@ use App\Http\Requests\Requests\Country\GetAllCountriesRequest;
 use App\Http\Requests\Requests\Country\UpdateCountryRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\CountriesRepoProvider;
-use App\Repositories\Repositories\Sql\CountriesRepository;
 use App\Transformers\Response\CountryTransformer;
 
 class CountriesController extends ApiController
@@ -17,10 +16,8 @@ class CountriesController extends ApiController
     private $userTransformer = null;
     public $response = null;
     public function __construct
-    (
-        ApiResponse $response,CountryTransformer $countryTransformer,
-        CountriesRepoProvider $countriesRepository
-    )
+    (ApiResponse $response,CountryTransformer $countryTransformer,
+     CountriesRepoProvider $countriesRepository )
     {
         $this->countries =  $countriesRepository->repo();
         $this->userTransformer = $countryTransformer;
@@ -47,7 +44,7 @@ class CountriesController extends ApiController
     public function all(GetAllCountriesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'country'=>$this->countries->all()
+            'countries'=>$this->countries->all()
         ]]);
     }
 }

@@ -61,7 +61,7 @@ class PropertyTypeFactory extends SQLFactory implements SQLFactoriesInterface
 
     function map($result)
     {
-        $propertyType            = $this->model;
+        $propertyType            = clone($this->model);
         $propertyType->id        = $result->id;
         $propertyType->name      = $result->type;
         $propertyType->createdAt = $result->created_at;

@@ -118,7 +118,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function map($result)
     {
-        $user = $this->model;
+        $user = clone($this->model);
         $user->id = $result->id;
         $user->fName = $result->f_name;
         $user->lName = $result->l_name;

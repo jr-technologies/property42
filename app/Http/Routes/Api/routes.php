@@ -85,11 +85,12 @@ Route::post('/register',
  **/
 Route::post('/country',
     [
-        'middleware'=>
+       'middleware'=>
             [
                 //'apiAuthenticate:addCountryRequest',
                 'apiValidate:addCountryRequest'
             ],
+
         'uses'=>'CountriesController@store'
     ]
 );

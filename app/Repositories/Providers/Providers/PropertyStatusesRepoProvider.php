@@ -13,7 +13,7 @@ use App\Repositories\Providers\RepositoryProvider;
 use App\Repositories\Providers\RepositoryProviderInterface;
 use App\Repositories\Repositories\Sql\PropertyStatusesRepository;
 
-class PropertyStatuesRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
+class PropertyStatusesRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
 {
 
     public function repo()

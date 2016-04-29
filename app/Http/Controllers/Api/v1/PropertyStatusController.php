@@ -12,8 +12,7 @@ use App\Http\Requests\Requests\PropertyStatus\AddPropertyStatusRequest;
 use App\Http\Requests\Requests\PropertyStatus\DeletePropertyStatusRequest;
 use App\Http\Requests\Requests\PropertyStatus\GetAllPropertyStatusRequest;
 use App\Http\Responses\Responses\ApiResponse;
-use App\Repositories\Providers\Providers\PropertyStatuesRepoProvider;
-use App\Repositories\Repositories\Sql\PropertyStatusRepository;
+use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 
 class PropertyStatusController extends ApiController
 
@@ -23,7 +22,7 @@ class PropertyStatusController extends ApiController
 
     public function __construct
     (
-        PropertyStatuesRepoProvider $propertyStatusRepository,
+        PropertyStatusesRepoProvider $propertyStatusRepository,
         ApiResponse $response
     )
     {

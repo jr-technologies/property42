@@ -37,7 +37,7 @@ class PropertyViewsFactory extends SQLFactory implements SQLFactoriesInterface{
     public function find($id){}
     public function map($result)
     {
-        $agency = $this->model;
+        $agency = clone($this->model);
         $agency->propertyId = $result->property_id;
         $agency->ipAddress = $result->ip_address;
         $agency->createdAt = $result->created_at;
