@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Events\Events\Property\PropertyCreated;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
-use App\Providers\Repositories\Providers\Providers\PropertiesRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use Illuminate\Support\Facades\Event;

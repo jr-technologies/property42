@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\FeatureSection\DeleteFeatureSectionRequest;
 use App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest;
 use App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\FeatureSectionsRepoProvider;
 use App\Repositories\Repositories\Sql\FeatureSectionRepository;
 
 class FeatureSectionsController extends ApiController
@@ -20,11 +21,11 @@ class FeatureSectionsController extends ApiController
     public $response = null;
     public function __construct
     (
-        FeatureSectionRepository $FeatureSection,
+        FeatureSectionsRepoProvider $FeatureSection,
         ApiResponse $response
     )
     {
-        $this->FeatureSection  = $FeatureSection;
+        $this->FeatureSection  = $FeatureSection->repo();
         $this->response = $response;
     }
     public function store(AddFeatureSectionRequest $request)

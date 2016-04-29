@@ -11,16 +11,14 @@ namespace App\Repositories\Providers\Providers;
 
 use App\Repositories\Providers\RepositoryProvider;
 use App\Repositories\Providers\RepositoryProviderInterface;
-use App\Repositories\Repositories\Sql\PropertiesRepository;
+use App\Repositories\Repositories\Sql\AgenciesRepository;
+use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 
-class PropertiesRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
+class PropertyPurposeRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
 {
 
-    /**
-     * @return PropertiesRepository
-     */
     public function repo()
     {
-        return new PropertiesRepository();
+        return new PropertyPurposeRepository();
     }
 }

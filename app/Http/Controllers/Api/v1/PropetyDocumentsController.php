@@ -7,6 +7,7 @@ use App\Http\Requests\Requests\PropertyDocument\DeletePropertyDocumentRequest;
 use App\Http\Requests\Requests\PropertyDocument\GetAllPropertyDocumentsRequest;
 use App\Http\Requests\Requests\PropertyDocument\UpdatePropertyDocumentRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\PropertyDocumentsRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentRepository;
 
 class PropertyDocumentsController extends ApiController
@@ -16,10 +17,10 @@ class PropertyDocumentsController extends ApiController
     public function __construct
     (
         ApiResponse $response,
-        PropertyDocumentRepository $PropertyDocumentRepository
+        PropertyDocumentsRepoProvider $PropertyDocumentRepository
     )
     {
-        $this->propertyDocument =  $PropertyDocumentRepository;
+        $this->propertyDocument =  $PropertyDocumentRepository->repo();
         $this->response = $response;
     }
     public function store(AddPropertyDocumentRequest $request)

@@ -7,6 +7,7 @@ use App\Http\Requests\Requests\Country\DeleteCountryRequest;
 use App\Http\Requests\Requests\Country\GetAllCountriesRequest;
 use App\Http\Requests\Requests\Country\UpdateCountryRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\CountriesRepoProvider;
 use App\Repositories\Repositories\Sql\CountriesRepository;
 use App\Transformers\Response\CountryTransformer;
 
@@ -18,10 +19,10 @@ class CountriesController extends ApiController
     public function __construct
     (
         ApiResponse $response,CountryTransformer $countryTransformer,
-        CountriesRepository $countriesRepository
+        CountriesRepoProvider $countriesRepository
     )
     {
-        $this->countries =  $countriesRepository;
+        $this->countries =  $countriesRepository->repo();
         $this->userTransformer = $countryTransformer;
         $this->response = $response;
     }

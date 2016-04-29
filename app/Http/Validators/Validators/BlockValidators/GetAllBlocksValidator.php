@@ -9,12 +9,15 @@
 namespace App\Http\Validators\Validators\BlockValidators;
 
 
+use App\Http\Validators\Interfaces\ValidatorsInterface;
+
 class GetAllBlocksValidator extends BlockValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
         parent::__construct($request);
     }
+
     public function rules()
     {
         return[];

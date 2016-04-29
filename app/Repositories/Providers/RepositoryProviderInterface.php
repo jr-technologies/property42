@@ -6,7 +6,7 @@
  * Time: 11:30 AM
  */
 
-namespace App\Providers\Repositories\Providers;
+namespace App\Repositories\Providers;
 
 
 interface RepositoryProviderInterface

@@ -13,6 +13,7 @@ use App\Http\Requests\Requests\PropertyType\DeletePropertyTypeRequest;
 use App\Http\Requests\Requests\PropertyType\GetTypeBySubTypeRequest;
 use App\Http\Requests\Requests\PropertyType\UpdatePropertyTypeRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyTypeRepository;
 
 class PropertyTypeController extends ApiController
@@ -21,11 +22,11 @@ class PropertyTypeController extends ApiController
     public $response = null;
     public function __construct
     (
-        PropertyTypeRepository $propertyTypeRepository,
+        PropertyTypesRepoProvider $propertyTypeRepository,
         ApiResponse $response
     )
     {
-        $this->propertyTypeRepository  = $propertyTypeRepository;
+        $this->propertyTypeRepository  = $propertyTypeRepository->repo();
         $this->response = $response;
     }
     public function store(AddPropertyTypeRequest $request)

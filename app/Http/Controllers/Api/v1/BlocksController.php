@@ -13,7 +13,7 @@ use App\Http\Requests\Requests\Block\GetAllBlocksRequest;
 use App\Http\Requests\Requests\Block\UpdateBlockRequest;
 use App\Http\Requests\Requests\City\GetBlocksBySocietyRequest;
 use App\Http\Responses\Responses\ApiResponse;
-use App\Repositories\Repositories\Sql\BlocksRepository;
+use App\Repositories\Providers\Providers\BlocksRepoProvider;
 
 class BlocksController extends ApiController
 {
@@ -21,11 +21,11 @@ class BlocksController extends ApiController
     public $response = null;
     public function __construct
     (
-        BlocksRepository $blocksRepository,
+        BlocksRepoProvider $blocksRepository,
         ApiResponse $response
     )
     {
-        $this->block  = $blocksRepository;
+        $this->block  = $blocksRepository->repo();
         $this->response = $response;
     }
 

@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\Society\DeleteSocietyRequest;
 use App\Http\Requests\Requests\Society\GetAllSocietiesRequest;
 use App\Http\Requests\Requests\Society\UpdateSocietyRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Repositories\Sql\SocietiesRepository;
 
 class SocietiesController extends ApiController
@@ -20,11 +21,11 @@ class SocietiesController extends ApiController
     public $response;
     public function __construct
     (
-        SocietiesRepository $societiesRepository,
+        SocietiesRepoProvider $societiesRepository,
         ApiResponse $response
     )
     {
-        $this->society  = $societiesRepository;
+        $this->society  = $societiesRepository->repo();
         $this->response = $response;
     }
     public function store(AddSocietyRequest $request)
