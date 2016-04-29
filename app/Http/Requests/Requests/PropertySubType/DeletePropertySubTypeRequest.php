@@ -18,11 +18,11 @@ use App\Transformers\Request\PropertySubType\DeletePropertySubTypeTransformer;
 class DeletePropertySubTypeRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $PropertySubType = null;
+    private $propertySubType = null;
     public function __construct(){
         parent::__construct(new DeletePropertySubTypeTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertySubTypeValidator($this);
-        $this->PropertySubType = new PropertySubTypeRepository();
+        $this->propertySubType = new PropertySubTypeRepository();
     }
 
     public function authorize(){
@@ -35,7 +35,7 @@ class DeletePropertySubTypeRequest extends Request implements RequestInterface{
 
     public function getPropertySubTypeModel()
     {
-        return $this->PropertySubType->getById($this->get('id'));
+        return $this->propertySubType->getById($this->get('id'));
     }
 
 } 

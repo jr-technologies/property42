@@ -19,11 +19,11 @@ use App\Transformers\Request\Agency\DeleteAgencyTransformer;
 class DeleteAgencyRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $Agency = null;
+    private $agency = null;
     public function __construct(){
         parent::__construct(new DeleteAgencyTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteAgencyValidator($this);
-        $this->Agency = new AgenciesRepository();
+        $this->agency = new AgenciesRepository();
     }
 
     public function authorize(){
@@ -36,7 +36,7 @@ class DeleteAgencyRequest extends Request implements RequestInterface{
 
     public function getAgencyModel()
     {
-        return $this->Agency->getById($this->get('id'));
+        return $this->agency->getById($this->get('id'));
     }
 
 } 

@@ -21,24 +21,21 @@ class UpdatePropertyLikeRequest extends Request implements RequestInterface{
         parent::__construct(new UpdatePropertyLikeTransformer($this->getOriginalRequest()));
         $this->validator = new UpdatePropertyLikeValidator($this);
     }
-
     public function authorize(){
         return true;
     }
-
     public function validate(){
         return $this->validator->validate();
     }
-
     /**
      * @return PropertyLike::class
      * */
     public function getPropertyLikeModel()
     {
-        $PropertyLike = new PropertyLike();
-        $PropertyLike->userId = $this->get('userId');
-        $PropertyLike->propertyId = $this->get('propertyId');
-        return $PropertyLike;
+        $propertyLike = new PropertyLike();
+        $propertyLike->userId = $this->get('userId');
+        $propertyLike->propertyId = $this->get('propertyId');
+        return $propertyLike;
     }
 
 } 

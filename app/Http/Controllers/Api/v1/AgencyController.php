@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\Requests\Agency\AddAgencyRequest;
 use App\Http\Requests\Requests\Agency\UpdateAgencyRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use Illuminate\Support\Facades\File;
 
@@ -12,13 +13,12 @@ class AgencyController extends ApiController
 {
     private $agency = null;
     public $response = null;
-    public function __construct
-    (
+    public function __construct(
         ApiResponse $response,
-        AgenciesRepository $agenciesRepository
+        AgenciesRepoProvider $agenciesRepository
     )
     {
-        $this->agency =  $agenciesRepository;
+        $this->agency =  $agenciesRepository->repo();
         $this->response = $response;
     }
     public function store(AddAgencyRequest $request)

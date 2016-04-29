@@ -24,7 +24,9 @@ class UpdateCountryRequest extends Request implements RequestInterface
         $this->validator = new UpdateCountryValidator($this);
     }
     public function authorize()
-    {}
+    {
+
+    }
 
     public function validate()
     {

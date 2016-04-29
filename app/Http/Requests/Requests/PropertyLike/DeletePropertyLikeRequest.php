@@ -18,11 +18,11 @@ use App\Transformers\Request\PropertyLike\DeletePropertyLikeTransformer;
 class DeletePropertyLikeRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $PropertyLike = null;
+    private $propertyLike = null;
     public function __construct(){
         parent::__construct(new DeletePropertyLikeTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertyLikeValidator($this);
-        $this->FeatureSection = new PropertyLikeRepository();
+        $this->propertyLike= new PropertyLikeRepository();
     }
 
     public function authorize(){
@@ -35,7 +35,7 @@ class DeletePropertyLikeRequest extends Request implements RequestInterface{
 
     public function getPropertyLikeModel()
     {
-        return $this->PropertyLike->getById($this->get('id'));
+        return $this->propertyLike->getById($this->get('id'));
     }
 
 } 

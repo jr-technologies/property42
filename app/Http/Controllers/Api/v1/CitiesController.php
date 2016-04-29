@@ -9,6 +9,7 @@ use App\Http\Requests\Requests\City\GetCitiesByCountryRequest;
 use App\Http\Requests\Requests\City\GetCitiesBySocietyRequest;
 use App\Http\Requests\Requests\City\UpdateCityRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Repositories\Sql\CitiesRepository;
 use App\Transformers\Request\City\GetCitiesByCountryTransformer;
 use App\Transformers\Response\CityTransformer;
@@ -20,10 +21,10 @@ class CitiesController extends ApiController
     public function __construct
     (
         ApiResponse $response,CityTransformer $countryTransformer,
-        CitiesRepository $citiesRepository
+        CitiesRepoProvider $citiesRepository
     )
     {
-        $this->cities =  $citiesRepository;
+        $this->cities =  $citiesRepository->repo();
         $this->response = $response;
     }
     public function store(AddCityRequest $request)

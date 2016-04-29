@@ -24,7 +24,6 @@ class Feature {
     public function __construct()
     {
         $this->possibleValues = '';
-
         $this->createdAt = date('Y-m-d h:i:s');
         $this->updatedAt = $this->createdAt;
     }

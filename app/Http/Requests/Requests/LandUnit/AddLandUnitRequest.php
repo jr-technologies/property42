@@ -38,7 +38,7 @@ class AddLandUnitRequest extends Request implements RequestInterface{
     public function getLandUnitModel()
     {
         $landUnit = new LandUnit();
-        $landUnit->name = $this->get('LandUnit');
+        $landUnit->name = $this->get('landUnit');
         return $landUnit;
     }
 

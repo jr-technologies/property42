@@ -12,8 +12,6 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\SocietyValidators\UpdateSocietyValidator;
 use App\Transformers\Request\Society\UpdateSocietyTransformer;
-
-
 class UpdateSocietyRequest extends Request implements RequestInterface
 {
     public $validator;
@@ -23,7 +21,9 @@ class UpdateSocietyRequest extends Request implements RequestInterface
         $this->validator = new UpdateSocietyValidator($this);
     }
     public function authorize()
-    {}
+    {
+
+    }
     public function validate()
     {
         return $this->validator->validate();
@@ -36,5 +36,4 @@ class UpdateSocietyRequest extends Request implements RequestInterface
         $society->cityId = $this->get('cityId');
         return $society;
     }
-
 }

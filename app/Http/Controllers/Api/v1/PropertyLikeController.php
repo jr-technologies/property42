@@ -6,6 +6,7 @@ use App\Http\Requests\Requests\PropertyLike\AddPropertyLikeRequest;
 use App\Http\Requests\Requests\PropertyLike\DeletePropertyLikeRequest;
 use App\Http\Requests\Requests\PropertyLike\GetAllPropertyLikeRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\PropertyLikesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyLikeRepository;
 use App\Transformers\Response\CityTransformer;
 
@@ -16,10 +17,10 @@ class PropertyLikeController extends ApiController
     public function __construct
     (
         ApiResponse $response,CityTransformer $countryTransformer,
-        PropertyLikeRepository $PropertyLikeRepository
+        PropertyLikesRepoProvider $PropertyLikeRepository
     )
     {
-        $this->propertyLike =  $PropertyLikeRepository;
+        $this->propertyLike =  $PropertyLikeRepository->repo();
         $this->response = $response;
     }
     public function store(AddPropertyLikeRequest $request)

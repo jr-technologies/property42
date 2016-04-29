@@ -7,15 +7,11 @@
  */
 
 namespace App\Repositories\Repositories\Sql;
-
-
 use App\DB\Providers\SQL\Factories\Factories\LandUnit\LandUnitFactory;
 
 use App\DB\Providers\SQL\Models\LandUnit;
 
 use App\Repositories\Interfaces\Repositories\LandUnitRepoInterface;
-
-
 class LandUnitsRepository extends SqlRepository implements LandUnitRepoInterface
 {
     private $factory;

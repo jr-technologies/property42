@@ -17,7 +17,7 @@ class AddLandUnitTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'LandUnit'=>$this->request->input('land_unit_name'),
+            'landUnit'=>$this->request->input('land_unit_name'),
 
         ];
     }

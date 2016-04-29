@@ -35,10 +35,10 @@ class UpdatePropertyStatusRequest extends Request implements RequestInterface{
      * */
     public function getPropertyStatusModel()
     {
-        $PropertyStatus = new PropertyStatus();
-        $PropertyStatus->id = $this->get('id');
-        $PropertyStatus->name = $this->get('propertyStatus');
-        return $PropertyStatus;
+        $propertyStatus = new PropertyStatus();
+        $propertyStatus->id = $this->get('id');
+        $propertyStatus->name = $this->get('propertyStatus');
+        return $propertyStatus;
     }
 
 } 

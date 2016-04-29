@@ -67,7 +67,6 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         /* @var $propertyJson PropertyJsonPrototype::class */
         $propertyJson = json_decode($result->json);
         $property = $this->model;
-
         return $property;
     }
 

@@ -12,7 +12,7 @@ class PropertySubType {
 
     public $id = 0;
     public $name = "";
-    public $propertyTypeId = "";
+    public $propertyTypeId = 0;
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
     public function __construct()

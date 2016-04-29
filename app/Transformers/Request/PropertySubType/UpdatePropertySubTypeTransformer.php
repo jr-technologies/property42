@@ -19,7 +19,7 @@ class UpdatePropertySubTypeTransformer extends RequestTransformer
         return [
             'id' =>$this->request->input('p_sub_type_id'),
             'propertySubTypeName'=>$this->request->input('p_sub_type_name'),
-            'propertyTypeId'=>$this->request->input('p_type_id')
+            'propertyTypeId'=>$this->request->input('p_type_id'),
         ];
     }
 }

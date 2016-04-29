@@ -8,8 +8,6 @@
 
 namespace App\Http\Requests\Requests\FeatureSection;
 
-
-
 use App\DB\Providers\SQL\Models\FeatureSection;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
@@ -37,10 +35,10 @@ class AddFeatureSectionRequest extends Request implements RequestInterface{
      * */
     public function getFeatureSectionModel()
     {
-        $FeatureSection = new FeatureSection();
-        $FeatureSection->name = $this->get('section');
-        $FeatureSection->priority = $this->get('priority');
-        return $FeatureSection;
+        $featureSection = new FeatureSection();
+        $featureSection->name = $this->get('section');
+        $featureSection->priority = $this->get('priority');
+        return $featureSection;
     }
 
 } 

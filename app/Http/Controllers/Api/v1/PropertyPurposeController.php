@@ -13,6 +13,7 @@ use App\Http\Requests\Requests\PropertyPurposes\DeletePropertyPurposeRequest;
 use App\Http\Requests\Requests\PropertyPurposes\GetAllPropertyPurposesRequest;
 use App\Http\Requests\Requests\PropertyPurposes\UpdatePropertyPurposeRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 
 
@@ -22,11 +23,11 @@ class PropertyPurposeController extends ApiController
     public $response = null;
     public function __construct
     (
-        PropertyPurposeRepository $propertyPurposeRepository,
+        PropertyPurposeRepoProvider $propertyPurposeRepository,
         ApiResponse $response
     )
     {
-        $this->propertyPurposeRepository  = $propertyPurposeRepository;
+        $this->propertyPurposeRepository  = $propertyPurposeRepository->repo();
         $this->response = $response;
     }
     public function store(AddPropertyPurposeRequest $request)

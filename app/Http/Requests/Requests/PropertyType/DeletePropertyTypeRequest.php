@@ -19,11 +19,11 @@ use App\Transformers\Request\PropertyType\DeletePropertyTypeTransformer;
 class DeletePropertyTypeRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $PropertyType = null;
+    private $propertyType = null;
     public function __construct(){
         parent::__construct(new DeletePropertyTypeTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertyTypeValidator($this);
-        $this->PropertyType = new PropertyTypeRepository();
+        $this->propertyType = new PropertyTypeRepository();
     }
 
     public function authorize(){
@@ -36,7 +36,7 @@ class DeletePropertyTypeRequest extends Request implements RequestInterface{
 
     public function getPropertyTypeModel()
     {
-        return $this->PropertyType->getById($this->get('id'));
+        return $this->propertyType->getById($this->get('id'));
     }
 
 } 

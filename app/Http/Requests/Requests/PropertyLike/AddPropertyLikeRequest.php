@@ -35,10 +35,10 @@ class AddPropertyLikeRequest extends Request implements RequestInterface{
      * */
     public function getPropertyLikeModel()
     {
-        $PropertyLike = new PropertyLike();
-        $PropertyLike->userId = $this->get('userId');
-        $PropertyLike->propertyId = $this->get('propertyId');
-        return $PropertyLike;
+        $propertyLike = new PropertyLike();
+        $propertyLike->userId = $this->get('userId');
+        $propertyLike->propertyId = $this->get('propertyId');
+        return $propertyLike;
     }
 
 } 

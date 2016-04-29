@@ -6,11 +6,11 @@
  * Time: 11:30 AM
  */
 
-namespace App\Providers\Repositories\Providers\Providers;
+namespace App\Repositories\Providers\Providers;
 
 
-use App\Providers\Repositories\Providers\RepositoryProvider;
-use App\Providers\Repositories\Providers\RepositoryProviderInterface;
+use App\Repositories\Providers\RepositoryProvider;
+use App\Repositories\Providers\RepositoryProviderInterface;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 
 class PropertiesRepoProvider extends RepositoryProvider implements RepositoryProviderInterface

@@ -18,7 +18,7 @@ class UpdateLandUnitTransformer extends RequestTransformer
     {
         return [
             'id' =>$this->request->input('land_unit_id'),
-            'LandUnit'=>$this->request->input('land_unit_name'),
+            'landUnit'=>$this->request->input('land_unit_name'),
         ];
     }
 }

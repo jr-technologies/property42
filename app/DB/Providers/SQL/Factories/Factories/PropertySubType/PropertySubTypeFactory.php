@@ -42,7 +42,7 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
      */
     public function propertyCompleteType($propertyId)
     {
-        return $this->mapPropertyCompleteLocation($this->tableGateway->propertyCompleteType($propertyId));
+        return $this->mapPropertyCompleteType($this->tableGateway->propertyCompleteType($propertyId));
     }
 
     public function update(PropertySubType $propertySubType)
@@ -64,7 +64,7 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
         return $this->tableGateway->getWhere(['property_type_id'=>$id]);
     }
 
-    private function mapPropertyCompleteLocation($result)
+    private function mapPropertyCompleteType($result)
     {
         $propertyCompleteType = new PropertyCompleteType();
 
