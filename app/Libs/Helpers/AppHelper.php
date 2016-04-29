@@ -15,4 +15,9 @@ class AppHelper extends Helper
     {
         return url('/').'/ng-apps/'.$app.'/'.$version.'/assets';
     }
+
+    public static function path($app, $version)
+    {
+        return url('/').'/ng-apps/'.$app.'/'.$version.'';
+    }
 }

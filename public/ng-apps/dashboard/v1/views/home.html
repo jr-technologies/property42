@@ -1,0 +1,18 @@
+<div id="wrapper">
+    <header id="header">
+        <a href="#" class="logo">Property42</a>
+        <a href="#" class="sideBar-opener"><span></span></a>
+        <a href="#home/properties/add" class="add-property less-indent">Add a property</a>
+    </header>
+    <main id="main" role="main">
+        <aside id="sidebar-dashboard">
+            <a href="#home/properties/all">All properties</a>
+        </aside>
+        <div class="pageContainer">
+            <ui-view></ui-view>
+        </div>
+        <footer class="main-footer">
+            <strong>{{APP_STATUS}}</strong>
+        </footer>
+    </main>
+</div>
