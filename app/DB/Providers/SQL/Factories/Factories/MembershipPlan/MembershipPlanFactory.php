@@ -72,7 +72,7 @@ class MembershipPlanFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function map($result)
     {
-        $plan = $this->model;
+        $plan = clone($this->model);
         $plan->id = $result->id;
         $plan->name = $result->plan_name;
         $plan->featured = $result->featured;

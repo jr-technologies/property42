@@ -114,7 +114,7 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function map($result)
     {
-        $agency = $this->model;
+        $agency = clone($this->model);
         $agency->name = $result->agency;
         $agency->description = $result->description;
         $agency->mobile = $result->mobile;

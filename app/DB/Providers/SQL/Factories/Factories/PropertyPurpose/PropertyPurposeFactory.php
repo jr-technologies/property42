@@ -80,7 +80,7 @@ class PropertyPurposeFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function map($result)
     {
-        $purpose = $this->model;
+        $purpose = clone($this->model);
         $purpose->id = $result->id;
         $purpose->name = $result->purpose;
         $purpose->createdAt = $result->created_at;

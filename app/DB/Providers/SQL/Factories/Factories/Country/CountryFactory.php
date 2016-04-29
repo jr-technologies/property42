@@ -83,7 +83,7 @@ class CountryFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function map($result)
     {
-        $country = $this->model;
+        $country = clone($this->model);
         $country->id = $result->id;
         $country->name = $result->country;
         $country->createdAt = $result->created_at;

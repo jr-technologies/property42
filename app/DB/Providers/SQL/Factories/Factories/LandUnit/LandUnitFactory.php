@@ -60,7 +60,7 @@ class LandUnitFactory extends SQLFactory implements SQLFactoriesInterface
 
     function map($result)
     {
-        $landUnit = $this->model;
+        $landUnit = clone($this->model);
         $landUnit->id=$result->id;
         $landUnit->name = $result->unit;
         $landUnit->createdAt = $result->created_at;

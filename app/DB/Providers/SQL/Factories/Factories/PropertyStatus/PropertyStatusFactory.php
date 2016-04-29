@@ -35,7 +35,7 @@ class PropertyStatusFactory extends SQLFactory implements SQLFactoriesInterface
     public function update(PropertyStatus $propertyStatus)
     {
         $propertyStatus->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->update($propertyStatus->id ,$this->mapPropertyTypeOnTable($propertyStatus));
+        return $this->tableGateway->update($propertyStatus->id ,$this->mapPropertyStatusOnTable($propertyStatus));
     }
     public function store(PropertyStatus $propertyStatus)
     {
@@ -60,7 +60,7 @@ class PropertyStatusFactory extends SQLFactory implements SQLFactoriesInterface
 
     function map($result)
     {
-        $propertyStatus = $this->model;
+        $propertyStatus = clone($this->model);
         $propertyStatus->id = $result->id;
         $propertyStatus->name = $result->status;
         $propertyStatus->createdAt = $result->created_at;

@@ -46,7 +46,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
      **/
     public function update(UserJsonPrototype $user)
     {
-        return $this->tableGateway->updateWhere(['user_id'=>$user->id], $this->mapUserOnTable($user));
+        return $this->tableGateway->updateWhere(['user_id'=>$user->id], $this->mapPropertyOnTable($user));
     }
 
     /**
