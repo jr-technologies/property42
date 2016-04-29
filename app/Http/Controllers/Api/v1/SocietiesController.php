@@ -41,7 +41,7 @@ class SocietiesController extends ApiController
     public function all(GetAllSocietiesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'Society'=>$this->society->all()
+            'societies'=>$this->society->all()
         ]]);
     }
     public function delete(DeleteSocietyRequest $request)

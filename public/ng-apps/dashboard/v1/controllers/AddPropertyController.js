@@ -6,9 +6,13 @@ var app = angular.module('dashboard');
 app.controller("AddPropertyController",["$scope","$http", function ($scope, $http) {
     $scope.html_title = "Property42 | Add Property";
 
+    $scope.propertySociety = 0;
     $scope.blocks = [];
     $scope.societies = [];
-    $scope.selectedSociety = 1;
+
+    $scope.select2Options = {
+        allowClear:true
+    };
 
     var getBlocks = function () {
         return $http({
@@ -28,16 +32,20 @@ app.controller("AddPropertyController",["$scope","$http", function ($scope, $htt
             url: apiPath+'societies',
             data:{}
         }).then(function successCallback(response) {
-            return response.data.data.blocks;
+            return response.data.data.societies;
         }, function errorCallback(response) {
             return response;
         });
     };
 
     $scope.initialize = function () {
+        getSocieties().then(function successCallback(societies) {
+            $scope.societies = societies;
+        }, function errorCallback(response) {
+            console.log('fucked up');
+        });
 
         getBlocks().then(function successCallback(blocks) {
-            console.log(blocks);
             $scope.blocks = blocks;
         }, function errorCallback(response) {
             console.log('fucked up');

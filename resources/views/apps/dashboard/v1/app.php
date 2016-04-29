@@ -12,6 +12,7 @@
 	<!-- Angularjs Libs -->
         <script src="<?= url('/') ?>/javascripts/firebase.js"></script>
         <script src="<?= url('/') ?>/javascripts/angular/angular.min.js"></script>
+        <script type="text/javascript" src="<?= url('/') ?>/javascripts/angular-ui-select2.js"></script>
         <script src="<?= url('/') ?>/javascripts/angularfire.min.js"></script>
         <script src="<?= url('/') ?>/javascripts/angular-route/angular-route.min.js"></script>
         <script src="<?= url('/') ?>/javascripts/ui-router/angular-ui-router.min.js"></script>
