@@ -42,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
         //web routes
         $router->group(['prefix'=>'web', 'middleware'=>['web'], 'namespace' => $this->webNamespace], function ($router) {
             require app_path('Http/Routes/Web/routes.php');
+            require app_path('Http/Routes/Web/apps.php');
         });
 
         //api routes

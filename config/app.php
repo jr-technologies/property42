@@ -218,6 +218,10 @@ return [
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
 
+        /* Loading Helpers */
+        'AppHelper' => \App\Libs\Helpers\AppHelper::class,
+        'PathHelper' => \App\Libs\Helpers\PathHelper::class,
+
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
         'UpdateCountryRequest' => \App\Http\Requests\Requests\Country\UpdateCountryRequest::class,
