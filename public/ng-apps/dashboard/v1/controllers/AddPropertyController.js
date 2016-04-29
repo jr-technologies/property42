@@ -6,9 +6,26 @@ var app = angular.module('dashboard');
 app.controller("AddPropertyController",["$scope","$http", function ($scope, $http) {
     $scope.html_title = "Property42 | Add Property";
 
+
+    $scope.blocks = [];
+    var getBlocks = function () {
+        /*$http({
+         method: 'GET',
+         url: apiPath+'blocks',
+         data:{}
+         }).then(function successCallback(response) {
+         console.log(response);
+         }, function errorCallback(response) {
+         console.log(response);
+         });*/
+    };
     $scope.initialize = function () {
+
+        $scope.blocks = getBlocks();
+        console.log($scope.blocks);
+
         $(function() {
-                handleAddPropertyFormScrolling();
+            handleAddPropertyFormScrolling();
         });
 
         $(".searchable-select").select2({
