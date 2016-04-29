@@ -84,7 +84,7 @@ class BlockFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function map($result)
     {
-        $society = $this->model;
+        $society = clone($this->model);
         $society->id = $result->id;
         $society->name = $result->block;
         $society->societyId = $result->society_id;

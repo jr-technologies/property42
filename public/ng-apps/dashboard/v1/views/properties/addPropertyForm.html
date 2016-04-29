@@ -9,9 +9,10 @@
         <li><a href="#contact-information" class="scrollAddPropertyNavLink"><span class="icon-contact_phone"></span> Contact Info</a></li>
     </ul>
 </div>
+
 <form action="#" class="property-add">
-<section class="basics-block" id="basics-block">
-<strong class="form-heading"><span>Property Type and Location</span></strong>
+    <section class="basics-block" id="basics-block">
+    <strong class="form-heading"><span>Property Type and Location</span></strong>
 <div class="layout">
     <span class="title">purpose:</span>
     <div class="input-holder">
@@ -208,13 +209,7 @@
         <span class="title">Block:</span>
         <select class="searchable-select">
             <option>Select Area</option>
-            <option>Area</option>
-            <option>Area</option>
-            <option>Area</option>
-            <option>Area</option>
-            <option>Area</option>
-            <option>Area</option>
-            <option>Area</option>
+            <option data-ng-repeat="block in blocks | filter:selectedSociety">{{block.name}}</option>
         </select>
     </div>
 </div>
