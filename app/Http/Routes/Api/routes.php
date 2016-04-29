@@ -195,6 +195,7 @@ Route::post('/society',
         'uses'=>'SocietiesController@store'
     ]
 );
+
 Route::post('society/update',
     [
         'middleware'=>
@@ -234,6 +235,16 @@ Route::post('/block',
                // 'apiValidate:addBlockRequest'
             ],
         'uses'=>'BlocksController@store'
+    ]
+);
+Route::post('society/blocks',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getBlocksBySocietyRequest'
+            ],
+
+        'uses'=>'BlocksController@getBlocksBySociety'
     ]
 );
 Route::post('block/update',

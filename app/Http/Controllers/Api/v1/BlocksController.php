@@ -11,7 +11,7 @@ use App\Http\Requests\Requests\Block\AddBlockRequest;
 use App\Http\Requests\Requests\Block\DeleteBlockRequest;
 use App\Http\Requests\Requests\Block\GetAllBlocksRequest;
 use App\Http\Requests\Requests\Block\UpdateBlockRequest;
-use App\Http\Requests\Requests\City\GetBlocksBySocietyRequest;
+use App\Http\Requests\Requests\Block\GetBlocksBySocietyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 
@@ -64,5 +64,10 @@ class BlocksController extends ApiController
         return $this->response->respond(['data'=>[
             'Block'=>$this->block->getBySociety($request->get('societyId'))
             ]]);
+    }
+    public function getBlocksBySociety(GetBlocksBySocietyRequest $request)
+    {
+            return $this->response->respond(['data'=>[
+            'Blocks'=>$this->block->getBlocksBySociety($request->get('societyId'))]]);
     }
 }

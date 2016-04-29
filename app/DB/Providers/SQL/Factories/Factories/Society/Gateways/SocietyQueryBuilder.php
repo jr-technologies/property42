@@ -14,4 +14,6 @@ class SocietyQueryBuilder extends QueryBuilder
     {
         $this->table = 'societies';
     }
+
+
 }

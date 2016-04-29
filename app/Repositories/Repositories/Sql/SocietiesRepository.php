@@ -39,12 +39,16 @@ class SocietiesRepository extends SqlRepository implements SocietiesRepoInterfac
     public function update(Society $society)
     {
         $this->factory->update($society);
-
         return $this->factory->find($society->id);
     }
 
     public function delete(Society $society)
     {
         return $this->factory->delete($society);
+    }
+    public function getBlocksBySociety(GetBlocksBySocietyRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'Blocks'=>$this->society->getBlocksBySociety($request->get('societyId'))]]);
     }
 }

@@ -21,11 +21,16 @@ class BlocksRepository extends SqlRepository implements BlocksRepoInterface
     {
          $this->factory = new BlockFactory();
     }
+
     public function store(Block $block)
     {
         return $this->factory->store($block);
     }
 
+    public function getBlocksBySociety($societyId)
+    {
+        return $this->factory->getBlocksBySociety($societyId);
+    }
 
     public function getById($id)
     {

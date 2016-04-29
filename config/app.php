@@ -247,6 +247,7 @@ return [
         'UpdateBlockRequest' => \App\Http\Requests\Requests\Block\UpdateBlockRequest::class,
         'DeleteBlockRequest' => \App\Http\Requests\Requests\Block\DeleteBlockRequest::class,
         'GetAllBlocksRequest' => \App\Http\Requests\Requests\Block\GetAllBlocksRequest::class,
+        'GetBlocksBySocietyRequest' => \App\Http\Requests\Requests\Block\GetBlocksBySocietyRequest::class,
 
         /* PropertyPurpose Requests */
         'AddPropertyPurposeRequest' => \App\Http\Requests\Requests\PropertyPurposes\AddPropertyPurposeRequest::class,

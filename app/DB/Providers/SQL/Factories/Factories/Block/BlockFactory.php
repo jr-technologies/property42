@@ -70,6 +70,10 @@ class BlockFactory extends SQLFactory implements SQLFactoriesInterface
         $block->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapBlockOnTable($block));
     }
+    public function getBlocksBySociety($societyId)
+    {
+        return $this->mapCollection($this->tableGateway->getBlocksBySociety($societyId));
+    }
     /**
      * @param Block $block
      * @return int

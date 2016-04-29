@@ -6,11 +6,12 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\CityValidators;
+namespace App\Http\Validators\Validators\BlockValidators;
+
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class GetBlocksBySocietyValidator extends CityValidator implements ValidatorsInterface
+class GetBlocksBySocietyValidator extends BlockValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
