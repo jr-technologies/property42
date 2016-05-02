@@ -17,7 +17,8 @@ use App\Transformers\Request\UserRole\UpdateUserRoleTransformer;
 class UpdateUserRoleRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(new UpdateUserRoleTransformer($this->getOriginalRequest()));
         $this->validator = new UpdateUserRoleValidator($this);
     }
@@ -30,7 +31,6 @@ class UpdateUserRoleRequest extends Request implements RequestInterface{
     {
         return $this->validator->validate();
     }
-
     /**
      * @return UserRole::class
      * */
@@ -38,7 +38,8 @@ class UpdateUserRoleRequest extends Request implements RequestInterface{
     {
         $userRole = new UserRole();
         $userRole->id = $this->get('id');
-        $userRole->name = $this->get('user_role');
+        $userRole->userId = $this->get('userId');
+        $userRole->roleId = $this->get('roleId');
         return $userRole;
     }
 }

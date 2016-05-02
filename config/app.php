@@ -290,9 +290,16 @@ return [
         'DeleteFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\DeleteFeatureSectionRequest::class,
         'GetAllFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest::class,
 
+        /*User Roles Requests */
+        'AddUserRoleRequest' => \App\Http\Requests\Requests\UserRole\AddUserRoleRequest::class,
+        'UpdateUserRoleRequest' => \App\Http\Requests\Requests\UserRole\UpdateUserRoleRequest::class,
+        'DeleteUserRoleRequest' => \App\Http\Requests\Requests\UserRole\DeleteUserRoleRequest::class,
+        'GetAllUserRolesRequest' => \App\Http\Requests\Requests\UserRole\GetAllUserRolesRequest::class,
+
         /* Agency Requests */
         'AddAgencyRequest' => \App\Http\Requests\Requests\Agency\AddAgencyRequest::class,
         'UpdateAgencyRequest' => \App\Http\Requests\Requests\Agency\UpdateAgencyRequest::class,
+        'GetAgencyStaffRequest' => \App\Http\Requests\Requests\Agency\GetAgencyStaffRequest::class,
 
         /* Property Like Requests */
         'AddPropertyLikeRequest' => \App\Http\Requests\Requests\PropertyLike\AddPropertyLikeRequest::class,

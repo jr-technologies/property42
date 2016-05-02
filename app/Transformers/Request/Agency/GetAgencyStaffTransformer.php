@@ -6,19 +6,18 @@
  * Time: 2:43 PM
  */
 
-namespace App\Transformers\Request\UserRole;
+namespace App\Transformers\Request\Agency;
 
 
 use App\Transformers\Request\RequestTransformer;
 
 
-class AddUserRoleTransformer extends RequestTransformer
+class GetAgencyStaffTransformer extends RequestTransformer
 {
     public function transform()
     {
         return [
-            'userId'=>$this->request->input('user_id'),
-            'roleId'=>$this->request->input('role_id'),
+            'agencyId' =>$this->request->get('agency_id')
         ];
     }
 }

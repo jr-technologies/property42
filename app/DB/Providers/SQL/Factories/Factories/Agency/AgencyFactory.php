@@ -33,7 +33,6 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
     /**
      * @param int $id
      * @return Agency::class

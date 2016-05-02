@@ -17,8 +17,9 @@ class UpdateUserRoleTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'id' =>$this->request->input('land_unit_id'),
-            'landUnit'=>$this->request->input('land_unit_name'),
+            'id' =>$this->request->input('user_role_id'),
+            'userId'=>$this->request->input('user_id'),
+            'roleId'=>$this->request->input('role_id'),
         ];
     }
 }

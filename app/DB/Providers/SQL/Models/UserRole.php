@@ -11,7 +11,8 @@ namespace App\DB\Providers\SQL\Models;
 class UserRole {
 
     public $id = 0;
-    public $name = "";
+    public $roleId = "";
+    public $userId ="";
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

@@ -18,15 +18,15 @@ class AddUserRoleRequest extends Request implements RequestInterface{
 
     public $validator = null;
     public function __construct(){
-        parent::__construct(new AddUserRoleTransformer($this->getOriginalRequest()));
-        $this->validator = new AddUserRolealidator($this);
+       parent::__construct(new AddUserRoleTransformer($this->getOriginalRequest()));
+       $this->validator = new AddUserRoleValidator($this);
     }
 
     public function authorize(){
         return true;
     }
-
-    public function validate(){
+    public function validate()
+    {
         return $this->validator->validate();
     }
 
@@ -36,8 +36,8 @@ class AddUserRoleRequest extends Request implements RequestInterface{
     public function getUserRoleModel()
     {
         $userRole = new UserRole();
-        $userRole->name = $this->get('user_role');
+        $userRole->userId = $this->get('userId');
+        $userRole->roleId = $this->get('roleId');
         return $userRole;
     }
-
-} 
+}

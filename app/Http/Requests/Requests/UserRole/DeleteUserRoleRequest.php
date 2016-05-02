@@ -11,18 +11,18 @@ namespace App\Http\Requests\Requests\UserRole;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\LandUnitValidators\DeleteLandUnitValidator;
-use App\Repositories\Repositories\Sql\LandUnitsRepository;
-use App\Transformers\Request\LandUnit\DeleteLandUnitTransformer;
+use App\Http\Validators\Validators\UserRoleValidators\DeleteUserRoleValidator;
+use App\Repositories\Providers\Providers\UserRolesRepoProvider;
+use App\Transformers\Request\UserRole\DeleteUserRoleTransformer;
 
 class DeleteUserRoleRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $landUnit = null;
+    private $userRoles = null;
     public function __construct(){
         parent::__construct(new DeleteUserRoleTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteUserRoleValidator($this);
-        $this->landUnit = new UserRoleRepository();
+        $this->userRoles = (new UserRolesRepoProvider())->repo();
     }
 
     public function authorize(){
@@ -33,9 +33,9 @@ class DeleteUserRoleRequest extends Request implements RequestInterface{
         return $this->validator->validate();
     }
 
-    public function getLandUnitModel()
+    public function getUserRoleModel()
     {
-        return $this->landUnit->getById($this->get('id'));
+        return $this->userRoles->getById($this->get('id'));
     }
 
 } 
