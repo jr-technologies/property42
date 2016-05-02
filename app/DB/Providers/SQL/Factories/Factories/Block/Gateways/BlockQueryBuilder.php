@@ -27,4 +27,12 @@ class BlockQueryBuilder extends QueryBuilder
             ->where($this->table.'.id','=',$blockId)
             ->first();
     }
+
+    public function getBlocksBySociety($societyId)
+    {
+        return DB::table($this->table)
+            ->select($this->table.'.*')
+            ->where($this->table.'.society_id' ,'=',$societyId)
+            ->get();
+    }
 }

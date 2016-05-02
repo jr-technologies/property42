@@ -28,4 +28,12 @@ class UserQueryBuilder extends QueryBuilder{
 
         return $this->insertMultiple($userRoles, 'user_roles');
     }
+
+    public function getAgencyStaff($agencyId)
+    {
+        $table =
+        DB::table('agency_staff')
+        ->leftjoin()
+            ->get();
+    }
 }

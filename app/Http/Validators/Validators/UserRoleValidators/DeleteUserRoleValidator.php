@@ -6,12 +6,11 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\BlockValidators;
-
+namespace App\Http\Validators\Validators\UserRoleValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class GetBlocksBySocietyValidator extends BlockValidator implements ValidatorsInterface
+class DeleteUserRoleValidator extends UserRoleValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -20,7 +19,7 @@ class GetBlocksBySocietyValidator extends BlockValidator implements ValidatorsIn
     public function rules()
     {
         return[
-            'societyId'=>'required'
+            'id' => 'required',
         ];
     }
 }

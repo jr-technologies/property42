@@ -23,4 +23,9 @@ class AgencyQueryBuilder extends QueryBuilder{
             $agencyCities[] = ['agency_id' => $agencyId, 'city_id' => $cityId, 'created_at'=>date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')];
         return $this->insertMultiple($agencyCities, 'agency_cities');
     }
+
+    /**
+     * @param $agencyId
+     */
+
 }

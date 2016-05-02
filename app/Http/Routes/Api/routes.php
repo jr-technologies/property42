@@ -182,6 +182,7 @@ Route::post('/society',
         'uses'=>'SocietiesController@store'
     ]
 );
+
 Route::post('society/update',
     [
         'middleware'=>
@@ -221,6 +222,16 @@ Route::post('/block',
                // 'apiValidate:addBlockRequest'
             ],
         'uses'=>'BlocksController@store'
+    ]
+);
+Route::post('society/blocks',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getBlocksBySocietyRequest'
+            ],
+
+        'uses'=>'BlocksController@getBlocksBySociety'
     ]
 );
 Route::post('block/update',
@@ -564,6 +575,16 @@ Route::post('agency',
         'uses'=>'AgencyController@store'
     ]
 );
+Route::post('agency/staff',
+
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAgencyStaffRequest'
+            ],
+        'uses'=>'AgencyController@getAgencyStaff'
+    ]
+);
 
 
 Route::post('agency/update',
@@ -598,6 +619,51 @@ Route::post('property/like/decrement',
                 'apiValidate:deletePropertyLikeRequest'
             ],
         'uses'=>'PropertyLikeController@delete'
+    ]
+);
+
+
+/*
+ User Role Crud
+*/
+
+Route::post('user/role/add',
+    [
+        'middleware'=>
+            [
+                'apiValidate:addUserRoleRequest'
+            ],
+
+        'uses'=>'UserRolesController@store'
+    ]
+);
+Route::post('user/role/update',
+    [
+        'middleware'=>
+            [
+
+                'apiValidate:updateUserRoleRequest',
+            ],
+
+        'uses'=>'UserRolesController@update'
+    ]
+);
+Route::post('user/role/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteUserRoleRequest'
+            ],
+        'uses'=>'UserRolesController@delete'
+    ]
+);
+Route::post('user/roles',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllUserRolesRequest'
+            ],
+        'uses'=>'UserRolesController@all'
     ]
 );
 

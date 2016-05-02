@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\Requests\Society\GetBlocksBySocietyRequest;
 use App\Http\Requests\Requests\Society\AddSocietyRequest;
 use App\Http\Requests\Requests\Society\DeleteSocietyRequest;
 use App\Http\Requests\Requests\Society\GetAllSocietiesRequest;
@@ -58,4 +59,6 @@ class SocietiesController extends ApiController
             'Society'=>$society
         ]]);
     }
+
+
 }

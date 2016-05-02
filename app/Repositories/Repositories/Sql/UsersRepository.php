@@ -36,7 +36,10 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
                 ->with('agencies')
                 ->get();
     }
-
+    public function getAgencyStaff($agencyId)
+    {
+        return $this->factory->getAgencyStaff($agencyId);
+    }
     public function getFirstWithRelations(array $where = [])
     {
         $user = $this->getWithRelations($where)->first();
