@@ -296,6 +296,9 @@ return [
         'DeleteUserRoleRequest' => \App\Http\Requests\Requests\UserRole\DeleteUserRoleRequest::class,
         'GetAllUserRolesRequest' => \App\Http\Requests\Requests\UserRole\GetAllUserRolesRequest::class,
 
+        /* Feature Requests */
+        'GetPropertySubTypeAssignedFeatures' => \App\Http\Requests\Requests\Feature\GetPropertySubTypeAssignedFeatures::class,
+
         /* Agency Requests */
         'AddAgencyRequest' => \App\Http\Requests\Requests\Agency\AddAgencyRequest::class,
         'UpdateAgencyRequest' => \App\Http\Requests\Requests\Agency\UpdateAgencyRequest::class,

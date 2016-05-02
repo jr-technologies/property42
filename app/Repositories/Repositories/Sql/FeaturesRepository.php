@@ -53,6 +53,11 @@ class FeaturesRepository extends SqlRepository implements FeaturesRepoInterface
         return $this->factory->delete($feature);
     }
 
+    public function allAssigned()
+    {
+        return $this->factory->allAssigned();
+    }
+
     public function assignedFeaturesWithValidationRules($subTypeId)
     {
         return $this->factory->assignedFeaturesWithValidationRules($subTypeId);

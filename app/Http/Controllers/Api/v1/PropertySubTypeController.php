@@ -50,7 +50,7 @@ class PropertySubTypeController extends ApiController
     public function all(GetAllPropertySubTypesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'propertySubType'=>$this->propertySubTypes->all()
+            'propertySubTypes'=>$this->propertySubTypes->all()
         ]]);
     }
     public function delete(DeletePropertySubTypeRequest $request)

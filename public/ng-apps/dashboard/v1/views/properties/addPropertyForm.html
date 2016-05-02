@@ -11,7 +11,7 @@
         </ul>
     </div>
 
-    <form action="#" class="property-add">
+    <form class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
             <strong class="form-heading"><span>Property Type and Location</span></strong>
             <div class="layout">
@@ -20,14 +20,14 @@
                     <ul class="radio-holder">
                         <li>
                             <label for="sale">
-                                <input type="radio" name="radio" id="sale" required>
+                                <input type="radio" name="radio" id="sale">
                                 <span class="fake-radio"></span>
                                 <span class="fake-label">For Sale</span>
                             </label>
                         </li>
                         <li>
                             <label for="rent">
-                                <input type="radio" name="radio" id="rent" required>
+                                <input type="radio" name="radio" id="rent">
                                 <span class="fake-radio"></span>
                                 <span class="fake-label">Rent</span>
                             </label>
@@ -38,153 +38,23 @@
             <div class="layout">
                 <span class="title">Property Type:</span>
                 <div class="input-holder">
-                    <ul class="tabset">
-                        <li><a href="#tab1"><span class="round"></span>Home</a></li>
-                        <li><a href="#tab2"><span class="round"></span>Plots</a></li>
-                        <li><a href="#tab3"><span class="round"></span>Commercial</a></li>
+                    <ul class="radio-holder">
+                        <li data-ng-repeat="type in types">
+                            <label for="{{type.name}}">
+                                <input type="radio" name="propertyType" ng-model="$parent.selectedType" value="{{type.id}}" id="{{type.name}}">
+                                <span class="fake-radio"></span>
+                                <span class="fake-label">{{type.name}}</span>
+                            </label>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab1">
                             <ul class="radio-holder">
-                                <li>
-                                    <label for="house">
-                                        <input type="radio" name="radio1" id="house" required>
+                                <li data-ng-repeat="subType in subTypes | filter:{propertyTypeId : selectedType}">
+                                    <label for="{{subType.name}}">
+                                        <input type="radio" name="propertySubType" ng-model="$parent.selectedSubTypeId" id="{{subType.name}}" value="{{subType.id}}">
                                         <span class="fake-radio"></span>
-                                        <span class="fake-label">House</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="flat">
-                                        <input type="radio" name="radio1" id="flat" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Rent</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="upperP">
-                                        <input type="radio" name="radio1" id="upperP" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Upper Portion</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="lowerP">
-                                        <input type="radio" name="radio1" id="lowerP" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Lower Portion</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="farmH">
-                                        <input type="radio" name="radio1" id="farmH" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Farm House</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="room">
-                                        <input type="radio" name="radio1" id="room" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Room</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="pentH">
-                                        <input type="radio" name="radio1" id="pentH" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Penthouse</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="tab2">
-                            <ul class="radio-holder">
-                                <li>
-                                    <label for="residentialP">
-                                        <input type="radio" name="radio1" id="residentialP" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Residential Plot</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="commericalP">
-                                        <input type="radio" name="radio1" id="commericalP" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Commercial Plot</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="aggriculture">
-                                        <input type="radio" name="radio1" id="aggriculture" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Aggriculture Land</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="industry">
-                                        <input type="radio" name="radio1" id="industry" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Industrial Land</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="pFile">
-                                        <input type="radio" name="radio1" id="pFile" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Plot File</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="pForm">
-                                        <input type="radio" name="radio1" id="pForm" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Plot Form</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="tab3">
-                            <ul class="radio-holder">
-                                <li>
-                                    <label for="office">
-                                        <input type="radio" name="radio1" id="office" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Office</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="shop">
-                                        <input type="radio" name="radio1" id="shop" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Shop</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="wareHouse">
-                                        <input type="radio" name="radio1" id="wareHouse" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Warehouse</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="fectory">
-                                        <input type="radio" name="radio1" id="fectory" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Fectory</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="building">
-                                        <input type="radio" name="radio1" id="building" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Building</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label for="other">
-                                        <input type="radio" name="radio1" id="other" required>
-                                        <span class="fake-radio"></span>
-                                        <span class="fake-label">Other</span>
+                                        <span class="fake-label">{{subType.name}}</span>
                                     </label>
                                 </li>
                             </ul>
@@ -210,14 +80,14 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Price:</span>
-                    <input type="number" required>
+                    <input type="number" >
                 </div>
                 <span class="calculatedPrice"></span>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Land Area:</span>
-                    <input type="number" step="any" required>
+                    <input type="number" step="any" >
                 </div>
                 <div class="layout-holder">
                     <span class="title">Unit:</span>
@@ -235,27 +105,19 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Property Title:</span>
-                    <input type="text" required>
-                </div>
-                <div class="layout-holder">
-                    <span class="title">Bedrooms:</span>
-                    <input type="number" required>
-                </div>
-            </div>
-            <div class="layout add">
-                <div class="layout-holder">
-                    <span class="title">Bath:</span>
-                    <input type="number" required>
-                </div>
-                <div class="layout-holder">
-                    <span class="title">Rooms:</span>
-                    <input type="number" required>
+                    <input type="text" >
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder add">
                     <span class="title">Description:</span>
-                    <textarea required></textarea>
+                    <textarea ></textarea>
+                </div>
+            </div>
+            <div class="layout add">
+                <div class="layout-holder" ng-repeat="feature in features | filter:{ assignedSubTypeId : selectedSubTypeId } | filter:{priority:1}">
+                    <span class="title">{{feature.featureName}}:</span>
+                    <input name="{{feature.featureInputName}}" type="number" >
                 </div>
             </div>
         </section>
@@ -377,30 +239,30 @@
             <ul class="image-uploading-area">
                 <li>
                     <div class="file-uploader">
-                        <input type="file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
+                        <input type="file" ngf-select ng-model="files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
                         <div class="image-holder">
                             <img src="#" class="img-thumb1" alt="image Description">
-                            <span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>
+                            <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-cross"></span></span>
                         </div>
                     </div>
-                    <input type="text" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="files.mainFile.title" class="picture-name disableInput" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
-                        <input type="file" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
+                        <input type="file" ngf-select ng-model="files.secondFile" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
                         <div class="image-holder">
                             <img src="#" class="img-thumb2" alt="image Description">
-                            <span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>
+                            <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-cross"></span></span>
                         </div>
                     </div>
                     <input type="text" class="picture-name disableInput" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
-                        <input type="file" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
+                        <input type="file" ngf-select ng-model="files.thirdFile" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
                         <div class="image-holder">
                             <img src="#" class="img-thumb3" alt="image Description">
-                            <span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>
+                            <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-cross"></span></span>
                         </div>
                     </div>
                     <input type="text" class="picture-name disableInput" placeholder="Title">
@@ -468,27 +330,27 @@
                 </div>
                 <div class="layout-holder">
                     <span class="title">contact person:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Phone:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
                 <div class="layout-holder">
                     <span class="title">Cell:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">fax:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
                 <div class="layout-holder">
                     <span class="title">email:</span>
-                    <input type="email" required>
+                    <input type="email" >
                 </div>
             </div>
         </section>
