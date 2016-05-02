@@ -314,7 +314,7 @@ Route::get('property/purposes',
     [
         'middleware'=>
             [
-                'apiValidate:getAllPropertyPurposeRequest'
+                'apiValidate:getAllPropertyPurposesRequest'
             ],
         'uses'=>'PropertyPurposeController@all'
     ]
@@ -357,7 +357,7 @@ Route::get('property/types',
     [
         'middleware'=>
             [
-                'apiValidate:getAllPropertyTypeRequest'
+                'apiValidate:getAllPropertyTypesRequest'
             ],
         'uses'=>'PropertyTypeController@all'
     ]
@@ -408,7 +408,7 @@ Route::get('property/subtypes',
     [
         'middleware'=>
             [
-                'apiValidate:getAllPropertySubTypeRequest'
+                'apiValidate:getAllPropertySubTypesRequest'
             ],
         'uses'=>'PropertySubTypeController@all'
     ]
@@ -553,6 +553,17 @@ Route::get('feature/sections',
         'uses'=>'FeatureSectionsController@all'
     ]
 );
+
+Route::get('features/assigned',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:getAllFeatureSectionRequest'
+            ],
+        'uses'=>'FeaturesController@allAssigned'
+    ]
+);
+
 /*
  Agency Crud
  */

@@ -6,12 +6,38 @@ var app = angular.module('dashboard');
 app.controller("AddPropertyController",["$scope","$http", function ($scope, $http) {
     $scope.html_title = "Property42 | Add Property";
 
-    $scope.propertySociety = 0;
+    $scope.types = [];
+    $scope.subTypes = [];
     $scope.blocks = [];
     $scope.societies = [];
+    $scope.features = [];
 
-    $scope.select2Options = {
-        allowClear:true
+    $scope.selectedType = 1 ;
+    $scope.selectedSubTypeId = 0;
+    $scope.propertySociety = 0;
+
+    var getTypes = function () {
+        return $http({
+            method: 'GET',
+            url: apiPath+'property/types',
+            data:{}
+        }).then(function successCallback(response) {
+            return response.data.data.propertyTypes;
+        }, function errorCallback(response) {
+            return response;
+        });
+    };
+
+    var getSubTypes = function () {
+        return $http({
+            method: 'GET',
+            url: apiPath+'property/subtypes',
+            data:{}
+        }).then(function successCallback(response) {
+            return response.data.data.propertySubTypes;
+        }, function errorCallback(response) {
+            return response;
+        });
     };
 
     var getBlocks = function () {
@@ -38,7 +64,29 @@ app.controller("AddPropertyController",["$scope","$http", function ($scope, $htt
         });
     };
 
+    var getAssignedFeatures = function () {
+        return $http({
+            method: 'GET',
+            url: apiPath+'features/assigned',
+            data:{}
+        }).then(function successCallback(response) {
+            return response.data.data.features;
+        }, function errorCallback(response) {
+            return response;
+        });
+    };
+
     $scope.initialize = function () {
+        getTypes().then(function successCallback(types) {
+            $scope.types = types;
+        }, function errorCallback(response) {
+            console.log('fucked up');
+        });
+        getSubTypes().then(function successCallback(types) {
+            $scope.subTypes = types;
+        }, function errorCallback(response) {
+            console.log('fucked up');
+        });
         getSocieties().then(function successCallback(societies) {
             $scope.societies = societies;
         }, function errorCallback(response) {
@@ -50,6 +98,14 @@ app.controller("AddPropertyController",["$scope","$http", function ($scope, $htt
         }, function errorCallback(response) {
             console.log('fucked up');
         });
+
+        getAssignedFeatures().then(function successCallback(features) {
+            $scope.features = features;
+        }, function errorCallback(response) {
+            console.log('fucked up');
+        });
+
+        getAssignedFeatures();
 
         $(function() {
             handleAddPropertyFormScrolling();
@@ -65,11 +121,5 @@ app.controller("AddPropertyController",["$scope","$http", function ($scope, $htt
             initTabs();
         });
 
-        // content tabs init
-        function initTabs() {
-            jQuery('.tabset').contentTabs({
-                tabLinks: 'a'
-            });
-        }
     };
 }]);

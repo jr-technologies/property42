@@ -20,7 +20,7 @@ class FeatureWithValidationRules {
     public $validationRules = [];
 
     public $priority = 0;
-
+    public $assignedSubTypeId = 0;
     public function __construct(){}
 
 

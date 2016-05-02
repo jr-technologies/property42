@@ -60,6 +60,12 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
         return $this->tableGateway->delete($feature->id);
     }
 
+    public function allAssigned()
+    {
+        $rawFeatures = $this->tableGateway->allAssigned();
+        return $this->mapAssignedFeaturesWithValidationRules($rawFeatures);
+    }
+
     public function assignedFeaturesWithValidationRules($subTypeId)
     {
         $rawFeatures = $this->tableGateway->getAssignedFeaturesWithValidationRules($subTypeId);
@@ -79,6 +85,7 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $featureWithValidationRules->featureName = $features[0]->featureName;
             $featureWithValidationRules->featureInputName = $features[0]->featureInputName;
             $featureWithValidationRules->priority = $features[0]->featurePriority;
+            $featureWithValidationRules->assignedSubTypeId = $features[0]->assignedSubTypeId;
 
             /* mapping rules with message */
             $featureRules = [];
