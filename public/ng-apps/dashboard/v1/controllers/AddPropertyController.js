@@ -3,7 +3,8 @@
  */
 var app = angular.module('dashboard');
 
-app.controller("AddPropertyController",["$scope","$http", function ($scope, $http) {
+
+app.controller("AddPropertyController",["$scope","$http", "Upload", function ($scope, $http, Upload) {
     $scope.html_title = "Property42 | Add Property";
 
     $scope.types = [];
@@ -15,6 +16,47 @@ app.controller("AddPropertyController",["$scope","$http", function ($scope, $htt
     $scope.selectedType = 1 ;
     $scope.selectedSubTypeId = 0;
     $scope.propertySociety = 0;
+    $scope.files = {
+        mainFile : {
+            title: '',
+            file: null
+        },
+        secondFile : null,
+        thirdFile : null
+    };
+
+    $scope.cancelFile = function (fileNumber) {
+        switch (fileNumber)
+        {
+            case 0:
+                $scope.files.mainFile.file = null;
+                break;
+            case 1:
+                $scope.files.secondFile = null;
+                break;
+            case 2:
+                $scope.files.thirdFile = null;
+                break;
+        }
+    };
+
+    $scope.submitProperty = function() {
+        var upload = Upload.upload({
+            url: apiPath+'test/ng',
+            data: {
+                userName: 'noman tufail',
+                file: $scope.files
+            }
+        });
+
+        upload.then(function (response) {
+            console.log(response);
+        }, function (response) {
+            console.log(response);
+        }, function (evt) {
+            console.log(evt);
+        });
+    };
 
     var getTypes = function () {
         return $http({

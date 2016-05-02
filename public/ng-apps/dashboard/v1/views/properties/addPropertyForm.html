@@ -11,7 +11,7 @@
         </ul>
     </div>
 
-    <form action="#" class="property-add">
+    <form class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
             <strong class="form-heading"><span>Property Type and Location</span></strong>
             <div class="layout">
@@ -20,14 +20,14 @@
                     <ul class="radio-holder">
                         <li>
                             <label for="sale">
-                                <input type="radio" name="radio" id="sale" required>
+                                <input type="radio" name="radio" id="sale">
                                 <span class="fake-radio"></span>
                                 <span class="fake-label">For Sale</span>
                             </label>
                         </li>
                         <li>
                             <label for="rent">
-                                <input type="radio" name="radio" id="rent" required>
+                                <input type="radio" name="radio" id="rent">
                                 <span class="fake-radio"></span>
                                 <span class="fake-label">Rent</span>
                             </label>
@@ -80,14 +80,14 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Price:</span>
-                    <input type="number" required>
+                    <input type="number" >
                 </div>
                 <span class="calculatedPrice"></span>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Land Area:</span>
-                    <input type="number" step="any" required>
+                    <input type="number" step="any" >
                 </div>
                 <div class="layout-holder">
                     <span class="title">Unit:</span>
@@ -105,19 +105,19 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Property Title:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder add">
                     <span class="title">Description:</span>
-                    <textarea required></textarea>
+                    <textarea ></textarea>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder" ng-repeat="feature in features | filter:{ assignedSubTypeId : selectedSubTypeId } | filter:{priority:1}">
                     <span class="title">{{feature.featureName}}:</span>
-                    <input name="{{feature.featureInputName}}" type="number" required>
+                    <input name="{{feature.featureInputName}}" type="number" >
                 </div>
             </div>
         </section>
@@ -239,30 +239,30 @@
             <ul class="image-uploading-area">
                 <li>
                     <div class="file-uploader">
-                        <input type="file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
+                        <input type="file" ngf-select ng-model="files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
                         <div class="image-holder">
                             <img src="#" class="img-thumb1" alt="image Description">
-                            <span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>
+                            <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-cross"></span></span>
                         </div>
                     </div>
-                    <input type="text" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="files.mainFile.title" class="picture-name disableInput" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
-                        <input type="file" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
+                        <input type="file" ngf-select ng-model="files.secondFile" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
                         <div class="image-holder">
                             <img src="#" class="img-thumb2" alt="image Description">
-                            <span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>
+                            <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-cross"></span></span>
                         </div>
                     </div>
                     <input type="text" class="picture-name disableInput" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
-                        <input type="file" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
+                        <input type="file" ngf-select ng-model="files.thirdFile" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
                         <div class="image-holder">
                             <img src="#" class="img-thumb3" alt="image Description">
-                            <span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>
+                            <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-cross"></span></span>
                         </div>
                     </div>
                     <input type="text" class="picture-name disableInput" placeholder="Title">
@@ -330,27 +330,27 @@
                 </div>
                 <div class="layout-holder">
                     <span class="title">contact person:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Phone:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
                 <div class="layout-holder">
                     <span class="title">Cell:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">fax:</span>
-                    <input type="text" required>
+                    <input type="text" >
                 </div>
                 <div class="layout-holder">
                     <span class="title">email:</span>
-                    <input type="email" required>
+                    <input type="email" >
                 </div>
             </div>
         </section>

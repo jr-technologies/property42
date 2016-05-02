@@ -13,6 +13,7 @@
     <script src="<?= url('/') ?>/javascripts/firebase.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular/angular.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angularfire.min.js"></script>
+    <script src="<?= url('/') ?>/javascripts/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular-route/angular-route.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/ui-router/angular-ui-router.min.js"></script>
 
