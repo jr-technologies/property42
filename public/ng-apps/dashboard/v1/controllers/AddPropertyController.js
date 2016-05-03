@@ -7,6 +7,7 @@ var app = angular.module('dashboard');
 app.controller("AddPropertyController",["$scope","$http", "Upload", function ($scope, $http, Upload) {
     $scope.html_title = "Property42 | Add Property";
 
+    $scope.formSubmitStatus = '';
     $scope.types = [];
     $scope.subTypes = [];
     $scope.blocks = [];
@@ -16,31 +17,44 @@ app.controller("AddPropertyController",["$scope","$http", "Upload", function ($s
     $scope.selectedType = 1 ;
     $scope.selectedSubTypeId = 0;
     $scope.propertySociety = 0;
+
     $scope.files = {
         mainFile : {
             title: '',
             file: null
         },
-        secondFile : null,
-        thirdFile : null
+        secondFile : {
+            title: '',
+            file: null
+        },
+        thirdFile : {
+            title: '',
+            file: null
+        }
+    };
+
+    var nullFile = {
+        title: '',
+        file: null
     };
 
     $scope.cancelFile = function (fileNumber) {
         switch (fileNumber)
         {
             case 0:
-                $scope.files.mainFile.file = null;
+                $scope.files.mainFile = nullFile;
                 break;
             case 1:
-                $scope.files.secondFile = null;
+                $scope.files.secondFile = nullFile;
                 break;
             case 2:
-                $scope.files.thirdFile = null;
+                $scope.files.thirdFile = nullFile;
                 break;
         }
     };
 
     $scope.submitProperty = function() {
+        $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
             url: apiPath+'test/ng',
             data: {
@@ -50,6 +64,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload", function ($s
         });
 
         upload.then(function (response) {
+            $scope.formSubmitStatus = '';
             console.log(response);
         }, function (response) {
             console.log(response);
