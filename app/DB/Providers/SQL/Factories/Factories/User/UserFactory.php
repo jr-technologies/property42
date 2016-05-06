@@ -38,7 +38,14 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->getWhere($conditions)->first());
     }
-
+    public function getTable()
+    {
+        return $this->tableGateway->getTable();
+    }
+    public function setTable($table)
+    {
+        $this->tableGateway->setTable($table);
+    }
     /**
      * @return array UserModel::class
      **/

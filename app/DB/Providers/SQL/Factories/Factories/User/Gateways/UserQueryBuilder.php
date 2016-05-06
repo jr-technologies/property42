@@ -9,9 +9,12 @@
 namespace App\DB\Providers\SQL\Factories\Factories\User\Gateways;
 
 
+use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
+use Illuminate\Support\Facades\DB;
 
 class UserQueryBuilder extends QueryBuilder{
+
     public function __construct(){
         $this->table = "users";
     }
@@ -31,9 +34,12 @@ class UserQueryBuilder extends QueryBuilder{
 
     public function getAgencyStaff($agencyId)
     {
-        $table =
-        DB::table('agency_staff')
-        ->leftjoin()
-            ->get();
+        $table = (new AgencyStaffFactory())->getTable();
+
+       return  DB::table($table)
+        ->leftjoin($this->table,$table.'.user_id','=',$this->table.'.id')
+        ->select($this->table.'.*')
+        ->where($table.'.agency_id','=',$agencyId)
+        ->get();
     }
 }

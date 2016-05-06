@@ -582,7 +582,7 @@ Route::post('agency/staff',
             [
                 'apiValidate:getAgencyStaffRequest'
             ],
-        'uses'=>'AgencyController@getAgencyStaff'
+        'uses'=>'AgencyController@getStaff'
     ]
 );
 
