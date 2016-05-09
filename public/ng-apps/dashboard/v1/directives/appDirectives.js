@@ -4,9 +4,6 @@
 var app = angular.module('dashboard');
 
 app.directive('myDirective', function ($compile) {
-    var obj = {
-        foo:'<input type="text" ng-model="testModel">'
-    };
     return {
         restrict: 'EA',
         scope: {

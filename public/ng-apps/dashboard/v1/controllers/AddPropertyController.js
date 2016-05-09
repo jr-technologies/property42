@@ -5,7 +5,6 @@ var app = angular.module('dashboard');
 
 app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
     $scope.html_title = "Property42 | Add Property";
-    $scope.testModel = 2;
     $scope.formSubmitStatus = '';
     $scope.types = [];
     $scope.subTypes = [];
@@ -62,6 +61,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
 
     $scope.submitProperty = function() {
         $scope.formSubmitStatus = 'submiting';
+        console.log($scope.data.features);
         var upload = Upload.upload({
             url: apiPath+'test/ng',
             data: {

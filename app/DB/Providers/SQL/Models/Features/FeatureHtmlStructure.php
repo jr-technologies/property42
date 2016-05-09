@@ -40,7 +40,7 @@ class FeatureHtmlStructure {
     }
     private function createNumber()
     {
-        return "<input type='number' name='".$this->featureInputName."' ng-model='testModel'>{{testModel}}";
+        return "<input type='number' name='".$this->featureInputName."' ng-model='\$parent.data.features.".$this->featureInputName."'>{{\$parent.data.features.".$this->featureInputName."}}";
     }
     private function createSelect()
     {
