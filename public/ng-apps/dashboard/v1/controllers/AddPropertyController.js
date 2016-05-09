@@ -3,10 +3,23 @@
  */
 var app = angular.module('dashboard');
 
+app.directive('myDirective', function () {
+    return {
+        restrict: 'EA', //E = element, A = attribute, C = class, M = comment
+        scope: {
+            title: '@myText'
+        },
+        template: '<input type="text" ng-model="$parent.testModel"><div>{{ title }}</div>',
+        replace: true,
+        transclude: true,
+        controller: 'AddPropertyController', //Embed a custom controller in the directive
+        link: function ($scope, element, attrs) { } //DOM manipulation
+    }
+});
 
-app.controller("AddPropertyController",["$scope","$http", "Upload", function ($scope, $http, Upload) {
+app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
     $scope.html_title = "Property42 | Add Property";
-
+    $scope.testModel = "hi";
     $scope.formSubmitStatus = '';
     $scope.types = [];
     $scope.subTypes = [];
@@ -17,7 +30,15 @@ app.controller("AddPropertyController",["$scope","$http", "Upload", function ($s
     $scope.selectedType = 1 ;
     $scope.selectedSubTypeId = 0;
     $scope.propertySociety = 0;
-
+    $scope.getFeatureHtml = function(feature){
+        $scope.$watch('testModel', function(n, o){
+            console.log('dfdf');
+        });
+        return $sce.trustAsHtml(feature.htmlStructure.html);
+    };
+    $scope.data = {
+        features : null
+    };
     $scope.files = {
         mainFile : {
             title: '',
