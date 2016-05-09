@@ -12,6 +12,7 @@
     <!-- Angularjs Libs -->
     <script src="<?= url('/') ?>/javascripts/firebase.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
     <script src="<?= url('/') ?>/javascripts/angularfire.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular-route/angular-route.min.js"></script>

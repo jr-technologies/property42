@@ -105,21 +105,22 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Property Title:</span>
-                    <input type="text" >
+                    <input type="text" ng-model="testModel">
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder add">
                     <span class="title">Description:</span>
-                    <textarea ></textarea>
+                    <textarea  ng-model="testModel"></textarea>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder" ng-repeat="feature in features | filter:{ assignedSubTypeId : selectedSubTypeId } | filter:{priority:1}">
                     <span class="title">{{feature.featureName}}:</span>
-                    <input name="{{feature.featureInputName}}" type="number" >
+                    <span ng-bind-html="getFeatureHtml(feature)"></span>
                 </div>
             </div>
+            <div my-directive my-text="helo"></div>
         </section>
         <section class="feature-block" id="feature-block">
             <strong class="form-heading"><span>extra features</span></strong>

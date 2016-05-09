@@ -14,9 +14,11 @@ use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\DB\Providers\SQL\Models\AppMessage;
 use App\DB\Providers\SQL\Models\Features\Feature;
+use App\DB\Providers\SQL\Models\Features\FeatureHtmlStructure;
 use App\DB\Providers\SQL\Models\Features\FeatureWithValidationRules;
 use App\DB\Providers\SQL\Models\Features\PropertyFeatureValueAndSection;
 use App\DB\Providers\SQL\Models\FeatureSection;
+use App\DB\Providers\SQL\Models\HtmlStructure;
 use App\DB\Providers\SQL\Models\ValidationRules\ValidationRuleWithErrorMessage;
 
 class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
@@ -86,6 +88,13 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $featureWithValidationRules->featureInputName = $features[0]->featureInputName;
             $featureWithValidationRules->priority = $features[0]->featurePriority;
             $featureWithValidationRules->assignedSubTypeId = $features[0]->assignedSubTypeId;
+
+            /* mapping HtmlStructure */
+            $htmlStructure = new FeatureHtmlStructure();
+            $htmlStructure->id = $features[0]->htmlStructureId;
+            $htmlStructure->name = $features[0]->htmlStructureName;
+            $htmlStructure->setHtml($features[0]->featureInputName);
+            $featureWithValidationRules->htmlStructure = $htmlStructure;
 
             /* mapping rules with message */
             $featureRules = [];
