@@ -1,7 +1,7 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var app = angular.module('dashboard',['ngRoute', 'ui.router', 'firebase', 'ngFileUpload', 'ngSanitize']);
+var app = angular.module('dashboard',['ngRoute', 'ui.router','ui.select', 'firebase', 'ngFileUpload', 'ngSanitize']);
 
 
 app.run(function($rootScope, $location, $AuthService, $state) {

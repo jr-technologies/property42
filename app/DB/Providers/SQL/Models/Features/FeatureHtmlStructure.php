@@ -36,11 +36,11 @@ class FeatureHtmlStructure {
 
     private function createText()
     {
-        return "<input type='text' name='".$this->featureInputName."' ng-model='\$parent.data.features.".$this->featureInputName."'>{{data.features.".$this->featureInputName."}}";
+        return "<input type='text' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
     }
     private function createNumber()
     {
-        return "<input type='number' name='".$this->featureInputName."' ng-model='\$parent.data.features.".$this->featureInputName."'>{{\$parent.data.features.".$this->featureInputName."}}";
+        return "<input type='number' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
     }
     private function createSelect()
     {

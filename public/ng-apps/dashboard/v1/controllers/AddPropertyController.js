@@ -2,6 +2,37 @@
  * Created by noman_2 on 12/8/2015.
  */
 var app = angular.module('dashboard');
+app.filter('propsFilter', function() {
+    return function(items, props) {
+        var out = [];
+
+        if (angular.isArray(items)) {
+            var keys = Object.keys(props);
+
+            items.forEach(function(item) {
+                var itemMatches = false;
+
+                for (var i = 0; i < keys.length; i++) {
+                    var prop = keys[i];
+                    var text = props[prop].toLowerCase();
+                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                        itemMatches = true;
+                        break;
+                    }
+                }
+
+                if (itemMatches) {
+                    out.push(item);
+                }
+            });
+        } else {
+            // Let the output be the input untouched
+            out = items;
+        }
+
+        return out;
+    };
+});
 
 app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
     $scope.html_title = "Property42 | Add Property";
@@ -12,63 +43,68 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
     $scope.societies = [];
     $scope.features = [];
 
-    $scope.selectedType = 1 ;
-    $scope.selectedSubTypeId = 0;
-    $scope.propertySociety = 0;
-    $scope.getFeatureHtml = function(feature){
-        $scope.$watch('testModel', function(n, o){
-            console.log('dfdf');
-        });
-        return $sce.trustAsHtml(feature.htmlStructure.html);
+    $scope.temp = {
+        society: {id:0},
+        block: {id:0}
     };
-    $scope.data = {
-        features : null
-    };
-    $scope.files = {
-        mainFile : {
-            title: '',
-            file: null
-        },
-        secondFile : {
-            title: '',
-            file: null
-        },
-        thirdFile : {
-            title: '',
-            file: null
+    $scope.$watch('temp.society', function() {
+        $scope.form.data.society = $scope.temp.society.id;
+    });
+    $scope.$watch('temp.block', function() {
+        $scope.form.data.block = $scope.temp.block.id;
+    });
+    $scope.form = {
+        data : {
+            propertyPurpose: 0,
+            propertyType :0,
+            propertySubType : 0,
+            society:0,
+            block: 0,
+            price: 0,
+            landArea: 0,
+            landUnit: 0,
+            propertyTitle: '',
+            propertyDescription: '',
+            features:{},
+            files : {
+                mainFile:{title: '', file: null},
+                twoFile:{title: '', file: null},
+                threeFile:{title: '', file: null},
+                fourFile:{title: '', file: null},
+                fiveFile:{title: '', file: null},
+                sixFile:{title: '', file: null},
+                sevenFile:{title: '', file: null},
+                eightFile:{title: '', file: null}
+            },
+            owner: 0,
+            contactPerson: '',
+            phone: "",
+            cell : "",
+            fax: "",
+            email: ""
         }
     };
-
-    var nullFile = {
-        title: '',
-        file: null
-    };
-
+    var nullFile = {title: '', file: null};
     $scope.cancelFile = function (fileNumber) {
         switch (fileNumber)
         {
             case 0:
-                $scope.files.mainFile = nullFile;
+                $scope.form.data.files.mainFile = nullFile;
                 break;
             case 1:
-                $scope.files.secondFile = nullFile;
+                $scope.form.files.data.files.secondFile = nullFile;
                 break;
             case 2:
-                $scope.files.thirdFile = nullFile;
+                $scope.form.files.data.files.thirdFile = nullFile;
                 break;
         }
     };
 
     $scope.submitProperty = function() {
-        $scope.formSubmitStatus = 'submiting';
-        console.log($scope.data.features);
+        $scope.formSubmitStatus = 'submiting'
         var upload = Upload.upload({
             url: apiPath+'test/ng',
-            data: {
-                userName: 'noman tufail',
-                file: $scope.files,
-                features: $scope.data.features
-            }
+            data: $scope.form.data
         });
 
         upload.then(function (response) {
