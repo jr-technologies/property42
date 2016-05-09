@@ -20,6 +20,7 @@
 
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/models/Model.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/app.js"></script>
+    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/directives/appDirectives.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/services/AuthService.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/services/RouteHelper.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/services/ResourceLoader.js"></script>

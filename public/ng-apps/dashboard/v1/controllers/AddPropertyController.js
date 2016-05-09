@@ -3,23 +3,9 @@
  */
 var app = angular.module('dashboard');
 
-app.directive('myDirective', function () {
-    return {
-        restrict: 'EA', //E = element, A = attribute, C = class, M = comment
-        scope: {
-            title: '@myText'
-        },
-        template: '<input type="text" ng-model="$parent.testModel"><div>{{ title }}</div>',
-        replace: true,
-        transclude: true,
-        controller: 'AddPropertyController', //Embed a custom controller in the directive
-        link: function ($scope, element, attrs) { } //DOM manipulation
-    }
-});
-
 app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
     $scope.html_title = "Property42 | Add Property";
-    $scope.testModel = "hi";
+    $scope.testModel = 2;
     $scope.formSubmitStatus = '';
     $scope.types = [];
     $scope.subTypes = [];

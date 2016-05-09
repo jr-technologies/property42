@@ -117,10 +117,9 @@
             <div class="layout add">
                 <div class="layout-holder" ng-repeat="feature in features | filter:{ assignedSubTypeId : selectedSubTypeId } | filter:{priority:1}">
                     <span class="title">{{feature.featureName}}:</span>
-                    <span ng-bind-html="getFeatureHtml(feature)"></span>
+                    <div my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></div>
                 </div>
             </div>
-            <div my-directive my-text="helo"></div>
         </section>
         <section class="feature-block" id="feature-block">
             <strong class="form-heading"><span>extra features</span></strong>
