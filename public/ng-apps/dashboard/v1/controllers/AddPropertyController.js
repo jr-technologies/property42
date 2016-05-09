@@ -66,7 +66,8 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
             url: apiPath+'test/ng',
             data: {
                 userName: 'noman tufail',
-                file: $scope.files
+                file: $scope.files,
+                features: $scope.data.features
             }
         });
 

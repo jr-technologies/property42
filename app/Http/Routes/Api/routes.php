@@ -29,6 +29,7 @@
 Route::post('test/ng', function(){
     $response = new App\Http\Responses\Responses\ApiResponse();
     $request = request();
+    dd($request->all());
     dd($request->all()['file']);
     $mainImage = (isset($files[0]))?$files[0]: null;
     dd($request->files->all()['file']);
