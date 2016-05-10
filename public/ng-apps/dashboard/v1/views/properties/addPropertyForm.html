@@ -20,14 +20,14 @@
                     <ul class="radio-holder">
                         <li>
                             <label for="sale">
-                                <input type="radio" ng-model="$parent.form.data.propertyPurpose" value="1" name="radio" id="sale">
+                                <input type="radio" ng-model="form.data.propertyPurpose" value="1" name="propertyPurpose" id="sale">
                                 <span class="fake-radio"></span>
-                                <span class="fake-label">For Sale</span>
+                                <span class="fake-label">{{form.data.propertyPurpose}}</span>
                             </label>
                         </li>
                         <li>
                             <label for="rent">
-                                <input type="radio" ng-model="$parent.form.data.propertyPurpose" value="2" name="radio" id="rent">
+                                <input type="radio" ng-model="form.data.propertyPurpose" value="2" name="propertyPurpose" id="rent">
                                 <span class="fake-radio"></span>
                                 <span class="fake-label">Rent</span>
                             </label>

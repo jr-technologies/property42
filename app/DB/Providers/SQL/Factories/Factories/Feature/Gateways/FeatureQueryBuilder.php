@@ -66,8 +66,9 @@ class FeatureQueryBuilder extends QueryBuilder
         $validationRules = 'validation_rules';
         $validationErrorMessages = 'validation_error_messages';
         $appMessages = 'app_messages';
-        return  DB::table($propertySubTypeAssignedFeatures)
+        $result =  DB::table($propertySubTypeAssignedFeatures)
             ->leftjoin($propertyFeatures,$propertySubTypeAssignedFeatures.'.property_feature_id','=',$propertyFeatures.'.id')
+            ->leftjoin($htmlStructures,$propertyFeatures.'.html_structure_id','=',$htmlStructures.'.id')
             ->leftjoin($featureSections,$propertyFeatures.'.feature_section_id','=',$featureSections.'.id')
             ->leftjoin($assignedFeatureValidations,$propertySubTypeAssignedFeatures.'.id','=',$assignedFeatureValidations.'.property_sub_type_assign_feature_id')
             ->leftjoin($validationRules,$assignedFeatureValidations.'.validation_rule_id','=',$validationRules.'.id')

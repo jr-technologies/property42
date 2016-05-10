@@ -102,7 +102,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
     };
 
     $scope.submitProperty = function() {
-        $scope.formSubmitStatus = 'submiting'
+        $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
             url: apiPath+'test/ng',
             data: $scope.form.data
