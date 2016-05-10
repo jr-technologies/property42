@@ -15,7 +15,7 @@ class FeatureWithValidationRules {
     public $featureId = 0;
     public $featureName;
     public $featureInputName;
-
+    public $section;
     /* array ValidationRuleWithErrorMessage::class */
     public $validationRules = [];
 

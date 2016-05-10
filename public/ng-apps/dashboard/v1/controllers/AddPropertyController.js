@@ -42,6 +42,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
     $scope.blocks = [];
     $scope.societies = [];
     $scope.features = [];
+    $scope.featureSections = [];
 
     $scope.temp = {
         society: {id:0},
@@ -165,6 +166,17 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
         });
     };
 
+    var getFeatureSections = function () {
+        return $http({
+            method: 'GET',
+            url: apiPath+'feature/sections',
+            data:{}
+        }).then(function successCallback(response) {
+            return response.data.data.featureSections;
+        }, function errorCallback(response) {
+            return response;
+        });
+    };
     var getAssignedFeatures = function () {
         return $http({
             method: 'GET',
@@ -206,7 +218,12 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
             console.log('fucked up');
         });
 
-        getAssignedFeatures();
+        getFeatureSections().then(function successCallback(sections) {
+            $scope.featureSections = sections;
+        }, function errorCallback(response) {
+            console.log('fucked up');
+        });
+
 
         $(function() {
             handleAddPropertyFormScrolling();

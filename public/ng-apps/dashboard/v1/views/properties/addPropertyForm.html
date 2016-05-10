@@ -81,13 +81,6 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
-
-                <div class="layout-holder">
-                    <span class="title">Block:</span>
-                    <select class="" name="propertyBlock" ng-model="form.data.block">
-                        <option data-ng-repeat="block in blocks | filter:{ societyId: form.data.society }" value="{{block.id}}">{{block.name}}</option>
-                    </select>
-                </div>
             </div>
             <strong class="form-heading"><span>Property &amp; Area</span></strong>
             <div class="layout add">
@@ -134,114 +127,15 @@
         <section class="feature-block" id="feature-block">
             <strong class="form-heading"><span>extra features</span></strong>
             <div class="holder">
-                <span class="tag">Indoor features</span>
-                <ul class="feature-list">
-                    <li>
-                        <input type="checkbox">
-                        <label>Alarm System</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Intercom</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ensuite</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Dishwasher</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Built-in wardrobes</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ducted vacuum system</label>
-                    </li>
-                </ul>
-                <span class="tag">outdoor features</span>
-                <ul class="feature-list">
-                    <li>
-                        <input type="checkbox">
-                        <label>Alarm System</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Intercom</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ensuite</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Dishwasher</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Built-in wardrobes</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ducted vacuum system</label>
-                    </li>
-                </ul>
-                <span class="tag">eco features</span>
-                <ul class="feature-list">
-                    <li>
-                        <input type="checkbox">
-                        <label>Alarm System</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Intercom</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ensuite</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Dishwasher</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Built-in wardrobes</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ducted vacuum system</label>
-                    </li>
-                </ul>
-                <span class="tag">other features</span>
-                <ul class="feature-list">
-                    <li>
-                        <input type="checkbox">
-                        <label>Alarm System</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Intercom</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ensuite</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Dishwasher</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Built-in wardrobes</label>
-                    </li>
-                    <li>
-                        <input type="checkbox">
-                        <label>Ducted vacuum system</label>
-                    </li>
-                </ul>
+                <div class="features-section-holder" data-ng-repeat="featureSection in featureSections | orderBy : '-priority'">
+                    <span class="tag">{{featureSection.name}}</span>
+                    <ul class="feature-list">
+                        <li ng-repeat="feature in features | filter:{section:{id:featureSection.id}} | filter:{ assignedSubTypeId : form.data.propertySubType }">
+                            <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
+                            <label>{{feature.featureName}}</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
         <section class="attactment-block" id="attactment-block">

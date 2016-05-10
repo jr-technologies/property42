@@ -39,7 +39,7 @@ class FeatureSectionsController extends ApiController
     public function all(GetAllFeatureSectionRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'FeatureSection'=>$this->FeatureSection->all()
+            'featureSections'=>$this->FeatureSection->all()
         ]]);
     }
     public function delete(DeleteFeatureSectionRequest $request)

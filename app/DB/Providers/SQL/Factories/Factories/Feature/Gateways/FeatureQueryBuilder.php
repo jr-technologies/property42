@@ -33,12 +33,14 @@ class FeatureQueryBuilder extends QueryBuilder
         $propertySubTypeAssignedFeatures = 'property_sub_type_assigned_features';
         $assignedFeatureValidations = 'assigned_feature_validations';
         $propertyFeatures = $this->table;
+        $featureSections = "feature_sections";
         $htmlStructures = 'html_structures';
         $validationRules = 'validation_rules';
         $validationErrorMessages = 'validation_error_messages';
         $appMessages = 'app_messages';
         return  DB::table($propertySubTypeAssignedFeatures)
             ->leftjoin($propertyFeatures,$propertySubTypeAssignedFeatures.'.property_feature_id','=',$propertyFeatures.'.id')
+            ->leftjoin($featureSections,$propertyFeatures.'.feature_section_id','=',$featureSections.'.id')
             ->leftjoin($htmlStructures,$propertyFeatures.'.html_structure_id','=',$htmlStructures.'.id')
             ->leftjoin($assignedFeatureValidations,$propertySubTypeAssignedFeatures.'.id','=',$assignedFeatureValidations.'.property_sub_type_assign_feature_id')
             ->leftjoin($validationRules,$assignedFeatureValidations.'.validation_rule_id','=',$validationRules.'.id')
@@ -48,6 +50,7 @@ class FeatureQueryBuilder extends QueryBuilder
                 $propertySubTypeAssignedFeatures.'.id as assignedSubTypeId',
                 $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',
                 $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
+                $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',
                 $validationRules.'.id as ruleId', $validationRules.'.rule as ruleName',
                 $appMessages.'.id as appMessageId', $appMessages.'.short_message as shortMessage', $appMessages.'.long_message as longMessage'
             )->get();
@@ -58,11 +61,14 @@ class FeatureQueryBuilder extends QueryBuilder
         $propertySubTypeAssignedFeatures = 'property_sub_type_assigned_features';
         $assignedFeatureValidations = 'assigned_feature_validations';
         $propertyFeatures = $this->table;
+        $featureSections = "feature_sections";
+        $htmlStructures = 'html_structures';
         $validationRules = 'validation_rules';
         $validationErrorMessages = 'validation_error_messages';
         $appMessages = 'app_messages';
         return  DB::table($propertySubTypeAssignedFeatures)
             ->leftjoin($propertyFeatures,$propertySubTypeAssignedFeatures.'.property_feature_id','=',$propertyFeatures.'.id')
+            ->leftjoin($featureSections,$propertyFeatures.'.feature_section_id','=',$featureSections.'.id')
             ->leftjoin($assignedFeatureValidations,$propertySubTypeAssignedFeatures.'.id','=',$assignedFeatureValidations.'.property_sub_type_assign_feature_id')
             ->leftjoin($validationRules,$assignedFeatureValidations.'.validation_rule_id','=',$validationRules.'.id')
             ->leftjoin($validationErrorMessages,$validationRules.'.id','=',$validationErrorMessages.'.validation_rule_id')
@@ -70,6 +76,8 @@ class FeatureQueryBuilder extends QueryBuilder
             ->select(
                 $propertySubTypeAssignedFeatures.'.id as assignedSubTypeId',
                 $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',
+                $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
+                $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',
                 $validationRules.'.id as ruleId', $validationRules.'.rule as ruleName',
                 $appMessages.'.id as appMessageId', $appMessages.'.short_message as shortMessage', $appMessages.'.long_message as longMessage'
             )
