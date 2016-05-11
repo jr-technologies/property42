@@ -101,7 +101,15 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
         }
     };
 
+    var postProcessFormData = function () {
+        var features = {};
+        angular.forEach($scope.form.data.features, function(value, key) {
+            if(value != false){ features[key] = value; }
+        });
+        $scope.form.data.features = features;
+    };
     $scope.submitProperty = function() {
+        postProcessFormData();
         $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
             url: apiPath+'test/ng',
@@ -229,15 +237,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
             handleAddPropertyFormScrolling();
         });
 
-        $(".searchable-select").select2({
-            placeholder: "Select",
-            allowClear: true
-        });
 
-        // page init
-        jQuery(function(){
-            initTabs();
-        });
 
     };
 }]);

@@ -29,6 +29,9 @@ class FeatureHtmlStructure {
             case 'number':
                 return $this->createNumber();
                 break;
+            case 'checkbox':
+                return $this->createCheckbox();
+                break;
             default:
                 return $this->createText();
         }
@@ -41,6 +44,10 @@ class FeatureHtmlStructure {
     private function createNumber()
     {
         return "<input type='number' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
+    }
+    private function createCheckbox()
+    {
+        return "<input type='checkbox' value='helo' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
     }
     private function createSelect()
     {
