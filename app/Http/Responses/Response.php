@@ -51,7 +51,7 @@ abstract class Response
     }
     public function respondValidationFails($messages=["Your request did not passed our server requirements!"])
     {
-        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
+        return $this->setHttpStatus(403)->setCustomStatus(403)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondAuthenticationFailed($messages=["Dear user you are not logged in."])
     {

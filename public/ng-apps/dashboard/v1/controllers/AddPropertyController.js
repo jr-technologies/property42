@@ -43,7 +43,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
     $scope.societies = [];
     $scope.features = [];
     $scope.featureSections = [];
-
+    $scope.errors = [];
     $scope.temp = {
         society: {id:0},
         block: {id:0}
@@ -112,15 +112,14 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
         postProcessFormData();
         $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
-            url: apiPath+'test/ng',
+            url: apiPath+'property',
             data: $scope.form.data
         });
 
         upload.then(function (response) {
             $scope.formSubmitStatus = '';
-            console.log(response);
         }, function (response) {
-            console.log(response);
+            $scope.errors = response.data.error.messages;
         }, function (evt) {
             console.log(evt);
         });

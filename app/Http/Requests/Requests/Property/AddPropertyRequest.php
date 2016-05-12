@@ -99,7 +99,8 @@ class AddPropertyRequest extends Request implements RequestInterface{
 
     public function getFeature($featureName)
     {
-        return $this->getOriginal($featureName);
+        $features = $this->get('features');
+        return (isset($features[$featureName])) ? $features[$featureName] : null;
     }
 
     public function authorize(){

@@ -26,42 +26,47 @@ class AddPropertyTransformer extends RequestTransformer
     }
     public function transform()
     {
-       return array_merge([
+       return [
            /* property info */
-           'ownerId' => $this->request->input('owner_id'),
-           'purposeId' => $this->request->input('purpose_id'),
-           'subTypeId' => $this->request->input('sub_type_id'),
-           'blockId' => $this->request->input('block_id'),
-           'title' => $this->request->input('title'),
-           'description' => $this->request->input('description'),
+           'ownerId' => $this->request->input('owner'),
+           'purposeId' => $this->request->input('propertyPurpose'),
+           'subTypeId' => $this->request->input('propertySubType'),
+           'blockId' => $this->request->input('block'),
+           'title' => $this->request->input('propertyTitle'),
+           'description' => $this->request->input('propertyDescription'),
            'price' => $this->request->input('price'),
-           'landArea' => $this->request->input('land_area'),
-           'landUnitId' => $this->request->input('land_unit_id'),
+           'landArea' => $this->request->input('landArea'),
+           'landUnitId' => $this->request->input('landUnit'),
 
            /* contact information */
-           'contactPerson' => $this->request->input('contact_person'),
+           'contactPerson' => $this->request->input('contactPerson'),
            'phone' => $this->request->input('phone'),
            'mobile' => $this->request->input('mobile'),
            'email' => $this->request->input('email'),
-        ], $this->transformExtraFeatures());
+           'fax' => $this->request->input('fax'),
+
+           'features' => $this->request->input('features'),
+           'files' => $this->request->input('files'),
+        ];
     }
 
     private function staticInputs()
     {
         return [
-            'owner_id',
-            'purpose_id',
-            'sub_type_id',
-            'block_id',
-            'title',
-            'description',
+            'ownerId',
+            'propertyPurpose',
+            'propertySubType',
+            'block',
+            'propertyTitle',
+            'propertyDescription',
             'price',
-            'land_area',
-            'land_unit_id',
-            'contact_person',
+            'landArea',
+            'landUnit',
+            'contactPerson',
             'phone',
             'mobile',
-            'email'
+            'email',
+            'fax'
         ];
     }
 }

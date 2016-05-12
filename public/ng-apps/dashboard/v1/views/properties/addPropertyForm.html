@@ -10,8 +10,14 @@
             <li><a href="#contact-information" class="scrollAddPropertyNavLink"><span class="icon-contact_phone"></span> Contact Info</a></li>
         </ul>
     </div>
-
     <form class="property-add" ng-submit="submitProperty()">
+
+        <div class="errors">
+            <ul>
+                <li data-ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
         <section class="basics-block" id="basics-block">
             <strong class="form-heading"><span>Property Type and Location</span></strong>
             <div class="layout">
@@ -229,7 +235,7 @@
                 <div class="layout-holder">
                     <span class="title">owner:</span>
                     <select class="searchable-select" name="owner" ng-model="form.data.owner">
-                        <option>Select Block</option>
+                        <option value="1">Noman Tufail</option>
                     </select>
                 </div>
                 <div class="layout-holder">
