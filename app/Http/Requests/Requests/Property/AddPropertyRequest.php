@@ -83,6 +83,10 @@ class AddPropertyRequest extends Request implements RequestInterface{
         return $finalFeatures;
     }
 
+    public function getFiles()
+    {
+        return $this->get('files');
+    }
     public function getPropertyDocuments($propertyId = null)
     {
         $documents = [];

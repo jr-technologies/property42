@@ -7,6 +7,8 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\DB\Providers\SQL\Models\Property;
+use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\Events\Events\Property\PropertyCreated;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
@@ -35,6 +37,8 @@ class PropertiesController extends ApiController
         $property = $request->getPropertyModel();
         $propertyId = $this->properties->store($property);
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
+        $property->id = $propertyId;
+        $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
         $this->propertyDocuments->storeMultiple($request->getPropertyDocuments($propertyId));
 
         $property = $this->properties->getById($propertyId);
@@ -44,5 +48,37 @@ class PropertiesController extends ApiController
             'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),
         ]]);
+    }
+
+    public function storeFiles(array $files, $path, $propertyId)
+    {
+        $propertyDocuments = [];
+        foreach($files as $file)
+        {
+            $document = new PropertyDocument();
+            $document->path = $this->storeFileInDirectory($file['file'], $path);
+            $document->propertyId = $propertyId;
+            $document->type = 'image';
+            $document->title = $file['title'];
+            $propertyDocuments[] = $document;
+        }
+         dd($propertyDocuments);
+    }
+
+    public function storeFileInDirectory($file, $path)
+    {
+        $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
+        $file->move(storage_path('app/'), $secureName);
+        return $path.'/'.$secureName;
+    }
+
+    private function getSecureFileName($file)
+    {
+        return md5(rand(1,10));
+    }
+
+    private function inStoragePropertyDocPath(Property $property)
+    {
+        return 'users/'.md5($property->ownerId).'/properties/'.md5($property->id);
     }
 }

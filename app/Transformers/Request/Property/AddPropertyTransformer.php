@@ -26,7 +26,9 @@ class AddPropertyTransformer extends RequestTransformer
     }
     public function transform()
     {
-       return [
+       //$files = $this->request->files->all()['files'];
+       $files = [$this->request->file('file')];
+        return [
            /* property info */
            'ownerId' => $this->request->input('owner'),
            'purposeId' => $this->request->input('propertyPurpose'),
@@ -46,7 +48,7 @@ class AddPropertyTransformer extends RequestTransformer
            'fax' => $this->request->input('fax'),
 
            'features' => $this->request->input('features'),
-           'files' => $this->request->input('files'),
+           'files' => $files,
         ];
     }
 
