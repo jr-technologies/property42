@@ -1,7 +1,7 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var app = angular.module('dashboard',['ngRoute', 'ui.router', 'firebase', 'ngFileUpload']);
+var app = angular.module('dashboard',['ngRoute', 'ui.router','ui.select', 'firebase', 'ngFileUpload', 'ngSanitize']);
 
 
 app.run(function($rootScope, $location, $AuthService, $state) {
@@ -12,6 +12,12 @@ app.run(function($rootScope, $location, $AuthService, $state) {
 
     $rootScope.CUSTOMERS = [];
     $rootScope.USERS = [];
+
+    $rootScope.searchPropertiesParams = {
+        owner: null,
+        purposeId: null,
+        propertyStatus: 1
+    };
 
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
 

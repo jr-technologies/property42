@@ -7,6 +7,8 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\DB\Providers\SQL\Models\Property;
+use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
@@ -48,7 +50,8 @@ class PropertiesController extends ApiController
         $property = $request->getPropertyModel();
         $propertyId = $this->properties->store($property);
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
-        $this->propertyDocuments->storeMultiple($request->getPropertyDocuments($propertyId));
+        $property->id = $propertyId;
+        $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
 
         $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
@@ -82,5 +85,37 @@ class PropertiesController extends ApiController
         return $this->response->respond(['data' => [
             'properties' => $this->userProperties->getUserProperties($request->all()),
         ]]);
+    }
+
+    public function storeFiles(array $files, $path, $propertyId)
+    {
+        $propertyDocuments = [];
+        foreach($files as $file)
+        {
+            $document = new PropertyDocument();
+            $document->path = $this->storeFileInDirectory($file['file'], $path);
+            $document->propertyId = $propertyId;
+            $document->type = 'image';
+            $document->title = isset($file['title'])?$file['title']:'';
+            $propertyDocuments[] = $document;
+        }
+        return $this->propertyDocuments->storeMultiple($propertyDocuments);
+    }
+
+    public function storeFileInDirectory($file, $path)
+    {
+        $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
+        //$file->move(storage_path('app/'), $secureName);
+        return $path.'/'.$secureName;
+    }
+
+    private function getSecureFileName($file)
+    {
+        return md5(rand(1,10));
+    }
+
+    private function inStoragePropertyDocPath(Property $property)
+    {
+        return 'users/'.md5($property->ownerId).'/properties/'.md5($property->id);
     }
 }

@@ -2,72 +2,126 @@
  * Created by noman_2 on 12/8/2015.
  */
 var app = angular.module('dashboard');
+app.filter('propsFilter', function() {
+    return function(items, props) {
+        var out = [];
 
+        if (angular.isArray(items)) {
+            var keys = Object.keys(props);
 
-app.controller("AddPropertyController",["$scope","$http", "Upload", function ($scope, $http, Upload) {
+            items.forEach(function(item) {
+                var itemMatches = false;
+
+                for (var i = 0; i < keys.length; i++) {
+                    var prop = keys[i];
+                    var text = props[prop].toLowerCase();
+                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                        itemMatches = true;
+                        break;
+                    }
+                }
+
+                if (itemMatches) {
+                    out.push(item);
+                }
+            });
+        } else {
+            // Let the output be the input untouched
+            out = items;
+        }
+
+        return out;
+    };
+});
+
+app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
+    console.log($rootScope.searchPropertiesParams);
+
     $scope.html_title = "Property42 | Add Property";
-
     $scope.formSubmitStatus = '';
     $scope.types = [];
     $scope.subTypes = [];
     $scope.blocks = [];
     $scope.societies = [];
     $scope.features = [];
-
-    $scope.selectedType = 1 ;
-    $scope.selectedSubTypeId = 0;
-    $scope.propertySociety = 0;
-
-    $scope.files = {
-        mainFile : {
-            title: '',
-            file: null
-        },
-        secondFile : {
-            title: '',
-            file: null
-        },
-        thirdFile : {
-            title: '',
-            file: null
+    $scope.featureSections = [];
+    $scope.errors = [];
+    $scope.temp = {
+        society: {id:0},
+        block: {id:0}
+    };
+    $scope.$watch('temp.society', function() {
+        $scope.form.data.society = $scope.temp.society.id;
+    });
+    $scope.$watch('temp.block', function() {
+        $scope.form.data.block = $scope.temp.block.id;
+    });
+    $scope.form = {
+        data : {
+            propertyPurpose: 0,
+            propertyType :0,
+            propertySubType : 0,
+            society:0,
+            block: 0,
+            price: 0,
+            landArea: 0,
+            landUnit: 0,
+            propertyTitle: '',
+            propertyDescription: '',
+            features:{},
+            files : {
+                mainFile:{title: '', file: null},
+                twoFile:{title: '', file: null},
+                threeFile:{title: '', file: null},
+                fourFile:{title: '', file: null},
+                fiveFile:{title: '', file: null},
+                sixFile:{title: '', file: null},
+                sevenFile:{title: '', file: null},
+                eightFile:{title: '', file: null}
+            },
+            owner: 0,
+            contactPerson: '',
+            phone: "",
+            cell : "",
+            fax: "",
+            email: ""
         }
     };
-
-    var nullFile = {
-        title: '',
-        file: null
-    };
-
+    var nullFile = {title: '', file: null};
     $scope.cancelFile = function (fileNumber) {
         switch (fileNumber)
         {
             case 0:
-                $scope.files.mainFile = nullFile;
+                $scope.form.data.files.mainFile = nullFile;
                 break;
             case 1:
-                $scope.files.secondFile = nullFile;
+                $scope.form.files.data.files.secondFile = nullFile;
                 break;
             case 2:
-                $scope.files.thirdFile = nullFile;
+                $scope.form.files.data.files.thirdFile = nullFile;
                 break;
         }
     };
 
+    var postProcessFormData = function () {
+        var features = {};
+        angular.forEach($scope.form.data.features, function(value, key) {
+            if(value != false){ features[key] = value; }
+        });
+        $scope.form.data.features = features;
+    };
     $scope.submitProperty = function() {
+        postProcessFormData();
         $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
-            url: apiPath+'test/ng',
-            data: {
-                userName: 'noman tufail',
-                file: $scope.files
-            }
+            url: apiPath+'property',
+            data: $scope.form.data
         });
 
         upload.then(function (response) {
             $scope.formSubmitStatus = '';
-            console.log(response);
         }, function (response) {
-            console.log(response);
+            $scope.errors = response.data.error.messages;
         }, function (evt) {
             console.log(evt);
         });
@@ -121,6 +175,17 @@ app.controller("AddPropertyController",["$scope","$http", "Upload", function ($s
         });
     };
 
+    var getFeatureSections = function () {
+        return $http({
+            method: 'GET',
+            url: apiPath+'feature/sections',
+            data:{}
+        }).then(function successCallback(response) {
+            return response.data.data.featureSections;
+        }, function errorCallback(response) {
+            return response;
+        });
+    };
     var getAssignedFeatures = function () {
         return $http({
             method: 'GET',
@@ -162,21 +227,18 @@ app.controller("AddPropertyController",["$scope","$http", "Upload", function ($s
             console.log('fucked up');
         });
 
-        getAssignedFeatures();
+        getFeatureSections().then(function successCallback(sections) {
+            $scope.featureSections = sections;
+        }, function errorCallback(response) {
+            console.log('fucked up');
+        });
+
 
         $(function() {
             handleAddPropertyFormScrolling();
         });
 
-        $(".searchable-select").select2({
-            placeholder: "Select",
-            allowClear: true
-        });
 
-        // page init
-        jQuery(function(){
-            initTabs();
-        });
 
     };
 }]);

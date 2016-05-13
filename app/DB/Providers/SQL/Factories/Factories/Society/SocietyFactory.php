@@ -77,6 +77,7 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->delete($society->id);
     }
+
     public function map($result)
     {
         $society = clone($this->model);
@@ -87,6 +88,7 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
         $society->updatedAt = $result->updated_at;
         return $society;
     }
+
     private function mapSocietyOnTable(Society $society)
     {
         return [
