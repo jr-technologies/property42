@@ -133,7 +133,7 @@
         <section class="feature-block" id="feature-block">
             <strong class="form-heading"><span>extra features</span></strong>
             <div class="holder">
-                <div class="features-section-holder" data-ng-repeat="featureSection in featureSections | orderBy : '-priority'">
+                <div class="features-section-holder" data-ng-r epeat="featureSection in featureSections | orderBy : '-priority'">
                     <span class="tag">{{featureSection.name}}</span>
                     <ul class="feature-list">
                         <li ng-repeat="feature in features | filter:{section:{id:featureSection.id}} | filter:{ assignedSubTypeId : form.data.propertySubType }">

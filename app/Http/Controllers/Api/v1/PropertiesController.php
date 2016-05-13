@@ -105,7 +105,7 @@ class PropertiesController extends ApiController
     public function storeFileInDirectory($file, $path)
     {
         $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
-        //$file->move(storage_path('app/'), $secureName);
+        $file->move(storage_path('app/').$path, $secureName);
         return $path.'/'.$secureName;
     }
 

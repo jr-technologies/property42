@@ -35,7 +35,7 @@ app.filter('propsFilter', function() {
 });
 
 app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
-    console.log($rootScope.searchPropertiesParams);
+    //console.log($rootScope.searchPropertiesParams);
 
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
