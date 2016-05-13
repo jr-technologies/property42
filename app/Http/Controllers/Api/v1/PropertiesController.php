@@ -39,7 +39,6 @@ class PropertiesController extends ApiController
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
         $property->id = $propertyId;
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
-        $this->propertyDocuments->storeMultiple($request->getPropertyDocuments($propertyId));
 
         $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
@@ -59,16 +58,16 @@ class PropertiesController extends ApiController
             $document->path = $this->storeFileInDirectory($file['file'], $path);
             $document->propertyId = $propertyId;
             $document->type = 'image';
-            $document->title = $file['title'];
+            $document->title = isset($file['title'])?$file['title']:'';
             $propertyDocuments[] = $document;
         }
-         dd($propertyDocuments);
+        return $this->propertyDocuments->storeMultiple($propertyDocuments);
     }
 
     public function storeFileInDirectory($file, $path)
     {
         $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
-        $file->move(storage_path('app/'), $secureName);
+        //$file->move(storage_path('app/'), $secureName);
         return $path.'/'.$secureName;
     }
 
