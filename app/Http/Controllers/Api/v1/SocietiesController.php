@@ -35,7 +35,7 @@ class SocietiesController extends ApiController
         $societyId = $this->society->store($society);
         $society->id = $societyId;
         return $this->response->respond(['data'=>[
-            'Society'=>$society
+            'society'=>$society
         ]]);
 
     }
@@ -48,7 +48,7 @@ class SocietiesController extends ApiController
     public function delete(DeleteSocietyRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'Society'=>$this->society->delete($request->getSocietyModel())
+            'society'=>$this->society->delete($request->getSocietyModel())
         ]]);
     }
     public function update(UpdateSocietyRequest $request)
@@ -56,7 +56,7 @@ class SocietiesController extends ApiController
         $society = $request->getSocietyModel();
         $this->society->update($society);
         return $this->response->respond(['data'=>[
-            'Society'=>$society
+            'society'=>$society
         ]]);
     }
 

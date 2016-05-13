@@ -16,6 +16,10 @@ class HtmlStructuresTableSeeder extends Seeder
             ['structure' => 'number'],
             ['structure' => 'select'],
             ['structure' => 'textarea'],
+            ['structure' => 'checkbox'],
+            ['structure' => 'radio'],
+            ['structure' => 'longtext'],
+            ['structure' => 'description'],
         ]);
     }
 }

@@ -51,7 +51,6 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->purpose = $this->getPurpose()->name;
         $this->prototype->type = $this->getPropertyType();
         $this->prototype->location = $this->getPropertyLocation();
-
         $this->prototype->title = $this->model->title;
         $this->prototype->description = $this->model->description;
         $this->prototype->price = $this->model->price;
@@ -123,7 +122,6 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $purpose = new PropertyPurpose();
         $purpose->id = $this->model->purposeId;
         $purpose->name = $thisPropertyPurpose;
-
         return $purpose;
     }
 }

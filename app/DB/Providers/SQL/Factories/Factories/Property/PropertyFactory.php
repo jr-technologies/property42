@@ -34,27 +34,23 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($id));
     }
-
+    public function delete(Property $property)
+    {
+        return  $this->tableGateway->delete($property->id);
+    }
     function all()
     {
        return $this->mapCollection($this->tableGateway->all());
     }
-
-    public function update(PropertyType $propertyType)
+    public function update(Property $property)
     {
-        $propertyType->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->update($propertyType->id ,$this->mapPropertyOnTable($propertyType));
+        return $this->tableGateway->update($property->id,$this->mapPropertyOnTable($property));
     }
 
     public function store(Property $property)
     {
         $property->createdAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapPropertyOnTable($property));
-    }
-
-    public function delete(PropertyType $propertyType)
-    {
-        return $this->tableGateway->delete($propertyType->id);
     }
 
     public function getCompleteLocation($propertyId)
@@ -96,6 +92,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     private function mapPropertyOnTable(Property $property)
     {
         return [
+            'Id'=>$property->id,
             'purpose_id'=>$property->purposeId,
             'property_sub_type_id' => $property->subTypeId,
             'block_id' => $property->blockId,

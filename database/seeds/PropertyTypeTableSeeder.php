@@ -12,9 +12,9 @@ class PropertyTypeTableSeeder extends Seeder
     public function run()
     {
         DB::table('property_types')->insert([
-            ['type' => 'dha'],
-            ['type' => 'dha phase 2'],
-            ['type' => 'dha phase 3']
+            ['type' => 'Homes'],
+            ['type' => 'Plots'],
+            ['type' => 'Commercial']
         ]);
     }
 }

@@ -217,6 +217,8 @@ return [
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
+        'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
+
 
         /* Loading Helpers */
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
@@ -281,8 +283,11 @@ return [
         'DeletePropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\DeletePropertyStatusRequest::class,
         'GetAllPropertyStatusRequest' => \App\Http\Requests\Requests\PropertyStatus\GetAllPropertyStatusRequest::class,
 
-        /* Property Status Requests */
+        /* Property Requests */
         'AddPropertyRequest' => \App\Http\Requests\Requests\Property\AddPropertyRequest::class,
+        'GetUserPropertiesRequest' => \App\Http\Requests\Requests\Property\GetUserPropertiesRequest::class,
+        'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
+        'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,
@@ -303,6 +308,9 @@ return [
         'AddAgencyRequest' => \App\Http\Requests\Requests\Agency\AddAgencyRequest::class,
         'UpdateAgencyRequest' => \App\Http\Requests\Requests\Agency\UpdateAgencyRequest::class,
         'GetAgencyStaffRequest' => \App\Http\Requests\Requests\Agency\GetAgencyStaffRequest::class,
+        'AddAgencyStaffRequest' => \App\Http\Requests\Requests\Agency\AddAgencyStaffRequest::class,
+        'UpdateAgencyStaffRequest' => \App\Http\Requests\Requests\Agency\UpdateAgencyStaffRequest::class,
+        'DeleteAgencyStaffRequest' => \App\Http\Requests\Requests\Agency\DeleteAgencyStaffRequest::class,
 
         /* Property Like Requests */
         'AddPropertyLikeRequest' => \App\Http\Requests\Requests\PropertyLike\AddPropertyLikeRequest::class,

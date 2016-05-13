@@ -40,15 +40,15 @@ class UpdateAgencyRequest extends Request implements RequestInterface{
     public function getAgencyModel()
     {
         $agency= new Agency();
-        $agency->id= $this->get('agency_id');
-        $agency->userId= $this->get('user_id');
-        $agency->name= $this->get('agency_name');
+        $agency->id= $this->get('id');
+        $agency->userId= $this->get('userId');
+        $agency->name= $this->get('agencyName');
         $agency->description= $this->get('description');
-        $agency->mobile= $this->get('mobile');
-        $agency->phone= $this->get('phone');
-        $agency->address= $this->get('address');
-        $agency->email= $this->get('email');
-        $agency->logo= $this->get('logo');
+        $agency->mobile= $this->get('companyMobile');
+        $agency->phone= $this->get('companyPhone');
+        $agency->address= $this->get('companyAddress');
+        $agency->email= $this->get('companyEmail');
+        $agency->logo= $this->get('companyLogo');
         return $agency;
 
     }

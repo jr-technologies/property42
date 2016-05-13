@@ -135,7 +135,6 @@ abstract class QueryBuilder {
     {
         return DB::table($this->table)->where($conditions)->delete();
     }
-
     /**
      * @return mixed
      */

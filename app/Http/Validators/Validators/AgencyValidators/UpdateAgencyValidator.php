@@ -19,13 +19,12 @@ class UpdateAgencyValidator extends AgencyValidator implements ValidatorsInterfa
     {
         return[
                 'id'=>'required',
-                'user_id'=>'required',
-                'agency_name' => 'required',
-                'description'=>'required',
-                'mobile' => 'required',
-                'phone'=>'required',
-                'address' =>'required',
-                'email'=>'required',
+                'userId'=>'required',
+                'agencyName' => 'required',
+                'companyMobile' => 'required',
+                'companyPhone'=>'required',
+                'companyAddress' =>'required',
+                'companyEmail'=>'required',
 
             ];
     }

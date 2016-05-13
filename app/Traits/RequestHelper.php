@@ -15,7 +15,6 @@
 namespace App\Traits;
 use App\Libs\Auth\Api as ApiAuthenticator;
 use App\Libs\Auth\Web as WebAuthenticator;
-use App\Traits\AppTrait;
 
 trait RequestHelper
 {

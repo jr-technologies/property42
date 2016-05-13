@@ -35,7 +35,7 @@ class PropertyStatusController extends ApiController
         $landUnitId = $this->PropertyStatus->store($landUnit);
         $landUnit->id = $landUnitId;
         return $this->response->respond(['data'=>[
-            'PropertyStatus' => $landUnit
+            'propertyStatus' => $landUnit
         ]]);
     }
 
@@ -44,19 +44,19 @@ class PropertyStatusController extends ApiController
         $propertyStatus = $request->getPropertyStatusModel();
         $this->PropertyStatus->update($propertyStatus);
         return $this->response->respond(['data'=>[
-        'PropertyStatus'=>$propertyStatus
+        'propertyStatus'=>$propertyStatus
         ]]);
     }
     public function all(GetAllPropertyStatusRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'PropertyStatus'=>$this->PropertyStatus->all()
+            'propertyStatus'=>$this->PropertyStatus->all()
         ]]);
     }
     public function delete(DeletePropertyStatusRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'PropertyStatus'=>$this->PropertyStatus->delete($request->getPropertyStatusModel())
+            'propertyStatus'=>$this->PropertyStatus->delete($request->getPropertyStatusModel())
         ]]);
     }
 

@@ -8,7 +8,6 @@
 
 namespace App\DB\Providers\SQL\Factories\Factories\User;
 
-use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\Gateways\UserQueryBuilder;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
@@ -91,7 +90,10 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->update($user->id, $this->mapUserOnTable($user));
     }
-
+    public function delete(UserModel $user)
+    {
+        return $this->tableGateway->delete($user->id);
+    }
     /**
      * @param array $where
      * @param array $data
@@ -144,7 +146,6 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->membershipPlanId = $result->membership_plan_id;
         $user->membershipStatus = $result->membership_status;
         $user->notificationSettings = $result->notification_settings;
-
         return $user;
     }
 

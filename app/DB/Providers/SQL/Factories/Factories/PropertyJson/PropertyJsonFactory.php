@@ -40,13 +40,25 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         return $this->map($this->tableGateway->findByUser($id));
     }
 
+    public function delete($id)
+    {
+        return $this->tableGateway->deleteWhere(['property_id'=>$id]);
+    }
     /**
-     * @param UserJsonPrototype $user
+     * @param $params
+     * @return mixed
+     */
+    public function getUserProperties($params)
+    {
+        return $this->mapCollection($this->tableGateway->getUserProperties($params));
+    }
+    /**
+     * @param PropertyJsonPrototype $property
      * @return bool
      **/
-    public function update(UserJsonPrototype $user)
+    public function update(PropertyJsonPrototype $property)
     {
-        return $this->tableGateway->updateWhere(['user_id'=>$user->id], $this->mapPropertyOnTable($user));
+        return $this->tableGateway->updateWhere(['property_id'=>$property->id], $this->mapPropertyOnTable($property));
     }
 
     /**
@@ -66,11 +78,33 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         /* @var $propertyJson PropertyJsonPrototype::class */
         $propertyJson = json_decode($result->json);
-        $property = $this->model;
+        $property = clone($this->model);
+
+        $property->id = $propertyJson->id;
+        $property->owner = $propertyJson->owner;
+        $property->type = $propertyJson->type;
+        $property->totalViews = $propertyJson->totalViews;
+        $property->totalLikes = $propertyJson->totalLikes;
+        $property->title = $propertyJson->title;
+        $property->rating = $propertyJson->rating;
+        $property->purpose = $propertyJson->purpose;
+        $property->propertyStatus = $propertyJson->propertyStatus;
+        $property->price = $propertyJson->price;
+        $property->location = $propertyJson->location;
+        $property->isHot = $propertyJson->isHot;
+        $property->land = $propertyJson->land;
+        $property->isFeatured = $propertyJson->isFeatured;
+        $property->isDeleted = $propertyJson->isDeleted;
+        $property->features = $propertyJson->features;
+        $property->description = $propertyJson->description;
+        $property->createdBy = $propertyJson->createdBy;
         return $property;
     }
 
-
+    /**
+     * @param PropertyJsonPrototype $property
+     * @return array
+     */
     private function mapPropertyOnTable(PropertyJsonPrototype $property)
     {
         return [

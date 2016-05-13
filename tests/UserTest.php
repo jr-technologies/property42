@@ -6,8 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
-    private $userEmail = 'jrteam@gmail.com';
-    private $userPassword = '123';
+    private $userEmail = 'noman@gmail.com';
+    private $userPassword = '12345';
 
     public function generateUniqueEmail()
     {
@@ -74,5 +74,9 @@ class UserTest extends TestCase
         $this->json('GET', $this->apiRoute('users'))->seeJson([
             'status' => 1
         ]);
+    }
+    public function testDeleteUser()
+    {
+        $this->json('POST',$this->apiRoute('user/agency/staff/delete'),['user_id'=>4])->seeJson(['status'=> 1]);
     }
 }

@@ -38,7 +38,7 @@ class PropertyStatusTest extends TestCase
      */
     public function testPropertyStatusInsertionInDb()
     {
-        $this->seeInDatabase('property_statuses', ['status' =>'usa']);
+        $this->seeInDatabase('property_statuses', ['status' =>'waqas']);
     }
 
     public function testUpdatePropertyStatus()

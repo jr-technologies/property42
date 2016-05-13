@@ -45,7 +45,6 @@ abstract class AppValidator
     }
 
     public  function validate(){
-
         $validator = Validator::make($this->request->all(), $this->rules(), $this->messages());
         if($validator->fails()){
             $this->setValidationMessages($validator->messages()->all());

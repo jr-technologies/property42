@@ -14,7 +14,7 @@ use App\Repositories\Providers\RepositoryProviderInterface;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\PropertiesJsonRepository;
 
-class PropertyJsonRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
+class PropertiesJsonRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
 {
 
     public function repo()

@@ -26,6 +26,26 @@
 //    \App\Libs\File\FileRelease::multiRelease($files);
 //});
 
+//Route::get('f', function(){
+//    for($i = 1; $i <= 19; $i++) {
+//        $rands = [];
+//        for($a = 1; $a <= 58; $a++){
+//            $rands[] = rand(1,58);
+//        }
+//        $uniqueValues = array_unique($rands);
+//        foreach ($uniqueValues as $value) {
+//            echo "['property_sub_type_id' => " . $i . ", 'property_feature_id'=>" . $value . "],";
+//            echo "<br>";
+//        }
+//    }
+//});
+use App\Repositories\Repositories\Sql\FeaturesRepository;
+use Illuminate\Support\Facades\Route;
+
+Route::get('fe',function(){
+    $feature = new FeaturesRepository();
+    dd($feature->allAssigned());
+});
 Route::post('test/ng', function(){
     $response = new App\Http\Responses\Responses\ApiResponse();
     $request = request();
@@ -47,6 +67,48 @@ Route::get('/users',
     ]
 );
 
+Route::post('user/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:UpdateUserRequest'
+            ],
+        'uses'=>'UsersController@updateUser'
+    ]
+);
+
+Route::post('user/agency/staff',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:getUsersRequest'
+               'apiValidate:addAgencyStaffRequest'
+            ],
+        'uses'=>'AgencyController@addAgencyStaff'
+    ]
+);
+
+Route::post('user/agency/staff/update',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:getUsersRequest'
+                'apiValidate:updateAgencyStaffRequest'
+            ],
+        'uses'=>'AgencyController@updateAgencyStaff'
+    ]
+);
+
+Route::post('user/agency/staff/delete',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:getUsersRequest'
+                'apiValidate:deleteAgencyStaffRequest'
+            ],
+        'uses'=>'AgencyController@deleteAgencyStaff'
+    ]
+);
 Route::post('/login',
     [
         'middleware'=>
@@ -81,6 +143,7 @@ Route::post('/country',
         'uses'=>'CountriesController@store'
     ]
 );
+
 Route::post('country/update',
     [
         'middleware'=>
@@ -90,6 +153,7 @@ Route::post('country/update',
         'uses'=>'CountriesController@update'
     ]
 );
+
 Route::post('country/delete',
     [
         'middleware'=>
@@ -99,6 +163,7 @@ Route::post('country/delete',
         'uses'=>'CountriesController@delete'
     ]
 );
+
 Route::post('countries',
     [
         'middleware'=>
@@ -116,12 +181,13 @@ Route::post('/city',
     [
         'middleware'=>
             [
-                'apiAuthenticate:addCityRequest',
+                //'apiAuthenticate:addCityRequest',
                 'apiValidate:addCityRequest'
             ],
         'uses'=>'CitiesController@store'
     ]
 );
+
 Route::post('city/update',
     [
         'middleware'=>
@@ -131,6 +197,7 @@ Route::post('city/update',
         'uses'=>'CitiesController@update'
     ]
 );
+
 Route::post('city/delete',
     [
         'middleware'=>
@@ -140,6 +207,7 @@ Route::post('city/delete',
         'uses'=>'CitiesController@delete'
     ]
 );
+
 Route::get('cities',
     [
         'middleware'=>
@@ -149,6 +217,7 @@ Route::get('cities',
         'uses'=>'CitiesController@all'
     ]
 );
+
 Route::post('cities-by-society',
     [
         'middleware'=>
@@ -192,6 +261,7 @@ Route::post('society/update',
         'uses'=>'SocietiesController@update'
     ]
 );
+
 Route::post('society/delete',
     [
         'middleware'=>
@@ -201,6 +271,7 @@ Route::post('society/delete',
         'uses'=>'SocietiesController@delete'
     ]
 );
+
 Route::get('societies',
     [
         'middleware'=>
@@ -224,6 +295,7 @@ Route::post('/block',
         'uses'=>'BlocksController@store'
     ]
 );
+
 Route::post('society/blocks',
     [
         'middleware'=>
@@ -234,6 +306,7 @@ Route::post('society/blocks',
         'uses'=>'BlocksController@getBlocksBySociety'
     ]
 );
+
 Route::post('block/update',
     [
         'middleware'=>
@@ -243,6 +316,7 @@ Route::post('block/update',
         'uses'=>'BlocksController@update'
     ]
 );
+
 Route::post('block/delete',
     [
         'middleware'=>
@@ -252,6 +326,7 @@ Route::post('block/delete',
         'uses'=>'BlocksController@delete'
     ]
 );
+
 Route::get('blocks',
     [
         'middleware'=>
@@ -277,6 +352,36 @@ Route::post('/property',
     ]
 );
 
+Route::post('user/properties',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getUserPropertiesRequest'
+            ],
+        'uses'=>'PropertiesController@getUserProperties'
+    ]
+);
+
+Route::post('property/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updatePropertyRequest'
+            ],
+        'uses'=>'PropertiesController@update'
+    ]
+);
+
+Route::post('property/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertyRequest'
+            ],
+        'uses'=>'PropertiesController@delete'
+    ]
+);
+
 /**
  * Property Purpose Crud
  **/
@@ -290,6 +395,7 @@ Route::post('/property/purpose',
         'uses'=>'PropertyPurposeController@store'
     ]
 );
+
 Route::post('property/purpose/update',
     [
         'middleware'=>
@@ -299,6 +405,7 @@ Route::post('property/purpose/update',
         'uses'=>'PropertyPurposeController@update'
     ]
 );
+
 Route::post('property/purpose/delete',
     [
         'middleware'=>
@@ -598,6 +705,9 @@ Route::post('agency/update',
     ]
 );
 
+
+
+
 /**
  * Property Like Crud
  **/
@@ -648,6 +758,7 @@ Route::post('user/role/update',
         'uses'=>'UserRolesController@update'
     ]
 );
+
 Route::post('user/role/delete',
     [
         'middleware'=>
@@ -657,6 +768,7 @@ Route::post('user/role/delete',
         'uses'=>'UserRolesController@delete'
     ]
 );
+
 Route::post('user/roles',
     [
         'middleware'=>

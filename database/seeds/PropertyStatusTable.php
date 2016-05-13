@@ -13,10 +13,11 @@ class PropertyStatusTable extends Seeder
  public function run()
  {
      DB::table('property_statuses')->insert([
-         ['status'=>'usa'],
-         ['status'=>'usa1'],
-         ['status'=>'usa2'],
-
+         ['status'=>'Active'],
+         ['status'=>'Pending'],
+         ['status'=>'Deleted'],
+         ['status'=>'Rejected'],
+         ['status'=>'Approved'],
      ]);
  }
 }

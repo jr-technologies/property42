@@ -15,7 +15,7 @@ use App\Libs\Json\Prototypes\Prototypes\Property\Type\PropertyTypeJsonPrototype;
 
 class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
 {
-    public $id ="";
+    public $id = 0;
     public $owner = null;
     public $purpose = "";
     /* @var $type PropertyTypeJsonPrototype::class */

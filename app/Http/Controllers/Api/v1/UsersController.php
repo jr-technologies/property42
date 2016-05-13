@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\Requests\User\UpdateUserRequest;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Http\Requests\Requests\User\AddUserRequest;
@@ -30,6 +31,9 @@ class UsersController extends ApiController
         $this->agencyRepo = $agenciesRepository;
     }
 
+    /**
+     * @return \App\Http\Responses\Responses\json
+     */
     public function index()
     {
         $users = $this->users->all();
@@ -44,6 +48,18 @@ class UsersController extends ApiController
 
     }
 
+    /**
+     * @param UpdateUserRequest $request
+     * @return \App\Http\Responses\Responses\json
+     */
+    public function updateUser(UpdateUserRequest $request)
+    {
+        $user = $request->getUserModel();
+        $this->users->update($user);
+        return $this->response->respond(['data'=>[
+                'user'=>$user
+            ]]);
+    }
     private function storeAgency(array $agencyInfo, $userId)
     {
 

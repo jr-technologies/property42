@@ -32,7 +32,7 @@ class CitiesController extends ApiController
         $city = $request->getCityModel();
         $city->id = $this->cities->store($city);
         return $this->response->respond(['data' => [
-            'country' => $city
+            'city' => $city
         ]]);
     }
     public function update(UpdateCityRequest $request)
@@ -52,7 +52,7 @@ class CitiesController extends ApiController
     public function all(GetAllCitiesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'city'=>$this->cities->all()
+            'cities'=>$this->cities->all()
         ]]);
     }
     public function getByCountry(GetCitiesByCountryRequest $request)

@@ -27,19 +27,18 @@ class PropertySubTypeTest extends TestCase
     {
         $this->json('POST', $this->apiRoute('property/subtype'), [
             'p_type_id' => '1',
-            'p_sub_type_name' => 'usa',
+            'p_sub_type_name' => 'subTypeForUnitTesting',
         ])->seeJson([
             'status' =>1,
         ]);
     }
     /**
      * Checking user inserted in db
-     *
      * @return void
      */
     public function testPropertySubTypeInsertionInDb()
     {
-        $this->seeInDatabase('property_sub_types', ['sub_type' =>'usa']);
+        $this->seeInDatabase('property_sub_types', ['sub_type' =>'subTypeForUnitTesting']);
     }
 
     public function testUpdatePropertySubType()
@@ -67,7 +66,7 @@ class PropertySubTypeTest extends TestCase
 
     public function testDeletePropertySubType()
     {
-        $this->json('POST',$this->apiRoute('property/subtype/delete'),['p_sub_type_id'=>1])->seeJson(['status'=> 1]);
+        $this->json('POST',$this->apiRoute('property/subtype/delete'),['p_sub_type_id'=>4])->seeJson(['status'=> 1]);
     }
 
 }

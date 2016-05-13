@@ -21,6 +21,7 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $this->tableGateway = new UserJsonQueryBuilder();
     }
 
+
     /**
      * @return array UserModel::class
      **/

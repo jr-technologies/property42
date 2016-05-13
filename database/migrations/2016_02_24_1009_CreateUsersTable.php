@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('mobile')->nullable();
             $table->string('fax')->nullable();
-            $table->string('address')->nullable();
+            $table->tinyInteger('user_type')->default();
+            $table->string('address');
             $table->string('zipcode')->nullable();
             $table->integer('country_id')->unsigned();
             $table->tinyInteger('notification_settings');

@@ -34,7 +34,7 @@ class BlocksController extends ApiController
         $block =$request->getBlockModel();
         $block->id = $this->block->store($block);
         return $this->response->respond(['data' => [
-            'Block' => $block
+            'block' => $block
         ]]);
     }
 
@@ -55,19 +55,19 @@ class BlocksController extends ApiController
         $block =$request->getBlockModel();
         $this->block->update($block);
         return $this->response->respond(['data' => [
-            'Block' => $block
+            'block' => $block
         ]]);
     }
 
     public function getBySociety(GetBlocksBySocietyRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'Block'=>$this->block->getBySociety($request->get('societyId'))
+            'block'=>$this->block->getBySociety($request->get('societyId'))
             ]]);
     }
     public function getBlocksBySociety(GetBlocksBySocietyRequest $request)
     {
             return $this->response->respond(['data'=>[
-            'Blocks'=>$this->block->getBlocksBySociety($request->get('societyId'))]]);
+            'blocks'=>$this->block->getBlocksBySociety($request->get('societyId'))]]);
     }
 }

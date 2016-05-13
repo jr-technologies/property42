@@ -33,19 +33,19 @@ class FeatureSectionsController extends ApiController
         $FeatureSection =$request->getFeatureSectionModel();
         $FeatureSection->id = $this->FeatureSection->store($FeatureSection);
         return $this->response->respond(['data' => [
-            'FeatureSection' => $FeatureSection
+            'featureSection' => $FeatureSection
         ]]);
     }
     public function all(GetAllFeatureSectionRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'FeatureSection'=>$this->FeatureSection->all()
+            'featureSection'=>$this->FeatureSection->all()
         ]]);
     }
     public function delete(DeleteFeatureSectionRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'FeatureSection'=>$this->FeatureSection->delete($request->getFeatureSectionModel())
+            'featureSection'=>$this->FeatureSection->delete($request->getFeatureSectionModel())
         ]]);
     }
     public function update(UpdateFeatureSectionRequest $request)
@@ -53,14 +53,14 @@ class FeatureSectionsController extends ApiController
         $FeatureSection =$request->getFeatureSectionModel();
         $this->FeatureSection->update($FeatureSection);
         return $this->response->respond(['data' => [
-            'FeatureSection' => $FeatureSection
+            'featureSection' => $FeatureSection
         ]]);
     }
     public function getPropertyFeatures(GetPropertyFeatures $request)
     {
         return $this->response->respond([
             'data'=>[
-                'FeatureSection'=>$this->FeatureSection
+                'featureSection'=>$this->FeatureSection
             ]
         ]);
     }

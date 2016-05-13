@@ -6,12 +6,16 @@ use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
 use App\Events\Events\Agency\AgencyUpdated;
 use App\Events\Events\Property\PropertyCreated;
+use App\Events\Events\Property\PropertyDeleted;
+use App\Events\Events\Property\PropertyUpdated;
 use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserCreated;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
 use App\Listeners\Listeners\Agency\DeleteAgencyInUserJson;
 use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
 use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
+use App\Listeners\Listeners\Property\DeletePropertyJsonDocument;
+use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
 use App\Listeners\Listeners\User\CreateUserJsonDocument;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
@@ -46,6 +50,12 @@ class EventServiceProvider extends ServiceProvider
         /* property events */
         PropertyCreated::class => [
             CreatePropertyJsonDocument::class,
+        ],
+        PropertyUpdated::class => [
+            UpdatePropertyJsonDocument::class,
+        ],
+        PropertyDeleted::class => [
+            DeletePropertyJsonDocument::class,
         ]
         
     ];

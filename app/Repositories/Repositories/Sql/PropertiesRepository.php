@@ -45,23 +45,20 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->factory->all();
     }
-
     public function propertyCompleteType($propertyId)
     {
         return $this->propertySubTypeFactory->propertyCompleteType($propertyId);
     }
-
-    public function update(PropertyType $propertyType)
+    public function update(Property $property)
     {
-        $this->factory->update($propertyType);
-        return $this->factory->find($propertyType->id);
+      return $this->factory->update($property);
     }
 
-    public function delete(PropertyType $propertyType)
+    public function delete(Property $property)
     {
-        return $this->factory->delete($propertyType);
-    }
+        return  $this->factory->delete($property);
 
+    }
     public function getCompleteLocation($id)
     {
         return $this->factory->getCompleteLocation($id);

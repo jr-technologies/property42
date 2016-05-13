@@ -12,12 +12,12 @@ namespace App\Transformers\Request\Agency;
 use App\Transformers\Request\RequestTransformer;
 
 
-class GetAgencyStaffTransformer extends RequestTransformer
+class DeleteAgencyStaffTransformer extends RequestTransformer
 {
     public function transform()
     {
         return [
-            'agencyId' =>$this->request->get('agency_id')
+            'id' =>$this->request->input('user_id'),
         ];
     }
 }

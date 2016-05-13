@@ -41,20 +41,20 @@ class PropertyPurposeController extends ApiController
     public function all(GetAllPropertyPurposesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'PropertyPurpose'=>$this->propertyPurposeRepository->all()
+            'propertyPurpose'=>$this->propertyPurposeRepository->all()
         ]]);
     }
     public function delete(DeletePropertyPurposeRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'PropertyPurpose'=>$this->propertyPurposeRepository->delete($request->getPropertyPurposeModel())
+            'propertyPurpose'=>$this->propertyPurposeRepository->delete($request->getPropertyPurposeModel())
         ]]);
     }
     public function update(UpdatePropertyPurposeRequest $request)
     {
         $propertyPurpose =$request->getPropertyPurposeModel();
         $this->propertyPurposeRepository->store($propertyPurpose);
-        return $this->response->respond(['data'=>['PropertyPurpose' =>$propertyPurpose]]);
+        return $this->response->respond(['data'=>['propertyPurpose' =>$propertyPurpose]]);
 
     }
 }

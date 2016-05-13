@@ -36,7 +36,7 @@ class LandUnitController extends ApiController
         $landUnitId = $this->LandUnit->store($landUnit);
         $landUnit->id = $landUnitId;
         return $this->response->respond(['data'=>[
-            'LandUnit' => $landUnit
+            'landUnit' => $landUnit
         ]]);
     }
 
@@ -45,19 +45,19 @@ class LandUnitController extends ApiController
         $landUnit = $request->getLandUnitModel();
         $this->LandUnit->update($landUnit);
         return $this->response->respond(['data'=>[
-        'LandUnit'=>$landUnit
+        'landUnit'=>$landUnit
         ]]);
     }
     public function all(GetAllLandUnitsRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'LandUnit'=>$this->LandUnit->all()
+            'landUnit'=>$this->LandUnit->all()
         ]]);
     }
     public function delete(DeleteLandUnitRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'LandUnit'=>$this->LandUnit->delete($request->getLandUnitModel())
+            'landUnit'=>$this->LandUnit->delete($request->getLandUnitModel())
         ]]);
     }
 

@@ -12,9 +12,14 @@ class FeatureSectionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('feature_sections')->insert([
-            ['section' => 'main features', 'priority' => 1],
-            ['section' => 'indoor features', 'priority' => 0],
-            ['section' => 'outdoor features', 'priority' => 0],
+            ['section' => 'Main Features', 'priority' => 7],
+            ['section' => 'Business and Communication', 'priority' => 6],
+            ['section' => 'Nearby Locations and Other Facilities', 'priority' => 5],
+            ['section' => 'Rooms', 'priority' => 4],
+            ['section' => 'Healthcare Recreational', 'priority' => 3],
+            ['section' => 'Other Facilities', 'priority' => 2],
+            ['section' => 'Plot Feature', 'priority' => 1],
+
         ]);
     }
 }

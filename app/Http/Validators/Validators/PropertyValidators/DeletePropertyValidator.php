@@ -6,20 +6,24 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\AgencyValidators;
+namespace App\Http\Validators\Validators\PropertyValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class GetAgencyStaffValidator extends AgencyValidator implements ValidatorsInterface
+class DeletePropertyValidator extends PropertyValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
         parent::__construct($request);
     }
+
+    /**
+     * @return array
+     */
     public function rules()
     {
-        return[
-            'agencyId'=>'required'
+        return [
+            'propertyId'=>'required',
         ];
     }
 }

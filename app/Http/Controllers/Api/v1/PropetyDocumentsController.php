@@ -28,7 +28,7 @@ class PropertyDocumentsController extends ApiController
         $city = $request->getPropertyDocumentModel();
         $city->id = $this->propertyDocument->store($city);
         return $this->response->respond(['data' => [
-            'country' => $city
+            'propertyDocument' => $city
         ]]);
     }
     public function update(UpdatePropertyDocumentRequest $request)
@@ -36,19 +36,19 @@ class PropertyDocumentsController extends ApiController
         $city =$request->getPropertyDocumentModel();
         $this->propertyDocument->update($city);
         return $this->response->respond(['data' => [
-            'city' => $city
+            'propertyDocument' => $city
         ]]);
     }
     public function delete(DeletePropertyDocumentRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'city'=>$this->propertyDocument->delete($request->getPropertyDocumentModel())
+            'propertyDocument'=>$this->propertyDocument->delete($request->getPropertyDocumentModel())
         ]]);
     }
     public function all(GetAllPropertyDocumentsRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'city'=>$this->propertyDocument->all()
+            'propertyDocument'=>$this->propertyDocument->all()
         ]]);
     }
 
