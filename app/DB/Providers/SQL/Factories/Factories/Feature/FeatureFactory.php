@@ -87,7 +87,7 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $featureWithValidationRules->featureName = $features[0]->featureName;
             $featureWithValidationRules->featureInputName = $features[0]->featureInputName;
             $featureWithValidationRules->priority = $features[0]->featurePriority;
-            $featureWithValidationRules->assignedSubTypeId = $features[0]->assignedSubTypeId;
+            $featureWithValidationRules->assignedSubTypeId = intval($features[0]->assignedSubTypeId);
 
             /* mapping HtmlStructure */
             $htmlStructure = new FeatureHtmlStructure();

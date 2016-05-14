@@ -32,6 +32,9 @@ class FeatureHtmlStructure {
             case 'checkbox':
                 return $this->createCheckbox();
                 break;
+            case 'select':
+                return $this->createSelect();
+                break;
             default:
                 return $this->createText();
         }
@@ -51,7 +54,7 @@ class FeatureHtmlStructure {
     }
     private function createSelect()
     {
-        return null;
+        return "<input type='checkbox' value='helo' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
     }
 } 
 

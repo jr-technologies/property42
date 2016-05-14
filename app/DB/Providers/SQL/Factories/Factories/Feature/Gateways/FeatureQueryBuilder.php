@@ -47,7 +47,7 @@ class FeatureQueryBuilder extends QueryBuilder
             ->leftjoin($validationErrorMessages,$validationRules.'.id','=',$validationErrorMessages.'.validation_rule_id')
             ->leftjoin($appMessages,$validationErrorMessages.'.app_message_id','=',$appMessages.'.id')
             ->select(
-                $propertySubTypeAssignedFeatures.'.id as assignedSubTypeId',
+                $propertySubTypeAssignedFeatures.'.property_sub_type_id as assignedSubTypeId',
                 $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',
                 $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
                 $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',
@@ -75,7 +75,7 @@ class FeatureQueryBuilder extends QueryBuilder
             ->leftjoin($validationErrorMessages,$validationRules.'.id','=',$validationErrorMessages.'.validation_rule_id')
             ->leftjoin($appMessages,$validationErrorMessages.'.app_message_id','=',$appMessages.'.id')
             ->select(
-                $propertySubTypeAssignedFeatures.'.id as assignedSubTypeId',
+                $propertySubTypeAssignedFeatures.'.property_sub_type_id as assignedSubTypeId',
                 $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',
                 $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
                 $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',

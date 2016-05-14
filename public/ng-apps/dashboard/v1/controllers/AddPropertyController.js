@@ -33,7 +33,18 @@ app.filter('propsFilter', function() {
         return out;
     };
 });
-
+app.filter('filterBySubType', [function () {
+    return function (features, subTypeId) {
+        var filtered = [];
+        angular.forEach(features, function (feature, key) {
+            if(parseInt(feature.assignedSubTypeId) == parseInt(subTypeId)){
+                console.log(subTypeId);
+                filtered.push(feature);
+            }
+        });
+        return filtered;
+    };
+}]);
 app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
     //console.log($rootScope.searchPropertiesParams);
 
