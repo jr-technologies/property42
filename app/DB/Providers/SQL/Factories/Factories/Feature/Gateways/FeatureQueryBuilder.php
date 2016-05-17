@@ -48,7 +48,7 @@ class FeatureQueryBuilder extends QueryBuilder
             ->leftjoin($appMessages,$validationErrorMessages.'.app_message_id','=',$appMessages.'.id')
             ->select(
                 $propertySubTypeAssignedFeatures.'.property_sub_type_id as assignedSubTypeId',
-                $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',
+                $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',$propertyFeatures.'.possible_values as featurePossibleValues',
                 $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
                 $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',
                 $validationRules.'.id as ruleId', $validationRules.'.rule as ruleName',
@@ -76,7 +76,7 @@ class FeatureQueryBuilder extends QueryBuilder
             ->leftjoin($appMessages,$validationErrorMessages.'.app_message_id','=',$appMessages.'.id')
             ->select(
                 $propertySubTypeAssignedFeatures.'.property_sub_type_id as assignedSubTypeId',
-                $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority',
+                $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority', $propertyFeatures.'.possible_values as featurePossibleValues',
                 $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
                 $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',
                 $validationRules.'.id as ruleId', $validationRules.'.rule as ruleName',
@@ -84,6 +84,7 @@ class FeatureQueryBuilder extends QueryBuilder
             )
             ->where($propertySubTypeAssignedFeatures.'.property_sub_type_id','=',$subTypeId)
             ->get();
+        return $result;
     }
 
     /**
