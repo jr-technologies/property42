@@ -33,9 +33,20 @@ app.filter('propsFilter', function() {
         return out;
     };
 });
-
+app.filter('filterBySubType', [function () {
+    return function (features, subTypeId) {
+        var filtered = [];
+        angular.forEach(features, function (feature, key) {
+            if(parseInt(feature.assignedSubTypeId) == parseInt(subTypeId)){
+                console.log(subTypeId);
+                filtered.push(feature);
+            }
+        });
+        return filtered;
+    };
+}]);
 app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
-    console.log($rootScope.searchPropertiesParams);
+    //console.log($rootScope.searchPropertiesParams);
 
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
@@ -112,6 +123,7 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
     };
     $scope.submitProperty = function() {
         postProcessFormData();
+        console.log($scope.form.data.features);
         $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
             url: apiPath+'property',

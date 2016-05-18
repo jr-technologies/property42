@@ -94,6 +94,7 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $htmlStructure = new FeatureHtmlStructure();
             $htmlStructure->id = $features[0]->htmlStructureId;
             $htmlStructure->name = $features[0]->htmlStructureName;
+            $htmlStructure->possibleValues = $features[0]->featurePossibleValues;
             $htmlStructure->setHtml($features[0]->featureInputName);
             $featureWithValidationRules->htmlStructure = $htmlStructure;
 

@@ -26,7 +26,7 @@ class AddPropertyTransformer extends RequestTransformer
     }
     public function transform()
     {
-       $files = $this->request->files->all()['files'];
+       $files = $this->request->all()['files'];
        //$files = [$this->request->file('file')];
         return [
            /* property info */

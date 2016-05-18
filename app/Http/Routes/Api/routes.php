@@ -379,7 +379,7 @@ Route::post('/property',
     ]
 );
 
-Route::post('user/properties',
+Route::get('user/properties',
     [
         'middleware'=>
             [
