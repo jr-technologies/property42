@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
 use App\Events\Events\Agency\AgencyUpdated;
+use App\Events\Events\Feature\FeatureJsonCreated;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
@@ -13,6 +14,7 @@ use App\Events\Events\User\UserCreated;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
 use App\Listeners\Listeners\Agency\DeleteAgencyInUserJson;
 use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
+use App\Listeners\Listeners\Feature\CreateFeatureJsonDocument;
 use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\DeletePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
@@ -56,8 +58,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         PropertyDeleted::class => [
             DeletePropertyJsonDocument::class,
+        ],
+        FeatureJsonCreated::class => [
+            CreateFeatureJsonDocument::class,
         ]
-        
     ];
 
     /**

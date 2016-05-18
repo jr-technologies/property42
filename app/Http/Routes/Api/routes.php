@@ -39,12 +39,38 @@
 //        }
 //    }
 //});
+use App\Events\Events\Feature\FeatureJsonCreated;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use Illuminate\Support\Facades\Route;
 
+Route::get('feature/json',function(){
+    $feature = new FeaturesRepository();
+    $features = $feature->allAssigned();
+    Event::fire(new FeatureJsonCreated($features));
+});
+
 Route::get('fe',function(){
     $feature = new FeaturesRepository();
-    dd($feature->allAssigned());
+    $features = $feature->allAssigned();
+    //dd($features);
+    $collection = collect($features);
+    //dd($collection);
+    $collection = $collection->each(function ($item, $key) {
+        $item->sectionName = $item->section->name;
+    });
+    $groupedBySection = $collection->groupBy('sectionName');
+    //dd($groupedBySection);
+    $finalArray = [];
+    $groupedBySection->each(function($featuresCollection,$key) use (&$finalArray){
+        $features = $featuresCollection->all();
+        //dd($features);
+        $section = clone($features[0]->section);
+        $section->features = $features;
+        //dd($section);
+        $finalArray[$key] = $section;
+    });
+
+    dd(json_encode($finalArray));
 });
 Route::post('test/ng', function(){
     $response = new App\Http\Responses\Responses\ApiResponse();
@@ -615,7 +641,39 @@ Route::get('property/statuses',
 );
 
 
+/**
+ * feature Crud
+ **/
+Route::post('feature',
 
+    [
+        'middleware'=>
+            [
+                'apiValidate:addFeatureRequest'
+            ],
+
+        'uses'=>'FeaturesController@store'
+
+    ]
+);
+Route::post('feature/update',
+    [
+        'middleware'=>
+            [
+                'apiValidate:updateFeatureRequest'
+            ],
+        'uses'=>'FeaturesController@update'
+    ]
+);
+Route::post('feature/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteFeatureRequest'
+            ],
+        'uses'=>'FeaturesController@delete'
+    ]
+);
 /**
  * feature Section Crud
  **/
@@ -657,6 +715,16 @@ Route::get('feature/sections',
                 'apiValidate:getAllFeatureSectionRequest'
             ],
         'uses'=>'FeatureSectionsController@all'
+    ]
+);
+
+Route::post('assigned/subtype/feature',
+    [
+        'middleware'=>
+            [
+                'apiValidate:assignFeatureRequest'
+            ],
+        'uses'=>'PropertySubTypeController@assignFeature'
     ]
 );
 

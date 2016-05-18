@@ -11,6 +11,7 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
 
+use App\DB\Providers\SQL\Models\AssignFeature;
 use App\DB\Providers\SQL\Models\PropertySubType;
 
 use App\Repositories\Interfaces\Repositories\PropertySubTypeRepoInterface;
@@ -54,4 +55,6 @@ class PropertySubTypeRepository extends SqlRepository implements PropertySubType
     {
         return $this->factory->getByType($id);
     }
+
+
 }

@@ -17,6 +17,10 @@ use App\Repositories\Repositories\Sql\LandUnitsRepository;
 class PropertyLandJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
     private $landUnitsRepository = null;
+
+    /**
+     * @param Property|null $property
+     */
     public function __construct(Property $property = null)
     {
         $this->model = $property;

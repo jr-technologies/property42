@@ -7,25 +7,31 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\DB\Providers\SQL\Models\AssignFeature;
+use App\Http\Requests\Requests\PropertySubType\AssignFeatureRequest;
 use App\Http\Requests\Requests\PropertySubType\GetSubTypesByTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\AddPropertySubTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\DeletePropertySubTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\GetAllPropertySubTypesRequest;
 use App\Http\Requests\Requests\PropertySubType\UpdatePropertySubTypeRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Repositories\Providers\Providers\AssignFeatureRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 
 class PropertySubTypeController extends ApiController
 {
     private $propertySubTypes = null;
+    public $assignFeature = null;
     public $response = null;
 
     public function __construct
     (
         PropertySubTypesRepoProvider $propertySubTypeRepository,
+        AssignFeatureRepoProvider $assignFeatureRepoProvider,
         ApiResponse $response
     )
     {
+        $this->assignFeature = $assignFeatureRepoProvider->repo();
         $this->propertySubTypes  = $propertySubTypeRepository->repo();
         $this->response = $response;
     }
@@ -66,5 +72,12 @@ class PropertySubTypeController extends ApiController
             'data'=>['propertySubType'=>$this->propertySubTypes->getByType($request->get('typeId'))
         ]]);
 
+    }
+    public function assignFeature(AssignFeatureRequest $request)
+    {
+        $assignFeature = $request->assignFeatureModel();
+        $assignFeature->id = $this->assignFeature->store($assignFeature);
+        return $this->response->respond(['data'=>['assignFeature'=>$assignFeature
+        ]]);
     }
 }

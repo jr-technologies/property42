@@ -12,6 +12,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertySubType;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\Gateways\PropertySubTypeQueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
+use App\DB\Providers\SQL\Models\AssignFeature;
 use App\DB\Providers\SQL\Models\Property\PropertyCompleteType;
 use App\DB\Providers\SQL\Models\PropertySubType;
 use App\DB\Providers\SQL\Models\PropertyType;
@@ -81,6 +82,10 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
         $propertyCompleteType->subType = $propertySubType;
 
         return $propertyCompleteType;
+    }
+    public function assignFeature(AssignFeature $assignFeature)
+    {
+        return $this->tableGateway->insert($this->map($assignFeature));
     }
 
     private function mapPropertyTypeOnTable(PropertySubType $propertySubType)

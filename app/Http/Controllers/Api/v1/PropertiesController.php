@@ -50,6 +50,7 @@ class PropertiesController extends ApiController
         $property = $request->getPropertyModel();
         $propertyId = $this->properties->store($property);
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
+
         $property->id = $propertyId;
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
 
