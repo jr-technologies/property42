@@ -66,7 +66,7 @@ class FeatureQueryBuilder extends QueryBuilder
         $validationRules = 'validation_rules';
         $validationErrorMessages = 'validation_error_messages';
         $appMessages = 'app_messages';
-        $result =  DB::table($propertySubTypeAssignedFeatures)
+        return DB::table($propertySubTypeAssignedFeatures)
             ->leftjoin($propertyFeatures,$propertySubTypeAssignedFeatures.'.property_feature_id','=',$propertyFeatures.'.id')
             ->leftjoin($htmlStructures,$propertyFeatures.'.html_structure_id','=',$htmlStructures.'.id')
             ->leftjoin($featureSections,$propertyFeatures.'.feature_section_id','=',$featureSections.'.id')
@@ -75,8 +75,9 @@ class FeatureQueryBuilder extends QueryBuilder
             ->leftjoin($validationErrorMessages,$validationRules.'.id','=',$validationErrorMessages.'.validation_rule_id')
             ->leftjoin($appMessages,$validationErrorMessages.'.app_message_id','=',$appMessages.'.id')
             ->select(
+
                 $propertySubTypeAssignedFeatures.'.property_sub_type_id as assignedSubTypeId',
-                $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority', $propertyFeatures.'.possible_values as featurePossibleValues',
+                $propertyFeatures.'.id as featureId', $propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.priority as featurePriority', $propertyFeatures.'.possible_values as featurePossibleValues',
                 $htmlStructures.'.id as htmlStructureId',$htmlStructures.'.structure as htmlStructureName',
                 $featureSections.'.id as featureSectionId',$featureSections.'.section as featureSectionName', $featureSections.'.priority as featureSectionPriority',
                 $validationRules.'.id as ruleId', $validationRules.'.rule as ruleName',
@@ -84,7 +85,6 @@ class FeatureQueryBuilder extends QueryBuilder
             )
             ->where($propertySubTypeAssignedFeatures.'.property_sub_type_id','=',$subTypeId)
             ->get();
-        return $result;
     }
 
     /**

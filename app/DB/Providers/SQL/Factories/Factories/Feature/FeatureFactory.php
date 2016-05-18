@@ -87,7 +87,8 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $featureWithValidationRules->featureName = $features[0]->featureName;
             $featureWithValidationRules->featureInputName = $features[0]->featureInputName;
             $featureWithValidationRules->priority = $features[0]->featurePriority;
-            $featureWithValidationRules->assignedSubTypeId = intval($features[0]->assignedSubTypeId);
+            $featureWithValidationRules->assignedSubTypeId = $features[0]->assignedSubTypeId;
+            $featureWithValidationRules->possibleValues = $features[0]->featurePossibleValues;
 
             /* mapping HtmlStructure */
             $htmlStructure = new FeatureHtmlStructure();
@@ -173,12 +174,12 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return [
             'id'=>$feature->id,
-            'feature_section_id'=>$feature->priority,
+            'feature_section_id'=>$feature->featureSectionId,
             'feature'=>$feature->name,
             'input_name'=>$feature->inputName,
             'html_structure_id'=>$feature->htmlStructureId,
             'possible_values'=>$feature->possibleValues,
-
+            'priority'=>$feature->priority,
             'updated_at' => $feature->updatedAt,
         ];
     }

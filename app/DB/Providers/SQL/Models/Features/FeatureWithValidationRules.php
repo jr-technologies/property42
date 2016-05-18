@@ -22,6 +22,7 @@ class FeatureWithValidationRules {
     public $priority = 0;
     public $assignedSubTypeId = 0;
     public $htmlStructure = null;
+    public $possibleValues = "";
     public function __construct(){}
 
 

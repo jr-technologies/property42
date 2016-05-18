@@ -230,6 +230,14 @@ return [
         'DeleteCountryRequest' => \App\Http\Requests\Requests\Country\DeleteCountryRequest::class,
         'GetAllCountriesRequest' => \App\Http\Requests\Requests\Country\GetAllCountriesRequest::class,
 
+
+        /*  Feature Requests */
+        'AddFeatureRequest' => \App\Http\Requests\Requests\Feature\AddFeatureRequest::class,
+        'UpdateFeatureRequest' => \App\Http\Requests\Requests\Feature\UpdateFeatureRequest::class,
+        'DeleteFeatureRequest' => \App\Http\Requests\Requests\Feature\DeleteFeatureRequest::class,
+        //'GetAllFeaturesRequest' => \App\Http\Requests\Requests\Feature\GetAllFeaturesRequest::class,
+
+
         /* City Requests */
         'AddCityRequest' => \App\Http\Requests\Requests\City\AddCityRequest::class,
         'UpdateCityRequest' => \App\Http\Requests\Requests\City\UpdateCityRequest::class,
@@ -270,6 +278,7 @@ return [
         'DeletePropertySubTypeRequest' => \App\Http\Requests\Requests\PropertySubType\DeletePropertySubTypeRequest::class,
         'GetAllPropertySubTypesRequest' => \App\Http\Requests\Requests\PropertySubType\GetAllPropertySubTypesRequest::class,
         'GetSubTypesByTypeRequest' => \App\Http\Requests\Requests\PropertySubType\GetSubTypesByTypeRequest::class,
+        'AssignFeatureRequest' => \App\Http\Requests\Requests\PropertySubType\AssignFeatureRequest::class,
 
         /* LandUnit Requests */
         'AddLandUnitRequest' => \App\Http\Requests\Requests\LandUnit\AddLandUnitRequest::class,
