@@ -123,7 +123,7 @@ app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$s
     };
     $scope.submitProperty = function() {
         postProcessFormData();
-        console.log($scope.form.data.features);
+        $scope.errors = {};
         $scope.formSubmitStatus = 'submiting';
         var upload = Upload.upload({
             url: apiPath+'property',
