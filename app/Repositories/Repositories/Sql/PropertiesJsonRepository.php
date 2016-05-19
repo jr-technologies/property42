@@ -51,8 +51,8 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     {
         return $this->factory->delete($id);
     }
-    public function getUserProperties($request)
+    public function getUserProperties($params)
     {
-        return $this->factory->getUserProperties($request);
+        return $this->factory->getUserProperties($params);
     }
 }

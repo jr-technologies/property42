@@ -14,9 +14,9 @@ app.run(function($rootScope, $location, $AuthService, $state) {
     $rootScope.USERS = [];
 
     $rootScope.searchPropertiesParams = {
-        owner: null,
-        purposeId: null,
-        propertyStatus: 1
+        owner_id: null,
+        purpose_id: null,
+        status_id: null
     };
 
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
