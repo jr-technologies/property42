@@ -45,7 +45,7 @@ app.filter('filterBySubType', [function () {
         return filtered;
     };
 }]);
-app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", function ($scope, $http, Upload, $sce) {
+app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$sce", function ($scope, $window, $http, Upload, $sce) {
     //console.log($rootScope.searchPropertiesParams);
 
     $scope.html_title = "Property42 | Add Property";
@@ -131,10 +131,13 @@ app.controller("AddPropertyController",["$scope","$http", "Upload","$sce", funct
         });
 
         upload.then(function (response) {
+            $window.scrollTo(0, 0);
             $scope.formSubmitStatus = '';
         }, function (response) {
             $scope.errors = response.data.error.messages;
+            $window.scrollTo(0, 0);
         }, function (evt) {
+            $window.scrollTo(0, 0);
             console.log(evt);
         });
     };
