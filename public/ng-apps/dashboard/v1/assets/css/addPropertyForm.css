@@ -4,7 +4,7 @@
     list-style: none;
 }
 
-.clearfix:after {
+.clearfix:after, .addPropertyFormContainer .property-add .layout.add:after {
     content: '';
     display: block;
     clear: both;
@@ -779,13 +779,10 @@
 .addPropertyFormContainer .property-add .layout.add {
     max-width: 885px;
     margin: 0 auto;
-    overflow:visible;
-    clear: both
-}.addPropertyFormContainer .property-add .layout.add:after{
+    overflow: visible;
     clear: both;
-     content: '';
-     display: block;
- }
+}
+
 @media (max-width: 767px) {
     .addPropertyFormContainer .property-add .layout.add {
         max-width: inherit;
@@ -817,6 +814,19 @@
 .addPropertyFormContainer .property-add .layout .layout-holder select {
     margin: 0 0 0 9px;
     height: 30px;
+    width: 262px;
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder select {
+        width: 186px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder select {
+        width: 116px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -880,15 +890,36 @@
     content: '';
 }
 
+.addPropertyFormContainer .feature-block .feature-blockOpener {
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    color: #000;
+    border: 1px solid #000;
+    text-transform: capitalize;
+    font-weight: 600;
+    padding: 10px;
+    transition: color 0.4s ease, background 0.4s ease;
+    -webkit-transition: color 0.4s ease, background 0.4s ease;
+    -moz-transition: color 0.4s ease, background 0.4s ease;
+    -ms-transition: color 0.4s ease, background 0.4s ease;
+}
+
+.addPropertyFormContainer .feature-block .feature-blockOpener:hover {
+    background: #000;
+    color: #fff;
+}
+
 .addPropertyFormContainer .feature-block .holder {
     overflow: hidden;
     padding: 10px 0 0;
 }
 
 .addPropertyFormContainer .feature-block .holder .tag {
-    padding: 10px 0;
-    max-width: 800px;
-    margin: 0 auto;
+    display: block;
+    padding: 10px;
 }
 
 .addPropertyFormContainer .tag {
@@ -903,8 +934,8 @@
     font-size: 0;
     line-height: 0;
     letter-spacing: -4px;
-    max-width: 800px;
     margin: 0 auto 20px;
+    max-width: 1220px;
     position: relative;
     padding: 0 0 20px;
 }
@@ -934,7 +965,7 @@
 
 @media (max-width: 1023px) {
     .addPropertyFormContainer .feature-list li {
-        width: 33.33%;
+        width: 50%;
         padding: 0 5px 10px;
     }
 }
@@ -951,6 +982,8 @@
     float: left;
     width: 35%;
     padding: 5px 0 0;
+    font-size: 12px;
+    line-height: 15px;
 }
 
 @media (max-width: 1199px) {
@@ -1024,9 +1057,9 @@
 }
 
 .addPropertyFormContainer .image-uploading-area li {
-    width: 25%;
+    width: 16.66%;
     position: relative;
-    padding: 10px;
+    padding: 10px 5px;
 }
 
 @media (max-width: 1023px) {
@@ -1061,7 +1094,7 @@
 
 .addPropertyFormContainer .image-uploading-area li .file-uploader {
     width: 100%;
-    height: 250px;
+    height: 200px;
     margin: 0 auto;
     background: #edf2f8;
     position: relative;
@@ -1072,14 +1105,14 @@
 @media (max-width: 1424px) {
     .addPropertyFormContainer .image-uploading-area li .file-uploader {
         width: 100%;
-        height: 200px;
+        height: 150px;
     }
 }
 
 @media (max-width: 1199px) {
     .addPropertyFormContainer .image-uploading-area li .file-uploader {
         width: 100%;
-        height: 150px;
+        height: 110px;
     }
 }
 
@@ -1097,10 +1130,10 @@
     left: 50%;
     content: "\e900";
     font-family: 'icomoon';
-    font-size: 86px;
+    font-size: 50px;
     line-height: 1;
     z-index: -1;
-    margin: -40px 0 0 -40px;
+    margin: -25px 0 0 -25px;
     color: #9da2a8;
     transition: color 0.4s ease;
     -webkit-transition: color 0.4s ease;
@@ -1127,8 +1160,9 @@
 
 .addPropertyFormContainer .image-uploading-area li .picture-name {
     display: block;
-    margin: 0 auto;
-    max-width: 250px;
+    max-width: inherit;
+    margin: 0;
+    width: 100%;
     border-width: 0 0 2px;
     border-style: solid;
     border-color: #999;
@@ -1139,24 +1173,6 @@
     -webkit-transition: border 0.4s ease;
     -ms-transition: border 0.4s ease;
     -moz-transition: border 0.4s ease;
-}
-
-@media (max-width: 1199px) {
-    .addPropertyFormContainer .image-uploading-area li .picture-name {
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 1023px) {
-    .addPropertyFormContainer .image-uploading-area li .picture-name {
-        max-width: 150px;
-    }
-}
-
-@media (max-width: 767px) {
-    .addPropertyFormContainer .image-uploading-area li .picture-name {
-        max-width: inherit;
-    }
 }
 
 .addPropertyFormContainer .image-uploading-area li .picture-name.disableInput {
@@ -1217,6 +1233,13 @@
     -moz-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
     cursor: pointer;
     margin: -25px -25px 0 0;
+}
+
+@media (max-width: 1424px) {
+    .addPropertyFormContainer .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
+        font-size: 50px;
+        line-height: 50px;
+    }
 }
 
 .addPropertyFormContainer .image-uploading-area li .image-holder img {

@@ -42,6 +42,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: views+"/properties/list.html",
             auth: true
         })
+        .state('home.properties.for-sale', {
+            url: "/for-sale",
+            templateUrl: views+"/properties/list.html",
+            auth: true
+        })
+        .state('home.properties.for-rent', {
+            url: "/for-rent",
+            templateUrl: views+"/properties/list.html",
+            auth: true
+        })
         .state('home.customers.all', {
             url: "/",
             templateUrl: views+"/customers/show.html",

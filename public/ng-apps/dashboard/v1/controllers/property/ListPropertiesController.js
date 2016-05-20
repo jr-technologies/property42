@@ -32,6 +32,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", funct
     };
 
     $scope.initialize = function () {
+
         getProperties().then(function successCallback(properties) {
             console.log(properties);
             $scope.properties = properties;

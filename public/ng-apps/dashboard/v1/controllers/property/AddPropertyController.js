@@ -33,6 +33,7 @@ app.filter('propsFilter', function() {
         return out;
     };
 });
+
 app.filter('filterBySubType', [function () {
     return function (features, subTypeId) {
         var filtered = [];
@@ -45,9 +46,8 @@ app.filter('filterBySubType', [function () {
         return filtered;
     };
 }]);
-app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$sce", function ($scope, $window, $http, Upload, $sce) {
-    //console.log($rootScope.searchPropertiesParams);
 
+app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http", "Upload","$sce", function ($scope, $rootScope, $window, $http, Upload, $sce) {
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
     $scope.types = [];
@@ -86,9 +86,7 @@ app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$s
                 threeFile:{title: '', file: null},
                 fourFile:{title: '', file: null},
                 fiveFile:{title: '', file: null},
-                sixFile:{title: '', file: null},
-                sevenFile:{title: '', file: null},
-                eightFile:{title: '', file: null}
+                sixFile:{title: '', file: null}
             },
             owner: 0,
             contactPerson: '',
@@ -106,10 +104,19 @@ app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$s
                 $scope.form.data.files.mainFile = nullFile;
                 break;
             case 1:
-                $scope.form.files.data.files.secondFile = nullFile;
+                $scope.form.files.data.files.twoFile = nullFile;
                 break;
             case 2:
-                $scope.form.files.data.files.thirdFile = nullFile;
+                $scope.form.files.data.files.threeFile = nullFile;
+                break;
+            case 3:
+                $scope.form.data.files.fourFile = nullFile;
+                break;
+            case 4:
+                $scope.form.files.data.files.fiveFile = nullFile;
+                break;
+            case 5:
+                $scope.form.files.data.files.sixFile = nullFile;
                 break;
         }
     };
@@ -124,16 +131,18 @@ app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$s
     $scope.submitProperty = function() {
         postProcessFormData();
         $scope.errors = {};
-        $scope.formSubmitStatus = 'submiting';
+        $rootScope.please_wait_class = 'please-wait';
         var upload = Upload.upload({
             url: apiPath+'property',
             data: $scope.form.data
         });
 
         upload.then(function (response) {
+            $rootScope.please_wait_class = '';
             $window.scrollTo(0, 0);
             $scope.formSubmitStatus = '';
         }, function (response) {
+            $rootScope.please_wait_class = '';
             $scope.errors = response.data.error.messages;
             $window.scrollTo(0, 0);
         }, function (evt) {
@@ -251,9 +260,9 @@ app.controller("AddPropertyController",["$scope","$window","$http", "Upload","$s
 
         $(function() {
             handleAddPropertyFormScrolling();
+            $('.feature-block').find('.holder').hide();
+            $('.feature-block').find('.form-heading').hide();
         });
-
-
 
     };
 }]);

@@ -15,7 +15,7 @@
         <aside id="sidebar-dashboard" ng-controller="SidebarController">
             <div class="user-picture">
                 <div class="layout">
-                    <a href="#" class="image-thumb"><img src="http://localhost/jr/property42/backend/property42/public/ng-apps/dashboard/v1/assets/images/shani_nomi.jpg" width="388" height="395" alt="user-image"></a>
+                    <a href="#" class="image-thumb"><img src="http://localhost/property42/public/ng-apps/dashboard/v1/assets/images/shani_nomi.jpg" width="388" height="395" alt="user-image"></a>
                     <div class="layout">
                         <a href="#" class="user-name">Zain ali</a>
                         <span class="account-type">premium</span>
@@ -34,11 +34,11 @@
             </div>
             <ul class="sideBar-links">
                 <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
-                <li class="active">
+                <li ng-class="{'active':activeLink==='home.properties.all'}">
                     <a href="#home/listings/all"><span class="icon-list"></span>listings <span class="badge">134</span></a>
                     <ul class="sub-links">
-                        <li ng-click="getForSaleProperties()"><a href="#home/properties/all"><span class="icon-clothes-tag"></span> for sale <span class="badge small">34</span></a></li>
-                        <li ng-click="getForRentProperties()"><a href="#home/properties/all"><span class="icon-rent"></span> for rent <span class="badge small">99</span></a></li>
+                        <li ng-class="{'active':activeLink==='home.properties.for-sale'}" ng-click="getForSaleProperties()"><a href="#home/properties/for-sale"><span class="icon-clothes-tag"></span> for sale <span class="badge small">34</span></a></li>
+                        <li ng-class="{'active':activeLink==='home.properties.for-rent'}"><a href="#home/properties/for-rent"><span class="icon-rent"></span> for rent <span class="badge small">99</span></a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span class="icon-staff-symbol"></span>Agency Staff</a></li>

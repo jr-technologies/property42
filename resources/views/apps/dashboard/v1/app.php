@@ -52,7 +52,7 @@
 
 
 </head>
-<body class="sideBar-active">
+<body class="sideBar-active {{please_wait_class}}">
 <!-- main container of all the page elements -->
 
 <div class="" ng-controller="ParentController">
