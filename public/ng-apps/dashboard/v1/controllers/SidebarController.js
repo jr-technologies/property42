@@ -7,13 +7,4 @@ app.controller("SidebarController",["$scope", "$rootScope", function ($scope, $r
     var contentHeader = {
         title: $rootScope.html_title
     };
-
-    $scope.getForSaleProperties = function () {
-        $rootScope.searchPropertiesParams.purpose_id = 1;
-        $rootScope.$broadcast('searchPropertiesParamsChanged');
-    }
-    $scope.getForRentProperties = function () {
-        $rootScope.searchPropertiesParams.purpose_id = 2;
-        $rootScope.$broadcast('searchPropertiesParamsChanged');
-    }
 }]);

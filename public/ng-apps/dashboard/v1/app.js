@@ -21,7 +21,6 @@ app.run(function($rootScope, $location, $AuthService, $state) {
     $rootScope.activeLink = '';
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         $rootScope.activeLink = next.name;
-
         /*
         * Description:
         * if the next route is for authenticated users and
