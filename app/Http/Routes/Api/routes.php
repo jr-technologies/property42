@@ -392,7 +392,7 @@ Route::post('property/delete',
     ]
 );
 
-Route::get('count/properties',
+Route::get('properties/count',
     [
         'middleware'=>
             [

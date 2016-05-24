@@ -18,6 +18,9 @@ app.run(function($rootScope, $location, $AuthService, $state) {
         purpose_id: 1,
         status_id: 1
     };
+
+    $rootScope.propertiesCounts = {};
+
     $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
 
