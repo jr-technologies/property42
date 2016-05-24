@@ -160,4 +160,39 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $this->tableGateway->setTable($table);
     }
+
+    public function propertiesCounter($properties, $purposeId, $statusId)
+    {
+        $collection = collect($properties);
+        $groupedByPurposeId = $collection->groupBy('purpose_id');
+        $propertiesByPurposeCollection = (isset($groupedByPurposeId->all()[$purposeId]))?$groupedByPurposeId->all()[$purposeId]:collect([]);
+        $groupedByStatusId = $propertiesByPurposeCollection->groupBy('property_status_id');
+        $propertiesByStatusCollection = (isset($groupedByStatusId->all()[$statusId]))?$groupedByStatusId->all()[$statusId]:collect([]);
+        return $propertiesByStatusCollection->count();
+    }
+
+    public function countProperties($userId)
+    {
+        $properties = $this->tableGateway->getWhere(['owner_id'=>$userId]);
+        $countPropertiesModel = new Property\CountPropertiesModel();
+        $propertiesStatusesModel1 = new Property\PropertiesStatusesModel();
+        $propertiesStatusesModel1->active = $this->propertiesCounter($properties, 1, 1);
+        $propertiesStatusesModel1->expired = $this->propertiesCounter($properties, 1, 6);
+        $propertiesStatusesModel1->pending = $this->propertiesCounter($properties, 1, 2);
+        $propertiesStatusesModel1->approved = $this->propertiesCounter($properties, 2, 5);
+        $propertiesStatusesModel1->deleted = $this->propertiesCounter($properties, 2, 3);
+        $propertiesStatusesModel1->rejected = $this->propertiesCounter($properties, 2, 4);
+        $countPropertiesModel->forSale = $propertiesStatusesModel1;
+
+        $propertiesStatusesModel2 = new Property\PropertiesStatusesModel();
+        $propertiesStatusesModel2->active = $this->propertiesCounter($properties, 2, 1);
+        $propertiesStatusesModel2->expired = $this->propertiesCounter($properties, 2, 6);
+        $propertiesStatusesModel2->pending = $this->propertiesCounter($properties, 1, 2);
+        $propertiesStatusesModel2->approved = $this->propertiesCounter($properties, 2, 5);
+        $propertiesStatusesModel2->deleted = $this->propertiesCounter($properties, 2, 3);
+        $propertiesStatusesModel2->rejected = $this->propertiesCounter($properties, 2, 4);
+        $countPropertiesModel->forRent = $propertiesStatusesModel2;
+
+        return $countPropertiesModel;
+    }
 }

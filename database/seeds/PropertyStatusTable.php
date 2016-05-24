@@ -12,12 +12,16 @@ class PropertyStatusTable extends Seeder
 {
  public function run()
  {
+     /**
+      * Please Never Ever change the Status Position
+      */
      DB::table('property_statuses')->insert([
          ['status'=>'Active'],
          ['status'=>'Pending'],
          ['status'=>'Deleted'],
          ['status'=>'Rejected'],
          ['status'=>'Approved'],
+         ['status'=>'Expired'],
      ]);
  }
 }

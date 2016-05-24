@@ -9,6 +9,7 @@ use App\Events\Events\Feature\FeatureJsonCreated;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
+use App\Events\Events\Section\SectionUpdated;
 use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserCreated;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
@@ -18,8 +19,10 @@ use App\Listeners\Listeners\Feature\CreateFeatureJsonDocument;
 use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\DeletePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
+use App\Listeners\Listeners\Section\RegenerateSectionFeaturesJson;
 use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
 use App\Listeners\Listeners\User\CreateUserJsonDocument;
+use App\Traits\AssignedFeaturesJsonDocumentsGenerator;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -61,6 +64,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         FeatureJsonCreated::class => [
             CreateFeatureJsonDocument::class,
+        ],
+        SectionUpdated::class => [
+            RegenerateSectionFeaturesJson::class,
         ]
     ];
 

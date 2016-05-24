@@ -63,4 +63,8 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->factory->getCompleteLocation($id);
     }
+    public function countProperties($userId)
+    {
+        return $this->factory->countProperties($userId);
+    }
 }
