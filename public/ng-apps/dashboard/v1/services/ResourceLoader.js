@@ -8,28 +8,14 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
             var headerInfo = {
                 Authorization:$AuthService.getAppToken()
             };
-            $rootScope.APP_STATUS = 'fetching blocks...';
+            $rootScope.APP_STATUS = 'fetching resources...';
             var promise = $http({
                 method: 'GET',
-                url: apiPath+'users',
+                url: apiPath+'apps/dashboard/resources',
                 headers: headerInfo
             }).then(function successCallback(response) {
-                $rootScope.USERS = response.data.data.users;
-                $rootScope.APP_STATUS = 'fetching customers...';
-                return $http({
-                    method: 'GET',
-                    url: apiPath+'customers',
-                    headers: headerInfo
-                });
+                $rootScope.RECOURCES = response.data.data.resources;
             }, function errorCallback(response) {
-                return false;
-            }).then(function (response) {
-                $rootScope.CUSTOMERS = response.data.data.customers;
-                console.log($rootScope.CUSTOMERS);
-                $rootScope.APP_STATUS = 'Routing back to home...';
-                return true;
-            }, function(response){
-                alert('ooops :( system is unable to load your ')
                 return false;
             });
 

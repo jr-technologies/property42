@@ -751,7 +751,7 @@ Route::post('agency',
         'uses'=>'AgencyController@store'
     ]
 );
-Route::post('agency/staff',
+Route::get('agency/staff',
     [
         'middleware'=>
             [

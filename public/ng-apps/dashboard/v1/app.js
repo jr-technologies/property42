@@ -9,16 +9,18 @@ app.run(function($rootScope, $location, $AuthService, $state) {
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
-    $rootScope.CUSTOMERS = [];
+    $rootScope.RECOURCES = [];
     $rootScope.USERS = [];
 
     $rootScope.please_wait_class = '';
-    $rootScope.searchPropertiesParams = {
-        owner_id: 1,
-        purpose_id: 2,
+    $rootScope.defaultSearchPropertiesParams = {
+        owner_id: null,
+        purpose_id: 1,
         status_id: 1
     };
+    $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
+
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         $rootScope.activeLink = next.name;
         /*

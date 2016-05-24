@@ -43,8 +43,7 @@ class AgencyController extends ApiController
     {
          $staff = $this->userRepo->getAgencyStaff($staff->get('agencyId'));
          return $this->response->respond(['data' => [
-            'agency' => $staff
-
+            'staff' => $staff
         ]]);
     }
     public function update(UpdateAgencyRequest $request)

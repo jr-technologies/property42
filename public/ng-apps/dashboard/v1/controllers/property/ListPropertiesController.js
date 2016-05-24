@@ -32,6 +32,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     };
 
     $scope.initialize = function () {
+        $rootScope.searchPropertiesParams.status_id = 5;
         if($state.current.name == 'home.properties.all')
         {
             $rootScope.searchPropertiesParams.purpose_id = null;
