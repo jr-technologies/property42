@@ -36,6 +36,7 @@ class UpdateFeatureSectionRequest extends Request implements RequestInterface{
     public function getFeatureSectionModel()
     {
         $featureSection = new FeatureSection();
+        $featureSection->id = $this->get('id');
         $featureSection->name = $this->get('section');
         $featureSection->priority = $this->get('priority');
         return $featureSection;

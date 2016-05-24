@@ -27,8 +27,8 @@ class SectionFeaturesJsonCreator extends JsonCreator implements JsonCreatorInter
         $features  = $this->section->features;
         $this->model->priority = $this->section->priority;
         foreach($features as $feature) {
-            $this->model->features = (new FeatureWithValidationRulesJsonCreator($feature))->create();
+            $this->model->features[] = (new FeatureWithValidationRulesJsonCreator($feature))->create();
         }
-        die();
+        return $this->model;
     }
 }

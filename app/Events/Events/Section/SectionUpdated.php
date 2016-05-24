@@ -2,28 +2,27 @@
 /**
  * Created by PhpStorm.
  * User: WAQAS
- * Date: 5/17/2016
- * Time: 11:45 AM
+ * Date: 5/20/2016
+ * Time: 12:37 PM
  */
 
-namespace App\Events\Events\Feature;
+namespace App\Events\Events\Section;
 
+
+use App\DB\Providers\SQL\Models\FeatureSection;
 use App\Events\Events\Event;
 use Illuminate\Queue\SerializesModels;
 
-class FeatureJsonCreated extends Event
+class SectionUpdated extends Event
 {
-
     use SerializesModels;
 
+    public $featureSection = null;
 
-    public $subTypeId = [];
-
-    public function __construct($subTypeId)
+    public function  __construct(FeatureSection $featureSection)
     {
-        $this->subTypeId = $subTypeId;
+        $this->featureSection = $featureSection;
     }
-
     /**
      * Get the channels the event should be broadcast on.
      *

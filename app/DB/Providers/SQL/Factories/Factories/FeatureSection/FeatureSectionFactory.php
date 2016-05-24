@@ -35,18 +35,18 @@ class FeatureSectionFactory extends SQLFactory implements SQLFactoriesInterface
     public function update(FeatureSection $featureSection)
     {
         $featureSection->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->update($featureSection->id ,$this->mapPropertyTypeOnTable($featureSection));
+        return $this->tableGateway->update($featureSection->id ,$this->mapSectionOnTable($featureSection));
     }
     public function store(FeatureSection $featureSection)
     {
         $featureSection->createdAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->insert($this->mapPropertyTypeOnTable($featureSection));
+        return $this->tableGateway->insert($this->mapSectionOnTable($featureSection));
     }
     public function delete(FeatureSection $featureSection)
     {
         return $this->tableGateway->delete($featureSection->id);
     }
-    private function mapPropertyTypeOnTable(FeatureSection $featureSection)
+    private function mapSectionOnTable(FeatureSection $featureSection)
     {
         return [
             'section'=>$featureSection->name,
@@ -61,8 +61,8 @@ class FeatureSectionFactory extends SQLFactory implements SQLFactoriesInterface
 
     function map($result)
     {
-        $featureSection =new FeatureSection();
-        $featureSection->id=$result->id;
+        $featureSection = new FeatureSection();
+        $featureSection->id = $result->id;
         $featureSection->name = $result->section;
         $featureSection->priority = $result->priority;
         $featureSection->createdAt = $result->created_at;

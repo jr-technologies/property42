@@ -13,6 +13,7 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
+use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
@@ -118,5 +119,11 @@ class PropertiesController extends ApiController
     private function inStoragePropertyDocPath(Property $property)
     {
         return 'users/'.md5($property->ownerId).'/properties/'.md5($property->id);
+    }
+    public function countProperties(CountPropertiesRequest $countPropertiesRequest)
+    {
+        $user = $countPropertiesRequest->getUserModel();
+        return $this->response->respond(['data'=>['counts'=>
+            $this->properties->countProperties($user->id)]]);
     }
 }

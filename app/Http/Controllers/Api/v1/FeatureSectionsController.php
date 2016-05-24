@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\Events\Section\SectionUpdated;
 use App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest;
 use App\Http\Requests\Requests\FeatureSection\DeleteFeatureSectionRequest;
 use App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest;
@@ -14,6 +15,7 @@ use App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\FeatureSectionsRepoProvider;
 use App\Repositories\Repositories\Sql\FeatureSectionRepository;
+use Illuminate\Support\Facades\Event;
 
 class FeatureSectionsController extends ApiController
 {
@@ -52,15 +54,16 @@ class FeatureSectionsController extends ApiController
     {
         $FeatureSection =$request->getFeatureSectionModel();
         $this->FeatureSection->update($FeatureSection);
+        Event::fire(new SectionUpdated($FeatureSection));
         return $this->response->respond(['data' => [
             'featureSection' => $FeatureSection
         ]]);
     }
-    public function getPropertyFeatures(GetPropertyFeatures $request)
+    public function getPropertyFeatures()
     {
         return $this->response->respond([
             'data'=>[
-                'featureSection'=>$this->FeatureSection
+                'featureSection'=>$this->FeatureSection->all()
             ]
         ]);
     }
