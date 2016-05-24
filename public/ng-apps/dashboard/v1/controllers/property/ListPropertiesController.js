@@ -9,7 +9,6 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     $scope.properties = [];
     $scope.$on('searchPropertiesParamsChanged', function () {
         getProperties().then(function successCallback(properties) {
-            console.log(properties);
             $scope.properties = properties;
         }, function errorCallback(response) {
             console.log('fucked up');
@@ -24,15 +23,33 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
 
     var getProperties = function () {
         return $http.get(apiPath+'user/properties', {
-                params: $rootScope.searchPropertiesParams
-            }).then(function successCallback(response) {
+            params: $rootScope.searchPropertiesParams
+        }).then(function successCallback(response) {
             return response.data.data.properties;
+        }, function errorCallback(response) {
+            return response;
+        });
+    };
+    var getPropertiesCounts = function () {
+        return $http.get(apiPath+'properties/count', {
+            params: {
+                user_id: 1
+            }
+        }).then(function successCallback(response) {
+            return response.data.data.counts;
         }, function errorCallback(response) {
             return response;
         });
     };
 
     $scope.initialize = function () {
+
+        getPropertiesCounts().then(function successCallback(counts) {
+            $rootScope.propertiesCounts = counts;
+        }, function errorCallback(response) {
+            console.log('failed');
+        });
+
         $rootScope.searchPropertiesParams.status_id = 1;
         if($state.current.name == 'home.properties.all')
         {

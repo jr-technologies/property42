@@ -4,14 +4,60 @@
 var app = angular.module('dashboard',['ngRoute', 'ui.router','ui.select', 'firebase', 'ngFileUpload', 'ngSanitize']);
 
 
+app.filter('filterByCountParam', [function () {
+    return function (counts, purpose, status) {
+        var totalLikes = 0;
+        if(purpose != undefined || status != undefined)
+        {
+            if(purpose != undefined && status != undefined){
+                totalLikes = parseInt(counts[purpose][status]);
+            }else if(purpose != undefined && status === undefined){
+                angular.forEach(counts[purpose], function (value, key) {
+                    totalLikes += parseInt(value);
+                });
+            } else if(purpose === undefined && status != undefined){
+                angular.forEach(counts, function (tempPurpose, pKey) {
+                    totalLikes += parseInt(counts[pKey][status])
+                });
+            }
+        }
+        else
+        {
+            angular.forEach(counts, function (tempPurpose, pKey) {
+                angular.forEach(tempPurpose, function (tempStatus, sKey) {
+                    totalLikes += parseInt(tempStatus);
+                });
+            });
+        }
+        return totalLikes;
+    };
+}]);
+
 app.run(function($rootScope, $location, $AuthService, $state) {
     $rootScope.AUTH_TOKEN = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
+    $rootScope.propertiesCounts = {};
     $rootScope.RECOURCES = [];
     $rootScope.USERS = [];
-
+    $rootScope.purposes = [
+        {
+            id: 1,
+            name: 'for-sale',
+            displayName: 'for sale'
+        },
+        {
+            id: 2,
+            name: 'for-rent',
+            displayName: 'for rent'
+        },
+        {
+            id: 3,
+            name: 'wanted',
+            displayName: 'wanted'
+        }
+    ];
     $rootScope.please_wait_class = '';
     $rootScope.defaultSearchPropertiesParams = {
         owner_id: null,
@@ -20,7 +66,9 @@ app.run(function($rootScope, $location, $AuthService, $state) {
     };
 
     $rootScope.propertiesCounts = {};
-
+    $rootScope.propertyCounts = function (param) {
+      alert(param);
+    };
     $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
 
