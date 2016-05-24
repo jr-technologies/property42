@@ -43,15 +43,15 @@ class FeatureHtmlStructure {
 
     private function createText()
     {
-        return "<input type='text' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
+        return "<input type='text' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>";
     }
     private function createNumber()
     {
-        return "<input type='number' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
+        return "<input type='number' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>";
     }
     private function createCheckbox()
     {
-        return "<input type='checkbox' value='helo' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
+        return "<input type='checkbox' value='helo' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>";
     }
     private function createSelect()
     {
@@ -63,7 +63,7 @@ class FeatureHtmlStructure {
             }
         $select.='</select>';
         return $select;
-        //return "<input type='checkbox' value='helo' name='".$this->featureInputName."' ng-model='\$parent.form.data.features.".$this->featureInputName."'>{{\$parent.form.data.features.".$this->featureInputName."}}";
+
     }
 } 
 

@@ -2,7 +2,7 @@
 <div class="property-listing-holder" ng-init="initialize()" ng-controller="ListPropertiesController">
     <div class="listing-cetegories-links">
         <ul class="navFor-mobile">
-            <li class="active">
+            <li>
                 <span class="tag">For Sale</span>
                 <a class="slide-onMobile-opener">
                     <strong class="active"><span class="icon-flash-activation"></span> active <span class="numbering">999+</span></strong>
@@ -10,28 +10,28 @@
             </li>
         </ul>
         <ul class="slide-onMobile">
-            <li class="active-nav">
-                <a href="#">
+            <li ng-class="{'active-nav':activeStatus === 1}">
+                <a ng-click="setPropertyStatus(1)" href="">
                     <strong class="active"><span class="icon-flash-activation"></span> active <span class="numbering">999+</span></strong>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li ng-class="{'active-nav':activeStatus === 2}">
+                <a ng-click="setPropertyStatus(2)" href="">
                     <strong class="pendings"><span class="icon-clock"></span> pendings <span class="numbering">88</span></strong>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li ng-class="{'active-nav':activeStatus === 3}">
+                <a ng-click="setPropertyStatus(3)" href="">
                     <strong class="rejected"><span class="icon-sign"></span> rejected <span class="numbering">2</span></strong>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li ng-class="{'active-nav':activeStatus === 4}">
+                <a ng-click="setPropertyStatus(4)" href="">
                     <strong class="expired"><span class="icon-exclamation-triangle"></span> expired <span class="numbering">99</span></strong>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li ng-class="{'active-nav':activeStatus === 5}">
+                <a ng-click="setPropertyStatus(5)" href="">
                     <strong class="deleted"><span class="icon-trash"></span> deleted <span class="numbering">34</span></strong>
                 </a>
             </li>
@@ -96,6 +96,7 @@
             <table class="propeties-table">
                 <tr>
                     <th>
+                        {{test.foo}}
                         <input type="checkbox" id="ID">
                         <label><span>ID</span></label>
                     </th>

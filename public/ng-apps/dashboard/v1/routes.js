@@ -1,9 +1,9 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var domain = "http://localhost/jr/property42/backend/property42/public/";
+//var domain = "http://localhost/jr/property42/backend/property42/public/";
 //var domain = "http://localhost/production/jr-technologies/property42/public/";
-//var domain = "http://localhost/property42/public/";
+var domain = "http://localhost/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
@@ -39,6 +39,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('home.properties.all', {
             url: "/all",
+            templateUrl: views+"/properties/list.html",
+            auth: true
+        })
+        .state('home.properties.for-sale', {
+            url: "/for-sale",
+            templateUrl: views+"/properties/list.html",
+            auth: true
+        })
+        .state('home.properties.for-rent', {
+            url: "/for-rent",
             templateUrl: views+"/properties/list.html",
             auth: true
         })

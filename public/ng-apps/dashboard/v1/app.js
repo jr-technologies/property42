@@ -9,18 +9,18 @@ app.run(function($rootScope, $location, $AuthService, $state) {
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
-
     $rootScope.CUSTOMERS = [];
     $rootScope.USERS = [];
 
+    $rootScope.please_wait_class = '';
     $rootScope.searchPropertiesParams = {
-        owner: null,
-        purposeId: null,
-        propertyStatus: 1
+        owner_id: 1,
+        purpose_id: 2,
+        status_id: 1
     };
-
+    $rootScope.activeLink = '';
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
-
+        $rootScope.activeLink = next.name;
         /*
         * Description:
         * if the next route is for authenticated users and
