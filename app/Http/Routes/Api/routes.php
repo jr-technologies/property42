@@ -10,35 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-/*This route use for testing through postman*/
-
-//Route::post('release', function(){
-//    (new App\Libs\File\FileRelease('users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg'))
-//        ->release();
-//
-//
-//
-//    $files = [
-//        'users\e4da3b7fbbce2345d7772b0674a318d5\agencies\7b6d28736a7d9800e51afefe78c733b3\7b6d28736a7d9800e51afefe78c733b3.jpg',
-//        'users\1679091c5a880faf6fb5e6087eb1b2dc\agencies\1e59acc6a1d0b87111da81a47741e1b1\1e59acc6a1d0b87111da81a47741e1b1.jpeg'
-//    ];
-//
-//    \App\Libs\File\FileRelease::multiRelease($files);
-//});
-
-//Route::get('f', function(){
-//    for($i = 1; $i <= 19; $i++) {
-//        $rands = [];
-//        for($a = 1; $a <= 58; $a++){
-//            $rands[] = rand(1,58);
-//        }
-//        $uniqueValues = array_unique($rands);
-//        foreach ($uniqueValues as $value) {
-//            echo "['property_sub_type_id' => " . $i . ", 'property_feature_id'=>" . $value . "],";
-//            echo "<br>";
-//        }
-//    }
-//});
 
 Route::get('properties', function(){
     $allProperties = [];

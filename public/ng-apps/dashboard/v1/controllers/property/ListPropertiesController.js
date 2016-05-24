@@ -9,6 +9,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     $scope.properties = [];
     $scope.$on('searchPropertiesParamsChanged', function () {
         getProperties().then(function successCallback(properties) {
+            console.log(properties);
             $scope.properties = properties;
         }, function errorCallback(response) {
             console.log('fucked up');
@@ -32,7 +33,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     };
 
     $scope.initialize = function () {
-        $rootScope.searchPropertiesParams.status_id = 5;
+        $rootScope.searchPropertiesParams.status_id = 1;
         if($state.current.name == 'home.properties.all')
         {
             $rootScope.searchPropertiesParams.purpose_id = null;
