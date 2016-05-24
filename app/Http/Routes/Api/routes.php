@@ -1,4 +1,9 @@
 <?php
+use App\Events\Events\Feature\FeatureJsonCreated;
+use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
+use App\Repositories\Repositories\Sql\FeaturesRepository;
+use App\Repositories\Repositories\Sql\PropertiesRepository;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,39 +15,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+ Route::get('properties/json',function(){
+    $properties = (new PropertiesRepository())->all();
+     $finalResult = [];
 
-Route::get('properties', function(){
-    $allProperties = [];
-    for($a = 1; $a <= 10; $a++)
-    {
-        $temp = [];
-        $temp['purpose_id'] = rand(1,3);
-        $temp['property_sub_type_id'] = rand(1,19);
-        $temp['block_id'] = rand(1,3);
-        $temp['title'] = 'This is my property';
-        $temp['description'] = 'This is my property and like to sale it'. rand(1,200002) ;
-        $temp['price'] = rand(200000,25000000);
-        $temp['land_area'] = rand(1,20);
-        $temp['land_unit_id'] = rand(1,10);
-        $temp['contact_person'] = 'ab'.rand(1,100000);
-        $temp['phone'] = '0321450405'. rand(1,3) ;
-        $temp['mobile'] = '0321450405'. rand(1,10);
-        $temp['property_status_id'] = rand(1,6);
-        $temp['total_views'] = rand(1,100000);
-        $temp['rating'] = rand(1,10);
-        $temp['total_likes'] = rand(1,100000);
-        $temp['email'] = 'jrpropedrty167@gmail.com'. rand(1,1000000) ;
-        $temp['owner_id'] = 1;
-        $allProperties[] = $temp;
-    }
-    dd($allProperties);
+     foreach($properties as $property){
 
-
-
+         $propertyJson = (new PropertyJsonCreator($property))->create();
+         $finalResult[] = [ 'property_id' => $property->id, 'json'=> $propertyJson];
+     }
+     dd($finalResult);
 });
-use App\Events\Events\Feature\FeatureJsonCreated;
-use App\Repositories\Repositories\Sql\FeaturesRepository;
-use Illuminate\Support\Facades\Route;
+
 
 Route::get('feature/json',function(){
     $feature = new FeaturesRepository();
