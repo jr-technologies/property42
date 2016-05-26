@@ -36,6 +36,7 @@ class RegisterUserTransformer extends RequestTransformer{
             'wantNotifications'=>$this->request->input('wantNotifications'),
         ];
     }
+
     public function transformAgencyInfo()
     {
         return [

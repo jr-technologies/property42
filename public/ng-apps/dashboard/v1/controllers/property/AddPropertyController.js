@@ -129,7 +129,20 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         $scope.form.data.features = features;
     };
     $scope.submitProperty = function() {
-        postProcessFormData();
+
+        $http({
+            method: 'POST',
+            url: apiPath+'ttt',
+            data:{
+                name:'noman'
+            }
+        }).then(function successCallback(response) {
+            console.log(response.data);
+        }, function errorCallback(response) {
+            return response;
+        });
+
+        /*postProcessFormData();
         $scope.errors = {};
         $rootScope.please_wait_class = 'please-wait';
         var upload = Upload.upload({
@@ -148,7 +161,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         }, function (evt) {
             $window.scrollTo(0, 0);
             console.log(evt);
-        });
+        });*/
     };
 
     var getTypes = function () {

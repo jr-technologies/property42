@@ -6,6 +6,10 @@ var app = angular.module('dashboard',['ngRoute', 'ui.router','ui.select', 'fireb
 
 app.filter('filterByCountParam', [function () {
     return function (counts, purpose, status) {
+        if(purpose == null)
+            purpose = undefined;
+        if(status == null)
+            status = undefined;
         var totalLikes = 0;
         if(purpose != undefined || status != undefined)
         {
@@ -51,11 +55,6 @@ app.run(function($rootScope, $location, $AuthService, $state) {
             id: 2,
             name: 'for-rent',
             displayName: 'for rent'
-        },
-        {
-            id: 3,
-            name: 'wanted',
-            displayName: 'wanted'
         }
     ];
     $rootScope.please_wait_class = '';
@@ -64,14 +63,10 @@ app.run(function($rootScope, $location, $AuthService, $state) {
         purpose_id: 1,
         status_id: 1
     };
-
-    $rootScope.propertiesCounts = {};
-    $rootScope.propertyCounts = function (param) {
-      alert(param);
-    };
     $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
 
+    $rootScope.propertiesCounts = {};
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         $rootScope.activeLink = next.name;
         /*

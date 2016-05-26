@@ -47,7 +47,6 @@ class AuthController extends WebController
 
     public function login(LoginRequest $request)
     {
-
         if(!$this->auth->attempt($request->getCredentials())){
             return $this->response->respondInvalidCredentials();
         }
@@ -63,7 +62,7 @@ class AuthController extends WebController
 
     public function showRegisterPage()
     {
-        return $this->response->setView('register')->respond([]);
+        return $this->response->setView('registration/registration')->respond([]);
     }
 
     public function register(RegistrationRequest $request)
