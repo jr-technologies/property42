@@ -14,11 +14,9 @@ class PropertiesTableSeeder extends Seeder
         for($b = 1; $b<=1; $b++)
         {
             $allProperties = [];
-<<<<<<< HEAD
+
             for($a = 1; $a <= 200; $a++)
-=======
-            for($a = 1; $a <= 500; $a++)
->>>>>>> 7711d84839cdfbf32837626300dea32b5d26fd48
+
             {
                 $temp = [];
                 $temp['purpose_id'] = rand(1,3);

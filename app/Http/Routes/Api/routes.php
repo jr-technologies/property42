@@ -412,12 +412,9 @@ Route::post('property/delete',
         'uses'=>'PropertiesController@delete'
     ]
 );
-<<<<<<< HEAD
-Route::get('count/properties',
-=======
 
 Route::get('properties/count',
->>>>>>> 7711d84839cdfbf32837626300dea32b5d26fd48
+
     [
         'middleware'=>
             [
