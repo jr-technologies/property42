@@ -1,4 +1,3 @@
-
 <div class="property-listing-holder" ng-init="initialize()" ng-controller="ListPropertiesController">
     <div class="listing-cetegories-links">
         <ul class="navFor-mobile">
@@ -10,29 +9,29 @@
             </li>
         </ul>
         <ul class="slide-onMobile">
-            <li ng-class="{'active-nav':activeStatus === 1}">
+            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 1}">
                 <a ng-click="setPropertyStatus(1)" href="">
-                    <strong class="active"><span class="icon-flash-activation"></span> active <span class="numbering">999+</span></strong>
+                    <strong class="active"><span class="icon-flash-activation"></span> active <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 1}}</span></strong>
                 </a>
             </li>
-            <li ng-class="{'active-nav':activeStatus === 2}">
+            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 2}">
                 <a ng-click="setPropertyStatus(2)" href="">
-                    <strong class="pendings"><span class="icon-clock"></span> pendings <span class="numbering">88</span></strong>
+                    <strong class="pendings"><span class="icon-clock"></span> pendings <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 2}}</span></strong>
                 </a>
             </li>
-            <li ng-class="{'active-nav':activeStatus === 3}">
+            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 3}">
                 <a ng-click="setPropertyStatus(3)" href="">
-                    <strong class="rejected"><span class="icon-sign"></span> rejected <span class="numbering">2</span></strong>
+                    <strong class="rejected"><span class="icon-sign"></span> rejected <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 3}}</span></strong>
                 </a>
             </li>
-            <li ng-class="{'active-nav':activeStatus === 4}">
+            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 4}">
                 <a ng-click="setPropertyStatus(4)" href="">
-                    <strong class="expired"><span class="icon-exclamation-triangle"></span> expired <span class="numbering">99</span></strong>
+                    <strong class="expired"><span class="icon-exclamation-triangle"></span> expired <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 4}}</span></strong>
                 </a>
             </li>
-            <li ng-class="{'active-nav':activeStatus === 5}">
+            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 5}">
                 <a ng-click="setPropertyStatus(5)" href="">
-                    <strong class="deleted"><span class="icon-trash"></span> deleted <span class="numbering">34</span></strong>
+                    <strong class="deleted"><span class="icon-trash"></span> deleted <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 5}}</span></strong>
                 </a>
             </li>
         </ul>
@@ -96,7 +95,6 @@
             <table class="propeties-table">
                 <tr>
                     <th>
-                        {{test.foo}}
                         <input type="checkbox" id="ID">
                         <label><span>ID</span></label>
                     </th>

@@ -15,6 +15,7 @@ class CreatePropertyStatusesTable extends Migration
         Schema::create('property_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status');
+            $table->string('display_name');
             $table->timestamps();
         });
     }

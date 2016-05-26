@@ -12,6 +12,7 @@ use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\Gateways\UserQueryBuilder;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\DB\Providers\SQL\Models\User as UserModel;
+use Mockery\CountValidator\Exception;
 
 class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     private $tableGateway = null;

@@ -39,4 +39,14 @@ class PropertyQueryBuilder extends QueryBuilder
             ->where($this->table.'.id','=',$propertyId)
             ->first();
     }
+
+    public function countProperties($userId)
+    {
+        return DB::table($this->table)
+            ->selectRaw('purpose_id, property_status_id, count(id) as totalPropertiesByStatus')
+            ->where('owner_id','=',$userId)
+            ->groupBy('purpose_id', 'property_status_id')
+            ->get();
+    }
+
 }

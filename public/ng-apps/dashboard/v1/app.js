@@ -4,21 +4,69 @@
 var app = angular.module('dashboard',['ngRoute', 'ui.router','ui.select', 'firebase', 'ngFileUpload', 'ngSanitize']);
 
 
+app.filter('filterByCountParam', [function () {
+    return function (counts, purpose, status) {
+        if(purpose == null)
+            purpose = undefined;
+        if(status == null)
+            status = undefined;
+        var totalLikes = 0;
+        if(purpose != undefined || status != undefined)
+        {
+            if(purpose != undefined && status != undefined){
+                totalLikes = parseInt(counts[purpose][status]);
+            }else if(purpose != undefined && status === undefined){
+                angular.forEach(counts[purpose], function (value, key) {
+                    totalLikes += parseInt(value);
+                });
+            } else if(purpose === undefined && status != undefined){
+                angular.forEach(counts, function (tempPurpose, pKey) {
+                    totalLikes += parseInt(counts[pKey][status])
+                });
+            }
+        }
+        else
+        {
+            angular.forEach(counts, function (tempPurpose, pKey) {
+                angular.forEach(tempPurpose, function (tempStatus, sKey) {
+                    totalLikes += parseInt(tempStatus);
+                });
+            });
+        }
+        return totalLikes;
+    };
+}]);
+
 app.run(function($rootScope, $location, $AuthService, $state) {
     $rootScope.AUTH_TOKEN = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
-    $rootScope.CUSTOMERS = [];
+    $rootScope.propertiesCounts = {};
+    $rootScope.RECOURCES = [];
     $rootScope.USERS = [];
-
+    $rootScope.purposes = [
+        {
+            id: 1,
+            name: 'for-sale',
+            displayName: 'for sale'
+        },
+        {
+            id: 2,
+            name: 'for-rent',
+            displayName: 'for rent'
+        }
+    ];
     $rootScope.please_wait_class = '';
-    $rootScope.searchPropertiesParams = {
-        owner_id: 1,
-        purpose_id: 2,
+    $rootScope.defaultSearchPropertiesParams = {
+        owner_id: null,
+        purpose_id: 1,
         status_id: 1
     };
+    $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
+
+    $rootScope.propertiesCounts = {};
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         $rootScope.activeLink = next.name;
         /*

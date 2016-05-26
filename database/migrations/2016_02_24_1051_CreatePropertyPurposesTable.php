@@ -15,6 +15,7 @@ class CreatePropertyPurposesTable extends Migration
         Schema::create('property_purposes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('purpose');
+            $table->string('display_name');
             $table->timestamps();
         });
     }

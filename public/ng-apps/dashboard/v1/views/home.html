@@ -35,10 +35,9 @@
             <ul class="sideBar-links">
                 <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
                 <li ng-class="{'active':activeLink==='home.properties.all'}">
-                    <a href="#home/listings/all"><span class="icon-list"></span>listings <span class="badge">134</span></a>
+                    <a href="#home/listings/all"><span class="icon-list"></span>listings <span class="badge">{{propertiesCounts | filterByCountParam: undefined}}</span></a>
                     <ul class="sub-links">
-                        <li ng-class="{'active':activeLink==='home.properties.for-sale'}"><a href="#home/properties/for-sale"><span class="icon-clothes-tag"></span> for sale <span class="badge small">34</span></a></li>
-                        <li ng-class="{'active':activeLink==='home.properties.for-rent'}"><a href="#home/properties/for-rent"><span class="icon-rent"></span> for rent <span class="badge small">99</span></a></li>
+                        <li data-ng-repeat="purpose in purposes" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span class="icon-staff-symbol"></span>Agency Staff</a></li>
