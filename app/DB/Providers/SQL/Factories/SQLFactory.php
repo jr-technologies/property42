@@ -28,6 +28,4 @@ abstract class SQLFactory extends Factory {
     {
         return array_map([$this, 'map'], $results);
     }
-
-
 }

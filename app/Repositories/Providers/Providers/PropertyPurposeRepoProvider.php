@@ -11,7 +11,6 @@ namespace App\Repositories\Providers\Providers;
 
 use App\Repositories\Providers\RepositoryProvider;
 use App\Repositories\Providers\RepositoryProviderInterface;
-use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 
 class PropertyPurposeRepoProvider extends RepositoryProvider implements RepositoryProviderInterface

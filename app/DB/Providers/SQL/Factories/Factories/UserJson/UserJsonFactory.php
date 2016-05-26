@@ -75,6 +75,7 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->mobile = $userJson->mobile;
         $user->country = $userJson->country;
         $user->membershipPlan = $userJson->membershipPlan;
+        $user->roles = $userJson->roles;
         $user->agencies = $userJson->agencies;
         $user->createdAt = $userJson->createdAt;
         $user->updatedAt = $userJson->updatedAt;

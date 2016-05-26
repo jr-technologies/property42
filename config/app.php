@@ -305,6 +305,13 @@ return [
         'DeleteFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\DeleteFeatureSectionRequest::class,
         'GetAllFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest::class,
 
+        /*Roles Requests */
+        'AddRoleRequest' => \App\Http\Requests\Requests\Role\AddRoleRequest::class,
+        'UpdateRoleRequest' => \App\Http\Requests\Requests\Role\UpdateRoleRequest::class,
+        'DeleteRoleRequest' => \App\Http\Requests\Requests\Role\DeleteRoleRequest::class,
+        'GetAllRolesRequest' => \App\Http\Requests\Requests\Role\GetAllRolesRequest::class,
+
+
         /*User Roles Requests */
         'AddUserRoleRequest' => \App\Http\Requests\Requests\UserRole\AddUserRoleRequest::class,
         'UpdateUserRoleRequest' => \App\Http\Requests\Requests\UserRole\UpdateUserRoleRequest::class,

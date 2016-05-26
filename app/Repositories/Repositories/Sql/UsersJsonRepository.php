@@ -58,4 +58,8 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     {
 
     }
+    public function updateWhere(array $condition ,array $data)
+    {
+        return $this->factory->updateWhere($condition ,$data);
+    }
 }

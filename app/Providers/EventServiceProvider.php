@@ -12,6 +12,7 @@ use App\Events\Events\Property\PropertyUpdated;
 use App\Events\Events\Section\SectionUpdated;
 use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserCreated;
+use App\Events\Events\User\UserRolesChanged;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
 use App\Listeners\Listeners\Agency\DeleteAgencyInUserJson;
 use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
@@ -22,6 +23,7 @@ use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\Section\RegenerateSectionFeaturesJson;
 use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
 use App\Listeners\Listeners\User\CreateUserJsonDocument;
+use App\Listeners\Listeners\User\UpdateUserRoleInUserJson;
 use App\Traits\AssignedFeaturesJsonDocumentsGenerator;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -67,7 +69,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         SectionUpdated::class => [
             RegenerateSectionFeaturesJson::class,
-        ]
+        ],
+        UserRolesChanged::class => [
+            UpdateUserRoleInUserJson::class,
+        ],
     ];
 
     /**

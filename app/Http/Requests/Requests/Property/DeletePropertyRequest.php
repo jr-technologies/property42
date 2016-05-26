@@ -37,7 +37,7 @@ class DeletePropertyRequest extends Request implements RequestInterface{
         $this->features = (new PropertiesRepoProvider())->repo();
     }
     /**
-     * @return Feature|null
+     * @return Property|null
      */
     public function getPropertyModel()
     {
