@@ -42,7 +42,7 @@ class AuthController extends WebController
     }
     public function showLoginPage()
     {
-        return $this->response->setView('loginPage')->respond([]);
+        return $this->response->setView('registration.login')->respond([]);
     }
 
     public function login(LoginRequest $request)
@@ -62,7 +62,7 @@ class AuthController extends WebController
 
     public function showRegisterPage()
     {
-        return $this->response->setView('registration/registration')->respond([]);
+        return $this->response->setView('registration.register')->respond([]);
     }
 
     public function register(RegistrationRequest $request)

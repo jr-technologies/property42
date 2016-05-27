@@ -1,10 +1,4 @@
 <?php
-
-Route::get('/login',
-    [
-        'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
-    ]
-);
 Route::get('/dashboard',
     [
         'middleware'=>
@@ -17,7 +11,11 @@ Route::get('/dashboard',
     ]
 );
 
-
+Route::get('/login',
+    [
+        'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
+    ]
+);
 Route::post('/login',
     [
         'middleware'=>

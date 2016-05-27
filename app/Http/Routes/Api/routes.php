@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('ttt', function(){
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
-});
  Route::get('properties/json',function(){
     $properties = (new PropertiesRepository())->all();
      $finalResult = [];
