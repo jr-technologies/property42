@@ -9,7 +9,9 @@
 namespace App\DB\Providers\SQL\Factories\Factories\User\Gateways;
 
 
+use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
+use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 
@@ -32,14 +34,4 @@ class UserQueryBuilder extends QueryBuilder{
         return $this->insertMultiple($userRoles, 'user_roles');
     }
 
-    public function getAgencyStaff($agencyId)
-    {
-        $table = (new AgencyStaffFactory())->getTable();
-
-       return  DB::table($table)
-        ->leftjoin($this->table,$table.'.user_id','=',$this->table.'.id')
-        ->select($this->table.'.*')
-        ->where($table.'.agency_id','=',$agencyId)
-        ->get();
-    }
 }

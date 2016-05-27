@@ -25,7 +25,7 @@ class GetDashboardResourcesRequest extends Request implements RequestInterface{
     public function authorize(){
         return true;
     }
-    public function getUserModel()
+    public function getUserJsonModel()
     {
         return $this->users->find($this->get('userId'));
     }

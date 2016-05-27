@@ -33,20 +33,20 @@ class RolesController extends ApiController
         $role = $request->getRoleModel();
         $role->id = $this->roles->store($role);
         return $this->response->respond(['data' => [
-            'Role' => $role
+            'roles' => $role
         ]]);
     }
 
     public function all(GetAllRolesRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'Role'=>$this->roles->all()
+            'roles'=>$this->roles->all()
         ]]);
     }
     public function delete(DeleteRoleRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'Role'=>$this->roles->delete($request->getRoleModel())
+            'roles'=>$this->roles->delete($request->getRoleModel())
         ]]);
     }
     public function update(UpdateRoleRequest $request)
@@ -54,7 +54,7 @@ class RolesController extends ApiController
         $userRole =$request->getRoleModel();
         $this->roles->update($userRole);
         return $this->response->respond(['data' => [
-            'Role' => $userRole
+            'roles' => $userRole
         ]]);
     }
 

@@ -30,10 +30,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->findBy('access_token', $token));
     }
-    public function getAgencyStaff($agencyId)
-    {
-        return $this->mapCollection($this->tableGateway->getAgencyStaff($agencyId));
-    }
+
     public function findWhere(array $conditions)
     {
         return $this->map($this->tableGateway->getWhere($conditions)->first());
