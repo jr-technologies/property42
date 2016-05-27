@@ -25,7 +25,14 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->getWhere($conditions)->first());
     }
-
+    public function getTable()
+    {
+        return $this->tableGateway->getTable();
+    }
+    private function setTable($table)
+    {
+        $this->tableGateway->setTable($table);
+    }
     /**
      * @return array Agency::class
      **/
@@ -76,7 +83,10 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->updateWhere($where, $data);
     }
-
+    public function getUserAgency($userId)
+    {
+        return $this->mapCollection($this->tableGateway->getBy('user_id',$userId));
+    }
     /**
      * @param Agency $agency
      * @return int
@@ -114,6 +124,7 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     public function map($result)
     {
         $agency = clone($this->model);
+        $agency->id = $result->id;
         $agency->name = $result->agency;
         $agency->description = $result->description;
         $agency->mobile = $result->mobile;

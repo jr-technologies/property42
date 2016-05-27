@@ -30,7 +30,7 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
 
     /**
      * @param string $id
-     * @return Country::class
+     * @return Society::class
      **/
     public function find($id)
     {

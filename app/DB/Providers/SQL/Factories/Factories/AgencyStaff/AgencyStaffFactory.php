@@ -18,14 +18,13 @@ class AgencyStaffFactory extends SQLFactory implements SQLFactoriesInterface
     private $tableGateway = null;
     public function __construct()
     {
-        $this->model = new Block();
         $this->tableGateway = new AgencyStaffQueryBuilder();
     }
     public function getTable()
     {
         return $this->tableGateway->getTable();
     }
-    public function setTable($table)
+    private function setTable($table)
     {
          $this->tableGateway->setTable($table);
     }

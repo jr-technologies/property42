@@ -24,8 +24,5 @@ class AgencyQueryBuilder extends QueryBuilder{
         return $this->insertMultiple($agencyCities, 'agency_cities');
     }
 
-    /**
-     * @param $agencyId
-     */
 
 }

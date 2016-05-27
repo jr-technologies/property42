@@ -24,7 +24,14 @@ class UserRolesFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
+    public function getTable()
+    {
+        return $this->tableGateway->getTable();
+    }
+    public function setTable($table)
+    {
+        $this->tableGateway->setTable($table);
+    }
     /**
      * @param int $id
      * @return UserRole::class
@@ -33,6 +40,7 @@ class UserRolesFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->find($id));
     }
+
     /**
      * @param UserRole $userRole
      * @return bool

@@ -68,5 +68,9 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
         Event::fire(new AgencyDeleted($agency));
         return $agency;
     }
+    public function getUserAgency($userId)
+    {
+        return $this->factory->getUserAgency($userId);
+    }
 
 }

@@ -67,6 +67,15 @@ Route::post('test/ng', function(){
     ]]);
 });
 
+Route::get('app/dashboard/resources',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'AppsResourceController@dashboardResources'
+    ]
+);
 Route::get('/users',
     [
         'middleware'=>
@@ -76,7 +85,6 @@ Route::get('/users',
         'uses'=>'UsersController@index'
     ]
 );
-
 Route::post('user/update',
     [
         'middleware'=>
@@ -382,6 +390,15 @@ Route::post('property/update',
     ]
 );
 
+Route::post('force/property/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deletePropertyRequest'
+            ],
+        'uses'=>'PropertiesController@forceDelete'
+    ]
+);
 Route::post('property/delete',
     [
         'middleware'=>
@@ -393,6 +410,7 @@ Route::post('property/delete',
 );
 
 Route::get('properties/count',
+
     [
         'middleware'=>
             [
@@ -793,6 +811,50 @@ Route::post('property/like/decrement',
     ]
 );
 
+/*
+ Role Crud
+*/
+
+Route::post('role/add',
+    [
+        'middleware'=>
+            [
+                'apiValidate:addRoleRequest'
+            ],
+        'uses'=>'RolesController@store'
+    ]
+);
+Route::post('role/update',
+    [
+        'middleware'=>
+            [
+
+                'apiValidate:updateRoleRequest',
+            ],
+
+        'uses'=>'RolesController@update'
+    ]
+);
+
+Route::post('role/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteRoleRequest'
+            ],
+        'uses'=>'RolesController@delete'
+    ]
+);
+
+Route::get('roles',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getAllRolesRequest'
+            ],
+        'uses'=>'RolesController@all'
+    ]
+);
 
 /*
  User Role Crud

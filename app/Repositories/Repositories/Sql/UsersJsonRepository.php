@@ -33,7 +33,10 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     {
 
     }
-
+    public function getStaffByOwner($agencyId)
+    {
+        return $this->factory->getStaffByOwner($agencyId);
+    }
     public function search()
     {
 
@@ -57,5 +60,9 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     public function delete($id)
     {
 
+    }
+    public function updateWhere(array $condition ,array $data)
+    {
+        return $this->factory->updateWhere($condition ,$data);
     }
 }

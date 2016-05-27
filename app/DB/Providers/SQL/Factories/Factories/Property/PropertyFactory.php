@@ -36,7 +36,8 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function delete(Property $property)
     {
-        return  $this->tableGateway->delete($property->id);
+        $property->statusId = 3;
+        return  $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
     }
     function all()
     {

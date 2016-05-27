@@ -9,7 +9,10 @@
 namespace App\DB\Providers\SQL\Factories\Factories\UserRole\Gateways;
 
 
+use App\DB\Providers\SQL\Factories\Factories\Role\Gateways\RoleQueryBuilder;
+use App\DB\Providers\SQL\Factories\Factories\Role\RolesFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
+use Illuminate\Support\Facades\DB;
 
 class UserRoleQueryBuilder extends QueryBuilder{
     public function __construct(){

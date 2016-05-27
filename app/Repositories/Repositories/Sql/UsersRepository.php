@@ -13,6 +13,7 @@ use App\Collections\Collections\UserCollection;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\SQLFactoryProvider;
 use App\Events\Events\User\UserCreated;
+use App\Events\Events\User\UserRolesChanged;
 use App\Libs\Json\Creators\Creators\UserJsonCreator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\DB\Providers\SQL\Models\User;
@@ -36,10 +37,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
                 ->with('agencies')
                 ->get();
     }
-    public function getAgencyStaff($agencyId)
-    {
-        return $this->factory->getAgencyStaff($agencyId);
-    }
+
     public function getFirstWithRelations(array $where = [])
     {
         $user = $this->getWithRelations($where)->first();
@@ -101,7 +99,8 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function addRoles($userId, $userRoles)
     {
-        return $this->factory->addRoles($userId, $userRoles);
+        $this->factory->addRoles($userId, $userRoles);
+        Event::fire(new UserRolesChanged($userId));
     }
 
     public function delete(User $user)

@@ -10,9 +10,13 @@ namespace App\Libs\Json\Creators\Creators\User;
 
 use App\DB\Providers\SQL\Models\Agency;
 use App\Libs\Json\Creators\Creators\JsonCreator;
+use App\Libs\Json\Creators\Creators\Role\RolesJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
 use App\DB\Providers\SQL\Models\User;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
+use App\Repositories\Providers\Providers\UserRolesRepoProvider;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\CountriesRepository;
 use App\Repositories\Repositories\Sql\MembershipPlansRepository;
@@ -25,6 +29,9 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
     private $countries = null;
     private $membershipPlans = null;
     private $agencies = null;
+    private $userRoles = null;
+    private $userJson = null;
+    private $roles = null;
     public function __construct(User $user = null)
     {
         $this->model = $user;
@@ -35,7 +42,10 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
 
         $this->countries = new CountriesRepository();
         $this->membershipPlans = new MembershipPlansRepository();
+        $this->userRoles = (new RolesRepoProvider())->repo();
         $this->agencies = new AgenciesRepository();
+        $this->roles = (new RolesRepoProvider)->repo();
+        $this->userJson = (new UsersJsonRepoProvider())->repo();
     }
 
     public function create()
@@ -52,6 +62,7 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->country = $this->country();
         $this->prototype->membershipPlan = $this->membershipPlan();
         $this->prototype->agencies = $this->agencies();
+        $this->prototype->roles = $this->roles();
         $this->prototype->createdAt = $this->model->createdAt;
         $this->prototype->updatedAt = $this->model->updatedAt;
         return $this->prototype;
@@ -67,6 +78,18 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
         $plan = $this->membershipPlans->getById($this->model->membershipPlanId);
         return $this->membershipPlanJsonCreator->setModel($plan)->create();
     }
+    public function roles()
+    {
+        $roles = $this->roles->getUserRoles($this->model->id);
+
+        $finalRecords = [];
+
+        foreach($roles as $role)
+        {
+            $finalRecords[] = (new RolesJsonCreator($role))->create();
+        }
+        return $finalRecords;
+     }
 
     public function agencies()
     {

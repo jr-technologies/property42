@@ -29,7 +29,10 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
+    public function getStaffByOwner($agencyId)
+    {
+        return $this->mapCollection($this->tableGateway->getStaffByOwner($agencyId));
+    }
     /**
      * @param int $id
      * @return UserJsonPrototype::class
@@ -75,6 +78,7 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->mobile = $userJson->mobile;
         $user->country = $userJson->country;
         $user->membershipPlan = $userJson->membershipPlan;
+        $user->roles = $userJson->roles;
         $user->agencies = $userJson->agencies;
         $user->createdAt = $userJson->createdAt;
         $user->updatedAt = $userJson->updatedAt;
