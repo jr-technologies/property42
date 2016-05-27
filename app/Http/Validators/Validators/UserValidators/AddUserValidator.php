@@ -30,7 +30,6 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'passwordAgain.required' => 'Password Again is required',
             'phone.required' => 'Phone is required',
             'userRoles.required' => 'User roles is required',
-            'securityCode.required' => 'Security code is required',
             'termsConditions.required' => $termsConditionsMessage,
             'termsConditions.equals' => $termsConditionsMessage,
             /* Agency messages */
@@ -51,7 +50,6 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'passwordAgain' => 'required',
             'phone' => 'required',
             'userRoles' => 'required',
-            'securityCode' => 'required',
             'termsConditions' => 'required|equals:1'
         ];
     }

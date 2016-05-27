@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <div class="login-registarHolder">
+        <?php
+            if(\Session::has('errors')){
+                $errors = \Session::get('errors');
+                //dd($errors);
+            }
+        ?>
         <ul class="tabset">
             <li class=""><a href="{{url('/login')}}">login</a></li>
             <li class="active"><a href="{{url('/register')}}">become a free member</a></li>
@@ -11,8 +17,14 @@
             <div id="tab2">
                 <form class="registration-form" method="post" action="{{route('register')}}">
                     <div class="input-holder error">
-                        <label class="icon-envelope" for="email1"></label>
-                        <input type="email" placeholder="Enter Your Email Address" id="email1" name="email" required>
+                        <label class="icon-user" for="fName"></label>
+                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" required>
+                        <span class="border"></span>
+                        <span class="error-text">This is error</span>
+                    </div>
+                    <div class="input-holder error">
+                        <label class="icon-user" for="lName"></label>
+                        <input type="text" placeholder="Enter Your Last Name" name="lName" id="lName" required>
                         <span class="border"></span>
                         <span class="error-text">This is error</span>
                     </div>
@@ -29,8 +41,8 @@
                         <span class="error-text">This is error</span>
                     </div>
                     <div class="input-holder error">
-                        <label class="icon-user" for="name"></label>
-                        <input type="text" placeholder="Enter Your Name" name="fullName" id="name" required>
+                        <label class="icon-envelope" for="email1"></label>
+                        <input type="email" placeholder="Enter Your Email Address" id="email1" name="email" required>
                         <span class="border"></span>
                         <span class="error-text">This is error</span>
                     </div>
@@ -80,15 +92,15 @@
                             <span class="error-text">This is error</span>
                             <ul class="role-listing">
                                 <li>
-                                    <input type="checkbox" id="owner-investor" class="userRole-checkbox" name="owner-investor">
+                                    <input type="checkbox" id="owner-investor" class="userRole-checkbox" name="userRoles[]" value="1">
                                     <label for="owner-investor">Owner / Investor</label>
                                 </li>
                                 <li>
-                                    <input type="checkbox" id="tenant" class="userRole-checkbox" name="tenant">
+                                    <input type="checkbox" id="tenant" class="userRole-checkbox" name="tenant" name="userRoles[]" value="2">
                                     <label for="tenant">Tenant</label>
                                 </li>
                                 <li>
-                                    <input type="checkbox" id="agent-2" class="userRole-checkbox agent-brokerCheckbox" name="agent-broker">
+                                    <input type="checkbox" id="agent-2" class="userRole-checkbox agent-brokerCheckbox" name="userRoles[]" value="3">
                                     <label for="agent-2">Agent/Broker</label>
                                 </li>
                                 <li>
@@ -134,7 +146,7 @@
                         <h1>Agency Information</h1>
                         <div class="input-holder error">
                             <label for="agency-name" class="icon-agency"></label>
-                            <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" required>
+                            <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" >
                             <span class="border"></span>
                             <span class="error-text">This is error</span>
                         </div>
@@ -155,25 +167,25 @@
                         <h1> Agency Contact Details</h1>
                         <div class="input-holder error">
                             <label for="compny-phone" class="icon-phone"></label>
-                            <input type="tel" placeholder="Enter Company Phone Number" name="companyPhone" id="compny-phone" required>
+                            <input type="tel" placeholder="Enter Company Phone Number" name="companyPhone" id="compny-phone" >
                             <span class="border"></span>
                             <span class="error-text">This is error</span>
                         </div>
                         <div class="input-holder error">
                             <label for="compny-mobile" class="icon-phone_iphone"></label>
-                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" id="compny-mobile" required>
+                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" id="compny-mobile" >
                             <span class="border"></span>
                             <span class="error-text">This is error</span>
                         </div>
                         <div class="input-holder full-width error">
                             <label for="compny-address" class="icon-directions"></label>
-                            <input type="text" placeholder="Enter Company Address" name="companyAddress" id="compny-address" required>
+                            <input type="text" placeholder="Enter Company Address" name="companyAddress" id="compny-address" >
                             <span class="border"></span>
                             <span class="error-text">This is error</span>
                         </div>
                         <div class="input-holder error">
                             <label for="compny-email" class="icon-envelope"></label>
-                            <input type="email" placeholder="Enter Company Email" name="companyEmail" id="compny-email" required>
+                            <input type="email" placeholder="Enter Company Email" name="companyEmail" id="compny-email" >
                             <span class="border"></span>
                             <span class="error-text">This is error</span>
                         </div>
@@ -181,7 +193,7 @@
                     <div class="input-holder full-width error">
                         <ul class="terms-listing">
                             <li>
-                                <input type="checkbox" id="terms-Cond" name="termsConditions">
+                                <input type="checkbox" id="terms-Cond" name="termsConditions" value="1">
                                 <label for="terms-Cond">I have read and agree to Property42.pk <a href="#">Terms and Conditions</a> <span class="error-text">( This is error )</span></label>
                             </li>
                             <li>
