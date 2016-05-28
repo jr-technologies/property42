@@ -18,7 +18,7 @@
         <div class="container">
             <div class="layout">
                 <div class="logo"><a href="#"><img src="{{url('/web-apps/registration/assets/')}}/images/logo.png" width="695" height="301" alt="Property42"></a></div>
-                <a href="#" class="login-register">Login / Register</a>
+                <a href="{{route('loginPage')}}" class="login-register">Login / Register</a>
             </div>
         </div>
     </header>

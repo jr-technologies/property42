@@ -61,13 +61,18 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param string $column
-     * @param string $value
-     * @return UserModel::class
-     **/
+     * @param $column
+     * @param $value
+     * @return UserModel
+     * @throws \Exception
+     */
     public function findBy($column, $value)
     {
-        return $this->map($this->tableGateway->findBy($column, $value));
+        $user = $this->tableGateway->findBy($column, $value);
+        if($user == null)
+            throw new \Exception();
+
+        return $this->map($user);
     }
 
     /**

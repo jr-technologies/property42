@@ -26,11 +26,16 @@ abstract class Authenticate
         $this->users = (new UsersRepoProvider())->repo();
     }
 
+    /**
+     * @param array $credentials
+     * @return bool
+     */
     public function attempt(array $credentials)
     {
-        $user = $this->users->findByEmail($credentials['email']);
-        if(!$user)
-            return false;
+        try{ $user = $this->users->findByEmail($credentials['email']); }
+            catch (\Exception $e){
+                return false;
+            }
 
         if(!Hash::check($credentials['password'], $user->password))
             return false;

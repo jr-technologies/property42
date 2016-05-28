@@ -1,15 +1,4 @@
 <?php
-Route::get('/dashboard',
-    [
-        'middleware'=>
-            [
-                'webAuthenticate:updatePropertyRequest',
-                'webAuthorize:updatePropertyRequest',
-                'webValidate:updatePropertyRequest'
-            ],
-        'uses'=>'AppsController@frontView'
-    ]
-);
 
 Route::get('/login',
     [

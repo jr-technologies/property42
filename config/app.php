@@ -333,6 +333,8 @@ return [
         'AddPropertyLikeRequest' => \App\Http\Requests\Requests\PropertyLike\AddPropertyLikeRequest::class,
         'UpdatePropertyLikeRequest' => \App\Http\Requests\Requests\PropertyLike\UpdatePropertyLikeRequest::class,
 
+        /* Apps Requests */
+        'GetDashboardAppRequest' => \App\Http\Requests\Requests\Apps\GetDashboardAppRequest::class,
     ],
 
 ];

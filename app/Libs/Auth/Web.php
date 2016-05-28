@@ -40,4 +40,6 @@ class Web extends Authenticate implements AuthInterface
             return $this->users->getById(session('authUser')->id);
         }
     }
+
+
 }
