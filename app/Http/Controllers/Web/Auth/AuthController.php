@@ -59,7 +59,7 @@ class AuthController extends WebController
         if($authenticatedUser == null)
             $this->response->respondInternalServerError();
 
-        return redirect('/register');
+        return redirect()->route('dashboard');
     }
 
     public function showRegisterPage()
@@ -77,7 +77,7 @@ class AuthController extends WebController
             $this->saveUserAgency($request, $userId);
         }
         \Session::flash('success', 'Registered Successfully');
-        return redirect()->back();
+        return redirect()->route('loginPage');
     }
 
     private function saveUser(RegistrationRequest $request)

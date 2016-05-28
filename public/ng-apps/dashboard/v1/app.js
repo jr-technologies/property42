@@ -37,7 +37,7 @@ app.filter('filterByCountParam', [function () {
     };
 }]);
 
-app.run(function($rootScope, $location, $AuthService, $state) {
+app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHandler) {
     $rootScope.AUTH_TOKEN = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
@@ -87,5 +87,9 @@ app.run(function($rootScope, $location, $AuthService, $state) {
         if(next.name == "login" && $AuthService.getAppToken() != null){
             $location.path($state.href('home').substring(1));
         }
+    });
+
+    $rootScope.$on('error-response-received', function (event, args) {
+        $ErrorResponseHandler.handle(args.status);
     });
 });

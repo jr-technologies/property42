@@ -11,7 +11,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         getProperties().then(function successCallback(properties) {
             $scope.properties = properties;
         }, function errorCallback(response) {
-            console.log('fucked up');
+
         });
     });
 
@@ -27,7 +27,8 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         }).then(function successCallback(response) {
             return response.data.data.properties;
         }, function errorCallback(response) {
-            return response;
+            $rootScope.$broadcast('error-response-received',{status:response.status});
+            return response.data.data.properties;
         });
     };
     var getPropertiesCounts = function () {
@@ -47,7 +48,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         getPropertiesCounts().then(function successCallback(counts) {
             $rootScope.propertiesCounts = counts;
         }, function errorCallback(response) {
-            console.log('failed');
+
         });
 
         $rootScope.searchPropertiesParams.status_id = 1;

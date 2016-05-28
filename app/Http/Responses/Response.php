@@ -54,11 +54,11 @@ abstract class Response
     }
     public function respondValidationFails($messages=["Your request did not passed our server requirements!"])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->setErrorMessages($messages)->respondWithValidationErrors();
+        return $this->setHttpStatus(400)->setCustomStatus(400)->setErrorMessages($messages)->respondWithValidationErrors();
     }
     public function respondAuthenticationFailed($messages=["Dear user you are not logged in."])
     {
-        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
+        return $this->setHttpStatus(401)->setCustomStatus(401)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondInvalidCredentials($messages=["Invalid username or password"])
     {

@@ -25,10 +25,14 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     /**
      * @param string $token
      * @return UserModel::class
+     * @throws \Exception
      **/
     public function findByToken($token)
     {
-        return $this->map($this->tableGateway->findBy('access_token', $token));
+        $user = $this->tableGateway->findBy('access_token', $token);
+        if($user == null)
+            throw new \Exception();
+        return $this->map($user);
     }
 
     public function findWhere(array $conditions)

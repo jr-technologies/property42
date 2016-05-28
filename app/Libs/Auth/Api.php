@@ -33,7 +33,12 @@ class Api extends Authenticate implements AuthInterface
 
     public function authenticate()
     {
-        return ($this->user() == null)?false: true;
+        try{
+            $this->user();
+            return true;
+        }catch (\Exception $e){
+            return false;
+        }
     }
 
     public function user()

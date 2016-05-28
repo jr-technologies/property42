@@ -16,57 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('properties/json',function(){
-    $properties = (new PropertiesRepository())->all();
-     $finalResult = [];
-
-     foreach($properties as $property){
-
-         $propertyJson = (new PropertyJsonCreator($property))->create();
-         $finalResult[] = [ 'property_id' => $property->id, 'json'=> $propertyJson];
-     }
-     dd($finalResult);
-});
-
-Route::get('feature/json',function(){
-    $feature = new FeaturesRepository();
-    $subTypeId = 1;
-    Event::fire(new FeatureJsonCreated($subTypeId));
-});
-
-Route::get('fe',function(){
-    $feature = new FeaturesRepository();
-    $features = $feature->allAssigned();
-    //dd($features);
-    $collection = collect($features);
-    //dd($collection);
-    $collection = $collection->each(function ($item, $key) {
-        $item->sectionName = $item->section->name;
-    });
-    $groupedBySection = $collection->groupBy('sectionName');
-    $finalArray = [];
-    $groupedBySection->each(function($featuresCollection,$key) use (&$finalArray){
-        $features = $featuresCollection->all();
-        $section = clone($features[0]->section);
-        $section->features = $features;
-        //dd($section);
-        $finalArray[$key] = $section;
-    });
-
-    dd(json_encode($finalArray));
-});
-Route::post('test/ng', function(){
-    $response = new App\Http\Responses\Responses\ApiResponse();
-    $request = request();
-    //dd($request->get('features'));
-    dd($request->all()['files']);
-    $mainImage = (isset($files[0]))?$files[0]: null;
-    dd($request->files->all()['file']);
-    return $response->respond(['data' => [
-        'file' => $request->files
-    ]]);
-});
-
 Route::get('app/dashboard/resources',
     [
         'middleware'=>
@@ -374,6 +323,7 @@ Route::get('user/properties',
     [
         'middleware'=>
             [
+                'apiAuthenticate:getUserPropertiesRequest',
                 'apiValidate:getUserPropertiesRequest'
             ],
         'uses'=>'PropertiesController@getUserProperties'
