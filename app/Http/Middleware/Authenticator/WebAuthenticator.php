@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Authenticator;
 
+use App\Http\Requests\Request;
 use App\Http\Responses\Responses\WebResponse;
 use Closure;
 
@@ -22,11 +23,11 @@ class WebAuthenticator
      */
     public function handle($request, Closure $next, $customRequest)
     {
+        /* @var $customRequest Request::class*/
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
         if($customRequest->isNotAuthentic())
-            return 'putter kinda chore a tu?';
-            //return $this->response->respondAuthenticationFailed();
+            return $this->response->respondAuthenticationFailed();
 
         return $next($request);
     }

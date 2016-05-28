@@ -6,7 +6,6 @@
         <?php
             if(\Session::has('errors')){
                 $errors = \Session::get('errors');
-                //dd($errors);
             }
         ?>
         <ul class="tabset">
@@ -15,67 +14,70 @@
         </ul>
         <div class="tab-content">
             <div id="tab2">
-                <form class="registration-form" method="post" action="{{route('register')}}">
-                    <div class="input-holder error">
+                @if(\Session::has('success'))
+                    {{\Session::get('success')}}
+                @endif
+                <form class="registration-form" method="post" action="{{route('register')}}" enctype="multipart/form-data">
+                    <div class="input-holder @if(isset($errors) && $errors->has('fName')) error @endif">
                         <label class="icon-user" for="fName"></label>
-                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" required>
+                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('fName')) {{$errors->first('fName')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('lName')) error @endif">
                         <label class="icon-user" for="lName"></label>
-                        <input type="text" placeholder="Enter Your Last Name" name="lName" id="lName" required>
+                        <input type="text" placeholder="Enter Your Last Name" name="lName" id="lName" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('lName')) {{$errors->first('lName')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('password')) error @endif">
                         <label class="icon-key" for="pass1"></label>
-                        <input type="password" placeholder="Enter Your Password" id="pass1" name="password" required>
+                        <input type="password" placeholder="Enter Your Password" id="pass1" name="password" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('password')) {{$errors->first('password')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('passwordAgain')) error @endif">
                         <label class="icon-key" for="cpass"></label>
-                        <input type="password"  placeholder="Confirm Password" name="passwordAgain" id="cpass" required>
+                        <input type="password"  placeholder="Confirm Password" name="passwordAgain" id="cpass" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('passwordAgain')) {{$errors->first('passwordAgain')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('email')) error @endif">
                         <label class="icon-envelope" for="email1"></label>
-                        <input type="email" placeholder="Enter Your Email Address" id="email1" name="email" required>
+                        <input type="email" placeholder="Enter Your Email Address" id="email1" name="email" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('email')) {{$errors->first('email')}} @endif</span>
                     </div>
                     <h1>Contact Information</h1>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('phone')) error @endif">
                         <label class="icon-phone" for="phone"></label>
-                        <input type="tel" placeholder="Enter Your Phone Number" name="phone" id="phone" required>
+                        <input type="tel" placeholder="Enter Your Phone Number" name="phone" id="phone" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('phone')) {{$errors->first('phone')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('mobile')) error @endif">
                         <label class="icon-phone_iphone" for="cell"></label>
-                        <input type="tel" placeholder="Enter Your Cell / Mobile Number" name="mobile" id="cell" required>
+                        <input type="tel" placeholder="Enter Your Cell / Mobile Number" name="mobile" id="cell" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('mobile')) {{$errors->first('mobile')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('fax')) error @endif">
                         <label class="icon-fax" for="fax"></label>
-                        <input type="tel" placeholder="Enter Fax Details" name="fax" id="fax" required>
+                        <input type="tel" placeholder="Enter Fax Details" name="fax" id="fax" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('fax')) {{$errors->first('fax')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('address')) error @endif">
                         <label class="icon-directions" for="address"></label>
-                        <input type="text" placeholder="Enter Your Address" name="address" id="address" required>
+                        <input type="text" placeholder="Enter Your Address" name="address" id="address" >
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('address')) {{$errors->first('address')}} @endif</span>
                     </div>
-                    <div class="input-holder error">
+                    <div class="input-holder @if(isset($errors) && $errors->has('zipCode')) error @endif">
                         <label class="icon-file-zip" for="zip"></label>
-                        <input type="text" placeholder="Enter Zip Code" name="zipCode" id="zip" required>
+                        <input type="text" placeholder="Enter Zip Code" name="zipCode" id="zip">
                         <span class="border"></span>
-                        <span class="error-text">This is error</span>
+                        <span class="error-text">@if(isset($errors) && $errors->has('zipCode')) {{$errors->first('zipCode')}} @endif</span>
                     </div>
                     <div class="input-holder">
                         <label for="agent" class="agent-check">
@@ -86,115 +88,73 @@
                             <span class="fake-label">Are you an Agent</span>
                         </label>
                     </div>
-                    <div class="input-holder full-width error">
+                    <div class="input-holder full-width @if(isset($errors) && $errors->has('userRoles')) error @endif">
                         <div class="roles">
                             <a class="role-opener">Other Roles:</a>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('userRoles')) {{$errors->first('userRoles')}} @endif</span>
                             <ul class="role-listing">
-                                <li>
-                                    <input type="checkbox" id="owner-investor" class="userRole-checkbox" name="userRoles[]" value="1">
-                                    <label for="owner-investor">Owner / Investor</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="tenant" class="userRole-checkbox" name="tenant" name="userRoles[]" value="2">
-                                    <label for="tenant">Tenant</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="agent-2" class="userRole-checkbox agent-brokerCheckbox" name="userRoles[]" value="3">
-                                    <label for="agent-2">Agent/Broker</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Apprraiser" class="userRole-checkbox" name="apprraiser">
-                                    <label for="Apprraiser">Apprraiser</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Architect" class="userRole-checkbox" name="architect">
-                                    <label for="Architect">Architect</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Builder" class="userRole-checkbox" name="builder">
-                                    <label for="Builder">Builder</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Corporate-Investor" class="userRole-checkbox" name="corporate-investor">
-                                    <label for="Corporate-Investor">Corporate Investor</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Developer" class="userRole-checkbox" name="developer">
-                                    <label for="Developer">Developer</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Listing-Administrator" class="userRole-checkbox" name="listing-admin">
-                                    <label for="Listing-Administrator">Listing Administrator</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Mortgage-Broker" class="userRole-checkbox" name="mortgage-broker">
-                                    <label for="Mortgage-Broker">Mortgage Broker</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Property/Asset Manger" class="userRole-checkbox" name="property-manager">
-                                    <label for="Property/Asset Manger">Property/Asset Manger</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="Researcher" class="userRole-checkbox" name="researcher">
-                                    <label for="Researcher">Researcher</label>
-                                </li>
+                                @foreach($response['roles'] as $role)
+                                    <li>
+                                        <input type="checkbox" id="role_{{$role->id}}" class="userRole-checkbox @if($role->id == 3) agent-brokerCheckbox @endif;" name="userRoles[]" value="{{$role->id}}">
+                                        <label for="role_{{$role->id}}">{{$role->name}}</label>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <div class="agent-information">
                         <h1>Agency Information</h1>
-                        <div class="input-holder error">
+                        <div class="input-holder @if(isset($errors) && $errors->has('agencyName')) error @endif">
                             <label for="agency-name" class="icon-agency"></label>
                             <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" >
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('agencyName')) {{$errors->first('agencyName')}} @endif</span>
                         </div>
                         <div class="input-holder onTop-mobile">
                             <div class="company-logo">
                                 <input type="file" name="companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
                                 <div class="picture-holder"><img src="" class="company-profileP" alt="Company logo"></div>
                                 <a class="delete"><span class="icon-bin"></span></a>
-                                <span class="name-tag">Add Company Logo</span>
+                                <span class="error-text">@if(isset($errors) && $errors->has('companyLogo')) {{$errors->first('companyLogo')}} @endif</span>
                             </div>
                         </div>
-                        <div class="input-holder full-width error">
+                        <div class="input-holder full-width @if(isset($errors) && $errors->has('agencyDescription')) error @endif">
                             <label for="D-services" class="icon-technical-support"></label>
                             <textarea id="D-services" name="agencyDescription" placeholder="Description of Services"></textarea>
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('agencyDescription')) {{$errors->first('agencyDescription')}} @endif</span>
                         </div>
                         <h1> Agency Contact Details</h1>
-                        <div class="input-holder error">
+                        <div class="input-holder @if(isset($errors) && $errors->has('companyPhone')) error @endif">
                             <label for="compny-phone" class="icon-phone"></label>
                             <input type="tel" placeholder="Enter Company Phone Number" name="companyPhone" id="compny-phone" >
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('companyPhone')) {{$errors->first('companyPhone')}} @endif</span>
                         </div>
-                        <div class="input-holder error">
+                        <div class="input-holder @if(isset($errors) && $errors->has('companyMobile')) error @endif">
                             <label for="compny-mobile" class="icon-phone_iphone"></label>
                             <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" id="compny-mobile" >
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('companyMobile')) {{$errors->first('companyMobile')}} @endif</span>
                         </div>
-                        <div class="input-holder full-width error">
+                        <div class="input-holder full-width @if(isset($errors) && $errors->has('companyAddress')) error @endif">
                             <label for="compny-address" class="icon-directions"></label>
                             <input type="text" placeholder="Enter Company Address" name="companyAddress" id="compny-address" >
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('companyAddress')) {{$errors->first('companyAddress')}} @endif</span>
                         </div>
-                        <div class="input-holder error">
+                        <div class="input-holder @if(isset($errors) && $errors->has('companyEmail')) error @endif">
                             <label for="compny-email" class="icon-envelope"></label>
                             <input type="email" placeholder="Enter Company Email" name="companyEmail" id="compny-email" >
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($errors) && $errors->has('companyEmail')) {{$errors->first('companyEmail')}} @endif</span>
                         </div>
                     </div>
-                    <div class="input-holder full-width error">
+                    <div class="input-holder full-width @if(isset($errors) && $errors->has('termsConditions')) error @endif">
                         <ul class="terms-listing">
                             <li>
                                 <input type="checkbox" id="terms-Cond" name="termsConditions" value="1">
-                                <label for="terms-Cond">I have read and agree to Property42.pk <a href="#">Terms and Conditions</a> <span class="error-text">( This is error )</span></label>
+                                <label for="terms-Cond">I have read and agree to Property42.pk <a href="#">Terms and Conditions</a> <span class="error-text">@if(isset($errors) && $errors->has('termsConditions')) {{$errors->first('termsConditions')}} @endif</span></label>
                             </li>
                             <li>
                                 <input type="checkbox" id="newslatter" name="wantNotifications">

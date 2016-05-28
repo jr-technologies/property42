@@ -41,3 +41,13 @@ Route::post('/register',
         'as' => 'register'
     ]
 );
+
+Route::get('/logout', function(){
+    if(session()->has('authUser'))
+    {
+        $authUser = session()->pull('authUser');
+        $authUser->access_token = null;
+        (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+    }
+    return redirect('/login');
+});

@@ -10,6 +10,8 @@ use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Auth\Web as Authenticator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Repositories\Transformers\Sql\UserTransformer;
@@ -28,14 +30,16 @@ class AuthController extends WebController
     private $userTransformer;
     public $response;
     private $agencies;
+    private $roles;
     public function __construct
     (
         WebResponse $response, Authenticator $authenticator,
-        UsersRepository $usersRepository, UserTransformer $userTransformer
+        UsersRepoProvider $usersRepoProvider, UserTransformer $userTransformer
     )
     {
+        $this->roles = (new RolesRepoProvider())->repo();
         $this->auth = $authenticator;
-        $this->users = $usersRepository;
+        $this->users = $usersRepoProvider->repo();
         $this->response = $response;
         $this->userTransformer = $userTransformer;
         $this->agencies = new AgenciesRepository();
@@ -51,18 +55,18 @@ class AuthController extends WebController
             return $this->response->respondInvalidCredentials();
         }
 
-        $authenticatedUser = $this->auth->login(['email'=>$request->getCredentials()['email']]);
+        $authenticatedUser = $this->auth->login($this->users->findByEmail($request->get('email')));
         if($authenticatedUser == null)
             $this->response->respondInternalServerError();
 
-        return $this->response->setView('welcome')->respond(['data'=>[
-            'authUser' => $authenticatedUser
-        ]]);
+        return redirect('/register');
     }
 
     public function showRegisterPage()
     {
-        return $this->response->setView('registration.register')->respond([]);
+        return $this->response->setView('registration.register')->respond([
+            'roles' => $this->roles->all()
+        ]);
     }
 
     public function register(RegistrationRequest $request)
@@ -72,6 +76,7 @@ class AuthController extends WebController
         {
             $this->saveUserAgency($request, $userId);
         }
+        \Session::flash('success', 'Registered Successfully');
         return redirect()->back();
     }
 

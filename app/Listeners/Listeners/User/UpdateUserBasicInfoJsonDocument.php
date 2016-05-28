@@ -33,10 +33,10 @@ class UpdateUserBasicInfoJsonDocument extends Listener implements ListenerInterf
         $jsonCreator = new UserBasicInfoJsonCreator($event->user);
         $userBasicInfo = $jsonCreator->create();
 
-        $userDocument = $this->usersJsonRepository->getByUserId($event->user->id);
-        $userJson = $this->map($userBasicInfo, $userDocument->decode());
+        $userDocument = $this->usersJsonRepository->find($event->user->id);
+        $userJsonWithUpdatedBasicInfo = $this->map($userBasicInfo, $userDocument);
 
-        $this->usersJsonRepository->update(['user_id'=>$event->user->id, 'json' => $userJson->encode()]);
+        $this->usersJsonRepository->update($userJsonWithUpdatedBasicInfo);
     }
 
     public function map(UserBasicInfoJsonPrototype $userBasicInfo , User $userObject)

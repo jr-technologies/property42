@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Authenticator;
 
+use App\Http\Requests\Request;
 use App\Http\Responses\Responses\ApiResponse;
 use Closure;
 
@@ -22,6 +23,7 @@ class ApiAuthenticator
      */
     public function handle($request, Closure $next, $customRequest)
     {
+        /* @var $customRequest Request::class*/
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
         if($customRequest->isNotAuthentic())

@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Event;
 
 class Api extends Authenticate implements AuthInterface
 {
-    use TokenGenerator;
-
     private $accessToken = null;
 
     public function __construct(){
@@ -30,10 +28,7 @@ class Api extends Authenticate implements AuthInterface
      * @return User
      */
     public function login(User $authenticatedUser){
-        $authenticatedUser->access_token = $this->generateToken($authenticatedUser->id);
-        $this->users->update($authenticatedUser);
-        //Event::fire(new UserBasicInfoUpdated($authenticatedUser));
-        return $authenticatedUser;
+        return parent::login($authenticatedUser);
     }
 
     public function authenticate()

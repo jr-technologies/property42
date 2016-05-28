@@ -9,6 +9,9 @@
 namespace App\Libs\Auth;
 
 
+use App\DB\Providers\SQL\Models\User;
+use App\Events\Events\User\UserBasicInfoUpdated;
+
 class Web extends Authenticate implements AuthInterface
 {
     public function __construct()
@@ -16,8 +19,12 @@ class Web extends Authenticate implements AuthInterface
         parent::__construct();
     }
 
-    public function login(array $credentials){
-        return $this->users->getFirst($credentials);
+    /**
+     * @param User $authenticatedUser
+     * @return User
+     */
+    public function login(User $authenticatedUser){
+        return parent::login($authenticatedUser);
     }
 
     public function authenticate()
@@ -27,6 +34,10 @@ class Web extends Authenticate implements AuthInterface
 
     public function user()
     {
-        return (object)['email'=>'waqas@gamil.com'];
+        if(session('authUser') == null){
+            return null;
+        }else{
+            return $this->users->getById(session('authUser')->id);
+        }
     }
 }

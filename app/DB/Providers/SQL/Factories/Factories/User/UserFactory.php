@@ -33,7 +33,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
 
     public function findWhere(array $conditions)
     {
-        return $this->map($this->tableGateway->getWhere($conditions)->first());
+        return $this->map($this->tableGateway->first($conditions));
     }
     public function getTable()
     {
