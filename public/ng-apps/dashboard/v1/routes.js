@@ -24,7 +24,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/home",
             templateUrl: views+"/home.html",
             controller: "HomeController",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader, $rootScope) {
+                    if($rootScope.resources == null)
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.properties', {
             url: "/properties",
@@ -40,17 +48,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('home.properties.all', {
             url: "/all",
             templateUrl: views+"/properties/list.html",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader, $rootScope) {
+                    if($ResourceLoader.needsLoading())
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.properties.for-sale', {
             url: "/for-sale",
             templateUrl: views+"/properties/list.html",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader, $rootScope) {
+                    if($rootScope.resourceLoading == false && $rootScope.resources == null)
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.properties.for-rent', {
             url: "/for-rent",
             templateUrl: views+"/properties/list.html",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader, $rootScope) {
+                    if($rootScope.resourceLoading == false && $rootScope.resources == null)
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.customers.all', {
             url: "/",

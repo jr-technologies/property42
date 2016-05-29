@@ -18,7 +18,11 @@
                     {{\Session::get('success')}}
                 @endif
                 @if(\Session::has('errors'))
-                        <span style="color:red;">{{\Session::get('errors')}}</span>
+                        <span style="color:red;">
+                            @foreach(\Session::get('errors') as $error)
+                                {{$error}}<br>
+                            @endforeach
+                        </span>
                 @endif
                 <form class="registration-form" method="post" action="{{route('register')}}" enctype="multipart/form-data">
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('fName')) error @endif">

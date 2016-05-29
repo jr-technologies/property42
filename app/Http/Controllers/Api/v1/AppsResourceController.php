@@ -53,16 +53,25 @@ class AppsResourceController extends ApiController
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
         $user = $request->getUserJsonModel();
+        if($user == null)
+            return $this->response->respondAuthenticationFailed();
+
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
-        return $this->response->respond(['data'=>['resources'=>[
-            'purposes'=>$purposes,
-             'propertyStatuses'=>$statuses,
-            'PropertyTypes'=>$propertyTypes,
-            'societies'=>$societies,
-            'propertySubTypes'=>$propertySubTypes,
-            'landUnits'=>$landUnits,
-            'agencyStaff'=>$agencyStaff
-        ]]]);
+        return $this->response->respond([
+            'data'=>[
+                'resources'=>[
+                    'purposes'=>$purposes,
+                    'propertyStatuses'=>$statuses,
+                    'PropertyTypes'=>$propertyTypes,
+                    'societies'=>$societies,
+                    'propertySubTypes'=>$propertySubTypes,
+                    'landUnits'=>$landUnits,
+                    'agencyStaff'=>$agencyStaff
+                ],
+                'authUser' => $user
+            ],
+            'access_token' => session('authUser')->access_token
+        ]);
     }
 }

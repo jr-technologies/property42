@@ -46,6 +46,8 @@ class AuthController extends WebController
     }
     public function showLoginPage()
     {
+        if(\Session::has('authUser'))
+            return redirect()->route('dashboard');
         return $this->response->setView('auth.login')->respond([]);
     }
 

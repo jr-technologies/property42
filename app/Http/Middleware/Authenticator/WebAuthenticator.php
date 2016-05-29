@@ -26,8 +26,9 @@ class WebAuthenticator
         /* @var $customRequest Request::class*/
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
-        if($customRequest->isNotAuthentic())
+        if($customRequest->isNotAuthentic()){
             return $this->response->setRedirectTo('loginPage')->respondAuthenticationFailed();
+        }
 
         return $next($request);
     }

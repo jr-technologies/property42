@@ -25,7 +25,6 @@ class PropertiesController extends Controller
     }
 
     public function update(UpdatePropertyRequest $request){
-        //dd($this->PropertyTransformer->transform($request->all()));
         return $this->response
             ->setView('userRegistered')
             ->respond($this->PropertyTransformer->transform($request->all()));

@@ -2,7 +2,7 @@
  * Created by noman_2 on 12/8/2015.
  */
 var app = angular.module('dashboard');
-app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$state", function ($scope, $rootScope, $http, $state) {
+app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$state", "$AuthService", function ($scope, $rootScope, $http, $state, $AuthService) {
 
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
@@ -22,13 +22,18 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     };
 
     var getProperties = function () {
-        return $http.get(apiPath+'user/properties', {
-            params: $rootScope.searchPropertiesParams
+        return $http({
+            method: 'GET',
+            url: apiPath+'user/properties',
+            params: $rootScope.searchPropertiesParams,
+            headers: {
+                Authorization:$AuthService.getAppToken()
+            }
         }).then(function successCallback(response) {
             return response.data.data.properties;
         }, function errorCallback(response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
-            return response.data.data.properties;
+            return [];
         });
     };
     var getPropertiesCounts = function () {
@@ -43,6 +48,19 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         });
     };
 
+    $scope.deleteProperty = function ($index) {
+        return $http({
+            method: 'POST',
+            url: apiPath+'property/delete',
+            data:{
+                propertyId: $scope.properties[$index].id
+            }
+        }).then(function successCallback(response) {
+            $scope.properties.splice($index, 1);
+        }, function errorCallback(response) {
+            $rootScope.$broadcast('error-response-received',{status:response.status});
+        });
+    };
     $scope.initialize = function () {
 
         getPropertiesCounts().then(function successCallback(counts) {

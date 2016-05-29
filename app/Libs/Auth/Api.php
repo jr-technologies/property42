@@ -60,5 +60,4 @@ class Api extends Authenticate implements AuthInterface
     {
         $this->accessToken = $accessToken;
     }
-
 }

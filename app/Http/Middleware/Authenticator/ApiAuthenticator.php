@@ -4,14 +4,17 @@ namespace App\Http\Middleware\Authenticator;
 
 use App\Http\Requests\Request;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Libs\Auth\Api as Authenticator;
 use Closure;
 
 class ApiAuthenticator
 {
     public $response;
-    public function __construct(ApiResponse $response)
+    private $authenticator = null;
+    public function __construct(ApiResponse $response, Authenticator $authenticator)
     {
         $this->response = $response;
+        $this->authenticator = $authenticator;
     }
     /**
      * Handle an incoming request.
@@ -26,8 +29,11 @@ class ApiAuthenticator
         /* @var $customRequest Request::class*/
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
-        if($customRequest->isNotAuthentic())
+        if($customRequest->isNotAuthentic()){
+            if(\Session::has('authUser'))
+                $this->authenticator->logout(session('authUser'));
             return $this->response->respondAuthenticationFailed();
+        }
 
         return $next($request);
     }

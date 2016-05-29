@@ -8,7 +8,8 @@ app.factory("$ErrorResponseHandler", function ($rootScope, $http, $AuthService) 
             switch (status)
             {
                 case 401:
-                    alert('you should be logged out');
+                    alert('Session Expired! please login again.');
+                    window.location.href = domain+'logout';
                     break;
                 default :
                     break;

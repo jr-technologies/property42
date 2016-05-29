@@ -22,7 +22,10 @@ abstract class Request
     }
     public function user()
     {
-       return $this->user->getByToken($this->authenticator->getAccessToken());
+        if($this->isApi())
+            return $this->user->getByToken($this->authenticator->getAccessToken());
+        else
+            return session('authUser');
     }
     public function get($key){
         return (isset($this->transformedValues[$key]))?$this->transformedValues[$key]:null;

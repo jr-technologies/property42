@@ -18,10 +18,10 @@ class PropertyStatusTable extends Seeder
      DB::table('property_statuses')->insert([
          ['status'=>'Active'],
          ['status'=>'Pending'],
-         ['status'=>'Deleted'],
          ['status'=>'Rejected'],
          ['status'=>'Approved'],
          ['status'=>'Expired'],
+         ['status'=>'Deleted'],
      ]);
  }
 }

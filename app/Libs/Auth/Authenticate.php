@@ -51,7 +51,19 @@ abstract class Authenticate
         $authenticatedUser->access_token = $this->generateToken($authenticatedUser->id);
         $this->users->update($authenticatedUser);
         Event::fire(new UserBasicInfoUpdated($authenticatedUser));
-        session(['authUser' => $authenticatedUser]);
+        request()->session()->put('authUser', $authenticatedUser);
         return $authenticatedUser;
+    }
+
+    public function logout(User $authenticatedUser)
+    {
+        $authenticatedUser->access_token = null;
+        $this->users->update($authenticatedUser);
+        if(\Session::has('authUser')){
+            session()->pull('authUser');
+            session()->flush();
+            session()->save();
+        }
+        return true;
     }
 }
