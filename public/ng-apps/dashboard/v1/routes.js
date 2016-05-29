@@ -14,20 +14,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
     // Now set up the states
     $stateProvider
-        .state('login',{
-            url: "/login",
-            templateUrl:views+"/login.html",
-            controller: "LoginController",
-            auth: false
-        })
         .state('home', {
             url: "/home",
             templateUrl: views+"/home.html",
             controller: "HomeController",
             auth: true,
             resolve: {
-                resources : function ($ResourceLoader, $rootScope) {
-                    if($rootScope.resources == null)
+                resources : function ($ResourceLoader) {
+                    if($ResourceLoader.needsLoading())
                     {
                         return $ResourceLoader.loadAll();
                     }
@@ -38,19 +32,35 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/properties",
             templateUrl: views+"/properties/home.html",
             controller: "HomeController",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader) {
+                    if($ResourceLoader.needsLoading())
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.properties.add', {
             url: "/add",
             templateUrl: views+"/properties/addPropertyForm.html",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader) {
+                    if($ResourceLoader.needsLoading())
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.properties.all', {
             url: "/all",
             templateUrl: views+"/properties/list.html",
             auth: true,
             resolve: {
-                resources : function ($ResourceLoader, $rootScope) {
+                resources : function ($ResourceLoader) {
                     if($ResourceLoader.needsLoading())
                     {
                         return $ResourceLoader.loadAll();
@@ -63,8 +73,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: views+"/properties/list.html",
             auth: true,
             resolve: {
-                resources : function ($ResourceLoader, $rootScope) {
-                    if($rootScope.resourceLoading == false && $rootScope.resources == null)
+                resources : function ($ResourceLoader) {
+                    if($ResourceLoader.needsLoading())
                     {
                         return $ResourceLoader.loadAll();
                     }
@@ -77,24 +87,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             auth: true,
             resolve: {
                 resources : function ($ResourceLoader, $rootScope) {
-                    if($rootScope.resourceLoading == false && $rootScope.resources == null)
+                    if($ResourceLoader.needsLoading())
                     {
                         return $ResourceLoader.loadAll();
                     }
                 }
             }
-        })
-        .state('home.customers.all', {
-            url: "/",
-            templateUrl: views+"/customers/show.html",
-            controller: "ShowCustomersController",
-            auth: true
-        })
-        .state('home.customers.add',{
-            url:"/add-new-customer",
-            templateUrl: views+"/customers/add.html",
-            controller: "AddCustomersController",
-            auth:true
         })
 });
 

@@ -19,7 +19,6 @@ class PropertyStatusTable extends Seeder
          ['status'=>'Active'],
          ['status'=>'Pending'],
          ['status'=>'Rejected'],
-         ['status'=>'Approved'],
          ['status'=>'Expired'],
          ['status'=>'Deleted'],
      ]);
