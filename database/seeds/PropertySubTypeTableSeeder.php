@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Created by PhpStorm.
@@ -8,7 +9,7 @@ use Illuminate\Database\Seeder;
  * Time: 4:53 PM
  */
 
-class PropertySubTypeTable extends Seeder
+class PropertySubTypeTableSeeder extends Seeder
 {
  public function run()
  {

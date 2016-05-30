@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\AppsResources\GetDashboardResourcesRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
 use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
@@ -31,6 +32,7 @@ class AppsResourceController extends ApiController
     public $agencyStaff = "";
     public $response = null;
     public $userAgency ="";
+    public $properties ="";
 
     public function __construct(ApiResponse $response)
     {
@@ -42,6 +44,8 @@ class AppsResourceController extends ApiController
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
         $this->userAgency = (new AgenciesRepoProvider())->repo();
         $this->agencyStaff = (new UsersJsonRepoProvider())->repo();
+        $this->properties = (new PropertiesRepoProvider())->repo();
+
         $this->response = $response;
     }
     public function dashboardResources(GetDashboardResourcesRequest $request)
@@ -58,6 +62,8 @@ class AppsResourceController extends ApiController
 
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
+        $properties  = $this->properties->countProperties($user->id);
+        //dd($landUnits);
         return $this->response->respond([
             'data'=>[
                 'resources'=>[
@@ -67,7 +73,8 @@ class AppsResourceController extends ApiController
                     'societies'=>$societies,
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
-                    'agencyStaff'=>$agencyStaff
+                    'agencyStaff'=>$agencyStaff,
+                    'propertiesCounts'=>$properties
                 ],
                 'authUser' => $user
             ],

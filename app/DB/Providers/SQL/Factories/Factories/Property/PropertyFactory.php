@@ -24,10 +24,12 @@ use App\DB\Providers\SQL\Models\Society;
 class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
 {
     private $tableGateway = null;
+    private $statusesSeeder =null;
     public function __construct()
     {
         $this->model = new PropertyType();
         $this->tableGateway = new PropertyQueryBuilder();
+        $this->statusesSeeder = new \PropertyStatusTableSeeder();
     }
 
     function find($id)
@@ -36,8 +38,12 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function delete(Property $property)
     {
-        $property->statusId = 3;
+        $property->statusId = $this->statusesSeeder->getDeletedStatusId();
         return  $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
+    }
+    public function forceDelete(Property $property)
+    {
+        return  $this->tableGateway->delete($property->id);
     }
     function all()
     {

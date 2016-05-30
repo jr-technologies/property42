@@ -70,24 +70,31 @@ class PropertiesController extends ApiController
         $property = $request->getPropertyModel();
         $this->properties->update($property);
         Event::fire(new PropertyUpdated($property));
-        return $this->response->respond(['data'=>['property'=>
-            $property]]);
+        return $this->response->respond(['data'=>[
+            'property'=>$property
+        ]]);
     }
-    public function delete(DeletePropertyRequest $property)
+    public function delete(DeletePropertyRequest $request)
     {
-        $property = $property->getPropertyModel();
+        $property = $request->getPropertyModel();
         $this->properties->delete($property);
+        $userProperties = $this->userProperties->getUserProperties($request->get('searchParams'));
+        $countUserSearchProperties = $this->userProperties->countSearchedUserProperties($request->get('searchParams'));
         Event::fire(new PropertyUpdated($property));
-        return $this->response->respond(['data'=>['property'=>
-            $property]]);
+        return $this->response->respond(['data'=>[
+            'property'=>$property,
+            'propertyCounts'=>$countUserSearchProperties,
+            'Properties'=>$userProperties
+        ]]);
     }
-    public function forceDelete(DeletePropertyRequest $property)
+    public function forceDelete(DeletePropertyRequest $request)
     {
-        $property = $property->getPropertyModel();
-        $this->properties->delete($property);
+        $property = $request->getPropertyModel();
+        $this->properties->forceDelete($property);
         Event::fire(new PropertyDeleted($property));
-        return $this->response->respond(['data'=>['property'=>
-               $property]]);
+        return $this->response->respond(['data'=>[
+            'property'=>$property
+        ]]);
     }
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
@@ -130,7 +137,7 @@ class PropertiesController extends ApiController
     public function countProperties(CountPropertiesRequest $countPropertiesRequest)
     {
         $user = $countPropertiesRequest->getUserModel();
-        return $this->response->respond(['data'=>['counts'=>
-            $this->properties->countProperties($user->id)]]);
+        return $this->response->respond(['data'=>[
+            'counts'=>$this->properties->countProperties($user->id)]]);
     }
 }

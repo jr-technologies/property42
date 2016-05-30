@@ -31,6 +31,7 @@ class GetDashboardResourcesRequest extends Request implements RequestInterface{
         if($this->getOriginalRequest()->session()->has('authUser'))
             return $this->users->find($this->getOriginalRequest()->session()->get('authUser')->id);
         return null;
+
     }
 
     public function validate(){

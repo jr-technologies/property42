@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
  * Time: 4:53 PM
  */
 
-class LandUnitTable extends Seeder
+class LandUnitTableSeeder extends Seeder
 {
  public function run()
  {

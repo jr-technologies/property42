@@ -59,6 +59,10 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         return  $this->factory->delete($property);
 
     }
+    public function forceDelete(Property $property)
+    {
+        return  $this->factory->forceDelete($property);
+    }
     public function getCompleteLocation($id)
     {
         return $this->factory->getCompleteLocation($id);
