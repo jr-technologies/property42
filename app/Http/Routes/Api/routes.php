@@ -85,6 +85,11 @@ Route::post('/login',
         'uses'=>'Auth\AuthController@login'
     ]
 );
+Route::post('/logout',
+    [
+        'uses'=>'Auth\AuthController@logout'
+    ]
+);
 
 Route::post('/register',
     [
