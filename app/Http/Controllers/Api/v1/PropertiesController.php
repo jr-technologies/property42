@@ -78,8 +78,9 @@ class PropertiesController extends ApiController
         $property = $property->getPropertyModel();
         $this->properties->delete($property);
         Event::fire(new PropertyUpdated($property));
-        return $this->response->respond(['data'=>['property'=>
-            $property]]);
+        return $this->response->respond(['data'=>[
+            'property'=> $property
+        ]]);
     }
     public function forceDelete(DeletePropertyRequest $property)
     {
