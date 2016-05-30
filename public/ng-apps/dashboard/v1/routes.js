@@ -1,9 +1,9 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-//var domain = "http://localhost/jr/property42/backend/property42/public/";
+var domain = "http://localhost/jr/property42/backend/property42/public/";
 //var domain = "http://localhost/production/jr-technologies/property42/public/";
-var domain = "http://localhost/property42/public/";
+//var domain = "http://localhost/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
@@ -58,13 +58,30 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('home.properties.edit', {
             url: "/edit/{propertyId}",
             templateUrl: views+"/properties/editPropertyForm.html",
+            controller: 'EditPropertyController',
             auth: true,
             resolve: {
-                resources : function ($stateParams, $ResourceLoader, $rootScope) {
+                property : function ($stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
                     if($ResourceLoader.needsLoading()){
                         return $ResourceLoader.loadAll();
                     }else{
-                        return $rootScope.resources;
+                        return $http({
+                            method: 'GET',
+                            url: apiPath+'user/properties',
+                            params: {property_id: $stateParams.propertyId},
+                            headers: {
+                                Authorization:$AuthService.getAppToken()
+                            }
+                        }).then(function successCallback(response) {
+                            if(response.data.data.properties[0] == undefined){
+                                $location.path($state.href('home.properties.all').substring(1));
+                            }else{
+                                return response.data.data.properties[0];
+                            }
+                        }, function errorCallback(response) {
+                            $rootScope.$broadcast('error-response-received',{status:response.status});
+                            return undefined;
+                        });
                     }
                 }
             }

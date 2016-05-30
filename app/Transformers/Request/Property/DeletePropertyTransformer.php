@@ -18,8 +18,23 @@ class DeletePropertyTransformer extends RequestTransformer
     public function transform()
     {
        return [
-           'propertyId' => $this->request->input('property_id'),
-           'searchParams' => $this->request->input('searchParams'),
+           'propertyId' => $this->request->input('propertyId'),
+           'searchParams' => $this->transformSearchParams(),
+        ];
+    }
+
+    private function transformSearchParams()
+    {
+        $searchParams = $this->request->input('searchParams');
+        return [
+            'purposeId'=>(isset($searchParams['purpose_id']))?$searchParams['purpose_id']:null,
+            'ownerId'=>(isset($searchParams['owner_id']))?$searchParams['owner_id']:null,
+            'statusId'=>(isset($searchParams['status_id']))?$searchParams['status_id']:null,
+            'limit'=>(isset($searchParams['limit']))?$searchParams['limit']:null,
+            'start'=>(isset($searchParams['start']))?$searchParams['start']:null,
+            'sortOn'=>(isset($searchParams['sort_on']))?$searchParams['sort_on']:null,
+            'sortBy'=>(isset($searchParams['sort_by']))?$searchParams['sort_by']:null,
+            'propertyId'=>(isset($searchParams['property_id']))?$searchParams['property_id']:null
         ];
     }
 }

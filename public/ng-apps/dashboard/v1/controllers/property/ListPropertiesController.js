@@ -39,7 +39,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     var getPropertiesCounts = function () {
         return $http.get(apiPath+'properties/count', {
             params: {
-                user_id: 1
+                user_id: $rootScope.authUser.id
             }
         }).then(function successCallback(response) {
             return response.data.data.counts;
@@ -53,10 +53,12 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
             method: 'POST',
             url: apiPath+'property/delete',
             data:{
-                propertyId: $scope.properties[$index].id
+                propertyId: $scope.properties[$index].id,
+                searchParams: $rootScope.searchPropertiesParams
             }
         }).then(function successCallback(response) {
             $scope.properties.splice($index, 1);
+            $rootScope.propertiesCounts = response.data.data.propertiesCounts;
         }, function errorCallback(response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
@@ -69,7 +71,8 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
 
         });
 
-        $rootScope.searchPropertiesParams.status_id = 1;
+        $rootScope.searchPropertiesParams.status_id = $rootScope.resources.propertyStatuses[0].id;
+        $rootScope.searchPropertiesParams.owner_id = $rootScope.authUser.id;
         if($state.current.name == 'home.properties.all')
         {
             $rootScope.searchPropertiesParams.purpose_id = null;

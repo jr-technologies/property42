@@ -26,10 +26,12 @@ class AddPropertyRequest extends Request implements RequestInterface{
 
     public $validator = null;
     private $features = null;
+    private $statusSeeder = null;
     public function __construct(){
         parent::__construct(new AddPropertyTransformer($this->getOriginalRequest()));
         $this->validator = new AddPropertyValidator($this);
         $this->features = new FeaturesRepository();
+        $this->statusSeeder = new \PropertyStatusTableSeeder();
     }
 
     public function getPropertyModel()
@@ -43,7 +45,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->price =  $this->get('price');
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
-        $property->statusId = 1;
+        $property->statusId = $this->statusSeeder->getPendingStatusId();
 
         $property->contactPerson =  $this->get('contactPerson');
         $property->phone =  $this->get('phone');

@@ -80,10 +80,12 @@ class PropertiesController extends ApiController
         $this->properties->delete($property);
         $userProperties = $this->userProperties->getUserProperties($request->get('searchParams'));
         $countUserSearchProperties = $this->userProperties->countSearchedUserProperties($request->get('searchParams'));
+        $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
             'property'=>$property,
-            'propertyCounts'=>$countUserSearchProperties,
+            'totalProperties'=>$countUserSearchProperties,
+            'propertiesCounts' => $propertiesCounts,
             'Properties'=>$userProperties
         ]]);
     }

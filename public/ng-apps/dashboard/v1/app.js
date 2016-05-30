@@ -61,8 +61,8 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.please_wait_class = '';
     $rootScope.defaultSearchPropertiesParams = {
         owner_id: null,
-        purpose_id: 1,
-        status_id: 1
+        purpose_id: null,
+        status_id: null
     };
     $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
