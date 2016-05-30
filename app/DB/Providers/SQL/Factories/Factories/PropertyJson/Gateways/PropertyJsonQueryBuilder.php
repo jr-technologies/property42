@@ -38,4 +38,15 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
             ->skip($limit['start'])->take($limit['limit'])
             ->get();
     }
+
+    public function countSearchedUserProperties($params)
+    {
+        $conditions =$this->computeUserPropertiesParams($params);
+        $table = (new PropertyFactory())->getTable();
+         return DB::table($table)
+            ->leftjoin($this->table,$this->table.'.property_id','=',$table.'.id')
+            ->select($this->table.'.json')
+            ->where($conditions)
+            ->count();
+    }
 }

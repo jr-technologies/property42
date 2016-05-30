@@ -85,6 +85,11 @@ Route::post('/login',
         'uses'=>'Auth\AuthController@login'
     ]
 );
+Route::post('/logout',
+    [
+        'uses'=>'Auth\AuthController@logout'
+    ]
+);
 
 Route::post('/register',
     [
@@ -319,7 +324,7 @@ Route::post('/property',
     ]
 );
 
-Route::get('user/properties',
+Route::post('user/properties',
     [
         'middleware'=>
             [

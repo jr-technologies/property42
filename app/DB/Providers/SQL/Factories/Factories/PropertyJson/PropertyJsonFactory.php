@@ -52,6 +52,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->getUserProperties($params));
     }
+    public function countSearchedUserProperties($params)
+    {
+         return $this->tableGateway->countSearchedUserProperties($params);
+    }
     /**
      * @param PropertyJsonPrototype $property
      * @return bool

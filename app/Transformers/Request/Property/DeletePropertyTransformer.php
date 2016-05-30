@@ -18,7 +18,8 @@ class DeletePropertyTransformer extends RequestTransformer
     public function transform()
     {
        return [
-           'propertyId' => $this->request->input('propertyId'),
+           'propertyId' => $this->request->input('property_id'),
+           'searchParams' => $this->request->input('searchParams'),
         ];
     }
 }

@@ -61,9 +61,7 @@ class AuthController extends ApiController
     private function saveUser(RegistrationRequest $request)
     {
         $userId = $this->users->store($request->getUserModel());
-
         $this->users->addRoles($userId, $request->getUserRoles());
-
         return $userId;
     }
 

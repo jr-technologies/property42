@@ -16,6 +16,7 @@ trait UserPropertiesHelper
     use AppTrait;
     public function computeUserPropertiesParams($params)
     {
+
         $conditions =[];
         if($params['purposeId'] != null || $params['purposeId'] !='')
             $conditions['properties.purpose_id'] = $params['purposeId'];
@@ -32,6 +33,19 @@ trait UserPropertiesHelper
     {
         $limit = [
             'limit' => config('constants.PROPERTIES_LIMIT'),
+            'start' => 0
+        ];
+        if($params['limit'] !=null || $params['limit'] !='')
+            $limit['limit']  = $params['limit' ];
+        if($params['start'] != null || $params['start'] !='')
+            $limit['start']  = $params['start'];
+
+        return $limit;
+    }
+    public function getParamLimit($params)
+    {
+        $limit = [
+            'limit' => 0,
             'start' => 0
         ];
         if($params['limit'] !=null || $params['limit'] !='')
