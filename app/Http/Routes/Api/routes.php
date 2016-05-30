@@ -374,7 +374,7 @@ Route::post('/property',
     ]
 );
 
-Route::get('user/properties',
+Route::post('user/properties',
     [
         'middleware'=>
             [
