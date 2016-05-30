@@ -47,7 +47,7 @@ abstract class AppValidator
     public  function validate(){
         $validator = Validator::make($this->request->all(), $this->rules(), $this->messages());
         if($validator->fails()){
-            $this->setValidationMessages($validator->messages()->all());
+            $this->setValidationMessages($validator->errors());
             return false;
         }
         return true;
@@ -65,6 +65,7 @@ abstract class AppValidator
             return true;
         });
     }
+
     public function registerEqualsRule(){
         Validator::extend('equals',function($attribute, $value, $parameters, $validator){
             return ($value == $parameters[0])?true:false;

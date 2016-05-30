@@ -71,8 +71,8 @@ trait RequestHelper
     public function getAccessToken()
     {
         // before running unit tests...
-        $headers['Authorization'] = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
-        //$headers = apache_request_headers();
+        //$headers['Authorization'] = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
+        $headers = apache_request_headers();
         return (isset($headers['Authorization']))?$headers['Authorization']:null;
     }
 }

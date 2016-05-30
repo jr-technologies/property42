@@ -28,7 +28,6 @@ class WebValidator
         {
             return $this->response->respondValidationFails($customRequest->validator->getValidationMessages());
         }
-
         return $next($request);
     }
 }

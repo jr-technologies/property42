@@ -5,19 +5,6 @@ Route::get('/login',
         'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
     ]
 );
-Route::get('/dashboard',
-    [
-        'middleware'=>
-            [
-                'webAuthenticate:updatePropertyRequest',
-                'webAuthorize:updatePropertyRequest',
-                'webValidate:updatePropertyRequest'
-            ],
-        'uses'=>'AppsController@frontView'
-    ]
-);
-
-
 Route::post('/login',
     [
         'middleware'=>
@@ -43,3 +30,13 @@ Route::post('/register',
         'as' => 'register'
     ]
 );
+
+Route::get('/logout', function(){
+    if(session()->has('authUser'))
+    {
+        $authUser = session()->pull('authUser');
+        $authUser->access_token = null;
+        (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+    }
+    return redirect('/login');
+});

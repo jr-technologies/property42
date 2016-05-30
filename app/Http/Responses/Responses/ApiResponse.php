@@ -35,6 +35,23 @@ class ApiResponse extends AppResponse implements ResponseInterface
         return response()->json($response, $this->getHttpStatus(), $headers);
     }
 
+    public function respondWithErrors()
+    {
+        return $this->respond([
+            'status' => 0,
+            'error' => [
+                'messages' => $this->getErrorMessages(),
+                'code' => $this->getCustomStatus(),
+                'http_status' => $this->getHttpStatus(),
+            ],
+            'data' => null
+        ]);
+    }
+    public function respondWithValidationErrors()
+    {
+        return $this->respondWithErrors();
+    }
+
     public function computeAccessToken($response)
     {
         if(isset($response['access_token']))

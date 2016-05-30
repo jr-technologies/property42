@@ -37,14 +37,15 @@ app.filter('filterByCountParam', [function () {
     };
 }]);
 
-app.run(function($rootScope, $location, $AuthService, $state) {
-    $rootScope.AUTH_TOKEN = '$2y$10$tSM.PiN9BnMfyonqjHlwTONa1DPHbyQSAMOtmt4chJYXenGeYySHC';
+app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHandler) {
+    $rootScope.AUTH_TOKEN = '';
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
     $rootScope.propertiesCounts = {};
-    $rootScope.RECOURCES = [];
-    $rootScope.USERS = [];
+    $rootScope.authUser = null;
+    $rootScope.resources = null;
+    $rootScope.resourceLoading = false;
     $rootScope.purposes = [
         {
             id: 1,
@@ -87,5 +88,9 @@ app.run(function($rootScope, $location, $AuthService, $state) {
         if(next.name == "login" && $AuthService.getAppToken() != null){
             $location.path($state.href('home').substring(1));
         }
+    });
+
+    $rootScope.$on('error-response-received', function (event, args) {
+        $ErrorResponseHandler.handle(args.status);
     });
 });

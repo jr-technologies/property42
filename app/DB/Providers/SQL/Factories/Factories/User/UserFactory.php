@@ -25,15 +25,19 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     /**
      * @param string $token
      * @return UserModel::class
+     * @throws \Exception
      **/
     public function findByToken($token)
     {
-        return $this->map($this->tableGateway->findBy('access_token', $token));
+        $user = $this->tableGateway->findBy('access_token', $token);
+        if($user == null)
+            throw new \Exception();
+        return $this->map($user);
     }
 
     public function findWhere(array $conditions)
     {
-        return $this->map($this->tableGateway->getWhere($conditions)->first());
+        return $this->map($this->tableGateway->first($conditions));
     }
     public function getTable()
     {
@@ -61,13 +65,18 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param string $column
-     * @param string $value
-     * @return UserModel::class
-     **/
+     * @param $column
+     * @param $value
+     * @return UserModel
+     * @throws \Exception
+     */
     public function findBy($column, $value)
     {
-        return $this->map($this->tableGateway->findBy($column, $value));
+        $user = $this->tableGateway->findBy($column, $value);
+        if($user == null)
+            throw new \Exception();
+
+        return $this->map($user);
     }
 
     /**

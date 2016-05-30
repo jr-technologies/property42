@@ -1146,6 +1146,65 @@ a {
   }
 }
 
+.login-registarHolder .registration-form .input-holder.error,
+.login-registarHolder .login-form .input-holder.error {
+  color: #e14646 !important;
+}
+
+.login-registarHolder .registration-form .input-holder.error .error-text,
+.login-registarHolder .login-form .input-holder.error .error-text {
+  display: block;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 3px;
+  color: #e14646 !important;
+}
+
+.login-registarHolder .registration-form .input-holder.error textarea,
+.login-registarHolder .registration-form .input-holder.error input[type="text"], .login-registarHolder .registration-form .input-holder.error input[type="tel"], .login-registarHolder .registration-form .input-holder.error input[type="email"], .login-registarHolder .registration-form .input-holder.error input[type="password"],
+.login-registarHolder .login-form .input-holder.error textarea,
+.login-registarHolder .login-form .input-holder.error input[type="text"],
+.login-registarHolder .login-form .input-holder.error input[type="tel"],
+.login-registarHolder .login-form .input-holder.error input[type="email"],
+.login-registarHolder .login-form .input-holder.error input[type="password"] {
+  color: #e14646;
+}
+
+.login-registarHolder .registration-form .input-holder.error > label[class^="icon-"], .login-registarHolder .registration-form .input-holder.error > label[class*="icon-"],
+.login-registarHolder .login-form .input-holder.error > label[class^="icon-"],
+.login-registarHolder .login-form .input-holder.error > label[class*="icon-"] {
+  color: #e14646;
+}
+
+.login-registarHolder .registration-form .input-holder.error .border:before,
+.login-registarHolder .login-form .input-holder.error .border:before {
+  background: #e14646;
+}
+
+.login-registarHolder .registration-form .input-holder.error .role-opener,
+.login-registarHolder .login-form .input-holder.error .role-opener {
+  border-bottom: 1px solid #e14646;
+}
+
+.login-registarHolder .registration-form .input-holder.error .role-opener:before,
+.login-registarHolder .login-form .input-holder.error .role-opener:before {
+  color: #e14646;
+}
+
+.login-registarHolder .registration-form .input-holder.error .role-listing,
+.login-registarHolder .login-form .input-holder.error .role-listing {
+  color: #606060 !important;
+}
+
+.login-registarHolder .registration-form .input-holder.error .terms-listing li .error-text,
+.login-registarHolder .login-form .input-holder.error .terms-listing li .error-text {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 5px;
+}
+
 .login-registarHolder .registration-form .input-holder textarea,
 .login-registarHolder .registration-form .input-holder input[type="text"], .login-registarHolder .registration-form .input-holder input[type="tel"], .login-registarHolder .registration-form .input-holder input[type="email"], .login-registarHolder .registration-form .input-holder input[type="password"],
 .login-registarHolder .login-form .input-holder textarea,

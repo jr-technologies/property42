@@ -9,31 +9,31 @@
             </li>
         </ul>
         <ul class="slide-onMobile">
-            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 1}">
-                <a ng-click="setPropertyStatus(1)" href="">
-                    <strong class="active"><span class="icon-flash-activation"></span> active <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 1}}</span></strong>
+            <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active-nav':searchPropertiesParams.status_id === propertyStatus.id}">
+                <a ng-click="setPropertyStatus(propertyStatus.id)" href="">
+                    <strong class="{{propertyStatus.name}}"><span class="icon-flash-activation"></span> {{propertyStatus.name}} <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span></strong>
                 </a>
             </li>
-            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 2}">
-                <a ng-click="setPropertyStatus(2)" href="">
-                    <strong class="pendings"><span class="icon-clock"></span> pendings <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 2}}</span></strong>
-                </a>
-            </li>
-            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 3}">
-                <a ng-click="setPropertyStatus(3)" href="">
-                    <strong class="rejected"><span class="icon-sign"></span> rejected <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 3}}</span></strong>
-                </a>
-            </li>
-            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 4}">
-                <a ng-click="setPropertyStatus(4)" href="">
-                    <strong class="expired"><span class="icon-exclamation-triangle"></span> expired <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 4}}</span></strong>
-                </a>
-            </li>
-            <li ng-class="{'active-nav':searchPropertiesParams.status_id === 5}">
-                <a ng-click="setPropertyStatus(5)" href="">
-                    <strong class="deleted"><span class="icon-trash"></span> deleted <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 5}}</span></strong>
-                </a>
-            </li>
+            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 2}">-->
+                <!--<a ng-click="setPropertyStatus(2)" href="">-->
+                    <!--<strong class="pendings"><span class="icon-clock"></span> pendings <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 2}}</span></strong>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 3}">-->
+                <!--<a ng-click="setPropertyStatus(3)" href="">-->
+                    <!--<strong class="rejected"><span class="icon-sign"></span> rejected <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 3}}</span></strong>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 4}">-->
+                <!--<a ng-click="setPropertyStatus(4)" href="">-->
+                    <!--<strong class="expired"><span class="icon-exclamation-triangle"></span> expired <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 4}}</span></strong>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 5}">-->
+                <!--<a ng-click="setPropertyStatus(5)" href="">-->
+                    <!--<strong class="deleted"><span class="icon-trash"></span> deleted <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 5}}</span></strong>-->
+                <!--</a>-->
+            <!--</li>-->
         </ul>
     </div>
     <div class="property-form-table">
@@ -120,7 +120,7 @@
                     <td>
                         <a href="#" class="details" title="Details"><span class="icon-notebook"></span></span></a>
                         <a href="#" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
-                        <a href="#" class="delete" title="Delete the property"><span class="icon-trash"></span></a>
+                        <a ng-click="deleteProperty($index)" class="delete" title="Delete the property"><span class="icon-trash"></span></a>
                     </td>
                 </tr>
             </table>

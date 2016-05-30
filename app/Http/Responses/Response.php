@@ -19,6 +19,9 @@ abstract class Response
     public $HTTP_STATUS = 200;
     public $ERROR_MESSAGES = [];
 
+    public abstract function respondWithErrors();
+    public abstract function respondWithValidationErrors();
+
     public function setHttpStatus($status){
         $this->HTTP_STATUS = $status;
         return $this;
@@ -51,11 +54,11 @@ abstract class Response
     }
     public function respondValidationFails($messages=["Your request did not passed our server requirements!"])
     {
-        return $this->setHttpStatus(403)->setCustomStatus(403)->setErrorMessages($messages)->respondWithErrors();
+        return $this->setHttpStatus(400)->setCustomStatus(400)->setErrorMessages($messages)->respondWithValidationErrors();
     }
     public function respondAuthenticationFailed($messages=["Dear user you are not logged in."])
     {
-        return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
+        return $this->setHttpStatus(401)->setCustomStatus(401)->setErrorMessages($messages)->respondWithErrors();
     }
     public function respondInvalidCredentials($messages=["Invalid username or password"])
     {
@@ -74,38 +77,4 @@ abstract class Response
         return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
 
-    public function respondWithErrors(){
-        if($this->isWeb())
-            return $this->webErrorResponse();
-        else
-            return $this->apiErrorResponse();
-    }
-
-    public function apiErrorResponse()
-    {
-        return $this->respond([
-            'status' => 0,
-            'error' => [
-                'messages'=>$this->getErrorMessages(),
-                'code' => $this->getCustomStatus(),
-                'http_status' => $this->getHttpStatus(),
-            ],
-            'data' => null
-        ]);
-    }
-    public function webErrorResponse()
-    {
-        return $this->redirectBackWithErrors()->withInput();
-    }
-
-    public function redirectBack()
-    {
-        return redirect()->back();
-    }
-
-    public function redirectBackWithErrors()
-    {
-        \Session::flash('errors',$this->getErrorMessages());
-        return $this->redirectBack();
-    }
 }
