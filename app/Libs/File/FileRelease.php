@@ -133,12 +133,12 @@ class FileRelease
     }
 
     /**
-     * @param $file
+     * @param $filePath
      * @return $this
      */
-    public function setFilePath($file)
+    public function setFilePath($filePath)
     {
-        $this->filePath = $file;
+        $this->filePath = $filePath;
         return $this;
     }
 
