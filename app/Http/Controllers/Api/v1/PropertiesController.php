@@ -20,6 +20,7 @@ use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Libs\File\FileRelease;
 use App\Libs\Helpers\Helper;
+use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
