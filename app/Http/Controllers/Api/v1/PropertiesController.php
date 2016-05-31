@@ -26,7 +26,9 @@ use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use App\Traits\PropertyFilesReleaser;
+use App\Transformers\Response\PropertyJson\PropertyJsonTransformer;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
 
 class PropertiesController extends ApiController
 {
@@ -37,6 +39,7 @@ class PropertiesController extends ApiController
     public $response = null;
     private $propertyDocuments = null;
     private $userProperties = null;
+    private $propertyJsonTransformer = null;
     /**
      * @param PropertiesRepoProvider $repoProvider
      * @param ApiResponse $response
@@ -48,6 +51,7 @@ class PropertiesController extends ApiController
         $this->propertyFeatureValues = new PropertyFeatureValuesRepository();
         $this->propertyDocuments = new PropertyDocumentsRepository();
         $this->userProperties= (new PropertiesJsonRepoProvider())->repo();
+        $this->propertyJsonTransformer = new PropertyJsonTransformer();
     }
 
     public function store(AddPropertyRequest $request)
@@ -73,11 +77,14 @@ class PropertiesController extends ApiController
     {
         $property = $request->getPropertyModel();
         $this->properties->update($property);
+        $this->propertyFeatureValues->updatePropertyFeatures($property->id, $request->getFeaturesValues($property->id));
+        $this->updatePropertyFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $property->id);
         Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
             'property'=>$property
         ]]);
     }
+
     public function delete(DeletePropertyRequest $request)
     {
         $property = $request->getPropertyModel();
@@ -104,11 +111,26 @@ class PropertiesController extends ApiController
     }
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
-        $properties = $this->userProperties->getUserProperties($request->all());
-        $properties = $this->releasePropertiesJsonFiles($properties);
+        $properties = $this->releasePropertiesJsonFiles($this->userProperties->getUserProperties($request->all()));
         return $this->response->respond(['data' => [
-            'properties' => $properties,
+            'properties' => $this->propertyJsonTransformer->transformCollection($properties),
         ]]);
+    }
+
+    public function updatePropertyFiles(array $files, $path, $propertyId)
+    {
+        $this->deletePropertyFiles($propertyId);
+        $this->storeFiles($files, $path, $propertyId);
+    }
+
+    public function deletePropertyFiles($propertyId)
+    {
+        $previousDocuments = $this->propertyDocuments->getByProperty($propertyId);
+        $this->propertyDocuments->deleteByProperty($propertyId);
+        foreach($previousDocuments as $document /* @var $document PropertyDocument::class */)
+        {
+            File::delete(storage_path('app/').$document->path);
+        }
     }
 
     public function storeFiles(array $files, $path, $propertyId)

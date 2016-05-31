@@ -32,6 +32,17 @@ class PropertyFeatureValuesRepository extends SqlRepository implements FeaturesR
         return $this->factory->storeMultiple($featureValues);
     }
 
+    public function updatePropertyFeatures($propertyId, array $features)
+    {
+        $this->deletePropertyFeatures($propertyId);
+        return $this->storeMultiple($features);
+    }
+
+    public function deletePropertyFeatures($propertyId)
+    {
+        return $this->factory->deletePropertyFeatures($propertyId);
+    }
+
     public function getById($id)
     {
         return $this->factory->find($id);

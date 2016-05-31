@@ -16,7 +16,6 @@ use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Location\PropertyLocationJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Owner\PropertyOwnerJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Type\PropertyTypeJsonCreator;
-use App\Libs\Json\Creators\Creators\purpose\PurposesJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyStatusJsonPrototype;
@@ -50,7 +49,6 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
     public function create()
     {
         $this->prototype->id = $this->model->id;
-
         $this->prototype->owner = $this->getOwnerJson();
         $this->prototype->contactPerson = $this->model->contactPerson;
         $this->prototype->email = $this->model->email;
@@ -127,6 +125,6 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
      */
     private function getPurpose()
     {
-        return (new PurposesJsonCreator($this->propertyPurposes->getById($this->model->purposeId)))->create();
+        return (new PropertyPurposeJsonCreator($this->propertyPurposes->getById($this->model->purposeId)))->create();
     }
 }

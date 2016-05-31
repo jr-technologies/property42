@@ -12,6 +12,6 @@ namespace App\Transformers;
 abstract class Transformer {
 
     public function transformCollection(array $records){
-
+        return array_map([$this, 'transform'], $records);
     }
 } 

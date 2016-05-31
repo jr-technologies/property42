@@ -50,12 +50,12 @@ class PropertyDocumentsRepository extends SqlRepository implements AgenciesRepoI
     }
 
     /**
-     * @param PropertyDocument $propertyDocument
+     * @param $propertyId
      * @return mixed
      */
-    public function deleteByProperty(propertyDocument $propertyDocument)
+    public function deleteByProperty($propertyId)
     {
-        return $this->factory->deleteByProperty($propertyDocument);
+        return $this->factory->deleteByProperty($propertyId);
     }
 
     /**

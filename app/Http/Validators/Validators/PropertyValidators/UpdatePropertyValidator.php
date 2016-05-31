@@ -18,7 +18,8 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
     {
         parent::__construct($request);
     }
-     /**
+
+    /**
      * @return array
      */
     public function customValidationMessagesForExtraFeatures()
@@ -35,7 +36,6 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
     public function CustomValidationMessages(){
         return array_merge([
             /* exists messages */
-            'propertyId.exists' => 'Property id is invalid',
             'ownerId.exists' => 'Owner is invalid',
             'purposeId.exists' => 'Property purpose is invalid',
             'subTypeId.exists' => 'Property sub type is invalid',
@@ -56,7 +56,7 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
             'phone.required' => 'company phone is required',
             'email.required' => 'company email is required',
         ], $this->customValidationMessagesForExtraFeatures());
-}
+    }
 
     private function propertyInfoRules()
     {

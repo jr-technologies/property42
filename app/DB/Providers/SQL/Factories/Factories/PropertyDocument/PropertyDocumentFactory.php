@@ -60,9 +60,9 @@ class PropertyDocumentFactory extends SQLFactory implements SQLFactoriesInterfac
         return $this->tableGateway->insertMultiple($this->mapPropertyDocumentsOnTable($propertyDocuments));
     }
 
-    public function deleteByProperty(propertyDocument $propertyDocument)
+    public function deleteByProperty($propertyId)
     {
-        return $this->tableGateway->deleteWhere(['property_id'=>$propertyDocument->id]);
+        return $this->tableGateway->deleteWhere(['property_id'=>$propertyId]);
     }
     public function getByProperty($propertyId)
     {

@@ -48,7 +48,6 @@ app.filter('filterBySubType', [function () {
 
 app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$window","$http", "Upload","$sce", "$state", "$AuthService", "$location",
     function (property, $scope, $rootScope, $window, $http, Upload, $sce, $state, $AuthService, $location){
-        console.log(property);
         $scope.html_title = "Property42 | Add Property";
         $scope.formSubmitStatus = '';
         $scope.property = property;
@@ -82,6 +81,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         };
         $scope.form = {
             data : {
+                propertyId: property.id,
                 propertyPurpose: 1,
                 propertyType :property.type.parentType.id,
                 propertySubType :property.type.subType.id,
@@ -94,7 +94,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 propertyDescription: property.description,
                 features:getPropertyFeatures(),
                 files : {
-                    mainFile:{title: '', file: null},
+                    mainFile:{title: '', file: domain+'temp/'+property.documents[0].path},
                     twoFile:{title: '', file: null},
                     threeFile:{title: '', file: null},
                     fourFile:{title: '', file: null},
@@ -145,7 +145,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             $scope.errors = {};
             $rootScope.please_wait_class = 'please-wait';
             var upload = Upload.upload({
-                url: apiPath+'property',
+                url: apiPath+'property/update',
                 data: $scope.form.data
             });
 
@@ -159,7 +159,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 $window.scrollTo(0, 0);
             }, function (evt) {
                 $window.scrollTo(0, 0);
-                console.log(evt);
             });
         };
 

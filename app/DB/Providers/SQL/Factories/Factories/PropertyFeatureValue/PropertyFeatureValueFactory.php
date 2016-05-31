@@ -67,6 +67,11 @@ class PropertyFeatureValueFactory extends SQLFactory implements SQLFactoriesInte
         return $this->tableGateway->delete($feature->id);
     }
 
+    public function deletePropertyFeatures($propertyId)
+    {
+        return $this->tableGateway->deleteWhere(['property_id'=>$propertyId]);
+    }
+
     private function mapPropertyFeatureValueOnTable(PropertyFeatureValue $feature)
     {
         return [
