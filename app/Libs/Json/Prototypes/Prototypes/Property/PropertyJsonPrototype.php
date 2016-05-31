@@ -21,6 +21,11 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     /* @var $type PropertyTypeJsonPrototype::class */
     public $type;
     /* @var $location PropertyLocationJsonPrototype::class*/
+    public $contactPerson="";
+    public $phone="";
+    public $mobile="";
+    public $email="";
+    public $fax="";
     public $location =null;
     public $title = "";
     public $description = "";

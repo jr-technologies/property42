@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('notification_settings');
             $table->integer('membership_plan_id')->unsigned();
             $table->integer('membership_status');
+            $table->integer('login_count');
             $table->rememberToken();
             $table->timestamps();
 

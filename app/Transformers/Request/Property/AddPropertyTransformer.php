@@ -8,7 +8,6 @@
 
 namespace App\Transformers\Request\Property;
 
-
 use App\Transformers\Request\RequestTransformer;
 
 
@@ -40,7 +39,7 @@ class AddPropertyTransformer extends RequestTransformer
            'landArea' => $this->request->input('landArea'),
            'landUnitId' => $this->request->input('landUnit'),
 
-           /* contact information */
+            /* contact information */
            'contactPerson' => $this->request->input('contactPerson'),
            'phone' => $this->request->input('phone'),
            'mobile' => $this->request->input('mobile'),

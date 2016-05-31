@@ -16,6 +16,7 @@ trait AssignedFeaturesJsonDocumentsGenerator
 {
     public function generate(array $sutTypeIds)
     {
+
         foreach($sutTypeIds as $sutTypeId)
         {
             $assignedFeatures = new AssignedFeatures();

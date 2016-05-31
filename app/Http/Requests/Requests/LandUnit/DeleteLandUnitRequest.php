@@ -12,17 +12,18 @@ namespace App\Http\Requests\Requests\LandUnit;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\LandUnitValidators\DeleteLandUnitValidator;
+use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Repositories\Sql\LandUnitsRepository;
 use App\Transformers\Request\LandUnit\DeleteLandUnitTransformer;
 
 class DeleteLandUnitRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $landUnit = null;
+    private $landUnits = null;
     public function __construct(){
         parent::__construct(new DeleteLandUnitTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteLandUnitValidator($this);
-        $this->landUnit = new LandUnitsRepository();
+        $this->landUnits = (new LandUnitsRepoProvider())->repo();
     }
 
     public function authorize(){
@@ -35,7 +36,7 @@ class DeleteLandUnitRequest extends Request implements RequestInterface{
 
     public function getLandUnitModel()
     {
-        return $this->landUnit->getById($this->get('id'));
+        return $this->landUnits->getById($this->get('id'));
     }
 
 } 

@@ -17,12 +17,12 @@ use App\Transformers\Request\Feature\DeleteFeatureTransformer;
 class DeleteFeatureRequest extends Request implements RequestInterface
 {
     public $validator = null;
-    public $feature = null;
+    public $features = null;
     public function __construct()
     {
         parent::__construct(new DeleteFeatureTransformer($this->getOriginalRequest()));
          $this->validator = new DeleteFeatureValidator($this);
-        $this->feature = (new FeaturesRepoProvider())->repo();
+        $this->features = (new FeaturesRepoProvider())->repo();
     }
     public function authorize(){}
     public function validate()
@@ -31,6 +31,6 @@ class DeleteFeatureRequest extends Request implements RequestInterface
     }
     public function GetFeatureModel()
     {
-        return $this->feature->getById($this->get('featureId'));
+        return $this->features->getById($this->get('featureId'));
     }
 }

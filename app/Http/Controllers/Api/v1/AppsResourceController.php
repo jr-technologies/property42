@@ -20,9 +20,12 @@ use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
+use App\Traits\AssignedFeaturesJsonDocumentsGenerator;
 
 class AppsResourceController extends ApiController
 {
+    use AssignedFeaturesJsonDocumentsGenerator;
+
     public $purposes  = "";
     public $statuses  = "";
     public $societies = "";
@@ -45,7 +48,6 @@ class AppsResourceController extends ApiController
         $this->userAgency = (new AgenciesRepoProvider())->repo();
         $this->agencyStaff = (new UsersJsonRepoProvider())->repo();
         $this->properties = (new PropertiesRepoProvider())->repo();
-
         $this->response = $response;
     }
     public function dashboardResources(GetDashboardResourcesRequest $request)

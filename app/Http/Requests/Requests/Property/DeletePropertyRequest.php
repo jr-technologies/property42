@@ -29,19 +29,19 @@ use App\Transformers\Request\Property\DeletePropertyTransformer;
 class DeletePropertyRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $features = null;
+    private $properties = null;
 
     public function __construct(){
         parent::__construct(new DeletePropertyTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertyValidator($this);
-        $this->features = (new PropertiesRepoProvider())->repo();
+        $this->properties = (new PropertiesRepoProvider())->repo();
     }
     /**
      * @return Property|null
      */
     public function getPropertyModel()
     {
-        return $this->features->getById($this->get('propertyId'));
+        return $this->properties->getById($this->get('propertyId'));
     }
     public function authorize(){
 

@@ -12,17 +12,18 @@ namespace App\Http\Requests\Requests\FeatureSection;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\FeatureSectionValidators\DeleteFeatureSectionValidator;
+use App\Repositories\Providers\Providers\FeatureSectionsRepoProvider;
 use App\Repositories\Repositories\Sql\FeatureSectionRepository;
 use App\Transformers\Request\FeatureSection\DeleteFeatureSectionTransformer;
 
 class DeleteFeatureSectionRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $featureSection = null;
+    private $featureSections = null;
     public function __construct(){
         parent::__construct(new DeleteFeatureSectionTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteFeatureSectionValidator($this);
-        $this->featureSection = new FeatureSectionRepository();
+        $this->featureSections = (new FeatureSectionsRepoProvider())->repo();
     }
 
     public function authorize(){
@@ -35,7 +36,7 @@ class DeleteFeatureSectionRequest extends Request implements RequestInterface{
 
     public function getFeatureSectionModel()
     {
-        return $this->featureSection->getById($this->get('id'));
+        return $this->featureSections->getById($this->get('id'));
     }
 
 } 

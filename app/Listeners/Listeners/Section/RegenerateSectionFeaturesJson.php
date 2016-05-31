@@ -37,6 +37,6 @@ class RegenerateSectionFeaturesJson extends Listener implements  ListenerInterfa
     {
         $section = $event->featureSection;
         $subTypeIds = [1,2,3];
-       return  $assignedFeaturesJson = $this->generate($subTypeIds);
+        return  $assignedFeaturesJson = $this->generate($subTypeIds);
     }
 }

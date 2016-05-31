@@ -18,9 +18,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
     {
         parent::__construct($request);
     }
-
-
-    /**
+     /**
      * @return array
      */
     public function customValidationMessagesForExtraFeatures()

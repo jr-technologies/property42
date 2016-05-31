@@ -35,7 +35,6 @@ class UpdateUserRoleInUserJson extends Listener implements ListenerInterface
         $roles = $this->roles->getUserRoles($event->userId);
 
         $finalRecords = [];
-
         foreach($roles as $role)
         {
             $finalRecords[] = (new RolesJsonCreator($role))->create();

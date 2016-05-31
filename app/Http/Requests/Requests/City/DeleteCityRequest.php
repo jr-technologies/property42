@@ -13,6 +13,7 @@ use App\DB\Providers\SQL\Models\City;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\DeleteCityValidator;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Repositories\Sql\CitiesRepository;
 use App\Transformers\Request\City\DeleteCityTransformer;
 
@@ -23,7 +24,7 @@ class DeleteCityRequest extends Request implements RequestInterface{
     public function __construct(){
         parent::__construct(new DeleteCityTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteCityValidator($this);
-        $this->cities = new CitiesRepository();
+        $this->cities = (new CitiesRepoProvider())->repo();
     }
 
     public function authorize(){

@@ -18,6 +18,7 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\AddCityValidator;
 use App\Http\Validators\Validators\PropertyValidators\AddPropertyValidator;
+use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Transformers\Request\City\AddCityTransformer;
 use App\Transformers\Request\Property\AddPropertyTransformer;
@@ -30,7 +31,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
     public function __construct(){
         parent::__construct(new AddPropertyTransformer($this->getOriginalRequest()));
         $this->validator = new AddPropertyValidator($this);
-        $this->features = new FeaturesRepository();
+        $this->features = (new FeaturesRepoProvider())->repo();
         $this->statusSeeder = new \PropertyStatusTableSeeder();
     }
 

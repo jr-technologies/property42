@@ -135,6 +135,10 @@ class PropertiesController extends ApiController
         return $path.'/'.$secureName;
     }
 
+    /**
+     * @param $file
+     * @return string
+     */
     private function getSecureFileName($file)
     {
         return md5(rand(1,10));

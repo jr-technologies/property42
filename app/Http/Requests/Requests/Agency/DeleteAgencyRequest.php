@@ -13,17 +13,18 @@ use App\DB\Providers\SQL\Models\Agency;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\AgencyValidators\DeleteAgencyValidator;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Transformers\Request\Agency\DeleteAgencyTransformer;
 
 class DeleteAgencyRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    private $agency = null;
+    private $agencies = null;
     public function __construct(){
         parent::__construct(new DeleteAgencyTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteAgencyValidator($this);
-        $this->agency = new AgenciesRepository();
+        $this->agencies = (new AgenciesRepoProvider())->repo();
     }
 
     public function authorize(){
@@ -36,7 +37,7 @@ class DeleteAgencyRequest extends Request implements RequestInterface{
 
     public function getAgencyModel()
     {
-        return $this->agency->getById($this->get('id'));
+        return $this->agencies->getById($this->get('id'));
     }
 
 } 

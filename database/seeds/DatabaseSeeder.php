@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AgencyStaffTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
         $this->call(PropertiesJsonTableSeeder::class);
+        $this->call(AssignedFeaturesJsonTableSeeder::class);
 
     }
 }

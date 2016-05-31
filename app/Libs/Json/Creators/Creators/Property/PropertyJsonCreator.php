@@ -16,9 +16,11 @@ use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Location\PropertyLocationJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Owner\PropertyOwnerJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Type\PropertyTypeJsonCreator;
+use App\Libs\Json\Creators\Creators\purpose\PurposesJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyStatusJsonPrototype;
+use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
@@ -32,6 +34,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
     private $propertyDocuments = null;
     private $propertyStatusesRepository = null;
     private $propertiesRepository = null;
+    private $propertyPurposes = null;
     public function __construct(Property $property = null)
     {
         $this->model = $property;
@@ -41,6 +44,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->propertyDocuments = new PropertyDocumentsRepository();
         $this->propertyStatusesRepository = new PropertyStatusesRepository();
         $this->propertiesRepository = new PropertiesRepository();
+        $this->propertyPurposes = (new PropertyPurposeRepoProvider())->repo();
     }
 
     public function create()
@@ -48,7 +52,12 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->id = $this->model->id;
 
         $this->prototype->owner = $this->getOwnerJson();
-        $this->prototype->purpose = $this->getPurpose()->name;
+        $this->prototype->contactPerson = $this->model->contactPerson;
+        $this->prototype->email = $this->model->email;
+        $this->prototype->phone = $this->model->phone;
+        $this->prototype->fax = $this->model->fax;
+        $this->prototype->mobile= $this->model->mobile;
+        $this->prototype->purpose = $this->getPurpose();
         $this->prototype->type = $this->getPropertyType();
         $this->prototype->location = $this->getPropertyLocation();
         $this->prototype->title = $this->model->title;
@@ -118,10 +127,6 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
      */
     private function getPurpose()
     {
-        $thisPropertyPurpose = config('constants.PROPERTY_PURPOSES')[$this->model->purposeId];
-        $purpose = new PropertyPurpose();
-        $purpose->id = $this->model->purposeId;
-        $purpose->name = $thisPropertyPurpose;
-        return $purpose;
+        return (new PurposesJsonCreator($this->propertyPurposes->getById($this->model->purposeId)))->create();
     }
 }

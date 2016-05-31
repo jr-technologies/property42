@@ -22,11 +22,11 @@ use App\Transformers\Request\Agency\DeleteAgencyTransformer;
 class DeleteAgencyStaffRequest extends Request implements RequestInterface{
 
     public $validator = null;
-    public $user = null;
+    public $users = null;
     public function __construct(){
         parent::__construct(new DeleteAgencyStaffTransformer($this->getOriginalRequest()));
         $this->validator = new DeleteAgencyStaffValidator($this);
-        $this->user = (new  UsersRepoProvider())->repo();
+        $this->users = (new  UsersRepoProvider())->repo();
     }
 
     public function authorize(){
@@ -39,7 +39,7 @@ class DeleteAgencyStaffRequest extends Request implements RequestInterface{
 
     public function getAgencyStaffModel()
     {
-        return $this->user->getById($this->get('id'));
+        return $this->users->getById($this->get('id'));
     }
 
 } 

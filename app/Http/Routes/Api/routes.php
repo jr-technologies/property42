@@ -1,8 +1,14 @@
 <?php
+use App\DB\Providers\SQL\Models\AssignedFeatures;
+use App\DB\Providers\SQL\Models\PropertySubType;
 use App\Events\Events\Feature\FeatureJsonCreated;
+use App\Http\Controllers\Api\V1\AppsResourceController;
+use App\Http\Controllers\Api\V1\PropertySubTypeController;
+use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
+use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +21,22 @@ use Illuminate\Support\Facades\Route;
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('subtype',function(){
+
+    $subType = new PropertySubTypeRepository();
+    $sutTypes = $subType->all();
+    $finalArray = [];
+    foreach($sutTypes as $subType /* @var $subType PropertySubType::class */)
+    {
+        $assignedFeatures = new AssignedFeatures();
+        $assignedFeatures->subTypeId = $subType->id;
+        $assignedFeatures->json = json_encode((new SectionsFeaturesJsonCreator($subType->id))->create());
+        $finalArray[] = $assignedFeatures;
+        //(new AssignedFeaturesJsonRepository())->updateWhere(['property_sub_type_id'=>$assignedFeatures->subTypeId],$assignedFeatures);
+    }
+    return $finalArray;
+}
+);
 
 Route::get('app/dashboard/resources',
     [
