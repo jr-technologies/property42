@@ -20,15 +20,18 @@ use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Libs\File\FileRelease;
 use App\Libs\Helpers\Helper;
+use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
+use App\Traits\PropertyFilesReleaser;
 use Illuminate\Support\Facades\Event;
 
 class PropertiesController extends ApiController
-
 {
+    use \App\Traits\Property\PropertyFilesReleaser;
+
     private $properties = null;
     private $propertyFeatureValues = null;
     public $response = null;
@@ -102,14 +105,9 @@ class PropertiesController extends ApiController
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
         $properties = $this->userProperties->getUserProperties($request->all());
-        foreach($properties as $property)
-        {
-            $fileReleaser = new FileRelease();
-            $propertyDocumentsPaths = Helper::propertyToArray($property->documents, 'path');
-            dd($fileReleaser->multiRelease($propertyDocumentsPaths));
-        }
+        $properties = $this->releasePropertiesJsonFiles($properties);
         return $this->response->respond(['data' => [
-            'properties' => $this->userProperties->getUserProperties($request->all()),
+            'properties' => $properties,
         ]]);
     }
 
