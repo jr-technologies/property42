@@ -101,6 +101,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->isDeleted = $propertyJson->isDeleted;
         $property->features = $propertyJson->features;
         $property->description = $propertyJson->description;
+        $property->documents = $propertyJson->documents;
         $property->createdBy = $propertyJson->createdBy;
         return $property;
     }

@@ -18,6 +18,8 @@ use App\Http\Requests\Requests\Property\DeletePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Libs\File\FileRelease;
+use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
@@ -32,7 +34,6 @@ class PropertiesController extends ApiController
     public $response = null;
     private $propertyDocuments = null;
     private $userProperties = null;
-
     /**
      * @param PropertiesRepoProvider $repoProvider
      * @param ApiResponse $response
@@ -100,6 +101,13 @@ class PropertiesController extends ApiController
     }
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
+        $properties = $this->userProperties->getUserProperties($request->all());
+        foreach($properties as $property)
+        {
+            $fileReleaser = new FileRelease();
+            $propertyDocumentsPaths = Helper::propertyToArray($property->documents, 'path');
+            dd($fileReleaser->multiRelease($propertyDocumentsPaths));
+        }
         return $this->response->respond(['data' => [
             'properties' => $this->userProperties->getUserProperties($request->all()),
         ]]);
