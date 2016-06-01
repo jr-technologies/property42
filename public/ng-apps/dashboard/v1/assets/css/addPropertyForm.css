@@ -158,7 +158,6 @@
 }
 
 .addPropertyFormContainer .errors ul li {
-    width: 30%;
     padding: 7px;
     border-radius: 4px;
     color: #e14646;
@@ -294,7 +293,7 @@
 }
 
 .addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a [class^="icon-"], .addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a [class*="icon-"] {
-    color: #58a36f;
+    color: #1ab394;
 }
 
 .addPropertyFormContainer .section-listing li:hover:before {
@@ -310,7 +309,7 @@
 }
 
 .addPropertyFormContainer .section-listing li:hover a [class^="icon-"], .addPropertyFormContainer .section-listing li:hover a [class*="icon-"] {
-    color: #58a36f;
+    color: #1ab394;
 }
 
 .addPropertyFormContainer .section-listing li a {
@@ -495,6 +494,22 @@
 @media (max-width: 767px) {
     .addPropertyFormContainer .property-add {
         padding: 0 0 50px;
+    }
+}
+
+.addPropertyFormContainer .property-add .error-text {
+    display: none;
+    width: 100%;
+    font-size: 12px !important;
+    line-height: 15px !important;
+    font-weight: 600 !important;
+    color: #e14646 !important;
+    padding: 5px 0 0 110px;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .error-text {
+        padding: 3px;
     }
 }
 
@@ -713,8 +728,23 @@
     letter-spacing: 0;
 }
 
+.addPropertyFormContainer .property-add .radio-holder.error .fake-radio {
+    border-color: #e14646;
+}
+
+.addPropertyFormContainer .property-add .radio-holder.error li.error-text {
+    display: inline-block;
+    vertical-align: top;
+}
+
 .addPropertyFormContainer .property-add .radio-holder li {
     padding: 0 10px 10px;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li.error-text {
+    padding: 5px 0 0;
+    width: auto !important;
+    display: none;
 }
 
 .addPropertyFormContainer .property-add .radio-holder li label {
@@ -807,6 +837,16 @@
     }
 }
 
+.addPropertyFormContainer .property-add .layout .layout-holder.error .error-text {
+    display: block;
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder.error select,
+.addPropertyFormContainer .property-add .layout .layout-holder.error textarea,
+.addPropertyFormContainer .property-add .layout .layout-holder.error input[type="text"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="search"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="email"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="password"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="number"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="tel"] {
+    border-color: #e14646;
+}
+
 .addPropertyFormContainer .property-add .layout .layout-holder.add {
     width: 100%;
 }
@@ -851,26 +891,25 @@
 }
 
 .addPropertyFormContainer .property-add .tab-content {
-    max-width: 490px;
     margin: 10px 0 0;
     padding: 0 0 0 20px;
 }
 
 .addPropertyFormContainer .form-heading {
     display: block;
-    color: #606060;
+    color: #fff;
     text-transform: capitalize;
     font-size: 16px;
-    line-height: 19px;
-    border-bottom: 1px solid #adadad;
-    padding: 0 0 5px;
+    line-height: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #133783;
     margin: 30px 0 0;
 }
 
 @media (max-width: 1023px) {
     .addPropertyFormContainer .form-heading {
         font-size: 14px;
-        line-height: 16px;
+        line-height: 20px;
     }
 }
 
@@ -878,15 +917,17 @@
     display: inline-block;
     vertical-align: top;
     position: relative;
+    background: #133783;
+    padding: 6px 10px;
 }
 
 .addPropertyFormContainer .form-heading span:after {
     position: absolute;
-    bottom: -6px;
-    left: 0;
-    right: 0;
-    background: #ef9521;
-    height: 2px;
+    top: -32px;
+    right: -32px;
+    border: 32px solid transparent;
+    border-bottom: 32px solid #133783;
+    border-left: 0;
     content: '';
 }
 
@@ -895,7 +936,7 @@
     text-align: center;
     cursor: pointer;
     display: block;
-    margin: 0 auto;
+    margin: 30px auto 0;
     color: #000;
     border: 1px solid #000;
     text-transform: capitalize;
@@ -907,19 +948,41 @@
     -ms-transition: color 0.4s ease, background 0.4s ease;
 }
 
-.addPropertyFormContainer .feature-block .feature-blockOpener:hover {
-    background: #000;
+.addPropertyFormContainer .feature-block .feature-blockOpener.active, .addPropertyFormContainer .feature-block .feature-blockOpener:hover {
+    background: #608ce8;
     color: #fff;
 }
 
 .addPropertyFormContainer .feature-block .holder {
     overflow: hidden;
     padding: 10px 0 0;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+}
+
+.addPropertyFormContainer .feature-block .holder > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+}
+
+.addPropertyFormContainer .feature-block .holder .features-section-holder {
+    width: 50%;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .feature-block .holder .features-section-holder {
+        width: 100%;
+    }
 }
 
 .addPropertyFormContainer .feature-block .holder .tag {
     display: block;
     padding: 10px;
+    text-align: center;
 }
 
 .addPropertyFormContainer .tag {
@@ -934,15 +997,13 @@
     font-size: 0;
     line-height: 0;
     letter-spacing: -4px;
-    margin: 0 auto 20px;
-    max-width: 1220px;
     position: relative;
     padding: 0 0 20px;
 }
 
 .addPropertyFormContainer .feature-list > * {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0;
@@ -960,19 +1021,12 @@
 
 .addPropertyFormContainer .feature-list li {
     padding: 0 10px 15px;
-    width: 25%;
+    width: 50%;
 }
 
 @media (max-width: 1023px) {
     .addPropertyFormContainer .feature-list li {
-        width: 50%;
         padding: 0 5px 10px;
-    }
-}
-
-@media (max-width: 767px) {
-    .addPropertyFormContainer .feature-list li {
-        width: 50%;
     }
 }
 
@@ -981,7 +1035,7 @@
     cursor: pointer;
     float: left;
     width: 35%;
-    padding: 5px 0 0;
+    padding: 3px 0 0;
     font-size: 12px;
     line-height: 15px;
 }
@@ -1075,6 +1129,21 @@
     }
 }
 
+.addPropertyFormContainer .image-uploading-area li.error .error-text {
+    display: block;
+    padding: 3px;
+    text-align: left;
+}
+
+.addPropertyFormContainer .image-uploading-area li.image-loaded .image-holder {
+    opacity: 1;
+    z-index: 9;
+}
+
+.addPropertyFormContainer .image-uploading-area li.image-loaded .picture-name {
+    pointer-events: inherit;
+}
+
 .addPropertyFormContainer .image-uploading-area li:first-child .file-uploader:before {
     position: absolute;
     top: 19px;
@@ -1118,10 +1187,6 @@
 
 .addPropertyFormContainer .image-uploading-area li .file-uploader:hover:after {
     color: #58a36f;
-}
-
-.addPropertyFormContainer .image-uploading-area li .file-uploader.after-none:after {
-    display: none !important;
 }
 
 .addPropertyFormContainer .image-uploading-area li .file-uploader:after {
@@ -1169,15 +1234,11 @@
     height: 50px;
     font-size: 14px;
     line-height: 18px;
+    pointer-events: none;
     transition: border 0.4s ease;
     -webkit-transition: border 0.4s ease;
     -ms-transition: border 0.4s ease;
     -moz-transition: border 0.4s ease;
-}
-
-.addPropertyFormContainer .image-uploading-area li .picture-name.disableInput {
-    opacity: 0.5;
-    pointer-events: none;
 }
 
 .addPropertyFormContainer .image-uploading-area li .picture-name:hover, .addPropertyFormContainer .image-uploading-area li .picture-name:focus {

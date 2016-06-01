@@ -25,7 +25,7 @@ class PropertyJsonTransformer extends ResponseTransformer{
         $transformedProperty->rating = $property->rating;
         $transformedProperty->purpose = (new PropertyPurposeJsonTransformer())->transform($property->purpose);
         $transformedProperty->propertyStatus = (new PropertyStatusJsonTransformer())->transform($property->propertyStatus);
-        $transformedProperty->price = $property->price;
+        $transformedProperty->price = intval($property->price);
         $transformedProperty->location = (new PropertyLocationJsonTransformer())->transform($property->location);
         $transformedProperty->isHot = $property->isHot;
         $transformedProperty->land = (new PropertyLandJsonTransformer())->transform($property->land);

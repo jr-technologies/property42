@@ -145,15 +145,15 @@
         <section class="attactment-block" id="attactment-block">
             <strong class="form-heading"><span>attactments</span></strong>
             <ul class="image-uploading-area">
-                <li>
+                <li class="image-loaded">
                     <div class="file-uploader">
                         <input type="file" ngf-select ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
                         <div class="image-holder">
-                            <img src="#" class="img-thumb1" alt="image Description">
+                            <img src="{{form.data.files.mainFile.file}}" class="img-thumb1" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
-                    <input type="text" ng-model="form.data.files.mainFile.title" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="form.data.files.mainFile.title" class="picture-name" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
@@ -163,7 +163,7 @@
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
-                    <input type="text" ng-model="form.data.files.twoFile.title" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="form.data.files.twoFile.title" class="picture-name" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
@@ -173,7 +173,7 @@
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
-                    <input type="text" ng-model="form.data.files.threeFile.title" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="form.data.files.threeFile.title" class="picture-name" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
@@ -183,7 +183,7 @@
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(3)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
-                    <input type="text" ng-model="form.data.files.fourFile.title" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="form.data.files.fourFile.title" class="picture-name" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
@@ -193,7 +193,7 @@
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(4)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
-                    <input type="text" ng-model="form.data.files.fiveFile.title" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="form.data.files.fiveFile.title" class="picture-name" placeholder="Title">
                 </li>
                 <li>
                     <div class="file-uploader">
@@ -204,7 +204,7 @@
                             <!--<span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>-->
                         </div>
                     </div>
-                    <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" placeholder="Title">
+                    <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name" placeholder="Title">
                 </li>
             </ul>
         </section>

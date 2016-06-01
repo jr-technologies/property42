@@ -79,6 +79,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             });
             return finalFeatures;
         };
+
         $scope.form = {
             data : {
                 propertyId: property.id,
@@ -88,13 +89,13 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 society:property.location.society.id,
                 block: property.location.block.id,
                 price: property.price,
-                landArea: property.land.area,
+                landArea: parseInt(property.land.area),
                 landUnit: property.land.unit.id+'',
                 propertyTitle: property.title,
                 propertyDescription: property.description,
                 features:getPropertyFeatures(),
                 files : {
-                    mainFile:{title: '', file: domain+'temp/'+property.documents[0].path},
+                    mainFile:{title: '', file: null/*domain+'temp/'+property.documents[0].path*/},
                     twoFile:{title: '', file: null},
                     threeFile:{title: '', file: null},
                     fourFile:{title: '', file: null},
@@ -108,6 +109,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 email: property.owner.email
             }
         };
+
         var nullFile = {title: '', file: null};
         $scope.cancelFile = function (fileNumber) {
             switch (fileNumber)

@@ -3,7 +3,6 @@
  */
 var app = angular.module('dashboard');
 app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$state", "$AuthService", function ($scope, $rootScope, $http, $state, $AuthService) {
-
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];
@@ -76,7 +75,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         });
 
         $rootScope.searchPropertiesParams.status_id = $rootScope.resources.propertyStatuses[0].id;
-        $rootScope.searchPropertiesParams.owner_id = $rootScope.authUser.id;
+        $rootScope.searchPropertiesParams.owner_id = $rootScope.authUser.id+'';
         if($state.current.name == 'home.properties.all')
         {
             $rootScope.searchPropertiesParams.purpose_id = null;

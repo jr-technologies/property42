@@ -11,7 +11,7 @@ namespace App\Libs\Json\Creators\Creators\Property;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
-use App\Libs\Json\Prototypes\Prototypes\purpose\PropertyPurposeJsonPrototype;
+use App\Libs\Json\Prototypes\Prototypes\Property\PropertyPurposeJsonPrototype;
 
 class PropertyPurposeJsonCreator extends JsonCreator implements JsonCreatorInterface
 {

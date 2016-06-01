@@ -32,7 +32,7 @@
                     <li>
                         <label>listings per page from</label>
                         <select ng-model="searchPropertiesParams.owner_id">
-                            <option>All Members</option>
+                            <option value="">All Members</option>
                             <option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>
                         </select>
                     </li>
@@ -42,13 +42,13 @@
             <form class="by-id-sorting">
                 <ul>
                     <li>
-                        <label>sorty by</label>
+                        <label>Sort by</label>
                         <select>
                             <option>ID</option>
                             <option>Type</option>
                             <option>Location</option>
                             <option>Price</option>
-                            <option>Expiry</option>
+                            <option>Listed Date</option>
                             <option>Views</option>
                         </select>
                     </li>
