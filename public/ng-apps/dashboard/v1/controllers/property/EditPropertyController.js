@@ -94,7 +94,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 propertyDescription: property.description,
                 features:getPropertyFeatures(),
                 files : {
-                    mainFile:{title: '', file: domain+'temp/'+property.documents[0].path},
+                    mainFile:{title: '', file: null,/*domain+'temp/'+property.documents[0].path*/},
                     twoFile:{title: '', file: null},
                     threeFile:{title: '', file: null},
                     fourFile:{title: '', file: null},

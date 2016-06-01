@@ -33,21 +33,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: views+"/properties/home.html",
             controller: "HomeController",
             auth: true,
-            resolve: {
-                resources : function ($ResourceLoader) {
-                    if($ResourceLoader.needsLoading())
-                    {
-                        return $ResourceLoader.loadAll();
-                    }
-                }
-            }
+            //resolve: {
+            //    resources2 : function (resources) {
+            //        console.log(resources);
+            //        //if($ResourceLoader.needsLoading())
+            //        //{
+            //        //    return $ResourceLoader.loadAll();
+            //        //}
+            //    }
+            //}
         })
         .state('home.properties.add', {
             url: "/add",
             templateUrl: views+"/properties/addPropertyForm.html",
             auth: true,
             resolve: {
-                resources : function ($ResourceLoader) {
+                resources3 : function ($ResourceLoader) {
+                    alert($ResourceLoader.needsLoading());
                     if($ResourceLoader.needsLoading())
                     {
                         return $ResourceLoader.loadAll();
@@ -61,28 +63,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'EditPropertyController',
             auth: true,
             resolve: {
-                property : function ($stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
-                    if($ResourceLoader.needsLoading()){
-                        return $ResourceLoader.loadAll();
-                    }else{
-                        return $http({
-                            method: 'GET',
-                            url: apiPath+'user/properties',
-                            params: {property_id: $stateParams.propertyId},
-                            headers: {
-                                Authorization:$AuthService.getAppToken()
-                            }
-                        }).then(function successCallback(response) {
-                            if(response.data.data.properties[0] == undefined){
-                                $location.path($state.href('home.properties.all').substring(1));
-                            }else{
-                                return response.data.data.properties[0];
-                            }
-                        }, function errorCallback(response) {
-                            $rootScope.$broadcast('error-response-received',{status:response.status});
-                            return undefined;
-                        });
-                    }
+                property : function (resources,$stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
+                    return $http({
+                        method: 'GET',
+                        url: apiPath+'user/properties',
+                        params: {property_id: $stateParams.propertyId},
+                        headers: {
+                            Authorization:$AuthService.getAppToken()
+                        }
+                    }).then(function successCallback(response) {
+                        if(response.data.data.properties[0] == undefined){
+                            alert('Sorry! property not found');
+                            $location.path($state.href('home.properties.all').substring(1));
+                        }else{
+                            return response.data.data.properties[0];
+                        }
+                    }, function errorCallback(response) {
+                        $rootScope.$broadcast('error-response-received',{status:response.status});
+                        return undefined;
+                    });
                 }
             }
         })
@@ -91,7 +90,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: views+"/properties/list.html",
             auth: true,
             resolve: {
-                resources : function ($ResourceLoader) {
+                resources : function ($ResourceLoader, $rootScope) {
+                    alert($ResourceLoader.needsLoading());
                     if($ResourceLoader.needsLoading())
                     {
                         return $ResourceLoader.loadAll();

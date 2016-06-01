@@ -21,7 +21,7 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
             $rootScope.APP_STATUS = 'fetching resources...';
             $rootScope.please_wait_class = 'please-wait';
             $rootScope.resourceLoading = true;
-            var promise = $http({
+            return promise = $http({
                 method: 'GET',
                 url: apiPath+'app/dashboard/resources',
                 headers: headerInfo
@@ -31,13 +31,12 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
                 $rootScope.AUTH_TOKEN = response.data.access_token;
                 $rootScope.resourceLoading = false;
                 $rootScope.please_wait_class = '';
+                return response;
             }, function errorCallback(response) {
                 $rootScope.resourceLoading = false;
                 $rootScope.please_wait_class = '';
                 return response;
             });
-
-            return promise;
         }
     }
 });

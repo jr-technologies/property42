@@ -26,7 +26,7 @@ class ApiAuthenticator
      */
     public function handle($request, Closure $next, $customRequest)
     {
-        /* @var $customRequest Request::class*/
+        /* @var $customRequest Request::class */
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
         if($customRequest->isNotAuthentic()){
