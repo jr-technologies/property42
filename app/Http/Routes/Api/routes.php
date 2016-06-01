@@ -1,4 +1,9 @@
 <?php
+use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
+use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
+use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
+use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\Models\AssignedFeatures;
 use App\DB\Providers\SQL\Models\PropertySubType;
 use App\Events\Events\Feature\FeatureJsonCreated;
@@ -9,6 +14,7 @@ use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::get('subtype',function(){
 
     $subType = new PropertySubTypeRepository();
@@ -290,7 +297,7 @@ Route::post('/block',
     ]
 );
 
-Route::post('society/blocks',
+Route::get('society/blocks',
     [
         'middleware'=>
             [
@@ -350,7 +357,7 @@ Route::get('user/properties',
     [
         'middleware'=>
             [
-                'apiAuthenticate:getUserPropertiesRequest',
+                //'apiAuthenticate:getUserPropertiesRequest',
                 'apiValidate:getUserPropertiesRequest'
             ],
         'uses'=>'PropertiesController@getUserProperties'

@@ -30,7 +30,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
+    public function getTable()
+    {
+        return $this->tableGateway->getTable();
+    }
     /**
      * @param int $id
      * @return UserJsonPrototype::class
@@ -102,6 +105,11 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->features = $propertyJson->features;
         $property->description = $propertyJson->description;
         $property->documents = $propertyJson->documents;
+        $property->contactPerson = $propertyJson->contactPerson;
+        $property->email = $propertyJson->email;
+        $property->phone = $propertyJson->phone;
+        $property->mobile = $propertyJson->mobile;
+        $property->fax = $propertyJson->fax;
         $property->createdBy = $propertyJson->createdBy;
         return $property;
     }

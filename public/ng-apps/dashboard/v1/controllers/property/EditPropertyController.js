@@ -51,24 +51,31 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.html_title = "Property42 | Add Property";
         $scope.formSubmitStatus = '';
         $scope.property = property;
-        $scope.types = [];
-        $scope.subTypes = [];
+        $scope.types = $rootScope.resources.propertyTypes;
+        $scope.subTypes = $rootScope.resources.propertySubTypes;
         $scope.blocks = [];
-        $scope.societies = [];
+        $scope.societies = $rootScope.resources.societies;
         $scope.landUnits = $rootScope.resources.landUnits;
         $scope.features = [];
         $scope.featureSections = [];
         $scope.errors = [];
         $scope.temp = {
-            society: {id:'1'},
-            block: {id:'1'}
+            society: property.location.society,
+            block: property.location.block
         };
         $scope.$watch('temp.society', function() {
             $scope.form.data.society = $scope.temp.society.id;
+            getBlocks().then(function (blocks) {
+                $scope.blocks = blocks;
+            });
         });
         $scope.$watch('temp.block', function() {
             $scope.form.data.block = $scope.temp.block.id;
         });
+
+        $scope.societySelected = function ($item) {
+            //
+        };
         var getPropertyFeatures = function(){
             var sections = $scope.property.features;
             var finalFeatures = {};
@@ -79,6 +86,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             });
             return finalFeatures;
         };
+
         $scope.form = {
             data : {
                 propertyId: property.id,
@@ -88,13 +96,13 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 society:property.location.society.id,
                 block: property.location.block.id,
                 price: property.price,
-                landArea: property.land.area,
+                landArea: parseInt(property.land.area),
                 landUnit: property.land.unit.id+'',
                 propertyTitle: property.title,
                 propertyDescription: property.description,
                 features:getPropertyFeatures(),
                 files : {
-                    mainFile:{title: '', file: null,/*domain+'temp/'+property.documents[0].path*/},
+                    mainFile:{title: '', file: null/*domain+'temp/'+property.documents[0].path*/},
                     twoFile:{title: '', file: null},
                     threeFile:{title: '', file: null},
                     fourFile:{title: '', file: null},
@@ -103,11 +111,13 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 },
                 owner: property.owner.id+"",
                 contactPerson: property.owner.fName+' '+property.owner.lName,
-                phone: property.owner.phone,
-                cell : property.owner.mobile,
-                email: property.owner.email
+                phone: property.phone,
+                cell : property.mobile,
+                email: property.email,
+                fax: property.fax
             }
         };
+
         var nullFile = {title: '', file: null};
         $scope.cancelFile = function (fileNumber) {
             switch (fileNumber)
@@ -162,49 +172,13 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             });
         };
 
-        var getTypes = function () {
-            return $http({
-                method: 'GET',
-                url: apiPath+'property/types',
-                data:{}
-            }).then(function successCallback(response) {
-                return response.data.data.propertyTypes;
-            }, function errorCallback(response) {
-                return response;
-            });
-        };
-
-        var getSubTypes = function () {
-            return $http({
-                method: 'GET',
-                url: apiPath+'property/subtypes',
-                data:{}
-            }).then(function successCallback(response) {
-                return response.data.data.propertySubTypes;
-            }, function errorCallback(response) {
-                return response;
-            });
-        };
-
         var getBlocks = function () {
             return $http({
                 method: 'GET',
-                url: apiPath+'blocks',
-                data:{}
+                url: apiPath+'society/blocks',
+                params:{society_id: $scope.form.data.society}
             }).then(function successCallback(response) {
                 return response.data.data.blocks;
-            }, function errorCallback(response) {
-                return response;
-            });
-        };
-
-        var getSocieties = function () {
-            return $http({
-                method: 'GET',
-                url: apiPath+'societies',
-                data:{}
-            }).then(function successCallback(response) {
-                return response.data.data.societies;
             }, function errorCallback(response) {
                 return response;
             });
@@ -234,27 +208,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         };
 
         $scope.initialize = function () {
-            getTypes().then(function successCallback(types) {
-                $scope.types = types;
-            }, function errorCallback(response) {
-                console.log('fucked up');
-            });
-            getSubTypes().then(function successCallback(types) {
-                $scope.subTypes = types;
-            }, function errorCallback(response) {
-                console.log('fucked up');
-            });
-            getSocieties().then(function successCallback(societies) {
-                $scope.societies = societies;
-            }, function errorCallback(response) {
-                console.log('fucked up');
-            });
-
-            getBlocks().then(function successCallback(blocks) {
-                $scope.blocks = blocks;
-            }, function errorCallback(response) {
-                console.log('fucked up');
-            });
 
             getAssignedFeatures().then(function successCallback(features) {
                 $scope.features = features;

@@ -12,6 +12,7 @@ namespace App\Http\Requests\Requests\PropertySubType;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\PropertySubTypeValidators\DeletePropertySubTypeValidator;
+use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
 use App\Transformers\Request\PropertySubType\DeletePropertySubTypeTransformer;
 
@@ -22,7 +23,7 @@ class DeletePropertySubTypeRequest extends Request implements RequestInterface{
     public function __construct(){
         parent::__construct(new DeletePropertySubTypeTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertySubTypeValidator($this);
-        $this->propertySubType = new PropertySubTypeRepository();
+        $this->propertySubType = (new PropertySubTypesRepoProvider())->repo();
     }
 
     public function authorize(){

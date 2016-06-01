@@ -14,16 +14,16 @@ class PropertiesTableSeeder extends Seeder
     {
       $statusesSeeder = new PropertyStatusTableSeeder();
         $statuses = $statusesSeeder->getAllStatusIds();
-        for($b = 1; $b<=2; $b++)
+        for($b = 1; $b<=4; $b++)
         {
             $allProperties = [];
             for($a = 1; $a <= 200; $a++)
 
             {
                 $temp = [];
-                $temp['purpose_id'] = rand(1,3);
+                $temp['purpose_id'] = rand(1,2);
                 $temp['property_sub_type_id'] = rand(1,19);
-                $temp['block_id'] = rand(1,3);
+                $temp['block_id'] = rand(1,10557);
                 $temp['title'] = 'This is my property';
                 $temp['description'] = 'This is my property and like to sale it'. rand(1,200002) ;
                 $temp['price'] = rand(2000000,250000000);

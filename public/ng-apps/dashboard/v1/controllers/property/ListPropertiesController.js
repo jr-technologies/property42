@@ -3,7 +3,6 @@
  */
 var app = angular.module('dashboard');
 app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$state", "$AuthService", function ($scope, $rootScope, $http, $state, $AuthService) {
-
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];
@@ -22,7 +21,6 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     };
 
     var getProperties = function () {
-        console.log($rootScope.searchPropertiesParams);
         return $http({
             method: 'GET',
             url: apiPath+'user/properties',
@@ -61,8 +59,10 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
                 searchParams: $rootScope.searchPropertiesParams
             }
         }).then(function successCallback(response) {
+            console.log(response);
             $scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
+            $scope.properties = response.data.data.properties;
         }, function errorCallback(response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
@@ -76,7 +76,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         });
 
         $rootScope.searchPropertiesParams.status_id = $rootScope.resources.propertyStatuses[0].id;
-        $rootScope.searchPropertiesParams.owner_id = $rootScope.authUser.id;
+        $rootScope.searchPropertiesParams.owner_id = $rootScope.authUser.id+'';
         if($state.current.name == 'home.properties.all')
         {
             $rootScope.searchPropertiesParams.purpose_id = null;

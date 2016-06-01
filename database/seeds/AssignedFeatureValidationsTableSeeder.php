@@ -11,8 +11,8 @@ class AssignedFeatureValidationsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('assigned_feature_validations')->insert([
+        /*DB::table('assigned_feature_validations')->insert([
             ['property_sub_type_assign_feature_id' => 1, 'validation_rule_id' => 1],
-        ]);
+        ]);*/
     }
 }

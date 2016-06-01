@@ -1,12 +1,14 @@
 <?php
 namespace App\Http\Validators\Validators;
 
+use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 abstract class AppValidator
 {
     public $validationMessages;
     public $authMessages;
+    /* @var $request Request::class */
     public $request;
     public function __construct($request){
         $this->request = $request;
@@ -69,6 +71,20 @@ abstract class AppValidator
     public function registerEqualsRule(){
         Validator::extend('equals',function($attribute, $value, $parameters, $validator){
             return ($value == $parameters[0])?true:false;
+        });
+    }
+
+    public function registerMaxImageSizeRule()
+    {
+        Validator::extend('max_image_size', function($attribute, $value, $parameters)
+        {
+            $file = $this->request->file($attribute);
+            $image_info = getimagesize($file);
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
+            if( (isset($parameters[0]) && $parameters[0] != 0) && $image_width > $parameters[0]) return false;
+            if( (isset($parameters[1]) && $parameters[1] != 0) && $image_height > $parameters[1] ) return false;
+            return true;
         });
     }
 }

@@ -149,6 +149,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->address = $result->address;
         $user->zipCode = $result->zipcode;
         $user->fax = $result->fax;
+        $user->loginCount = $result->login_count;
         $user->countryId = $result->country_id;
         $user->membershipPlanId = $result->membership_plan_id;
         $user->membershipStatus = $result->membership_status;
@@ -176,6 +177,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
             'notification_settings' => $user->notificationSettings,
             'membership_status' => $user->membershipStatus,
             'country_id' => $user->countryId,
+            'login_count'=>$user->loginCount,
             'membership_plan_id' => $user->membershipPlanId,
             'created_at' => $user->createdAt,
             'updated_at' => $user->updatedAt,

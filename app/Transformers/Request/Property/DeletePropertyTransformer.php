@@ -29,6 +29,7 @@ class DeletePropertyTransformer extends RequestTransformer
         return [
             'purposeId'=>(isset($searchParams['purpose_id']))?$searchParams['purpose_id']:null,
             'ownerId'=>(isset($searchParams['owner_id']))?$searchParams['owner_id']:null,
+            'agencyId'=>(isset($searchParams['agency_id']))?$searchParams['agency_id']:null,
             'statusId'=>(isset($searchParams['status_id']))?$searchParams['status_id']:null,
             'limit'=>(isset($searchParams['limit']))?$searchParams['limit']:null,
             'start'=>(isset($searchParams['start']))?$searchParams['start']:null,

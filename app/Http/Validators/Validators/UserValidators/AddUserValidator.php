@@ -36,7 +36,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName.required' => 'Agency name is required',
             'companyPhone.required' => 'Company phone is required',
             'companyAddress.required' => 'Company address is required',
-            'companyEmail.required' => 'Company email is required'
+            'companyEmail.required' => 'Company email is required',
+            'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 500 X 500 px'
         ];
     }
 
@@ -61,6 +62,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
+            'agencyDescription'=>'required',
+            'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:500,500'
         ];
     }
 

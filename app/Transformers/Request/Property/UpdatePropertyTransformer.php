@@ -43,7 +43,7 @@ class UpdatePropertyTransformer extends RequestTransformer
             /* contact information */
             'contactPerson' => $this->request->input('contactPerson'),
             'phone' => $this->request->input('phone'),
-            'mobile' => $this->request->input('mobile'),
+            'mobile' => $this->request->input('cell'),
             'email' => $this->request->input('email'),
             'fax' => $this->request->input('fax'),
 

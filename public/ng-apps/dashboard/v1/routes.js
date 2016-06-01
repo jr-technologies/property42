@@ -32,30 +32,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/properties",
             templateUrl: views+"/properties/home.html",
             controller: "HomeController",
-            auth: true,
-            //resolve: {
-            //    resources2 : function (resources) {
-            //        console.log(resources);
-            //        //if($ResourceLoader.needsLoading())
-            //        //{
-            //        //    return $ResourceLoader.loadAll();
-            //        //}
-            //    }
-            //}
+            auth: true
         })
         .state('home.properties.add', {
             url: "/add",
             templateUrl: views+"/properties/addPropertyForm.html",
-            auth: true,
-            resolve: {
-                resources3 : function ($ResourceLoader) {
-                    alert($ResourceLoader.needsLoading());
-                    if($ResourceLoader.needsLoading())
-                    {
-                        return $ResourceLoader.loadAll();
-                    }
-                }
-            }
+            auth: true
         })
         .state('home.properties.edit', {
             url: "/edit/{propertyId}",
@@ -88,42 +70,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('home.properties.all', {
             url: "/all",
             templateUrl: views+"/properties/list.html",
-            auth: true,
-            resolve: {
-                resources : function ($ResourceLoader, $rootScope) {
-                    alert($ResourceLoader.needsLoading());
-                    if($ResourceLoader.needsLoading())
-                    {
-                        return $ResourceLoader.loadAll();
-                    }
-                }
-            }
+            auth: true
         })
         .state('home.properties.for-sale', {
             url: "/for-sale",
             templateUrl: views+"/properties/list.html",
-            auth: true,
-            resolve: {
-                resources : function ($ResourceLoader) {
-                    if($ResourceLoader.needsLoading())
-                    {
-                        return $ResourceLoader.loadAll();
-                    }
-                }
-            }
+            auth: true
         })
         .state('home.properties.for-rent', {
             url: "/for-rent",
             templateUrl: views+"/properties/list.html",
-            auth: true,
-            resolve: {
-                resources : function ($ResourceLoader, $rootScope) {
-                    if($ResourceLoader.needsLoading())
-                    {
-                        return $ResourceLoader.loadAll();
-                    }
-                }
-            }
+            auth: true
         })
 });
 

@@ -11,10 +11,19 @@ class BlocksTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('blocks')->insert([
-            ['society_id' => 1, 'block' => 'a'],
-            ['society_id' => 1, 'block' => 'b'],
-            ['society_id' => 1, 'block' => 'c']
-        ]);
+        $societies = (new \App\Repositories\Providers\Providers\SocietiesRepoProvider())->repo()->all();
+        $blocks = range('A', 'Z');
+        $finalBlocks = [];
+        foreach($societies as $society)
+        {
+            foreach($blocks as $block)
+            {
+                $finalBlocks[] = [
+                    'society_id' => $society->id,
+                    'block' => $block
+                ];
+            }
+        }
+        DB::table('blocks')->insert($finalBlocks);
     }
 }

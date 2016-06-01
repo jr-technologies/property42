@@ -97,9 +97,10 @@ class PropertiesController extends ApiController
             'property'=>$property,
             'totalProperties'=>$countUserSearchProperties,
             'propertiesCounts' => $propertiesCounts,
-            'Properties'=>$userProperties
+            'properties'=>$userProperties
         ]]);
     }
+
     public function forceDelete(DeletePropertyRequest $request)
     {
         $property = $request->getPropertyModel();
@@ -109,6 +110,7 @@ class PropertiesController extends ApiController
             'property'=>$property
         ]]);
     }
+
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
         $properties = $this->releasePropertiesJsonFiles($this->userProperties->getUserProperties($request->all()));
@@ -168,6 +170,7 @@ class PropertiesController extends ApiController
     {
         return 'users/'.md5($property->ownerId).'/properties/'.md5($property->id);
     }
+
     public function countProperties(CountPropertiesRequest $countPropertiesRequest)
     {
         $user = $countPropertiesRequest->getUserModel();

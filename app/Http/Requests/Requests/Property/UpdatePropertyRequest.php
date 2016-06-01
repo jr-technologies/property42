@@ -55,6 +55,7 @@ class UpdatePropertyRequest extends Request implements RequestInterface{
         $property->phone =  $this->get('phone');
         $property->mobile =  $this->get('mobile');
         $property->email =  $this->get('email');
+        $property->fax = $this->get('fax');
         $property->ownerId = $this->get('ownerId');
         $property->createdBy = 1;
 

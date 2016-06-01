@@ -175,7 +175,7 @@ class PropertyFeaturesTableSeeder extends Seeder
             [
                 'feature_section_id' =>3,
                 'feature' => 'Distance From Airport (kms)',
-                'input_name' => 'distance_from_airport_(kms)',
+                'input_name' => 'distance_from_airport_kms',
                 'html_structure_id' =>1,
                 'possible_values' => '',
                 'priority' => 0

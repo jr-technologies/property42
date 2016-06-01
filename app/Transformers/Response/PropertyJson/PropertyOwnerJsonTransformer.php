@@ -17,7 +17,10 @@ class PropertyOwnerJsonTransformer extends ResponseTransformer{
     public function transform($owner /* @var $owner PropertyOwnerJsonPrototype::class */){
 
         $transformedOwner = new PropertyOwnerJsonPrototype();
-        $transformedOwner = $owner;
+        $transformedOwner->id = $owner->id;
+        $transformedOwner->fName = $owner->fName;
+        $transformedOwner->lName = $owner->lName;
+
         return $transformedOwner;
     }
 } 
