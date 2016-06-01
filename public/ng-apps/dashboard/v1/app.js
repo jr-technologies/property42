@@ -62,7 +62,9 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.defaultSearchPropertiesParams = {
         owner_id: null,
         purpose_id: null,
-        status_id: null
+        status_id: null,
+        limit: '10',
+        start: '0'
     };
     $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';

@@ -14,26 +14,6 @@
                     <strong class="{{propertyStatus.name}}"><span class="icon-flash-activation"></span> {{propertyStatus.name}} <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span></strong>
                 </a>
             </li>
-            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 2}">-->
-                <!--<a ng-click="setPropertyStatus(2)" href="">-->
-                    <!--<strong class="pendings"><span class="icon-clock"></span> pendings <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 2}}</span></strong>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 3}">-->
-                <!--<a ng-click="setPropertyStatus(3)" href="">-->
-                    <!--<strong class="rejected"><span class="icon-sign"></span> rejected <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 3}}</span></strong>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 4}">-->
-                <!--<a ng-click="setPropertyStatus(4)" href="">-->
-                    <!--<strong class="expired"><span class="icon-exclamation-triangle"></span> expired <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 4}}</span></strong>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li ng-class="{'active-nav':searchPropertiesParams.status_id === 5}">-->
-                <!--<a ng-click="setPropertyStatus(5)" href="">-->
-                    <!--<strong class="deleted"><span class="icon-trash"></span> deleted <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : 5}}</span></strong>-->
-                <!--</a>-->
-            <!--</li>-->
         </ul>
     </div>
     <div class="property-form-table">
@@ -42,30 +22,22 @@
                 <ul>
                     <li>
                         <label>Show</label>
-                        <select>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                        <select ng-model="searchPropertiesParams.limit">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
                         </select>
                     </li>
                     <li>
                         <label>listings per page from</label>
-                        <select>
-                            <option>Zain</option>
-                            <option>Nouman</option>
-                            <option>Waqas</option>
-                            <option>Sajid</option>
+                        <select ng-model="searchPropertiesParams.owner_id">
+                            <option>All Members</option>
+                            <option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>
                         </select>
                     </li>
                 </ul>
-                <input type="submit" value="Go">
+                <input type="submit" ng-click="filtersChanged()" value="Go">
             </form>
             <form class="by-id-sorting">
                 <ul>

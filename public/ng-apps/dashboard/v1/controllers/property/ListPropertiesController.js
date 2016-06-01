@@ -22,6 +22,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     };
 
     var getProperties = function () {
+        console.log($rootScope.searchPropertiesParams);
         return $http({
             method: 'GET',
             url: apiPath+'user/properties',
@@ -48,6 +49,9 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         });
     };
 
+    $scope.filtersChanged = function () {
+        $rootScope.$broadcast('searchPropertiesParamsChanged');
+    };
     $scope.deleteProperty = function ($index) {
         return $http({
             method: 'POST',
