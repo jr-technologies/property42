@@ -30,7 +30,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
+    public function getTable()
+    {
+        return $this->tableGateway->getTable();
+    }
     /**
      * @param int $id
      * @return UserJsonPrototype::class

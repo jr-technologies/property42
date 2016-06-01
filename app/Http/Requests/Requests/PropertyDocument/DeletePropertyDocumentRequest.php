@@ -12,6 +12,7 @@ namespace App\Http\Requests\Requests\PropertyDocument;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\PropertyDocumentValidators\DeletePropertyDocumentValidator;
+use App\Repositories\Providers\Providers\PropertyDocumentsRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Transformers\Request\PropertyDocument\DeletePropertyDocumentTransformer;
 
@@ -23,7 +24,7 @@ class DeletePropertyDocumentRequest extends Request implements RequestInterface
     {
         parent::__construct(new DeletePropertyDocumentTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertyDocumentValidator($this);
-        $this->propertyDocument = new PropertyDocumentsRepository();
+        $this->propertyDocument = (new PropertyDocumentsRepoProvider())->repo();
     }
     public function getPropertyDocumentModel()
     {

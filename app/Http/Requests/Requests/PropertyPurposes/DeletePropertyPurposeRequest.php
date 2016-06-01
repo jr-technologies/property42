@@ -12,6 +12,7 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 
 use App\Http\Validators\Validators\PropertyPurposeValidators\DeletePropertyPurposeValidator;
+use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 use App\Transformers\Request\PropertyPurpose\DeletePropertyPurposeTransformer;
 
@@ -22,7 +23,7 @@ class DeletePropertyPurposeRequest extends Request implements RequestInterface{
     public function __construct(){
         parent::__construct(new DeletePropertyPurposeTransformer($this->getOriginalRequest()));
         $this->validator = new DeletePropertyPurposeValidator($this);
-        $this->purpose = new PropertyPurposeRepository();
+        $this->purpose = (new PropertyPurposeRepoProvider())->repo();
     }
 
     public function authorize(){

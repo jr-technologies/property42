@@ -23,6 +23,7 @@ class GetUserPropertiesTransformer extends RequestTransformer
             'start'=>$this->request->input('start'),
             'sortOn'=>$this->request->input('sort_on'),
             'sortBy'=>$this->request->input('sort_by'),
+            'agencyId'=>$this->request->input('agency_id'),
             'propertyId'=>$this->request->input('property_id'),
         ];
     }

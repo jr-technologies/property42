@@ -25,6 +25,7 @@ class User {
     public $notificationSettings = 0;
     public $membershipPlanId = 0;
     public $membershipStatus = 0;
+    public $loginCount = 0;
     public $createdAt = 0;
     public $updatedAt = 0;
 

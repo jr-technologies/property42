@@ -20,6 +20,8 @@ trait UserPropertiesHelper
         $conditions =[];
         if($params['purposeId'] != null || $params['purposeId'] !='')
             $conditions['properties.purpose_id'] = $params['purposeId'];
+        if($params['agencyId'] != null || $params['agencyId'] !='')
+            $conditions['agencies.id'] = $params['agencyId'];
         if($params['ownerId'] != null || $params['ownerId'] !='')
             $conditions['properties.owner_id'] = $params['ownerId'];
         if($params['statusId'] != null || $params['statusId'] !='')
@@ -28,7 +30,6 @@ trait UserPropertiesHelper
             $conditions['properties.id'] = $params['propertyId'];
         return $conditions;
     }
-
     public function getLimit($params)
     {
         $limit = [
