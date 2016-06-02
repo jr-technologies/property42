@@ -138,13 +138,14 @@ class PropertiesController extends ApiController
     public function storeFiles(array $files, $path, $propertyId)
     {
         $propertyDocuments = [];
-        foreach($files as $file)
+        foreach($files as $key => $file)
         {
             $document = new PropertyDocument();
             $document->path = $this->storeFileInDirectory($file['file'], $path);
             $document->propertyId = $propertyId;
             $document->type = 'image';
             $document->title = isset($file['title'])?$file['title']:'';
+            $document->main = ($key == 'mainFile')?true:false;
             $propertyDocuments[] = $document;
         }
         return $this->propertyDocuments->storeMultiple($propertyDocuments);

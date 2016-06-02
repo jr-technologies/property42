@@ -16,4 +16,5 @@ class PropertyDocumentJsonPrototype extends JsonPrototype implements JsonPrototy
     public $type = "";
     public $path ="";
     public $title = "";
+    public $main = false;
 }

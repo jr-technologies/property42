@@ -31,6 +31,7 @@ class PropertyDocumentJsonCreator extends JsonCreator implements JsonCreatorInte
         $this->prototype->path = $model->path;
         $this->prototype->title = $model->title;
         $this->prototype->type = $model->type;
+        $this->prototype->main = $model->main;
 
         return $this->prototype;
     }

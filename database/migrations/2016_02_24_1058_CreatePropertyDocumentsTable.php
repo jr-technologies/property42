@@ -18,6 +18,7 @@ class CreatePropertyDocumentsTable extends Migration
             $table->string('type');
             $table->text('path');
             $table->string('title');
+            $table->boolean('main')->default(false);
             $table->timestamps();
 
             $table->foreign('property_id')

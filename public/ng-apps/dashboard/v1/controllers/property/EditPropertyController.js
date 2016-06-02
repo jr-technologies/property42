@@ -59,6 +59,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.features = [];
         $scope.featureSections = [];
         $scope.errors = [];
+        $scope.propertyDocuments = {};
+
         $scope.temp = {
             society: property.location.society,
             block: property.location.block
@@ -101,14 +103,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 propertyTitle: property.title,
                 propertyDescription: property.description,
                 features:getPropertyFeatures(),
-                files : {
-                    mainFile:{title: '', file: null/*domain+'temp/'+property.documents[0].path*/},
-                    twoFile:{title: '', file: null},
-                    threeFile:{title: '', file: null},
-                    fourFile:{title: '', file: null},
-                    fiveFile:{title: '', file: null},
-                    sixFile:{title: '', file: null}
-                },
+                files : {},
                 owner: property.owner.id+"",
                 contactPerson: property.owner.fName+' '+property.owner.lName,
                 phone: property.phone,
@@ -117,30 +112,73 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 fax: property.fax
             }
         };
-
-        var nullFile = {title: '', file: null};
         $scope.cancelFile = function (fileNumber) {
             switch (fileNumber)
             {
                 case 0:
-                    $scope.form.data.files.mainFile = nullFile;
+                    $scope.form.data.files.mainFile.file = null;
+                    $scope.form.data.files.mainFile.title = '';
                     break;
                 case 1:
-                    $scope.form.files.data.files.twoFile = nullFile;
+                    $scope.form.data.files.twoFile.file = null;
+                    $scope.form.data.files.twoFile.title = '';
                     break;
                 case 2:
-                    $scope.form.files.data.files.threeFile = nullFile;
+                    $scope.form.data.files.threeFile.file = null;
+                    $scope.form.data.files.threeFile.title = '';
                     break;
                 case 3:
-                    $scope.form.data.files.fourFile = nullFile;
+                    $scope.form.data.files.fourFile.file = null;
+                    $scope.form.data.files.fourFile.title = '';
                     break;
                 case 4:
-                    $scope.form.files.data.files.fiveFile = nullFile;
+                    $scope.form.data.files.fiveFile.file = null;
+                    $scope.form.data.files.fiveFile.title = '';
                     break;
                 case 5:
-                    $scope.form.files.data.files.sixFile = nullFile;
+                    $scope.form.data.files.sixFile.file = null;
+                    $scope.form.data.files.sixFile.title = '';
                     break;
             }
+        };
+
+        var getPropertyDocuments = function () {
+            return {
+                mainFile:getPropertyMainDocument(),
+                twoFile:getPropertyDocument(0),
+                threeFile:getPropertyDocument(1),
+                fourFile:getPropertyDocument(2),
+                fiveFile:getPropertyDocument(3),
+                sixFile:getPropertyDocument(4)
+            };
+        };
+        var getPropertyMainDocument = function () {
+            var document = {id:0,path: '#',title: '',main: 1};
+            angular.forEach(property.documents, function (doc, key) {
+                if(doc.main == 1){
+                    document.id = doc.id;
+                    document.path = domain+'temp/'+doc.path;
+                    document.title = doc.title;
+                }
+            });
+            return document;
+        };
+        var getPropertyDocument = function (index){
+            var document = {id:0,path: '#',title: '',main: 0};
+            var otherDocuments = [];
+            angular.forEach(property.documents, function (doc, key) {
+                if(doc.main != 1)
+                    otherDocuments.push(doc)
+            });
+
+            if(otherDocuments[index] != undefined){
+                doc = otherDocuments[index];
+                document.id = doc.id;
+                document.path = domain+'temp/'+doc.path;
+                document.title = doc.title;
+            }
+
+            return document;
         };
 
         var postProcessFormData = function () {
@@ -153,6 +191,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.submitProperty = function() {
             postProcessFormData();
             $scope.errors = {};
+            console.log($scope.form.data.files.twoFile);
             $rootScope.please_wait_class = 'please-wait';
             var upload = Upload.upload({
                 url: apiPath+'property/update',
@@ -208,6 +247,15 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         };
 
         $scope.initialize = function () {
+            $scope.propertyDocuments = getPropertyDocuments();
+            $scope.form.data.files = {
+                mainFile:{title: $scope.propertyDocuments.mainFile.title, file: null, main:1, id:$scope.propertyDocuments.mainFile.id},
+                twoFile:{title: $scope.propertyDocuments.twoFile.title, file: null, main:0, id:$scope.propertyDocuments.twoFile.id},
+                threeFile:{title: $scope.propertyDocuments.threeFile.title, file: null, main:0, id:$scope.propertyDocuments.threeFile.id},
+                fourFile:{title: $scope.propertyDocuments.fourFile.title, file: null, main:0, id:$scope.propertyDocuments.fourFile.id},
+                fiveFile:{title: $scope.propertyDocuments.fiveFile.title, file: null, main:0, id:$scope.propertyDocuments.fiveFile.id},
+                sixFile:{title: $scope.propertyDocuments.sixFile.title, file: null, main:0, id:$scope.propertyDocuments.sixFile.id}
+            };
 
             getAssignedFeatures().then(function successCallback(features) {
                 $scope.features = features;
@@ -220,7 +268,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             }, function errorCallback(response) {
                 console.log('fucked up');
             });
-
 
             $(function() {
                 handleAddPropertyFormScrolling();

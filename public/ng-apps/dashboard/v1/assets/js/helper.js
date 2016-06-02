@@ -5,7 +5,7 @@ function previewFile(file, target) {
 
   reader.onloadend = function () {
     preview.src = reader.result;
-  }
+  };
 
   if (file) {
     reader.readAsDataURL(file);

@@ -145,61 +145,61 @@
         <section class="attactment-block" id="attactment-block">
             <strong class="form-heading"><span>attactments</span></strong>
             <ul class="image-uploading-area">
-                <li class="image-loaded">
+                <li ng-class="{'image-loaded':propertyDocuments.mainFile.path != '#'}">
                     <div class="file-uploader">
                         <input type="file" ngf-select ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
                         <div class="image-holder">
-                            <img src="{{form.data.files.mainFile.file}}" class="img-thumb1" alt="image Description">
+                            <img src="{{propertyDocuments.mainFile.path}}" class="img-thumb1" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
                     <input type="text" ng-model="form.data.files.mainFile.title" class="picture-name" placeholder="Title">
                 </li>
-                <li>
+                <li ng-class="{'image-loaded':propertyDocuments.twoFile.path != '#'}">
                     <div class="file-uploader">
                         <input type="file" ngf-select ng-model="form.data.files.twoFile.file" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
                         <div class="image-holder">
-                            <img src="#" class="img-thumb2" alt="image Description">
+                            <img src="{{propertyDocuments.twoFile.path}}" class="img-thumb2" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
                     <input type="text" ng-model="form.data.files.twoFile.title" class="picture-name" placeholder="Title">
                 </li>
-                <li>
+                <li ng-class="{'image-loaded':propertyDocuments.threeFile.path != '#'}">
                     <div class="file-uploader">
                         <input type="file" ngf-select ng-model="form.data.files.threeFile.file" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
                         <div class="image-holder">
-                            <img src="#" class="img-thumb3" alt="image Description">
+                            <img src="{{propertyDocuments.threeFile.path}}" class="img-thumb3" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
                     <input type="text" ng-model="form.data.files.threeFile.title" class="picture-name" placeholder="Title">
                 </li>
-                <li>
+                <li ng-class="{'image-loaded':propertyDocuments.fourFile.path != '#'}">
                     <div class="file-uploader">
                         <input type="file" ng-model="form.data.files.fourFile.file" onchange="previewAddPropertyImg(this , '.img-thumb4')" class="upload-img">
                         <div class="image-holder">
-                            <img src="#" class="img-thumb4" alt="image Description">
+                            <img src="{{propertyDocuments.fourFile.path}}" class="img-thumb4" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(3)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
                     <input type="text" ng-model="form.data.files.fourFile.title" class="picture-name" placeholder="Title">
                 </li>
-                <li>
+                <li ng-class="{'image-loaded':propertyDocuments.fiveFile.path != '#'}">
                     <div class="file-uploader">
                         <input type="file" ng-model="form.data.files.fiveFile.file" onchange="previewAddPropertyImg(this , '.img-thumb5')" class="upload-img">
                         <div class="image-holder">
-                            <img src="#" class="img-thumb5" alt="image Description">
+                            <img src="{{propertyDocuments.fiveFile.path}}" class="img-thumb5" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(4)"><span class="icon-trash"></span></span>
                         </div>
                     </div>
                     <input type="text" ng-model="form.data.files.fiveFile.title" class="picture-name" placeholder="Title">
                 </li>
-                <li>
+                <li ng-class="{'image-loaded':propertyDocuments.sixFile.path != '#'}">
                     <div class="file-uploader">
                         <input type="file" ng-model="form.data.files.sixFile.file" onchange="previewAddPropertyImg(this , '.img-thumb6')" class="upload-img">
                         <div class="image-holder">
-                            <img src="#" class="img-thumb6" alt="image Description">
+                            <img src="{{propertyDocuments.mainFile.path}}" class="img-thumb6" alt="image Description">
                             <span class="propertyDocumentCloseBtn" ng-click="cancelFile(5)"><span class="icon-trash"></span></span>
                             <!--<span class="propertyDocumentCloseBtn"><span class="icon-cross"></span></span>-->
                         </div>

@@ -14,7 +14,8 @@ class PropertyDocument {
     public $propertyId = 0;
     public $type = "";
     public $path = "";
-    public $title ="";
+    public $title = "";
+    public $main = false;
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

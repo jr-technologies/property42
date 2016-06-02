@@ -90,6 +90,7 @@ class PropertyDocumentFactory extends SQLFactory implements SQLFactoriesInterfac
             'type'=>$document->type,
             'path'=>$document->path,
             'title' => $document->title,
+            'main' => $document->main,
             'updated_at' => $document->updatedAt,
         ];
     }
@@ -102,6 +103,7 @@ class PropertyDocumentFactory extends SQLFactory implements SQLFactoriesInterfac
         $document->type = $result->type;
         $document->path = $result->path;
         $document->title = $result->title;
+        $document->main = $result->main;
         $document->createdAt = $result->created_at;
         $document->updatedAt = $result->updated_at;
         return $document;
