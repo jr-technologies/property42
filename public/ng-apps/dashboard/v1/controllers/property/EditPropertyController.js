@@ -217,6 +217,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.submitProperty = function() {
             postProcessFormData();
             $scope.errors = {};
+            console.log($scope.form.data.files);
+            return false;
             $rootScope.please_wait_class = 'please-wait';
             var upload = Upload.upload({
                 url: apiPath+'property/update',

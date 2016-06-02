@@ -75,10 +75,12 @@ class PropertiesController extends ApiController
 
     public function update(UpdatePropertyRequest $request)
     {
+        dd($request->getFiles());
         $property = $request->getPropertyModel();
         $this->properties->update($property);
         $this->propertyFeatureValues->updatePropertyFeatures($property->id, $request->getFeaturesValues($property->id));
         $this->updatePropertyFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $property->id);
+        if(is_array($request->get('deletedFiles'))){$this->deleteByIds($request->get('deletedFiles'));}
         Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
             'property'=>$property
@@ -130,11 +132,22 @@ class PropertiesController extends ApiController
         $ids = [];
         foreach($files as $file){ $ids[] = $file['id']; }
         $previousDocuments = $this->propertyDocuments->getByIds($ids);
-        foreach($previousDocuments as $document /* @var $document PropertyDocument::class */)
+        $this->deleteDocuments($previousDocuments);
+    }
+
+    public function deleteByIds(array $ids)
+    {
+        return $this->deleteDocuments($this->propertyDocuments->getByIds($ids));
+    }
+
+    public function deleteDocuments(array $documents)
+    {
+        $ids = Helper::propertyToArray($documents, 'id');
+        foreach($documents as $document /* @var $document PropertyDocument::class */)
         {
             File::delete(storage_path('app/').$document->path);
         }
-        $this->propertyDocuments->deleteByIds($ids);
+        return $this->propertyDocuments->deleteByIds($ids);
     }
 
     public function storeFiles(array $files, $path, $propertyId)
