@@ -75,7 +75,6 @@ class PropertiesController extends ApiController
 
     public function update(UpdatePropertyRequest $request)
     {
-        dd($request->getFiles());
         $property = $request->getPropertyModel();
         $this->properties->update($property);
         $this->propertyFeatureValues->updatePropertyFeatures($property->id, $request->getFeaturesValues($property->id));
@@ -83,7 +82,7 @@ class PropertiesController extends ApiController
         if(is_array($request->get('deletedFiles'))){$this->deleteByIds($request->get('deletedFiles'));}
         Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
-            'property'=>$property
+            'property'=>$this->releasePropertiesJsonFiles($this->userProperties->getUserProperties(['propertyId'=>$property->id]))[0]
         ]]);
     }
 
@@ -179,7 +178,7 @@ class PropertiesController extends ApiController
      */
     private function getSecureFileName($file)
     {
-        return md5(rand(1,10));
+        return str_replace('.', '-',urlencode(bcrypt($file->getClientOriginalName())));
     }
 
     private function inStoragePropertyDocPath(Property $property)

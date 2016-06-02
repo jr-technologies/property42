@@ -17,15 +17,15 @@ trait UserPropertiesHelper
     public function computeUserPropertiesParams($params)
     {
         $conditions =[];
-        if($params['purposeId'] != null || $params['purposeId'] !='')
+        if(isset($params['purposeId']) && ($params['purposeId'] != null || $params['purposeId'] !=''))
             $conditions['properties.purpose_id'] = $params['purposeId'];
-        if($params['agencyId'] != null || $params['agencyId'] !='')
+        if(isset($params['agencyId']) && ($params['agencyId'] != null || $params['agencyId'] !=''))
             $conditions['agencies.id'] = $params['agencyId'];
-        if($params['ownerId'] != null || $params['ownerId'] !='')
+        if(isset($params['ownerId']) && ($params['ownerId'] != null || $params['ownerId'] !=''))
             $conditions['properties.owner_id'] = $params['ownerId'];
-        if($params['statusId'] != null || $params['statusId'] !='')
+        if(isset($params['statusId']) && ($params['statusId'] != null || $params['statusId'] !=''))
             $conditions['properties.property_status_id'] = $params['statusId'];
-        if($params['propertyId'] != null || $params['propertyId'] !='')
+        if(isset($params['propertyId']) && ($params['propertyId'] != null || $params['propertyId'] !=''))
             $conditions['properties.id'] = $params['propertyId'];
         return $conditions;
     }
@@ -35,9 +35,9 @@ trait UserPropertiesHelper
             'limit' => config('constants.PROPERTIES_LIMIT'),
             'start' => 0
         ];
-        if($params['limit'] !=null || $params['limit'] !='')
+        if(isset($params['limit']) && ($params['limit'] !=null || $params['limit'] !=''))
             $limit['limit']  = $params['limit' ];
-        if($params['start'] != null || $params['start'] !='')
+        if(isset($params['start']) && ($params['start'] != null || $params['start'] !=''))
             $limit['start']  = $params['start'];
 
         return $limit;
@@ -48,9 +48,9 @@ trait UserPropertiesHelper
             'limit' => 0,
             'start' => 0
         ];
-        if($params['limit'] !=null || $params['limit'] !='')
+        if(isset($params['limit']) && ($params['limit'] !=null || $params['limit'] !=''))
             $limit['limit']  = $params['limit' ];
-        if($params['start'] != null || $params['start'] !='')
+        if(isset($params['start']) && ($params['start'] != null || $params['start'] !=''))
             $limit['start']  = $params['start'];
 
         return $limit;
@@ -63,9 +63,9 @@ trait UserPropertiesHelper
             'sortBy'=>config('constants.PROPERTIES_SortBy')
         ];
 
-        if($params['sortOn'] !=null || $params['sortOn'] !='')
+        if(isset($params['sortOn']) && ($params['sortOn'] !=null || $params['sortOn'] !=''))
             $sort['sortOn']  = $params['sortOn' ];
-        if($params['sortBy'] != null || $params['sortBy'] !='')
+        if(isset($params['sortBy']) && ($params['sortBy'] != null || $params['sortBy'] !=''))
             $sort['sortBy']  = $params['sortBy'];
         return $sort;
     }

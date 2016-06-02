@@ -180,7 +180,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         };
         var getPropertyMainDocument = function () {
             var document = {id:0,path: '#',title: '',main: 1};
-            angular.forEach(property.documents, function (doc, key) {
+            angular.forEach($scope.property.documents, function (doc, key) {
                 if(doc.main == 1){
                     document.id = doc.id;
                     document.path = domain+'temp/'+doc.path;
@@ -192,7 +192,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         var getPropertyDocument = function (index){
             var document = {id:0,path: '#',title: '',main: 0};
             var otherDocuments = [];
-            angular.forEach(property.documents, function (doc, key) {
+            angular.forEach($scope.property.documents, function (doc, key) {
                 if(doc.main != 1)
                     otherDocuments.push(doc)
             });
@@ -218,7 +218,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             postProcessFormData();
             $scope.errors = {};
             console.log($scope.form.data.files);
-            return false;
             $rootScope.please_wait_class = 'please-wait';
             var upload = Upload.upload({
                 url: apiPath+'property/update',
@@ -229,6 +228,10 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 $rootScope.please_wait_class = '';
                 $window.scrollTo(0, 0);
                 $scope.formSubmitStatus = '';
+                $scope.propertyDocuments = {};
+                $scope.property = response.data.data.property;
+                getPropertyDocsAndSetToScope();
+                $scope.form.data.deletedFiles = [];
             }, function (response) {
                 $rootScope.please_wait_class = '';
                 $scope.errors = response.data.error.messages;
@@ -273,7 +276,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             });
         };
 
-        $scope.initialize = function () {
+        var getPropertyDocsAndSetToScope = function () {
             $scope.propertyDocuments = getPropertyDocuments();
             $scope.form.data.files = {
                 mainFile:{title: $scope.propertyDocuments.mainFile.title, file: null, main:1, id:$scope.propertyDocuments.mainFile.id},
@@ -283,6 +286,9 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 fiveFile:{title: $scope.propertyDocuments.fiveFile.title, file: null, main:0, id:$scope.propertyDocuments.fiveFile.id},
                 sixFile:{title: $scope.propertyDocuments.sixFile.title, file: null, main:0, id:$scope.propertyDocuments.sixFile.id}
             };
+        };
+        $scope.initialize = function () {
+            getPropertyDocsAndSetToScope();
 
             getAssignedFeatures().then(function successCallback(features) {
                 $scope.features = features;
