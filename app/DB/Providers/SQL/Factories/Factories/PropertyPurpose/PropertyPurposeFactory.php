@@ -83,6 +83,7 @@ class PropertyPurposeFactory extends SQLFactory implements SQLFactoriesInterface
         $purpose = clone($this->model);
         $purpose->id = $result->id;
         $purpose->name = $result->purpose;
+        $purpose->displayName = $result->display_name;
         $purpose->createdAt = $result->created_at;
         $purpose->updatedAt = $result->updated_at;
         return $purpose;
@@ -91,6 +92,7 @@ class PropertyPurposeFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return [
             'purpose'    => $propertyPurpose->name,
+            'display_name' => $propertyPurpose->displayName,
             'updated_at' => $propertyPurpose->updatedAt,
         ];
     }

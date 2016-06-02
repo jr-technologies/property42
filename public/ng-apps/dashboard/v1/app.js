@@ -6,11 +6,13 @@ var app = angular.module('dashboard',['ngRoute', 'ui.router','ui.select', 'fireb
 
 app.filter('filterByCountParam', [function () {
     return function (counts, purpose, status) {
+        var totalLikes = 0;
+        if(counts == undefined)
+            return totalLikes;
         if(purpose == null)
             purpose = undefined;
         if(status == null)
             status = undefined;
-        var totalLikes = 0;
         if(purpose != undefined || status != undefined)
         {
             if(purpose != undefined && status != undefined){
@@ -46,24 +48,12 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.authUser = null;
     $rootScope.resources = null;
     $rootScope.resourceLoading = false;
-    $rootScope.purposes = [
-        {
-            id: 1,
-            name: 'for-sale',
-            displayName: 'for sale'
-        },
-        {
-            id: 2,
-            name: 'for-rent',
-            displayName: 'for rent'
-        }
-    ];
     $rootScope.please_wait_class = '';
     $rootScope.defaultSearchPropertiesParams = {
         owner_id: null,
         purpose_id: null,
         status_id: null,
-        limit: '10',
+        limit: '20',
         start: '0'
     };
     $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;

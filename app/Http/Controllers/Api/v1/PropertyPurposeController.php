@@ -13,7 +13,7 @@ use App\Http\Requests\Requests\PropertyPurposes\DeletePropertyPurposeRequest;
 use App\Http\Requests\Requests\PropertyPurposes\GetAllPropertyPurposesRequest;
 use App\Http\Requests\Requests\PropertyPurposes\UpdatePropertyPurposeRequest;
 use App\Http\Responses\Responses\ApiResponse;
-use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
+use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 
 
@@ -23,7 +23,7 @@ class PropertyPurposeController extends ApiController
     public $response = null;
     public function __construct
     (
-        PropertyPurposeRepoProvider $propertyPurposeRepository,
+        PropertyPurposesRepoProvider $propertyPurposeRepository,
         ApiResponse $response
     )
     {

@@ -13,7 +13,7 @@ use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
-use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
+use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
@@ -39,7 +39,7 @@ class AppsResourceController extends ApiController
 
     public function __construct(ApiResponse $response)
     {
-        $this->purposes = (new PropertyPurposeRepoProvider())->repo();
+        $this->purposes = (new PropertyPurposesRepoProvider())->repo();
         $this->statuses = (new PropertyStatusesRepoProvider())->repo();
         $this->societies = (new SocietiesRepoProvider())->repo();
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();

@@ -18,8 +18,12 @@ use App\DB\Providers\SQL\Models\City;
 use App\DB\Providers\SQL\Models\Country;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\Property\PropertyCompleteLocation;
+use App\DB\Providers\SQL\Models\PropertyPurpose;
+use App\DB\Providers\SQL\Models\PropertyStatus;
 use App\DB\Providers\SQL\Models\PropertyType;
 use App\DB\Providers\SQL\Models\Society;
+use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 
 class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
 {
@@ -168,7 +172,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $this->tableGateway->setTable($table);
     }
 
-    public function countProperties($userId)
+    public function rawPropertyCounts($userId)
     {
         $propertyCounts = $this->tableGateway->countProperties($userId);
         $propertyCountsCollection = collect($propertyCounts);
@@ -181,7 +185,33 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             });
             $finalArray[$key] = $statusesCounts;
         });
-
         return $finalArray;
+    }
+
+    public function propertiesCounter($propertyCounts, $purpose, $status)
+    {
+
+        if(isset($propertyCounts[$purpose][$status]))
+        {
+            return intval($propertyCounts[$purpose][$status]);
+        }
+    }
+    public function countProperties($userId)
+    {
+        $rawPropertyCounts = $this->rawPropertyCounts($userId);
+        $purposes = (new PropertyPurposesRepoProvider())->repo()->all();
+        $statuses = (new PropertyStatusesRepoProvider())->repo()->all();
+
+        $finalCounts = [];
+        foreach($purposes as $purpose /* @var $purpose PropertyPurpose::class */)
+        {
+            $pStatuses = [];
+            foreach($statuses as $status /* @var $status PropertyStatus::class */)
+            {
+                $pStatuses[$status->id] = $this->propertiesCounter($rawPropertyCounts,$purpose->id, $status->id);
+            }
+            $finalCounts[$purpose->id] = $pStatuses;
+        }
+        return $finalCounts;
     }
 }

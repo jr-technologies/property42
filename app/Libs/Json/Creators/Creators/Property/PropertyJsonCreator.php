@@ -10,7 +10,6 @@ namespace App\Libs\Json\Creators\Creators\Property;
 
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
-use App\DB\Providers\SQL\Models\PropertyStatus;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Location\PropertyLocationJsonCreator;
@@ -19,7 +18,7 @@ use App\Libs\Json\Creators\Creators\Property\Type\PropertyTypeJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyStatusJsonPrototype;
-use App\Repositories\Providers\Providers\PropertyPurposeRepoProvider;
+use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
@@ -43,7 +42,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->propertyDocuments = new PropertyDocumentsRepository();
         $this->propertyStatusesRepository = new PropertyStatusesRepository();
         $this->propertiesRepository = new PropertiesRepository();
-        $this->propertyPurposes = (new PropertyPurposeRepoProvider())->repo();
+        $this->propertyPurposes = (new PropertyPurposesRepoProvider())->repo();
     }
 
     public function create()

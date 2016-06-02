@@ -13,6 +13,7 @@ class PropertyPurpose
 {
     public $id = 0;
     public $name ="";
+    public $displayName = "";
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

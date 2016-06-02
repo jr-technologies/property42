@@ -13,7 +13,7 @@ use App\Repositories\Providers\RepositoryProvider;
 use App\Repositories\Providers\RepositoryProviderInterface;
 use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 
-class PropertyPurposeRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
+class PropertyPurposesRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
 {
 
     public function repo()
