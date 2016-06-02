@@ -59,6 +59,15 @@ class PropertyDocumentsRepository extends SqlRepository implements AgenciesRepoI
     }
 
     /**
+     * @param array $ids
+     * @return mixed
+     */
+    public function deleteByIds(array $ids)
+    {
+        return $this->factory->deleteByIds($ids);
+    }
+
+    /**
      * @param PropertyDocument $propertyDocument
      * @return mixed
      */
@@ -84,6 +93,16 @@ class PropertyDocumentsRepository extends SqlRepository implements AgenciesRepoI
     {
         return $this->factory->getBId($propertyDocument);
     }
+
+    /**
+     * @param array $ids
+     * @return mixed
+     */
+    public function getByIds(array $ids)
+    {
+        return $this->factory->getByIds($ids);
+    }
+
     /**
      * @param PropertyDocument $propertyDocument
      * @return PropertyDocument|null

@@ -50,9 +50,19 @@ class PropertyDocumentFactory extends SQLFactory implements SQLFactoriesInterfac
         return $this->tableGateway->delete($document->id);
     }
 
+    public function deleteByIds(array $ids)
+    {
+        return $this->tableGateway->deleteWhereIn('id', $ids);
+    }
+
     public function getBId(propertyDocument $document)
     {
         return $this->tableGateway->find($document->id);
+    }
+
+    public function getByIds(array $ids)
+    {
+        return $this->mapCollection($this->tableGateway->getWhereIn('id', $ids));
     }
 
     public function storeMultiple(array $propertyDocuments)

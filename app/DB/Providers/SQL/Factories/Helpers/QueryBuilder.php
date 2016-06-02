@@ -154,6 +154,16 @@ abstract class QueryBuilder {
     }
 
     /**
+     * @param $column
+     * @param array $conditions
+     * @return mixed
+     */
+    public function deleteWhereIn($column, array $conditions)
+    {
+        return DB::table($this->table)->whereIn($column, $conditions)->delete();
+    }
+
+    /**
      * @return mixed
      */
     public function get()

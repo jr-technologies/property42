@@ -49,6 +49,7 @@ class UpdatePropertyTransformer extends RequestTransformer
 
             'features' => $this->request->input('features'),
             'files' => $files,
+            'deletedFiles' => $this->request->input('deletedFiles')
         ];
     }
 

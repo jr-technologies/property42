@@ -104,6 +104,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 propertyDescription: property.description,
                 features:getPropertyFeatures(),
                 files : {},
+                deletedFiles: [],
                 owner: property.owner.id+"",
                 contactPerson: property.owner.fName+' '+property.owner.lName,
                 phone: property.phone,
@@ -116,28 +117,53 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             switch (fileNumber)
             {
                 case 0:
-                    $scope.form.data.files.mainFile.file = null;
-                    $scope.form.data.files.mainFile.title = '';
+                    var file = $scope.form.data.files.mainFile;
+                    file.file = null;
+                    file.title = '';
+                    console.log($.inArray(file.id, $scope.form.data.deletedFiles));
+                    if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
+                        $scope.form.data.deletedFiles.push(file.id);
+                    }
                     break;
                 case 1:
-                    $scope.form.data.files.twoFile.file = null;
-                    $scope.form.data.files.twoFile.title = '';
+                    var file = $scope.form.data.files.twoFile;
+                    file.file = null;
+                    file.title = '';
+                    if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
+                        $scope.form.data.deletedFiles.push(file.id);
+                    }
                     break;
                 case 2:
-                    $scope.form.data.files.threeFile.file = null;
-                    $scope.form.data.files.threeFile.title = '';
+                    var file = $scope.form.data.files.threeFile;
+                    file.file = null;
+                    file.title = '';
+                    if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
+                        $scope.form.data.deletedFiles.push(file.id);
+                    }
                     break;
                 case 3:
-                    $scope.form.data.files.fourFile.file = null;
-                    $scope.form.data.files.fourFile.title = '';
+                    var file = $scope.form.data.files.fourFile;
+                    file.file = null;
+                    file.title = '';
+                    if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
+                        $scope.form.data.deletedFiles.push(file.id);
+                    }
                     break;
                 case 4:
-                    $scope.form.data.files.fiveFile.file = null;
-                    $scope.form.data.files.fiveFile.title = '';
+                    var file = $scope.form.data.files.fiveFile;
+                    file.file = null;
+                    file.title = '';
+                    if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
+                        $scope.form.data.deletedFiles.push(file.id);
+                    }
                     break;
                 case 5:
-                    $scope.form.data.files.sixFile.file = null;
-                    $scope.form.data.files.sixFile.title = '';
+                    var file = $scope.form.data.files.sixFile;
+                    file.file = null;
+                    file.title = '';
+                    if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
+                        $scope.form.data.deletedFiles.push(file.id);
+                    }
                     break;
             }
         };
@@ -191,7 +217,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.submitProperty = function() {
             postProcessFormData();
             $scope.errors = {};
-            console.log($scope.form.data.files.twoFile);
             $rootScope.please_wait_class = 'please-wait';
             var upload = Upload.upload({
                 url: apiPath+'property/update',
