@@ -15,7 +15,7 @@ class CreateAssignedFeaturesDocumentsTable extends Migration
         Schema::create('assigned_features_documents', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('property_sub_type_id')->unsigned();
-            $table->text('document');
+            $table->text('json');
             $table->timestamps();
 
             $table->foreign('property_sub_type_id','property_sub_types_fk')

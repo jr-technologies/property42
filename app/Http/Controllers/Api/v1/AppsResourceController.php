@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\AppsResources\GetDashboardResourcesRequest;
 
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
@@ -19,7 +20,6 @@ use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
-use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\AssignedFeaturesJsonDocumentsGenerator;
 
 class AppsResourceController extends ApiController
@@ -36,6 +36,7 @@ class AppsResourceController extends ApiController
     public $response = null;
     public $userAgency ="";
     public $properties ="";
+    public $assignedFeaturesJson="";
 
     public function __construct(ApiResponse $response)
     {
@@ -48,6 +49,7 @@ class AppsResourceController extends ApiController
         $this->userAgency = (new AgenciesRepoProvider())->repo();
         $this->agencyStaff = (new UsersJsonRepoProvider())->repo();
         $this->properties = (new PropertiesRepoProvider())->repo();
+        $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
         $this->response = $response;
     }
     public function dashboardResources(GetDashboardResourcesRequest $request)
@@ -58,6 +60,7 @@ class AppsResourceController extends ApiController
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
+        $subTypeAssignedFeaturesJson = $this->assignedFeaturesJson->all();
         $user = $request->getUserJsonModel();
         if($user == null)
             return $this->response->respondAuthenticationFailed();
@@ -65,7 +68,6 @@ class AppsResourceController extends ApiController
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
         $propertiesCounts  = $this->properties->countProperties($user->id);
-        //dd($landUnits);
         return $this->response->respond([
             'data'=>[
                 'resources'=>[
@@ -76,7 +78,8 @@ class AppsResourceController extends ApiController
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
                     'agencyStaff'=>$agencyStaff,
-                    'propertiesCounts'=>$propertiesCounts
+                    'propertiesCounts'=>$propertiesCounts,
+                    'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson
                 ],
                 'authUser' => $user
             ],

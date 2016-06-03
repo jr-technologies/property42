@@ -47,7 +47,7 @@ class EventServiceProvider extends ServiceProvider
         /* agency events */
         AgencyCreated::class => [
             AddNewAgencyInUserJson::class,
-			 AddOwnerAsStaffMember::class
+            AddOwnerAsStaffMember::class
         ],
         AgencyUpdated::class => [
             UpdateAgencyInUserJson::class,

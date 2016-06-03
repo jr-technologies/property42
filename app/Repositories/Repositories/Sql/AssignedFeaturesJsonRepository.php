@@ -30,5 +30,8 @@ class AssignedFeaturesJsonRepository extends SqlRepository implements AssignedFe
     {
         return $this->factory->updateWhere($condition,$assignedFeatures);
     }
-
+    public function all()
+    {
+        return $this->factory->all();
+    }
 }
