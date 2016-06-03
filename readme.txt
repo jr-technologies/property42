@@ -1,1 +1,1 @@
-property 45
+property 42

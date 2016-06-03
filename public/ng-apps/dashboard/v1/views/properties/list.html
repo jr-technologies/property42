@@ -1,0 +1,101 @@
+<div class="property-listing-holder" ng-init="initialize()" ng-controller="ListPropertiesController">
+    <div class="listing-cetegories-links">
+        <ul class="navFor-mobile">
+            <li>
+                <span class="tag">For Sale</span>
+                <a class="slide-onMobile-opener">
+                    <strong class="active"><span class="icon-flash-activation"></span> active <span class="numbering">999+</span></strong>
+                </a>
+            </li>
+        </ul>
+        <ul class="slide-onMobile">
+            <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active-nav':searchPropertiesParams.status_id === propertyStatus.id}">
+                <a ng-click="setPropertyStatus(propertyStatus.id)" href="">
+                    <strong class="{{propertyStatus.name}}"><span class="icon-flash-activation"></span> {{propertyStatus.name}} <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span></strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="property-form-table">
+        <div class="property-filter">
+            <form class="by-user-sorting">
+                <ul>
+                    <li>
+                        <label>Show</label>
+                        <select ng-model="searchPropertiesParams.limit">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>listings per page from</label>
+                        <select ng-model="searchPropertiesParams.owner_id">
+                            <option value="">All Members</option>
+                            <option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>
+                        </select>
+                    </li>
+                </ul>
+                <input type="submit" ng-click="filtersChanged()" value="Go">
+            </form>
+            <form class="by-id-sorting">
+                <ul>
+                    <li>
+                        <label>Sort by</label>
+                        <select>
+                            <option>ID</option>
+                            <option>Type</option>
+                            <option>Location</option>
+                            <option>Price</option>
+                            <option>Listed Date</option>
+                            <option>Views</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>in</label>
+                        <select>
+                            <option>Descending</option>
+                            <option>Ascending</option>
+                        </select>
+                    </li>
+                </ul>
+                <input type="submit" value="Go">
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="propeties-table">
+                <tr>
+                    <th>
+                        <input type="checkbox" id="ID">
+                        <label><span>ID</span></label>
+                    </th>
+                    <th><span>Type</span></th>
+                    <th><span>Location</span></th>
+                    <th><span>Price (PKR)</span></th>
+                    <th><span>Listed Date</span></th>
+                    <th><span>Views</span></th>
+                    <th><span>Controls</span></th>
+                </tr>
+                <tr data-ng-repeat="property in properties">
+                    <td>
+                        <input type="checkbox" id="id1">
+                        <label for="id1">{{property.id}} </label>
+                    </td>
+                    <td>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}} </td>
+                    <td> {{property.location.society.name}} - {{property.location.block.name}} Block</td>
+                    <td>{{property.price}}</td>
+                    <td>
+                        <time datetime="2016-04-18">18 Apr 2016</time>
+                    </td>
+                    <td>{{property.totalLikes}}</td>
+                    <td>
+                        <a href="#" class="details" title="Details"><span class="icon-notebook"></span></span></a>
+                        <a href="#/home/properties/edit/{{property.id}}" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
+                        <a ng-click="deleteProperty($index)" class="delete" title="Delete the property"><span class="icon-trash"></span></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
