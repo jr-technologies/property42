@@ -64,38 +64,70 @@
             </form>
         </div>
         <div class="table-responsive">
-            <table class="propeties-table">
-                <tr>
-                    <th>
+            <ul class="properties-table accordion">
+                <li>
+                    <div class="t-head by-id">
                         <input type="checkbox" id="ID">
-                        <label><span>ID</span></label>
-                    </th>
-                    <th><span>Type</span></th>
-                    <th><span>Location</span></th>
-                    <th><span>Price (PKR)</span></th>
-                    <th><span>Listed Date</span></th>
-                    <th><span>Views</span></th>
-                    <th><span>Controls</span></th>
-                </tr>
-                <tr data-ng-repeat="property in properties">
-                    <td>
-                        <input type="checkbox" id="id1">
+                        <label><span class="descending">ID</span></label>
+                    </div>
+                    <div class="t-head by-type"><span class="descending">Type</span></div>
+                    <div class="t-head by-location"><span class="descending">Location</span></div>
+                    <div class="t-head by-price"><span class="descending">Price (PKR)</span></div>
+                    <div class="t-head"><span class="descending">Listed Date</span></div>
+                    <div class="t-head by-view"><span class="descending">Views</span></div>
+                    <div class="t-head"><span class="descending">Controls</span></div>
+                </li>
+                <li data-ng-repeat="property in properties">
+                    <div class="t-data by-id">
+                        <input type="checkbox">
                         <label for="id1">{{property.id}} </label>
-                    </td>
-                    <td>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}} </td>
-                    <td> {{property.location.society.name}} - {{property.location.block.name}} Block</td>
-                    <td>{{property.price}}</td>
-                    <td>
+                    </div>
+                    <div class="t-data by-type"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}} </p></div>
+                    <div class="t-data by-location"><p> {{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
+                    <div class="t-data by-price"><p>{{property.price}}</p></div>
+                    <div class="t-data">
                         <time datetime="2016-04-18">18 Apr 2016</time>
-                    </td>
-                    <td>{{property.totalLikes}}</td>
-                    <td>
-                        <a href="#" class="details" title="Details"><span class="icon-notebook"></span></span></a>
+                    </div>
+                    <div class="t-data by-view">{{property.totalLikes}}</div>
+                    <div class="t-data">
+                        <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
                         <a href="#/home/properties/edit/{{property.id}}" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
-                        <a ng-click="deleteProperty($index)" class="delete" title="Delete the property"><span class="icon-trash"></span></a>
-                    </td>
-                </tr>
-            </table>
+                        <a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-trash"></span></a>
+                    </div>
+                    <div class="slide">
+                        <div class="two-cols">
+                            <div class="col">
+                                <h1>Owner info:</h1>
+                                <p><b>Owner Name:</b> Zain Zafar</p>
+                                <p><b>Owner Email:</b> zainzafar67@yahoo.com</p>
+                                <p><b>Owner Phone:</b> 03214567989</p>
+                                <p><b>Owner Fax:</b> 03214567989</p>
+                            </div>
+                            <div class="col">
+                                <h1>property title:</h1>
+                                <p>In magna eros, malesuada lacinia laoreet a</p>
+                                <h1>property description:</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel lacus dolor. Duis sagittis lacus sed libero iaculis luctus. Pellentesque sit amet pretium justo. Ut dignissim, enim non semper tristique, purus ante venenatis eros, id dapibus mi arcu eget arcu. Donec malesuada sem dui, sed imperdiet urna luctus ut. Mauris venenatis vel enim ac porta. Suspendisse potenti. Donec et mauris vel eros tincidunt congue aliquam non nulla. Pellentesque interdum enim id metus elementum, ut gravida magna sodales. Nam viverra accumsan ex in faucibus.</p>
+                            </div>
+                        </div>
+                        <a class="btn-more">View more</a>
+                    </div>
+                </li>
+            </ul>
         </div>
+        <ul class="pager">
+            <li><a href="#" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">9</a></li>
+            <li><a href="#">10</a></li>
+            <li><a href="#" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+        </ul>
     </div>
 </div>
