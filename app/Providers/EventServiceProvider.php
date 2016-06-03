@@ -14,6 +14,7 @@ use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserCreated;
 use App\Events\Events\User\UserRolesChanged;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
+use App\Listeners\Listeners\Agency\AddOwnerAsStaffMember;
 use App\Listeners\Listeners\Agency\DeleteAgencyInUserJson;
 use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
 use App\Listeners\Listeners\Feature\CreateFeatureJsonDocument;
@@ -45,7 +46,8 @@ class EventServiceProvider extends ServiceProvider
         
         /* agency events */
         AgencyCreated::class => [
-            AddNewAgencyInUserJson::class
+            AddNewAgencyInUserJson::class,
+			 AddOwnerAsStaffMember::class
         ],
         AgencyUpdated::class => [
             UpdateAgencyInUserJson::class,
