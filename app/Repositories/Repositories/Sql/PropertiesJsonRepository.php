@@ -24,7 +24,7 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
 
     public function all()
     {
-
+        return $this->factory->all();
     }
 
     public function search()

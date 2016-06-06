@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\V1\AppsResourceController;
 use App\Http\Controllers\Api\V1\PropertySubTypeController;
 use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
+use App\Repositories\Providers\Providers\FeaturesRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
@@ -374,7 +376,7 @@ Route::post('property/update',
     ]
 );
 
-Route::post('force/property/delete',
+Route::post('property/force_delete',
     [
         'middleware'=>
             [

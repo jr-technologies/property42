@@ -47,6 +47,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     public function create()
     {
+
         $this->prototype->id = $this->model->id;
         $this->prototype->owner = $this->getOwnerJson();
         $this->prototype->contactPerson = $this->model->contactPerson;
