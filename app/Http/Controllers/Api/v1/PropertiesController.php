@@ -117,6 +117,7 @@ class PropertiesController extends ApiController
         $properties = $this->releasePropertiesJsonFiles($this->userProperties->getUserProperties($request->all()));
         return $this->response->respond(['data' => [
             'properties' => $this->propertyJsonTransformer->transformCollection($properties),
+            'totalProperties' => $this->userProperties->countSearchedUserProperties($request->all())
         ]]);
     }
 
