@@ -6,9 +6,16 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];
+    $scope.deletingPropertyId = 0;
+    $scope.deletingProperties = {
+        ids: []
+    };
+    $scope.checkAllPropertiesChkbx = false;
     $scope.$on('searchPropertiesParamsChanged', function () {
         getProperties().then(function successCallback(properties) {
+            console.log(properties[0]);
             $scope.properties = properties;
+            $scope.checkAllPropertiesChkbx = false;
         }, function errorCallback(response) {
 
         });
@@ -20,6 +27,20 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         $rootScope.$broadcast('searchPropertiesParamsChanged');
     };
 
+    $scope.$watch('checkAllPropertiesChkbx', function () {
+        if($scope.checkAllPropertiesChkbx == true){
+            $scope.checkAll();
+        }else{
+            $scope.unCheckAll();
+        }
+    });
+
+    $scope.checkAll = function() {
+        $scope.deletingProperties.ids = $scope.properties.map(function(item) { return item.id; });
+    };
+    $scope.unCheckAll = function() {
+        $scope.deletingProperties.ids = [];
+    };
     var getProperties = function () {
         return $http({
             method: 'GET',
@@ -51,6 +72,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         $rootScope.$broadcast('searchPropertiesParamsChanged');
     };
     $scope.deleteProperty = function ($index) {
+        $scope.deletingPropertyId = $scope.properties[$index].id;
         return $http({
             method: 'POST',
             url: apiPath+'property/delete',
@@ -59,11 +81,12 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
                 searchParams: $rootScope.searchPropertiesParams
             }
         }).then(function successCallback(response) {
-            console.log(response);
             $scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
+            $scope.deletingPropertyId = 0;
         }, function errorCallback(response) {
+            $scope.deletingPropertyId = 0;
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
     };

@@ -11,7 +11,7 @@
         <ul class="slide-onMobile">
             <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active-nav':searchPropertiesParams.status_id === propertyStatus.id}">
                 <a ng-click="setPropertyStatus(propertyStatus.id)" href="">
-                    <strong class="{{propertyStatus.name}}"><span class="icon-flash-activation"></span> {{propertyStatus.name}} <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span></strong>
+                    <strong class="{{propertyStatus.name}}">{{propertyStatus.name}} <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span></strong>
                 </a>
             </li>
         </ul>
@@ -67,7 +67,7 @@
             <ul class="properties-table accordion">
                 <li>
                     <div class="t-head by-id">
-                        <input type="checkbox" id="ID">
+                        <input type="checkbox" id="ID" ng-model="checkAllPropertiesChkbx">
                         <label><span class="descending">ID</span></label>
                     </div>
                     <div class="t-head by-type"><span class="descending">Type</span></div>
@@ -77,9 +77,9 @@
                     <div class="t-head by-view"><span class="descending">Views</span></div>
                     <div class="t-head"><span class="descending">Controls</span></div>
                 </li>
-                <li data-ng-repeat="property in properties">
+                <li data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id}" class="accordion-row">
                     <div class="t-data by-id">
-                        <input type="checkbox">
+                        <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id">
                         <label for="id1">{{property.id}} </label>
                     </div>
                     <div class="t-data by-type"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}} </p></div>
@@ -98,10 +98,10 @@
                         <div class="two-cols">
                             <div class="col">
                                 <h1>Owner info:</h1>
-                                <p><b>Owner Name:</b> Zain Zafar</p>
-                                <p><b>Owner Email:</b> zainzafar67@yahoo.com</p>
-                                <p><b>Owner Phone:</b> 03214567989</p>
-                                <p><b>Owner Fax:</b> 03214567989</p>
+                                <p><b>Owner Name:</b> {{property.owner.fName}} {{ property.owner.lName }}</p>
+                                <p><b>Owner Email:</b> {{property.email}} </p>
+                                <p><b>Owner Phone:</b> {{property.phone}} </p>
+                                <p><b>Owner Fax:</b> {{property.fax}} </p>
                             </div>
                             <div class="col">
                                 <h1>property title:</h1>

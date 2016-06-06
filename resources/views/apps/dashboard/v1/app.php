@@ -24,6 +24,7 @@
     <script src="<?= url('/') ?>/javascripts/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular-route/angular-route.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/ui-router/angular-ui-router.min.js"></script>
+    <script src="<?= url('/') ?>/javascripts/checklist-model.js"></script>
 
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/models/Model.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/app.js"></script>

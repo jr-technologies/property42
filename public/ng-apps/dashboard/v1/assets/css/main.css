@@ -4176,6 +4176,7 @@ a {
   position: relative;
   margin: 16px 0 0 20px;
   cursor: pointer;
+  z-index: 99;
 }
 
 @media (max-width: 767px) {
@@ -5245,6 +5246,14 @@ a {
   line-height: 21px;
   font-weight: 600;
   margin: 0 0 10px;
+}
+
+.accordion .slide {
+  display: none !important;
+}
+
+.accordion .slide.slide-active {
+  display: block !important;
 }
 
 @keyframes pagelodaer-progress {
