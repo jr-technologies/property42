@@ -12,10 +12,11 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     };
     $scope.checkAllPropertiesChkbx = false;
     $scope.$on('searchPropertiesParamsChanged', function () {
+        $rootScope.loading_content_class = 'loading-content';
         getProperties().then(function successCallback(properties) {
-            console.log(properties[0]);
             $scope.properties = properties;
             $scope.checkAllPropertiesChkbx = false;
+            $rootScope.loading_content_class = '';
         }, function errorCallback(response) {
 
         });
@@ -90,6 +91,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
     };
+
     $scope.initialize = function () {
 
         getPropertiesCounts().then(function successCallback(counts) {

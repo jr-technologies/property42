@@ -55,7 +55,9 @@
 
 
 </head>
-<body class="sideBar-active {{please_wait_class}}">
+<body class="sideBar-active {{please_wait_class}} {{loading_resources_class}}" ng-init="loading_resources_class='loading-resources'">
+
+<span class="lodaing-page">Property42.pk</span>
 <!-- main container of all the page elements -->
 
 <div class="" ng-controller="ParentController">

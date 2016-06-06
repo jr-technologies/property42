@@ -63,6 +63,9 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     };
     $scope.$watch('temp.society', function() {
         $scope.form.data.society = $scope.temp.society.id;
+        getBlocks().then(function (blocks) {
+            $scope.blocks = blocks;
+        });
     });
     $scope.$watch('temp.block', function() {
         $scope.form.data.block = $scope.temp.block.id;
@@ -178,8 +181,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     var getBlocks = function () {
         return $http({
             method: 'GET',
-            url: apiPath+'blocks',
-            data:{}
+            url: apiPath+'society/blocks',
+            params:{society_id: $scope.form.data.society}
         }).then(function successCallback(response) {
             return response.data.data.blocks;
         }, function errorCallback(response) {
@@ -239,12 +242,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
             console.log('fucked up');
         });
 
-        getBlocks().then(function successCallback(blocks) {
-            $scope.blocks = blocks;
-        }, function errorCallback(response) {
-            console.log('fucked up');
-        });
-
         getAssignedFeatures().then(function successCallback(features) {
             $scope.features = features;
         }, function errorCallback(response) {
@@ -253,6 +250,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
 
         getFeatureSections().then(function successCallback(sections) {
             $scope.featureSections = sections;
+            $rootScope.loading_content_class = '';
         }, function errorCallback(response) {
             console.log('fucked up');
         });

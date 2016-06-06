@@ -53,6 +53,8 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.resources = null;
     $rootScope.resourceLoading = false;
     $rootScope.please_wait_class = '';
+    $rootScope.loading_resources_class = '';
+    $rootScope.loading_content_class = '';
     $rootScope.defaultSearchPropertiesParams = {
         owner_id: null,
         purpose_id: null,
@@ -66,6 +68,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.propertiesCounts = {};
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
         $rootScope.activeLink = next.name;
+        $rootScope.loading_content_class = 'loading-content';
         /*
         * Description:
         * if the next route is for authenticated users and

@@ -32,6 +32,7 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
                 $rootScope.propertiesCounts = response.data.data.propertiesCounts;
                 $rootScope.resourceLoading = false;
                 $rootScope.please_wait_class = '';
+                $rootScope.loading_resources_class = '';
                 return response;
             }, function errorCallback(response) {
                 $rootScope.resourceLoading = false;

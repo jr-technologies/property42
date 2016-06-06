@@ -48,6 +48,7 @@ app.filter('filterBySubType', [function () {
 
 app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$window","$http", "Upload","$sce", "$state", "$AuthService", "$location",
     function (property, $scope, $rootScope, $window, $http, Upload, $sce, $state, $AuthService, $location){
+        $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
         $scope.formSubmitStatus = '';
         $scope.property = property;
