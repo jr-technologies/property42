@@ -40,7 +40,7 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
         $agencyTable = (new AgencyFactory())->getTable();
 
         return DB::table($table)
-            ->leftjoin($propertyJsonTable,$table.'.id','=',$propertyJsonTable.'.property_id')
+            ->join($propertyJsonTable,$table.'.id','=',$propertyJsonTable.'.property_id')
             ->leftjoin($userTable,$table.'.owner_id','=',$userTable.'.id')
             ->leftjoin($agencyStaff,$userTable.'.id','=',$agencyStaff.'.user_id')
             ->leftjoin($agencyTable,$agencyStaff.'.agency_id','=',$agencyTable.'.id')

@@ -190,10 +190,10 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
 
     public function propertiesCounter($propertyCounts, $purpose, $status)
     {
-
-        if(isset($propertyCounts[$purpose][$status]))
-        {
+        if(isset($propertyCounts[$purpose][$status])){
             return intval($propertyCounts[$purpose][$status]);
+        }else{
+            return 0;
         }
     }
     public function countProperties($userId)

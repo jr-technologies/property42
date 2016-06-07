@@ -77,8 +77,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
             propertySubType : 0,
             society:0,
             block: 0,
-            price: 0,
-            landArea: 0,
+            price: null,
+            landArea: null,
             landUnit: 0,
             propertyTitle: '',
             propertyDescription: '',
@@ -91,12 +91,12 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
                 fiveFile:{title: '', file: null},
                 sixFile:{title: '', file: null}
             },
-            owner: 0,
-            contactPerson: '',
-            phone: "",
-            cell : "",
-            fax: "",
-            email: ""
+            owner: $rootScope.authUser.id+"",
+            contactPerson: $rootScope.authUser.fName+" "+$rootScope.authUser.lName,
+            phone: $rootScope.authUser.phone,
+            cell : $rootScope.authUser.mobile,
+            fax: $rootScope.authUser.fax,
+            email: $rootScope.authUser.email
         }
     };
     var nullFile = {title: '', file: null};

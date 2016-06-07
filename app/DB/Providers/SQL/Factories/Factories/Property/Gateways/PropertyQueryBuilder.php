@@ -9,6 +9,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\Property\Gateways;
 use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Factories\Country\CountryFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
@@ -42,8 +43,10 @@ class PropertyQueryBuilder extends QueryBuilder
 
     public function countProperties($userId)
     {
+        $propertyJsonTable = (new PropertyJsonFactory())->getTable();
         return DB::table($this->table)
-            ->selectRaw('purpose_id, property_status_id, count(id) as totalPropertiesByStatus')
+            ->join($propertyJsonTable,$this->table.'.id','=',$propertyJsonTable.'.property_id')
+            ->selectRaw('purpose_id, property_status_id, count('.$this->table.'.id) as totalPropertiesByStatus')
             ->where('owner_id','=',$userId)
             ->groupBy('purpose_id', 'property_status_id')
             ->get();

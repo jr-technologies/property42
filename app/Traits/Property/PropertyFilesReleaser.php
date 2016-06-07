@@ -24,9 +24,12 @@ trait PropertyFilesReleaser
         {
             foreach($property->documents as $document /* @var $document PropertyDocumentJsonPrototype */)
             {
-                $releasedFile = (new FileRelease($document->path))->doNotLog()->release();
-                $document->path = $releasedFile->path;
-                $releasedFiles[] = $releasedFile;
+                if(file_exists(storage_path($document->path)))
+                {
+                    $releasedFile = (new FileRelease($document->path))->doNotLog()->release();
+                    $document->path = $releasedFile->path;
+                    $releasedFiles[] = $releasedFile;
+                }
             }
         }
         (new FileRelease())->multiLogInDb($releasedFiles);

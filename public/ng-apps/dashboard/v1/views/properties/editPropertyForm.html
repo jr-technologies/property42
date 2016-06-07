@@ -213,7 +213,7 @@
                 <div class="layout-holder">
                     <span class="title">owner:</span>
                     <select class="searchable-select" name="owner" ng-model="form.data.owner">
-                        <option value="1">Noman Tufail</option>
+                        <option data-ng-repeat="owner in resources.agencyStaff" value="{{owner.id}}">{{owner.fName}} {{owner.lName}}</option>
                     </select>
                 </div>
                 <div class="layout-holder">

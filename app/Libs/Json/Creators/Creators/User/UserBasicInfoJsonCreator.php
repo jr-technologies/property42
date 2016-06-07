@@ -26,7 +26,7 @@ class UserBasicInfoJsonCreator extends JsonCreator implements JsonCreatorInterfa
         $this->prototype->id = $this->model->id;
         $this->prototype->email = $this->model->email;
         $this->prototype->fName = $this->model->fName;
-        $this->prototype->lName = $this->model->fName;
+        $this->prototype->lName = $this->model->lName;
         $this->prototype->phone = $this->model->phone;
         $this->prototype->mobile = $this->model->mobile;
         $this->prototype->fax = $this->model->fax;

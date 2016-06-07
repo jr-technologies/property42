@@ -22,7 +22,6 @@ class UsersJsonTableSeeder extends Seeder
                 'json'=>'{"id":2,"email":"waqas@gmail.com","fName":"waqas","lName":"qureshi","phone":"65464654","mobile":"6546456","fax":"","address":"654564564","zipCode":"54564564","country":"Pakistan","membershipPlan":{"id":1,"name":"free","hot":0,"featured":0,"description":""},"agencies":[],"roles":[{"id":3,"name":"agent\/broker"}],"createdAt":"2016-05-10 06:44:33","updatedAt":"2016-05-10 06:44:33"}'
 
             ]
-
         ]);
     }
 }

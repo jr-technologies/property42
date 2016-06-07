@@ -65,7 +65,6 @@ class AppsResourceController extends ApiController
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
         $propertiesCounts  = $this->properties->countProperties($user->id);
-        //dd($landUnits);
         return $this->response->respond([
             'data'=>[
                 'resources'=>[

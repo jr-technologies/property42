@@ -11,6 +11,9 @@ app.factory("$ErrorResponseHandler", function ($rootScope, $http, $AuthService) 
                     alert('Session Expired! please login again.');
                     window.location.href = domain+'logout';
                     break;
+                case 429:
+                    alert('Too many requests. please wait for a minute and try again.');
+                    break;
                 default :
                     break;
             }
