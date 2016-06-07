@@ -13,6 +13,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     $scope.totalProperties = 0;
     $scope.pages = [];
     $scope.checkAllPropertiesChkbx = false;
+    $scope.activePage = 1;
     $scope.$on('searchPropertiesParamsChanged', function () {
         $rootScope.loading_content_class = 'loading-content';
         getProperties().then(function successCallback(data) {
@@ -104,6 +105,12 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         });
     };
 
+    $scope.setPage = function (page) {
+        var start = ($rootScope.searchPropertiesParams.limit * parseInt(page)) - $rootScope.searchPropertiesParams.limit;
+        $rootScope.searchPropertiesParams.start = start;
+        $rootScope.$broadcast('searchPropertiesParamsChanged');
+        $scope.activePage = page;
+    };
     $scope.initialize = function () {
 
         getPropertiesCounts().then(function successCallback(counts) {
