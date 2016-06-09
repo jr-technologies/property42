@@ -28,23 +28,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('subtype',function(){
-
-    $subType = new PropertySubTypeRepository();
-    $sutTypes = $subType->all();
-    $finalArray = [];
-    foreach($sutTypes as $subType /* @var $subType PropertySubType::class */)
-    {
-        $assignedFeatures = new AssignedFeatures();
-        $assignedFeatures->subTypeId = $subType->id;
-        $assignedFeatures->json = json_encode((new SectionsFeaturesJsonCreator($subType->id))->create());
-        $finalArray[] = $assignedFeatures;
-        //(new AssignedFeaturesJsonRepository())->updateWhere(['property_sub_type_id'=>$assignedFeatures->subTypeId],$assignedFeatures);
-    }
-    return $finalArray;
-}
-);
-
 Route::get('app/dashboard/resources',
     [
         'middleware'=>
@@ -390,6 +373,16 @@ Route::post('property/delete',
                 'apiValidate:deletePropertyRequest'
             ],
         'uses'=>'PropertiesController@delete'
+    ]
+);
+
+Route::get('properties/search',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:searchPropertiesRequest'
+            ],
+        'uses'=>'PropertiesController@search'
     ]
 );
 

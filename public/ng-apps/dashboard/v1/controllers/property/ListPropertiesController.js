@@ -2,6 +2,11 @@
  * Created by noman_2 on 12/8/2015.
  */
 var app = angular.module('dashboard');
+app.filter('roundup', function () {
+    return function (value) {
+        return Math.ceil(value);
+    };
+});
 app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$state", "$AuthService", function ($scope, $rootScope, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
@@ -14,6 +19,8 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     $scope.pages = [];
     $scope.checkAllPropertiesChkbx = false;
     $scope.activePage = 1;
+    $scope.fetchingProperties = false;
+
     $scope.$on('searchPropertiesParamsChanged', function () {
         $rootScope.loading_content_class = 'loading-content';
         getProperties().then(function successCallback(data) {
@@ -46,6 +53,11 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
             pages.push(i+1);
         }
         $scope.pages = pages;
+        $scope.activePage = 1;
+    });
+
+    $scope.$watchGroup(['searchPropertiesParams.owner_id', 'searchPropertiesParams.limit'], function(newValues, oldValues, scope) {
+        $rootScope.$broadcast('searchPropertiesParamsChanged');
     });
 
     $scope.checkAll = function() {
@@ -55,6 +67,10 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
         $scope.deletingProperties.ids = [];
     };
     var getProperties = function () {
+        if($scope.fetchingProperties == true){
+            return $scope.properties;
+        }
+        $scope.fetchingProperties = true;
         return $http({
             method: 'GET',
             url: apiPath+'user/properties',
@@ -63,6 +79,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
                 Authorization:$AuthService.getAppToken()
             }
         }).then(function successCallback(response) {
+            $scope.fetchingProperties = false;
             return response.data.data;
         }, function errorCallback(response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});

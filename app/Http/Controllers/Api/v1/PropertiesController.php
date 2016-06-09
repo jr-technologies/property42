@@ -16,11 +16,10 @@ use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
+use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
-use App\Libs\File\FileRelease;
 use App\Libs\Helpers\Helper;
-use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
@@ -38,7 +37,7 @@ class PropertiesController extends ApiController
     private $propertyFeatureValues = null;
     public $response = null;
     private $propertyDocuments = null;
-    private $userProperties = null;
+    private $propertiesJsonRepo = null;
     private $propertyJsonTransformer = null;
     /**
      * @param PropertiesRepoProvider $repoProvider
@@ -50,7 +49,7 @@ class PropertiesController extends ApiController
         $this->response = $response;
         $this->propertyFeatureValues = new PropertyFeatureValuesRepository();
         $this->propertyDocuments = new PropertyDocumentsRepository();
-        $this->userProperties= (new PropertiesJsonRepoProvider())->repo();
+        $this->propertiesJsonRepo= (new PropertiesJsonRepoProvider())->repo();
         $this->propertyJsonTransformer = new PropertyJsonTransformer();
     }
 
@@ -82,7 +81,7 @@ class PropertiesController extends ApiController
         if(is_array($request->get('deletedFiles'))){$this->deleteByIds($request->get('deletedFiles'));}
         Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
-            'property'=>$this->releasePropertiesJsonFiles($this->userProperties->getUserProperties(['propertyId'=>$property->id]))[0]
+            'property'=>$this->releasePropertiesJsonFiles($this->propertiesJsonRepo->getUserProperties(['propertyId'=>$property->id]))[0]
         ]]);
     }
 
@@ -90,8 +89,8 @@ class PropertiesController extends ApiController
     {
         $property = $request->getPropertyModel();
         $this->properties->delete($property);
-        $userProperties = $this->userProperties->getUserProperties($request->get('searchParams'));
-        $countUserSearchProperties = $this->userProperties->countSearchedUserProperties($request->get('searchParams'));
+        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
         $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
@@ -114,10 +113,10 @@ class PropertiesController extends ApiController
 
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
-        $properties = $this->releasePropertiesJsonFiles($this->userProperties->getUserProperties($request->all()));
+        $properties = $this->releasePropertiesJsonFiles($this->propertiesJsonRepo->getUserProperties($request->all()));
         return $this->response->respond(['data' => [
             'properties' => $this->propertyJsonTransformer->transformCollection($properties),
-            'totalProperties' => $this->userProperties->countSearchedUserProperties($request->all())
+            'totalProperties' => $this->propertiesJsonRepo->countSearchedUserProperties($request->all())
         ]]);
     }
 
@@ -192,5 +191,10 @@ class PropertiesController extends ApiController
         $user = $countPropertiesRequest->getUserModel();
         return $this->response->respond(['data'=>[
             'counts'=>$this->properties->countProperties($user->id)]]);
+    }
+
+    public function search(SearchPropertiesRequest $request)
+    {
+        return $this->propertiesJsonRepo->search($request->getParams());
     }
 }

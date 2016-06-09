@@ -11,15 +11,18 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
+use App\Libs\SearchEngines\Properties\SearchEngineProvider;
 use App\Repositories\Interfaces\Repositories\PropertiesJsonRepoInterface;
 
 class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRepoInterface
 {
     private $userJsonTransformer;
     private $factory = null;
+    private $cheetah = null;
     public function __construct(){
         $this->userJsonTransformer = null;
         $this->factory = new PropertyJsonFactory();
+        $this->cheetah = (new SearchEngineProvider())->cheetah();
     }
 
     public function all()
@@ -27,9 +30,9 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
 
     }
 
-    public function search()
+    public function search(array $instructions)
     {
-
+        return $this->cheetah->setInstructions($instructions)->go();
     }
 
     public function find($id)
