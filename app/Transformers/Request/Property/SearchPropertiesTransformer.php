@@ -28,6 +28,10 @@ class SearchPropertiesTransformer extends RequestTransformer
             'landAreaFrom' => $this->request->get('land_area_from'),
             'landAreaTo' => $this->request->get('land_area_to'),
             'propertyFeatures' => $this->request->get('property_features'),
+            'page' => $this->request->get('page'),
+            'limit' => $this->request->get('limit'),
+            'sortBy' => $this->request->get('sort_by'),
+            'order' => $this->request->get('order')
         ];
     }
 }

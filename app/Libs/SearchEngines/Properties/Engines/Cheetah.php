@@ -9,14 +9,11 @@
 namespace App\Libs\SearchEngines\Properties\Engines;
 
 
-use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
-use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
 use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyFeatureValue\PropertyFeatureValueFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
-use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\Libs\Helpers\LandArea;
 use App\Libs\SearchEngines\Properties\PropertiesSearchEngineInterface;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +35,6 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
 
     private function buildQuery()
     {
-        $limit = 25;
         $properties = (new PropertyFactory())->getTable();
         $societies = (new SocietyFactory())->getTable();
         $blocks = (new BlockFactory())->getTable();
@@ -75,11 +71,73 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
                 ]);
             }
         }
-
-//            ->orderBy($properties.'.'.$sort['sortOn'],$sort['sortBy'])
-//            ->skip($limit['start'])->take($limit['limit'])
+        $sorting = $this->computeSorting();
+        $query = $query->orderBy($sorting['sortBy'],$sorting['order']);
+        $query = $query->skip($this->computePagination()['start'])->take($this->computePagination()['limit']);
         $query = $query->distinct();
 
         return $query;
     }
+
+    private function computeSorting()
+    {
+        return [
+            'sortBy' => $this->getSortableColumnValue($this->instructions['sortBy']),
+            'order' => $this->getOrder()
+        ];
+    }
+
+    private function computePagination()
+    {
+        $pagination = [
+            'start' => 0,
+            'limit' => config('constants.PROPERTIES_LIMIT')
+        ];
+        if(isset($this->instructions['page']) ){
+            $page = intval($this->instructions['page']);
+            $page = ($page < 1)?1: $page;
+            $limit = intval($this->instructions['limit']);
+            $limit = ($limit < 1)?config('constants.PROPERTIES_LIMIT'):$limit;
+            $start = $limit*($page-1);
+
+            $pagination['start'] = $start;
+            $pagination['limit'] = $limit;
+        }
+        return $pagination;
+    }
+
+    private function defaultSorting()
+    {
+        return [
+            'sortBy' => 'total_views',
+            'order' => 'desc'
+        ];
+    }
+
+    private function getSortableColumns()
+    {
+        return [
+            'id' => 'properties.id',
+            'type' => 'property_types.type',
+        ];
+    }
+
+    private function getSortableColumnValue($column)
+    {
+        if(isset($this->getSortableColumns()[$column]))
+        {
+            return $this->getSortableColumns()[$column];
+        }
+        return $this->defaultSorting()['sortBy'];
+    }
+
+    private function getOrder()
+    {
+        if(isset($this->instructions['order']) && ($this->instructions['order'] == 'desc' || $this->instructions['order'] == 'asc'))
+        {
+            return $this->instructions['order'];
+        }
+        return 'desc';
+    }
+
 }
