@@ -27,7 +27,7 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
 
     public function all()
     {
-
+        return $this->factory->all();
     }
 
     public function search(array $instructions)
@@ -61,5 +61,9 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     public function countSearchedUserProperties($params)
     {
         return $this->factory->countSearchedUserProperties($params);
+    }
+    public function getById($propertyId)
+    {
+        return $this->factory->getById($propertyId);
     }
 }

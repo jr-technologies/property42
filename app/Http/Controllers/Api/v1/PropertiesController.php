@@ -64,7 +64,6 @@ class PropertiesController extends ApiController
 
         $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
-
         return $this->response->respond(['data' => [
             'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),

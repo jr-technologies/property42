@@ -33,6 +33,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
     private $propertyStatusesRepository = null;
     private $propertiesRepository = null;
     private $propertyPurposes = null;
+
     public function __construct(Property $property = null)
     {
         $this->model = $property;
@@ -47,13 +48,14 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     public function create()
     {
+
         $this->prototype->id = $this->model->id;
         $this->prototype->owner = $this->getOwnerJson();
         $this->prototype->contactPerson = $this->model->contactPerson;
         $this->prototype->email = $this->model->email;
         $this->prototype->phone = $this->model->phone;
         $this->prototype->fax = $this->model->fax;
-        $this->prototype->mobile= $this->model->mobile;
+        $this->prototype->mobile = $this->model->mobile;
         $this->prototype->purpose = $this->getPurpose();
         $this->prototype->type = $this->getPropertyType();
         $this->prototype->location = $this->getPropertyLocation();

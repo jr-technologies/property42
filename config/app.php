@@ -147,6 +147,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -207,6 +208,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
         /* ----------------------------------------------------------
          * Requests Aliases
@@ -298,6 +301,7 @@ return [
         'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
+        'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,
