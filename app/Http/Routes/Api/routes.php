@@ -384,6 +384,17 @@ Route::post('/property',
     ]
 );
 
+Route::get('property',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getPropertyRequest'
+
+            ],
+        'uses'=>'PropertiesController@store'
+    ]
+);
+
 Route::get('user/properties',
     [
         'middleware'=>

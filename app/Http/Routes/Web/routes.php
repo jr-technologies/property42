@@ -49,6 +49,16 @@ Route::post('/register',
     ]
 );
 
+Route::get('property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@getById'
+    ]
+);
+
 Route::get('/logout', function(){
     if(session()->has('authUser'))
     {

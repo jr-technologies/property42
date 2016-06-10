@@ -48,7 +48,6 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->find($id));
     }
-
     /**
      * @param string $column
      * @param string $value
@@ -132,6 +131,7 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
         $agency->address = $result->address;
         $agency->email = $result->email;
         $agency->userId = $result->user_id;
+        $agency->logo = $result->logo;
         $agency->createdAt = $result->created_at;
         $agency->updatedAt = $result->updated_at;
         return $agency;

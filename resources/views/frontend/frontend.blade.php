@@ -9,14 +9,16 @@
     <!-- include the site stylesheet -->
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/main.css">
     <!-- google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic'
+          rel='stylesheet' type='text/css'>
 </head>
 <body>
 <!-- main container of all the page elements -->
 <div id="wrapper">
     <header id="header" class="home-header">
         <div class="layout">
-            <div class="logo"><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" width="695" height="301" alt="Property42"></a></div>
+            <div class="logo"><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" width="695"
+                                               height="301" alt="Property42"></a></div>
             <nav id="nav">
                 <ul class="main-navigation">
                     <li>
@@ -44,7 +46,7 @@
         </div>
     </header>
     <main id="main" role="main">
-       @yield('content')
+        @yield('content')
     </main>
     <footer id="footer">
         <div class="container">
@@ -67,13 +69,17 @@
                         <li><a href="#">Advertise on Property42</a></li>
                         <li><a href="#">privcy policy</a></li>
                         <li><a href="#">terms of use</a></li>
-                        <li><a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">email us</a></li>
+                        <li>
+                            <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">email
+                                us</a></li>
                     </ul>
                 </div>
                 <div class="col">
                     <strong class="heading">Contact us</strong>
+
                     <form class="contact">
-                        <div class="input-holder"><input type="email" placeholder="Enter Your Email Address" required></div>
+                        <div class="input-holder"><input type="email" placeholder="Enter Your Email Address" required>
+                        </div>
                         <div class="input-holder"><textarea placeholder="Enter Your Message" required></textarea></div>
                         <input type="submit" value="Send">
                     </form>

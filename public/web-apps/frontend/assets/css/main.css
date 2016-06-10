@@ -645,7 +645,7 @@ th {
 
 .public-propertyListing .holder .sortBy, .public-propertyListing .property-posts .post .caption .quick-links,
 .public-propertyListing .property-posts .post .caption .property-details, .propertyDetails-page .propertyOwnerInfo .description .contact-links, .propertyDetails-page .property-qucikLinks, .agentListing-page .property-posts .post .caption .quick-links,
-.agentListing-page .property-posts .post .caption .property-details, #nav .main-navigation, #nav .main-navigation li .dropDown, .main-visual .property-search-holder .tabset, .main-visual .property-search-holder .tab-content form ul, #content .left-content .company-logo, #content .right-content .posters, .pager, #footer .cols-holder .col ul {
+.agentListing-page .property-posts .post .caption .property-details, .agentProfile-page .contact-links, .agentProfile-page .cols-holder .col .enquiry-form ul, #nav .main-navigation, #nav .main-navigation li .dropDown, .main-visual .property-search-holder .tabset, .main-visual .property-search-holder .tab-content form ul, #content .left-content .company-logo, #content .right-content .posters, .pager, #footer .cols-holder .col ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1665,6 +1665,33 @@ input[type='submit'] {
   }
 }
 
+.public-propertyListing .property-posts .post .caption .post-heading .subTitle {
+  display: block;
+  width: 100%;
+  clear: both;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 10px 0 0;
+  color: #489ddd;
+  max-width: 500px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 600;
+}
+
+@media (max-width: 1199px) {
+  .public-propertyListing .property-posts .post .caption .post-heading .subTitle {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .public-propertyListing .property-posts .post .caption .post-heading .subTitle {
+    max-width: 200px;
+  }
+}
+
 .public-propertyListing .property-posts .post .caption address {
   position: relative;
   font-style: normal;
@@ -1793,6 +1820,7 @@ input[type='submit'] {
   border: 1px solid #2e2e2e;
   padding: 10px 20px 10px 30px;
   position: relative;
+  text-transform: none;
   transition: color 0.4s ease, border 0.4s ease, background 0.4s ease;
   -webkit-transition: color 0.4s ease, border 0.4s ease, background 0.4s ease;
   -moz-transition: color 0.4s ease, border 0.4s ease, background 0.4s ease;
@@ -1862,6 +1890,7 @@ input[type='submit'] {
 }
 
 .propertyDetails-page .propertyImage-slider {
+  min-width: 760px;
   max-width: 760px;
   float: left;
   position: relative;
@@ -1928,6 +1957,10 @@ input[type='submit'] {
   width: 100%;
   height: auto;
   display: block;
+}
+.propertyDetails-page .propertyImage-slider .slide a img{
+  max-height: 600px;
+  min-height: 600px;
 }
 
 .propertyDetails-page .propertyImage-slider .paginationCurrent-num-1, .propertyDetails-page .propertyImage-slider #propertyImageCurrentSlide {
@@ -2053,6 +2086,9 @@ input[type='submit'] {
 .propertyDetails-page .propertyOwnerInfo {
   overflow: hidden;
   border-radius: 4px;
+  max-width: 405px;
+  min-width: 405px;
+  float: right;
 }
 
 @media (max-width: 1023px) {
@@ -2367,8 +2403,73 @@ input[type='submit'] {
   padding: 0 0 10px;
 }
 
-.agentListing-page .holder .searchResult-counter {
+.agentListing-page .holder .search-agent {
   float: left;
+  width: 450px;
+  position: relative;
+  padding: 0 111px 0 0;
+}
+
+@media (max-width: 1199px) {
+  .agentListing-page .holder .search-agent {
+    width: 380px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .agentListing-page .holder .search-agent {
+    width: 270px;
+    padding: 0 81px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .agentListing-page .holder .search-agent {
+    margin: 0 auto 10px;
+    float: none;
+    display: block;
+  }
+}
+
+.agentListing-page .holder .search-agent input[type="text"], .agentListing-page .holder .search-agent input[type="search"] {
+  width: 100%;
+  display: block;
+  height: 35px;
+  padding: 7px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media (max-width: 1023px) {
+  .agentListing-page .holder .search-agent input[type="text"], .agentListing-page .holder .search-agent input[type="search"] {
+    font-size: 12px;
+    line-height: 17px;
+  }
+}
+
+.agentListing-page .holder .search-agent input[type="submit"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  color: #fff;
+  background: #58a36f;
+}
+
+@media (max-width: 1023px) {
+  .agentListing-page .holder .search-agent input[type="submit"] {
+    font-size: 12px;
+    line-height: 17px;
+  }
+}
+
+.agentListing-page .holder .search-agent input[type="submit"]:hover {
+  background: #468258;
+}
+
+.agentListing-page .holder .searchResult-counter {
+  float: right;
   max-width: 500px;
 }
 
@@ -2387,6 +2488,7 @@ input[type='submit'] {
     width: 100%;
     text-align: center;
     padding: 0 0 10px;
+    max-width: inherit;
   }
 }
 
@@ -2754,6 +2856,619 @@ input[type='submit'] {
   top: 50%;
   left: 7px;
   margin: -7px 0 0;
+}
+
+.agentProfile-page {
+  overflow: hidden;
+}
+
+.agentProfile-page .main-infoHolder {
+  float: left;
+}
+
+@media (max-width: 1023px) {
+  .agentProfile-page .main-infoHolder {
+    float: none;
+    overflow: hidden;
+  }
+}
+
+.agentProfile-page .main-infoHolder .img-holder {
+  float: left;
+  border: 1px solid #000;
+  width: 180px;
+  height: 200px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .main-infoHolder .img-holder {
+    width: 150px;
+    height: 170px;
+  }
+}
+
+@media (max-width: 767px) {
+  .agentProfile-page .main-infoHolder .img-holder {
+    margin: 0 auto 10px;
+    float: none;
+    overflow: hidden;
+    width: 130px;
+    height: 150px;
+  }
+}
+
+.agentProfile-page .main-infoHolder .img-holder:after {
+  content: '';
+  width: 1px;
+  margin: 0 0 0 -5px;
+  display: inline-block;
+  vertical-align: middle;
+  height: 200px;
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .main-infoHolder .img-holder:after {
+    height: 170px;
+  }
+}
+
+@media (max-width: 767px) {
+  .agentProfile-page .main-infoHolder .img-holder:after {
+    height: 150px;
+  }
+}
+
+.agentProfile-page .main-infoHolder .img-holder img {
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.agentProfile-page .main-infoHolder .cap-name {
+  float: left;
+  padding: 0 0 0 20px;
+  max-width: 550px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .main-infoHolder .cap-name {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .main-infoHolder .cap-name {
+    padding: 0 0 0 10px;
+  }
+}
+
+.agentProfile-page .main-infoHolder .cap-name .name {
+  display: block;
+  font-size: 25px;
+  line-height: 28px;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  color: #133783;
+  padding: 0 0 10px;
+}
+
+.agentProfile-page .contact-links {
+  float: right;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  margin: 0 -5px;
+}
+
+.agentProfile-page .contact-links > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .contact-links {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .agentProfile-page .contact-links > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .contact-links {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .agentProfile-page .contact-links {
+    float: none;
+    overflow: hidden;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.agentProfile-page .contact-links li {
+  padding: 0 5px;
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .contact-links li {
+    display: block;
+    padding: 5px;
+  }
+}
+
+.agentProfile-page .contact-links li a {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  color: #133783;
+  border: 1px solid #133783;
+  padding: 10px 25px;
+  position: relative;
+  transition: background 0.4s ease;
+  -webkit-transition: background 0.4s ease;
+  -moz-transition: background 0.4s ease;
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .contact-links li a {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .agentProfile-page .contact-links li a .show-xs {
+    display: none;
+  }
+}
+
+.agentProfile-page .contact-links li a:hover {
+  color: #fff;
+  background: #133783;
+}
+
+.agentProfile-page .contact-links li a [class^="icon-"], .agentProfile-page .contact-links li a [class*=" icon-"] {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 5px;
+}
+
+@media (max-width: 1023px) {
+  .agentProfile-page .contact-links li a [class^="icon-"], .agentProfile-page .contact-links li a [class*=" icon-"] {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    padding: 0;
+    margin: -8px 0 0;
+  }
+}
+
+.agentProfile-page .cols-holder {
+  width: 100%;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  text-align: center;
+  padding: 20px 0 0;
+  margin: 0 -10px;
+}
+
+.agentProfile-page .cols-holder > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.agentProfile-page .cols-holder .col {
+  text-align: left;
+  width: 33.33%;
+  padding: 0 10px;
+  margin: 0 0 10px;
+}
+
+@media (max-width: 1199px) {
+  .agentProfile-page .cols-holder .col {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .agentProfile-page .cols-holder .col {
+    width: 100%;
+  }
+}
+
+.agentProfile-page .cols-holder .col header {
+  overflow: hidden;
+  color: #fff;
+  background: #133783;
+  font-size: 18px;
+  line-height: 22px;
+  padding: 5px 20px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.agentProfile-page .cols-holder .col header:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 25px solid transparent;
+  border-top: 25px solid #e14646;
+  content: '';
+  border-right: 0;
+}
+
+.agentProfile-page .cols-holder .col .caption {
+  padding: 15px 0 0;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.agentProfile-page .cols-holder .col .caption .profile-pic {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  background: #edf1f4;
+  padding: 5px;
+  border: 1px solid #cdd8e1;
+}
+
+.agentProfile-page .cols-holder .col .caption .profile-pic img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 138px;
+  min-height: 138px;
+}
+
+.agentProfile-page .cols-holder .col .caption address, .agentProfile-page .cols-holder .col .caption span, .agentProfile-page .cols-holder .col .caption strong {
+  display: block;
+}
+
+.agentProfile-page .cols-holder .col .caption .name {
+  font-size: 16px;
+  line-height: 20px;
+  color: #133783;
+  padding: 0 0 5px;
+}
+
+.agentProfile-page .cols-holder .col .caption a[href^="tel"], .agentProfile-page .cols-holder .col .caption a[href*="tel"] {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.agentProfile-page .cols-holder .col .caption .agency-name,
+.agentProfile-page .cols-holder .col .caption .post {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  padding: 0 0 5px;
+}
+
+.agentProfile-page .cols-holder .col .caption .contact-num {
+  padding: 0 0 5px;
+}
+
+.agentProfile-page .cols-holder .col .caption .contact-num a {
+  text-decoration: none;
+}
+
+.agentProfile-page .cols-holder .col .caption .contact-num a:hover {
+  color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .caption .contact-num span[class^="icon-"], .agentProfile-page .cols-holder .col .caption .contact-num span[class*="icon-"] {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px 0 0;
+}
+
+.agentProfile-page .cols-holder .col .caption address {
+  font-weight: 600;
+}
+
+.agentProfile-page .cols-holder .col .caption p {
+  margin: 0;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form {
+  overflow: hidden;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li {
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  padding: 0 0 7px;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form ul li {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .agentProfile-page .cols-holder .col .enquiry-form ul li > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li label {
+  width: 120px;
+  position: relative;
+  padding: 10px 3px 3px;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form ul li label {
+    width: 70px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li label:after {
+  display: inline-block;
+  vertical-align: top;
+  content: '\2217';
+  color: #e14646;
+  padding: 0 2px;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder {
+  overflow: hidden;
+  width: calc(100% - 120px);
+  padding: 3px;
+  position: relative;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error .error-text {
+  display: block;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error textarea,
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="text"], .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="email"], .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="tel"] {
+  border-color: #e14646;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error textarea::-webkit-input-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="text"]::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="email"]::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="tel"]::-webkit-input-placeholder {
+  color: #e14646;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error textarea::-moz-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="text"]::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="email"]::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="tel"]::-moz-placeholder {
+  opacity: 1;
+  color: #e14646;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error textarea:-moz-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="text"]:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="email"]:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="tel"]:-moz-placeholder {
+  color: #e14646;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error textarea:-ms-input-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="text"]:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="email"]:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="tel"]:-ms-input-placeholder {
+  color: #e14646;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error textarea.placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="text"].placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="email"].placeholder, .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.error input[type="tel"].placeholder {
+  color: #e14646;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder .error-text {
+  color: #e14646;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 600;
+  padding: 3px;
+  display: none;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder {
+    width: calc(100% - 70px);
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.add {
+  padding: 3px 140px 3px 3px;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder.add {
+    padding: 3px 105px 3px 3px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder .captcha {
+  width: 130px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  border: 1px solid #000;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form ul li .input-holder .captcha {
+    width: 100px;
+    height: 35px;
+    top: 3px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"], .agentProfile-page .cols-holder .col .enquiry-form input[type="email"], .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"] {
+  width: 100%;
+  height: 35px;
+  display: block;
+  padding: 7px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:focus,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:focus, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:focus, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:focus {
+  border-color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:focus::-webkit-input-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:focus::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:focus::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:focus::-webkit-input-placeholder {
+  color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:focus::-moz-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:focus::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:focus::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:focus::-moz-placeholder {
+  opacity: 1;
+  color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:focus:-moz-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:focus:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:focus:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:focus:-moz-placeholder {
+  color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:focus:-ms-input-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:focus:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:focus:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:focus:-ms-input-placeholder {
+  color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:focus.placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:focus.placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:focus.placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:focus.placeholder {
+  color: #133783;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea::-webkit-input-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form textarea::-webkit-input-placeholder,
+  .agentProfile-page .cols-holder .col .enquiry-form input[type="text"]::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]::-webkit-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]::-webkit-input-placeholder {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea::-moz-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]::-moz-placeholder {
+  opacity: 1;
+  opacity: 1;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form textarea::-moz-placeholder,
+  .agentProfile-page .cols-holder .col .enquiry-form input[type="text"]::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]::-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]::-moz-placeholder {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:-moz-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:-moz-placeholder {
+  opacity: 1;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form textarea:-moz-placeholder,
+  .agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:-moz-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:-moz-placeholder {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea:-ms-input-placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:-ms-input-placeholder {
+  opacity: 1;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form textarea:-ms-input-placeholder,
+  .agentProfile-page .cols-holder .col .enquiry-form input[type="text"]:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"]:-ms-input-placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"]:-ms-input-placeholder {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea.placeholder,
+.agentProfile-page .cols-holder .col .enquiry-form input[type="text"].placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"].placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"].placeholder {
+  opacity: 1;
+}
+
+@media (max-width: 1599px) {
+  .agentProfile-page .cols-holder .col .enquiry-form textarea.placeholder,
+  .agentProfile-page .cols-holder .col .enquiry-form input[type="text"].placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="email"].placeholder, .agentProfile-page .cols-holder .col .enquiry-form input[type="tel"].placeholder {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form textarea {
+  resize: none;
+  height: 100px;
+  overflow: auto;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form button[type="submit"] {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 10px 35px 10px 36px;
+  border-radius: 2px;
+  font-size: 18px;
+  line-height: 22px;
+  position: relative;
+  color: #fff;
+  background: #58a36f;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form button[type="submit"] span[class^="icon-"], .agentProfile-page .cols-holder .col .enquiry-form button[type="submit"] span[class*="icon-"] {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin: -10px 0 0;
+}
+
+.agentProfile-page .cols-holder .col .enquiry-form button[type="submit"]:hover {
+  background: #489ddd;
 }
 
 html, body {
@@ -4198,7 +4913,11 @@ h1 {
 #footer .cols-holder .col .contact .input-holder {
   display: block;
   width: 100%;
-  margin: 0 0 20px;
+  margin: 0 0 10px;
+}
+
+#footer .cols-holder .col .contact .input-holder.error .error-text {
+  display: block;
 }
 
 #footer .cols-holder .col .contact textarea,
@@ -4285,6 +5004,14 @@ h1 {
   height: 100px;
   resize: none;
   overflow: auto;
+}
+
+#footer .cols-holder .col .contact .error-text {
+  color: #e14646;
+  font-size: 13px;
+  line-height: 17px;
+  padding: 5px 0 0;
+  display: none;
 }
 
 #footer .cols-holder .col .contact input[type="submit"] {

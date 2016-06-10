@@ -59,4 +59,8 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     {
         return $this->factory->countSearchedUserProperties($params);
     }
+    public function getById($propertyId)
+    {
+        return $this->factory->getById($propertyId);
+    }
 }
