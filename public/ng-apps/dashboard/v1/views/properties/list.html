@@ -113,10 +113,11 @@
                 </li>
             </ul>
         </div>
+
         <ul class="pager">
-            <li ng-class="{'active' : activePage == 1}" ng-click="setPage(activePage - 1)"><a href="#" class="previous"><span class="icon-chevron-thin-left">Previous</span> </a></li>
-            <li>showing {{activePage}} of {{totalProperties/searchPropertiesParams.limit | roundup}} pages</li>
-            <li ng-class="{'active' : activePage >= totalProperties/searchPropertiesParams.limit}" ng-click="setPage(activePage+1)"><a href="#" class="next">Next <span class="icon-chevron-thin-right"></span></a></li>
+            <li ng-class="{'disable' : activePage == 1}" ng-click="setPage(activePage - 1)"><a><span class="icon-chevron-thin-left"></span>Previous</a></li>
+            <li><span class="static">Showing <em><b>{{activePage}}</b></em> of <em><b>{{totalProperties/searchPropertiesParams.limit | roundup}}</b></em> pages</span></li>
+            <li ng-class="{'disable' : activePage >= totalProperties/searchPropertiesParams.limit}" ng-click="setPage(activePage+1)"><a>Next<span class="icon-chevron-thin-right"></span></a></li>
         </ul>
     </div>
 </div>

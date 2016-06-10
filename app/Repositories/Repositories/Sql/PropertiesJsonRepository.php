@@ -32,7 +32,7 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
 
     public function search(array $instructions)
     {
-        return $this->cheetah->setInstructions($instructions)->go();
+        return $this->factory->search($instructions);
     }
 
     public function find($id)

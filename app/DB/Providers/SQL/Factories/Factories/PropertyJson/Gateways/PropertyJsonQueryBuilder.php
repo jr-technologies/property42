@@ -16,16 +16,23 @@ use App\DB\Providers\SQL\Factories\Factories\PropertyJson\Gateways\Helpers\UserP
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
+use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use Illuminate\Support\Facades\DB;
 
 class PropertyJsonQueryBuilder extends QueryBuilder{
     use UserPropertiesHelper;
+
     public function __construct(){
         $this->table = "property_json";
     }
     public function findByProperty($id)
     {
         return DB::table($this->table)->where('property_id','=',$id)->first();
+    }
+
+    public function search(array $params)
+    {
+        return (new Cheetah())->setInstructions($params)->go();
     }
 
     public function getUserProperties($params)

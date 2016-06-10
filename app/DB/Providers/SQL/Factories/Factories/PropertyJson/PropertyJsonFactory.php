@@ -47,6 +47,12 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->deleteWhere(['property_id'=>$id]);
     }
+
+    public function search(array $params)
+    {
+        return $this->mapCollection($this->tableGateway->search($params));
+    }
+
     /**
      * @param $params
      * @return mixed
@@ -59,6 +65,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
          return $this->tableGateway->countSearchedUserProperties($params);
     }
+
     /**
      * @param PropertyJsonPrototype $property
      * @return bool

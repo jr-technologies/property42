@@ -2,6 +2,7 @@
     <header id="header">
         <a href="#" class="logo">Property42</a>
         <a class="sideBar-opener"><span></span></a>
+        <a href="logout" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
         <a href="#home/properties/add" class="add-property"><span class="hidden-xs">Add a</span> property</a>
         <div class="searhForm-holder">
             <a class="form-openerMobile"><span class="icon-search"></span></a>
@@ -40,7 +41,7 @@
                         <li data-ng-repeat="purpose in resources.purposes" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
-                <li><a href="#"><span class="icon-staff-symbol"></span>Agency Staff</a></li>
+                <li><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
                 <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span>favorites</a></li>
             </ul>
         </aside>
@@ -53,7 +54,7 @@
             <div class="cols-holder">
                 <div class="col">
                     <h2>Address</h2>
-                    <address>64Q Defance phase 8 Ax-air avenue, Lahore</address>
+                    <address>4105 Garfield Road Bartonville, IL 61607, UAE</address>
                 </div>
                 <div class="col">
                     <h2>About</h2>
@@ -70,6 +71,20 @@
                         <li><a href="#" class="facebook"><span class="icon-facebook"></span></a></li>
                         <li><a href="#" class="twitter"><span class="icon-twitter"></span></a></li>
                     </ul>
+                </div>
+                <div class="col">
+                    <h2>Contact Us</h2>
+                    <form class="contact">
+                        <div class="input-holder error">
+                            <input type="email" placeholder="Enter you email address">
+                            <span class="error-text">Please enter a valid email.</span>
+                        </div>
+                        <div class="input-holder error">
+                            <textarea placeholder="Enter you message"></textarea>
+                            <span class="error-text">Please enter a message.</span>
+                        </div>
+                        <input type="submit"  value="Send">
+                    </form>
                 </div>
             </div>
         </div>

@@ -28,6 +28,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('home.profile', {
+            url: "/profile",
+            templateUrl: views+"/profile.html",
+            auth: true,
+            resolve: {
+                user : function (resources,$stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
+                    return true;
+                }
+            }
+        })
         .state('home.properties', {
             url: "/properties",
             templateUrl: views+"/properties/home.html",
