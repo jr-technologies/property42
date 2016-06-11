@@ -33,8 +33,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: views+"/profile.html",
             auth: true,
             resolve: {
-                user : function (resources,$stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
-                    return true;
+                user : function (resources, $rootScope, $AuthService, $http, $location, $state) {
+
                 }
             }
         })

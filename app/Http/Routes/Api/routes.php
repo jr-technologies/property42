@@ -46,6 +46,15 @@ Route::get('/users',
         'uses'=>'UsersController@index'
     ]
 );
+Route::get('/user',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:getUsersRequest'
+            ],
+        'uses'=>'UsersController@find'
+    ]
+);
 Route::post('user/update',
     [
         'middleware'=>

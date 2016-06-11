@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Http\Requests\Requests\User\AddUserRequest;
@@ -17,18 +19,21 @@ class UsersController extends ApiController
      * @var UsersRepository::class
      */
     private $users;
+    private $usersJsonRepo;
     private $agencyRepo;
     public $response;
     public function __construct
     (
         ApiResponse $apiResponse, UserTransformer $userTransformer,
-        UsersRepoProvider $usersRepository, AgenciesRepoInterface $agenciesRepository
+        UsersRepoProvider $usersRepository, AgenciesRepoInterface $agenciesRepository,
+        UsersJsonRepoProvider $usersJsonRepoProvider
     )
     {
         $this->response = $apiResponse;
         $this->userTransformer = $userTransformer;
         $this->users = $usersRepository->repo();
         $this->agencyRepo = $agenciesRepository;
+        $this->usersJsonRepo = $usersJsonRepoProvider->repo();
     }
 
     /**
@@ -40,6 +45,13 @@ class UsersController extends ApiController
         return $this->response->respond(['data'=>[
             'total' => $users->count(),
             'users'=>$users->all()
+        ]]);
+    }
+
+    public function find(GetUserRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'user' => $this->usersJsonRepo->find($request->get('userId'))
         ]]);
     }
 
