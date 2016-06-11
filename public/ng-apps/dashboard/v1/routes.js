@@ -31,10 +31,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('home.profile', {
             url: "/profile",
             templateUrl: views+"/profile.html",
+            controller: "UserProfileController",
             auth: true,
             resolve: {
                 user : function (resources, $rootScope, $AuthService, $http, $location, $state) {
-
+                    $rootScope.loading_content_class = '';
+                    return $rootScope.authUser;
                 }
             }
         })

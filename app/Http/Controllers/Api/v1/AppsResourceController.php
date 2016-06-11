@@ -18,6 +18,7 @@ use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\AssignedFeaturesJsonDocumentsGenerator;
@@ -54,6 +55,10 @@ class AppsResourceController extends ApiController
     }
     public function dashboardResources(GetDashboardResourcesRequest $request)
     {
+        $user = $request->getUserJsonModel();
+        if($user == null)
+            return $this->response->respondAuthenticationFailed();
+
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
         $societies = $this->societies->all();
@@ -61,13 +66,11 @@ class AppsResourceController extends ApiController
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
         $subTypeAssignedFeaturesJson = $this->assignedFeaturesJson->all();
-        $user = $request->getUserJsonModel();
-        if($user == null)
-            return $this->response->respondAuthenticationFailed();
 
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
         $propertiesCounts  = $this->properties->countProperties($user->id);
+        $userRoles = (new RolesRepoProvider())->repo()->all();
         return $this->response->respond([
             'data'=>[
                 'resources'=>[
@@ -79,7 +82,8 @@ class AppsResourceController extends ApiController
                     'landUnits'=>$landUnits,
                     'agencyStaff'=>$agencyStaff,
                     'propertiesCounts'=>$propertiesCounts,
-                    'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson
+                    'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson,
+                    'userRoles' => $userRoles
                 ],
                 'authUser' => $user
             ],

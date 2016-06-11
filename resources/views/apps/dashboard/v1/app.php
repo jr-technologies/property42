@@ -41,15 +41,9 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/property/AddPropertyController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/property/ListPropertiesController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/property/EditPropertyController.js"></script>
+    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/user/UserProfileController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/SidebarController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/ContentHeaderController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/ShowCustomersController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/AddCustomersController.js"></script>
-
-    <!--        Users Controllers       -->
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/UserController.js"></script>
-
-    <!--        Home Controllers       -->
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/HomeController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/routes.js"></script>
 
