@@ -12,7 +12,9 @@ namespace App\DB\Providers\SQL\Factories\Factories\UserJson\Gateways;
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
+use App\DB\Providers\SQL\Factories\Factories\UserRole\UserRolesFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Support\Facades\DB;
 
 class UserJsonQueryBuilder extends QueryBuilder{
@@ -39,5 +41,18 @@ class UserJsonQueryBuilder extends QueryBuilder{
             ->select($this->table.'.*')
             ->where($agenciesTable.'.user_id','=',$userId )
             ->get();
+    }
+
+    public function search($params)
+    {
+        $userTable = (new UserFactory())->getTable();
+        $userRoleTable = (new UserRolesFactory())->getTable();
+        $query = DB::table($userRoleTable)
+            ->leftjoin($userTable,$userTable.'.id','=',$userRoleTable.'.user_id')
+            ->leftjoin($this->table,$userTable.'.id','=',$this->table.'.user_id')
+            ->select($this->table.'.json');
+        if (isset($params['userRole']) && $params['userRole'] !=null && $params['userRole'] !="")
+            $query = $query->where($userRoleTable.'.role_id',$params['userRole']);
+       return  $query = $query->get();
     }
 }

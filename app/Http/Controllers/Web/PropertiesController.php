@@ -3,20 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
-use App\Http\Requests\Requests\User\AddUserRequest;
-use App\Http\Requests\Requests\User\DeleteUserRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Transformers\Response\PropertyTransformer;
-use App\Transformers\Response\UserTransformer;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PropertiesController extends Controller
 {
@@ -41,7 +33,7 @@ class PropertiesController extends Controller
     public function search()
     {
         return $this->response->setView('frontend.property_listing')->respond(['data' => [
-            'properties' => $this->releasePropertiesOwnerAgencyLogo($this->properties->all())
+            'properties' => $this->releaseAllPropertiesFiles($this->properties->all())
         ]]);
     }
 
@@ -54,7 +46,7 @@ class PropertiesController extends Controller
     public function getById(GetPropertyRequest $request)
     {
         return $this->response->setView('frontend.property_detail')->respond(['data'=>[
-            'property'=>$this->properties->getById($request->get('propertyId'))
+            'property'=>$this->releaseAllPropertiesFiles([$this->properties->getById($request->get('propertyId'))])[0]
         ]]);
 
     }

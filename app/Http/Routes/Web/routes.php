@@ -59,6 +59,15 @@ Route::get('property',
     ]
 );
 
+Route::get('users/search',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAgentsRequest'
+            ],
+        'uses'=>'UsersController@search'
+    ]
+);
 Route::get('/logout', function(){
     if(session()->has('authUser'))
     {
