@@ -27,7 +27,7 @@ class AssignedFeaturesJsonTableSeeder extends Seeder
             $assignedFeatures->json = json_encode((new SectionsFeaturesJsonCreator($subType->id))->create());
             $finalArray[] = [
                 'property_sub_type_id' => $assignedFeatures->subTypeId,
-                'document' => $assignedFeatures->json,
+                'json' => $assignedFeatures->json,
             ];
         }
 

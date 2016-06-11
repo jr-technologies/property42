@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\V1\AppsResourceController;
 use App\Http\Controllers\Api\V1\PropertySubTypeController;
 use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
+use App\Repositories\Providers\Providers\FeaturesRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
@@ -27,6 +29,35 @@ use Illuminate\Support\Facades\Route;
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('foo',function()
+    {
+        $number = 9000456455;
+        $length = strlen($number."");
+        if($length > 3)
+            $result = ceil(doubleval(substr('100000000000000000', 0, (($length % 2) == 0)?$length:($length-1) )));
+        else
+            $result = 0;
+
+       $shortResult = $number/$result;
+       $re =  substr($shortResult."", 0, 4);
+
+        $price_unit = '';
+        if($length > 3 && $length < 6){
+            $price_unit = 'thousand';
+        }
+        elseif($length > 5 && $length < 8){
+            $price_unit = 'lakh';
+        }
+        elseif($length > 7 && $length < 10){
+            $price_unit = 'crore';
+        }
+
+        elseif($length > 9 && $length < 12){
+            $price_unit = 'Arab';
+        }
+        echo $re." ".$price_unit;
+    }
+);
 
 Route::get('app/dashboard/resources',
     [
@@ -345,6 +376,17 @@ Route::post('/property',
     ]
 );
 
+Route::get('property',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getPropertyRequest'
+
+            ],
+        'uses'=>'PropertiesController@store'
+    ]
+);
+
 Route::get('user/properties',
     [
         'middleware'=>
@@ -366,7 +408,7 @@ Route::post('property/update',
     ]
 );
 
-Route::post('force/property/delete',
+Route::post('property/force_delete',
     [
         'middleware'=>
             [

@@ -14,6 +14,24 @@ Route::post('/login',
         'uses'=>'Auth\AuthController@login', 'as' =>'login'
     ]
 );
+Route::get('/',
+    [
+        'middleware'=>
+            [
+                //'webValidate:searchRequest'
+            ],
+        'uses'=>'PropertiesController@index',
+    ]
+);
+Route::get('search',
+    [
+        'middleware'=>
+            [
+                //'webValidate:searchRequest'
+            ],
+        'uses'=>'PropertiesController@search',
+    ]
+);
 
 Route::get('/register',
     [
@@ -28,6 +46,16 @@ Route::post('/register',
             ],
         'uses'=>'Auth\AuthController@register',
         'as' => 'register'
+    ]
+);
+
+Route::get('property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@getById'
     ]
 );
 

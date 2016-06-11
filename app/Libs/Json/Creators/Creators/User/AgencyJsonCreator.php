@@ -30,6 +30,7 @@ class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->mobile = $this->model->mobile;
         $this->prototype->name = $this->model->name;
         $this->prototype->phone = $this->model->phone;
+        $this->prototype->logo = $this->model->logo;
 
         return $this->prototype;
     }

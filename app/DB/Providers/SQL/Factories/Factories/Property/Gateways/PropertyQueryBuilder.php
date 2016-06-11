@@ -29,7 +29,7 @@ class PropertyQueryBuilder extends QueryBuilder
         return  DB::table($this->table)
             ->leftjoin($blocks,$this->table.'.block_id','=',$blocks.'.id')
             ->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
-            ->leftjoin($cities,$societies.'.city_id','=',$societies.'.id')
+            ->leftjoin($cities,$societies.'.city_id','=',$cities.'.id')
             ->leftjoin($countries,$cities.'.country_id','=',$countries.'.id')
             ->select(
                 $countries.'.id as countryId',$countries.'.country as countryName',

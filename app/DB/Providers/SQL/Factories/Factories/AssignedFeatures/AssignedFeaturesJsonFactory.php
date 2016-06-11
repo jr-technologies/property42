@@ -34,9 +34,8 @@ class AssignedFeaturesJsonFactory extends SQLFactory implements SQLFactoriesInte
      */
     function all()
     {
-       return $this->mapCollection($this->tableGateway->all());
+       return $this->mapCollection($this->tableGateway->getAllSubTypeAssignedFeatures());
     }
-
     public function store(AssignedFeatures $assignedFeatures)
     {
         $assignedFeatures->createdAt = date('Y-m-d h:i:s');
@@ -47,19 +46,14 @@ class AssignedFeaturesJsonFactory extends SQLFactory implements SQLFactoriesInte
     {
         return [
             'property_sub_type_id' => $assignedFeatures->subTypeId,
-            'document'=>$assignedFeatures->json,
+            'json'=>$assignedFeatures->json,
             'updated_at' => $assignedFeatures->updatedAt,
         ];
     }
     function map($result)
     {
-        $assignedFeature  = clone(new AssignedFeatures());
-        $assignedFeature->id  = $result->id;
-        $assignedFeature->subTypeId = $result->property_sub_type_id;
-        $assignedFeature->json = $result->document;
-        $assignedFeature->createdAt = $result->created_at;
-        $assignedFeature->updatedAt = $result->updated_at;
-        return $assignedFeature;
+       $subTypeAssignedFeatures =  json_decode($result->json);
+        return $subTypeAssignedFeatures;
     }
     public function getTable()
     {
