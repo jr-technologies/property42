@@ -38,6 +38,8 @@ class FileRelease
 
     public function release($minutes = null)
     {
+        if(!file_exists($this->getCompleteFilePath()))
+            return new ReleasedFile();
         /* releasing file */
         $secureName = $this->secureName();
         $releasePath = $this->getReleasedFilesPath().$secureName;

@@ -32,7 +32,7 @@ class UpdateAgencyInUserJson extends Listener implements ListenerInterface
     {
         $agencyJsonCreator = new AgencyJsonCreator($event->agency);
         $agencyJson = $agencyJsonCreator->create();
-        $userJsonObj = $this->usersJsonRepository->find($event->agency->id);
+        $userJsonObj = $this->usersJsonRepository->find($event->agency->userId);
         $agencies = $userJsonObj->agencies;
         $agency = null;
         $final_agencies = [];

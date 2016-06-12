@@ -7,7 +7,7 @@ app.filter('roundup', function () {
         return Math.ceil(value);
     };
 });
-app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$state", "$AuthService", function ($scope, $rootScope, $http, $state, $AuthService) {
+app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $scope, $rootScope, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];
@@ -23,7 +23,7 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
 
     $scope.$on('searchPropertiesParamsChanged', function () {
         $rootScope.loading_content_class = 'loading-content';
-        getProperties().then(function successCallback(data) {
+        $scope.getProperties().then(function successCallback(data) {
             $scope.properties = data.properties;
             $scope.totalProperties = data.totalProperties;
             $scope.checkAllPropertiesChkbx = false;
@@ -66,9 +66,11 @@ app.controller("ListPropertiesController",["$scope", "$rootScope","$http", "$sta
     $scope.unCheckAll = function() {
         $scope.deletingProperties.ids = [];
     };
-    var getProperties = function () {
+    $scope.getProperties = function () {
         if($scope.fetchingProperties == true){
-            return $scope.properties;
+            $q(function(resolve, reject) {
+                resolve($scope.properties);
+            });
         }
         $scope.fetchingProperties = true;
         return $http({

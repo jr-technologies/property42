@@ -54,6 +54,12 @@ class UserRolesFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->delete($userRole->id);
     }
+
+    public function deleteByUserId($userId)
+    {
+        return $this->tableGateway->deleteWhere(['user_id'=>$userId]);
+    }
+
     /**
      * @param UserRole $userRole
      * @return int
@@ -63,6 +69,12 @@ class UserRolesFactory extends SQLFactory implements SQLFactoriesInterface{
         $userRole->createdAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapUserRoleOnTable($userRole));
     }
+
+    public function storeMultiple($userRoles)
+    {
+        return $this->tableGateway->insertMultiple($this->mapUserRolesOnTable($userRoles));
+    }
+
     /**
      * @param $result
      * @return UserRole::class
@@ -88,5 +100,15 @@ class UserRolesFactory extends SQLFactory implements SQLFactoriesInterface{
             'created_at' => $userRole->createdAt,
             'updated_at' => $userRole->updatedAt,
         ];
+    }
+
+    private function mapUserRolesOnTable(array $userRoles)
+    {
+        $mappedUserRoles = [];
+        foreach($userRoles as $userRole)
+        {
+            $mappedUserRoles[] = $this->mapUserRoleOnTable($userRole);
+        }
+        return $mappedUserRoles;
     }
 }

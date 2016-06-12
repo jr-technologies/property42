@@ -34,6 +34,11 @@ class UserRolesRepository extends SqlRepository implements UserRoleRepoInterface
         return $userRole->id;
     }
 
+    public function storeMultiple(array $userRoles)
+    {
+        return $this->factory->storeMultiple($userRoles);
+    }
+
     public function update(UserRole $userRole)
     {
         $this->factory->update($userRole);
@@ -48,6 +53,11 @@ class UserRolesRepository extends SqlRepository implements UserRoleRepoInterface
     {
         $userRole = $this->factory->delete($userRole);
         return $userRole;
+    }
+
+    public function deleteByUserId($userId)
+    {
+        return $this->factory->deleteByUserId($userId);
     }
 
 }

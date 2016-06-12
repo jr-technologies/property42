@@ -22,10 +22,11 @@ use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\AssignedFeaturesJsonDocumentsGenerator;
+use App\Traits\User\UsersFilesReleaser;
 
 class AppsResourceController extends ApiController
 {
-    use AssignedFeaturesJsonDocumentsGenerator;
+    use AssignedFeaturesJsonDocumentsGenerator, UsersFilesReleaser;
 
     public $purposes  = "";
     public $statuses  = "";
@@ -59,6 +60,7 @@ class AppsResourceController extends ApiController
         if($user == null)
             return $this->response->respondAuthenticationFailed();
 
+        $user = $this->releaseAllUserFiles($user);
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
         $societies = $this->societies->all();

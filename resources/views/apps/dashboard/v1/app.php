@@ -46,8 +46,6 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/ContentHeaderController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/HomeController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/routes.js"></script>
-
-
 </head>
 <body class="sideBar-active {{please_wait_class}} {{loading_resources_class}}" ng-init="loading_resources_class='loading-resources'">
 

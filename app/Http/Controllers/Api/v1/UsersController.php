@@ -2,38 +2,55 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\UserRole;
 use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
+use App\Libs\Helpers\Helper;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
+use App\Repositories\Providers\Providers\UserRolesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Http\Requests\Requests\User\AddUserRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
+use App\Traits\User\UsersFilesReleaser;
 use App\Transformers\Response\UserTransformer;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
 
 class UsersController extends ApiController
 {
+    use UsersFilesReleaser;
+
     private $userTransformer;
     /**
      * @var UsersRepository::class
      */
     private $users;
     private $usersJsonRepo;
-    private $agencyRepo;
+    private $agencies;
     public $response;
+    private $roles;
+    private $userRoles;
+    private $idForAgentBroker = 3;
     public function __construct
     (
         ApiResponse $apiResponse, UserTransformer $userTransformer,
-        UsersRepoProvider $usersRepository, AgenciesRepoInterface $agenciesRepository,
-        UsersJsonRepoProvider $usersJsonRepoProvider
+        UsersRepoProvider $usersRepository, AgenciesRepoProvider $agenciesRepoProvider,
+        UsersJsonRepoProvider $usersJsonRepoProvider, RolesRepoProvider $rolesRepoProvider,
+        UserRolesRepoProvider $userRolesRepoProvider
     )
     {
         $this->response = $apiResponse;
         $this->userTransformer = $userTransformer;
         $this->users = $usersRepository->repo();
-        $this->agencyRepo = $agenciesRepository;
+        $this->agencies = $agenciesRepoProvider->repo();
         $this->usersJsonRepo = $usersJsonRepoProvider->repo();
+        $this->roles = $rolesRepoProvider->repo();
+        $this->userRoles = $userRolesRepoProvider->repo();
     }
 
     /**
@@ -51,7 +68,7 @@ class UsersController extends ApiController
     public function find(GetUserRequest $request)
     {
         return $this->response->respond(['data'=>[
-            'user' => $this->usersJsonRepo->find($request->get('userId'))
+            'user' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId')))
         ]]);
     }
 
@@ -68,12 +85,107 @@ class UsersController extends ApiController
     {
         $user = $request->getUserModel();
         $this->users->update($user);
-        return $this->response->respond(['data'=>[
-                'user'=>$user
-            ]]);
-    }
-    private function storeAgency(array $agencyInfo, $userId)
-    {
+        if($this->userWasAgent($user->id))
+        {
+            $this->updateUserAgency($request, $user->id);
+        }
+        else if($request->userIsAgent())
+        {
+            //$this->saveUserAgency($request, $user->id);
+        }
+        $this->updateUserRoles($request->getUserRoles(), $user->id);
 
+        return $this->response->respond(['data'=>['user'=>$this->usersJsonRepo->find($user->id)]]);
+    }
+
+    private function userWasAgent($userId)
+    {
+        $userRoles = $this->roles->getUserRoles($userId);
+        $userRolesIds = Helper::propertyToArray($userRoles, 'id');
+        return (in_array($this->idForAgentBroker, $userRolesIds))?true:false;
+    }
+
+    private function updateUserRoles($roles, $userId)
+    {
+        $userRoles = [];
+        foreach($roles as $role)
+        {
+            $userRole = new UserRole();
+            $userRole->roleId = $role;
+            $userRole->userId = $userId;
+            $userRoles[] = $userRole;
+        }
+
+        $this->userRoles->deleteByUserId($userId);
+        $this->userRoles->storeMultiple($userRoles);
+    }
+
+    private function saveUser(UpdateUserRequest $request)
+    {
+        $userId = $this->users->store($request->getUserModel());
+        $this->users->addRoles($userId, $request->getUserRoles());
+        return $userId;
+    }
+
+    private function updateUserAgency(UpdateUserRequest $request, $userId)
+    {
+        $agency = $request->getAgencyModel();
+        /* @var $existingAgency Agency*/
+        $existingAgency = $this->agencies->getByUser($userId)[0];
+        $existingAgency->name = $agency->name;
+        $existingAgency->description = $agency->description;
+        $existingAgency->phone = $agency->phone;
+        $existingAgency->mobile = $agency->phone;
+        $existingAgency->email = $agency->email;
+        $existingAgency->address = $agency->address;
+
+        $logoPath = $existingAgency->logo;
+        if($request->hasCompanyLogo()){
+            if($existingAgency->logo != null)
+                File::delete(storage_path('app/'.$existingAgency->logo));
+            $logoPath = $this->saveLogo($agency, $request->getCompanyLogo());
+        }else if($request->get('companyLogoDeleted') == "true"){
+            if($existingAgency->logo != null)
+                File::delete(storage_path('app/'.$existingAgency->logo));
+            $logoPath = null;
+        }
+        $existingAgency->logo = $logoPath;
+
+        return $this->agencies->updateAgency($existingAgency);
+    }
+    private function saveUserAgency(UpdateUserRequest $request, $userId)
+    {
+        $agency = $request->getAgencyModel();
+        $agency->userId = $userId;
+        $logoPath = null;
+        if($request->hasCompanyLogo()){
+            $logoPath = $this->saveLogo($agency, $request->getCompanyLogo());
+        }
+        $agency->logo = $logoPath;
+        $agencyId = $this->agencies->storeAgency($agency);
+        $this->agencies->addCities($agencyId, $request->getAgencyCities());
+        return $agencyId;
+    }
+
+    private function saveLogo(Agency $agency, $logo)
+    {
+        $newName = $this->getCompanyLogoName($agency, $logo);
+        $logo->move($this->getCompanyLogoStoragePath($agency), $newName);
+        return $this->inStorageLogoPath($agency).'/'.$newName;
+    }
+
+    private function getCompanyLogoName(Agency $agency, $logo)
+    {
+        return md5($agency->name).'.'.$logo->getClientOriginalExtension();
+    }
+
+    private function getCompanyLogoStoragePath(Agency $agency)
+    {
+        return storage_path('app/'.$this->inStorageLogoPath($agency).'/');
+    }
+
+    private function inStorageLogoPath(Agency $agency)
+    {
+        return 'users/'.md5($agency->userId).'/agencies/'.md5($agency->name);
     }
 }

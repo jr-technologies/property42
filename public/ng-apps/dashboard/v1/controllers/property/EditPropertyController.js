@@ -121,7 +121,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                     var file = $scope.form.data.files.mainFile;
                     file.file = null;
                     file.title = '';
-                    console.log($.inArray(file.id, $scope.form.data.deletedFiles));
                     if($.inArray(file.id, $scope.form.data.deletedFiles) == -1){
                         $scope.form.data.deletedFiles.push(file.id);
                     }
