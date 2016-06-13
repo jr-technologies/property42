@@ -37,6 +37,7 @@ class UpdateUserTransformer extends RequestTransformer{
     public function transformAgencyInfo()
     {
         return [
+            'agencyId' => $this->request->input('agencyId'),
             'agencyName' => $this->request->input('agencyName'),
             'agencyDescription' => $this->request->input('agencyDescription'),
             'companyPhone' => $this->request->input('companyPhone'),

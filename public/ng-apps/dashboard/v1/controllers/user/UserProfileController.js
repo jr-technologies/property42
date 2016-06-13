@@ -31,9 +31,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
     };
 
     $scope.updateUser = function () {
-        console.log($scope.form.data);
         $scope.errors = {};
-        console.log($scope.form.data.files);
         $rootScope.loading_content_class = 'loading-content';
         var upload = Upload.upload({
             url: apiPath+'user/update',
@@ -41,13 +39,15 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
         });
 
         upload.then(function (response) {
+            $scope.errors = {};
             $rootScope.loading_content_class = '';
             $window.scrollTo(0, 0);
             $scope.formSubmitStatus = '';
             $scope.user = response.data.data.user;
             $scope.form.data = mapUsrOnScope($scope.user);
+            $rootScope.authUser = response.data.data.user;
         }, function (response) {
-            $rootScope.please_wait_class = '';
+            $rootScope.loading_content_class = '';
             $scope.errors = response.data.error.messages;
             $window.scrollTo(0, 0);
         }, function (evt) {
@@ -104,6 +104,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
         };
         if(user.agencies.length > 0){
             var agency = user.agencies[0];
+            data.agencyId = agency.id;
             data.agencyName = agency.name;
             data.companyLogo = domain+'temp/'+agency.logo;
             data.agencyDescription = agency.description;

@@ -90,7 +90,7 @@ Route::post('user/update',
     [
         'middleware'=>
             [
-     //           'apiValidate:UpdateUserRequest'
+                'apiValidate:UpdateUserRequest'
             ],
         'uses'=>'UsersController@updateUser'
     ]

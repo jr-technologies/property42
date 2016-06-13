@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\DB\Providers\SQL\Models\Agency;
 use App\DB\Providers\SQL\Models\UserRole;
+use App\Events\Events\User\UserUpdated;
 use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
 use App\Libs\Helpers\Helper;
@@ -91,10 +92,11 @@ class UsersController extends ApiController
         }
         else if($request->userIsAgent())
         {
-            //$this->saveUserAgency($request, $user->id);
+            $this->saveUserAgency($request, $user->id);
         }
         $this->updateUserRoles($request->getUserRoles(), $user->id);
 
+        Event::fire(new UserUpdated($user));
         return $this->response->respond(['data'=>['user'=>$this->usersJsonRepo->find($user->id)]]);
     }
 
@@ -150,7 +152,6 @@ class UsersController extends ApiController
             $logoPath = null;
         }
         $existingAgency->logo = $logoPath;
-
         return $this->agencies->updateAgency($existingAgency);
     }
     private function saveUserAgency(UpdateUserRequest $request, $userId)

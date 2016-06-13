@@ -17,20 +17,47 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
         $this->request = $request;
     }
     public function CustomValidationMessages(){
-
+        $termsConditionsMessage ='Dear user you must agree our terms and conditions';
         return [
             'required.required' => ':attribute is required',
             'fName.required' => 'First name is required',
             'lName.required' => 'Last name is required',
             'passwordAgain.required' => 'Password Again is required',
             'phone.required' => 'Phone is required',
-            'mobile.required' => 'mobile is required',
-            'fax.required' => 'fax is required',
-            'address.required' => 'address is required',
-            'zipCode.required' => 'zipCode is required',
-            'countryId.required' => 'countryId is required',
-            'notificationSettings.required' => 'notificationSettings is required',
+            'userRoles.required' => 'User roles is required',
+            'termsConditions.required' => $termsConditionsMessage,
+            'termsConditions.equals' => $termsConditionsMessage,
+            /* Agency messages */
+            'agencyName.required' => 'Agency name is required',
+            'companyPhone.required' => 'Company phone is required',
+            'companyAddress.required' => 'Company address is required',
+            'companyEmail.required' => 'Company email is required',
+            'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 500 X 500 px'
+        ];
+    }
 
+    public function userRules()
+    {
+        return [
+            'userId' => 'required',
+            'fName' => 'required',
+            'lName' => 'required',
+            'email' => 'required|email|unique:users,email,'.$this->request->get('userId').'|max:255',
+            'password' => 'required',
+            'phone' => 'required',
+            'userRoles' => 'required',
+        ];
+    }
+
+    public function agencyRules()
+    {
+        return [
+            'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
+            'companyPhone' => 'required|max:15',
+            'companyAddress' => 'required|max:225',
+            'companyEmail' => 'required|email|unique:agencies,email'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
+            'agencyDescription'=>'required',
+            'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:500,500'
         ];
     }
 
@@ -41,16 +68,6 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
      */
     public function rules()
     {
-        return [
-            'userId' => 'required',
-            'fName' => 'required',
-            'lName' => 'required',
-            'email' => 'required|email|unique:users,email,'.$this->request->get('userId').'|max:255',
-            'password' => 'required|confirmed',
-            'mobile'=> 'required',
-            'address'=> 'required',
-            'zipCode'=> 'required',
-            'notificationSettings'=> 'required',
-        ];
+        return ($this->request->userIsAgent())?array_merge($this->userRules(),$this->agencyRules()):$this->userRules();
     }
 }
