@@ -158,6 +158,7 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $featureWithValueAndSection->possibleValues = $feature->possibleValues;
             $featureWithValueAndSection->propertyId = $feature->propertyId;
             $featureWithValueAndSection->value = $feature->value;
+            $featureWithValueAndSection->priority = $feature->priority;
 
             $section = new FeatureSection();
             $section->id = $feature->sectionId;

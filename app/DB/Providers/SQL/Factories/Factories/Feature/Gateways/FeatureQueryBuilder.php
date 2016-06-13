@@ -104,7 +104,7 @@ class FeatureQueryBuilder extends QueryBuilder
             ->select(
                 $propertyFeatures.'.id as featureId',$propertyFeatures.'.feature as featureName', $propertyFeatures.'.input_name as featureInputName', $propertyFeatures.'.possible_values as possibleValues',
                 $propertyFeatureValues.'.value as value', $featureSections.'.id as sectionId', $featureSections.'.section as sectionName',
-                $propertyFeatureValues.'.property_id as propertyId'
+                $propertyFeatureValues.'.property_id as propertyId',$propertyFeatures.'.priority'
             )
             ->where($propertyFeatureValues.'.property_id','=',$propertyId)
             ->get();

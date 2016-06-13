@@ -16,4 +16,5 @@ class PropertyFeatureJsonPrototype extends JsonPrototype implements JsonPrototyp
     public $name="";
     public $inputName="";
     public $value="";
+    public $priority="";
 }

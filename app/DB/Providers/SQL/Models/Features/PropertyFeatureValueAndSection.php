@@ -10,11 +10,12 @@ namespace App\DB\Providers\SQL\Models\Features;
 
 class PropertyFeatureValueAndSection {
     public $propertyId = 0;
-    public $featureId;
-    public $featureName;
-    public $featureInputName;
-    public $possibleValues;
-    public $section;
-    public $value;
+    public $featureId =0;
+    public $featureName ="";
+    public $featureInputName="";
+    public $possibleValues="";
+    public $section=null;
+    public $value="";
+    public $priority=0;
 } 
 

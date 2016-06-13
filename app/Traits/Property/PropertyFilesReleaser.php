@@ -18,6 +18,20 @@ trait PropertyFilesReleaser
 {
     use AppTrait;
 
+    /**
+     * @param array $properties
+     * @return array
+     */
+    public function releaseAllPropertiesFiles(array $properties)
+    {
+        $properties = $this->releasePropertiesJsonFiles($properties);
+        return $this->releasePropertiesOwnerAgencyLogo($properties);
+    }
+
+    /**
+     * @param array $properties
+     * @return array
+     */
     public function releasePropertiesJsonFiles(array $properties)
     {
         $releasedFiles = [];
@@ -37,6 +51,10 @@ trait PropertyFilesReleaser
         return $properties;
     }
 
+    /**
+     * @param array $properties
+     * @return array
+     */
     public function releasePropertiesOwnerAgencyLogo(array $properties)
     {
         $releasedFiles = [];

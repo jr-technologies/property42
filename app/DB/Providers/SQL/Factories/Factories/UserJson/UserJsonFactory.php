@@ -41,6 +41,10 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->findByUser($id));
     }
+    public function search($params)
+    {
+        return $this->mapCollection($this->tableGateway->search($params));
+    }
 
     /**
      * @param UserJsonPrototype $user
@@ -68,7 +72,7 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         /* @var $userJson UserJsonPrototype */
         $userJson = json_decode($result->json);
-        $user = $this->model;
+        $user = clone($this->model);
         $user->id = $userJson->id;
         $user->fName = $userJson->fName;
         $user->lName = $userJson->lName;

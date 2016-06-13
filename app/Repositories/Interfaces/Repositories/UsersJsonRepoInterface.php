@@ -15,7 +15,7 @@ interface UsersJsonRepoInterface
 {
     function find($id);
     function all();
-    function search();
+    function search(array $params);
 
     function update($user);
     function delete($id);

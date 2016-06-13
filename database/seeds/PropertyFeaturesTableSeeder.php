@@ -17,7 +17,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'input_name' => 'build_in_year',
                 'html_structure_id' => 1,
                 'possible_values' => '',
-                'priority' =>0
+                'priority' =>1
              ],
             [
                 'feature_section_id' =>1,
@@ -25,7 +25,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'input_name' => 'view',
                 'html_structure_id' =>1,
                 'possible_values' =>'',
-                'priority' => 0
+                'priority' => 1
              ],
             [
                 'feature_section_id' => 1,
@@ -41,7 +41,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'input_name' => 'double_glazed_windows',
                 'html_structure_id' => 6,
                 'possible_values' => 1,
-                'priority' =>0
+                'priority' =>1
              ],
             [
                 'feature_section_id' => 1,
@@ -162,7 +162,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'input_name' => 'nearby_shopping_malls',
                 'html_structure_id' =>1 ,
                 'possible_values' => '',
-                'priority' => 0
+                'priority' => 1
              ],
             [
                 'feature_section_id' =>3,

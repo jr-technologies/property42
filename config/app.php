@@ -221,6 +221,7 @@ return [
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
         'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
+        'GetAgentsRequest' => \App\Http\Requests\Requests\User\GetAgentsRequest::class,
 
 
         /* Loading Helpers */
