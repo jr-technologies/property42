@@ -29,35 +29,6 @@ use Illuminate\Support\Facades\Route;
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('foo',function()
-    {
-        $number = 9000456455;
-        $length = strlen($number."");
-        if($length > 3)
-            $result = ceil(doubleval(substr('100000000000000000', 0, (($length % 2) == 0)?$length:($length-1) )));
-        else
-            $result = 0;
-
-       $shortResult = $number/$result;
-       $re =  substr($shortResult."", 0, 4);
-
-        $price_unit = '';
-        if($length > 3 && $length < 6){
-            $price_unit = 'thousand';
-        }
-        elseif($length > 5 && $length < 8){
-            $price_unit = 'lakh';
-        }
-        elseif($length > 7 && $length < 10){
-            $price_unit = 'crore';
-        }
-
-        elseif($length > 9 && $length < 12){
-            $price_unit = 'Arab';
-        }
-        echo $re." ".$price_unit;
-    }
-);
 
 Route::get('app/dashboard/resources',
     [

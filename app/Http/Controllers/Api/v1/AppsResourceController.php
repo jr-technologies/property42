@@ -68,7 +68,6 @@ class AppsResourceController extends ApiController
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
         $subTypeAssignedFeaturesJson = $this->assignedFeaturesJson->all();
-
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
         $propertiesCounts  = $this->properties->countProperties($user->id);
