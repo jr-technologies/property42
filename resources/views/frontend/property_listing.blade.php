@@ -79,7 +79,7 @@
                                 <div class="img-holder"><a href="#"><img src="{{$image}}" width="600" height="450" alt="image description"></a></div>
                                 <div class="caption">
                                     <strong class="post-heading"><a href="#">{{ $property->land->area.' '.$property->land->unit->name .' '.$property->type->subType->name.'
-                                '.$property->purpose->name.' '.$property->location->block->name.' Block'.
+                                '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                                 ' '.$property->location->society->name}}</a><span
                                                 class="price">Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</span><br/>{{'('.str_limit($property->title,25).')' }}
                                     </strong>

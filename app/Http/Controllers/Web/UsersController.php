@@ -34,10 +34,11 @@ class UsersController extends Controller
     public function search(GetAgentsRequest $request)
     {
        $params =['userRole'=>3];
-        return  $this->response
+          return $this->response
             ->setView('frontend.agent-listing')
             ->respond(['data'=>['agents'=>$this->usersJsonRepo->search($params)
             ]]);
+
     }
 
 }

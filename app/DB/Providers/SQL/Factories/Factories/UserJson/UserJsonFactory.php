@@ -72,7 +72,7 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         /* @var $userJson UserJsonPrototype */
         $userJson = json_decode($result->json);
-        $user = $this->model;
+        $user = clone($this->model);
         $user->id = $userJson->id;
         $user->fName = $userJson->fName;
         $user->lName = $userJson->lName;

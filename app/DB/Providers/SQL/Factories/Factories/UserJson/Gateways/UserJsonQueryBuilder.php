@@ -47,10 +47,12 @@ class UserJsonQueryBuilder extends QueryBuilder{
     {
         $userTable = (new UserFactory())->getTable();
         $userRoleTable = (new UserRolesFactory())->getTable();
-        $query = DB::table($userRoleTable)
-            ->leftjoin($userTable,$userTable.'.id','=',$userRoleTable.'.user_id')
+
+        $query = DB::table($userTable)
+            ->leftjoin($userRoleTable,$userTable.'.id','=',$userRoleTable.'.user_id')
             ->leftjoin($this->table,$userTable.'.id','=',$this->table.'.user_id')
-            ->select($this->table.'.json');
+            ->select($this->table.'.json')
+            ->distinct();
         if (isset($params['userRole']) && $params['userRole'] !=null && $params['userRole'] !="")
             $query = $query->where($userRoleTable.'.role_id',$params['userRole']);
        return  $query = $query->get();
