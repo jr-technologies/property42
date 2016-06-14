@@ -33,7 +33,7 @@ trait UsersFilesReleaser
         {
             if($agency->logo != null)
             {
-                if(file_exists(storage_path($agency->logo))){
+                if(file_exists(storage_path('app/'.$agency->logo))){
                     $releasedFile = (new FileRelease($agency->logo))->doNotLog()->release();
                 }else{
                     $releasedFile = (new ReleasedFile());
@@ -44,5 +44,29 @@ trait UsersFilesReleaser
         }
         (new FileRelease())->multiLogInDb($releasedFiles);
         return $user;
+    }
+
+    public function releaseUsersAgenciesLogo(array $users)
+    {
+        $releasedFiles = [];
+        foreach($users as $user /* @var  UserJsonPrototype */)
+        {
+            foreach($user->agencies as $agency)
+            {
+                if($agency->logo != null)
+                {
+                    if(file_exists(storage_path('app/'.$agency->logo))) {
+                        $releasedFile = (new FileRelease($user->agencies[0]->logo))->doNotLog()->release();
+                    }else{
+                        $releasedFile = (new ReleasedFile());
+                    }
+                    $user->agencies[0]->logo = $releasedFile->path;
+                    $releasedFiles[] = $releasedFile;
+                }
+            }
+        }
+        (new FileRelease())->multiLogInDb($releasedFiles);
+
+        return $users;
     }
 }

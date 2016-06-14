@@ -99,5 +99,6 @@
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/carousal.js" defer></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/placeholder.js" defer></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/jquery.main.js" defer></script>
+<script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/search-property.js" defer></script>
 </body>
 </html>

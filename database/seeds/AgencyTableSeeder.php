@@ -19,7 +19,7 @@ class AgencyTableSeeder extends Seeder
                 'phone' => 03044567051,
                 'email' => 'mrwaqas@gmail.com',
                 'address' => 'Lahore',
-                'logo'=>''
+                'logo'=>'users/a87ff679a2f3e71d9181a67b7542122c/agencies/fe981f8a9c549000708b79eea5acead1/fe981f8a9c549000708b79eea5acead1.jpg'
                 ],
             [
             'agency' => 'JR Tech',
@@ -28,7 +28,7 @@ class AgencyTableSeeder extends Seeder
             'phone' => 030445627051,
             'email' => 'mrwaqa2s@gmail.com',
             'address' => 'Lahore',
-            'logo'=>'users/eccbc87e4b5ce2fe28308fd9f2a7baf3/agencies/4e075844d2e00e4c800c8c62716bed8c/4e075844d2e00e4c800c8c62716bed8c.png'
+            'logo'=>'users/e4da3b7fbbce2345d7772b0674a318d5/agencies/b7db4829ba1b5561a99be8a0a988988d/b7db4829ba1b5561a99be8a0a988988d.jpg'
         ]
         ]);
     }

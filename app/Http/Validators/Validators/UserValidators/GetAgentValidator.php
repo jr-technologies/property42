@@ -12,15 +12,12 @@ use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class GetUserValidator extends UserValidator implements ValidatorsInterface
+class GetAgentValidator extends UserValidator implements ValidatorsInterface
 {
 
-    /**
-     * @param GetUserRequest $request
-     */
-    public function __construct(GetUserRequest $request){
+    public function __construct( $request){
         parent::__construct($request);
-        $this->request = $request;
+
     }
     public function CustomValidationMessages(){
         return [
