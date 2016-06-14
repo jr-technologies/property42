@@ -123,12 +123,12 @@ class PropertiesController extends ApiController
     {
         $deletableFiles = [];
         $storableFiles = [];
-        foreach($files as $file)
+        foreach($files as $key=>$file)
         {
             if($file['file'] != 'null')
             {
-                $storableFiles[] = $file;
-                $deletableFiles[] = $file;
+                $storableFiles[$key] = $file;
+                $deletableFiles[$key] = $file;
             }
         }
         $this->deletePropertyFiles($deletableFiles);
