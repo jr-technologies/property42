@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="layout add">
-                <div class="layout-holder" ng-repeat="feature in features | filter:{ assignedSubTypeId : form.data.propertySubType } | filter:{priority:1}">
+                <div class="layout-holder" ng-repeat="feature in heighPriorityFeatures">
                     <span class="title">{{feature.featureName}}:</span>
                     <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
                 </div>
@@ -142,17 +142,6 @@
                             </li>
                         </ul>
                     </div>
-                <!--<div class="features-section-holder" data-ng-repeat="featureSection in featureSections | orderBy : '-priority'">-->
-                    <!--<span class="tag">{{featureSection.name}}</span>-->
-                    <!--<ul class="feature-list">-->
-                        <!--<li ng-repeat="feature in features | filter:{section:{id:featureSection.id}} | filterBySubType:form.data.propertySubType" >-->
-                            <!--<label>{{feature.featureName}}</label>-->
-                            <!--<div class="input-holder">-->
-                                <!--<span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
             </div>
         </section>
         <section class="attactment-block" id="attactment-block">

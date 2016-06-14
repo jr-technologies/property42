@@ -51,11 +51,12 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
     $scope.propertySaved = false;
-    $scope.types = [];
-    $scope.subTypes = [];
+    $scope.types = $rootScope.resources.propertyTypes;
+    $scope.subTypes = $rootScope.resources.propertySubTypes;
     $scope.blocks = [];
-    $scope.societies = [];
+    $scope.societies = $rootScope.resources.societies;
     $scope.subTypeAssignedFeatures = [];
+    $scope.heighPriorityFeatures = [];
     $scope.features = [];
     $scope.featureSections = [];
     $scope.errors = [];
@@ -105,6 +106,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
       }
     };
     $scope.$watch('form.data.propertySubType', function (subTypeId) {
+        var heighPriorityFeatures = [];
         angular.forEach($rootScope.resources.subTypeAssignedFeatures, function (features, key) {
             if(features.subTypeId == subTypeId){
                 $scope.subTypeAssignedFeatures = $.map(features.features, function(value, index) {
@@ -179,31 +181,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         $('file-uploader').find('img').attr('src', '#');
     };
 
-    var getTypes = function () {
-        return $http({
-            method: 'GET',
-            url: apiPath+'property/types',
-            data:{}
-        }).then(function successCallback(response) {
-            return response.data.data.propertyTypes;
-        }, function errorCallback(response) {
-            return response;
-        });
-    };
-
-    var getSubTypes = function () {
-        return $http({
-            method: 'GET',
-            url: apiPath+'property/subtypes',
-            data:{}
-        }).then(function successCallback(response) {
-            return response.data.data.propertySubTypes;
-        }, function errorCallback(response) {
-            return response;
-        });
-    };
-
     var getBlocks = function () {
+        alert();
         return $http({
             method: 'GET',
             url: apiPath+'society/blocks',
@@ -215,72 +194,10 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         });
     };
 
-    var getSocieties = function () {
-        return $http({
-            method: 'GET',
-            url: apiPath+'societies',
-            data:{}
-        }).then(function successCallback(response) {
-            return response.data.data.societies;
-        }, function errorCallback(response) {
-            return response;
-        });
-    };
-
-    var getFeatureSections = function () {
-        return $http({
-            method: 'GET',
-            url: apiPath+'feature/sections',
-            data:{}
-        }).then(function successCallback(response) {
-            return response.data.data.featureSections;
-        }, function errorCallback(response) {
-            return response;
-        });
-    };
-    var getAssignedFeatures = function () {
-        return $http({
-            method: 'GET',
-            url: apiPath+'features/assigned',
-            data:{}
-        }).then(function successCallback(response) {
-            return response.data.data.features;
-        }, function errorCallback(response) {
-            return response;
-        });
-    };
 
     $scope.initialize = function () {
+        $rootScope.loading_content_class = '';
         $scope.form.data = mapFormData();
-        getTypes().then(function successCallback(types) {
-            $scope.types = types;
-        }, function errorCallback(response) {
-            console.log('fucked up');
-        });
-        getSubTypes().then(function successCallback(types) {
-            $scope.subTypes = types;
-        }, function errorCallback(response) {
-            console.log('fucked up');
-        });
-        getSocieties().then(function successCallback(societies) {
-            $scope.societies = societies;
-        }, function errorCallback(response) {
-            console.log('fucked up');
-        });
-
-        getAssignedFeatures().then(function successCallback(features) {
-            $scope.features = features;
-        }, function errorCallback(response) {
-            console.log('fucked up');
-        });
-
-        getFeatureSections().then(function successCallback(sections) {
-            $scope.featureSections = sections;
-            $rootScope.loading_content_class = '';
-        }, function errorCallback(response) {
-            console.log('fucked up');
-        });
-
 
         $(function() {
             handleAddPropertyFormScrolling();
