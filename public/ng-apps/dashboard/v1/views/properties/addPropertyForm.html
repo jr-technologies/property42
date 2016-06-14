@@ -12,6 +12,7 @@
     </div>
     <form class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
+            <span class="success-message" ng-class="{'successfuly-saved': propertySaved == true}">Property Saved</span>
             <div class="errors">
                 <ul>
                     <li data-ng-repeat="error in errors">{{error[0]}}</li>
@@ -130,17 +131,28 @@
             <a class="feature-blockOpener">Click here to see extra feature</a>
             <strong class="form-heading"><span>extra features</span></strong>
             <div class="holder">
-                <div class="features-section-holder" data-ng-repeat="featureSection in featureSections | orderBy : '-priority'">
-                    <span class="tag">{{featureSection.name}}</span>
-                    <ul class="feature-list">
-                        <li ng-repeat="feature in features | filter:{section:{id:featureSection.id}} | filterBySubType:form.data.propertySubType" >
-                            <label>{{feature.featureName}}</label>
-                            <div class="input-holder">
-                                <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="features-section-holder" data-ng-repeat="featureSection in subTypeAssignedFeatures">
+                        <span class="tag">{{featureSection.sectionName}}</span>
+                        <ul class="feature-list">
+                            <li ng-repeat="feature in featureSection.features">
+                                <label>{{feature.name}}</label>
+                                <div class="input-holder">
+                                    <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                <!--<div class="features-section-holder" data-ng-repeat="featureSection in featureSections | orderBy : '-priority'">-->
+                    <!--<span class="tag">{{featureSection.name}}</span>-->
+                    <!--<ul class="feature-list">-->
+                        <!--<li ng-repeat="feature in features | filter:{section:{id:featureSection.id}} | filterBySubType:form.data.propertySubType" >-->
+                            <!--<label>{{feature.featureName}}</label>-->
+                            <!--<div class="input-holder">-->
+                                <!--<span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
             </div>
         </section>
         <section class="attactment-block" id="attactment-block">

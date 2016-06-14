@@ -39,7 +39,7 @@ trait PropertyFilesReleaser
         {
             foreach($property->documents as $document /* @var $document PropertyDocumentJsonPrototype */)
             {
-                if(file_exists(storage_path($document->path)))
+                if(file_exists(storage_path('app/'.$document->path)))
                 {
                     $releasedFile = (new FileRelease($document->path))->doNotLog()->release();
                     $document->path = $releasedFile->path;

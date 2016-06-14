@@ -35,7 +35,7 @@ class SectionsFeaturesJsonCreator extends JsonCreator implements JsonCreatorInte
             $features = $featuresCollection->all();
             $section = clone($features[0]->section);
             $section->features = $features;
-            $finalArray[$key] = (new SectionFeaturesJsonCreator($section))->create();
+            $finalArray[] = (new SectionFeaturesJsonCreator($section))->create();
         });
         return $finalArray;
     }

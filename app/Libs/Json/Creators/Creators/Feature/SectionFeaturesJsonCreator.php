@@ -29,6 +29,7 @@ class SectionFeaturesJsonCreator extends JsonCreator implements JsonCreatorInter
         foreach($features as $feature) {
             $this->model->features[] = (new FeatureWithValidationRulesJsonCreator($feature))->create();
         }
+        $this->model->sectionName = $this->section->name;
         return $this->model;
     }
 }

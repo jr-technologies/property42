@@ -9,12 +9,20 @@
 namespace App\Http\Validators\Validators\UserValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Libs\Helpers\Helper;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UpdateUserValidator extends UserValidator implements ValidatorsInterface
 {
+    private $roles;
+    private $idForAgentBroker = 3;
     public function __construct($request){
         parent::__construct($request);
         $this->request = $request;
+        $this->roles = (new RolesRepoProvider())->repo();
     }
     public function CustomValidationMessages(){
         $termsConditionsMessage ='Dear user you must agree our terms and conditions';
@@ -22,9 +30,10 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
             'required.required' => ':attribute is required',
             'fName.required' => 'First name is required',
             'lName.required' => 'Last name is required',
-            'passwordAgain.required' => 'Password Again is required',
+            'password.match_existing_password' => 'Password did not match with your existing password.',
             'phone.required' => 'Phone is required',
             'userRoles.required' => 'User roles is required',
+            'userRoles.cannot_remove_agent' => 'Dear user! once you are an agent, you cannot remove this role.',
             'termsConditions.required' => $termsConditionsMessage,
             'termsConditions.equals' => $termsConditionsMessage,
             /* Agency messages */
@@ -43,9 +52,9 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
             'fName' => 'required',
             'lName' => 'required',
             'email' => 'required|email|unique:users,email,'.$this->request->get('userId').'|max:255',
-            'password' => 'required',
+            'password' => 'required|match_existing_password',
             'phone' => 'required',
-            'userRoles' => 'required',
+            'userRoles' => 'required|cannot_remove_agent',
         ];
     }
 
@@ -69,5 +78,35 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
     public function rules()
     {
         return ($this->request->userIsAgent())?array_merge($this->userRules(),$this->agencyRules()):$this->userRules();
+    }
+
+    public function registerMatchExistingPasswordRule()
+    {
+        Validator::extend('match_existing_password', function($attribute, $value, $parameters)
+        {
+            $users = (new UsersRepoProvider())->repo();
+            $user = $users->getById($this->request->get('userId'));
+            if(!Hash::check($this->request->get('password'), $user->password))
+                return false;
+
+            return true;
+        });
+    }
+
+    public function registerCannotRemoveAgentRule()
+    {
+        Validator::extend('cannot_remove_agent', function($attribute, $value, $parameters)
+        {
+            $userRoles = $this->roles->getUserRoles($this->request->get('userId'));
+            $userRolesIds = Helper::propertyToArray($userRoles, 'id');
+            if(in_array($this->idForAgentBroker, $userRolesIds))
+            {
+                $currentRoles = $this->request->get('userRoles');
+                if(!in_array($this->idForAgentBroker,$currentRoles)){
+                    return false;
+                }
+            }
+            return true;
+        });
     }
 }

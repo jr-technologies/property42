@@ -1124,12 +1124,14 @@ input[type='submit'] {
   }
 }
 
-.sideBar-active .addPropertyFormContainer select,
-.sideBar-active .addPropertyFormContainer input[type="text"],
-.sideBar-active .addPropertyFormContainer input[type="search"],
-.sideBar-active .addPropertyFormContainer input[type="number"],
-.sideBar-active .addPropertyFormContainer input[type="email"] {
-  max-width: 115px !important;
+@media (max-width: 1023px) {
+  .sideBar-active .addPropertyFormContainer select,
+  .sideBar-active .addPropertyFormContainer input[type="text"],
+  .sideBar-active .addPropertyFormContainer input[type="search"],
+  .sideBar-active .addPropertyFormContainer input[type="number"],
+  .sideBar-active .addPropertyFormContainer input[type="email"] {
+    max-width: 115px !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1139,6 +1141,12 @@ input[type='submit'] {
   .sideBar-active .addPropertyFormContainer input[type="number"],
   .sideBar-active .addPropertyFormContainer input[type="email"] {
     max-width: inherit !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sideBar-active .addPropertyFormContainer textarea {
+    max-width: 350px !important;
   }
 }
 
@@ -1668,7 +1676,7 @@ input[type='submit'] {
   .addPropertyFormContainer .property-add input[type="search"],
   .addPropertyFormContainer .property-add input[type="number"],
   .addPropertyFormContainer .property-add input[type="email"] {
-    max-width: 165px;
+    max-width: 245px;
   }
 }
 
@@ -1782,7 +1790,7 @@ input[type='submit'] {
 
 @media (max-width: 1023px) {
   .addPropertyFormContainer .property-add textarea {
-    max-width: 350px;
+    max-width: 610px;
   }
 }
 
@@ -1996,7 +2004,7 @@ input[type='submit'] {
 
 @media (max-width: 1023px) {
   .addPropertyFormContainer .property-add .layout .layout-holder select {
-    width: 165px;
+    width: 245px;
   }
 }
 
@@ -2239,12 +2247,6 @@ input[type='submit'] {
   .addPropertyFormContainer .image-uploading-area {
     max-width: 480px;
     margin: 30px auto 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .addPropertyFormContainer .image-uploading-area {
-    margin: 30px -5px 0;
   }
 }
 
@@ -3914,12 +3916,16 @@ input[type='submit'] {
   z-index: 6;
 }
 
-.registration-form .company-logo.hover:hover .delete {
+.registration-form .company-logo.image-loaded:hover .delete {
   display: block;
 }
 
-.registration-form .company-logo.hover .name-tag {
+.registration-form .company-logo.image-loaded .name-tag {
   display: none;
+}
+
+.registration-form .company-logo.image-loaded .picture-holder {
+  display: block;
 }
 
 .registration-form .company-logo .picture-holder {
@@ -4479,6 +4485,39 @@ a {
   float: left;
   background: #1ab394;
   padding: 15px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo:after {
+  position: absolute;
+  top: 13px;
+  left: -35px;
+  width: 100px;
+  background: #e14646;
+  content: 'Beta';
+  text-align: center;
+  font-size: 17px;
+  line-height: 17px;
+  transform: rotate(-54deg);
+  -webkit-transform: rotate(-54deg);
+  -moz-transform: rotate(-54deg);
+  -ms-transform: rotate(-54deg);
+}
+
+@media (max-width: 767px) {
+  .logo:after {
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    font-size: 12px;
+    line-height: 12px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -5185,6 +5224,7 @@ a {
 }
 
 .pager li a {
+  cursor: pointer;
   display: block;
   text-decoration: none;
   color: #fff;

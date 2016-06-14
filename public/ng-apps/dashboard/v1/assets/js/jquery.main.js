@@ -1,4 +1,3 @@
-
 $(function() {
 	if ($(".addPropertyFormContainer")[0]){
 		handleAddPropertyFormScrolling();
@@ -59,20 +58,16 @@ function countCheckedRoles(){
 //	countCheckedRoles();
 //});
 
+
 function companyLogoUploader(file, target)
 {
 	previewFile(file, target);
-	$(file).closest('.company-logo').find('.picture-holder').css({
-		'display':'block'
-	});
-	$(file).closest('.company-logo').addClass('hover');
+	$(file).closest('.company-logo').addClass('image-loaded');
 }
 
 $(document).on('click', '.registration-form .delete', function(){
 	$(this).closest('.company-logo').find('.company-profileP').attr('src', '');
 	$(this).closest('.company-logo').find('.company-profileP').attr('alt', '');
-	$(this).closest('.company-logo').removeClass('hover');
-	$(this).closest('.company-logo').find('.picture-holder').css({
-		'display':'none'
-	});
+	$(this).closest('.company-logo').removeClass('image-loaded');
 });
+

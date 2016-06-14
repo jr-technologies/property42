@@ -3,7 +3,7 @@
 use App\DB\Providers\SQL\Models\AssignedFeatures;
 use App\DB\Providers\SQL\Models\PropertySubType;
 use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
-
+use App\Libs\Json\Creators\Creators\Feature\AssignFeaturesJsonCreator;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +24,7 @@ class AssignedFeaturesJsonTableSeeder extends Seeder
         {
             $assignedFeatures = new AssignedFeatures();
             $assignedFeatures->subTypeId = $subType->id;
-            $assignedFeatures->json = json_encode((new SectionsFeaturesJsonCreator($subType->id))->create());
+            $assignedFeatures->json = json_encode((new AssignFeaturesJsonCreator($subType->id))->create());
             $finalArray[] = [
                 'property_sub_type_id' => $assignedFeatures->subTypeId,
                 'json' => $assignedFeatures->json,

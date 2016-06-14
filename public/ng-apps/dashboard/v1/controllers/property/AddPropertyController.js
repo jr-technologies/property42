@@ -50,10 +50,12 @@ app.filter('filterBySubType', [function () {
 app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http", "Upload","$sce", function ($scope, $rootScope, $window, $http, Upload, $sce) {
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
+    $scope.propertySaved = false;
     $scope.types = [];
     $scope.subTypes = [];
     $scope.blocks = [];
     $scope.societies = [];
+    $scope.subTypeAssignedFeatures = [];
     $scope.features = [];
     $scope.featureSections = [];
     $scope.errors = [];
@@ -71,34 +73,49 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         $scope.form.data.block = $scope.temp.block.id;
     });
     $scope.form = {
-        data : {
-            propertyPurpose: 0,
-            propertyType :0,
-            propertySubType : 0,
-            society:0,
-            block: 0,
-            price: null,
-            landArea: null,
-            landUnit: 0,
-            propertyTitle: '',
-            propertyDescription: '',
-            features:{},
-            files : {
-                mainFile:{title: '', file: null},
-                twoFile:{title: '', file: null},
-                threeFile:{title: '', file: null},
-                fourFile:{title: '', file: null},
-                fiveFile:{title: '', file: null},
-                sixFile:{title: '', file: null}
-            },
-            owner: $rootScope.authUser.id+"",
-            contactPerson: $rootScope.authUser.fName+" "+$rootScope.authUser.lName,
-            phone: $rootScope.authUser.phone,
-            cell : $rootScope.authUser.mobile,
-            fax: $rootScope.authUser.fax,
-            email: $rootScope.authUser.email
-        }
+        data : {}
     };
+    var mapFormData = function () {
+      return {
+          propertyPurpose: 0,
+          propertyType :0,
+          propertySubType : 0,
+          society:0,
+          block: 0,
+          price: null,
+          landArea: null,
+          landUnit: 0,
+          propertyTitle: '',
+          propertyDescription: '',
+          features:{},
+          files : {
+              mainFile:{title: '', file: null},
+              twoFile:{title: '', file: null},
+              threeFile:{title: '', file: null},
+              fourFile:{title: '', file: null},
+              fiveFile:{title: '', file: null},
+              sixFile:{title: '', file: null}
+          },
+          owner: $rootScope.authUser.id+"",
+          contactPerson: $rootScope.authUser.fName+" "+$rootScope.authUser.lName,
+          phone: $rootScope.authUser.phone,
+          cell : $rootScope.authUser.mobile,
+          fax: $rootScope.authUser.fax,
+          email: $rootScope.authUser.email
+      }
+    };
+    $scope.$watch('form.data.propertySubType', function (subTypeId) {
+        angular.forEach($rootScope.resources.subTypeAssignedFeatures, function (features, key) {
+            if(features.subTypeId == subTypeId){
+                $scope.subTypeAssignedFeatures = $.map(features.features, function(value, index) {
+                    return [value];
+                });
+                $scope.subTypeAssignedFeatures = $scope.subTypeAssignedFeatures.sort(function(a,b){
+                    return b.features.length - a.features.length;
+                });
+            }
+        });
+    });
     var nullFile = {title: '', file: null};
     $scope.cancelFile = function (fileNumber) {
         switch (fileNumber)
@@ -133,6 +150,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     };
     $scope.submitProperty = function() {
         postProcessFormData();
+        $scope.propertySaved = false;
         $scope.errors = {};
         $rootScope.please_wait_class = 'please-wait';
         var upload = Upload.upload({
@@ -143,7 +161,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         upload.then(function (response) {
             $rootScope.please_wait_class = '';
             $window.scrollTo(0, 0);
-            $scope.formSubmitStatus = '';
+            $scope.propertySaved = true;
+            resetForm();
         }, function (response) {
             $rootScope.please_wait_class = '';
             $scope.errors = response.data.error.messages;
@@ -152,6 +171,12 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
             $window.scrollTo(0, 0);
             console.log(evt);
         });
+    };
+
+    var resetForm = function () {
+        $scope.form.data = mapFormData();
+        $('.image-loaded').removeClass('image-loaded');
+        $('file-uploader').find('img').attr('src', '#');
     };
 
     var getTypes = function () {
@@ -226,6 +251,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     };
 
     $scope.initialize = function () {
+        $scope.form.data = mapFormData();
         getTypes().then(function successCallback(types) {
             $scope.types = types;
         }, function errorCallback(response) {

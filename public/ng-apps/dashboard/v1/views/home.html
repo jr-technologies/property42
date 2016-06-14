@@ -41,8 +41,9 @@
                         <li data-ng-repeat="purpose in resources.purposes" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
-                <li><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
                 <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span>favorites</a></li>
+                <li><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
+                <li><a href="#"><span  class="icon-key"></span>Change Password</a></li>
             </ul>
         </aside>
         <div class="pages-holder {{loading_content_class}}">

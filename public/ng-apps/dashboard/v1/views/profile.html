@@ -15,7 +15,7 @@
         </div>
         <div class="input-holder" ng-class="{'error' : errors.password.length > 0}">
             <label class="icon-key" for="pass1"></label>
-            <input type="password" placeholder="Enter Your existing Password" id="pass1" name="password" ng-model="password" >
+            <input type="password" placeholder="Enter Your existing Password" id="pass1" name="password" ng-model="form.data.password" >
             <span class="border"></span>
             <span class="error-text">{{errors.password[0]}}</span>
         </div>

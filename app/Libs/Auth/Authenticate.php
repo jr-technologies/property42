@@ -16,7 +16,8 @@ use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 
-abstract class Authenticate
+abstract class
+Authenticate
 {
     use TokenGenerator;
 

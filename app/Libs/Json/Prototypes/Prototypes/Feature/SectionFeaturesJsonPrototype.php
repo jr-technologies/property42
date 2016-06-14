@@ -16,4 +16,5 @@ class SectionFeaturesJsonPrototype extends JsonPrototype implements JsonPrototyp
 {
     public $priority = null;
     public $features =[];
+    public $sectionName = "";
 }
