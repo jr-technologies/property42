@@ -55,7 +55,7 @@
                             <ul class="radio-holder">
                                 <li data-ng-repeat="subType in subTypes | filter:{propertyTypeId : form.data.propertyType}">
                                     <label for="{{subType.name}}">
-                                        <input type="radio" name="propertySubType" ng-model="$parent.form.data.propertySubType" id="{{subType.name}}" value="{{subType.id}}">
+                                        <input type="radio" ng-change="propertySubTypeChanged()" name="propertySubType" ng-model="$parent.form.data.propertySubType" id="{{subType.name}}" value="{{subType.id}}">
                                         <span class="fake-radio"></span>
                                         <span class="fake-label">{{subType.name}}</span>
                                     </label>
@@ -68,7 +68,7 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Society:</span>
-                    <ui-select on-select="societySelected($item)" ng-model="temp.society" theme="select2" ng-disabled="ctrl.disabled" title="Choose a Society">
+                    <ui-select on-select="societySelected($item)" ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
                         <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">
                             <div ng-bind-html="society.name | highlight: $select.search"></div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="layout-holder">
                     <span class="title">Block:</span>
-                    <ui-select ng-model="temp.block" theme="select2" ng-disabled="ctrl.disabled" title="Choose a Block">
+                    <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
                         <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search}">
                             <div ng-bind-html="block.name | highlight: $select.search"></div>
@@ -119,8 +119,8 @@
                 </div>
             </div>
             <div class="layout add">
-                <div class="layout-holder" ng-repeat="feature in features | filter:{ assignedSubTypeId : form.data.propertySubType } | filter:{priority:1}">
-                    <span class="title">{{feature.featureName}}:</span>
+                <div class="layout-holder" ng-repeat="feature in highPriorityFeatures">
+                    <span class="title">{{feature.name}}:</span>
                     <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
                 </div>
             </div>
@@ -129,11 +129,11 @@
             <a class="feature-blockOpener">Click here to see extra feature</a>
             <strong class="form-heading"><span>extra features</span></strong>
             <div class="holder">
-                <div class="features-section-holder" data-ng-repeat="featureSection in featureSections | orderBy : '-priority'">
-                    <span class="tag">{{featureSection.name}}</span>
+                <div class="features-section-holder" data-ng-repeat="featureSection in subTypeAssignedFeatures">
+                    <span class="tag">{{featureSection.sectionName}}</span>
                     <ul class="feature-list">
-                        <li ng-repeat="feature in features | filter:{section:{id:featureSection.id}} | filterBySubType:form.data.propertySubType" >
-                            <label>{{feature.featureName}}</label>
+                        <li ng-repeat="feature in featureSection.features">
+                            <label>{{feature.name}}</label>
                             <div class="input-holder">
                                 <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
                             </div>

@@ -92,13 +92,14 @@ class UpdatePropertyRequest extends Request implements RequestInterface{
 
     public function getFiles()
     {
-        $files = [];
-        foreach($this->get('files') as $key => $file)
-        {
-            if($file['file'] != "null")
-                $files[$key] = $file;
-        }
-        return $files;
+        return $this->get('files');
+//        $files = [];
+//        foreach($this->get('files') as $key => $file)
+//        {
+//            if($file['file'] != "null")
+//                $files[$key] = $file;
+//        }
+//        return $files;
     }
     public function getPropertyDocuments($propertyId = null)
     {

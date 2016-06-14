@@ -36,7 +36,7 @@ class PropertyDocumentFactory extends SQLFactory implements SQLFactoriesInterfac
     public function update(propertyDocument $document)
     {
         $document->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->update($document->id ,$this->mapPropertyDocumentsOnTable($document));
+        return $this->tableGateway->update($document->id ,$this->mapPropertyDocumentOnTable($document));
     }
 
     public function store(propertyDocument $document)

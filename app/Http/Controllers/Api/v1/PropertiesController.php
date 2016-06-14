@@ -121,10 +121,41 @@ class PropertiesController extends ApiController
 
     public function updatePropertyFiles(array $files, $path, $propertyId)
     {
-        $this->deletePropertyFiles($files);
-        $this->storeFiles($files, $path, $propertyId);
+        $deletableFiles = [];
+        $storableFiles = [];
+        foreach($files as $file)
+        {
+            if($file['file'] != 'null')
+            {
+                $storableFiles[] = $file;
+                $deletableFiles[] = $file;
+            }
+        }
+        $this->deletePropertyFiles($deletableFiles);
+        $this->storeFiles($storableFiles, $path, $propertyId);
+        $this->updateFilesPath($files);
     }
 
+    public function updateFilesPath(array $files)
+    {
+        $ids = [];
+        foreach($files as $file){ $ids[] = $file['id']; }
+        $previousDocuments = $this->propertyDocuments->getByIds($ids);
+        $updateableDocuments = [];
+        foreach($previousDocuments as $pDocument)
+        {
+            foreach($files as $file){
+                if($pDocument->id == $file['id'] && $pDocument->title != $file['title']){
+                    $pDocument->title = $file['title'];
+                    $updateableDocuments[] = $pDocument;
+                }
+            }
+        }
+        foreach($updateableDocuments as $document)
+        {
+            $this->propertyDocuments->update($document);
+        }
+    }
     public function deletePropertyFiles(array $files)
     {
         $ids = [];

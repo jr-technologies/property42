@@ -48,6 +48,7 @@ app.filter('filterBySubType', [function () {
 
 app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$window","$http", "Upload","$sce", "$state", "$AuthService", "$location",
     function (property, $scope, $rootScope, $window, $http, Upload, $sce, $state, $AuthService, $location){
+        console.log(property);
         $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
         $scope.formSubmitStatus = '';
@@ -57,6 +58,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.blocks = [];
         $scope.societies = $rootScope.resources.societies;
         $scope.landUnits = $rootScope.resources.landUnits;
+        $scope.subTypeAssignedFeatures = [];
+        $scope.highPriorityFeatures = [];
         $scope.features = [];
         $scope.featureSections = [];
         $scope.errors = [];
@@ -66,16 +69,15 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             society: property.location.society,
             block: property.location.block
         };
-        $scope.$watch('temp.society', function() {
+        $scope.societyChanged = function () {
             $scope.form.data.society = $scope.temp.society.id;
             getBlocks().then(function (blocks) {
                 $scope.blocks = blocks;
             });
-        });
-        $scope.$watch('temp.block', function() {
+        };
+        $scope.blockChanged = function () {
             $scope.form.data.block = $scope.temp.block.id;
-        });
-
+        };
         $scope.societySelected = function ($item) {
             //
         };
@@ -167,7 +169,29 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                     break;
             }
         };
+        $scope.propertySubTypeChanged = function () {
+            var subTypeId = $scope.form.data.propertySubType;
+            var highPriorityFeatures = [];
+            var subTypeAssignedFeatures = [];
+            angular.forEach($rootScope.resources.subTypeAssignedFeatures, function (subTypeFeatures, key) {
+                if(subTypeFeatures.subTypeId == subTypeId){
+                    subTypeAssignedFeatures = subTypeFeatures.features;
+                    subTypeAssignedFeatures = subTypeAssignedFeatures.sort(function(a,b){
+                        return b.features.length - a.features.length;
+                    });
 
+                    angular.forEach(subTypeAssignedFeatures, function (section, key) {
+                        angular.forEach(section.features, function (feature, key) {
+                            if(feature.priority == 1){
+                                highPriorityFeatures.push(feature);
+                            }
+                        })
+                    })
+                }
+            });
+            $scope.subTypeAssignedFeatures = subTypeAssignedFeatures;
+            $scope.highPriorityFeatures = highPriorityFeatures;
+        };
         var getPropertyDocuments = function () {
             return {
                 mainFile:getPropertyMainDocument(),
@@ -233,6 +257,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 getPropertyDocsAndSetToScope();
                 $scope.form.data.deletedFiles = [];
             }, function (response) {
+                $rootScope.$broadcast('error-response-received',{status:response.status});
                 $rootScope.please_wait_class = '';
                 $scope.errors = response.data.error.messages;
                 $window.scrollTo(0, 0);
@@ -249,32 +274,33 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             }).then(function successCallback(response) {
                 return response.data.data.blocks;
             }, function errorCallback(response) {
+                $rootScope.$broadcast('error-response-received',{status:response.status});
                 return response;
             });
         };
 
-        var getFeatureSections = function () {
-            return $http({
-                method: 'GET',
-                url: apiPath+'feature/sections',
-                data:{}
-            }).then(function successCallback(response) {
-                return response.data.data.featureSections;
-            }, function errorCallback(response) {
-                return response;
-            });
-        };
-        var getAssignedFeatures = function () {
-            return $http({
-                method: 'GET',
-                url: apiPath+'features/assigned',
-                data:{}
-            }).then(function successCallback(response) {
-                return response.data.data.features;
-            }, function errorCallback(response) {
-                return response;
-            });
-        };
+        //var getFeatureSections = function () {
+        //    return $http({
+        //        method: 'GET',
+        //        url: apiPath+'feature/sections',
+        //        data:{}
+        //    }).then(function successCallback(response) {
+        //        return response.data.data.featureSections;
+        //    }, function errorCallback(response) {
+        //        return response;
+        //    });
+        //};
+        //var getAssignedFeatures = function () {
+        //    return $http({
+        //        method: 'GET',
+        //        url: apiPath+'features/assigned',
+        //        data:{}
+        //    }).then(function successCallback(response) {
+        //        return response.data.data.features;
+        //    }, function errorCallback(response) {
+        //        return response;
+        //    });
+        //};
 
         var getPropertyDocsAndSetToScope = function () {
             $scope.propertyDocuments = getPropertyDocuments();
@@ -288,19 +314,21 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             };
         };
         $scope.initialize = function () {
+            $scope.societyChanged();
+            $scope.blockChanged();
+            $scope.propertySubTypeChanged();
             getPropertyDocsAndSetToScope();
-
-            getAssignedFeatures().then(function successCallback(features) {
-                $scope.features = features;
-            }, function errorCallback(response) {
-                console.log('fucked up');
-            });
-
-            getFeatureSections().then(function successCallback(sections) {
-                $scope.featureSections = sections;
-            }, function errorCallback(response) {
-                console.log('fucked up');
-            });
+            //getAssignedFeatures().then(function successCallback(features) {
+            //    $scope.features = features;
+            //}, function errorCallback(response) {
+            //    console.log('fucked up');
+            //});
+            //
+            //getFeatureSections().then(function successCallback(sections) {
+            //    $scope.featureSections = sections;
+            //}, function errorCallback(response) {
+            //    console.log('fucked up');
+            //});
 
             $(function() {
                 handleAddPropertyFormScrolling();
