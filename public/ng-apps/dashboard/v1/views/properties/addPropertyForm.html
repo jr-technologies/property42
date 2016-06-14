@@ -57,7 +57,7 @@
                             <ul class="radio-holder">
                                 <li data-ng-repeat="subType in subTypes | filter:{propertyTypeId : form.data.propertyType}">
                                     <label for="{{subType.name}}">
-                                        <input type="radio" name="propertySubType" ng-model="$parent.form.data.propertySubType" id="{{subType.name}}" value="{{subType.id}}">
+                                        <input type="radio" ng-change="propertySubTypeChanged()" name="propertySubType" ng-model="$parent.form.data.propertySubType" id="{{subType.name}}" value="{{subType.id}}">
                                         <span class="fake-radio"></span>
                                         <span class="fake-label">{{subType.name}}</span>
                                     </label>
@@ -70,7 +70,7 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Society:</span>
-                    <ui-select ng-model="temp.society" theme="select2" ng-disabled="ctrl.disabled" title="Choose a Society">
+                    <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
                         <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">
                             <div ng-bind-html="society.name | highlight: $select.search"></div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="layout-holder">
                     <span class="title">Block:</span>
-                    <ui-select ng-model="temp.block" theme="select2" ng-disabled="ctrl.disabled" title="Choose a Block">
+                    <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
                         <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
                         <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search} | filter : {societyId : temp.society.id}">
                             <div ng-bind-html="block.name | highlight: $select.search"></div>
@@ -121,8 +121,8 @@
                 </div>
             </div>
             <div class="layout add">
-                <div class="layout-holder" ng-repeat="feature in heighPriorityFeatures">
-                    <span class="title">{{feature.featureName}}:</span>
+                <div class="layout-holder" ng-repeat="feature in highPriorityFeatures">
+                    <span class="title">{{feature.name}}:</span>
                     <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
                 </div>
             </div>

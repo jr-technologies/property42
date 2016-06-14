@@ -56,7 +56,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     $scope.blocks = [];
     $scope.societies = $rootScope.resources.societies;
     $scope.subTypeAssignedFeatures = [];
-    $scope.heighPriorityFeatures = [];
+    $scope.highPriorityFeatures = [];
     $scope.features = [];
     $scope.featureSections = [];
     $scope.errors = [];
@@ -64,15 +64,16 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         society: {id:0},
         block: {id:0}
     };
-    $scope.$watch('temp.society', function() {
+    $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;
         getBlocks().then(function (blocks) {
             $scope.blocks = blocks;
         });
-    });
-    $scope.$watch('temp.block', function() {
+    };
+    $scope.blockChanged = function () {
         $scope.form.data.block = $scope.temp.block.id;
-    });
+    };
+
     $scope.form = {
         data : {}
     };
@@ -105,19 +106,29 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
           email: $rootScope.authUser.email
       }
     };
-    $scope.$watch('form.data.propertySubType', function (subTypeId) {
-        var heighPriorityFeatures = [];
-        angular.forEach($rootScope.resources.subTypeAssignedFeatures, function (features, key) {
-            if(features.subTypeId == subTypeId){
-                $scope.subTypeAssignedFeatures = $.map(features.features, function(value, index) {
-                    return [value];
-                });
-                $scope.subTypeAssignedFeatures = $scope.subTypeAssignedFeatures.sort(function(a,b){
+    $scope.propertySubTypeChanged = function () {
+        var subTypeId = $scope.form.data.propertySubType;
+        var highPriorityFeatures = [];
+        var subTypeAssignedFeatures = [];
+        angular.forEach($rootScope.resources.subTypeAssignedFeatures, function (subTypeFeatures, key) {
+            if(subTypeFeatures.subTypeId == subTypeId){
+                subTypeAssignedFeatures = subTypeFeatures.features;
+                subTypeAssignedFeatures = subTypeAssignedFeatures.sort(function(a,b){
                     return b.features.length - a.features.length;
                 });
+
+                angular.forEach(subTypeAssignedFeatures, function (section, key) {
+                    angular.forEach(section.features, function (feature, key) {
+                        if(feature.priority == 1){
+                            highPriorityFeatures.push(feature);
+                        }
+                    })
+                })
             }
         });
-    });
+        $scope.subTypeAssignedFeatures = subTypeAssignedFeatures;
+        $scope.highPriorityFeatures = highPriorityFeatures;
+    };
     var nullFile = {title: '', file: null};
     $scope.cancelFile = function (fileNumber) {
         switch (fileNumber)
@@ -166,12 +177,12 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
             $scope.propertySaved = true;
             resetForm();
         }, function (response) {
+            $rootScope.$broadcast('error-response-received',{status:response.status});
             $rootScope.please_wait_class = '';
             $scope.errors = response.data.error.messages;
             $window.scrollTo(0, 0);
         }, function (evt) {
             $window.scrollTo(0, 0);
-            console.log(evt);
         });
     };
 
@@ -182,7 +193,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     };
 
     var getBlocks = function () {
-        alert();
         return $http({
             method: 'GET',
             url: apiPath+'society/blocks',
@@ -190,10 +200,10 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         }).then(function successCallback(response) {
             return response.data.data.blocks;
         }, function errorCallback(response) {
+            $rootScope.$broadcast('error-response-received',{status:response.status});
             return response;
         });
     };
-
 
     $scope.initialize = function () {
         $rootScope.loading_content_class = '';
