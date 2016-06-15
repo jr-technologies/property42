@@ -30,16 +30,16 @@
             </div>
             <div class="form-holder">
                 <form class="search-sideBar">
-                    <input type="search" placeholder="Search Links">
+                    <input type="search" ng-model="search" placeholder="Search Links">
                     <button type="submit"><span class="icon-search"></span></button>
                 </form>
             </div>
-            <ul class="sideBar-links">
+            <ul class="sideBar-links" filter-list="search">
                 <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
                 <li ng-class="{'active':activeLink==='home.properties.all'}">
                     <a href="#home/listings/all"><span class="icon-list"></span>listings <span class="badge">{{propertiesCounts | filterByCountParam: undefined}}</span></a>
                     <ul class="sub-links">
-                        <li data-ng-repeat="purpose in resources.purposes" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
+                        <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
                 <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span>favorites</a></li>
