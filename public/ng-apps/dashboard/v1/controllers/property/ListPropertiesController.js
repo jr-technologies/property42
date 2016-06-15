@@ -4,10 +4,13 @@
 var app = angular.module('dashboard');
 app.filter('roundup', function () {
     return function (value) {
-        return Math.ceil(value);
+        if(value > 0)
+            return Math.ceil(value);
+        else
+            return 1;
     };
 });
-app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $scope, $rootScope, $http, $state, $AuthService) {
+app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $window, $scope, $rootScope, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];
@@ -28,6 +31,7 @@ app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http",
             $scope.totalProperties = data.totalProperties;
             $scope.checkAllPropertiesChkbx = false;
             $rootScope.loading_content_class = '';
+            $window.scrollTo(0,0);
         }, function errorCallback(response) {
 
         });
@@ -144,7 +148,7 @@ app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http",
     };
 
     $scope.setPage = function (page) {
-        if(parseInt(page) < 1 || parseInt(page) > $scope.totalProperties/$rootScope.searchPropertiesParams.limit)
+        if(parseInt(page) < 1 || parseInt(page) > Math.ceil($scope.totalProperties/$rootScope.searchPropertiesParams.limit))
             return false;
 
         var start = ($rootScope.searchPropertiesParams.limit * parseInt(page)) - $rootScope.searchPropertiesParams.limit;

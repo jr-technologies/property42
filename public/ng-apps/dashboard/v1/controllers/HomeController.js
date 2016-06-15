@@ -7,6 +7,6 @@ app.controller("HomeController",["$scope", "$rootScope", function ($scope, $root
     var contentHeader = {
         title: $rootScope.html_title
     };
-
+    
     $scope.contentHeader = contentHeader;
 }]);

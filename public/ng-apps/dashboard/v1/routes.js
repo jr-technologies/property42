@@ -1,9 +1,9 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-//var domain = "http://localhost/jr/property42/backend/property42/public/";
+var domain = "http://localhost/jr/property42/backend/property42/public/";
 //var domain = "http://localhost/production/jr-technologies/property42/public/";
-var domain = "http://localhost/property42/public/";
+//var domain = "http://localhost/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
@@ -66,12 +66,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
                             Authorization:$AuthService.getAppToken()
                         }
                     }).then(function successCallback(response) {
-                        if(response.data.data.properties[0] == undefined){
-                            alert('Sorry! property not found');
-                            $location.path($state.href('home.properties.all').substring(1));
-                        }else{
-                            return response.data.data.properties[0];
-                        }
+                        return response.data.data.properties[0];
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});
                         return undefined;

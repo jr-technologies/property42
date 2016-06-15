@@ -64,9 +64,12 @@ trait PropertyFilesReleaser
             {
                 if($property->owner->agency->logo != null)
                 {
-                    $releasedFile = (new FileRelease($property->owner->agency->logo))->doNotLog()->release();
-                    $property->owner->agency->logo = $releasedFile->path;
-                    $releasedFiles[] = $releasedFile;
+                    if(file_exists(storage_path('app/'.$property->owner->agency->logo)))
+                    {
+                        $releasedFile = (new FileRelease($property->owner->agency->logo))->doNotLog()->release();
+                        $property->owner->agency->logo = $releasedFile->path;
+                        $releasedFiles[] = $releasedFile;
+                    }
                 }
             }
         }

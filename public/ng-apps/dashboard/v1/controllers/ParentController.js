@@ -5,8 +5,8 @@ var app = angular.module('dashboard');
 
 app.controller("ParentController",["$scope",function ($scope) {
     var app = {
-        title: "Inventory System",
-        client: "Malik Petroleum"
+        title: "Property42 Dashboard",
+        client: ""
     };
     $scope.app = app;
 }]);
