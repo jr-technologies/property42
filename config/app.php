@@ -301,6 +301,7 @@ return [
         'GetUserPropertiesRequest' => \App\Http\Requests\Requests\Property\GetUserPropertiesRequest::class,
         'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
+        'DeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
         'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
 

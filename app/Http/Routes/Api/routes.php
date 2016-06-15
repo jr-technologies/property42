@@ -398,6 +398,25 @@ Route::post('property/delete',
     ]
 );
 
+Route::post('properties/force_delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:forceDeleteMultiplePropertiesRequest'
+            ],
+        'uses'=>'PropertiesController@multiForceDelete'
+    ]
+);
+Route::post('properties/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:deleteMultiplePropertiesRequest'
+            ],
+        'uses'=>'PropertiesController@multiDelete'
+    ]
+);
+
 Route::get('properties/search',
     [
         'middleware'=>

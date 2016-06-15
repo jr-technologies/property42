@@ -13,6 +13,7 @@ use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyType;
+use App\Events\Events\Property\PropertiesStatusChanged;
 use App\Events\Events\Property\PropertyCreated;
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
 use Illuminate\Support\Facades\Event;
@@ -57,8 +58,14 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     public function delete(Property $property)
     {
         return  $this->factory->delete($property);
-
     }
+
+    public function deleteByIds(array $propertyIds)
+    {
+        $result = $this->factory->deleteByIds($propertyIds);
+        Event::fire(new PropertiesStatusChanged($propertyIds, (new \PropertyStatusTableSeeder())->getDeletedStatusId()));
+    }
+
     public function forceDelete(Property $property)
     {
         return  $this->factory->forceDelete($property);

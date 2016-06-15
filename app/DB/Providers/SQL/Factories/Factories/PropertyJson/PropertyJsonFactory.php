@@ -46,6 +46,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->findBy('property_id', $propertyId));
     }
+    public function getByIds(array $propertyIds)
+    {
+        return $this->mapCollection($this->tableGateway->getWhereIn('property_id', $propertyIds));
+    }
     public function delete($id)
     {
         return $this->tableGateway->deleteWhere(['property_id'=>$id]);

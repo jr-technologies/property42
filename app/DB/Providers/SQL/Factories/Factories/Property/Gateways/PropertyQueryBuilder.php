@@ -52,4 +52,11 @@ class PropertyQueryBuilder extends QueryBuilder
             ->get();
     }
 
+    public function deleteByIds(array $propertyId)
+    {
+        $deleteStatusId = (new \PropertyStatusTableSeeder())->getDeletedStatusId();
+        return DB::table($this->table)
+            ->whereIn('id',$propertyId)
+            ->update(['property_status_id'=>$deleteStatusId]);
+    }
 }

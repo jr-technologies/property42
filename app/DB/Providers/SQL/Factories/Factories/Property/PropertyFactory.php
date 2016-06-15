@@ -45,6 +45,10 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->statusId = $this->statusesSeeder->getDeletedStatusId();
         return  $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
     }
+    public function deleteByIds(array $propertyIds)
+    {
+        return $this->tableGateway->deleteByIds($propertyIds);
+    }
     public function forceDelete(Property $property)
     {
         return  $this->tableGateway->delete($property->id);

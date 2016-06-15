@@ -36,6 +36,7 @@ app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http",
     $scope.setPropertyStatus = function (status) {
         $scope.activeStatus = status;
         $rootScope.searchPropertiesParams.status_id = status;
+        console.log($rootScope.searchPropertiesParams);
         $rootScope.$broadcast('searchPropertiesParamsChanged');
     };
 
@@ -123,8 +124,29 @@ app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http",
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
     };
+    $scope.deleteProperties = function () {
+        console.log($scope.deletingProperties.ids);
+        return $http({
+            method: 'POST',
+            url: apiPath+'properties/delete',
+            data:{
+                propertyIds: $scope.deletingProperties.ids,
+                searchParams: $rootScope.searchPropertiesParams
+            }
+        }).then(function successCallback(response) {
+            $scope.deletingProperties.ids = [];
+            $rootScope.propertiesCounts = response.data.data.propertiesCounts;
+            $scope.properties = response.data.data.properties;
+            $scope.totalProperties = response.data.data.totalProperties;
+        }, function errorCallback(response) {
+            $rootScope.$broadcast('error-response-received',{status:response.status});
+        });
+    };
 
     $scope.setPage = function (page) {
+        if(parseInt(page) < 1 || parseInt(page) > $scope.totalProperties/$rootScope.searchPropertiesParams.limit)
+            return false;
+
         var start = ($rootScope.searchPropertiesParams.limit * parseInt(page)) - $rootScope.searchPropertiesParams.limit;
         $rootScope.searchPropertiesParams.start = start;
         $rootScope.$broadcast('searchPropertiesParamsChanged');

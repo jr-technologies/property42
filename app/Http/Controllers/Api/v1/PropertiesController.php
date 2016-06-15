@@ -14,6 +14,7 @@ use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
+use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
@@ -88,10 +89,11 @@ class PropertiesController extends ApiController
     {
         $property = $request->getPropertyModel();
         $this->properties->delete($property);
+        Event::fire(new PropertyUpdated($property));
+
         $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
         $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
         $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
-        Event::fire(new PropertyUpdated($property));
         return $this->response->respond(['data'=>[
             'property'=>$property,
             'totalProperties'=>$countUserSearchProperties,
@@ -110,9 +112,23 @@ class PropertiesController extends ApiController
         ]]);
     }
 
+    public function multiDelete(DeleteMultiplePropertiesRequest $request)
+    {
+        $propertyIds = $request->get('propertyIds');
+        $this->properties->deleteByIds($propertyIds);
+        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
+        $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
+        return $this->response->respond(['data'=>[
+            'totalProperties'=>$countUserSearchProperties,
+            'propertiesCounts' => $propertiesCounts,
+            'properties'=>$userProperties
+        ]]);
+    }
+
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
-        $properties = $this->releasePropertiesJsonFiles($this->propertiesJsonRepo->getUserProperties($request->all()));
+        $properties = $this->releaseAllPropertiesFiles($this->propertiesJsonRepo->getUserProperties($request->all()));
         return $this->response->respond(['data' => [
             'properties' => $this->propertyJsonTransformer->transformCollection($properties),
             'totalProperties' => $this->propertiesJsonRepo->countSearchedUserProperties($request->all())
