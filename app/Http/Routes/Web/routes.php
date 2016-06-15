@@ -1,5 +1,8 @@
 <?php
 
+use App\Interfaces\Validator;
+use Illuminate\Support\Facades\Mail;
+
 Route::get('/login',
     [
         'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
@@ -78,6 +81,24 @@ Route::get('agent',
         'uses'=>'UsersController@getTrustedAgent'
     ]
 );
+
+Route::get('agent/mail',
+    [
+    'middleware'=>
+        [
+            'webValidate:agentMailRequest'
+        ],
+    'uses'=>'MailController@mailAgent'
+]);
+
+Route::post('property-to-friend',
+    [
+        'middleware'=>
+            [
+                'webValidate:mailPropertyToFriendRequest'
+            ],
+        'uses'=>'MailController@mailToFriend'
+    ]);
 
 Route::get('/logout', function(){
     if(session()->has('authUser'))

@@ -39,6 +39,9 @@
         </div>
         <div class="center-content">
             <div class="page-holder">
+                @if (Session::has('message'))
+                    <span class="alert-success">{{ Session::get('message') }}</span>
+                @endif
                 <div class="propertyDetails-page">
                     <div class="layout">
                         <div class="propertyImage-slider">
@@ -157,10 +160,27 @@
                     </div>
                     <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
-                        <li><a href="#"><span class="icon-envelope"></span> Email to friend</a></li>
-                        <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</a>
+                        <li class="popup-holder">
+                            <a class="popup-opener"><span class="icon-envelope"></span>Email to friend</a>
+                            <div class="popup">
+                                {{Form::open(array('url'=>'property-to-friend','method'=>'POST','class'=>'email-popup'))}}
+                                    <strong class="form-heading">Send Email</strong>
+                                    <div class="input-field">
+                                        <label for="from1">To:</label>
+                                        <div class="input-holder"><input type="text" required name="to" id="to"></div>
+                                    </div>
+                                    <div class="input-field">
+                                        <label for="msg1">Message:</label>
+                                        <div class="input-holder"><textarea id="msg" required name="message"></textarea></div>
+                                    </div>
+                                    <div class="input-field"><input type="submit" value="Send"></div>
+                               {{Form::close()}}
+                                <a class="popup-close"><span class="icon-cross"></span></a>
+                            </div>
                         </li>
+                        <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</a></li>
                     </ul>
+
                 </div>
             </div>
         </div>

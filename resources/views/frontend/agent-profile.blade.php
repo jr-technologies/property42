@@ -72,65 +72,62 @@
                                 <address>{{$response['data']['agent']->agencies[0]->address}}</address>
                             </div>
                         </div>
+                        @if(\Session::has('validationErrors'))
+                            <?php $errors = \Session::get('validationErrors');?>
+                        @endif
+
                         <div class="col">
                             <header>Enquiry through email</header>
                             <div class="caption">
-                                <form class="enquiry-form">
+                                {{ Form::open(array('url' => 'agent/mail','method' => 'GET', 'class'=>'enquiry-form')) }}
                                     <ul>
                                         <li>
                                             <label for="subject">Subject</label>
-                                            <div class="input-holder error">
-                                                <input type="text" id="subject" placeholder="Please Enter Your Subject">
-                                                <span class="error-text">This is error</span>
+                                            <div class="input-holder @if($errors->has('subject')) error @endif">
+                                                <input type="text" id="subject"  name="subject" placeholder="Please Enter Your Subject">
+                                                <span class="error-text">@if($errors->has('subject')) {{$errors->first('subject')}} @endif</span>
                                             </div>
                                         </li>
                                         <li>
                                             <label for="name">Name</label>
-                                            <div class="input-holder">
-                                                <input type="text" id="name" placeholder="Please enter your Name">
-                                                <span class="error-text">This is error</span>
+                                            <div class="input-holder @if($errors->has('name')) error @endif">
+                                                <input type="text" id="name"  name="name" placeholder="Please enter your Name">
+                                                <span class="error-text">@if($errors->has('name')) {{$errors->first('name')}} @endif</span>
                                             </div>
                                         </li>
                                         <li>
                                             <label for="email">Email</label>
-                                            <div class="input-holder">
-                                                <input type="text" id="email" placeholder="Please enter your Email">
-                                                <span class="error-text">This is error</span>
+                                            <div class="input-holder @if($errors->has('email')) error @endif">
+                                                <input type="text" id="email"  name="email" placeholder="Please enter your Email">
+                                                <span class="error-text">@if($errors->has('email')) {{$errors->first('email')}} @endif</span>
                                             </div>
                                         </li>
                                         <li>
                                             <label for="phone">Phone</label>
-                                            <div class="input-holder error">
-                                                <input type="text" id="phone" placeholder="Please enter your Phone">
-                                                <span class="error-text">This is error</span>
+                                            <div class="input-holder @if($errors->has('phone')) error @endif">
+                                                <input type="text" id="phone"  name="phone" placeholder="Please enter your Phone">
+                                                <span class="error-text">@if($errors->has('phone')) {{$errors->first('phone')}} @endif</span>
                                             </div>
                                         </li>
                                         <li>
                                             <label for="cell">Cell</label>
-                                            <div class="input-holder">
-                                                <input type="tel" id="cell" placeholder="Please enter your Cell">
-                                                <span class="error-text">This is error</span>
+                                            <div class="input-holder @if($errors->has('cell')) error @endif">
+                                                <input type="tel" id="cell"  name="cell" placeholder="Please enter your Cell">
+                                                <span class="error-text">@if($errors->has('cell')) {{$errors->first('cell')}} @endif</span>
                                             </div>
                                         </li>
                                         <li>
                                             <label for="msg">Message</label>
-                                            <div class="input-holder">
-                                                <textarea id="msg" placeholder="Please enter your Message"></textarea>
-                                                <span class="error-text">This is error</span>
+                                            <div class="input-holder @if($errors->has('message')) error @endif">
+                                                <textarea id="msg" name="message"  placeholder="Please enter your Message"></textarea>
+                                                <span class="error-text">@if($errors->has('message')) {{$errors->first('message')}} @endif</span>
                                             </div>
                                         </li>
-                                        <li>
-                                            <label for="captcha">Security code</label>
-                                            <div class="input-holder add error">
-                                                <input type="text" id="captcha">
-                                                <span class="error-text">This is error</span>
-                                                <img src="{{url('/')}}/web-apps/frontend/assets/images/agent1.png" width="130" height="40" alt="captcha" class="captcha">
-                                            </div>
-                                        </li>
+
                                         <li><span>Before submiting this form i agree the <a href="#">Terms and condition</a></span></li>
                                     </ul>
                                     <button type="submit"><span class="icon-envelope"></span>Send email</button>
-                                </form>
+                                {{Form::close()}}
                             </div>
                         </div>
                     </div>

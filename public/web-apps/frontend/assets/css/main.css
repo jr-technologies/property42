@@ -643,8 +643,8 @@ th {
   content: "\e911";
 }
 
-.public-propertyListing .holder .sortBy, .public-propertyListing .property-posts .post .caption .quick-links,
-.public-propertyListing .property-posts .post .caption .property-details, .propertyDetails-page .propertyOwnerInfo .description .contact-links, .propertyDetails-page .property-qucikLinks, .agentListing-page .property-posts .post-holder .caption .quick-links,
+.public-propertyListing .property-listingSearch ul, .public-propertyListing .holder .sortBy, .public-propertyListing .property-posts .post .caption .quick-links,
+.public-propertyListing .property-posts .post .caption .property-details, .propertyDetails-page .propertyOwnerInfo .description .contact-links, .propertyDetails-page .property-qucikLinks, .propertyDetails-page .feature-list, .agentListing-page .property-posts .post-holder .caption .quick-links,
 .agentListing-page .property-posts .post-holder .caption .property-details, .agentProfile-page .contact-links, .agentProfile-page .cols-holder .col .enquiry-form ul, #nav .main-navigation, #nav .main-navigation li .dropDown, .main-visual .property-search-holder .tabset, .main-visual .property-search-holder .tab-content form ul, #content .left-content .company-logo, #content .right-content .posters, .pager, #footer .cols-holder .col ul {
   margin: 0;
   padding: 0;
@@ -1361,6 +1361,57 @@ input[type='submit'] {
   overflow: hidden;
 }
 
+.public-propertyListing .property-listingSearch {
+  overflow: hidden;
+  background: #89c0e9;
+  border-radius: 4px;
+}
+
+.public-propertyListing .property-listingSearch ul {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  text-align: center;
+}
+
+.public-propertyListing .property-listingSearch ul > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+.public-propertyListing .property-listingSearch ul li {
+  text-align: left;
+  width: 25%;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.public-propertyListing .property-listingSearch ul li > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+.public-propertyListing .property-listingSearch ul li label {
+  float: left;
+  width: 25%;
+}
+
+.public-propertyListing .property-listingSearch ul li .input-holder {
+  width: 75%;
+  float: left;
+}
+
+.public-propertyListing .property-listingSearch ul li .input-holder.add {
+  width: 50%;
+}
+
 .public-propertyListing .holder {
   overflow: hidden;
   padding: 0 0 10px;
@@ -1608,14 +1659,11 @@ input[type='submit'] {
   vertical-align: top;
   color: #133783;
   text-decoration: none;
-  max-width: 500px;
-  white-space: nowrap;
-  overflow: hidden;
+  max-width: 700px;
   float: left;
-  text-overflow: ellipsis;
 }
 
-@media (max-width: 1299px) {
+@media (max-width: 1599px) {
   .public-propertyListing .property-posts .post .caption .post-heading a {
     max-width: 400px;
   }
@@ -1810,7 +1858,8 @@ input[type='submit'] {
   }
 }
 
-.public-propertyListing .property-posts .post .caption .quick-links li a {
+.public-propertyListing .property-posts .post .caption .quick-links li > a {
+  cursor: pointer;
   display: block;
   text-decoration: none;
   color: #2e2e2e;
@@ -1825,24 +1874,24 @@ input[type='submit'] {
 }
 
 @media (max-width: 1199px) {
-  .public-propertyListing .property-posts .post .caption .quick-links li a {
+  .public-propertyListing .property-posts .post .caption .quick-links li > a {
     padding: 10px 10px 10px 25px;
   }
 }
 
 @media (min-width: 768px) {
-  .public-propertyListing .property-posts .post .caption .quick-links li a .show-xs {
+  .public-propertyListing .property-posts .post .caption .quick-links li > a .show-xs {
     display: none;
   }
 }
 
-.public-propertyListing .property-posts .post .caption .quick-links li a:hover {
+.public-propertyListing .property-posts .post .caption .quick-links li > a:hover {
   color: #fff;
   border-color: #fff;
   background: #58a36f;
 }
 
-.public-propertyListing .property-posts .post .caption .quick-links li [class^="icon-"], .public-propertyListing .property-posts .post .caption .quick-links li [class*=" icon-"] {
+.public-propertyListing .property-posts .post .caption .quick-links li > a [class^="icon-"], .public-propertyListing .property-posts .post .caption .quick-links li > a [class*=" icon-"] {
   position: absolute;
   top: 50%;
   left: 7px;
@@ -2054,6 +2103,10 @@ input[type='submit'] {
   .propertyDetails-page .propertyImage-slider .propertyImage-pagination .propertyImage-mask {
     max-width: 250px;
   }
+}
+
+.propertyDetails-page .propertyImage-slider .propertyImage-pagination .propertyImage-slideset.no-indent {
+  margin: 0 !important;
 }
 
 .propertyDetails-page .propertyImage-slider .propertyImage-pagination .propertyImage-slide {
@@ -2322,7 +2375,8 @@ input[type='submit'] {
   margin: 0 0 10px;
 }
 
-.propertyDetails-page .propertyOwnerInfo .description .contact-links li a {
+.propertyDetails-page .propertyOwnerInfo .description .contact-links li > a {
+  cursor: pointer;
   color: #fff;
   border-radius: 3px;
   background: #ef9521;
@@ -2337,7 +2391,7 @@ input[type='submit'] {
   -ms-transition: background 0.4s ease,  border 0.4s ease;
 }
 
-.propertyDetails-page .propertyOwnerInfo .description .contact-links li a span[class^="icon-"], .propertyDetails-page .propertyOwnerInfo .description .contact-links li a span[class*="icon-"] {
+.propertyDetails-page .propertyOwnerInfo .description .contact-links li > a span[class^="icon-"], .propertyDetails-page .propertyOwnerInfo .description .contact-links li > a span[class*="icon-"] {
   position: absolute;
   top: 50%;
   left: 10px;
@@ -2345,12 +2399,12 @@ input[type='submit'] {
 }
 
 @media (max-width: 1199px) {
-  .propertyDetails-page .propertyOwnerInfo .description .contact-links li a span[class^="icon-"], .propertyDetails-page .propertyOwnerInfo .description .contact-links li a span[class*="icon-"] {
+  .propertyDetails-page .propertyOwnerInfo .description .contact-links li > a span[class^="icon-"], .propertyDetails-page .propertyOwnerInfo .description .contact-links li > a span[class*="icon-"] {
     margin: -6px -5px 0;
   }
 }
 
-.propertyDetails-page .propertyOwnerInfo .description .contact-links li a:hover {
+.propertyDetails-page .propertyOwnerInfo .description .contact-links li > a:hover {
   background: #58a36f;
   border-color: #58a36f;
 }
@@ -2363,11 +2417,19 @@ input[type='submit'] {
   margin: 0;
   display: block;
   overflow: hidden;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
   padding: 10px 0 0;
   width: 100%;
-  overflow: hidden;
+}
+
+.propertyDetails-page .propertyOwnerInfo .description dl > * {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
 }
 
 @media (max-width: 1599px) {
@@ -2378,13 +2440,12 @@ input[type='submit'] {
 }
 
 .propertyDetails-page .propertyOwnerInfo .description dl dt {
-  float: left;
   width: 50%;
   font-weight: 600;
+  padding: 0 0 8px;
 }
 
 .propertyDetails-page .propertyOwnerInfo .description dl dd {
-  overflow: hidden;
   margin: 0;
   width: 50%;
   padding: 0 0 8px;
@@ -2417,6 +2478,12 @@ input[type='submit'] {
 .propertyDetails-page .overviewText-holder .overviewText {
   overflow: hidden;
   padding: 0 150px 0 0;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetails-page .overviewText-holder .overviewText {
+    padding: 0 110px 0 0;
+  }
 }
 
 .propertyDetails-page .overviewText-holder .btn-showMore {
@@ -2469,11 +2536,25 @@ input[type='submit'] {
   padding: 5px;
 }
 
+@media (max-width: 767px) {
+  .propertyDetails-page .property-qucikLinks li {
+    width: 100%;
+    display: block;
+  }
+}
+
 .propertyDetails-page .property-qucikLinks li a {
   text-decoration: none;
   color: #ef9521;
   display: block;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .propertyDetails-page .property-qucikLinks li a {
+    display: inline-block;
+    vertical-align: top;
+  }
 }
 
 .propertyDetails-page .property-qucikLinks li a span {
@@ -2482,6 +2563,132 @@ input[type='submit'] {
 
 .propertyDetails-page .property-qucikLinks li a:hover {
   color: #b66c0d;
+}
+
+.propertyDetails-page h2 {
+  display: block;
+  font-size: 17px;
+  line-height: 19px;
+  margin: 0 0 10px;
+  padding: 0 20px;
+}
+
+@media (max-width: 1599px) {
+  .propertyDetails-page h2 {
+    padding: 0;
+  }
+}
+
+.propertyDetails-page .feature-list {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  padding: 0 10px;
+}
+
+.propertyDetails-page .feature-list > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1599px) {
+  .propertyDetails-page .feature-list {
+    padding: 0;
+  }
+}
+
+.propertyDetails-page .feature-list li {
+  width: 25%;
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 0 0 10px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.propertyDetails-page .feature-list li > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetails-page .feature-list li {
+    width: 33.33%;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .propertyDetails-page .feature-list li > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .propertyDetails-page .feature-list li {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetails-page .feature-list li {
+    width: 100%;
+  }
+}
+
+.propertyDetails-page .feature-list li:after {
+  position: absolute;
+  right: 10px;
+  left: 10px;
+  bottom: -99999px;
+  top: -9999px;
+  z-index: -1;
+  pointer-events: none;
+  background: #dde2e8;
+  content: '';
+}
+
+.propertyDetails-page .feature-list li span {
+  background: #dde2e8;
+  width: 75%;
+  padding: 10px;
+}
+
+@media (max-width: 1599px) {
+  .propertyDetails-page .feature-list li span {
+    padding: 5px;
+  }
+}
+
+.propertyDetails-page .feature-list li span.last-child {
+  width: 25%;
+  text-align: center;
+  color: #58a36f;
+  font-weight: 600;
+  position: relative;
+}
+
+.propertyDetails-page .feature-list li span.last-child:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: -99999px;
+  background: #bfc8d3;
+  width: 1px;
+  content: '';
 }
 
 .agentListing-page {
@@ -4173,7 +4380,7 @@ h1 {
 
 .main-visual .property-search-holder .tabset li a:after {
   position: absolute;
-  bottom: -20px;
+  bottom: -19px;
   left: 50%;
   border: 10px solid transparent;
   border-top: 10px solid #489ddd;
@@ -4276,7 +4483,6 @@ h1 {
 .main-visual .property-search-holder .tab-content form ul.propertyType-buttons {
   width: 100%;
   display: block;
-  max-width: 500px;
   margin: 0 auto 10px;
   padding: 0;
   font-size: 0;
@@ -4324,10 +4530,16 @@ h1 {
 }
 
 .main-visual .property-search-holder .tab-content form ul.propertyType-buttons li {
-  width: 25%;
+  min-width: 125px;
   border-left: 1px solid #fff;
   padding: 0;
   margin: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .main-visual .property-search-holder .tab-content form ul.propertyType-buttons li {
+    min-width: 73px;
+  }
 }
 
 .main-visual .property-search-holder .tab-content form ul.propertyType-buttons li:first-child {
@@ -4448,6 +4660,15 @@ h1 {
   display: block;
   overflow: hidden;
   padding: 0 0 15px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
+  -moz-transition: opacity 0.5s ease, visibility 0.5s ease;
+  -ms-transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.main-visual .property-search-holder .tab-content form ul li.hide-bedrooms {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 767px) {
@@ -4494,6 +4715,10 @@ h1 {
   cursor: pointer;
 }
 
+.main-visual .property-search-holder .tab-content form ul li .fake-select.loading .load:after, .main-visual .property-search-holder .tab-content form ul li .fake-select.loading .load:before {
+  display: block;
+}
+
 .main-visual .property-search-holder .tab-content form ul li .fake-select:after {
   position: absolute;
   top: 50%;
@@ -4511,6 +4736,39 @@ h1 {
 
 .main-visual .property-search-holder .tab-content form ul li .fake-select:active:after, .main-visual .property-search-holder .tab-content form ul li .fake-select:focus:after, .main-visual .property-search-holder .tab-content form ul li .fake-select:hover:after {
   border-top-color: #000;
+}
+
+.main-visual .property-search-holder .tab-content form ul li .fake-select .load {
+  display: block;
+  float: none;
+  width: 100%;
+  position: relative;
+}
+
+.main-visual .property-search-holder .tab-content form ul li .fake-select .load:after {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 0;
+  bottom: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  content: '';
+  z-index: 9;
+  display: none;
+}
+
+.main-visual .property-search-holder .tab-content form ul li .fake-select .load:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: url("../images/loading.gif") no-repeat;
+  background-size: 100% 100%;
+  width: 40px;
+  height: 40px;
+  content: '';
+  z-index: 91;
+  margin: -20px 0 0 -20px;
+  display: none;
 }
 
 .main-visual .property-search-holder .tab-content form ul li input[type="text"], .main-visual .property-search-holder .tab-content form ul li input[type="number"],
@@ -5288,6 +5546,142 @@ h1 {
   margin: -2px 0 0;
 }
 
+.email-popup {
+  overflow: hidden;
+  background: #fff;
+}
+
+.email-popup .form-heading {
+  display: block;
+  width: 100%;
+  margin: 0 0 10px;
+  background: #133783;
+  color: #fff;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 300;
+  padding: 5px 10px;
+}
+
+.email-popup .input-field {
+  overflow: hidden;
+  padding: 10px 20px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.email-popup .input-field > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .email-popup .input-field {
+    padding: 10px;
+  }
+}
+
+.email-popup label {
+  width: 20%;
+}
+
+@media (max-width: 767px) {
+  .email-popup label {
+    width: 25%;
+  }
+}
+
+.email-popup .input-holder {
+  width: 80%;
+}
+
+@media (max-width: 767px) {
+  .email-popup .input-holder {
+    width: 75%;
+  }
+}
+
+.email-popup textarea,
+.email-popup input[type="text"] {
+  width: 100%;
+  height: 40px;
+  padding: 9px 10px;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0;
+  display: block;
+}
+
+.email-popup textarea {
+  height: 150px;
+  resize: none;
+  overflow: auto;
+}
+
+.email-popup input[type="submit"] {
+  width: 100%;
+  display: block;
+  padding: 5px 10px;
+  background: #489ddd;
+  color: #fff;
+  border: 0;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.email-popup input[type="submit"]:hover {
+  background: #2685cc;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -170px 0 0 -250px;
+  z-index: 9999;
+  width: 500px;
+  text-align: left;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .popup {
+    width: 300px;
+    margin: -140px 0 0 -150px;
+  }
+}
+
+.popup-holder.active .popup {
+  display: block;
+}
+
+.popup .popup-close {
+  cursor: pointer;
+  color: #fff !important;
+  position: absolute;
+  top: -30px;
+  right: -15px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.popup .popup-close:after {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  content: '';
+  z-index: -1;
+}
+
 @media print {
   * {
     background: none !important;
@@ -5357,6 +5751,8 @@ h1 {
     overflow: visible !important;
     clear: both !important;
   }
+  .propertyDetails-page .feature-list li::after,
+  .popup,
   [class*="icon-"], [class^="icon-"] {
     display: none !important;
   }
@@ -5449,6 +5845,32 @@ h1 {
     margin: 0 0 10px !important;
     font-size: 12px !important;
     line-height: 15px !important;
+  }
+  .propertyDetails-page h2 {
+    padding: 0 !important;
+    margin: 0 0 10px !important;
+  }
+  .propertyDetails-page .feature-list {
+    padding: 0 !important;
+  }
+  .propertyDetails-page .feature-list li {
+    padding: 0 5px !important;
+    margin: 0 0 5px !important;
+  }
+  .propertyDetails-page .feature-list li span {
+    padding: 0 !important;
+  }
+  .propertyDetails-page .propertyOwnerInfo .description .summary {
+    font-size: 14px !important;
+    line-height: 16px !important;
+  }
+  .propertyDetails-page .propertyOwnerInfo .description dl > * {
+    font-size: 12px !important;
+    line-height: 15px !important;
+  }
+  .propertyDetails-page .propertyOwnerInfo .description dl dd,
+  .propertyDetails-page .propertyOwnerInfo .description dl dt {
+    padding: 0 0 3px !important;
   }
 }
 

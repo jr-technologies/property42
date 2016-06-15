@@ -229,6 +229,10 @@ return [
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
         'PathHelper' => \App\Libs\Helpers\PathHelper::class,
 
+        /*  Mail Requests */
+        'AgentMailRequest' => \App\Http\Requests\Requests\Mail\AgentMailRequest::class,
+        'MailPropertyToFriendRequest' => \App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest::class,
+
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
         'UpdateCountryRequest' => \App\Http\Requests\Requests\Country\UpdateCountryRequest::class,
