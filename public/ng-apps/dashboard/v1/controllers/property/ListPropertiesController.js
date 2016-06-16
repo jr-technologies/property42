@@ -125,7 +125,6 @@ app.controller("ListPropertiesController",["$q", "$scope", "$rootScope","$http",
         });
     };
     $scope.deleteProperties = function () {
-        console.log($scope.deletingProperties.ids);
         return $http({
             method: 'POST',
             url: apiPath+'properties/delete',
