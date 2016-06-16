@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Mail\AgentMailRequest;
+
 use App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest;
+
+use App\Http\Requests\Requests\Mail\MailToAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\User\UsersFilesReleaser;
@@ -34,6 +37,17 @@ class MailController extends Controller
         Session::flash('message', 'Your message has been sent');
         return redirect()->back();
     }
+    public function mailToAgent(MailToAgentRequest $request)
+    {
+        $user = $request->all();
+        Mail::send('frontend.mail.mail_property_to_agent',['user' => $user], function($message) use($user)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
+            $message->to($user['from'])->subject('Property42');
+        });
+        Session::flash('message', 'Your message has been sent');
+        return redirect()->back();
+    }
 
     public function mailAgent(AgentMailRequest $request)
     {
@@ -46,4 +60,6 @@ class MailController extends Controller
 
         return redirect()->back();
     }
+
+
 }

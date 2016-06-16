@@ -25,14 +25,12 @@
                                         </label>
                                     </li>
                                     @foreach($response['data']['propertyTypes'] as $propertyType)
-
                                         <li>
                                             <label for="{{$propertyType->name."_".$propertyType->id}}">
                                                 <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}" name="propertyType" class="property_type" value="{{$propertyType->id}}">
                                                 <span class="fake-label">{{$propertyType->name}}</span>
                                             </label>
                                         </li>
-
                                     @endforeach
 
                                  </ul>

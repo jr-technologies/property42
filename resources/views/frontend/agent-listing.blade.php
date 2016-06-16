@@ -61,9 +61,9 @@
                         @foreach($response['data']['agents'] as $agent)
                         <article class="post">
                             <div class="post-holder">
-                                <div class="img-holder"><a href="#"><img src="{{url('/').'/temp/'.$agent->agencies[0]->logo}}" width="300" height="300" alt="image description"></a></div>
+                                <div class="img-holder"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><img src="{{url('/').'/temp/'.$agent->agencies[0]->logo}}" width="300" height="300" alt="image description"></a></div>
                                 <div class="caption">
-                                    <strong class="post-heading"><a href="#">{{$agent->agencies[0]->name}}</a></strong>
+                                    <strong class="post-heading"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></strong>
                                     <p>{{str_limit($agent->agencies[0]->description,150)}}</p>
                                     <div class="holder">
                                         <ul class="quick-links">

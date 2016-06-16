@@ -17,7 +17,7 @@
     <header id="header">
         <div class="container">
             <div class="layout">
-                <div class="logo"><a href="#"><img src="{{url('/web-apps/registration/assets/')}}/images/logo.png" width="695" height="301" alt="Property42"></a></div>
+                <div class="logo"><a href="{{ URL::to('/') }}"><img src="{{url('/web-apps/registration/assets/')}}/images/logo.png" width="695" height="301" alt="Property42"></a></div>
                 <a href="{{route('loginPage')}}" class="login-register">Login / Register</a>
             </div>
         </div>

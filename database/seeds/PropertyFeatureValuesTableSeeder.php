@@ -16,7 +16,6 @@ class PropertyFeatureValuesTableSeeder extends Seeder
     public function run()
     {
         $properties = (new PropertiesRepoProvider())->repo()->all();
-
         $features = (new FeaturesRepoProvider())->repo()->all();
         $allProperties = [];
         foreach($properties as $property)
@@ -30,9 +29,8 @@ class PropertyFeatureValuesTableSeeder extends Seeder
                 $allProperties[] = $temp;
 
             }
-
         }
-            $newArray = array_slice($allProperties, 0, 50, true);
+            $newArray = array_slice($allProperties, 0, 150, true);
             DB::table('property_feature_values')->insert($newArray);
     }
 

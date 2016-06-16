@@ -49,6 +49,7 @@ class UsersController extends Controller
 
     public function getTrustedAgent(GetAgentRequest $request)
     {
+        dd('df');
         return $this->response->setView('frontend.agent-profile')->respond(['data' => [
             'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId')))
         ]]);

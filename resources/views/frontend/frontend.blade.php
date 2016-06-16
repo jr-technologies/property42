@@ -17,7 +17,7 @@
 <div id="wrapper">
     <header id="header" class="home-header">
         <div class="layout">
-            <div class="logo"><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" width="695"
+            <div class="logo"><a href="{{ URL::to('/') }}"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" width="695"
                                                height="301" alt="Property42"></a></div>
             <nav id="nav">
                 <ul class="main-navigation">
@@ -41,8 +41,8 @@
                 </ul>
             </nav>
             <a class="nav-opener"><span></span></a>
-            <a href="#" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
-            <a href="#" class="btn-header loginRegister">login / register</a>
+            <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
+            <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>
         </div>
     </header>
     <main id="main" role="main">
@@ -58,8 +58,8 @@
                 <div class="col">
                     <strong class="heading">Social media</strong>
                     <ul class="social-networks">
-                        <li><a href="#" class="facebook"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#" class="twitter"><span class="icon-twitter"></span></a></li>
+                        <li><a href="https://www.facebook.com/property42pk-1562646287317094/" class="facebook"><span class="icon-facebook"></span></a></li>
+                        <li><a href="https://twitter.com/Property42_pk" class="twitter"><span class="icon-twitter"></span></a></li>
                     </ul>
                 </div>
                 <div class="col">

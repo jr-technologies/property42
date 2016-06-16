@@ -59,6 +59,7 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->fax = $this->model->fax;
         $this->prototype->address = $this->model->address;
         $this->prototype->zipCode = $this->model->zipCode;
+        $this->prototype->trustedAgent = $this->model->trustedAgent;
         $this->prototype->country = $this->country();
         $this->prototype->membershipPlan = $this->membershipPlan();
         $this->prototype->agencies = $this->agencies();

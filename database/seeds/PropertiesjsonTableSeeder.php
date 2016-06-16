@@ -20,7 +20,6 @@ class PropertiesJsonTableSeeder extends Seeder
             $propertyJson = (new PropertyJsonCreator($property))->create();
             $finalResult[] = [ 'property_id' => $property->id, 'json'=> json_encode($propertyJson)];
         }
-
         DB::table('property_json')->insert($finalResult);
     }
 }

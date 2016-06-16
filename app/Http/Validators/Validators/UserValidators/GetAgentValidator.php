@@ -8,20 +8,20 @@
 
 namespace App\Http\Validators\Validators\UserValidators;
 
-use App\Http\Requests\Requests\Auth\RegistrationRequest;
-use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
+use Illuminate\Support\Facades\Validator;
 
 class GetAgentValidator extends UserValidator implements ValidatorsInterface
 {
-
-    public function __construct( $request){
+    private $userJsonRepo = "";
+    public function __construct($request){
         parent::__construct($request);
-
+        $this->userJsonRepo = (new UsersJsonRepoProvider())->repo();
     }
     public function CustomValidationMessages(){
         return [
-
+            'userId.agent_exists' => 'Sorry agent not found!'
         ];
     }
 
@@ -33,7 +33,33 @@ class GetAgentValidator extends UserValidator implements ValidatorsInterface
     public function rules()
     {
         return [
-           'userId'=>'required'
+           'userId'=>'required|agent_exists'
         ];
+    }
+
+    public function registerAgentExistsRule()
+    {
+        Validator::extend('agent_exists', function($attribute, $value, $parameters)
+        {
+            try{
+                $agent = $this->userJsonRepo->find($this->request->get('userId'));
+                $isAgent = false;
+                foreach($agent->roles as $agentRole)
+                {
+                    if($agentRole->id == 3)
+                    {
+                        $isAgent = true;
+                    }
+                }
+
+                if( $isAgent == false || $agent->trustedAgent !=1)
+                    return false;
+
+            }catch (\Exception $e){
+                return false;
+            }
+
+            return true;
+        });
     }
 }

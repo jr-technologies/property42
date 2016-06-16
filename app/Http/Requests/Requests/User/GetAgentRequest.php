@@ -26,7 +26,7 @@ class GetAgentRequest extends Request implements RequestInterface{
     }
 
     public function validate(){
-        return true;
+        return $this->validator->validate();
     }
 
 } 
