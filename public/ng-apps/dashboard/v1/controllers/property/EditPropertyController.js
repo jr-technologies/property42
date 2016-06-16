@@ -48,7 +48,11 @@ app.filter('filterBySubType', [function () {
 
 app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$window","$http", "Upload","$sce", "$state", "$AuthService", "$location",
     function (property, $scope, $rootScope, $window, $http, Upload, $sce, $state, $AuthService, $location){
-        console.log(property);
+        if(property == undefined){
+            alert('Sorry! property not found');
+            return $location.path($state.href('home.properties.all').substring(1));
+        }
+
         $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
         $scope.formSubmitStatus = '';
@@ -64,7 +68,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.featureSections = [];
         $scope.errors = [];
         $scope.propertyDocuments = {};
-
         $scope.temp = {
             society: property.location.society,
             block: property.location.block
