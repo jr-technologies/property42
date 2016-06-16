@@ -13,6 +13,9 @@ use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyFeatureValue\PropertyFeatureValueFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyPurpose\PropertyPurposeFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyType\PropertyTypeFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\Libs\Helpers\LandArea;
 use App\Libs\SearchEngines\Properties\PropertiesSearchEngineInterface;
@@ -36,6 +39,8 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
     private function buildQuery()
     {
         $properties = (new PropertyFactory())->getTable();
+        $propertyTypes = (new PropertyTypeFactory())->getTable();
+        $propertySubTypes = (new PropertySubTypeFactory())->getTable();
         $societies = (new SocietyFactory())->getTable();
         $blocks = (new BlockFactory())->getTable();
         $propertyJsonTable = (new PropertyJsonFactory())->getTable();
@@ -43,11 +48,16 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
 
         $query = DB::table($properties)
             ->join($propertyJsonTable,$properties.'.id','=',$propertyJsonTable.'.property_id')
+            ->leftjoin($propertySubTypes,$properties.'.property_sub_type_id','=',$propertySubTypes.'.id')
             ->leftjoin($blocks,$properties.'.block_id','=',$blocks.'.id')
             ->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
             ->leftjoin($propertyFeatureValues,$properties.'.id','=',$propertyFeatureValues.'.property_id')
             ->select($propertyJsonTable.'.json');
 
+        if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
+            $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
+        if(isset($this->instructions['propertyTypeId']) && $this->instructions['propertyTypeId'] != null && $this->instructions['propertyTypeId'] != '')
+            $query = $query->where($propertySubTypes.'.property_type_id',$this->instructions['propertyTypeId']);
         if(isset($this->instructions['subTypeId']) && $this->instructions['subTypeId'] != null && $this->instructions['subTypeId'] != '')
             $query = $query->where($properties.'.property_sub_type_id',$this->instructions['subTypeId']);
         else if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
@@ -63,12 +73,15 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         if(isset($this->instructions['landAreaTo']) && $this->instructions['landAreaTo'] != null && $this->instructions['landAreaTo'] != '')
             $query = $query->where($properties.'.land_area', '<=', LandArea::convert($this->instructions['landUnitId'], 'square feet',$this->instructions['landAreaTo']));
 
-        foreach($this->instructions['propertyFeatures'] as $key => $value){
-            if($value != '' && $value != null){
-                $query = $query->where([
-                    $propertyFeatureValues.'.property_feature_id' => $key,
-                    $propertyFeatureValues.'.value' => $value
-                ]);
+        if(isset($this->instructions['propertyFeatures']) && $this->instructions['propertyFeatures'] != null && is_array($this->instructions['propertyFeatures']))
+        {
+            foreach($this->instructions['propertyFeatures'] as $key => $value){
+                if($value != '' && $value != null){
+                    $query = $query->where([
+                        $propertyFeatureValues.'.property_feature_id' => $key,
+                        $propertyFeatureValues.'.value' => $value
+                    ]);
+                }
             }
         }
         $sorting = $this->computeSorting();
