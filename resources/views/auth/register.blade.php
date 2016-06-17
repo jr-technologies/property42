@@ -8,10 +8,10 @@
             $validationErrors = \Session::get('validationErrors');
         }
         ?>
-        <ul class="tabset">
-            <li class=""><a href="{{url('/login')}}">login</a></li>
-            <li class="active"><a href="{{url('/register')}}">become a free member</a></li>
-        </ul>
+            <ul class="tabset">
+                <li class="active"><a  href="{{url('/register')}}">become a free member</a></li>
+                <li class="last-child"><span>Already have an account ?</span> <a href="{{url('/login')}}">Login</a></li>
+            </ul>
         <div class="tab-content">
             <div id="tab2">
                 @if(\Session::has('success'))
@@ -122,8 +122,9 @@
                                 <input type="file" name="companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
                                 <div class="picture-holder"><img src="" class="company-profileP" alt="Company logo"></div>
                                 <a class="delete"><span class="icon-bin"></span></a>
-                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyLogo')) {{$validationErrors->first('companyLogo')}} @endif</span>
+                                <span class="name-tag">Add Company Logo</span>
                             </div>
+                            <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyLogo')) {{$validationErrors->first('companyLogo')}} @endif</span>
                         </div>
                         <div class="input-holder full-width @if(isset($validationErrors) && $validationErrors->has('agencyDescription')) error @endif">
                             <label for="D-services" class="icon-technical-support"></label>

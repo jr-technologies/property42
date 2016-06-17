@@ -1,5 +1,3 @@
-
-
 $('.hidden-checkfield').change(function(){
     if($(this).is(":checked")) {
         $('.registration-form').addClass("agent-info");
@@ -11,7 +9,13 @@ $('.hidden-checkfield').change(function(){
 		});
     }
 });
+$(document).on('click', '.nav-opener', function(){
+	$('body').toggleClass('nav-active');
+});
 
+$(document).on('tap, click', '#main', function(){
+	$('body').removeClass('nav-active');
+});
 $(document).ready(function(){
 	$('.registration-form').find('.role-listing').hide();
 });

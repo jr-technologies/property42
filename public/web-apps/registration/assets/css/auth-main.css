@@ -635,14 +635,15 @@ th {
   content: "\e911";
 }
 
-.login-registarHolder .tabset, .login-registarHolder .registration-form .terms-listing,
-.login-registarHolder .login-form .terms-listing, .login-registarHolder .registration-form .roles .role-listing {
+#nav .main-navigation, #nav .main-navigation li .dropDown, .login-registarHolder .tabset, .forgot-form .terms-listing,
+.registration-form .terms-listing,
+.login-form .terms-listing, .registration-form .roles .role-listing, #footer .cols-holder .col ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.clearfix:after, #header:after {
+.clearfix:after, #header:after, #header .layout:after, .login-registarHolder:after {
   content: '';
   display: block;
   clear: both;
@@ -883,6 +884,11 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -919,9 +925,50 @@ a {
   color: #2e2e2e;
 }
 
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}
+
+.global-successMessage,
+.global-error {
+  display: block;
+  text-align: center;
+  color: #e14646;
+  padding: 5px;
+  margin: 0 0 5px;
+  border: 1px solid #e14646;
+  background: #fae0e0;
+  border-radius: 2px;
+}
+
+@media (max-width: 767px) {
+  .global-successMessage,
+  .global-error {
+    font-size: 13px;
+    line-height: 16px;
+    padding: 3px;
+  }
+}
+
+.global-successMessage {
+  color: #58a36f;
+  border: 1px solid #58a36f;
+  background: #dbece0;
+}
+
+body {
+  background: #edf2f8;
+  width: 100%;
+  height: 100%;
+}
+
 #wrapper {
   position: relative;
   width: 100%;
+  display: table;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -933,30 +980,302 @@ a {
 }
 
 #header .layout {
-  padding: 10px 0;
-}
-
-#header .login-register {
-  float: right;
-  text-decoration: none;
-  color: #fff;
-  background: #39f;
-  border-radius: 4px;
-  padding: 10px 30px;
-  transition: background 0.4s ease;
-  margin: 10px 0 0;
+  padding: 10px 10px 0;
+  overflow: visible;
 }
 
 @media (max-width: 767px) {
-  #header .login-register {
-    font-size: 13px;
-    line-height: 16px;
-    padding: 10px 13px;
+  #header .layout {
+    padding: 10px;
   }
 }
 
-#header .login-register:hover {
-  background: #007fff;
+#header .btn-header {
+  float: right;
+  max-width: 300px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
+  background: #489ddd;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin: 12px 5px 0;
+  transition: background 0.4s ease;
+}
+
+@media (max-width: 1023px) {
+  #header .btn-header {
+    font-size: 13px;
+    line-height: 17px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  #header .btn-header {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 5px;
+    float: none;
+    display: block;
+    margin: 0 auto 5px;
+    width: 135px;
+    text-align: center;
+    position: relative;
+    left: 32px;
+  }
+}
+
+#header .btn-header.loginRegister {
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid #fff;
+}
+
+@media (max-width: 767px) {
+  #header .btn-header.loginRegister {
+    padding: 5px;
+    margin: 10px auto 0;
+  }
+}
+
+#header .btn-header.loginRegister:hover {
+  border-color: #000;
+  background: #000;
+}
+
+#header .btn-header:hover {
+  background: #ef9521;
+}
+
+#header .btn-header span[class^="icon-"], #header .btn-header span[class*="icon-"] {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 18px;
+  line-height: 19px;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  #header .btn-header span[class^="icon-"], #header .btn-header span[class*="icon-"] {
+    font-size: 16px;
+    line-height: 15px;
+  }
+}
+
+#nav {
+  float: left;
+  max-width: 1024px;
+  padding: 0 0 0 20px;
+}
+
+@media (max-width: 767px) {
+  #nav {
+    float: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 0;
+    background: rgba(19, 55, 131, 0.98);
+    z-index: 95;
+  }
+  .nav-active #nav {
+    display: block;
+  }
+}
+
+#nav .main-navigation {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  text-transform: capitalize;
+}
+
+#nav .main-navigation > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  #nav .main-navigation {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  #nav .main-navigation > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
+}
+
+#nav .main-navigation li {
+  padding: 0 10px 12px;
+  margin: 0;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li {
+    display: block;
+    padding: 0;
+  }
+}
+
+#nav .main-navigation li:hover .dropDown {
+  opacity: 1;
+  top: 100%;
+  z-index: 9;
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li:hover .dropDown {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li:hover > a {
+    background: #0d2456;
+  }
+}
+
+#nav .main-navigation li:hover > a:after {
+  opacity: 1;
+  top: 0;
+}
+
+@media (min-width: 768px) {
+  #nav .main-navigation li.hidden-desktop {
+    display: none;
+  }
+}
+
+#nav .main-navigation li.agent-link:before, #nav .main-navigation li.agent-link:after {
+  position: absolute;
+  top: -10px;
+  bottom: 0;
+  left: 0;
+  background: #06122a;
+  width: 1px;
+  content: '';
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li.agent-link:before, #nav .main-navigation li.agent-link:after {
+    display: none;
+  }
+}
+
+#nav .main-navigation li.agent-link:before {
+  left: 1px;
+  background: #1d53c6;
+}
+
+#nav .main-navigation li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  padding: 18px 0;
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li a {
+    padding: 15px;
+  }
+}
+
+#nav .main-navigation li a:after {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  left: 0;
+  border-top: 5px solid #ef9521;
+  content: '';
+  opacity: 0;
+  transition: opacity 0.4s ease, border 0.4s ease, top 0.4s ease;
+  -webkit-transition: opacity 0.4s ease, border 0.4s ease, top 0.4s ease;
+  -moz-transition: opacity 0.4s ease, border 0.4s ease, top 0.4s ease;
+  -ms-transition: opacity 0.4s ease, border 0.4s ease, top 0.4s ease;
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li a:after {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li a:hover {
+    background: #0d2456;
+  }
+}
+
+#nav .main-navigation li a:hover:after {
+  opacity: 1;
+  top: 0;
+}
+
+#nav .main-navigation li .dropDown {
+  font-size: 16px;
+  line-height: 20px;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 200px;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 4px solid #58a36f;
+  opacity: 0;
+  transition: top 0.4s ease, opacity 0.4s ease, left 0.4s ease;
+}
+
+@media (max-width: 767px) {
+  #nav .main-navigation li .dropDown {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: static;
+    display: none;
+  }
+}
+
+#nav .main-navigation li .dropDown li {
+  display: block;
+  padding: 0;
+  border-top: 1px solid #489ddd;
+}
+
+#nav .main-navigation li .dropDown li:first-child {
+  border: 0;
+}
+
+#nav .main-navigation li .dropDown li:last-child:after, #nav .main-navigation li .dropDown li:last-child:before {
+  display: none;
+}
+
+#nav .main-navigation li .dropDown li a {
+  color: #133783;
+  padding: 7px 10px;
+}
+
+#nav .main-navigation li .dropDown li a:after {
+  display: none;
+}
+
+#nav .main-navigation li .dropDown li a:hover {
+  color: #fff;
+  background: #489ddd;
 }
 
 #main {
@@ -966,6 +1285,12 @@ a {
 .logo {
   float: left;
   width: 140px;
+}
+
+@media (max-width: 767px) {
+  .logo {
+    width: 100px;
+  }
 }
 
 .logo a {
@@ -979,7 +1304,6 @@ a {
 }
 
 .login-registarHolder {
-  overflow: hidden;
   max-width: 800px;
   padding: 0 0 20px;
   margin: 100px auto 200px;
@@ -995,9 +1319,10 @@ a {
   font-size: 0;
   line-height: 0;
   letter-spacing: -4px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-align: center;
   font-weight: 600;
+  margin: 0 -10px;
 }
 
 .login-registarHolder .tabset > * {
@@ -1025,11 +1350,69 @@ a {
 
 .login-registarHolder .tabset li {
   width: 50%;
+  padding: 0 10px;
 }
 
 .login-registarHolder .tabset li:last-child a {
-  background: #489ddd;
+  background: #58a36f;
   color: #fff;
+  border-radius: 4px;
+  border: 0;
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .login-registarHolder .tabset li:last-child a {
+    padding: 10px 4px;
+  }
+}
+
+.login-registarHolder .tabset li:last-child a:hover {
+  border: 0;
+  background: #67ad7d;
+  color: #fff;
+}
+
+.login-registarHolder .tabset li.last-child {
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .login-registarHolder .tabset li.last-child {
+    padding: 10px 4px;
+  }
+}
+
+.login-registarHolder .tabset li.last-child span {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+}
+
+.login-registarHolder .tabset li.last-child a {
+  background: transparent;
+  text-align: right;
+  color: #489ddd;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+}
+
+.login-registarHolder .tabset li.last-child a:after {
+  display: none !important;
+}
+
+.login-registarHolder .tabset li.last-child a:hover {
+  background: transparent;
+  border: 0;
+  color: #489ddd;
+  text-decoration: underline;
+}
+
+.login-registarHolder .tabset li.last-child a:hover:after {
+  display: none !important;
 }
 
 .login-registarHolder .tabset li.active a {
@@ -1055,7 +1438,7 @@ a {
   background: #dde2e8;
   border-bottom: 5px solid transparent;
   color: #363636;
-  padding: 10px;
+  padding: 10px 10px 7px;
   transition: all 0.4s ease;
   position: relative;
 }
@@ -1101,34 +1484,38 @@ a {
 }
 
 .login-registarHolder .tab-content {
-  overflow: hidden;
   padding: 25px 0 0;
 }
 
-.login-registarHolder .registration-form,
-.login-registarHolder .login-form {
-  background: rgba(46, 46, 46, 0.03);
+.forgot-form,
+.registration-form,
+.login-form {
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   padding: 25px;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form,
-  .login-registarHolder .login-form {
-    padding: 0;
+  .forgot-form,
+  .registration-form,
+  .login-form {
+    padding: 5px;
   }
 }
 
-.login-registarHolder .registration-form .input-holder,
-.login-registarHolder .login-form .input-holder {
+.forgot-form .input-holder,
+.registration-form .input-holder,
+.login-form .input-holder {
   overflow: hidden;
   padding: 5px;
   position: relative;
   margin: 0 0 20px;
 }
 
-.login-registarHolder .registration-form .input-holder.full-width,
-.login-registarHolder .login-form .input-holder.full-width {
+.forgot-form .input-holder.full-width,
+.registration-form .input-holder.full-width,
+.login-form .input-holder.full-width {
   float: none;
   display: block;
   width: 100%;
@@ -1137,8 +1524,9 @@ a {
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder.onTop-mobile,
-  .login-registarHolder .login-form .input-holder.onTop-mobile {
+  .forgot-form .input-holder.onTop-mobile,
+  .registration-form .input-holder.onTop-mobile,
+  .login-form .input-holder.onTop-mobile {
     position: absolute;
     top: 50px;
     left: 0;
@@ -1146,13 +1534,27 @@ a {
   }
 }
 
-.login-registarHolder .registration-form .input-holder.error,
-.login-registarHolder .login-form .input-holder.error {
+.forgot-form .input-holder.onTop-mobile .error-text,
+.registration-form .input-holder.onTop-mobile .error-text,
+.login-form .input-holder.onTop-mobile .error-text {
+  text-align: center;
+}
+
+.forgot-form .input-holder .error-text,
+.registration-form .input-holder .error-text,
+.login-form .input-holder .error-text {
+  display: none;
+}
+
+.forgot-form .input-holder.error,
+.registration-form .input-holder.error,
+.login-form .input-holder.error {
   color: #e14646 !important;
 }
 
-.login-registarHolder .registration-form .input-holder.error .error-text,
-.login-registarHolder .login-form .input-holder.error .error-text {
+.forgot-form .input-holder.error .error-text,
+.registration-form .input-holder.error .error-text,
+.login-form .input-holder.error .error-text {
   display: block;
   font-size: 13px;
   line-height: 16px;
@@ -1162,56 +1564,73 @@ a {
   color: #e14646 !important;
 }
 
-.login-registarHolder .registration-form .input-holder.error textarea,
-.login-registarHolder .registration-form .input-holder.error input[type="text"], .login-registarHolder .registration-form .input-holder.error input[type="tel"], .login-registarHolder .registration-form .input-holder.error input[type="email"], .login-registarHolder .registration-form .input-holder.error input[type="password"],
-.login-registarHolder .login-form .input-holder.error textarea,
-.login-registarHolder .login-form .input-holder.error input[type="text"],
-.login-registarHolder .login-form .input-holder.error input[type="tel"],
-.login-registarHolder .login-form .input-holder.error input[type="email"],
-.login-registarHolder .login-form .input-holder.error input[type="password"] {
+.forgot-form .input-holder.error textarea,
+.forgot-form .input-holder.error input[type="text"], .forgot-form .input-holder.error input[type="tel"], .forgot-form .input-holder.error input[type="email"], .forgot-form .input-holder.error input[type="password"],
+.registration-form .input-holder.error textarea,
+.registration-form .input-holder.error input[type="text"],
+.registration-form .input-holder.error input[type="tel"],
+.registration-form .input-holder.error input[type="email"],
+.registration-form .input-holder.error input[type="password"],
+.login-form .input-holder.error textarea,
+.login-form .input-holder.error input[type="text"],
+.login-form .input-holder.error input[type="tel"],
+.login-form .input-holder.error input[type="email"],
+.login-form .input-holder.error input[type="password"] {
   color: #e14646;
 }
 
-.login-registarHolder .registration-form .input-holder.error > label[class^="icon-"], .login-registarHolder .registration-form .input-holder.error > label[class*="icon-"],
-.login-registarHolder .login-form .input-holder.error > label[class^="icon-"],
-.login-registarHolder .login-form .input-holder.error > label[class*="icon-"] {
+.forgot-form .input-holder.error > label[class^="icon-"], .forgot-form .input-holder.error > label[class*="icon-"],
+.registration-form .input-holder.error > label[class^="icon-"],
+.registration-form .input-holder.error > label[class*="icon-"],
+.login-form .input-holder.error > label[class^="icon-"],
+.login-form .input-holder.error > label[class*="icon-"] {
   color: #e14646;
 }
 
-.login-registarHolder .registration-form .input-holder.error .border:before,
-.login-registarHolder .login-form .input-holder.error .border:before {
+.forgot-form .input-holder.error .border:before,
+.registration-form .input-holder.error .border:before,
+.login-form .input-holder.error .border:before {
   background: #e14646;
 }
 
-.login-registarHolder .registration-form .input-holder.error .role-opener,
-.login-registarHolder .login-form .input-holder.error .role-opener {
+.forgot-form .input-holder.error .role-opener,
+.registration-form .input-holder.error .role-opener,
+.login-form .input-holder.error .role-opener {
   border-bottom: 1px solid #e14646;
 }
 
-.login-registarHolder .registration-form .input-holder.error .role-opener:before,
-.login-registarHolder .login-form .input-holder.error .role-opener:before {
+.forgot-form .input-holder.error .role-opener:before,
+.registration-form .input-holder.error .role-opener:before,
+.login-form .input-holder.error .role-opener:before {
   color: #e14646;
 }
 
-.login-registarHolder .registration-form .input-holder.error .role-listing,
-.login-registarHolder .login-form .input-holder.error .role-listing {
+.forgot-form .input-holder.error .role-listing,
+.registration-form .input-holder.error .role-listing,
+.login-form .input-holder.error .role-listing {
   color: #606060 !important;
 }
 
-.login-registarHolder .registration-form .input-holder.error .terms-listing li .error-text,
-.login-registarHolder .login-form .input-holder.error .terms-listing li .error-text {
+.forgot-form .input-holder.error .terms-listing li .error-text,
+.registration-form .input-holder.error .terms-listing li .error-text,
+.login-form .input-holder.error .terms-listing li .error-text {
   display: inline-block;
   vertical-align: top;
   padding: 0 5px;
 }
 
-.login-registarHolder .registration-form .input-holder textarea,
-.login-registarHolder .registration-form .input-holder input[type="text"], .login-registarHolder .registration-form .input-holder input[type="tel"], .login-registarHolder .registration-form .input-holder input[type="email"], .login-registarHolder .registration-form .input-holder input[type="password"],
-.login-registarHolder .login-form .input-holder textarea,
-.login-registarHolder .login-form .input-holder input[type="text"],
-.login-registarHolder .login-form .input-holder input[type="tel"],
-.login-registarHolder .login-form .input-holder input[type="email"],
-.login-registarHolder .login-form .input-holder input[type="password"] {
+.forgot-form .input-holder textarea,
+.forgot-form .input-holder input[type="text"], .forgot-form .input-holder input[type="tel"], .forgot-form .input-holder input[type="email"], .forgot-form .input-holder input[type="password"],
+.registration-form .input-holder textarea,
+.registration-form .input-holder input[type="text"],
+.registration-form .input-holder input[type="tel"],
+.registration-form .input-holder input[type="email"],
+.registration-form .input-holder input[type="password"],
+.login-form .input-holder textarea,
+.login-form .input-holder input[type="text"],
+.login-form .input-holder input[type="tel"],
+.login-form .input-holder input[type="email"],
+.login-form .input-holder input[type="password"] {
   border: 0;
   padding: 6px 160px 6px 50px;
   display: block;
@@ -1225,149 +1644,215 @@ a {
   background: transparent;
 }
 
-.login-registarHolder .registration-form .input-holder textarea::-webkit-input-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]::-webkit-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]::-webkit-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]::-webkit-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder textarea::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]::-webkit-input-placeholder {
+.forgot-form .input-holder textarea::-webkit-input-placeholder,
+.forgot-form .input-holder input[type="text"]::-webkit-input-placeholder, .forgot-form .input-holder input[type="tel"]::-webkit-input-placeholder, .forgot-form .input-holder input[type="email"]::-webkit-input-placeholder, .forgot-form .input-holder input[type="password"]::-webkit-input-placeholder,
+.registration-form .input-holder textarea::-webkit-input-placeholder,
+.registration-form .input-holder input[type="text"]::-webkit-input-placeholder,
+.registration-form .input-holder input[type="tel"]::-webkit-input-placeholder,
+.registration-form .input-holder input[type="email"]::-webkit-input-placeholder,
+.registration-form .input-holder input[type="password"]::-webkit-input-placeholder,
+.login-form .input-holder textarea::-webkit-input-placeholder,
+.login-form .input-holder input[type="text"]::-webkit-input-placeholder,
+.login-form .input-holder input[type="tel"]::-webkit-input-placeholder,
+.login-form .input-holder input[type="email"]::-webkit-input-placeholder,
+.login-form .input-holder input[type="password"]::-webkit-input-placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
-.login-registarHolder .registration-form .input-holder textarea::-moz-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]::-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]::-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]::-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]::-moz-placeholder,
-.login-registarHolder .login-form .input-holder textarea::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]::-moz-placeholder {
+.forgot-form .input-holder textarea::-moz-placeholder,
+.forgot-form .input-holder input[type="text"]::-moz-placeholder, .forgot-form .input-holder input[type="tel"]::-moz-placeholder, .forgot-form .input-holder input[type="email"]::-moz-placeholder, .forgot-form .input-holder input[type="password"]::-moz-placeholder,
+.registration-form .input-holder textarea::-moz-placeholder,
+.registration-form .input-holder input[type="text"]::-moz-placeholder,
+.registration-form .input-holder input[type="tel"]::-moz-placeholder,
+.registration-form .input-holder input[type="email"]::-moz-placeholder,
+.registration-form .input-holder input[type="password"]::-moz-placeholder,
+.login-form .input-holder textarea::-moz-placeholder,
+.login-form .input-holder input[type="text"]::-moz-placeholder,
+.login-form .input-holder input[type="tel"]::-moz-placeholder,
+.login-form .input-holder input[type="email"]::-moz-placeholder,
+.login-form .input-holder input[type="password"]::-moz-placeholder {
   opacity: 1;
   color: #616161;
   transition: color 0.5s ease;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:-moz-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:-moz-placeholder,
-.login-registarHolder .login-form .input-holder textarea:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:-moz-placeholder {
+.forgot-form .input-holder textarea:-moz-placeholder,
+.forgot-form .input-holder input[type="text"]:-moz-placeholder, .forgot-form .input-holder input[type="tel"]:-moz-placeholder, .forgot-form .input-holder input[type="email"]:-moz-placeholder, .forgot-form .input-holder input[type="password"]:-moz-placeholder,
+.registration-form .input-holder textarea:-moz-placeholder,
+.registration-form .input-holder input[type="text"]:-moz-placeholder,
+.registration-form .input-holder input[type="tel"]:-moz-placeholder,
+.registration-form .input-holder input[type="email"]:-moz-placeholder,
+.registration-form .input-holder input[type="password"]:-moz-placeholder,
+.login-form .input-holder textarea:-moz-placeholder,
+.login-form .input-holder input[type="text"]:-moz-placeholder,
+.login-form .input-holder input[type="tel"]:-moz-placeholder,
+.login-form .input-holder input[type="email"]:-moz-placeholder,
+.login-form .input-holder input[type="password"]:-moz-placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:-ms-input-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:-ms-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:-ms-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:-ms-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder textarea:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:-ms-input-placeholder {
+.forgot-form .input-holder textarea:-ms-input-placeholder,
+.forgot-form .input-holder input[type="text"]:-ms-input-placeholder, .forgot-form .input-holder input[type="tel"]:-ms-input-placeholder, .forgot-form .input-holder input[type="email"]:-ms-input-placeholder, .forgot-form .input-holder input[type="password"]:-ms-input-placeholder,
+.registration-form .input-holder textarea:-ms-input-placeholder,
+.registration-form .input-holder input[type="text"]:-ms-input-placeholder,
+.registration-form .input-holder input[type="tel"]:-ms-input-placeholder,
+.registration-form .input-holder input[type="email"]:-ms-input-placeholder,
+.registration-form .input-holder input[type="password"]:-ms-input-placeholder,
+.login-form .input-holder textarea:-ms-input-placeholder,
+.login-form .input-holder input[type="text"]:-ms-input-placeholder,
+.login-form .input-holder input[type="tel"]:-ms-input-placeholder,
+.login-form .input-holder input[type="email"]:-ms-input-placeholder,
+.login-form .input-holder input[type="password"]:-ms-input-placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
-.login-registarHolder .registration-form .input-holder textarea.placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"].placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"].placeholder, .login-registarHolder .registration-form .input-holder input[type="email"].placeholder, .login-registarHolder .registration-form .input-holder input[type="password"].placeholder,
-.login-registarHolder .login-form .input-holder textarea.placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"].placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"].placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"].placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"].placeholder {
+.forgot-form .input-holder textarea.placeholder,
+.forgot-form .input-holder input[type="text"].placeholder, .forgot-form .input-holder input[type="tel"].placeholder, .forgot-form .input-holder input[type="email"].placeholder, .forgot-form .input-holder input[type="password"].placeholder,
+.registration-form .input-holder textarea.placeholder,
+.registration-form .input-holder input[type="text"].placeholder,
+.registration-form .input-holder input[type="tel"].placeholder,
+.registration-form .input-holder input[type="email"].placeholder,
+.registration-form .input-holder input[type="password"].placeholder,
+.login-form .input-holder textarea.placeholder,
+.login-form .input-holder input[type="text"].placeholder,
+.login-form .input-holder input[type="tel"].placeholder,
+.login-form .input-holder input[type="email"].placeholder,
+.login-form .input-holder input[type="password"].placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder textarea,
-  .login-registarHolder .registration-form .input-holder input[type="text"], .login-registarHolder .registration-form .input-holder input[type="tel"], .login-registarHolder .registration-form .input-holder input[type="email"], .login-registarHolder .registration-form .input-holder input[type="password"],
-  .login-registarHolder .login-form .input-holder textarea,
-  .login-registarHolder .login-form .input-holder input[type="text"],
-  .login-registarHolder .login-form .input-holder input[type="tel"],
-  .login-registarHolder .login-form .input-holder input[type="email"],
-  .login-registarHolder .login-form .input-holder input[type="password"] {
+  .forgot-form .input-holder textarea,
+  .forgot-form .input-holder input[type="text"], .forgot-form .input-holder input[type="tel"], .forgot-form .input-holder input[type="email"], .forgot-form .input-holder input[type="password"],
+  .registration-form .input-holder textarea,
+  .registration-form .input-holder input[type="text"],
+  .registration-form .input-holder input[type="tel"],
+  .registration-form .input-holder input[type="email"],
+  .registration-form .input-holder input[type="password"],
+  .login-form .input-holder textarea,
+  .login-form .input-holder input[type="text"],
+  .login-form .input-holder input[type="tel"],
+  .login-form .input-holder input[type="email"],
+  .login-form .input-holder input[type="password"] {
     padding: 6px 105px 6px 25px;
     font-size: 13px;
     line-height: 16px;
   }
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus, .login-registarHolder .registration-form .input-holder input[type="email"]:focus, .login-registarHolder .registration-form .input-holder input[type="password"]:focus,
-.login-registarHolder .login-form .input-holder textarea:focus,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus {
+.forgot-form .input-holder textarea:focus,
+.forgot-form .input-holder input[type="text"]:focus, .forgot-form .input-holder input[type="tel"]:focus, .forgot-form .input-holder input[type="email"]:focus, .forgot-form .input-holder input[type="password"]:focus,
+.registration-form .input-holder textarea:focus,
+.registration-form .input-holder input[type="text"]:focus,
+.registration-form .input-holder input[type="tel"]:focus,
+.registration-form .input-holder input[type="email"]:focus,
+.registration-form .input-holder input[type="password"]:focus,
+.login-form .input-holder textarea:focus,
+.login-form .input-holder input[type="text"]:focus,
+.login-form .input-holder input[type="tel"]:focus,
+.login-form .input-holder input[type="email"]:focus,
+.login-form .input-holder input[type="password"]:focus {
   color: black;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus::-webkit-input-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus::-webkit-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:focus::-webkit-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:focus::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder textarea:focus::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus::-webkit-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus::-webkit-input-placeholder {
+.forgot-form .input-holder textarea:focus::-webkit-input-placeholder,
+.forgot-form .input-holder input[type="text"]:focus::-webkit-input-placeholder, .forgot-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder, .forgot-form .input-holder input[type="email"]:focus::-webkit-input-placeholder, .forgot-form .input-holder input[type="password"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder textarea:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="text"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="email"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="password"]:focus::-webkit-input-placeholder,
+.login-form .input-holder textarea:focus::-webkit-input-placeholder,
+.login-form .input-holder input[type="text"]:focus::-webkit-input-placeholder,
+.login-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder,
+.login-form .input-holder input[type="email"]:focus::-webkit-input-placeholder,
+.login-form .input-holder input[type="password"]:focus::-webkit-input-placeholder {
   color: black;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus::-moz-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus::-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus::-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:focus::-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:focus::-moz-placeholder,
-.login-registarHolder .login-form .input-holder textarea:focus::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus::-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus::-moz-placeholder {
+.forgot-form .input-holder textarea:focus::-moz-placeholder,
+.forgot-form .input-holder input[type="text"]:focus::-moz-placeholder, .forgot-form .input-holder input[type="tel"]:focus::-moz-placeholder, .forgot-form .input-holder input[type="email"]:focus::-moz-placeholder, .forgot-form .input-holder input[type="password"]:focus::-moz-placeholder,
+.registration-form .input-holder textarea:focus::-moz-placeholder,
+.registration-form .input-holder input[type="text"]:focus::-moz-placeholder,
+.registration-form .input-holder input[type="tel"]:focus::-moz-placeholder,
+.registration-form .input-holder input[type="email"]:focus::-moz-placeholder,
+.registration-form .input-holder input[type="password"]:focus::-moz-placeholder,
+.login-form .input-holder textarea:focus::-moz-placeholder,
+.login-form .input-holder input[type="text"]:focus::-moz-placeholder,
+.login-form .input-holder input[type="tel"]:focus::-moz-placeholder,
+.login-form .input-holder input[type="email"]:focus::-moz-placeholder,
+.login-form .input-holder input[type="password"]:focus::-moz-placeholder {
   opacity: 1;
   color: black;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus:-moz-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus:-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus:-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:focus:-moz-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:focus:-moz-placeholder,
-.login-registarHolder .login-form .input-holder textarea:focus:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus:-moz-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus:-moz-placeholder {
+.forgot-form .input-holder textarea:focus:-moz-placeholder,
+.forgot-form .input-holder input[type="text"]:focus:-moz-placeholder, .forgot-form .input-holder input[type="tel"]:focus:-moz-placeholder, .forgot-form .input-holder input[type="email"]:focus:-moz-placeholder, .forgot-form .input-holder input[type="password"]:focus:-moz-placeholder,
+.registration-form .input-holder textarea:focus:-moz-placeholder,
+.registration-form .input-holder input[type="text"]:focus:-moz-placeholder,
+.registration-form .input-holder input[type="tel"]:focus:-moz-placeholder,
+.registration-form .input-holder input[type="email"]:focus:-moz-placeholder,
+.registration-form .input-holder input[type="password"]:focus:-moz-placeholder,
+.login-form .input-holder textarea:focus:-moz-placeholder,
+.login-form .input-holder input[type="text"]:focus:-moz-placeholder,
+.login-form .input-holder input[type="tel"]:focus:-moz-placeholder,
+.login-form .input-holder input[type="email"]:focus:-moz-placeholder,
+.login-form .input-holder input[type="password"]:focus:-moz-placeholder {
   color: black;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus:-ms-input-placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus:-ms-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus:-ms-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:focus:-ms-input-placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:focus:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder textarea:focus:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus:-ms-input-placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus:-ms-input-placeholder {
+.forgot-form .input-holder textarea:focus:-ms-input-placeholder,
+.forgot-form .input-holder input[type="text"]:focus:-ms-input-placeholder, .forgot-form .input-holder input[type="tel"]:focus:-ms-input-placeholder, .forgot-form .input-holder input[type="email"]:focus:-ms-input-placeholder, .forgot-form .input-holder input[type="password"]:focus:-ms-input-placeholder,
+.registration-form .input-holder textarea:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="text"]:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="tel"]:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="email"]:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="password"]:focus:-ms-input-placeholder,
+.login-form .input-holder textarea:focus:-ms-input-placeholder,
+.login-form .input-holder input[type="text"]:focus:-ms-input-placeholder,
+.login-form .input-holder input[type="tel"]:focus:-ms-input-placeholder,
+.login-form .input-holder input[type="email"]:focus:-ms-input-placeholder,
+.login-form .input-holder input[type="password"]:focus:-ms-input-placeholder {
   color: black;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus.placeholder,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus.placeholder, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus.placeholder, .login-registarHolder .registration-form .input-holder input[type="email"]:focus.placeholder, .login-registarHolder .registration-form .input-holder input[type="password"]:focus.placeholder,
-.login-registarHolder .login-form .input-holder textarea:focus.placeholder,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus.placeholder,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus.placeholder,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus.placeholder,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus.placeholder {
+.forgot-form .input-holder textarea:focus.placeholder,
+.forgot-form .input-holder input[type="text"]:focus.placeholder, .forgot-form .input-holder input[type="tel"]:focus.placeholder, .forgot-form .input-holder input[type="email"]:focus.placeholder, .forgot-form .input-holder input[type="password"]:focus.placeholder,
+.registration-form .input-holder textarea:focus.placeholder,
+.registration-form .input-holder input[type="text"]:focus.placeholder,
+.registration-form .input-holder input[type="tel"]:focus.placeholder,
+.registration-form .input-holder input[type="email"]:focus.placeholder,
+.registration-form .input-holder input[type="password"]:focus.placeholder,
+.login-form .input-holder textarea:focus.placeholder,
+.login-form .input-holder input[type="text"]:focus.placeholder,
+.login-form .input-holder input[type="tel"]:focus.placeholder,
+.login-form .input-holder input[type="email"]:focus.placeholder,
+.login-form .input-holder input[type="password"]:focus.placeholder {
   color: black;
 }
 
-.login-registarHolder .registration-form .input-holder textarea:focus ~ .border:after,
-.login-registarHolder .registration-form .input-holder input[type="text"]:focus ~ .border:after, .login-registarHolder .registration-form .input-holder input[type="tel"]:focus ~ .border:after, .login-registarHolder .registration-form .input-holder input[type="email"]:focus ~ .border:after, .login-registarHolder .registration-form .input-holder input[type="password"]:focus ~ .border:after,
-.login-registarHolder .login-form .input-holder textarea:focus ~ .border:after,
-.login-registarHolder .login-form .input-holder input[type="text"]:focus ~ .border:after,
-.login-registarHolder .login-form .input-holder input[type="tel"]:focus ~ .border:after,
-.login-registarHolder .login-form .input-holder input[type="email"]:focus ~ .border:after,
-.login-registarHolder .login-form .input-holder input[type="password"]:focus ~ .border:after {
+.forgot-form .input-holder textarea:focus ~ .border:after,
+.forgot-form .input-holder input[type="text"]:focus ~ .border:after, .forgot-form .input-holder input[type="tel"]:focus ~ .border:after, .forgot-form .input-holder input[type="email"]:focus ~ .border:after, .forgot-form .input-holder input[type="password"]:focus ~ .border:after,
+.registration-form .input-holder textarea:focus ~ .border:after,
+.registration-form .input-holder input[type="text"]:focus ~ .border:after,
+.registration-form .input-holder input[type="tel"]:focus ~ .border:after,
+.registration-form .input-holder input[type="email"]:focus ~ .border:after,
+.registration-form .input-holder input[type="password"]:focus ~ .border:after,
+.login-form .input-holder textarea:focus ~ .border:after,
+.login-form .input-holder input[type="text"]:focus ~ .border:after,
+.login-form .input-holder input[type="tel"]:focus ~ .border:after,
+.login-form .input-holder input[type="email"]:focus ~ .border:after,
+.login-form .input-holder input[type="password"]:focus ~ .border:after {
   right: 0;
 }
 
-.login-registarHolder .registration-form .input-holder textarea,
-.login-registarHolder .login-form .input-holder textarea {
+.forgot-form .input-holder textarea,
+.registration-form .input-holder textarea,
+.login-form .input-holder textarea {
   resize: none;
   padding: 9px 5px 6px 50px;
   overflow: auto;
@@ -1375,16 +1860,19 @@ a {
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder textarea,
-  .login-registarHolder .login-form .input-holder textarea {
+  .forgot-form .input-holder textarea,
+  .registration-form .input-holder textarea,
+  .login-form .input-holder textarea {
     height: 80px;
     padding: 9px 5px 6px 25px;
   }
 }
 
-.login-registarHolder .registration-form .input-holder > label[class^="icon-"], .login-registarHolder .registration-form .input-holder > label[class*="icon-"],
-.login-registarHolder .login-form .input-holder > label[class^="icon-"],
-.login-registarHolder .login-form .input-holder > label[class*="icon-"] {
+.forgot-form .input-holder > label[class^="icon-"], .forgot-form .input-holder > label[class*="icon-"],
+.registration-form .input-holder > label[class^="icon-"],
+.registration-form .input-holder > label[class*="icon-"],
+.login-form .input-holder > label[class^="icon-"],
+.login-form .input-holder > label[class*="icon-"] {
   position: absolute;
   top: 0;
   left: 0;
@@ -1400,23 +1888,27 @@ a {
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder > label[class^="icon-"], .login-registarHolder .registration-form .input-holder > label[class*="icon-"],
-  .login-registarHolder .login-form .input-holder > label[class^="icon-"],
-  .login-registarHolder .login-form .input-holder > label[class*="icon-"] {
+  .forgot-form .input-holder > label[class^="icon-"], .forgot-form .input-holder > label[class*="icon-"],
+  .registration-form .input-holder > label[class^="icon-"],
+  .registration-form .input-holder > label[class*="icon-"],
+  .login-form .input-holder > label[class^="icon-"],
+  .login-form .input-holder > label[class*="icon-"] {
     font-size: 14px;
     line-height: 50px;
     width: 30px;
   }
 }
 
-.login-registarHolder .registration-form .input-holder .border,
-.login-registarHolder .login-form .input-holder .border {
+.forgot-form .input-holder .border,
+.registration-form .input-holder .border,
+.login-form .input-holder .border {
   display: block;
   position: relative;
 }
 
-.login-registarHolder .registration-form .input-holder .border:before,
-.login-registarHolder .login-form .input-holder .border:before {
+.forgot-form .input-holder .border:before,
+.registration-form .input-holder .border:before,
+.login-form .input-holder .border:before {
   position: absolute;
   left: 0;
   right: 0;
@@ -1426,8 +1918,9 @@ a {
   background: rgba(46, 46, 46, 0.4);
 }
 
-.login-registarHolder .registration-form .input-holder .border:after,
-.login-registarHolder .login-form .input-holder .border:after {
+.forgot-form .input-holder .border:after,
+.registration-form .input-holder .border:after,
+.login-form .input-holder .border:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -1440,8 +1933,9 @@ a {
   transition: right 0.2s ease;
 }
 
-.login-registarHolder .registration-form .input-holder .forgot-pass,
-.login-registarHolder .login-form .input-holder .forgot-pass {
+.forgot-form .input-holder .forgot-pass,
+.registration-form .input-holder .forgot-pass,
+.login-form .input-holder .forgot-pass {
   position: absolute;
   top: 50%;
   right: 0;
@@ -1453,31 +1947,36 @@ a {
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder .forgot-pass,
-  .login-registarHolder .login-form .input-holder .forgot-pass {
+  .forgot-form .input-holder .forgot-pass,
+  .registration-form .input-holder .forgot-pass,
+  .login-form .input-holder .forgot-pass {
     font-size: 11px;
     line-height: 15px;
     margin: -8px 5px 0 0;
   }
 }
 
-.login-registarHolder .registration-form .input-holder .forgot-pass:hover,
-.login-registarHolder .login-form .input-holder .forgot-pass:hover {
+.forgot-form .input-holder .forgot-pass:hover,
+.registration-form .input-holder .forgot-pass:hover,
+.login-form .input-holder .forgot-pass:hover {
   color: #e14646;
 }
 
-.login-registarHolder .registration-form .input-holder .forgot-pass [class^="icon-"], .login-registarHolder .registration-form .input-holder .forgot-pass [class*="icon-"],
-.login-registarHolder .login-form .input-holder .forgot-pass [class^="icon-"],
-.login-registarHolder .login-form .input-holder .forgot-pass [class*="icon-"] {
+.forgot-form .input-holder .forgot-pass [class^="icon-"], .forgot-form .input-holder .forgot-pass [class*="icon-"],
+.registration-form .input-holder .forgot-pass [class^="icon-"],
+.registration-form .input-holder .forgot-pass [class*="icon-"],
+.login-form .input-holder .forgot-pass [class^="icon-"],
+.login-form .input-holder .forgot-pass [class*="icon-"] {
   display: inline-block;
   vertical-align: middle;
   margin: -2px 0 0;
 }
 
-.login-registarHolder .registration-form button[type="submit"],
-.login-registarHolder .login-form button[type="submit"] {
+.forgot-form button[type="submit"],
+.registration-form button[type="submit"],
+.login-form button[type="submit"] {
   border: 0;
-  background: #58a36f;
+  background: #489ddd;
   text-align: center;
   color: #fff;
   font-weight: 600;
@@ -1487,21 +1986,25 @@ a {
   border-radius: 2px;
   font-size: 20px;
   line-height: 24px;
+  outline: none;
   transition: background 0.4s ease;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form button[type="submit"],
-  .login-registarHolder .login-form button[type="submit"] {
+  .forgot-form button[type="submit"],
+  .registration-form button[type="submit"],
+  .login-form button[type="submit"] {
     font-size: 16px;
     line-height: 19px;
     padding: 8px;
   }
 }
 
-.login-registarHolder .registration-form button[type="submit"] [class^="icon-"], .login-registarHolder .registration-form button[type="submit"] [class*="icon-"],
-.login-registarHolder .login-form button[type="submit"] [class^="icon-"],
-.login-registarHolder .login-form button[type="submit"] [class*="icon-"] {
+.forgot-form button[type="submit"] [class^="icon-"], .forgot-form button[type="submit"] [class*="icon-"],
+.registration-form button[type="submit"] [class^="icon-"],
+.registration-form button[type="submit"] [class*="icon-"],
+.login-form button[type="submit"] [class^="icon-"],
+.login-form button[type="submit"] [class*="icon-"] {
   display: inline-block;
   vertical-align: middle;
   margin: -2px 0 0;
@@ -1510,27 +2013,42 @@ a {
   transition: right 0.4s ease;
 }
 
-.login-registarHolder .registration-form button[type="submit"]:hover,
-.login-registarHolder .login-form button[type="submit"]:hover {
-  background: #4f9264;
+.forgot-form button[type="submit"]:hover,
+.registration-form button[type="submit"]:hover,
+.login-form button[type="submit"]:hover {
+  background: #3291d9;
 }
 
-.login-registarHolder .registration-form button[type="submit"]:hover [class^="icon-"], .login-registarHolder .registration-form button[type="submit"]:hover [class*="icon-"],
-.login-registarHolder .login-form button[type="submit"]:hover [class^="icon-"],
-.login-registarHolder .login-form button[type="submit"]:hover [class*="icon-"] {
+.forgot-form button[type="submit"]:hover [class^="icon-"], .forgot-form button[type="submit"]:hover [class*="icon-"],
+.registration-form button[type="submit"]:hover [class^="icon-"],
+.registration-form button[type="submit"]:hover [class*="icon-"],
+.login-form button[type="submit"]:hover [class^="icon-"],
+.login-form button[type="submit"]:hover [class*="icon-"] {
   right: -10px;
 }
 
-.login-registarHolder .registration-form .agent-check,
-.login-registarHolder .login-form .agent-check {
+.forgot-form .agent-check,
+.registration-form .agent-check,
+.login-form .agent-check {
   float: left;
   margin: 25px 50px 0;
   position: relative;
   z-index: 60;
 }
 
-.login-registarHolder .registration-form .agent-check:after,
-.login-registarHolder .login-form .agent-check:after {
+@media (max-width: 767px) {
+  .forgot-form .agent-check,
+  .registration-form .agent-check,
+  .login-form .agent-check {
+    margin: 25px 20px 0;
+    font-size: 13px;
+    line-height: 15px;
+  }
+}
+
+.forgot-form .agent-check:after,
+.registration-form .agent-check:after,
+.login-form .agent-check:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -1540,8 +2058,9 @@ a {
   content: '';
 }
 
-.login-registarHolder .registration-form .agent-check .hidden-checkfield,
-.login-registarHolder .login-form .agent-check .hidden-checkfield {
+.forgot-form .agent-check .hidden-checkfield,
+.registration-form .agent-check .hidden-checkfield,
+.login-form .agent-check .hidden-checkfield {
   visibility: visible;
   top: 0;
   left: 0;
@@ -1549,26 +2068,30 @@ a {
   position: fixed;
 }
 
-.login-registarHolder .registration-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox,
-.login-registarHolder .login-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox {
+.forgot-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox,
+.registration-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox,
+.login-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox {
   background: #00e359;
   box-shadow: none;
 }
 
-.login-registarHolder .registration-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button,
-.login-registarHolder .login-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button {
+.forgot-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button,
+.registration-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button,
+.login-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button {
   left: 48%;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 1px #00a23f;
 }
 
-.login-registarHolder .registration-form .agent-check .hidden-checkfield:checked ~ .fake-label,
-.login-registarHolder .login-form .agent-check .hidden-checkfield:checked ~ .fake-label {
+.forgot-form .agent-check .hidden-checkfield:checked ~ .fake-label,
+.registration-form .agent-check .hidden-checkfield:checked ~ .fake-label,
+.login-form .agent-check .hidden-checkfield:checked ~ .fake-label {
   color: #000;
 }
 
-.login-registarHolder .registration-form .agent-check .fake-checkbox,
-.login-registarHolder .login-form .agent-check .fake-checkbox {
+.forgot-form .agent-check .fake-checkbox,
+.registration-form .agent-check .fake-checkbox,
+.login-form .agent-check .fake-checkbox {
   width: 40px;
   height: 20px;
   border-radius: 20px;
@@ -1580,8 +2103,9 @@ a {
   z-index: -1;
 }
 
-.login-registarHolder .registration-form .agent-check .fake-checkbox .fake-button,
-.login-registarHolder .login-form .agent-check .fake-checkbox .fake-button {
+.forgot-form .agent-check .fake-checkbox .fake-button,
+.registration-form .agent-check .fake-checkbox .fake-button,
+.login-form .agent-check .fake-checkbox .fake-button {
   position: absolute;
   top: 0;
   left: 0;
@@ -1595,8 +2119,9 @@ a {
   cursor: pointer;
 }
 
-.login-registarHolder .registration-form .agent-check .fake-label,
-.login-registarHolder .login-form .agent-check .fake-label {
+.forgot-form .agent-check .fake-label,
+.registration-form .agent-check .fake-label,
+.login-form .agent-check .fake-label {
   float: left;
   cursor: pointer;
   max-width: 200px;
@@ -1606,8 +2131,9 @@ a {
   color: #363636;
 }
 
-.login-registarHolder .registration-form h1,
-.login-registarHolder .login-form h1 {
+.forgot-form h1,
+.registration-form h1,
+.login-form h1 {
   display: block;
   margin: 10px 0;
   clear: both;
@@ -1620,8 +2146,9 @@ a {
   font-weight: 600;
 }
 
-.login-registarHolder .registration-form .terms-listing,
-.login-registarHolder .login-form .terms-listing {
+.forgot-form .terms-listing,
+.registration-form .terms-listing,
+.login-form .terms-listing {
   font-size: 13px;
   line-height: 16px;
   color: #363636;
@@ -1629,48 +2156,56 @@ a {
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .terms-listing,
-  .login-registarHolder .login-form .terms-listing {
+  .forgot-form .terms-listing,
+  .registration-form .terms-listing,
+  .login-form .terms-listing {
     font-size: 12px;
     line-height: 15px;
   }
 }
 
-.login-registarHolder .registration-form .terms-listing li,
-.login-registarHolder .login-form .terms-listing li {
+.forgot-form .terms-listing li,
+.registration-form .terms-listing li,
+.login-form .terms-listing li {
   display: block;
   padding: 0 0 10px;
   overflow: hidden;
 }
 
-.login-registarHolder .registration-form .terms-listing li a,
-.login-registarHolder .login-form .terms-listing li a {
+.forgot-form .terms-listing li a,
+.registration-form .terms-listing li a,
+.login-form .terms-listing li a {
   color: #363636;
   display: inline-block;
   vertical-align: top;
 }
 
-.login-registarHolder .registration-form .terms-listing li input[type="checkbox"],
-.login-registarHolder .login-form .terms-listing li input[type="checkbox"] {
+.forgot-form .terms-listing li input[type="checkbox"],
+.registration-form .terms-listing li input[type="checkbox"],
+.login-form .terms-listing li input[type="checkbox"] {
   float: left;
   margin: 4px 0 0;
 }
 
-.login-registarHolder .registration-form .terms-listing li label,
-.login-registarHolder .login-form .terms-listing li label {
+.forgot-form .terms-listing li label,
+.registration-form .terms-listing li label,
+.login-form .terms-listing li label {
   float: left;
+  max-width: 650px;
   padding: 0 0 0 10px;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .terms-listing li label,
-  .login-registarHolder .login-form .terms-listing li label {
+  .forgot-form .terms-listing li label,
+  .registration-form .terms-listing li label,
+  .login-form .terms-listing li label {
     width: 240px;
   }
 }
 
-.login-registarHolder .registration-form .company-logo,
-.login-registarHolder .login-form .company-logo {
+.forgot-form .company-logo,
+.registration-form .company-logo,
+.login-form .company-logo {
   width: 70px;
   height: 70px;
   overflow: hidden;
@@ -1681,18 +2216,21 @@ a {
   z-index: 6;
 }
 
-.login-registarHolder .registration-form .company-logo.hover:hover .delete,
-.login-registarHolder .login-form .company-logo.hover:hover .delete {
+.forgot-form .company-logo.hover:hover .delete,
+.registration-form .company-logo.hover:hover .delete,
+.login-form .company-logo.hover:hover .delete {
   display: block;
 }
 
-.login-registarHolder .registration-form .company-logo.hover .name-tag,
-.login-registarHolder .login-form .company-logo.hover .name-tag {
+.forgot-form .company-logo.hover .name-tag,
+.registration-form .company-logo.hover .name-tag,
+.login-form .company-logo.hover .name-tag {
   display: none;
 }
 
-.login-registarHolder .registration-form .company-logo .picture-holder,
-.login-registarHolder .login-form .company-logo .picture-holder {
+.forgot-form .company-logo .picture-holder,
+.registration-form .company-logo .picture-holder,
+.login-form .company-logo .picture-holder {
   position: absolute;
   top: 0;
   left: 0;
@@ -1704,16 +2242,18 @@ a {
   border-radius: 100%;
 }
 
-.login-registarHolder .registration-form .company-logo .picture-holder img,
-.login-registarHolder .login-form .company-logo .picture-holder img {
+.forgot-form .company-logo .picture-holder img,
+.registration-form .company-logo .picture-holder img,
+.login-form .company-logo .picture-holder img {
   width: 100%;
   height: auto;
   display: block;
   height: 100%;
 }
 
-.login-registarHolder .registration-form .company-logo .delete,
-.login-registarHolder .login-form .company-logo .delete {
+.forgot-form .company-logo .delete,
+.registration-form .company-logo .delete,
+.login-form .company-logo .delete {
   position: absolute;
   top: 0;
   left: 0;
@@ -1728,13 +2268,15 @@ a {
   display: none;
 }
 
-.login-registarHolder .registration-form .company-logo .delete span,
-.login-registarHolder .login-form .company-logo .delete span {
+.forgot-form .company-logo .delete span,
+.registration-form .company-logo .delete span,
+.login-form .company-logo .delete span {
   display: block;
 }
 
-.login-registarHolder .registration-form .company-logo .name-tag,
-.login-registarHolder .login-form .company-logo .name-tag {
+.forgot-form .company-logo .name-tag,
+.registration-form .company-logo .name-tag,
+.login-form .company-logo .name-tag {
   position: absolute;
   top: 10px;
   left: 0;
@@ -1746,57 +2288,68 @@ a {
   color: #2e2e2e;
 }
 
-.login-registarHolder .registration-form .company-logo input[type="file"],
-.login-registarHolder .login-form .company-logo input[type="file"] {
+.forgot-form .company-logo input[type="file"],
+.registration-form .company-logo input[type="file"],
+.login-form .company-logo input[type="file"] {
   width: 100%;
   height: 100%;
   opacity: 0;
 }
 
-.login-registarHolder .registration-form {
+.registration-form {
   overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
 }
 
-.login-registarHolder .registration-form.agent-info .agent-information {
+.registration-form > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
+.registration-form.agent-info .agent-information {
   min-height: 545px;
   opacity: 1;
   height: auto;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form.agent-info .agent-information {
-    padding: 125px 0 0;
+  .registration-form.agent-info .agent-information {
+    padding: 185px 0 0;
   }
 }
 
-.login-registarHolder .registration-form .input-holder {
-  float: left;
+.registration-form .input-holder {
   width: 50%;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder {
+  .registration-form .input-holder {
     width: 100%;
     float: none;
     overflow: hidden;
   }
 }
 
-.login-registarHolder .registration-form .input-holder input[type="text"], .login-registarHolder .registration-form .input-holder input[type="tel"], .login-registarHolder .registration-form .input-holder input[type="email"], .login-registarHolder .registration-form .input-holder input[type="password"] {
+.registration-form .input-holder input[type="text"], .registration-form .input-holder input[type="tel"], .registration-form .input-holder input[type="email"], .registration-form .input-holder input[type="password"] {
   padding: 6px 10px 6px 50px;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .input-holder input[type="text"], .login-registarHolder .registration-form .input-holder input[type="tel"], .login-registarHolder .registration-form .input-holder input[type="email"], .login-registarHolder .registration-form .input-holder input[type="password"] {
+  .registration-form .input-holder input[type="text"], .registration-form .input-holder input[type="tel"], .registration-form .input-holder input[type="email"], .registration-form .input-holder input[type="password"] {
     padding: 6px 10px 6px 25px;
   }
 }
 
-.login-registarHolder .registration-form .roles {
+.registration-form .roles {
   overflow: hidden;
 }
 
-.login-registarHolder .registration-form .roles .role-opener {
+.registration-form .roles .role-opener {
   display: block;
   text-transform: capitalize;
   cursor: pointer;
@@ -1806,7 +2359,14 @@ a {
   border-bottom: 1px solid rgba(96, 96, 96, 0.5);
 }
 
-.login-registarHolder .registration-form .roles .role-opener:before {
+@media (max-width: 767px) {
+  .registration-form .roles .role-opener {
+    font-size: 13px;
+    line-height: 15px;
+  }
+}
+
+.registration-form .roles .role-opener:before {
   font-family: 'icomoon';
   content: "\e973";
   position: absolute;
@@ -1816,7 +2376,7 @@ a {
   line-height: 1;
 }
 
-.login-registarHolder .registration-form .roles .role-opener:after {
+.registration-form .roles .role-opener:after {
   position: absolute;
   left: 0;
   right: 100%;
@@ -1828,18 +2388,18 @@ a {
   transition: right 0.2s ease;
 }
 
-.login-registarHolder .registration-form .roles .role-opener.active:after {
+.registration-form .roles .role-opener.active:after {
   right: 0;
 }
 
-.login-registarHolder .registration-form .roles .role-listing {
+.registration-form .roles .role-listing {
   padding: 10px 0 0;
   font-size: 0;
   line-height: 0;
   letter-spacing: -4px;
 }
 
-.login-registarHolder .registration-form .roles .role-listing > * {
+.registration-form .roles .role-listing > * {
   display: inline-block;
   vertical-align: top;
   font-size: 16px;
@@ -1847,26 +2407,41 @@ a {
   letter-spacing: 0;
 }
 
-.login-registarHolder .registration-form .roles .role-listing li {
+@media (max-width: 767px) {
+  .registration-form .roles .role-listing {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .registration-form .roles .role-listing > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.registration-form .roles .role-listing li {
   width: 33.33%;
   overflow: hidden;
   padding: 5px;
 }
 
 @media (max-width: 767px) {
-  .login-registarHolder .registration-form .roles .role-listing li {
+  .registration-form .roles .role-listing li {
     width: 100%;
   }
 }
 
-.login-registarHolder .registration-form .roles .role-listing li label,
-.login-registarHolder .registration-form .roles .role-listing li input[type="checkbox"] {
+.registration-form .roles .role-listing li label,
+.registration-form .roles .role-listing li input[type="checkbox"] {
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
 }
 
-.login-registarHolder .agent-information {
+.agent-information {
   display: block;
   width: 100%;
   overflow: hidden;
@@ -1875,14 +2450,409 @@ a {
   min-height: 0;
   opacity: 0;
   height: 0;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
   transition: min-height 0.5s cubic-bezier(0.05, 1.6, 0.1, 1), opacity 0.5s ease;
 }
 
+.agent-information > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
 @media (max-width: 767px) {
-  .login-registarHolder .agent-information h1 {
+  .agent-information h1 {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
   }
+}
+
+.forgot-passwordHolder {
+  min-height: 83vh;
+  white-space: nowrap;
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.forgot-passwordHolder:after {
+  height: 83vh;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  width: 1px;
+  margin: 0 0 0 -5px;
+  content: '';
+}
+
+.forgot-passwordHolder .input-holder.error label {
+  bottom: 0 !important;
+  line-height: 1 !important;
+  top: 50% !important;
+  margin: 0;
+}
+
+.forgot-passwordHolder .forgot-password {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  text-align: left;
+  width: 100%;
+}
+
+.forgot-passwordHolder .forgot-password .btn-log {
+  display: inline-block;
+  vertical-align: top;
+  margin: 30px 0 0;
+}
+
+@media (max-width: 767px) {
+  .forgot-passwordHolder .forgot-password .btn-log {
+    font-size: 13px;
+    line-height: 16px;
+    margin: 5px;
+  }
+}
+
+.forgot-passwordHolder .forgot-password label {
+  bottom: 0 !important;
+  line-height: 1 !important;
+  top: 50% !important;
+  margin: -10px 0 0;
+}
+
+.forgot-passwordHolder .forgot-password .forgot-heading {
+  display: block;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 0 10px;
+  color: #363636;
+}
+
+#footer {
+  overflow: hidden;
+  position: relative;
+  background: #133783;
+  border-top: 5px solid #489ddd;
+  color: #fff;
+  width: 100%;
+  height: 1%;
+  display: table-footer-group;
+}
+
+#footer .cols-holder {
+  overflow: hidden;
+  padding: 25px 0;
+}
+
+#footer .cols-holder .col {
+  width: 25%;
+  float: left;
+}
+
+@media (max-width: 767px) {
+  #footer .cols-holder .col {
+    width: 100%;
+    float: none;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 1023px) {
+  #footer .cols-holder .col {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+#footer .cols-holder .col ul {
+  font-size: 16px;
+  line-height: 18px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 1023px) {
+  #footer .cols-holder .col ul {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+#footer .cols-holder .col ul li {
+  margin: 0 0 10px;
+}
+
+#footer .cols-holder .col ul li a {
+  display: inline-block;
+  vertical-align: top;
+  color: #fff;
+  text-decoration: none;
+}
+
+#footer .cols-holder .col ul li a:hover {
+  opacity: 0.8;
+}
+
+#footer .cols-holder .col .contact {
+  width: 100%;
+  padding: 0 3px;
+  text-align: left;
+}
+
+#footer .cols-holder .col .contact .input-holder {
+  display: block;
+  width: 100%;
+  margin: 0 0 20px;
+}
+
+#footer .cols-holder .col .contact textarea,
+#footer .cols-holder .col .contact input[type="text"], #footer .cols-holder .col .contact input[type="email"] {
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #779ceb;
+  border-radius: 2px;
+  background: transparent;
+  height: 35px;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 6px;
+  outline: none;
+  transition: background 0.4s ease;
+}
+
+#footer .cols-holder .col .contact textarea:focus,
+#footer .cols-holder .col .contact input[type="text"]:focus, #footer .cols-holder .col .contact input[type="email"]:focus {
+  background: #779ceb;
+  color: #fff;
+}
+
+#footer .cols-holder .col .contact textarea:focus::-webkit-input-placeholder,
+#footer .cols-holder .col .contact input[type="text"]:focus::-webkit-input-placeholder, #footer .cols-holder .col .contact input[type="email"]:focus::-webkit-input-placeholder {
+  color: #fff;
+}
+
+#footer .cols-holder .col .contact textarea:focus::-moz-placeholder,
+#footer .cols-holder .col .contact input[type="text"]:focus::-moz-placeholder, #footer .cols-holder .col .contact input[type="email"]:focus::-moz-placeholder {
+  opacity: 1;
+  color: #fff;
+}
+
+#footer .cols-holder .col .contact textarea:focus:-moz-placeholder,
+#footer .cols-holder .col .contact input[type="text"]:focus:-moz-placeholder, #footer .cols-holder .col .contact input[type="email"]:focus:-moz-placeholder {
+  color: #fff;
+}
+
+#footer .cols-holder .col .contact textarea:focus:-ms-input-placeholder,
+#footer .cols-holder .col .contact input[type="text"]:focus:-ms-input-placeholder, #footer .cols-holder .col .contact input[type="email"]:focus:-ms-input-placeholder {
+  color: #fff;
+}
+
+#footer .cols-holder .col .contact textarea:focus.placeholder,
+#footer .cols-holder .col .contact input[type="text"]:focus.placeholder, #footer .cols-holder .col .contact input[type="email"]:focus.placeholder {
+  color: #fff;
+}
+
+#footer .cols-holder .col .contact textarea::-webkit-input-placeholder,
+#footer .cols-holder .col .contact input[type="text"]::-webkit-input-placeholder, #footer .cols-holder .col .contact input[type="email"]::-webkit-input-placeholder {
+  color: #779ceb;
+  transition: color 0.4s ease;
+}
+
+#footer .cols-holder .col .contact textarea::-moz-placeholder,
+#footer .cols-holder .col .contact input[type="text"]::-moz-placeholder, #footer .cols-holder .col .contact input[type="email"]::-moz-placeholder {
+  opacity: 1;
+  color: #779ceb;
+  transition: color 0.4s ease;
+}
+
+#footer .cols-holder .col .contact textarea:-moz-placeholder,
+#footer .cols-holder .col .contact input[type="text"]:-moz-placeholder, #footer .cols-holder .col .contact input[type="email"]:-moz-placeholder {
+  color: #779ceb;
+  transition: color 0.4s ease;
+}
+
+#footer .cols-holder .col .contact textarea:-ms-input-placeholder,
+#footer .cols-holder .col .contact input[type="text"]:-ms-input-placeholder, #footer .cols-holder .col .contact input[type="email"]:-ms-input-placeholder {
+  color: #779ceb;
+  transition: color 0.4s ease;
+}
+
+#footer .cols-holder .col .contact textarea.placeholder,
+#footer .cols-holder .col .contact input[type="text"].placeholder, #footer .cols-holder .col .contact input[type="email"].placeholder {
+  color: #779ceb;
+  transition: color 0.4s ease;
+}
+
+#footer .cols-holder .col .contact textarea {
+  height: 100px;
+  resize: none;
+  overflow: auto;
+}
+
+#footer .cols-holder .col .contact input[type="submit"] {
+  display: block;
+  width: 100%;
+  color: #fff;
+  background: #39f;
+  border: 0;
+  padding: 5px;
+  border-radius: 2px;
+  transition: background 0.4s ease;
+}
+
+#footer .cols-holder .col .contact input[type="submit"]:hover {
+  background: #007fff;
+}
+
+#footer .cols-holder .heading {
+  display: block;
+  padding: 0 0 20px;
+}
+
+@media (max-width: 767px) {
+  #footer .cols-holder .heading {
+    padding: 0 0 3px;
+    position: relative;
+    margin: 0 0 10px;
+  }
+  #footer .cols-holder .heading:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100px;
+    margin: 0 0 0 -50px;
+    height: 1px;
+    background: #fff;
+    content: '';
+  }
+}
+
+.social-networks {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  margin: 0 -10px !important;
+}
+
+.social-networks > * {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  .social-networks {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    margin: 0 -5px !important;
+  }
+  .social-networks > * {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+}
+
+.social-networks li {
+  padding: 0 10px;
+}
+
+@media (max-width: 1023px) {
+  .social-networks li {
+    padding: 0 5px;
+  }
+}
+
+.social-networks li a {
+  border-radius: 100%;
+  border: 2px solid #fff;
+  padding: 10px;
+  transition: background 0.4s ease, border 0.4s ease;
+  -webkit-transition: background 0.4s ease, border 0.4s ease;
+  -moz-transition: background 0.4s ease, border 0.4s ease;
+  -ms-transition: background 0.4s ease, border 0.4s ease;
+}
+
+.social-networks li a:hover {
+  opacity: 1 !important;
+}
+
+.social-networks li a:hover.facebook {
+  background: #3B5998;
+  border-color: #3B5998;
+}
+
+.social-networks li a:hover.twitter {
+  background: #00a9f1;
+  border-color: #00a9f1;
+}
+
+.nav-opener {
+  width: 30px;
+  height: 25px;
+  display: block;
+  float: right;
+  position: relative;
+  margin: 8px 0 0;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .nav-opener {
+    display: none;
+  }
+}
+
+.nav-active .nav-opener span {
+  opacity: 0;
+}
+
+.nav-active .nav-opener:before {
+  top: 10px;
+  transform: rotate(45deg);
+}
+
+.nav-active .nav-opener:after {
+  transform: rotate(-45deg);
+  bottom: 13px;
+}
+
+.nav-opener:after, .nav-opener:before, .nav-opener span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  content: '';
+  background: #fff;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+}
+
+.nav-opener:after {
+  top: auto;
+  bottom: 0;
+}
+
+.nav-opener span {
+  top: 50%;
+  margin: -2px 0 0;
 }

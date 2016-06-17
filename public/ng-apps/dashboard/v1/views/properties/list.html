@@ -62,10 +62,13 @@
             </form>
         </div>
         <div class="table-responsive">
+            <ul class="quick-links">
+                <li ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
+            </ul>
             <ul class="properties-table accordion">
                 <li>
                     <div class="t-head by-id">
-                        <input type="checkbox" id="ID" ng-model="checkAllPropertiesChkbx"><button ng-click="deleteProperties()">del</button>
+                        <input type="checkbox" id="ID" ng-model="checkAllPropertiesChkbx">
                         <label><span class="descending">ID</span></label>
                     </div>
                     <div class="t-head by-type"><span class="descending">Type</span></div>
