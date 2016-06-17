@@ -94,7 +94,6 @@ class UsersController extends ApiController
     public function updateUser(UpdateUserRequest $request)
     {
         $user = $request->getUserModel();
-        dd($this->userWasAgent($user->id));
         $this->users->update($user);
         if($this->userWasAgent($user->id))
         {
