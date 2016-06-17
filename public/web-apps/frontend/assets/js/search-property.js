@@ -14,6 +14,7 @@ $(document).on('change', '#society', function(){
       success: function(response) {
          console.log(response);
          $('#blocks').empty();
+         $('#blocks').append($('<option>').text('select a block').attr('value', ''));
          $.each(response.data.blocks, function(i, block) {
             $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
          });
@@ -23,7 +24,7 @@ $(document).on('change', '#society', function(){
 });
 $(document).on('change','.property_type',function(){
    var property_type = $(this).val();
-   if(property_type !=1 && property_type != 0){
+   if(property_type !=1 && property_type != ''){
       $('.bedrooms').addClass('hide-bedrooms');
    }else{
       $('.bedrooms').removeClass('hide-bedrooms');

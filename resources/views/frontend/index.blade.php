@@ -3,6 +3,7 @@
         <div class="main-visual">
             <div class="property-search-holder">
 
+                {{ Form::open(array('url' => 'search','method' => 'GET')) }}
                 <div class="tabs-holder">
                     <ul class="main-links">
                         <li>
@@ -13,17 +14,16 @@
                         </li>
                         <li>
                             <label for="rent1">
-                                <input type="radio" name="purpose_id" id="rent1" value="1">
+                                <input type="radio" name="purpose_id" id="rent1" value="2">
                                 <span class="fake-label">Rent</span>
                             </label>
                         </li>
                     </ul>
                     <div class="tab-content">
-                         {{ Form::open(array('url' => 'search','method' => 'GET')) }}
                                 <ul class="propertyType-buttons">
                                     <li>
                                         <label for="anyPro">
-                                            <input type="radio" id="anyPro" class="property_type" name="property_type_id" checked value="0">
+                                            <input type="radio" id="anyPro" class="property_type" name="property_type_id" checked value="">
                                             <span class="fake-label">All Types</span>
                                         </label>
                                     </li>
@@ -123,9 +123,10 @@
                                 <div class="btn-holder">
                                     <button type="submit">Find Property<span class="icon-search"></span></button>
                                 </div>
-                            {{ Form::close() }}
 
                     </div>
+
+                    {{ Form::close() }}
                 </div>
             </div>
             <a href="#content" class="smooth-scroll down-scroll"><span class="icon-angle-down"></span></a>

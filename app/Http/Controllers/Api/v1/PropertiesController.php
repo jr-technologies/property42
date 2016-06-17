@@ -114,7 +114,7 @@ class PropertiesController extends ApiController
             'property'=>$property
         ]]);
     }
-    
+
     public function multiDelete(DeleteMultiplePropertiesRequest $request)
     {
         $propertyIds = $request->get('propertyIds');
