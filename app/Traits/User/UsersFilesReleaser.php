@@ -33,7 +33,7 @@ trait UsersFilesReleaser
         {
             if($agency->logo != null)
             {
-                if(file_exists(storage_path($agency->logo))){
+                if(file_exists(storage_path('app/'.$agency->logo))){
                     $releasedFile = (new FileRelease($agency->logo))->doNotLog()->release();
                 }else{
                     $releasedFile = (new ReleasedFile());

@@ -44,12 +44,14 @@ app.filter('filterByCountParam', [function () {
 }]);
 
 app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHandler) {
+    $rootScope.domain = domain;
     $rootScope.AUTH_TOKEN = '';
     $rootScope.AUTH_USER = null;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
     $rootScope.propertiesCounts = {};
     $rootScope.authUser = null;
+    $rootScope.testUser = null;
     $rootScope.resources = null;
     $rootScope.resourceLoading = false;
     $rootScope.please_wait_class = '';

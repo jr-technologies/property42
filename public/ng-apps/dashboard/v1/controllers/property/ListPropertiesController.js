@@ -11,6 +11,7 @@ app.filter('roundup', function () {
     };
 });
 app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $window, $scope, $rootScope, $http, $state, $AuthService) {
+    console.log($rootScope.authUser);
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];

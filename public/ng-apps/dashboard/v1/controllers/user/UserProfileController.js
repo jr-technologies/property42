@@ -7,6 +7,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
     $scope.idForAgentBroker = 3;
     $scope.html_title = "Property42 | My Profile";
     $scope.user = user;
+    $scope.companyLogo = $rootScope.domain+'temp/'+user.agencies[0].logo;
     $scope.userIsAgent = false;
     $scope.userWasAgent = false;
 
@@ -45,7 +46,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
             $scope.formSubmitStatus = '';
             $scope.user = response.data.data.user;
             $scope.form.data = mapUsrOnScope($scope.user);
-            $rootScope.authUser = response.data.data.user;
+            $rootScope.authUser = angular.copy(response.data.data.user);
         }, function (response) {
             $rootScope.loading_content_class = '';
             $scope.errors = response.data.error.messages;

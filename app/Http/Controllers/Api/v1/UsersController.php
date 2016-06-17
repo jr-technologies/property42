@@ -106,7 +106,9 @@ class UsersController extends ApiController
         $this->updateUserRoles($request->getUserRoles(), $user->id);
 
         Event::fire(new UserUpdated($user));
-        return $this->response->respond(['data'=>['user'=>$this->usersJsonRepo->find($user->id)]]);
+        return $this->response->respond(['data'=>[
+            'user'=>$this->releaseAllUserFiles($this->usersJsonRepo->find($user->id))
+        ]]);
     }
 
     private function userWasAgent($userId)
