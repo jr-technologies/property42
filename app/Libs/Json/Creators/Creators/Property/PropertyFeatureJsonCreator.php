@@ -29,7 +29,7 @@ class PropertyFeatureJsonCreator extends JsonCreator implements JsonCreatorInter
         $this->prototype->inputName = $model->featureInputName;
         $this->prototype->value = $model->value;
         $this->prototype->priority = $model->priority;
-
+        $this->prototype->htmlStructure = $model->htmlStructure;
         return $this->prototype;
     }
 

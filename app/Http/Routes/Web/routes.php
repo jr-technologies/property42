@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/login',
     [
         'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
@@ -65,9 +66,55 @@ Route::get('users/search',
             [
                 'webValidate:getAgentsRequest'
             ],
-        'uses'=>'UsersController@search'
+        'uses'=>'UsersController@trustedAgents'
     ]
 );
+
+Route::get('agent',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAgentRequest'
+            ],
+        'uses'=>'UsersController@getTrustedAgent'
+    ]
+);
+
+Route::get('agent/mail',
+    [
+    'middleware'=>
+        [
+            'webValidate:agentMailRequest'
+        ],
+    'uses'=>'MailController@mailAgent'
+]);
+
+Route::post('mail-to-agent',
+    [
+        'middleware'=>
+            [
+                'webValidate:mailToAgentRequest'
+            ],
+        'uses'=>'MailController@mailToAgent'
+    ]);
+
+Route::post('contact_us',
+    [
+        'middleware'=>
+            [
+                'webValidate:contactUSMailRequest'
+            ],
+        'uses'=>'MailController@contactUS'
+    ]);
+Route::post('property-to-friend',
+    [
+        'middleware'=>
+            [
+                'webValidate:mailPropertyToFriendRequest'
+            ],
+        'uses'=>'MailController@mailToFriend'
+    ]);
+
 Route::get('/logout', function(){
     if(session()->has('authUser'))
     {

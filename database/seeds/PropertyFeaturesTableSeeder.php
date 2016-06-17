@@ -10,7 +10,11 @@ class PropertyFeaturesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('property_features')->insert([
+        $final =[];
+        $finaResult =[];
+        $inputName=[];
+        $priority=[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        $size = sizeof($features =   [
             [
                 'feature_section_id' => 1,
                 'feature' => 'Built in year',
@@ -19,7 +23,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'possible_values' => '',
 
                 'priority' =>1
-             ],
+            ],
             [
                 'feature_section_id' =>1,
                 'feature' => 'View',
@@ -27,7 +31,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1,
                 'possible_values' =>'',
                 'priority' => 1
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Parking Spaces',
@@ -35,7 +39,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' =>0
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Double Glazed Windows',
@@ -43,7 +47,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' =>1
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Central Air Conditioning',
@@ -51,7 +55,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Central Heating',
@@ -59,7 +63,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority'=>0
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Flooring',
@@ -67,7 +71,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 3,
                 'possible_values' => 'Tiles,Marble,Wooden,Chip,Cement,Other',
                 'priority' => 0
-             ],
+            ],
 
             [
                 'feature_section_id' => 1,
@@ -76,7 +80,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 3,
                 'possible_values' => 'None,Generator,Ups,Solar,Other',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Waste Disposal',
@@ -84,7 +88,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' => 1,
                 'feature' => 'Total Number of Floors',
@@ -92,7 +96,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>1,
                 'feature' => 'Other Main Features',
@@ -100,7 +104,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' =>'',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>1,
                 'feature' => 'Furnished',
@@ -108,7 +112,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>2,
                 'feature' => 'Broadband Internet Access',
@@ -116,7 +120,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6 ,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>2,
                 'feature' => 'Satellite or Cable TV Ready',
@@ -124,7 +128,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>2,
                 'feature' => 'Intercom',
@@ -132,7 +136,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>2,
                 'feature' => 'Other Business and Communication Facilities ',
@@ -140,7 +144,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Nearby Schools',
@@ -148,7 +152,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Nearby Hospitals',
@@ -156,7 +160,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Nearby Shopping Malls',
@@ -164,7 +168,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1 ,
                 'possible_values' => '',
                 'priority' => 1
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Nearby Restaurants',
@@ -172,7 +176,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1 ,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Distance From Airport (kms)',
@@ -180,7 +184,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Nearby Public Transport Service',
@@ -188,7 +192,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1 ,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>3,
                 'feature' => 'Other Nearby Places',
@@ -196,7 +200,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Number of Bedrooms',
@@ -212,7 +216,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Number of Servant Quarters',
@@ -220,7 +224,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Drawing Room',
@@ -228,7 +232,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Dining Room',
@@ -236,7 +240,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Number of Kitchens',
@@ -244,7 +248,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Study Room',
@@ -252,7 +256,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Prayer Room',
@@ -260,7 +264,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Powder Room',
@@ -268,7 +272,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Gym Room',
@@ -276,7 +280,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Number of Store Rooms',
@@ -284,7 +288,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Steaming Room',
@@ -292,7 +296,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6 ,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Lounge or Sitting Room',
@@ -300,7 +304,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6 ,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Laundry Room',
@@ -308,7 +312,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>4,
                 'feature' => 'Other Rooms',
@@ -316,7 +320,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1 ,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>5,
                 'feature' => 'Lawn or Garden',
@@ -324,7 +328,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>5,
                 'feature' => 'Swimming Pool',
@@ -332,7 +336,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>5,
                 'feature' => 'Sauna',
@@ -340,7 +344,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6 ,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>5,
                 'feature' => 'Jacuzzi',
@@ -348,7 +352,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>5,
                 'feature' => 'Other Healthcare and Recreation Facilities',
@@ -356,7 +360,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 1,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>6,
                 'feature' => 'Maintenance Staff',
@@ -364,7 +368,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>6 ,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>6,
                 'feature' => 'Security Staff',
@@ -372,7 +376,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>6,
                 'feature' => 'Facilities for Disabled',
@@ -380,7 +384,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' => 6,
                 'possible_values' => 1,
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>6,
                 'feature' => 'Other Facilities',
@@ -388,7 +392,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'html_structure_id' =>1 ,
                 'possible_values' => '',
                 'priority' => 0
-             ],
+            ],
             [
                 'feature_section_id' =>7,
                 'feature' => 'Corner',
@@ -479,5 +483,22 @@ class PropertyFeaturesTableSeeder extends Seeder
             ],
 
         ]);
+
+        foreach($features as $feature)
+        {
+            $final[] =$feature['feature'];
+            $inputName[] = $feature['input_name'];
+        }
+        for($i=0; $i<=$size; $i++) {
+            $finaResult[] = [
+                'feature_section_id' => rand(1,7),
+                'feature' => $final[rand(0, sizeof($final) - 1)],
+                'input_name' => uniqid(),
+                'html_structure_id' => rand(1,7),
+                'possible_values' => '1,2,3,4,5',
+                'priority' =>$priority[rand(0,sizeof($priority)-1)],
+            ];
+        }
+        DB::table('property_features')->insert($finaResult);
     }
 }

@@ -61,14 +61,14 @@
                         @foreach($response['data']['agents'] as $agent)
                         <article class="post">
                             <div class="post-holder">
-                                <div class="img-holder"><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent1.png" width="300" height="300" alt="image description"></a></div>
+                                <div class="img-holder"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><img src="{{url('/').'/temp/'.$agent->agencies[0]->logo}}" width="300" height="300" alt="image description"></a></div>
                                 <div class="caption">
-                                    <strong class="post-heading"><a href="#">{{$agent->agencies[0]->name}}</a></strong>
+                                    <strong class="post-heading"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></strong>
                                     <p>{{str_limit($agent->agencies[0]->description,150)}}</p>
                                     <div class="holder">
                                         <ul class="quick-links">
-                                            <li><a href="tel:0324123456789"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->mobile}}</span><span class="show-xs">Call Now</span></a></li>
-                                            <li><a href="#"><span class="icon-pencil"></span>View Details</a></li>
+                                            <li><a href="tel:{{$agent->agencies[0]->mobile}}"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->mobile}}</span><span class="show-xs">Call Now</span></a></li>
+                                            <li><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><span class="icon-pencil"></span>View Details</a></li>
                                         </ul>
                                     </div>
                                 </div>

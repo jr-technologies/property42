@@ -20,7 +20,6 @@ class GetUserRequest extends Request implements RequestInterface{
     public $validator;
     public function __construct(){
         parent::__construct(new GetUserTransformer($this->getOriginalRequest()));
-
         $this->validator = new GetUserValidator($this);
     }
 

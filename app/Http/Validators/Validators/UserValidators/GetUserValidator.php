@@ -36,7 +36,7 @@ class GetUserValidator extends UserValidator implements ValidatorsInterface
     public function rules()
     {
         return [
-            //
+           'userId'=>'required'
         ];
     }
 }

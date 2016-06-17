@@ -57,4 +57,20 @@ class UserJsonQueryBuilder extends QueryBuilder{
             $query = $query->where($userRoleTable.'.role_id',$params['userRole']);
        return  $query = $query->get();
     }
+
+
+    public function trustedAgents()
+    {
+        $userTable = (new UserFactory())->getTable();
+        $userRoleTable = (new UserRolesFactory())->getTable();
+
+        $query = DB::table($userTable)
+            ->leftjoin($userRoleTable,$userTable.'.id','=',$userRoleTable.'.user_id')
+            ->leftjoin($this->table,$userTable.'.id','=',$this->table.'.user_id')
+            ->select($this->table.'.json')
+            ->where($userRoleTable.'.role_id','=',3)
+            ->where($userTable.'.trusted_agent','=',1)
+            ->distinct();
+            return  $query = $query->get();
+    }
 }

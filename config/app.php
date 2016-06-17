@@ -223,11 +223,18 @@ return [
         'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
         'ChangePasswordRequest' => \App\Http\Requests\Requests\User\ChangePasswordRequest::class,
         'GetAgentsRequest' => \App\Http\Requests\Requests\User\GetAgentsRequest::class,
+        'GetAgentRequest' => \App\Http\Requests\Requests\User\GetAgentRequest::class,
 
 
         /* Loading Helpers */
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
         'PathHelper' => \App\Libs\Helpers\PathHelper::class,
+
+        /*  Mail Requests */
+        'AgentMailRequest' => \App\Http\Requests\Requests\Mail\AgentMailRequest::class,
+        'MailPropertyToFriendRequest' => \App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest::class,
+        'MailToAgentRequest' => \App\Http\Requests\Requests\Mail\MailToAgentRequest::class,
+        'ContactUSMailRequest' => \App\Http\Requests\Requests\Mail\ContactUSMailRequest::class,
 
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
@@ -305,6 +312,7 @@ return [
         'DeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
         'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
+        'AddToFavouriteRequest' => \App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

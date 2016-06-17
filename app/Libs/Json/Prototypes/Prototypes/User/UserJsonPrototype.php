@@ -23,6 +23,7 @@ class UserJsonPrototype extends JsonPrototype implements JsonPrototypeInterface
     public $fax = "";
     public $address = "";
     public $zipCode = "";
+    public $trustedAgent ="";
     public $country = null;
     public $roles = [];
 

@@ -9,12 +9,15 @@
 namespace App\Repositories\Repositories\Sql;
 
 
+use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
+use App\DB\Providers\SQL\Models\FavouriteProperty;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyType;
 use App\Events\Events\Property\PropertiesStatusChanged;
 use App\Events\Events\Property\PropertyCreated;
+
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
 use Illuminate\Support\Facades\Event;
 
@@ -23,9 +26,11 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
 {
     private $factory;
     private $propertySubTypeFactory;
+    private $favouriteFactory;
     public function __construct()
     {
         $this->factory = new PropertyFactory();
+        $this->favouriteFactory = new FavouritePropertyFactory();
         $this->propertySubTypeFactory = new PropertySubTypeFactory();
     }
 
@@ -77,5 +82,9 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     public function countProperties($userId)
     {
         return $this->factory->countProperties($userId);
+    }
+    public function favouriteProperty(FavouriteProperty $addToFavourite)
+    {
+        return $this->favouriteFactory->store($addToFavourite);
     }
 }

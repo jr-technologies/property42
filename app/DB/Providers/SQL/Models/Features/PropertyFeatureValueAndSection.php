@@ -17,5 +17,6 @@ class PropertyFeatureValueAndSection {
     public $section=null;
     public $value="";
     public $priority=0;
+    public $htmlStructure="";
 } 
 

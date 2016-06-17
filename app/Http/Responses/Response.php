@@ -20,59 +20,78 @@ abstract class Response
     public $ERROR_MESSAGES = [];
 
     public abstract function respondWithErrors();
+
     public abstract function respondWithValidationErrors();
 
-    public function setHttpStatus($status){
+    public function setHttpStatus($status)
+    {
         $this->HTTP_STATUS = $status;
         return $this;
     }
-    public function getHttpStatus(){
+
+    public function getHttpStatus()
+    {
         return $this->HTTP_STATUS;
     }
-    public function setCustomStatus($status){
+
+    public function setCustomStatus($status)
+    {
         $this->CUSTOM_STATUS = $status;
         return $this;
     }
-    public function getCustomStatus(){
+
+    public function getCustomStatus()
+    {
         return $this->CUSTOM_STATUS;
     }
-    public function setErrorMessages($messages){
+
+    public function setErrorMessages($messages)
+    {
         $this->ERROR_MESSAGES = $messages;
         return $this;
     }
-    public function getErrorMessages(){
+
+    public function getErrorMessages()
+    {
         return $this->ERROR_MESSAGES;
     }
 
-    public function respondNotFound($messages=["record not found"])
+    public function respondNotFound($messages = ["record not found"])
     {
         return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
-    public function respondInternalServerError($messages=["Something went wrong with the server!"])
+
+    public function respondInternalServerError($messages = ["Something went wrong with the server!"])
     {
         return $this->setHttpStatus(500)->setCustomStatus(505)->setErrorMessages($messages)->respondWithErrors();
     }
-    public function respondValidationFails($messages=["Your request did not passed our server requirements!"])
+
+    public function respondValidationFails($messages = ["Your request did not passed our server requirements!"])
     {
         return $this->setHttpStatus(400)->setCustomStatus(400)->setErrorMessages($messages)->respondWithValidationErrors();
     }
-    public function respondAuthenticationFailed($messages=["Dear user you are not logged in."])
+
+    public function respondAuthenticationFailed($messages = ["Dear user you are not logged in."])
     {
         return $this->setHttpStatus(401)->setCustomStatus(401)->setErrorMessages($messages)->respondWithErrors();
     }
-    public function respondInvalidCredentials($messages=["Invalid username or password"])
+
+    public function respondInvalidCredentials($messages = ["Invalid username or password"])
     {
         return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
-    public function respondAccessTokenNotProvided($messages=["Session expired, please login again."])
+
+    public function respondAccessTokenNotProvided($messages = ["Session expired, please login again."])
     {
         return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
-    public function respondInvalidAccessToken($messages=["Session expired, please login again."])
+
+    public function respondInvalidAccessToken($messages = ["Session expired, please login again."])
     {
         return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }
-    public function respondOwnershipConstraintViolation($messages=["Ownership Constraint Violation."])
+
+    public function respondOwnershipConstraintViolation($messages = ["Ownership Constraint Violation."])
     {
         return $this->setHttpStatus(404)->setCustomStatus(404)->setErrorMessages($messages)->respondWithErrors();
     }

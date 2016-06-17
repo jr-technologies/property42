@@ -15,4 +15,6 @@ return [
     'PROPERTIES_LIMIT' => 20,
     'PROPERTIES_SortOn' => 'id',
     'PROPERTIES_SortBy' => 'asc',
+    'REGISTRATION_EMAIL_FROM'=>'info@property42.pk',
+    'REGISTRATION_EMAIL_TO'=>'info@property42.pk'
 ];
