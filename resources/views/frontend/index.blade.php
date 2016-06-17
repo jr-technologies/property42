@@ -4,30 +4,33 @@
             <div class="property-search-holder">
 
                 <div class="tabs-holder">
-                    <ul class="tabset">
-                        <li class="active">
-                            <a href="#tab1">buy</a>
-                            <input type="radio" name="propertyPurpose" value="1">
+                    <ul class="main-links">
+                        <li>
+                            <label for="buy1">
+                                <input type="radio" name="purpose_id" id="buy1" checked value="1">
+                                <span class="fake-label">Buy</span>
+                            </label>
                         </li>
                         <li>
-                            <a href="#tab2">rent</a>
-                            <input type="radio" name="propertyPurpose" value="2">
+                            <label for="rent1">
+                                <input type="radio" name="purpose_id" id="rent1" value="1">
+                                <span class="fake-label">Rent</span>
+                            </label>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div id="tab1">
-                            {{ Form::open(array('url' => 'search','method' => 'GET')) }}
+                         {{ Form::open(array('url' => 'search','method' => 'GET')) }}
                                 <ul class="propertyType-buttons">
                                     <li>
                                         <label for="anyPro">
-                                            <input type="radio" id="anyPro" class="property_type" name="propertyType" checked value="0">
+                                            <input type="radio" id="anyPro" class="property_type" name="property_type_id" checked value="0">
                                             <span class="fake-label">All Types</span>
                                         </label>
                                     </li>
                                     @foreach($response['data']['propertyTypes'] as $propertyType)
                                         <li>
                                             <label for="{{$propertyType->name."_".$propertyType->id}}">
-                                                <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}" name="propertyType" class="property_type" value="{{$propertyType->id}}">
+                                                <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}" name="property_type_id" class="property_type" value="{{$propertyType->id}}">
                                                 <span class="fake-label">{{$propertyType->name}}</span>
                                             </label>
                                         </li>
@@ -77,7 +80,7 @@
                                         <label>Bedrooms:</label>
                                         <div class="input-holder">
 												<span class="fake-select">
-													<select name="property_features[24]">
+													<select name="property_features[28]">
                                                         <option disabled selected value >Bedrooms</option>
                                                         <option value=1>1</option>
                                                         <option value=2>2</option>
@@ -121,131 +124,7 @@
                                     <button type="submit">Find Property<span class="icon-search"></span></button>
                                 </div>
                             {{ Form::close() }}
-                        </div>
-                        <div id="tab2">
-                            <form>
-                                <ul class="propertyType-buttons">
-                                    <li>
-                                        <label for="anyPro1">
-                                            <input type="radio" id="anyPro1" name="radio" checked>
-                                            <span class="fake-label">All Types</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="home1">
-                                            <input type="radio" id="home1" name="radio">
-                                            <span class="fake-label">Homes</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="plots1">
-                                            <input type="radio" id="plots1" name="radio">
-                                            <span class="fake-label">Plots</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="commerical1">
-                                            <input type="radio" id="commerical1" name="radio">
-                                            <span class="fake-label">Commercial</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <label>Select Society:</label>
-                                        <div class="input-holder">
-												<span class="fake-select">
-													<select>
-                                                        <option disabled selected value>Select Society</option>
-                                                        <option>S1</option>
-                                                        <option>s2</option>
-                                                        <option>s3</option>
-                                                        <option>s4</option>
-                                                        <option>s5</option>
-                                                        <option>s6</option>
-                                                    </select>
-												</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label>Select Block:</label>
-                                        <div class="input-holder">
-												<span class="fake-select">
-													<select>
-                                                        <option disabled selected value>Select Block</option>
-                                                        <option>b1</option>
-                                                        <option>b2</option>
-                                                        <option>b3</option>
-                                                        <option>b4</option>
-                                                        <option>b5</option>
-                                                        <option>b6</option>
-                                                    </select>
-												</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <label>Select Property Type:</label>
-                                        <div class="input-holder">
-												<span class="fake-select">
-													<select>
-                                                        <option disabled selected value>Select Property Type</option>
-                                                        <option>p</option>
-                                                        <option>p</option>
-                                                        <option>p</option>
-                                                        <option>p</option>
-                                                        <option>p</option>
-                                                        <option>p</option>
-                                                    </select>
-												</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label>Select Bedrooms:</label>
-                                        <div class="input-holder">
-												<span class="fake-select">
-													<select>
-                                                        <option disabled selected value>Bedrooms</option>
-                                                        <option>Studio</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3p</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6+</option>
-                                                    </select>
-												</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <ul class="inline">
-                                    <li class="full">Price Range (Rs)</li>
-                                    <li>
-                                        <span>From:</span>
-                                        <div class="input-holder"><input type="number"></div>
-                                    </li>
-                                    <li>
-                                        <span>to:</span>
-                                        <div class="input-holder"><input type="number"></div>
-                                    </li>
-                                </ul>
-                                <ul class="inline">
-                                    <li class="full">Land Area</li>
-                                    <li>
-                                        <span>From:</span>
-                                        <div class="input-holder"><input type="number"></div>
-                                    </li>
-                                    <li>
-                                        <span>to:</span>
-                                        <div class="input-holder"><input type="number"></div>
-                                    </li>
-                                </ul>
-                                <div class="btn-holder">
-                                    <button type="submit">Find Property<span class="icon-search"></span></button>
-                                </div>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
             </div>

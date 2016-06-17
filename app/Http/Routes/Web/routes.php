@@ -1,11 +1,5 @@
 <?php
 
-use App\Interfaces\Validator;
-use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
-use App\Repositories\Providers\Providers\FeaturesRepoProvider;
-use App\Repositories\Providers\Providers\PropertiesRepoProvider;
-use App\Repositories\Repositories\Sql\PropertiesRepository;
-use Illuminate\Support\Facades\Mail;
 
 Route::get('/login',
     [
@@ -104,7 +98,14 @@ Route::post('mail-to-agent',
         'uses'=>'MailController@mailToAgent'
     ]);
 
-
+Route::post('contact_us',
+    [
+        'middleware'=>
+            [
+                'webValidate:contactUSMailRequest'
+            ],
+        'uses'=>'MailController@contactUS'
+    ]);
 Route::post('property-to-friend',
     [
         'middleware'=>
@@ -113,24 +114,6 @@ Route::post('property-to-friend',
             ],
         'uses'=>'MailController@mailToFriend'
     ]);
-
-Route::get('final',function() {
-    $properties = (new PropertiesRepoProvider())->repo()->all();
-    $features = (new FeaturesRepoProvider())->repo()->all();
-    $allProperties = [];
-    foreach ($properties as $property) {
-        foreach ($features as $feature) {
-            $temp = [];
-            $temp['property_id'] = $property->id;
-            $temp['property_feature_id'] = $feature->id;
-            $temp['value'] = $feature->inputName;
-            $allProperties[] = $temp;
-
-        }
-    }
-    dd($allProperties);
-}
-    );
 
 Route::get('/logout', function(){
     if(session()->has('authUser'))

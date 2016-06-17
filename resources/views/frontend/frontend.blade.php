@@ -17,8 +17,9 @@
 <div id="wrapper">
     <header id="header" class="home-header">
         <div class="layout">
-            <div class="logo"><a href="{{ URL::to('/') }}"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" width="695"
-                                               height="301" alt="Property42"></a></div>
+            <div class="logo"><a href="{{ URL::to('/') }}"><img
+                            src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" width="695"
+                            height="301" alt="Property42"></a></div>
             <nav id="nav">
                 <ul class="main-navigation">
                     <li>
@@ -41,8 +42,11 @@
                 </ul>
             </nav>
             <a class="nav-opener"><span></span></a>
-            <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
-            <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>
+            <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span
+                        class="icon-plus"></span>Add a property</a>
+            @if(session()->get('authUser') !=null)
+                <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>
+            @endif
         </div>
     </header>
     <main id="main" role="main">
@@ -58,8 +62,10 @@
                 <div class="col">
                     <strong class="heading">Social media</strong>
                     <ul class="social-networks">
-                        <li><a href="https://www.facebook.com/property42pk-1562646287317094/" class="facebook"><span class="icon-facebook"></span></a></li>
-                        <li><a href="https://twitter.com/Property42_pk" class="twitter"><span class="icon-twitter"></span></a></li>
+                        <li><a href="https://www.facebook.com/property42pk-1562646287317094/" class="facebook"><span
+                                        class="icon-facebook"></span></a></li>
+                        <li><a href="https://twitter.com/Property42_pk" class="twitter"><span
+                                        class="icon-twitter"></span></a></li>
                     </ul>
                 </div>
                 <div class="col">
@@ -77,12 +83,14 @@
                 <div class="col">
                     <strong class="heading">Contact us</strong>
 
-                    <form class="contact">
-                        <div class="input-holder"><input type="email" placeholder="Enter Your Email Address" required>
-                        </div>
-                        <div class="input-holder"><textarea placeholder="Enter Your Message" required></textarea></div>
-                        <input type="submit" value="Send">
-                    </form>
+                    {{ Form::open(array('url' => 'contact_us','method' => 'POST','class'=>'contact')) }}
+                    <div class="input-holder"><input type="email" name="email" placeholder="Enter Your Email Address"
+                                                     required>
+                    </div>
+                    <div class="input-holder"><textarea name="message" placeholder="Enter Your Message"
+                                                        required></textarea></div>
+                    <input type="submit" value="Send">
+                    {{Form::close()}}
                 </div>
             </div>
         </div>

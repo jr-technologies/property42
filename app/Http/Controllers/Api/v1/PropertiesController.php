@@ -12,6 +12,7 @@ use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
+use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
@@ -39,6 +40,7 @@ class PropertiesController extends ApiController
     private $propertyDocuments = null;
     private $propertiesJsonRepo = null;
     private $propertyJsonTransformer = null;
+    private $propertyRepo = null;
     /**
      * @param PropertiesRepoProvider $repoProvider
      * @param ApiResponse $response
@@ -46,6 +48,7 @@ class PropertiesController extends ApiController
     public function __construct(PropertiesRepoProvider $repoProvider,ApiResponse $response)
     {
         $this->properties = $repoProvider->repo();
+        $this->propertyRepo = (new PropertiesRepoProvider())->repo();
         $this->response = $response;
         $this->propertyFeatureValues = new PropertyFeatureValuesRepository();
         $this->propertyDocuments = new PropertyDocumentsRepository();
@@ -109,7 +112,12 @@ class PropertiesController extends ApiController
             'property'=>$property
         ]]);
     }
-
+    public function favouriteProperty(AddToFavouriteRequest $request)
+    {
+        $favourites = $request->favouriteProperty();
+        return $this->response->respond(['data' => [
+            'favouriteProperty'=>$this->propertyRepo->favouriteProperty($favourites)]]);
+    }
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
         $properties = $this->releasePropertiesJsonFiles($this->propertiesJsonRepo->getUserProperties($request->all()));

@@ -233,6 +233,7 @@ return [
         'AgentMailRequest' => \App\Http\Requests\Requests\Mail\AgentMailRequest::class,
         'MailPropertyToFriendRequest' => \App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest::class,
         'MailToAgentRequest' => \App\Http\Requests\Requests\Mail\MailToAgentRequest::class,
+        'ContactUSMailRequest' => \App\Http\Requests\Requests\Mail\ContactUSMailRequest::class,
 
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
@@ -309,6 +310,7 @@ return [
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
         'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
+        'AddToFavouriteRequest' => \App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

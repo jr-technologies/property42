@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Mail\AgentMailRequest;
 
+use App\Http\Requests\Requests\Mail\ContactUSMailRequest;
 use App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest;
 
 use App\Http\Requests\Requests\Mail\MailToAgentRequest;
@@ -48,7 +49,17 @@ class MailController extends Controller
         Session::flash('message', 'Your message has been sent');
         return redirect()->back();
     }
-
+    public function contactUS(ContactUSMailRequest $request)
+    {
+        $user = $request->all();
+        Mail::send('frontend.mail.contact_us',['user' => $user], function($message) use($user)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
+            $message->to(config('constants.REGISTRATION_EMAIL_TO'))->subject('Property42');
+        });
+        Session::flash('message', 'Your message has been sent');
+        return redirect()->back();
+    }
     public function mailAgent(AgentMailRequest $request)
     {
         $user = $request->all();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
@@ -10,6 +11,7 @@ use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
@@ -26,10 +28,12 @@ class PropertiesController extends Controller
     public $propertyTypes = null;
     public $propertySubtypes =null;
 
+
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
         $this->response = $webResponse;
         $this->PropertyTransformer = $propertyTransformer;
+
         $this->properties = (new PropertiesJsonRepoProvider())->repo();
        $this->societies = (new SocietiesRepoProvider())->repo();
        $this->blocks = (new BlocksRepoProvider())->repo();
@@ -66,5 +70,6 @@ class PropertiesController extends Controller
         ]]);
 
     }
+
 
 }

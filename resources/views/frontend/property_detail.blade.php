@@ -40,7 +40,7 @@
         <div class="center-content">
             <div class="page-holder">
                 @if (Session::has('message'))
-                    <span class="alert-success"><span class="icon-checkmark"></span>{{ Session::get('message') }}!</span>
+                    <span class="alert-success"><span class="icon-checkmark"></span>{{ Session::get('message') }} !<a class="close icon-cross"></a></span>
                 @endif
                 <div class="propertyDetails-page">
                     <div class="layout">
@@ -214,7 +214,7 @@
                                 <a class="popup-close"><span class="icon-cross"></span></a>
                             </div>
                         </li>
-                        <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</a></li>
+                        <li class="add-to-favs" property_id="{{$response['data']['property']->id}}"><a href="#"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</a></li>
                     </ul>
 
                 </div>

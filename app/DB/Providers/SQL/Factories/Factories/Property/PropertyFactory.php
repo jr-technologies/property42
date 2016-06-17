@@ -13,9 +13,11 @@ use App\DB\Providers\SQL\Factories\Factories\Property\Gateways\PropertyQueryBuil
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 
+use App\DB\Providers\SQL\Models\AddToFavourite;
 use App\DB\Providers\SQL\Models\Block;
 use App\DB\Providers\SQL\Models\City;
 use App\DB\Providers\SQL\Models\Country;
+use App\DB\Providers\SQL\Models\FavouriteProperty;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\Property\PropertyCompleteLocation;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
@@ -57,8 +59,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->update($property->id,$this->mapPropertyOnTable($property));
     }
-
-    public function store(Property $property)
+   public function store(Property $property)
     {
         $property->createdAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapPropertyOnTable($property));

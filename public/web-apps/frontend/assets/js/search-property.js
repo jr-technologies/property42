@@ -29,3 +29,16 @@ $(document).on('change','.property_type',function(){
       $('.bedrooms').removeClass('hide-bedrooms');
    }
 });
+
+$(document).on('click','.add-to-favs',function(){
+   var property_id = $(this).attr('property_id');
+   $.ajax({
+      type: "POST",
+      url: apiPath.concat("favourite/property"),
+      data:{
+         property_id:property_id
+      },
+      success: function(response) {
+      }
+   })
+});

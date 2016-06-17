@@ -39,6 +39,16 @@ Route::get('app/dashboard/resources',
         'uses'=>'AppsResourceController@dashboardResources'
     ]
 );
+
+Route::post('favourite/property',
+    [
+        'middleware'=>
+            [
+                'apiValidate:addToFavouriteRequest'
+            ],
+        'uses'=>'PropertiesController@favouriteProperty'
+    ]);
+
 Route::get('/users',
     [
         'middleware'=>
