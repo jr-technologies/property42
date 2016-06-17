@@ -37,7 +37,7 @@
                             <li><a href="#">commerical</a></li>
                         </ul>
                     </li>
-                    <li class="agent-link"><a href="users/search">agents</a></li>
+                    <li class="agent-link"><a href="{{URL::to('users/search')}}">agents</a></li>
                     <li class="hidden-desktop"><a href="#">Add a property</a></li>
                 </ul>
             </nav>

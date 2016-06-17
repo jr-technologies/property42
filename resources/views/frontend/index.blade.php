@@ -156,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-            </div>9999999
+            </div>
             <div class="center-content">
                 <div class="page-holder">
                     <div class="index-page">
