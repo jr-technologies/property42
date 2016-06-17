@@ -16,8 +16,7 @@ use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 
-abstract class
-Authenticate
+abstract class Authenticate
 {
     use TokenGenerator;
 
@@ -33,10 +32,12 @@ Authenticate
      */
     public function attempt(array $credentials)
     {
-        try{ $user = $this->users->findByEmail($credentials['email']); }
-            catch (\Exception $e){
-                return false;
-            }
+        try{
+            $user = $this->users->findByEmail($credentials['email']);
+        }
+        catch (\Exception $e){
+            return false;
+        }
 
         if(!Hash::check($credentials['password'], $user->password))
             return false;

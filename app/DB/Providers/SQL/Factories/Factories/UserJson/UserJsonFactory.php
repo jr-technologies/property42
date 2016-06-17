@@ -33,13 +33,18 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->getStaffByOwner($agencyId));
     }
+
     /**
-     * @param int $id
-     * @return UserJsonPrototype::class
-     **/
+     * @param $id
+     * @return UserJsonPrototype
+     * @throws \Exception
+     */
     public function find($id)
     {
-        return $this->map($this->tableGateway->findByUser($id));
+        $user = $this->tableGateway->findByUser($id);
+        if($user == null)
+            throw new \Exception();
+        return $this->map($user);
     }
     public function search($params)
     {

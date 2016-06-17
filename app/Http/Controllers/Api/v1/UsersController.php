@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\DB\Providers\SQL\Models\Agency;
 use App\DB\Providers\SQL\Models\UserRole;
 use App\Events\Events\User\UserUpdated;
+use App\Http\Requests\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
 use App\Libs\Helpers\Helper;
@@ -78,6 +79,14 @@ class UsersController extends ApiController
 
     }
 
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $user = $request->getUserModel();
+        $user->password = bcrypt($request->get('newPassword'));
+        $this->users->update($user);
+        return $this->response->respond(['data'=>[]]);
+    }
+
     /**
      * @param UpdateUserRequest $request
      * @return \App\Http\Responses\Responses\json
@@ -85,6 +94,7 @@ class UsersController extends ApiController
     public function updateUser(UpdateUserRequest $request)
     {
         $user = $request->getUserModel();
+        dd($this->userWasAgent($user->id));
         $this->users->update($user);
         if($this->userWasAgent($user->id))
         {

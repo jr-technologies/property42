@@ -38,7 +38,6 @@ class UsersController extends Controller
             ->setView('frontend.agent-listing')
             ->respond(['data'=>['agents'=>$this->usersJsonRepo->search($params)
             ]]);
-
     }
 
 }

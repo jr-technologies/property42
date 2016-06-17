@@ -70,4 +70,3 @@ $(document).on('click', '.registration-form .delete', function(){
 	$(this).closest('.company-logo').find('.company-profileP').attr('alt', '');
 	$(this).closest('.company-logo').removeClass('image-loaded');
 });
-

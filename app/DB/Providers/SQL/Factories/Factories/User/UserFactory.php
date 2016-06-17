@@ -56,12 +56,16 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     }
 
     /**
-     * @param int $id
-     * @return UserModel::class
-     **/
+     * @param $id
+     * @return UserModel
+     * @throws \Exception
+     */
     public function find($id)
     {
-        return $this->map($this->tableGateway->find($id));
+        $user = $this->tableGateway->find($id);
+        if($user == null)
+            throw new \Exception();
+        return $this->map($user);
     }
 
     /**

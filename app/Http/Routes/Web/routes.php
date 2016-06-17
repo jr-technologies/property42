@@ -71,7 +71,9 @@ Route::get('users/search',
 Route::get('/logout', function(){
     if(session()->has('authUser'))
     {
+        $usersRepo = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo();
         $authUser = session()->pull('authUser');
+        $authUser = $usersRepo->getById($authUser->id);
         $authUser->access_token = null;
         (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
     }

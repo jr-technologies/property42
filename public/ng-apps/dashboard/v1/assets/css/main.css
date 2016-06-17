@@ -639,7 +639,8 @@ th {
   content: "\e911";
 }
 
-.addAgency-user .addAgency-user-form .input-feilds, .addPropertyFormContainer .errors ul, .addPropertyFormContainer .section-listing, .addPropertyFormContainer .tabset, .addPropertyFormContainer .property-add .radio-holder, .addPropertyFormContainer .feature-list, .addPropertyFormContainer .image-uploading-area, .property-listing-holder .listing-cetegories-links ul, .property-listing-holder .property-filter .by-user-sorting ul, .property-listing-holder .property-filter .by-id-sorting ul, .property-listing-holder .properties-table, .registration-form .roles .role-listing, #sidebar-dashboard .notifications-links, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links li .sub-links, .social-networks, .pager, #footer .cols-holder ul {
+.addAgency-user .addAgency-user-form .input-feilds, .addPropertyFormContainer .errors ul, .addPropertyFormContainer .section-listing, .addPropertyFormContainer .tabset, .addPropertyFormContainer .property-add .radio-holder, .addPropertyFormContainer .feature-list, .addPropertyFormContainer .image-uploading-area, .property-listing-holder .quick-links, .property-listing-holder .listing-cetegories-links ul, .property-listing-holder .property-filter .by-user-sorting ul, .property-listing-holder .property-filter .by-id-sorting ul, .property-listing-holder .properties-table, .changePassword-form .roles .role-listing,
+.registration-form .roles .role-listing, #sidebar-dashboard .notifications-links, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links li .sub-links, .social-networks, .pager, #footer .cols-holder ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1182,7 +1183,7 @@ input[type='submit'] {
   margin: -10px;
 }
 
-.addPropertyFormContainer .success-message.successfuly-saved {
+.addPropertyFormContainer .success-message.successfully-saved {
   display: block !important;
 }
 
@@ -2648,6 +2649,48 @@ input[type='submit'] {
   }
 }
 
+.property-listing-holder .quick-links {
+  padding: 5px 0 0;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.property-listing-holder .quick-links > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.property-listing-holder .quick-links li {
+  padding: 0 5px;
+  margin: 0 0 10px;
+}
+
+.property-listing-holder .quick-links li a {
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 5px;
+  display: block;
+}
+
+.property-listing-holder .quick-links li a span[class^="icon-"], .property-listing-holder .quick-links li a span[class*="icon-"] {
+  padding: 0 5px 0 0;
+}
+
+.property-listing-holder .quick-links li a:hover {
+  opacity: 0.9;
+}
+
+.property-listing-holder .quick-links li a.delete {
+  border-color: #bc1e1e;
+  color: #bc1e1e;
+  background: rgba(225, 70, 70, 0.3);
+}
+
 .property-listing-holder .listing-cetegories-links {
   position: fixed;
   top: 52px;
@@ -2815,13 +2858,13 @@ input[type='submit'] {
 
 @media (max-width: 1425px) {
   .property-listing-holder .listing-cetegories-links ul li a {
-    padding: 15px 25px;
+    padding: 15px 18px;
   }
 }
 
 @media (max-width: 1199px) {
   .property-listing-holder .listing-cetegories-links ul li a {
-    padding: 15px 14px;
+    padding: 15px 7px;
   }
 }
 
@@ -3316,28 +3359,33 @@ input[type='submit'] {
   border-bottom: 4px solid #b66c0d;
 }
 
+.changePassword,
 .registrationFormHolder {
   overflow: hidden;
   padding: 20px;
   transition: padding 0.4s ease;
 }
 
-.sideBar-active .registrationFormHolder {
+.sideBar-active .changePassword, .sideBar-active
+.registrationFormHolder {
   padding: 20px 20px 20px 320px;
 }
 
 @media (max-width: 1023px) {
-  .sideBar-active .registrationFormHolder {
+  .sideBar-active .changePassword, .sideBar-active
+  .registrationFormHolder {
     padding: 20px 20px 20px 260px;
   }
 }
 
 @media (max-width: 767px) {
-  .sideBar-active .registrationFormHolder {
+  .sideBar-active .changePassword, .sideBar-active
+  .registrationFormHolder {
     padding: 20px;
   }
 }
 
+.changePassword-form,
 .registration-form {
   background: rgba(237, 241, 244, 0.2);
   border-radius: 5px;
@@ -3350,6 +3398,7 @@ input[type='submit'] {
   letter-spacing: -4px;
 }
 
+.changePassword-form > *,
 .registration-form > * {
   display: inline-block;
   vertical-align: top;
@@ -3359,11 +3408,13 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .changePassword-form,
   .registration-form {
     padding: 5px;
   }
 }
 
+.changePassword-form .heading-profile,
 .registration-form .heading-profile {
   display: block;
   width: 100%;
@@ -3376,6 +3427,7 @@ input[type='submit'] {
   font-style: italic;
 }
 
+.changePassword-form.agent-info .agent-information,
 .registration-form.agent-info .agent-information {
   min-height: 545px;
   opacity: 1;
@@ -3383,16 +3435,19 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .changePassword-form.agent-info .agent-information,
   .registration-form.agent-info .agent-information {
     padding: 185px 0 0;
   }
 }
 
+.changePassword-form .input-holder,
 .registration-form .input-holder {
   width: 50%;
 }
 
 @media (max-width: 767px) {
+  .changePassword-form .input-holder,
   .registration-form .input-holder {
     width: 100%;
     float: none;
@@ -3400,10 +3455,12 @@ input[type='submit'] {
   }
 }
 
+.changePassword-form .roles,
 .registration-form .roles {
   overflow: hidden;
 }
 
+.changePassword-form .roles .role-opener,
 .registration-form .roles .role-opener {
   display: block;
   text-transform: capitalize;
@@ -3415,6 +3472,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .changePassword-form .roles .role-opener,
   .registration-form .roles .role-opener {
     font-size: 13px;
     line-height: 15px;
@@ -3422,6 +3480,7 @@ input[type='submit'] {
   }
 }
 
+.changePassword-form .roles .role-opener:before,
 .registration-form .roles .role-opener:before {
   font-family: 'icomoon';
   content: "\e973";
@@ -3433,11 +3492,13 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .changePassword-form .roles .role-opener:before,
   .registration-form .roles .role-opener:before {
     font-size: 13px;
   }
 }
 
+.changePassword-form .roles .role-opener:after,
 .registration-form .roles .role-opener:after {
   position: absolute;
   left: 0;
@@ -3450,10 +3511,12 @@ input[type='submit'] {
   transition: right 0.2s ease;
 }
 
+.changePassword-form .roles .role-opener.active:after,
 .registration-form .roles .role-opener.active:after {
   right: 0;
 }
 
+.changePassword-form .roles .role-listing,
 .registration-form .roles .role-listing {
   padding: 10px 0 0;
   font-size: 0;
@@ -3461,6 +3524,7 @@ input[type='submit'] {
   letter-spacing: -4px;
 }
 
+.changePassword-form .roles .role-listing > *,
 .registration-form .roles .role-listing > * {
   display: inline-block;
   vertical-align: top;
@@ -3470,11 +3534,13 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .changePassword-form .roles .role-listing,
   .registration-form .roles .role-listing {
     font-size: 0;
     line-height: 0;
     letter-spacing: -4px;
   }
+  .changePassword-form .roles .role-listing > *,
   .registration-form .roles .role-listing > * {
     display: inline-block;
     vertical-align: top;
@@ -3484,6 +3550,7 @@ input[type='submit'] {
   }
 }
 
+.changePassword-form .roles .role-listing li,
 .registration-form .roles .role-listing li {
   width: 33.33%;
   overflow: hidden;
@@ -3491,11 +3558,14 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .changePassword-form .roles .role-listing li,
   .registration-form .roles .role-listing li {
     width: 100%;
   }
 }
 
+.changePassword-form .roles .role-listing li label,
+.changePassword-form .roles .role-listing li input[type="checkbox"],
 .registration-form .roles .role-listing li label,
 .registration-form .roles .role-listing li input[type="checkbox"] {
   display: inline-block;
@@ -3503,6 +3573,7 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+.changePassword-form .input-holder,
 .registration-form .input-holder {
   overflow: hidden;
   padding: 5px;
@@ -3510,6 +3581,7 @@ input[type='submit'] {
   margin: 0 0 20px;
 }
 
+.changePassword-form .input-holder.full-width,
 .registration-form .input-holder.full-width {
   float: none;
   display: block;
@@ -3519,6 +3591,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .changePassword-form .input-holder.onTop-mobile,
   .registration-form .input-holder.onTop-mobile {
     position: absolute;
     top: 50px;
@@ -3527,18 +3600,22 @@ input[type='submit'] {
   }
 }
 
+.changePassword-form .input-holder.onTop-mobile .error-text,
 .registration-form .input-holder.onTop-mobile .error-text {
   text-align: center;
 }
 
+.changePassword-form .input-holder .error-text,
 .registration-form .input-holder .error-text {
   display: none;
 }
 
+.changePassword-form .input-holder.error,
 .registration-form .input-holder.error {
   color: #e14646 !important;
 }
 
+.changePassword-form .input-holder.error .error-text,
 .registration-form .input-holder.error .error-text {
   display: block;
   font-size: 13px;
@@ -3549,33 +3626,49 @@ input[type='submit'] {
   color: #e14646 !important;
 }
 
+.changePassword-form .input-holder.error textarea,
+.changePassword-form .input-holder.error input[type="text"], .changePassword-form .input-holder.error input[type="tel"], .changePassword-form .input-holder.error input[type="email"], .changePassword-form .input-holder.error input[type="password"],
 .registration-form .input-holder.error textarea,
-.registration-form .input-holder.error input[type="text"], .registration-form .input-holder.error input[type="tel"], .registration-form .input-holder.error input[type="email"], .registration-form .input-holder.error input[type="password"] {
+.registration-form .input-holder.error input[type="text"],
+.registration-form .input-holder.error input[type="tel"],
+.registration-form .input-holder.error input[type="email"],
+.registration-form .input-holder.error input[type="password"] {
   color: #e14646;
 }
 
-.registration-form .input-holder.error > label[class^="icon-"], .registration-form .input-holder.error > label[class*="icon-"] {
+.changePassword-form .input-holder.error > label[class^="icon-"], .changePassword-form .input-holder.error > label[class*="icon-"],
+.registration-form .input-holder.error > label[class^="icon-"],
+.registration-form .input-holder.error > label[class*="icon-"] {
   color: #e14646;
 }
 
+.changePassword-form .input-holder.error .border:before,
 .registration-form .input-holder.error .border:before {
   background: #e14646;
 }
 
+.changePassword-form .input-holder.error .role-opener,
 .registration-form .input-holder.error .role-opener {
   border-bottom: 1px solid #e14646;
 }
 
+.changePassword-form .input-holder.error .role-opener:before,
 .registration-form .input-holder.error .role-opener:before {
   color: #e14646;
 }
 
+.changePassword-form .input-holder.error .role-listing,
 .registration-form .input-holder.error .role-listing {
   color: #606060 !important;
 }
 
+.changePassword-form .input-holder textarea,
+.changePassword-form .input-holder input[type="text"], .changePassword-form .input-holder input[type="tel"], .changePassword-form .input-holder input[type="email"], .changePassword-form .input-holder input[type="password"],
 .registration-form .input-holder textarea,
-.registration-form .input-holder input[type="text"], .registration-form .input-holder input[type="tel"], .registration-form .input-holder input[type="email"], .registration-form .input-holder input[type="password"] {
+.registration-form .input-holder input[type="text"],
+.registration-form .input-holder input[type="tel"],
+.registration-form .input-holder input[type="email"],
+.registration-form .input-holder input[type="password"] {
   border: 0;
   display: block;
   color: #2e2e2e;
@@ -3590,89 +3683,160 @@ input[type='submit'] {
 }
 
 @media (max-width: 1199px) {
+  .changePassword-form .input-holder textarea,
+  .changePassword-form .input-holder input[type="text"], .changePassword-form .input-holder input[type="tel"], .changePassword-form .input-holder input[type="email"], .changePassword-form .input-holder input[type="password"],
   .registration-form .input-holder textarea,
-  .registration-form .input-holder input[type="text"], .registration-form .input-holder input[type="tel"], .registration-form .input-holder input[type="email"], .registration-form .input-holder input[type="password"] {
+  .registration-form .input-holder input[type="text"],
+  .registration-form .input-holder input[type="tel"],
+  .registration-form .input-holder input[type="email"],
+  .registration-form .input-holder input[type="password"] {
     font-size: 15px;
     line-height: 23px;
   }
 }
 
 @media (max-width: 1023px) {
+  .changePassword-form .input-holder textarea,
+  .changePassword-form .input-holder input[type="text"], .changePassword-form .input-holder input[type="tel"], .changePassword-form .input-holder input[type="email"], .changePassword-form .input-holder input[type="password"],
   .registration-form .input-holder textarea,
-  .registration-form .input-holder input[type="text"], .registration-form .input-holder input[type="tel"], .registration-form .input-holder input[type="email"], .registration-form .input-holder input[type="password"] {
+  .registration-form .input-holder input[type="text"],
+  .registration-form .input-holder input[type="tel"],
+  .registration-form .input-holder input[type="email"],
+  .registration-form .input-holder input[type="password"] {
     padding: 6px 10px 6px 25px;
     font-size: 13px;
     line-height: 23px;
   }
 }
 
+.changePassword-form .input-holder textarea::-webkit-input-placeholder,
+.changePassword-form .input-holder input[type="text"]::-webkit-input-placeholder, .changePassword-form .input-holder input[type="tel"]::-webkit-input-placeholder, .changePassword-form .input-holder input[type="email"]::-webkit-input-placeholder, .changePassword-form .input-holder input[type="password"]::-webkit-input-placeholder,
 .registration-form .input-holder textarea::-webkit-input-placeholder,
-.registration-form .input-holder input[type="text"]::-webkit-input-placeholder, .registration-form .input-holder input[type="tel"]::-webkit-input-placeholder, .registration-form .input-holder input[type="email"]::-webkit-input-placeholder, .registration-form .input-holder input[type="password"]::-webkit-input-placeholder {
+.registration-form .input-holder input[type="text"]::-webkit-input-placeholder,
+.registration-form .input-holder input[type="tel"]::-webkit-input-placeholder,
+.registration-form .input-holder input[type="email"]::-webkit-input-placeholder,
+.registration-form .input-holder input[type="password"]::-webkit-input-placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
+.changePassword-form .input-holder textarea::-moz-placeholder,
+.changePassword-form .input-holder input[type="text"]::-moz-placeholder, .changePassword-form .input-holder input[type="tel"]::-moz-placeholder, .changePassword-form .input-holder input[type="email"]::-moz-placeholder, .changePassword-form .input-holder input[type="password"]::-moz-placeholder,
 .registration-form .input-holder textarea::-moz-placeholder,
-.registration-form .input-holder input[type="text"]::-moz-placeholder, .registration-form .input-holder input[type="tel"]::-moz-placeholder, .registration-form .input-holder input[type="email"]::-moz-placeholder, .registration-form .input-holder input[type="password"]::-moz-placeholder {
+.registration-form .input-holder input[type="text"]::-moz-placeholder,
+.registration-form .input-holder input[type="tel"]::-moz-placeholder,
+.registration-form .input-holder input[type="email"]::-moz-placeholder,
+.registration-form .input-holder input[type="password"]::-moz-placeholder {
   opacity: 1;
   color: #616161;
   transition: color 0.5s ease;
 }
 
+.changePassword-form .input-holder textarea:-moz-placeholder,
+.changePassword-form .input-holder input[type="text"]:-moz-placeholder, .changePassword-form .input-holder input[type="tel"]:-moz-placeholder, .changePassword-form .input-holder input[type="email"]:-moz-placeholder, .changePassword-form .input-holder input[type="password"]:-moz-placeholder,
 .registration-form .input-holder textarea:-moz-placeholder,
-.registration-form .input-holder input[type="text"]:-moz-placeholder, .registration-form .input-holder input[type="tel"]:-moz-placeholder, .registration-form .input-holder input[type="email"]:-moz-placeholder, .registration-form .input-holder input[type="password"]:-moz-placeholder {
+.registration-form .input-holder input[type="text"]:-moz-placeholder,
+.registration-form .input-holder input[type="tel"]:-moz-placeholder,
+.registration-form .input-holder input[type="email"]:-moz-placeholder,
+.registration-form .input-holder input[type="password"]:-moz-placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
+.changePassword-form .input-holder textarea:-ms-input-placeholder,
+.changePassword-form .input-holder input[type="text"]:-ms-input-placeholder, .changePassword-form .input-holder input[type="tel"]:-ms-input-placeholder, .changePassword-form .input-holder input[type="email"]:-ms-input-placeholder, .changePassword-form .input-holder input[type="password"]:-ms-input-placeholder,
 .registration-form .input-holder textarea:-ms-input-placeholder,
-.registration-form .input-holder input[type="text"]:-ms-input-placeholder, .registration-form .input-holder input[type="tel"]:-ms-input-placeholder, .registration-form .input-holder input[type="email"]:-ms-input-placeholder, .registration-form .input-holder input[type="password"]:-ms-input-placeholder {
+.registration-form .input-holder input[type="text"]:-ms-input-placeholder,
+.registration-form .input-holder input[type="tel"]:-ms-input-placeholder,
+.registration-form .input-holder input[type="email"]:-ms-input-placeholder,
+.registration-form .input-holder input[type="password"]:-ms-input-placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
+.changePassword-form .input-holder textarea.placeholder,
+.changePassword-form .input-holder input[type="text"].placeholder, .changePassword-form .input-holder input[type="tel"].placeholder, .changePassword-form .input-holder input[type="email"].placeholder, .changePassword-form .input-holder input[type="password"].placeholder,
 .registration-form .input-holder textarea.placeholder,
-.registration-form .input-holder input[type="text"].placeholder, .registration-form .input-holder input[type="tel"].placeholder, .registration-form .input-holder input[type="email"].placeholder, .registration-form .input-holder input[type="password"].placeholder {
+.registration-form .input-holder input[type="text"].placeholder,
+.registration-form .input-holder input[type="tel"].placeholder,
+.registration-form .input-holder input[type="email"].placeholder,
+.registration-form .input-holder input[type="password"].placeholder {
   color: #616161;
   transition: color 0.5s ease;
 }
 
+.changePassword-form .input-holder textarea:focus,
+.changePassword-form .input-holder input[type="text"]:focus, .changePassword-form .input-holder input[type="tel"]:focus, .changePassword-form .input-holder input[type="email"]:focus, .changePassword-form .input-holder input[type="password"]:focus,
 .registration-form .input-holder textarea:focus,
-.registration-form .input-holder input[type="text"]:focus, .registration-form .input-holder input[type="tel"]:focus, .registration-form .input-holder input[type="email"]:focus, .registration-form .input-holder input[type="password"]:focus {
+.registration-form .input-holder input[type="text"]:focus,
+.registration-form .input-holder input[type="tel"]:focus,
+.registration-form .input-holder input[type="email"]:focus,
+.registration-form .input-holder input[type="password"]:focus {
   color: black;
 }
 
+.changePassword-form .input-holder textarea:focus::-webkit-input-placeholder,
+.changePassword-form .input-holder input[type="text"]:focus::-webkit-input-placeholder, .changePassword-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder, .changePassword-form .input-holder input[type="email"]:focus::-webkit-input-placeholder, .changePassword-form .input-holder input[type="password"]:focus::-webkit-input-placeholder,
 .registration-form .input-holder textarea:focus::-webkit-input-placeholder,
-.registration-form .input-holder input[type="text"]:focus::-webkit-input-placeholder, .registration-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder, .registration-form .input-holder input[type="email"]:focus::-webkit-input-placeholder, .registration-form .input-holder input[type="password"]:focus::-webkit-input-placeholder {
+.registration-form .input-holder input[type="text"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="tel"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="email"]:focus::-webkit-input-placeholder,
+.registration-form .input-holder input[type="password"]:focus::-webkit-input-placeholder {
   color: black;
 }
 
+.changePassword-form .input-holder textarea:focus::-moz-placeholder,
+.changePassword-form .input-holder input[type="text"]:focus::-moz-placeholder, .changePassword-form .input-holder input[type="tel"]:focus::-moz-placeholder, .changePassword-form .input-holder input[type="email"]:focus::-moz-placeholder, .changePassword-form .input-holder input[type="password"]:focus::-moz-placeholder,
 .registration-form .input-holder textarea:focus::-moz-placeholder,
-.registration-form .input-holder input[type="text"]:focus::-moz-placeholder, .registration-form .input-holder input[type="tel"]:focus::-moz-placeholder, .registration-form .input-holder input[type="email"]:focus::-moz-placeholder, .registration-form .input-holder input[type="password"]:focus::-moz-placeholder {
+.registration-form .input-holder input[type="text"]:focus::-moz-placeholder,
+.registration-form .input-holder input[type="tel"]:focus::-moz-placeholder,
+.registration-form .input-holder input[type="email"]:focus::-moz-placeholder,
+.registration-form .input-holder input[type="password"]:focus::-moz-placeholder {
   opacity: 1;
   color: black;
 }
 
+.changePassword-form .input-holder textarea:focus:-moz-placeholder,
+.changePassword-form .input-holder input[type="text"]:focus:-moz-placeholder, .changePassword-form .input-holder input[type="tel"]:focus:-moz-placeholder, .changePassword-form .input-holder input[type="email"]:focus:-moz-placeholder, .changePassword-form .input-holder input[type="password"]:focus:-moz-placeholder,
 .registration-form .input-holder textarea:focus:-moz-placeholder,
-.registration-form .input-holder input[type="text"]:focus:-moz-placeholder, .registration-form .input-holder input[type="tel"]:focus:-moz-placeholder, .registration-form .input-holder input[type="email"]:focus:-moz-placeholder, .registration-form .input-holder input[type="password"]:focus:-moz-placeholder {
+.registration-form .input-holder input[type="text"]:focus:-moz-placeholder,
+.registration-form .input-holder input[type="tel"]:focus:-moz-placeholder,
+.registration-form .input-holder input[type="email"]:focus:-moz-placeholder,
+.registration-form .input-holder input[type="password"]:focus:-moz-placeholder {
   color: black;
 }
 
+.changePassword-form .input-holder textarea:focus:-ms-input-placeholder,
+.changePassword-form .input-holder input[type="text"]:focus:-ms-input-placeholder, .changePassword-form .input-holder input[type="tel"]:focus:-ms-input-placeholder, .changePassword-form .input-holder input[type="email"]:focus:-ms-input-placeholder, .changePassword-form .input-holder input[type="password"]:focus:-ms-input-placeholder,
 .registration-form .input-holder textarea:focus:-ms-input-placeholder,
-.registration-form .input-holder input[type="text"]:focus:-ms-input-placeholder, .registration-form .input-holder input[type="tel"]:focus:-ms-input-placeholder, .registration-form .input-holder input[type="email"]:focus:-ms-input-placeholder, .registration-form .input-holder input[type="password"]:focus:-ms-input-placeholder {
+.registration-form .input-holder input[type="text"]:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="tel"]:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="email"]:focus:-ms-input-placeholder,
+.registration-form .input-holder input[type="password"]:focus:-ms-input-placeholder {
   color: black;
 }
 
+.changePassword-form .input-holder textarea:focus.placeholder,
+.changePassword-form .input-holder input[type="text"]:focus.placeholder, .changePassword-form .input-holder input[type="tel"]:focus.placeholder, .changePassword-form .input-holder input[type="email"]:focus.placeholder, .changePassword-form .input-holder input[type="password"]:focus.placeholder,
 .registration-form .input-holder textarea:focus.placeholder,
-.registration-form .input-holder input[type="text"]:focus.placeholder, .registration-form .input-holder input[type="tel"]:focus.placeholder, .registration-form .input-holder input[type="email"]:focus.placeholder, .registration-form .input-holder input[type="password"]:focus.placeholder {
+.registration-form .input-holder input[type="text"]:focus.placeholder,
+.registration-form .input-holder input[type="tel"]:focus.placeholder,
+.registration-form .input-holder input[type="email"]:focus.placeholder,
+.registration-form .input-holder input[type="password"]:focus.placeholder {
   color: black;
 }
 
+.changePassword-form .input-holder textarea:focus ~ .border:after,
+.changePassword-form .input-holder input[type="text"]:focus ~ .border:after, .changePassword-form .input-holder input[type="tel"]:focus ~ .border:after, .changePassword-form .input-holder input[type="email"]:focus ~ .border:after, .changePassword-form .input-holder input[type="password"]:focus ~ .border:after,
 .registration-form .input-holder textarea:focus ~ .border:after,
-.registration-form .input-holder input[type="text"]:focus ~ .border:after, .registration-form .input-holder input[type="tel"]:focus ~ .border:after, .registration-form .input-holder input[type="email"]:focus ~ .border:after, .registration-form .input-holder input[type="password"]:focus ~ .border:after {
+.registration-form .input-holder input[type="text"]:focus ~ .border:after,
+.registration-form .input-holder input[type="tel"]:focus ~ .border:after,
+.registration-form .input-holder input[type="email"]:focus ~ .border:after,
+.registration-form .input-holder input[type="password"]:focus ~ .border:after {
   right: 0;
 }
 
+.changePassword-form .input-holder textarea,
 .registration-form .input-holder textarea {
   resize: none;
   padding: 9px 5px 6px 50px;
@@ -3681,13 +3845,16 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .changePassword-form .input-holder textarea,
   .registration-form .input-holder textarea {
     height: 80px;
     padding: 9px 5px 6px 25px;
   }
 }
 
-.registration-form .input-holder > label[class^="icon-"], .registration-form .input-holder > label[class*="icon-"] {
+.changePassword-form .input-holder > label[class^="icon-"], .changePassword-form .input-holder > label[class*="icon-"],
+.registration-form .input-holder > label[class^="icon-"],
+.registration-form .input-holder > label[class*="icon-"] {
   position: absolute;
   top: 0;
   left: 0;
@@ -3703,18 +3870,22 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
-  .registration-form .input-holder > label[class^="icon-"], .registration-form .input-holder > label[class*="icon-"] {
+  .changePassword-form .input-holder > label[class^="icon-"], .changePassword-form .input-holder > label[class*="icon-"],
+  .registration-form .input-holder > label[class^="icon-"],
+  .registration-form .input-holder > label[class*="icon-"] {
     font-size: 14px;
     line-height: 50px;
     width: 30px;
   }
 }
 
+.changePassword-form .input-holder .border,
 .registration-form .input-holder .border {
   display: block;
   position: relative;
 }
 
+.changePassword-form .input-holder .border:before,
 .registration-form .input-holder .border:before {
   position: absolute;
   left: 0;
@@ -3725,6 +3896,7 @@ input[type='submit'] {
   background: rgba(46, 46, 46, 0.4);
 }
 
+.changePassword-form .input-holder .border:after,
 .registration-form .input-holder .border:after {
   position: absolute;
   top: 0;
@@ -3738,6 +3910,7 @@ input[type='submit'] {
   transition: right 0.2s ease;
 }
 
+.changePassword-form .input-holder .forgot-pass,
 .registration-form .input-holder .forgot-pass {
   position: absolute;
   top: 50%;
@@ -3750,6 +3923,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .changePassword-form .input-holder .forgot-pass,
   .registration-form .input-holder .forgot-pass {
     font-size: 11px;
     line-height: 15px;
@@ -3757,16 +3931,20 @@ input[type='submit'] {
   }
 }
 
+.changePassword-form .input-holder .forgot-pass:hover,
 .registration-form .input-holder .forgot-pass:hover {
   color: #e14646;
 }
 
-.registration-form .input-holder .forgot-pass [class^="icon-"], .registration-form .input-holder .forgot-pass [class*="icon-"] {
+.changePassword-form .input-holder .forgot-pass [class^="icon-"], .changePassword-form .input-holder .forgot-pass [class*="icon-"],
+.registration-form .input-holder .forgot-pass [class^="icon-"],
+.registration-form .input-holder .forgot-pass [class*="icon-"] {
   display: inline-block;
   vertical-align: middle;
   margin: -2px 0 0;
 }
 
+.changePassword-form button[type="submit"],
 .registration-form button[type="submit"] {
   border: 0;
   background: #489ddd;
@@ -3784,6 +3962,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .changePassword-form button[type="submit"],
   .registration-form button[type="submit"] {
     font-size: 16px;
     line-height: 19px;
@@ -3791,7 +3970,9 @@ input[type='submit'] {
   }
 }
 
-.registration-form button[type="submit"] [class^="icon-"], .registration-form button[type="submit"] [class*="icon-"] {
+.changePassword-form button[type="submit"] [class^="icon-"], .changePassword-form button[type="submit"] [class*="icon-"],
+.registration-form button[type="submit"] [class^="icon-"],
+.registration-form button[type="submit"] [class*="icon-"] {
   display: inline-block;
   vertical-align: middle;
   margin: -2px 0 0;
@@ -3800,14 +3981,18 @@ input[type='submit'] {
   transition: right 0.4s ease;
 }
 
+.changePassword-form button[type="submit"]:hover,
 .registration-form button[type="submit"]:hover {
   background: #3291d9;
 }
 
-.registration-form button[type="submit"]:hover [class^="icon-"], .registration-form button[type="submit"]:hover [class*="icon-"] {
+.changePassword-form button[type="submit"]:hover [class^="icon-"], .changePassword-form button[type="submit"]:hover [class*="icon-"],
+.registration-form button[type="submit"]:hover [class^="icon-"],
+.registration-form button[type="submit"]:hover [class*="icon-"] {
   right: -10px;
 }
 
+.changePassword-form .agent-check,
 .registration-form .agent-check {
   float: left;
   margin: 25px 50px 0;
@@ -3816,6 +4001,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .changePassword-form .agent-check,
   .registration-form .agent-check {
     margin: 25px 20px 0;
     font-size: 13px;
@@ -3823,6 +4009,7 @@ input[type='submit'] {
   }
 }
 
+.changePassword-form .agent-check:after,
 .registration-form .agent-check:after {
   position: absolute;
   top: 0;
@@ -3833,6 +4020,7 @@ input[type='submit'] {
   content: '';
 }
 
+.changePassword-form .agent-check .hidden-checkfield,
 .registration-form .agent-check .hidden-checkfield {
   visibility: visible;
   top: 0;
@@ -3841,21 +4029,25 @@ input[type='submit'] {
   position: fixed;
 }
 
+.changePassword-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox,
 .registration-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox {
   background: #00e359;
   box-shadow: none;
 }
 
+.changePassword-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button,
 .registration-form .agent-check .hidden-checkfield:checked ~ .fake-checkbox .fake-button {
   left: 48%;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 1px #00a23f;
 }
 
+.changePassword-form .agent-check .hidden-checkfield:checked ~ .fake-label,
 .registration-form .agent-check .hidden-checkfield:checked ~ .fake-label {
   color: #000;
 }
 
+.changePassword-form .agent-check .fake-checkbox,
 .registration-form .agent-check .fake-checkbox {
   width: 40px;
   height: 20px;
@@ -3868,6 +4060,7 @@ input[type='submit'] {
   z-index: -1;
 }
 
+.changePassword-form .agent-check .fake-checkbox .fake-button,
 .registration-form .agent-check .fake-checkbox .fake-button {
   position: absolute;
   top: 0;
@@ -3882,6 +4075,7 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+.changePassword-form .agent-check .fake-label,
 .registration-form .agent-check .fake-label {
   float: left;
   cursor: pointer;
@@ -3892,6 +4086,7 @@ input[type='submit'] {
   color: #363636;
 }
 
+.changePassword-form h1,
 .registration-form h1 {
   display: block;
   margin: 10px 0;
@@ -3905,6 +4100,7 @@ input[type='submit'] {
   font-weight: 600;
 }
 
+.changePassword-form .company-logo,
 .registration-form .company-logo {
   width: 70px;
   height: 70px;
@@ -3916,18 +4112,22 @@ input[type='submit'] {
   z-index: 6;
 }
 
+.changePassword-form .company-logo.image-loaded:hover .delete,
 .registration-form .company-logo.image-loaded:hover .delete {
   display: block;
 }
 
+.changePassword-form .company-logo.image-loaded .name-tag,
 .registration-form .company-logo.image-loaded .name-tag {
   display: none;
 }
 
+.changePassword-form .company-logo.image-loaded .picture-holder,
 .registration-form .company-logo.image-loaded .picture-holder {
   display: block;
 }
 
+.changePassword-form .company-logo .picture-holder,
 .registration-form .company-logo .picture-holder {
   position: absolute;
   top: 0;
@@ -3940,6 +4140,7 @@ input[type='submit'] {
   border-radius: 100%;
 }
 
+.changePassword-form .company-logo .picture-holder img,
 .registration-form .company-logo .picture-holder img {
   width: 100%;
   height: auto;
@@ -3947,6 +4148,7 @@ input[type='submit'] {
   height: 100%;
 }
 
+.changePassword-form .company-logo .delete,
 .registration-form .company-logo .delete {
   position: absolute;
   top: 0;
@@ -3962,10 +4164,12 @@ input[type='submit'] {
   display: none;
 }
 
+.changePassword-form .company-logo .delete span,
 .registration-form .company-logo .delete span {
   display: block;
 }
 
+.changePassword-form .company-logo .name-tag,
 .registration-form .company-logo .name-tag {
   position: absolute;
   top: 10px;
@@ -3978,6 +4182,7 @@ input[type='submit'] {
   color: #2e2e2e;
 }
 
+.changePassword-form .company-logo input[type="file"],
 .registration-form .company-logo input[type="file"] {
   width: 100%;
   height: 100%;
@@ -4576,7 +4781,7 @@ a {
   float: right;
   color: #fff;
   text-decoration: none;
-  margin: 15px 40px 0 30px;
+  margin: 15px 10px 0 20px;
 }
 
 @media (max-width: 1023px) {
@@ -4599,6 +4804,30 @@ a {
 
 .logout:hover {
   opacity: 0.8;
+}
+
+.our-contactNum {
+  float: right;
+  color: #fff;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 17px 10px;
+  border-left: 1px solid #2277b7;
+}
+
+@media (max-width: 1024px) {
+  .our-contactNum {
+    display: none;
+  }
+}
+
+.our-contactNum a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.our-contactNum a:hover {
+  color: #1ab394;
 }
 
 /*mian content of the page*/
@@ -4929,15 +5158,71 @@ a {
 
 #sidebar-dashboard .notifications-links li {
   padding: 0 10px 10px;
+  position: relative;
+}
+
+#sidebar-dashboard .notifications-links li.display-badge .badge {
+  opacity: 1;
+  visibility: visible;
+  z-index: 5;
 }
 
 #sidebar-dashboard .notifications-links li a {
   text-decoration: none;
   color: #dde2e8;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+#sidebar-dashboard .notifications-links li a > * {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24px;
+  line-height: 27px;
+  letter-spacing: 0;
 }
 
 #sidebar-dashboard .notifications-links li a:hover {
   color: #fff;
+}
+
+#sidebar-dashboard .notifications-links li a span[class^="icon-"], #sidebar-dashboard .notifications-links li a span[class*="icon-"] {
+  position: relative;
+  z-index: 9;
+}
+
+#sidebar-dashboard .notifications-links li a .badge {
+  font-size: 11px !important;
+  line-height: 15px !important;
+  font-weight: 600;
+  text-align: center !important;
+  min-width: 28px;
+  max-width: 28px;
+  color: #fff;
+  border-radius: 4px;
+  background: #e14646;
+  padding: 3px 0;
+  position: absolute;
+  top: -20px;
+  right: 4px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+  transition: opacity 0.4s ease, visibility 0.4s ease, z-index 0.4s ease;
+  -webkit-transition: opacity 0.4s ease, visibility 0.4s ease, z-index 0.4s ease;
+  -moz--webkit-transition: opacity 0.4s ease, visibility 0.4s ease, z-index 0.4s ease;
+  -ms--webkit-transition: opacity 0.4s ease, visibility 0.4s ease, z-index 0.4s ease;
+}
+
+#sidebar-dashboard .notifications-links li a .badge:after {
+  position: absolute;
+  bottom: -14px;
+  right: 3px;
+  border: 8px solid transparent;
+  border-top: 8px solid #e14646;
+  content: '';
+  border-left: 0;
 }
 
 #sidebar-dashboard .layout {
@@ -5059,7 +5344,7 @@ a {
 }
 
 #sidebar-dashboard .sideBar-links li a [class^="icon-"]:before, #sidebar-dashboard .sideBar-links li a [class*="icon-"]:before {
-  font-size: 22px;
+  font-size: 23px;
   line-height: 1;
 }
 
@@ -5181,6 +5466,8 @@ a {
     font-size: 0;
     line-height: 0;
     letter-spacing: -4px;
+    max-width: 300px;
+    margin: 0 auto;
   }
   .pager > * {
     display: inline-block;
@@ -5195,6 +5482,12 @@ a {
   padding: 0 3px;
   margin: 0 0 5px;
   position: relative;
+}
+
+@media (max-width: 767px) {
+  .pager li {
+    display: block;
+  }
 }
 
 .pager li b {

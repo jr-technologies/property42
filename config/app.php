@@ -221,6 +221,7 @@ return [
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
         'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
+        'ChangePasswordRequest' => \App\Http\Requests\Requests\User\ChangePasswordRequest::class,
         'GetAgentsRequest' => \App\Http\Requests\Requests\User\GetAgentsRequest::class,
 
 

@@ -66,6 +66,15 @@ Route::post('user/update',
         'uses'=>'UsersController@updateUser'
     ]
 );
+Route::post('user/change-password',
+    [
+        'middleware'=>
+            [
+                'apiValidate:changePasswordRequest'
+            ],
+        'uses'=>'UsersController@changePassword'
+    ]
+);
 
 Route::post('user/agency/staff',
     [

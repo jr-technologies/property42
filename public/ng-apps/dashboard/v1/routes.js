@@ -1,9 +1,9 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var domain = "http://localhost/jr/property42/backend/property42/public/";
+//var domain = "http://localhost/jr/property42/backend/property42/public/";
 //var domain = "http://localhost/production/jr-technologies/property42/public/";
-//var domain = "http://localhost/property42/public/";
+var domain = "http://localhost/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
@@ -32,6 +32,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/profile",
             templateUrl: views+"/profile.html",
             controller: "UserProfileController",
+            auth: true,
+            resolve: {
+                user : function (resources, $rootScope, $AuthService, $http, $location, $state) {
+                    $rootScope.loading_content_class = '';
+                    return $rootScope.authUser;
+                }
+            }
+        })
+        .state('home.change-password', {
+            url: "/change-password",
+            templateUrl: views+"/change-password.html",
+            controller: "ChangePasswordController",
             auth: true,
             resolve: {
                 user : function (resources, $rootScope, $AuthService, $http, $location, $state) {

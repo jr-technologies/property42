@@ -17,6 +17,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                 'input_name' => 'build_in_year',
                 'html_structure_id' => 1,
                 'possible_values' => '',
+
                 'priority' =>1
              ],
             [

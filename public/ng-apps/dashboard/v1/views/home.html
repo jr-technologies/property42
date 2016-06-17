@@ -2,6 +2,7 @@
     <header id="header" ng-controller="HeaderController">
         <a href="#home/listings/all" class="logo">Property42</a>
         <a class="sideBar-opener"><span></span></a>
+        <span class="our-contactNum">Contact us: <a href="tal:03004595541">03004595541</a></span>
         <a href="logout" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
         <a href="#home/properties/add" class="add-property"><span class="hidden-xs">Add a</span> property</a>
         <div class="searhForm-holder">
@@ -24,8 +25,18 @@
                     </div>
                 </div>
                 <ul class="notifications-links">
-                    <li><a href="#" title="Email Alerts"><span class="icon-service-courier"></span></a></li>
-                    <li><a href="#" title="Messages Alerts"><span class="icon-facebook-chat-balloons"></span></a></li>
+                    <li class="display-badge">
+                        <a href="#" title="Email Alerts">
+                            <span class="icon-service-courier"></span>
+                            <span class="badge">10</span>
+                        </a>
+                    </li>
+                    <li class="display-badge">
+                        <a href="#" title="Messages Alerts">
+                            <span class="icon-facebook-chat-balloons"></span>
+                            <span class="badge">99+</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="form-holder">
@@ -42,9 +53,11 @@
                         <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
-                <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span>favorites</a></li>
+                <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span>favorites<span class="badge">346</span></a></li>
+                <li><a href="#"><span class="icon-facebook-chat-balloons"></span>Messages<span class="badge">300</span></a></li>
+                <li><a href="#"><span class="icon-service-courier"></span>Email Alerts<span class="badge">55</span></a></li>
                 <li><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
-                <li><a href="#"><span  class="icon-key"></span>Change Password</a></li>
+                <li><a href="#home/change-password"><span  class="icon-key"></span>Change Password</a></li>
             </ul>
         </aside>
         <div class="pages-holder {{loading_content_class}}">
