@@ -11,7 +11,6 @@ app.filter('roundup', function () {
     };
 });
 app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $window, $scope, $rootScope, $http, $state, $AuthService) {
-    console.log($rootScope.authUser);
     $scope.html_title = "Property42 | Add Property";
     $scope.activeStatus = 1;
     $scope.properties = [];
@@ -130,6 +129,9 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
         });
     };
     $scope.deleteProperties = function () {
+        if($scope.deletingProperties.ids.length < 1)
+            return false;
+
         return $http({
             method: 'POST',
             url: apiPath+'properties/delete',

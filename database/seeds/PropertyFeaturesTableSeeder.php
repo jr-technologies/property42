@@ -493,7 +493,7 @@ class PropertyFeaturesTableSeeder extends Seeder
             $finaResult[] = [
                 'feature_section_id' => rand(1,7),
                 'feature' => $final[rand(0, sizeof($final) - 1)],
-                'input_name' => uniqid(),
+                'input_name' => "ab".uniqid(),
                 'html_structure_id' => rand(1,7),
                 'possible_values' => '1,2,3,4,5',
                 'priority' =>$priority[rand(0,sizeof($priority)-1)],
