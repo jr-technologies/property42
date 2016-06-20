@@ -20,8 +20,8 @@ class ContactUSMailValidator extends MailValidator implements ValidatorsInterfac
     public function rules()
     {
         return[
-            'email' => 'required',
-            'message'=>'required'
+            'email' => 'required|email',
+            'message'=>'required|min:5|max:300'
         ];
     }
 }

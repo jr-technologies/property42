@@ -21,7 +21,7 @@ class User {
     public $fax = "";
     public $address = "";
     public $zipCode = "";
-    public $trustedAgent="";
+    public $trustedAgent=0;
     public $countryId = 0;
     public $notificationSettings = 0;
     public $membershipPlanId = 0;

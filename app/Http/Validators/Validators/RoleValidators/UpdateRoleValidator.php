@@ -20,7 +20,7 @@ class UpdateRoleValidator extends RoleValidator implements ValidatorsInterface
     {
         return[
             'id' => 'required',
-            'roleName'=>'required',
+            'roleName'=>'required|min:5|max:15',
         ];
     }
 }

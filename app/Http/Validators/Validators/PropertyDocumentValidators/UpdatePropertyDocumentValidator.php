@@ -23,9 +23,9 @@ class UpdatePropertyDocumentValidator extends PropertyDocumentValidator implemen
         return[
             'id' => 'required',
             'propertyId' => 'required',
-            'path'=>'required',
-            'title' => 'required',
-            'type'=>'required'
+            'path'=>'required|min:5|max:15',
+            'title' => 'required|min:5|max:15',
+            'type'=>'required|min:5|max:15'
         ];
     }
 }

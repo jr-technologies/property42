@@ -115,6 +115,18 @@ Route::post('property-to-friend',
         'uses'=>'MailController@mailToFriend'
     ]);
 
+/**
+trusted-agent route is not redirect on right path its temporary
+**/
+Route::post('trusted-agent',
+    [
+        'middleware'=>
+            [
+                'webValidate:trustedAgentRequest'
+            ],
+        'uses'=>'UsersController@makeTrustedAgent'
+    ]);
+
 Route::get('/logout', function(){
     if(session()->has('authUser'))
     {

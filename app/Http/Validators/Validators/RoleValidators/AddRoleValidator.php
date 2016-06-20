@@ -20,7 +20,7 @@ class AddRoleValidator extends RoleValidator implements ValidatorsInterface
     public function rules()
     {
         return[
-            'roleName'=>'required',
+            'roleName'=>'required|min:5|max:15',
         ];
     }
 }

@@ -21,7 +21,7 @@ class AddPropertyTypeValidator extends PropertyTypeValidator implements Validato
     public function rules()
     {
         return[
-            'propertyType'=>'required'
+            'propertyType'=>'required|min:5|max:15'
         ];
     }
 }

@@ -69,16 +69,15 @@
                     <ul>
                         <li>
                             <label>Property SubType:</label>
-
                             <div class="input-holder">
-<span class="fake-select">
-<select name="sub_type_id">
-    <option disabled selected value>Property SubType</option>
-    @foreach($response['data']['propertySubtypes'] as $propertySubType)
-        <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
-    @endforeach
-</select>
-</span>
+                        <span class="fake-select">
+                            <select name="sub_type_id">
+                            <option disabled selected value>Property SubType</option>
+                            @foreach($response['data']['propertySubtypes'] as $propertySubType)
+                            <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
+                            @endforeach
+                        </select>
+                          </span>
                             </div>
                         </li>
                         <li class="bedrooms">

@@ -20,7 +20,7 @@ class AddFeatureSectionValidator extends FeatureSectionValidator implements Vali
     public function rules()
     {
         return[
-            'section'=>'required',
+            'section'=>'required|min:5|max:15',
 
         ];
     }

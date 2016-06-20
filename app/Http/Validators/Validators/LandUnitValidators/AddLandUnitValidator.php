@@ -20,7 +20,7 @@ class AddLandUnitValidator extends LandUnitValidator implements ValidatorsInterf
     public function rules()
     {
         return[
-            'landUnit'=>'required',
+            'landUnit'=>'required|min:5|max:15',
         ];
     }
 }

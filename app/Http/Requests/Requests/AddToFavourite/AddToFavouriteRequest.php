@@ -13,7 +13,6 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\AddToFavouriteValidators\AddToFavouriteValidator;
 use App\Transformers\Request\AddToFavourite\AddToFavouriteTransformer;
-use Illuminate\Support\Facades\Session;
 
 class AddToFavouriteRequest extends Request implements RequestInterface{
 
@@ -23,13 +22,23 @@ class AddToFavouriteRequest extends Request implements RequestInterface{
         $this->validator = new AddToFavouriteValidator($this);
     }
 
+    /**
+     * @return bool
+     */
     public function authorize(){
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function validate(){
         return $this->validator->validate();
     }
+
+    /**
+     * @return FavouriteProperty
+     */
     public function favouriteProperty()
     {
         $addToFavourite = new FavouriteProperty();

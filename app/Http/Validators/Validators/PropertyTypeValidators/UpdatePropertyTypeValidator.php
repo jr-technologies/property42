@@ -21,7 +21,7 @@ class UpdatePropertyTypeValidator extends PropertyTypeValidator implements Valid
     {
         return[
             'id' => 'required',
-            'propertyType'=>'required',
+            'propertyType'=>'required|min:5|max:15',
         ];
     }
 }

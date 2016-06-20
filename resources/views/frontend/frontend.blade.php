@@ -73,22 +73,17 @@
                     <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Advertise on Property42</a></li>
-                        <li><a href="#">privcy policy</a></li>
+                        <li><a href="#">privacy policy</a></li>
                         <li><a href="#">terms of use</a></li>
                         <li>
-                            <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">email
-                                us</a></li>
+                            <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">email Us</a></li>
                     </ul>
                 </div>
                 <div class="col">
                     <strong class="heading">Contact us</strong>
-
                     {{ Form::open(array('url' => 'contact_us','method' => 'POST','class'=>'contact')) }}
-                    <div class="input-holder"><input type="email" name="email" placeholder="Enter Your Email Address"
-                                                     required>
-                    </div>
-                    <div class="input-holder"><textarea name="message" placeholder="Enter Your Message"
-                                                        required></textarea></div>
+                    <div class="input-holder"><input type="email" name="email" placeholder="Enter Your Email Address" required ></div>
+                    <div class="input-holder"><textarea name="message" placeholder="Enter Your Message" required></textarea></div>
                     <input type="submit" value="Send">
                     {{Form::close()}}
                 </div>

@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\DB\Providers\SQL\Models\Agency;
 use App\Http\Controllers\Api\V1\ApiController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Requests\Auth\AuthenticationRequest;
 use App\Http\Requests\Requests\Auth\LoginRequest;
 use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Libs\Auth\Api as Authenticator;
-use App\Models\Sql\User;
-use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Transformers\Response\UserTransformer;
