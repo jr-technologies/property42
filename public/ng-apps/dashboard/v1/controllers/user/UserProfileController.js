@@ -107,7 +107,10 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
             var agency = user.agencies[0];
             data.agencyId = agency.id;
             data.agencyName = agency.name;
-            data.companyLogo = domain+'temp/'+agency.logo;
+            if(agency.logo != '')
+                data.companyLogo = domain+'temp/'+agency.logo;
+            else
+                data.companyLogo = '';
             data.agencyDescription = agency.description;
             data.companyPhone = agency.phone;
             data.companyMobile = agency.mobile;

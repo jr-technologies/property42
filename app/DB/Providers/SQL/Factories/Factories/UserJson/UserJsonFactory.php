@@ -83,6 +83,8 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->lName = $userJson->lName;
         $user->email = $userJson->email;
         $user->fax = $userJson->fax;
+        $user->address = $userJson->address;
+        $user->zipCode = $userJson->zipCode;
         $user->phone = $userJson->phone;
         $user->mobile = $userJson->mobile;
         $user->country = $userJson->country;

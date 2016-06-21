@@ -4,10 +4,9 @@ namespace App\Listeners\Listeners\User;
 
 use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserUpdated;
-use App\Libs\Json\Creators\Creators\User\UserBasicInfoJsonCreator;
 use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
-use App\Libs\Json\Prototypes\Prototypes\User\UserBasicInfoJsonPrototype;
-use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype as User;
+use App\DB\Providers\SQL\Models\User;
+use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
 use App\Listeners\Interfaces\ListenerInterface;
 use App\Listeners\Listeners\Listener;
 use App\Repositories\Repositories\Sql\UsersJsonRepository;
@@ -37,15 +36,9 @@ class UpdateUserJson extends Listener implements ListenerInterface
         $this->usersJsonRepository->update($userJson);
     }
 
-    public function map(UserBasicInfoJsonPrototype $userBasicInfo , User $userObject)
+    public function map(User $userObject)
     {
-        $userObject->fName = $userBasicInfo->fName;
-        $userObject->lName = $userBasicInfo->lName;
-        $userObject->email = $userBasicInfo->email;
-        $userObject->phone = $userBasicInfo->phone;
-        $userObject->mobile = $userBasicInfo->mobile;
-        $userObject->address = $userBasicInfo->address;
-        $userObject->zipCode = $userBasicInfo->zipCode;
-        return $userObject;
+        $updatedJson = (new UserJsonCreator($userObject))->create();
+        return $this->usersJsonRepository->update($updatedJson);
     }
 }

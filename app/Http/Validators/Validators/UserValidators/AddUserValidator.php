@@ -63,7 +63,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'companyAddress' => 'required|max:225',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
             'agencyDescription'=>'required',
-            'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:500,500'
+            'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
         ];
     }
 

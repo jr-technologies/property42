@@ -56,8 +56,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('home.properties', {
             url: "/properties",
             templateUrl: views+"/properties/home.html",
-            controller: "HomeController",
-            auth: true
+            auth: true,
+            resolve: {
+                resources : function ($ResourceLoader, $rootScope) {
+                    if($ResourceLoader.needsLoading())
+                    {
+                        return $ResourceLoader.loadAll();
+                    }
+                }
+            }
         })
         .state('home.properties.add', {
             url: "/add",

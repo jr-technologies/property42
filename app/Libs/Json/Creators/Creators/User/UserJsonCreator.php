@@ -66,6 +66,7 @@ class UserJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->roles = $this->roles();
         $this->prototype->createdAt = $this->model->createdAt;
         $this->prototype->updatedAt = $this->model->updatedAt;
+
         return $this->prototype;
     }
 

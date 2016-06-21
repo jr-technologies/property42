@@ -26,9 +26,10 @@ class UpdateUserTransformer extends RequestTransformer{
             'email' => $this->request->input('email'),
             'password' => $this->request->input('password'),
             'phone' => $this->request->input('phone'),
-            'mobile' => $this->request->input('mobile'),
+            'mobile' => $this->request->input('cell'),
             'address' => $this->request->input('address'),
             'zipCode' => $this->request->input('zipCode'),
+            'fax' => $this->request->input('fax'),
             'userRoles' => $this->request->input('userRoles'),
             'isAgent' => $this->request->input('isAgent'),
         ];

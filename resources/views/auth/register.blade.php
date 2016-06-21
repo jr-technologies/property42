@@ -117,7 +117,7 @@
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyName')) {{$validationErrors->first('agencyName')}} @endif</span>
                         </div>
-                        <div class="input-holder onTop-mobile">
+                        <div class="input-holder onTop-mobile @if(isset($validationErrors) && $validationErrors->has('companyLogo')) error @endif">
                             <div class="company-logo">
                                 <input type="file" name="companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
                                 <div class="picture-holder"><img src="" class="company-profileP" alt="Company logo"></div>
