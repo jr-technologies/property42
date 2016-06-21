@@ -157,7 +157,10 @@ class FeatureFactory extends SQLFactory implements SQLFactoriesInterface
             $featureWithValueAndSection->featureInputName = $feature->featureInputName;
             $featureWithValueAndSection->possibleValues = $feature->possibleValues;
             $featureWithValueAndSection->propertyId = $feature->propertyId;
-            $featureWithValueAndSection->value = $feature->value;
+            if($feature->htmlStructureName == 'checkbox' && $feature->value == 'true')
+                $featureWithValueAndSection->value = true;
+            else
+                $featureWithValueAndSection->value = $feature->value;
             $featureWithValueAndSection->priority = $feature->priority;
             /* mapping HtmlStructure */
             $htmlStructure = new HtmlStructure();

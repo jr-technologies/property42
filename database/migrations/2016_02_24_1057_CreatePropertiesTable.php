@@ -25,11 +25,11 @@ class CreatePropertiesTable extends Migration
             $table->integer('land_unit_id')->unsigned();    //complete
             $table->integer('property_status_id')->unsigned();    //complete
 
-            $table->string('contact_person')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('fax')->nullable();
-            $table->string('email')->nullable();
+            $table->string('contact_person');
+            $table->string('phone');
+            $table->string('mobile');
+            $table->string('fax');
+            $table->string('email');
 
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('is_hot')->default(0);

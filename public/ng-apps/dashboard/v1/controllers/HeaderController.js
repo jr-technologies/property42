@@ -7,7 +7,7 @@ app.controller("HeaderController",["$scope", "$rootScope", "$location", "$state"
     $scope.propertyId = '';
     $scope.searchProperty = function () {
         if(parseInt($scope.propertyId) > 0)
-            $location.path($state.href('home.properties.edit').substring(1)+$scope.propertyId);
+            $location.path('/home/properties/edit/'+$scope.propertyId);
         else
             alert($scope.propertyId+' is not a valid property id.');
     }

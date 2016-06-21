@@ -39,7 +39,6 @@ app.filter('filterBySubType', [function () {
         var filtered = [];
         angular.forEach(features, function (feature, key) {
             if(parseInt(feature.assignedSubTypeId) == parseInt(subTypeId)){
-                console.log(subTypeId);
                 filtered.push(feature);
             }
         });
@@ -206,6 +205,9 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     };
 
     $scope.initialize = function () {
+        $(document).scroll(function() {
+            onScroll();
+        });
         $rootScope.loading_content_class = '';
         $scope.form.data = mapFormData();
 

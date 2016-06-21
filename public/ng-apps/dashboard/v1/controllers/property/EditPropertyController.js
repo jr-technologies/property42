@@ -55,6 +55,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
 
         $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
+        $scope.propertySaved = false;
         $scope.formSubmitStatus = '';
         $scope.property = property;
         $scope.types = $rootScope.resources.propertyTypes;
@@ -244,8 +245,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         $scope.submitProperty = function() {
             postProcessFormData();
             $scope.errors = {};
-            console.log($scope.form.data.files);
             $rootScope.please_wait_class = 'please-wait';
+            $scope.propertySaved = false;
             var upload = Upload.upload({
                 url: apiPath+'property/update',
                 data: $scope.form.data
@@ -257,11 +258,13 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
                 $scope.formSubmitStatus = '';
                 $scope.propertyDocuments = {};
                 $scope.property = response.data.data.property;
+                $scope.propertySaved = true;
                 getPropertyDocsAndSetToScope();
                 $scope.form.data.deletedFiles = [];
             }, function (response) {
                 $rootScope.$broadcast('error-response-received',{status:response.status});
                 $rootScope.please_wait_class = '';
+                $scope.propertySaved = false;
                 $scope.errors = response.data.error.messages;
                 $window.scrollTo(0, 0);
             }, function (evt) {
@@ -317,6 +320,9 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             };
         };
         $scope.initialize = function () {
+            $(document).scroll(function() {
+                onScroll();
+            });
             $scope.societyChanged();
             $scope.blockChanged();
             $scope.propertySubTypeChanged();

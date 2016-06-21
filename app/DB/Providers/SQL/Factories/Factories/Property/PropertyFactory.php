@@ -122,6 +122,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'contact_person' => $property->contactPerson,
             'phone' => $property->phone,
             'mobile' => $property->mobile,
+            'fax' => $property->fax,
             'email' => $property->email,
             'owner_id'=>$property->ownerId,
             'created_by'=>$property->createdBy,
@@ -151,6 +152,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->contactPerson =  $result->contact_person;
         $property->phone =  $result->phone;
         $property->mobile =  $result->mobile;
+        $property->fax =  $result->fax;
         $property->email =  $result->email;
         $property->ownerId = $result->owner_id;
 

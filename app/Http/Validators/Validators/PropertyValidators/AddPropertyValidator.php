@@ -77,6 +77,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
         return [
             'contactPerson' => 'required',
             'phone' => 'required',
+            'mobile' => 'required',
             'email' => 'required'
         ];
     }
