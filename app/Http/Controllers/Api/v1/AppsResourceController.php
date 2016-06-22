@@ -72,6 +72,13 @@ class AppsResourceController extends ApiController
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
         $propertiesCounts  = $this->properties->countProperties($user->id);
         $userRoles = (new RolesRepoProvider())->repo()->all();
+        $propertyStatusesIds = (object)[
+            'active' => 5,
+            'pending' => 10,
+            'rejected' => 15,
+            'expired' => 20,
+            'deleted' => 25
+        ];
         return $this->response->respond([
             'data'=>[
                 'resources'=>[
@@ -84,7 +91,8 @@ class AppsResourceController extends ApiController
                     'agencyStaff'=>$agencyStaff,
                     'propertiesCounts'=>$propertiesCounts,
                     'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson,
-                    'userRoles' => $userRoles
+                    'userRoles' => $userRoles,
+                    'propertyStatusesIds' => $propertyStatusesIds
                 ],
                 'authUser' => $user
             ],

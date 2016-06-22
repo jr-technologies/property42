@@ -442,6 +442,17 @@ Route::post('properties/force_delete',
         'uses'=>'PropertiesController@multiForceDelete'
     ]
 );
+
+Route::post('property/restore',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:updatePropertyRequest'
+            ],
+        'uses'=>'PropertiesController@restore'
+    ]
+);
+
 Route::post('properties/delete',
     [
         'middleware'=>

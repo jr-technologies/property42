@@ -15,6 +15,7 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
     $scope.activeStatus = 1;
     $scope.properties = [];
     $scope.deletingPropertyId = 0;
+    $scope.restoringPropertyId = 0;
     $scope.deletingProperties = {
         ids: []
     };
@@ -145,6 +146,25 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
         }, function errorCallback(response) {
+            $rootScope.$broadcast('error-response-received',{status:response.status});
+        });
+    };
+    $scope.restoreProperty = function ($index) {
+        $scope.restoringPropertyId = $scope.properties[$index].id;
+        return $http({
+            method: 'POST',
+            url: apiPath+'property/restore',
+            data:{
+                propertyId: $scope.properties[$index].id,
+                searchParams: $rootScope.searchPropertiesParams
+            }
+        }).then(function successCallback(response) {
+            $rootScope.restoringPropertyId = response.data.data.propertiesCounts;
+            $scope.properties = response.data.data.properties;
+            $scope.totalProperties = response.data.data.totalProperties;
+            $scope.restoringPropertyId = 0;
+        }, function errorCallback(response) {
+            $scope.restoringPropertyId = 0;
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
     };

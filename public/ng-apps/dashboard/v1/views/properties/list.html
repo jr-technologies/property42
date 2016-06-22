@@ -78,7 +78,7 @@
                     <div class="t-head by-view"><span class="descending">Views</span></div>
                     <div class="t-head"><span class="descending">Controls</span></div>
                 </li>
-                <li data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id}" class="accordion-row">
+                <li data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
                     <div class="t-data by-id">
                         <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id">
                         <label for="id1">{{property.id}} </label>
@@ -93,6 +93,7 @@
                     <div class="t-data">
                         <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
                         <a href="#/home/properties/edit/{{property.id}}" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
+                        <a ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-refresh-arrow"></span></a>
                         <a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-trash"></span></a>
                     </div>
                     <div class="slide">

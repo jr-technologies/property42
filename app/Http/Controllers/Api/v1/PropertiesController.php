@@ -30,6 +30,7 @@ use App\Traits\PropertyFilesReleaser;
 use App\Transformers\Response\PropertyJson\PropertyJsonTransformer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Request;
 
 class PropertiesController extends ApiController
 {
@@ -123,6 +124,19 @@ class PropertiesController extends ApiController
         $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
         $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         return $this->response->respond(['data'=>[
+            'totalProperties'=>$countUserSearchProperties,
+            'propertiesCounts' => $propertiesCounts,
+            'properties'=>$userProperties
+        ]]);
+    }
+
+    public function restore(Request $request)
+    {
+        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
+        $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
+        return $this->response->respond(['data'=>[
+            'property'=>null,
             'totalProperties'=>$countUserSearchProperties,
             'propertiesCounts' => $propertiesCounts,
             'properties'=>$userProperties
