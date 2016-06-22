@@ -21,7 +21,7 @@ class UpdateCountryValidator extends CountryValidator implements ValidatorsInter
     {
         return[
             'id'=>'required',
-            'country'=>'required'
+            'country'=>'required|min:5|max:15'
         ];
     }
 }

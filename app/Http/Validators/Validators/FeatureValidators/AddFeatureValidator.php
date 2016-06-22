@@ -25,10 +25,10 @@ class AddFeatureValidator extends FeatureValidator implements ValidatorsInterfac
     {
         return[
             'featureSectionId'=>'required',
-            'featureName'=>'required',
-            'featureInputName'=>'required',
+            'featureName'=>'required|min:5|max:15',
+            'featureInputName'=>'required|min:5|max:15',
             'featureHtmlStructureId'=>'required',
-            'featurePossibleValues'=>'required',
+            'featurePossibleValues'=>'required|min:5|max:250',
             'featurePriority'=>'required',
         ];
     }

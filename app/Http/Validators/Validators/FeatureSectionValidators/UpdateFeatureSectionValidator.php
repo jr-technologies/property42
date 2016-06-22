@@ -21,7 +21,7 @@ class UpdateFeatureSectionValidator extends FeatureSectionValidator implements V
     {
         return[
             'id' => 'required',
-            'section'=>'required',
+            'section'=>'required|min:5|max:15',
 
         ];
     }

@@ -12,6 +12,7 @@ use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Factories\Factories\Agency\Gateways\AgencyQueryBuilder;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\AgencySociety;
 
 class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
     private $tableGateway = null;

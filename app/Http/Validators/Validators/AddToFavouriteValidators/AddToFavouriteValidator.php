@@ -19,7 +19,7 @@ class AddToFavouriteValidator extends FavouriteValidator implements ValidatorsIn
     {
         return [
 
-        ] ;
+        ];
     }
     public function rules()
     {

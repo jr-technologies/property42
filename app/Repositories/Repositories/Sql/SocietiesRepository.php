@@ -11,6 +11,7 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Models\Society;
+use App\Http\Requests\Requests\Block\GetBlocksBySocietyRequest;
 use App\Repositories\Interfaces\Repositories\SocietiesRepoInterface;
 
 class SocietiesRepository extends SqlRepository implements SocietiesRepoInterface
@@ -46,9 +47,9 @@ class SocietiesRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->delete($society);
     }
-    public function getBlocksBySociety(GetBlocksBySocietyRequest $request)
+    public function getSocietiesByAgency($agencyId)
     {
-        return $this->response->respond(['data'=>[
-            'Blocks'=>$this->society->getBlocksBySociety($request->get('societyId'))]]);
+        return $this->factory->getSocietiesByAgency($agencyId);
     }
+
 }

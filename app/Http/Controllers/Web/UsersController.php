@@ -9,8 +9,10 @@ use App\Http\Requests\Requests\User\DeleteUserRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Requests\Requests\User\GetAgentsRequest;
 use App\Http\Requests\Requests\User\SearchUsersRequest;
+use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\User\UsersFilesReleaser;
 use App\Transformers\Response\UserTransformer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -23,10 +25,11 @@ class UsersController extends Controller
     use UsersFilesReleaser;
     public $userTransformer = null;
     public $usersJsonRepo = null;
-
+    public $users = null;
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
         $this->response = $webResponse;
+        $this->users = (new UsersRepoProvider())->repo();
         $this->userTransformer = $userTransformer;
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
     }
@@ -52,5 +55,11 @@ class UsersController extends Controller
             'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId')))
         ]]);
 
+    }
+    public function makeTrustedAgent(TrustedAgentRequest $request)
+    {
+        $user = $request->getUserModel();
+        return $this->response->setView('frontend.agent-profile')->respond(['data' => [
+            'trustedAgent'=>$this->users->makeTrustedAgent($user)]]);
     }
 }

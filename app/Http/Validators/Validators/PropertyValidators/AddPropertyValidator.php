@@ -64,10 +64,10 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
             'blockId' => 'required|exists:blocks,id',
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|min:5|max:15',
+            'description' => 'required|min:5|max:200',
             'price' => 'required',
-            'landArea' => 'required',
+            'landArea' => 'required|min:5|max:15',
             'landUnitId' => 'required|exists:land_units,id',
         ];
     }

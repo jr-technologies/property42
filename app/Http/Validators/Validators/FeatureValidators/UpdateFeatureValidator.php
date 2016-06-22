@@ -26,10 +26,10 @@ class UpdateFeatureValidator extends FeatureValidator implements ValidatorsInter
         return[
             'featureId'=>'required',
             'featureSectionId'=>'required',
-            'featureName'=>'required',
-            'featureInputName'=>'required',
+            'featureName'=>'required|min:5|max:15',
+            'featureInputName'=>'required|min:5|max:15',
             'featureHtmlStructureId'=>'required',
-            'featurePossibleValues'=>'required',
+            'featurePossibleValues'=>'required|min:5|max:250',
             'featurePriority'=>'required',
         ];
     }

@@ -19,7 +19,7 @@ class UpdatePropertyPurposeValidator extends PropertyPurposeValidator implements
     {
         return[
             'id' => 'required',
-            'purpose'=>'required',
+            'purpose'=>'required|min:5|max:15',
         ];
     }
 }

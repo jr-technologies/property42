@@ -19,7 +19,6 @@ use App\Transformers\Request\User\UpdateUserTransformer;
 
 class UpdateUserRequest extends Request implements RequestInterface
 {
-
     public $validator;
     private $users;
     private $agencies;

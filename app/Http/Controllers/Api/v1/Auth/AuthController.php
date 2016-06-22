@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\Events\Events\User\UserCreated;
 use App\Http\Controllers\Api\V1\ApiController;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Requests\Auth\AuthenticationRequest;
 use App\Http\Requests\Requests\Auth\LoginRequest;
 use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Libs\Auth\Api as Authenticator;
-use App\Models\Sql\User;
-use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Transformers\Response\UserTransformer;
+use Illuminate\Support\Facades\Event;
 
 class AuthController extends ApiController
 {
@@ -40,9 +38,7 @@ class AuthController extends ApiController
     {
         if(!$this->auth->attempt($request->getCredentials()))
             return $this->response->respondInvalidCredentials();
-
         $authenticatedUser = $this->auth->login($this->users->findByEmail($request->get('email')));
-
         return $this->response->respond(['data'=>[
             'authUser' => $authenticatedUser
         ]]);
@@ -55,7 +51,9 @@ class AuthController extends ApiController
         {
             $this->saveUserAgency($request, $userId);
         }
-        return $this->response->respond(['data'=>['user'=>$this->users->getById($userId)]]);
+        $user = $this->users->getById($userId);
+        Event::fire(new UserCreated($user));
+        return $this->response->respond(['data'=>['user'=>$user]]);
     }
 
     private function saveUser(RegistrationRequest $request)
@@ -75,7 +73,9 @@ class AuthController extends ApiController
         }
         $agency->logo = $logoPath;
         $agencyId = $this->agencies->storeAgency($agency);
-        $this->agencies->addCities($agencyId, $request->getAgencyCities());
+        //$this->agencies->addCities($agencyId, $request->getAgencyCities());
+        $this->agencies->addSocieties($request->getAgencySocieties($agencyId));
+
         return $agencyId;
     }
 

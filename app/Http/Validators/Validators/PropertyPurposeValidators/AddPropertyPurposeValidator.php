@@ -20,7 +20,7 @@ class AddPropertyPurposeValidator extends PropertyPurposeValidator implements Va
     public function rules()
     {
         return[
-            'purpose'=>'required'
+            'purpose'=>'required|min:5|max:15'
         ];
     }
 }

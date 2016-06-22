@@ -12,6 +12,7 @@ use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\Gateways\UserQueryBuilder;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\DB\Providers\SQL\Models\User as UserModel;
+use App\DB\Providers\SQL\Models\User;
 use Mockery\CountValidator\Exception;
 
 class UserFactory extends SQLFactory implements SQLFactoriesInterface{
@@ -54,7 +55,11 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
+    public function makeTrustedAgent(User $user)
+    {
+        $user->trustedAgent = 1;
+        return $this->tableGateway->updateWhere(['id'=>$user->id],$this->mapUserOnTable($user));
+    }
     /**
      * @param $id
      * @return UserModel
@@ -152,6 +157,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->mobile = $result->mobile;
         $user->address = $result->address;
         $user->zipCode = $result->zipcode;
+        $user->trustedAgent = $result->trusted_agent;
         $user->fax = $result->fax;
         $user->loginCount = $result->login_count;
         $user->countryId = $result->country_id;
@@ -175,6 +181,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
             'phone' => $user->phone,
             'address' => $user->address,
             'zipcode' => $user->zipCode,
+            'trusted_agent'=>$user->trustedAgent,
             'mobile' => $user->mobile,
             'fax' => $user->fax,
             'access_token' => $user->access_token,

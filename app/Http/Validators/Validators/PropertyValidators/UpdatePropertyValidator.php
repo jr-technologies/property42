@@ -66,10 +66,10 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
             'blockId' => 'required|exists:blocks,id',
-            'title' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'landArea' => 'required',
+            'title' => 'required|min:5|max:25',
+            'description' => 'required|min:5|max:250',
+            'price' => 'required|numeric',
+            'landArea' => 'required|min:5|max:15',
             'landUnitId' => 'required|exists:land_units,id',
         ];
     }

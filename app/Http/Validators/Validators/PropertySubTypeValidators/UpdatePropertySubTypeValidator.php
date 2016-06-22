@@ -22,7 +22,7 @@ class UpdatePropertySubTypeValidator extends PropertySubTypeValidator implements
         return[
             'id' => 'required',
             'propertyTypeId'=>'required',
-            'propertySubTypeName'=>'required',
+            'propertySubTypeName'=>'required|min:5|max:15',
         ];
     }
 }

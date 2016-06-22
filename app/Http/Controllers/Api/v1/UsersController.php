@@ -89,7 +89,7 @@ class UsersController extends ApiController
 
     /**
      * @param UpdateUserRequest $request
-     * @return \App\Http\Responses\Responses\json
+     * @return \App\Http\Responses\\json
      */
     public function updateUser(UpdateUserRequest $request)
     {

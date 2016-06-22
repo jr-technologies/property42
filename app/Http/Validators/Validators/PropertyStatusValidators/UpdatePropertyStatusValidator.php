@@ -21,7 +21,7 @@ class UpdatePropertyStatusValidator extends PropertyStatusValidator implements V
     {
         return[
             'id' => 'required',
-            'propertyStatus'=>'required',
+            'propertyStatus'=>'required|min:5|max:20',
         ];
     }
 }

@@ -10,6 +10,7 @@ namespace App\Http\Requests\Requests\Auth;
 
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\AgencySociety;
 use App\DB\Providers\SQL\Models\User;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
@@ -81,7 +82,18 @@ class RegistrationRequest extends Request implements RequestInterface{
     {
         return [1]; //we just deal in lahore
     }
-
+    public function getAgencySocieties($agencyId)
+    {
+        $societiesIds = [1,2,3,4];
+        $agencySocieties = [];
+        foreach ($societiesIds as $societyId) {
+            $agencySociety = new AgencySociety();
+            $agencySociety->agencyId = $agencyId;
+            $agencySociety->societyId = $societyId;
+            $agencySocieties[] =$agencySociety;
+        }
+        return $agencySocieties;
+    }
     public function getUserRoles()
     {
         return (is_array($this->get('userRoles')))?$this->get('userRoles'):[1];

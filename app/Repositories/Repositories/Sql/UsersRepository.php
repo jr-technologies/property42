@@ -14,6 +14,7 @@ use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\SQLFactoryProvider;
 use App\Events\Events\User\UserCreated;
 use App\Events\Events\User\UserRolesChanged;
+use App\Events\Events\User\UserUpdated;
 use App\Libs\Json\Creators\Creators\UserJsonCreator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\DB\Providers\SQL\Models\User;
@@ -68,7 +69,11 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     {
         return $this->factory->find($id);
     }
-
+    public function makeTrustedAgent(User $user)
+    {
+        $this->factory->makeTrustedAgent($user);
+        return Event::fire(new UserUpdated($user));
+    }
     public function getByToken($token)
     {
         return $this->factory->findByToken($token);
@@ -93,14 +98,12 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     public function store(User $user)
     {
         $user->id = $this->factory->store($user);
-        Event::fire(new UserCreated($user));
         return $user->id;
     }
 
     public function addRoles($userId, $userRoles)
     {
-        $this->factory->addRoles($userId, $userRoles);
-        Event::fire(new UserRolesChanged($userId));
+        return $this->factory->addRoles($userId, $userRoles);
     }
 
     public function delete(User $user)
