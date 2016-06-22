@@ -10,6 +10,7 @@ use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
+use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
@@ -27,6 +28,7 @@ class PropertiesController extends Controller
     public $blocks =null;
     public $propertyTypes = null;
     public $propertySubtypes =null;
+    public $landUnits =null;
 
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
@@ -39,6 +41,7 @@ class PropertiesController extends Controller
        $this->blocks = (new BlocksRepoProvider())->repo();
        $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
        $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
+        $this->landUnits = (new LandUnitsRepoProvider())->repo();
     }
 
     public function update(UpdatePropertyRequest $request)
@@ -61,6 +64,7 @@ class PropertiesController extends Controller
             'societies'=>$this->societies->all(),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all(),
+            'landUnits'=>$this->landUnits->all()
         ]]);
     }
     public function getById(GetPropertyRequest $request)

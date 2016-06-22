@@ -15,6 +15,7 @@ use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
@@ -43,16 +44,11 @@ Route::get('app/dashboard/resources',
 );
 
 Route::post('foo',function() {
-    $societiesIds = [1,2,3,4];
-    $agencyId = 1;
-    $agencySocieties = [];
-    foreach ($societiesIds as $societyId) {
-        $agencySociety = new AgencySociety();
-        $agencySociety->agencyId = $agencyId;
-        $agencySociety->societyId = $societyId;
-        $agencySocieties[] =$agencySociety;
+    $users = (new UsersRepoProvider())->repo()->all();
+    foreach($users as $user)
+    {
+       $user->id;
     }
-    (new AgencySocietyFactory())->addSocieties($agencySocieties);
 }
 );
 
