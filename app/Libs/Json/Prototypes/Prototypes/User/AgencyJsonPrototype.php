@@ -22,4 +22,5 @@ class AgencyJsonPrototype extends JsonPrototype implements JsonPrototypeInterfac
     public $address = "";
     public $email = "";
     public $logo="";
+    public $societies=[];
 }

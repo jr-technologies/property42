@@ -54,8 +54,9 @@ class UsersController extends ApiController
         $this->userRoles = $userRolesRepoProvider->repo();
     }
 
+
     /**
-     * @return \App\Http\Responses\Responses\json
+     * @return \App\Http\Response\Response\json
      */
     public function index()
     {
@@ -79,7 +80,7 @@ class UsersController extends ApiController
     }
     /**
      * @param UpdateUserRequest $request
-     * @return \App\Http\Responses\Responses\json
+     * @return \App\Http\Responses\\json
      */
     public function updateUser(UpdateUserRequest $request)
     {

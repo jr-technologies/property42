@@ -9,7 +9,9 @@
 namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
+use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\AgencySociety;
 use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
 use App\Events\Events\Agency\AgencyUpdated;
@@ -20,8 +22,10 @@ use Illuminate\Support\Facades\Event;
 class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
 {
     private $factory = null;
+    private $agencySocietyFactory = null;
     public function __construct(){
         $this->factory = new AgencyFactory();
+      $this->agencySocietyFactory =  new AgencySocietyFactory();
     }
 
     public function getById($id)
@@ -43,13 +47,16 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
     public function storeAgency(Agency $agency)
     {
         $agency->id = $this->factory->store($agency);
-        Event::fire(new AgencyCreated($agency));
         return $agency->id;
     }
 
     public function addCities($agencyId, $cityIds)
     {
         return $this->factory->addCities($agencyId, $cityIds);
+    }
+    public function addSocieties(array $agencySociety)
+    {
+        return $this->agencySocietyFactory->addSocieties($agencySociety);
     }
     public function updateAgency(Agency $agency)
     {

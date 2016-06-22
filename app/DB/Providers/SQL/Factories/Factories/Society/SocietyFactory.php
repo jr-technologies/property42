@@ -69,6 +69,10 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
         $society->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->insert($this->mapSocietyOnTable($society));
     }
+    public function getSocietiesByAgency($agencyId)
+    {
+        return $this->mapCollection($this->tableGateway->getSocietiesByAgency($agencyId));
+    }
     /**
      * @param Society $society
      * @return int

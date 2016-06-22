@@ -1,9 +1,11 @@
 <?php
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
+use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
+use App\DB\Providers\SQL\Models\AgencySociety;
 use App\DB\Providers\SQL\Models\AssignedFeatures;
 use App\DB\Providers\SQL\Models\PropertySubType;
 use App\Events\Events\Feature\FeatureJsonCreated;
@@ -38,6 +40,20 @@ Route::get('app/dashboard/resources',
             ],
         'uses'=>'AppsResourceController@dashboardResources'
     ]
+);
+
+Route::post('foo',function() {
+    $societiesIds = [1,2,3,4];
+    $agencyId = 1;
+    $agencySocieties = [];
+    foreach ($societiesIds as $societyId) {
+        $agencySociety = new AgencySociety();
+        $agencySociety->agencyId = $agencyId;
+        $agencySociety->societyId = $societyId;
+        $agencySocieties[] =$agencySociety;
+    }
+    (new AgencySocietyFactory())->addSocieties($agencySocieties);
+}
 );
 
 Route::post('favourite/property',
