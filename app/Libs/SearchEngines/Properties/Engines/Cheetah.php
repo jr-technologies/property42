@@ -30,6 +30,11 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         return $this->buildQuery()->get();
     }
 
+    public function count()
+    {
+        return rand(100,100000);
+    }
+
     public function setInstructions(array $instructions)
     {
         $this->instructions = $instructions;
