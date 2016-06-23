@@ -111,8 +111,14 @@ class PropertiesController extends ApiController
         $property = $request->getPropertyModel();
         $this->properties->forceDelete($property);
         Event::fire(new PropertyDeleted($property));
+        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
+        $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         return $this->response->respond(['data'=>[
-            'property'=>$property
+            'property'=>$property,
+            'totalProperties'=>$countUserSearchProperties,
+            'propertiesCounts' => $propertiesCounts,
+            'properties'=>$userProperties
         ]]);
     }
 
@@ -133,7 +139,7 @@ class PropertiesController extends ApiController
     public function restore()
     {
         $request = request();
-        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        /*$userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
         $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
         $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         return $this->response->respond(['data'=>[
@@ -141,6 +147,12 @@ class PropertiesController extends ApiController
             'totalProperties'=>$countUserSearchProperties,
             'propertiesCounts' => $propertiesCounts,
             'properties'=>[]//$userProperties
+        ]]);*/
+        return $this->response->respond(['data'=>[
+            'property'=>null,
+            'totalProperties'=>200,
+            'propertiesCounts' => [],
+            'properties'=>$this->propertiesJsonRepo->getUserProperties([])
         ]]);
     }
 

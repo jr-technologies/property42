@@ -92,7 +92,7 @@
                     <div class="t-data by-view">{{property.totalLikes}}</div>
                     <div class="t-data">
                         <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
-                        <a href="#/home/properties/edit/{{property.id}}" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
+                        <a ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" href="#/home/properties/edit/{{property.id}}" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
                         <a ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-refresh-arrow"></span></a>
                         <a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-trash"></span></a>
                     </div>
