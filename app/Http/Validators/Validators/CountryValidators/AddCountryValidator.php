@@ -21,7 +21,7 @@ class AddCountryValidator extends CountryValidator implements ValidatorsInterfac
     public function rules()
     {
         return[
-            'country'=>'required|min:5|max:15'
+            'country'=>'required|min:5|max:25'
         ];
     }
 }

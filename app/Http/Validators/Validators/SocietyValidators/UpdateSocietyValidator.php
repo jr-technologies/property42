@@ -22,7 +22,7 @@ class UpdateSocietyValidator extends SocietyValidator implements ValidatorsInter
     {
         return[
             'id' => 'required',
-            'society'=>'required|min:5|max:15',
+            'society'=>'required|min:5|max:55',
             'cityId' => 'required'
         ];
     }

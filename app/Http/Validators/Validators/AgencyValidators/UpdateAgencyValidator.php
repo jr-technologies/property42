@@ -20,11 +20,11 @@ class UpdateAgencyValidator extends AgencyValidator implements ValidatorsInterfa
         return[
                 'id'=>'required',
                 'userId'=>'required',
-                'agencyName' => 'required|min:3|max:15',
+                'agencyName' => 'required|min:3|max:150',
                 'companyMobile' => 'required|min:3|max:15',
                 'companyPhone'=>'required|min:3|max:15',
                 'companyAddress' =>'required|min:3|max:150',
-                'companyEmail'=>'required|min:3|max:15',
+                'companyEmail'=>'required|email|unique:agencies,email|min:3|max:255',
 
             ];
     }

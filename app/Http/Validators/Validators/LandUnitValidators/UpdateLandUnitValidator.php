@@ -21,7 +21,7 @@ class UpdateLandUnitValidator extends LandUnitValidator implements ValidatorsInt
     {
         return[
             'id' => 'required',
-            'landUnit'=>'required|min:5|max:15',
+            'landUnit'=>'required|min:5|max:55',
         ];
     }
 }

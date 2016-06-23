@@ -223,6 +223,7 @@ return [
         'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
         'ChangePasswordRequest' => \App\Http\Requests\Requests\User\ChangePasswordRequest::class,
         'GetAgentsRequest' => \App\Http\Requests\Requests\User\GetAgentsRequest::class,
+        'GetAgentRequest' => \App\Http\Requests\Requests\User\GetAgentRequest::class,
         'TrustedAgentRequest' => \App\Http\Requests\Requests\User\TrustedAgentRequest::class,
 
 

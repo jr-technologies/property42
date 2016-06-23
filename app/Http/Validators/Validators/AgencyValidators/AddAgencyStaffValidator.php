@@ -29,8 +29,8 @@ class AddAgencyStaffValidator extends AgencyValidator implements ValidatorsInter
     public function rules()
     {
         return[
-            'firstName'=> 'required|min:3|max:15',
-            'lastName'=> 'required|min:3|max:15',
+            'firstName'=> 'required|min:3|max:150',
+            'lastName'=> 'required|min:3|max:150',
             'email'=>'required|email|max:255',
             'mobile'=> 'required|min:3|max:15',
             'password'=> 'required|min:3|max:15',

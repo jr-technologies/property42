@@ -46,9 +46,9 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
             throw new \Exception();
         return $this->map($user);
     }
-    public function trustedAgents()
+    public function trustedAgents(array $params)
     {
-        return $this->mapCollection($this->tableGateway->trustedAgents());
+        return $this->mapCollection($this->tableGateway->trustedAgents($params));
     }
 
     /**

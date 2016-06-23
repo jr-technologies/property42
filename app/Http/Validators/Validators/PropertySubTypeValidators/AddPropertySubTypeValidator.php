@@ -21,7 +21,7 @@ class AddPropertySubTypeValidator extends PropertySubTypeValidator implements Va
     {
         return[
             'propertyTypeId'=>'required',
-            'propertySubTypeName'=>'required|min:5|max:15'
+            'propertySubTypeName'=>'required|min:5|max:55'
         ];
     }
 }

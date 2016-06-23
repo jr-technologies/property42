@@ -22,6 +22,6 @@ class UsersRolesTableSeeder extends Seeder
             }
 
 
-        DB::table('users')->insert($finalRecord);
+        DB::table('user_roles')->insert($finalRecord);
     }
 }

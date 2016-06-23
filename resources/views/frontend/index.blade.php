@@ -8,7 +8,7 @@
                 <ul class="main-links">
                     <li>
                         <label for="buy1">
-                            <input type="radio" name="purpose_id" id="buy1" checked value="1">
+                            <input type="radio" name="purpose_id" value="1" id="buy1" checked >
                             <span class="fake-label">Buy</span>
                         </label>
                     </li>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\AppsResourceController;
 use App\Http\Controllers\Api\V1\PropertySubTypeController;
 use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
+use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
@@ -45,9 +46,14 @@ Route::get('app/dashboard/resources',
 
 Route::post('foo',function() {
     $users = (new UsersRepoProvider())->repo()->all();
+    $finalRecord =[];
+
     foreach($users as $user)
     {
-       $user->id;
+        $finalRecord[] = [
+            'user_id'=>$user->id,
+            'josn'=>(new UserJsonCreator($user))->create()
+        ];
     }
 }
 );

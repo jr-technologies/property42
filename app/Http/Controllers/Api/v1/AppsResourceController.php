@@ -39,6 +39,7 @@ class AppsResourceController extends ApiController
     public $userAgency ="";
     public $properties ="";
     public $assignedFeaturesJson="";
+    public $propertyStatuses = null;
 
     public function __construct(ApiResponse $response)
     {
@@ -52,6 +53,7 @@ class AppsResourceController extends ApiController
         $this->agencyStaff = (new UsersJsonRepoProvider())->repo();
         $this->properties = (new PropertiesRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
+        $this->propertyStatuses = (new PropertyStatusesRepoProvider())->repo();
         $this->response = $response;
     }
     public function dashboardResources(GetDashboardResourcesRequest $request)
@@ -64,6 +66,7 @@ class AppsResourceController extends ApiController
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
         $societies = $this->societies->all();
+        $propertyStatusesIds =$this->mapToArray( $this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
@@ -72,6 +75,7 @@ class AppsResourceController extends ApiController
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
         $propertiesCounts  = $this->properties->countProperties($user->id);
         $userRoles = (new RolesRepoProvider())->repo()->all();
+
         return $this->response->respond([
             'data'=>[
                 'resources'=>[
@@ -84,11 +88,21 @@ class AppsResourceController extends ApiController
                     'agencyStaff'=>$agencyStaff,
                     'propertiesCounts'=>$propertiesCounts,
                     'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson,
-                    'userRoles' => $userRoles
+                    'userRoles' => $userRoles,
+                    'propertyStatusesIds'=>$propertyStatusesIds
                 ],
                 'authUser' => $user
             ],
             'access_token' => session('authUser')->access_token
         ]);
+    }
+    public function mapToArray($propertyStatuses)
+    {
+        $final =[];
+        foreach($propertyStatuses as $propertyStatus)
+        {
+            $final[$propertyStatus->name] = $propertyStatus->id;
+        }
+        return array_change_key_case($final,CASE_LOWER);
     }
 }

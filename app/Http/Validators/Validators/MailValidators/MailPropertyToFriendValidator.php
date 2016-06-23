@@ -20,7 +20,7 @@ class MailPropertyToFriendValidator extends MailValidator implements ValidatorsI
     public function rules()
     {
         return[
-            'to' => 'required|min:5|max:15',
+            'to' => 'required|min:5|email|max:255',
             'message'=>'required|min:5|max:300'
         ];
     }
