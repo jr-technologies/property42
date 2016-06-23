@@ -11,39 +11,27 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            [
-                  "f_name" => "waqas",
-                  "l_name" => "qureshi",
-                  "email" => "waqas@gmail.com",
-                  "password" => '$2y$10$lVHrhSU/7SKckBYdRYFNYeO3ddcsh2CMP1FSFJeN4EPH0s7LYq9k2',
-                  "access_token" => "",
-                  "phone" => "65464654",
-                  "mobile" => "6546456",
-                  "fax" => "",
-                  "address" => "654564564",
-                  "zipcode" => "54564564",
-                  "trusted_agent" => 1,
-                  "country_id" => 1,
-                  "notification_settings" => 1,
-                  "membership_plan_id" => 1
-            ],
-            [
-                "f_name" => "noman",
-                "l_name" => "tofail",
-                "email" => "noman@gmail.com",
-                "password" => '$2y$10$lVHrhSU/7SKckBYdRYFNYeO3ddcsh2CMP1FSFJeN4EPH0s7LYq9k2',
-                "access_token" => "",
-                "phone" => "65464654",
-                "mobile" => "6546456",
-                "fax" => "",
-                "address" => "654564564",
-                "zipcode" => "54564564",
-                "trusted_agent" => 1,
-                "country_id" => 1,
-                "notification_settings" => 1,
-                "membership_plan_id" => 1
-            ],
-        ]);
+        $finalRecord =[];
+            for($i=0;$i<100;$i++){
+                $finalRecord[] = [
+                    "f_name" => "waqas".rand(1,207777770),
+                    "l_name" => "qureshi".rand(1,200222),
+                    "email" => "waqas@gmail.com".rand(1,2000000),
+                    "password" => '$2y$10$lVHrhSU/7SKckBYdRYFNYeO3ddcsh2CMP1FSFJeN4EPH0s7LYq9k2',
+                    "access_token" => "",
+                    "phone" => "65464654",
+                    "mobile" => "6546456",
+                    "fax" => "",
+                    "address" => "654564564",
+                    "zipcode" => "54564564",
+                    "trusted_agent" => 1,
+                    "country_id" => 1,
+                    "notification_settings" => 1,
+                    "membership_plan_id" => 1
+                ];
+            }
+
+
+        DB::table('users')->insert($finalRecord);
     }
 }

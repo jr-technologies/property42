@@ -44,8 +44,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
     public function userRules()
     {
         return [
-            'fName' => 'required|min:5|max:15',
-            'lName' => 'required|min:5|max:15',
+            'fName' => 'required|min:5|max:55',
+            'lName' => 'required|min:5|max:55',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:5|max:15',
             'passwordAgain' => 'required|min:5|max:15',

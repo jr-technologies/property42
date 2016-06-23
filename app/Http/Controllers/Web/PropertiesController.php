@@ -10,8 +10,10 @@ use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
+use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
@@ -27,6 +29,8 @@ class PropertiesController extends Controller
     public $blocks =null;
     public $propertyTypes = null;
     public $propertySubtypes =null;
+    public $landUnits =null;
+    public $propertyStatuses =null;
 
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
@@ -35,10 +39,13 @@ class PropertiesController extends Controller
         $this->PropertyTransformer = $propertyTransformer;
 
         $this->properties = (new PropertiesJsonRepoProvider())->repo();
-       $this->societies = (new SocietiesRepoProvider())->repo();
-       $this->blocks = (new BlocksRepoProvider())->repo();
-       $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
-       $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
+        $this->societies = (new SocietiesRepoProvider())->repo();
+        $this->blocks = (new BlocksRepoProvider())->repo();
+        $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
+        $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
+        $this->landUnits = (new LandUnitsRepoProvider())->repo();
+
+
     }
 
     public function update(UpdatePropertyRequest $request)
@@ -50,8 +57,11 @@ class PropertiesController extends Controller
 
     public function search(SearchPropertiesRequest $request)
     {
+        $properties = $this->releaseAllPropertiesFiles($this->properties->search($request->getParams()));
+        $totalCount = count($properties);
         return $this->response->setView('frontend.property_listing')->respond(['data' => [
-            'properties' => $this->releaseAllPropertiesFiles($this->properties->search($request->getParams()))
+            'properties' => $properties,
+            'totalProperties'=>$totalCount
         ]]);
     }
 
@@ -61,6 +71,7 @@ class PropertiesController extends Controller
             'societies'=>$this->societies->all(),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all(),
+            'landUnits'=>$this->landUnits->all()
         ]]);
     }
     public function getById(GetPropertyRequest $request)

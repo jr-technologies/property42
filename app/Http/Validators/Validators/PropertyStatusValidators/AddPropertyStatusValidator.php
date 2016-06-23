@@ -20,7 +20,7 @@ class AddPropertyStatusValidator extends PropertyStatusValidator implements Vali
     public function rules()
     {
         return[
-            'propertyStatus'=>'required|min:5|max:15',
+            'propertyStatus'=>'required|min:5|max:55',
         ];
     }
 }

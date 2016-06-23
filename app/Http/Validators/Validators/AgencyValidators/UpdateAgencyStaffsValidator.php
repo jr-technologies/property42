@@ -30,8 +30,8 @@ class UpdateAgencyStaffsValidator extends AgencyValidator implements ValidatorsI
     public function rules()
     {
         return[
-            'firstName'=> 'required|min:3|max:15',
-            'lastName'=> 'required|min:3|max:15',
+            'firstName'=> 'required|min:3|max:150',
+            'lastName'=> 'required|min:3|max:150',
             'email'=>'email|unique:users,email,'.$this->request->get('userId'),
             'mobile'=> 'required|min:3|max:15',
             'password'=> 'required|min:3|max:15',

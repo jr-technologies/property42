@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\User\GetAgentsRequest;
 use App\Http\Requests\Requests\User\SearchUsersRequest;
 use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\User\UsersFilesReleaser;
@@ -26,10 +27,12 @@ class UsersController extends Controller
     public $userTransformer = null;
     public $usersJsonRepo = null;
     public $users = null;
+    public $societies = null;
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
         $this->response = $webResponse;
         $this->users = (new UsersRepoProvider())->repo();
+        $this->societies = (new SocietiesRepoProvider())->repo();
         $this->userTransformer = $userTransformer;
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
     }
@@ -44,8 +47,10 @@ class UsersController extends Controller
     public function trustedAgents(GetAgentsRequest $request)
     {
         return $this->response
-            ->setView('frontend.agent-listing')
-            ->respond(['data' => ['agents' => $this->releaseUsersAgenciesLogo($this->usersJsonRepo->trustedAgents())
+            ->setView('frontend.agent-listing')->respond(['data' => [
+                'agents' => $this->releaseUsersAgenciesLogo($this->usersJsonRepo->trustedAgents($request->all())),
+                'societies'=>$this->societies->all(),
+                'params'=>$request->all(),
             ]]);
     }
 
@@ -54,7 +59,6 @@ class UsersController extends Controller
         return $this->response->setView('frontend.agent-profile')->respond(['data' => [
             'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId')))
         ]]);
-
     }
     public function makeTrustedAgent(TrustedAgentRequest $request)
     {

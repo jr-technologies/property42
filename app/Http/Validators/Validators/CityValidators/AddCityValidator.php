@@ -21,7 +21,7 @@ class AddCityValidator extends CityValidator implements ValidatorsInterface
     {
         return[
             'country_id' => 'required',
-            'name'=>'required|min:5|max:15'
+            'name'=>'required|min:5|max:25'
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Database\Seeder;
 
 class AgencyTableSeeder extends Seeder
@@ -11,25 +12,20 @@ class AgencyTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('agencies')->insert([
-            [
-                'agency' => 'JR',
-                'user_id' => 1,
-                'mobile' => 03044567051,
-                'phone' => 03044567051,
-                'email' => 'mrwaqas@gmail.com',
+        $users = (new UsersRepoProvider())->repo()->all();
+        $finalRecord =[];
+        foreach($users as $user) {
+            $finalRecord[] =[
+                'agency' => $user->fName.''.$user->lName,
+                'user_id' => $user->id,
+                'mobile' => 03044567051..rand(1,1000000),
+                'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                'phone' => 03044567051..rand(1,100000),
+                'email' => $user->email.rand(1,200000000),
                 'address' => 'Lahore',
-                'logo'=>'users/a87ff679a2f3e71d9181a67b7542122c/agencies/fe981f8a9c549000708b79eea5acead1/fe981f8a9c549000708b79eea5acead1.jpg'
-                ],
-            [
-            'agency' => 'JR Tech',
-            'user_id' => 2,
-            'mobile' => 030445267051,
-            'phone' => 030445627051,
-            'email' => 'mrwaqa2s@gmail.com',
-            'address' => 'Lahore',
-            'logo'=>'users/e4da3b7fbbce2345d7772b0674a318d5/agencies/b7db4829ba1b5561a99be8a0a988988d/b7db4829ba1b5561a99be8a0a988988d.jpg'
-        ]
-        ]);
+                'logo' => 'users/a87ff679a2f3e71d9181a67b7542122c/agencies/fe981f8a9c549000708b79eea5acead1/fe981f8a9c549000708b79eea5acead1.jpg'
+            ];
+        }
+         DB::table('agencies')->insert($finalRecord);
     }
 }

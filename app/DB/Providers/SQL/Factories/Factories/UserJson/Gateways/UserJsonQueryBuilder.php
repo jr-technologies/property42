@@ -10,6 +10,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\UserJson\Gateways;
 
 
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
+use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\Factories\Factories\UserRole\UserRolesFactory;
@@ -59,18 +60,28 @@ class UserJsonQueryBuilder extends QueryBuilder{
     }
 
 
-    public function trustedAgents()
+    public function trustedAgents(array $params)
     {
         $userTable = (new UserFactory())->getTable();
         $userRoleTable = (new UserRolesFactory())->getTable();
+        $agencyTable = (new AgencyFactory())->getTable();
+        $agencySocietyTable = (new AgencySocietyFactory())->getTable();
 
         $query = DB::table($userTable)
             ->leftjoin($userRoleTable,$userTable.'.id','=',$userRoleTable.'.user_id')
-            ->leftjoin($this->table,$userTable.'.id','=',$this->table.'.user_id')
+            ->join($this->table,$userTable.'.id','=',$this->table.'.user_id')
+            ->leftjoin($agencyTable,$userTable.'.id','=',$agencyTable.'.user_id')
+            ->leftjoin($agencySocietyTable,$agencyTable.'.id','=',$agencySocietyTable.'.agency_id')
             ->select($this->table.'.json')
-            ->where($userRoleTable.'.role_id','=',3)
-            ->where($userTable.'.trusted_agent','=',1)
             ->distinct();
-            return  $query = $query->get();
+            if($params['society'] !=null && $params['society'] !="")
+                $query = $query->where($agencySocietyTable.'.society_id','=',$params['society']);
+
+            if($params['agencyName'] !=null && $params['agencyName'] !="")
+                $query = $query->where($agencyTable.'.agency','like','%'.$params['agencyName'].'%');
+
+        $query = $query->where($userRoleTable.'.role_id','=',3);
+        $query = $query->where($userTable.'.trusted_agent','=',1);
+            return $query->get();
     }
 }

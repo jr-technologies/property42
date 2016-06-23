@@ -49,11 +49,11 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
     {
         return [
             'userId' => 'required',
-            'fName' => 'required',
-            'lName' => 'required',
+            'fName' => 'required|min:3|max:55',
+            'lName' => 'required|min:3|max:55',
             'email' => 'required|email|unique:users,email,'.$this->request->get('userId').'|max:255',
             'password' => 'required|match_existing_password',
-            'phone' => 'required',
+            'phone' => 'required|min:3|max:15',
             'userRoles' => 'required|cannot_remove_agent',
         ];
     }

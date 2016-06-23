@@ -64,10 +64,10 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
             'blockId' => 'required|exists:blocks,id',
-            'title' => 'required|min:5|max:15',
+            'title' => 'required|min:5|max:35',
             'description' => 'required|min:5|max:200',
             'price' => 'required',
-            'landArea' => 'required|min:5|max:15',
+            'landArea' => 'required|numeric',
             'landUnitId' => 'required|exists:land_units,id',
         ];
     }
@@ -78,7 +78,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'contactPerson' => 'required',
             'phone' => 'required',
             'mobile' => 'required',
-            'email' => 'required'
+            'email' => 'required|email'
         ];
     }
 

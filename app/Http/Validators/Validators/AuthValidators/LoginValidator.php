@@ -32,7 +32,7 @@ class LoginValidator extends AppValidator implements ValidatorsInterface
     public function rules()
     {
         return [
-            'email' => 'required|min:5|max:100',
+            'email' => 'required|min:5|max:255',
             'password' => 'required|min:3|max:20',
         ];
     }

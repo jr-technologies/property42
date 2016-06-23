@@ -22,8 +22,8 @@ class AddPropertyDocumentValidator extends PropertyDocumentValidator implements 
         return[
             'propertyId' => 'required',
             'path'=>'required|min:5|max:30',
-            'title' => 'required|min:5|max:15',
-            'type'=>'required|min:5|max:15'
+            'title' => 'required|min:5|max:55',
+            'type'=>'required|min:5|max:55'
         ];
     }
 }

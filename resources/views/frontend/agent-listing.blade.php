@@ -41,21 +41,20 @@
             <div class="page-holder">
                 <div class="agentListing-page">
                     <div class="holder">
-                        <form class="search-agent">
+                        {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'search-agent')) }}
                             <div class="input-holder">
-                                <select>
+                                <select  name="society" >
                                     <option selected disabled>Search by society</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
+                                    <option value="" @if($response['data']['params']['society'] == "") selected @endif>All Societies</option>
+                                    @foreach($response['data']['societies'] as $society)
+                                    <option value={{$society->id}} @if($response['data']['params']['society'] == $society->id) selected @endif>{{$society->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <div class="input-holder"><input type="text" placeholder="Search Your Favorite Agent"></div>
+                            <div class="input-holder"><input type="text" name="agency_name" placeholder="Search Your Favorite Agent"
+                            value=@if($response['data']['params']['agencyName'] !=""){{$response['data']['params']['agencyName']}}@endif></div>
                             <input type="submit" value="Search Agent">
-                        </form>
+                        {{Form::close()}}
                     </div>
                     <section class="property-posts">
                         @foreach($response['data']['agents'] as $agent)

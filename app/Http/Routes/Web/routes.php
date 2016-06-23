@@ -15,6 +15,8 @@ Route::post('/login',
         'uses'=>'Auth\AuthController@login', 'as' =>'login'
     ]
 );
+
+
 Route::get('/',
     [
         'middleware'=>
@@ -60,7 +62,7 @@ Route::get('property',
     ]
 );
 
-Route::get('users/search',
+Route::get('agents',
     [
         'middleware'=>
             [

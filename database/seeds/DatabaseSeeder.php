@@ -32,13 +32,16 @@ class DatabaseSeeder extends Seeder
         $this->call(ValidationErrorMessagesTableSeeder::class);
         $this->call(AssignedFeatureValidationsTableSeeder::class);
         //$this->call(PropertyDocumentTableSeeder::class);
-        $this->call(UsersJsonTableSeeder::class);
+
         $this->call(AgencyTableSeeder::class);
+        $this->call(UsersRolesTableSeeder::class);
         $this->call(AgencyStaffTableSeeder::class);
+        $this->call(UsersJsonTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
         $this->call(PropertyFeatureValuesTableSeeder::class);
         $this->call(PropertiesJsonTableSeeder::class);
         $this->call(AssignedFeaturesJsonTableSeeder::class);
+
 
     }
 }

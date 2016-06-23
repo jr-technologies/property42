@@ -22,7 +22,7 @@ class AgentMailValidator extends MailValidator implements ValidatorsInterface
         return[
             'subject' => 'required|min:5|max:15',
             'name'=>'required|min:5|max:15',
-            'email' => 'required|email|min:5|max:15',
+            'email' => 'required|email|min:5|max:255',
             'phone'=>'required|min:5|max:15',
             'cell' => 'required|numeric',
             'message'=>'required|min:5|max:300'

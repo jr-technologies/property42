@@ -69,7 +69,7 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
             'title' => 'required|min:5|max:25',
             'description' => 'required|min:5|max:250',
             'price' => 'required|numeric',
-            'landArea' => 'required|min:5|max:15',
+            'landArea' => 'required|numeric',
             'landUnitId' => 'required|exists:land_units,id',
         ];
     }

@@ -2,11 +2,13 @@
 @section('content')
     <div class="main-visual">
         <div class="property-search-holder">
+
             <div class="tabs-holder">
+                {{ Form::open(array('url' => 'search','method' => 'GET')) }}
                 <ul class="main-links">
                     <li>
                         <label for="buy1">
-                            <input type="radio" name="purpose_id" id="buy1" checked value="1">
+                            <input type="radio" name="purpose_id" value="1" id="buy1" checked >
                             <span class="fake-label">Buy</span>
                         </label>
                     </li>
@@ -18,7 +20,7 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    {{ Form::open(array('url' => 'search','method' => 'GET')) }}
+
                     <ul class="propertyType-buttons">
                         <li>
                             <label for="anyPro">
@@ -68,19 +70,21 @@
                     <ul>
                         <li>
                             <label>Property SubType:</label>
+
                             <div class="input-holder">
                         <span class="fake-select">
                             <select name="sub_type_id">
-                            <option disabled selected value>Property SubType</option>
-                            @foreach($response['data']['propertySubtypes'] as $propertySubType)
-                            <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
-                            @endforeach
-                        </select>
+                                <option disabled selected value>Property SubType</option>
+                                @foreach($response['data']['propertySubtypes'] as $propertySubType)
+                                    <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
+                                @endforeach
+                            </select>
                           </span>
                             </div>
                         </li>
                         <li class="bedrooms">
                             <label>Bedrooms:</label>
+
                             <div class="input-holder">
 <span class="fake-select">
 <select name="property_features[28]">
@@ -111,11 +115,23 @@
                         </li>
                         <li>
                             <span>to:</span>
+
                             <div class="input-holder"><input type="number" name="price_to"></div>
                         </li>
                     </ul>
                     <ul class="inline">
-                        <li class="full">Land Area</li>
+                        <li class="full">
+                            <label>Land Area</label>
+
+                            <div class="fake-select">
+                                <select name="land_unit_id">
+                                    <option disabled selected>Select Land Unit</option>
+                                    @foreach($response['data']['landUnits'] as $landUnit)
+                                        <option value="{{$landUnit->id}}">{{$landUnit->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </li>
                         <li>
                             <span>From:</span>
 
@@ -130,10 +146,10 @@
                     <div class="btn-holder">
                         <button type="submit">Find Property<span class="icon-search"></span></button>
                     </div>
-
-                    {{ Form::close() }}
                 </div>
+                {{Form::close()}}
             </div>
+
         </div>
         <a href="#content" class="smooth-scroll down-scroll"><span class="icon-angle-down"></span></a>
     </div>

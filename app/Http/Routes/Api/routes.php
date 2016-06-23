@@ -13,8 +13,10 @@ use App\Http\Controllers\Api\V1\AppsResourceController;
 use App\Http\Controllers\Api\V1\PropertySubTypeController;
 use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
+use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
@@ -43,16 +45,16 @@ Route::get('app/dashboard/resources',
 );
 
 Route::post('foo',function() {
-    $societiesIds = [1,2,3,4];
-    $agencyId = 1;
-    $agencySocieties = [];
-    foreach ($societiesIds as $societyId) {
-        $agencySociety = new AgencySociety();
-        $agencySociety->agencyId = $agencyId;
-        $agencySociety->societyId = $societyId;
-        $agencySocieties[] =$agencySociety;
+    $users = (new UsersRepoProvider())->repo()->all();
+    $finalRecord =[];
+
+    foreach($users as $user)
+    {
+        $finalRecord[] = [
+            'user_id'=>$user->id,
+            'josn'=>(new UserJsonCreator($user))->create()
+        ];
     }
-    (new AgencySocietyFactory())->addSocieties($agencySocieties);
 }
 );
 
