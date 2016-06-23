@@ -130,8 +130,9 @@ class PropertiesController extends ApiController
         ]]);
     }
 
-    public function restore(Request $request)
+    public function restore()
     {
+        $request = request();
         $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
         $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
         $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
@@ -139,7 +140,7 @@ class PropertiesController extends ApiController
             'property'=>null,
             'totalProperties'=>$countUserSearchProperties,
             'propertiesCounts' => $propertiesCounts,
-            'properties'=>$userProperties
+            'properties'=>[]//$userProperties
         ]]);
     }
 
