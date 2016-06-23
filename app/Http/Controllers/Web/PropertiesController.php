@@ -9,6 +9,7 @@ use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
+use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
@@ -46,6 +47,7 @@ class PropertiesController extends Controller
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
 
 
+
     }
 
     public function update(UpdatePropertyRequest $request)
@@ -57,11 +59,11 @@ class PropertiesController extends Controller
 
     public function search(SearchPropertiesRequest $request)
     {
-        $properties = $this->releaseAllPropertiesFiles($this->properties->search($request->getParams()));
-        $totalCount = count($properties);
+
+
         return $this->response->setView('frontend.property_listing')->respond(['data' => [
-            'properties' => $properties,
-            'totalProperties'=>$totalCount
+            'properties' => $this->releaseAllPropertiesFiles($this->properties->search($request->getParams())),
+            'totalProperties'=> (new Cheetah())->count(),
         ]]);
     }
 
