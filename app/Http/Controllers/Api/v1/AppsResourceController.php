@@ -66,7 +66,7 @@ class AppsResourceController extends ApiController
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
         $societies = $this->societies->all();
-        $propertyStatusesIds =$this->mapToArray( $this->propertyStatuses->all());
+        $propertyStatusesIds =$this->mapStatusesToArray( $this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
@@ -96,7 +96,7 @@ class AppsResourceController extends ApiController
             'access_token' => session('authUser')->access_token
         ]);
     }
-    public function mapToArray($propertyStatuses)
+    public function mapStatusesToArray($propertyStatuses)
     {
         $final =[];
         foreach($propertyStatuses as $propertyStatus)
