@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
                     "f_name" => "waqas".rand(1,207777770),
                     "l_name" => "qureshi".rand(1,200222),
                     "email" => "waqas@gmail.com".rand(1,2000000),
-                    "password" => '$2y$10$lVHrhSU/7SKckBYdRYFNYeO3ddcsh2CMP1FSFJeN4EPH0s7LYq9k2',
+                    "password" => bcrypt('123'),
                     "access_token" => "",
                     "phone" => "65464654",
                     "mobile" => "6546456",

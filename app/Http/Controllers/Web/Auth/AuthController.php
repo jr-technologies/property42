@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\Events\Events\User\UserCreated;
+use App\Events\Events\User\UserUpdated;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Requests\Request;
 use App\Http\Requests\Requests\Auth\LoginRequest;
@@ -10,12 +12,15 @@ use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Auth\Web as Authenticator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\RolesRepoProvider;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Repositories\Transformers\Sql\UserTransformer;
 use App\User;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -38,11 +43,12 @@ class AuthController extends WebController
     )
     {
         $this->roles = (new RolesRepoProvider())->repo();
+        $this->societies = (new SocietiesRepoProvider())->repo();
         $this->auth = $authenticator;
         $this->users = $usersRepoProvider->repo();
         $this->response = $response;
         $this->userTransformer = $userTransformer;
-        $this->agencies = new AgenciesRepository();
+        $this->agencies = (new AgenciesRepoProvider())->repo();
     }
     public function showLoginPage()
     {
@@ -67,7 +73,8 @@ class AuthController extends WebController
     public function showRegisterPage()
     {
         return $this->response->setView('auth.register')->respond([
-            'roles' => $this->roles->all()
+            'roles' => $this->roles->all(),
+            'societies' => $this->societies->all()
         ]);
     }
 
@@ -78,6 +85,10 @@ class AuthController extends WebController
         {
             $this->saveUserAgency($request, $userId);
         }
+        $user = $request->getUserModel();
+        $user->id = $userId;
+        Event::fire(new UserCreated($user));
+
         \Session::flash('success', 'Registered Successfully');
         return redirect()->route('loginPage');
     }
@@ -99,7 +110,7 @@ class AuthController extends WebController
         }
         $agency->logo = $logoPath;
         $agencyId = $this->agencies->storeAgency($agency);
-        $this->agencies->addCities($agencyId, $request->getAgencyCities());
+        $this->agencies->addSocieties($request->getAgencySocieties($agencyId));
         return $agencyId;
     }
 

@@ -7,7 +7,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
     $scope.idForAgentBroker = 3;
     $scope.html_title = "Property42 | My Profile";
     $scope.user = user;
-    $scope.companyLogo = $rootScope.domain+'temp/'+user.agencies[0].logo;
+    $scope.companyLogo = '';
     $scope.userIsAgent = false;
     $scope.userWasAgent = false;
 
@@ -121,10 +121,17 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
         return data;
 
     };
+
+    var setCompanyLogo = function () {
+        $scope.companyLogo = $rootScope.domain+'temp/'+user.agencies[0].logo
+    };
     $scope.initialize = function () {
         $scope.form.data = mapUsrOnScope($scope.user);
         $scope.userWasAgent = computeUserWasAgent();
         $scope.userIsAgent = $scope.userWasAgent;
+        if($scope.userIsAgent){
+            setCompanyLogo();
+        }
         $('.registration-form').find('.role-listing').hide();
     };
 }]);

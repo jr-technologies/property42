@@ -321,7 +321,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         };
         $scope.initialize = function () {
             $(document).scroll(function() {
-                onScroll();
+                //onScroll();
             });
             $scope.societyChanged();
             $scope.blockChanged();
@@ -340,7 +340,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             //});
 
             $(function() {
-                handleAddPropertyFormScrolling();
+                //handleAddPropertyFormScrolling();
                 $('.feature-block').find('.holder').hide();
                 $('.feature-block').find('.form-heading').hide();
             });

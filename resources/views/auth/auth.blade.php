@@ -10,6 +10,7 @@
     <link media="all" rel="stylesheet" href="{{url('/web-apps/registration/assets/')}}/css/auth-main.css">
     <!-- google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script src="{{url('/web-apps/registration/assets/')}}/js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
 <!-- main container of all the page elements -->
@@ -87,8 +88,6 @@
     </footer>
 </div>
 <!-- include jQuery library -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
-<script type="text/javascript">window.jQuery || document.write('<script src="{{url('/web-apps/registration/assets/')}}/js/jquery-1.11.2.min.js" defer><\/script>')</script>
 <!-- include custom JavaScript -->
 <script type="text/javascript" src="{{url('/web-apps/registration/assets/')}}/js/helper.js" defer></script>
 <script type="text/javascript" src="{{url('/web-apps/registration/assets/')}}/js/placeholder.js" defer></script>
