@@ -27,7 +27,7 @@
                 <form class="registration-form" method="post" action="{{route('register')}}" enctype="multipart/form-data">
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('fName')) error @endif">
                         <label class="icon-user" for="fName"></label>
-                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" value={{old('fName')}} >
+                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" value="{{old('fName')}}" >
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('fName')) {{$validationErrors->first('fName')}} @endif</span>
                     </div>

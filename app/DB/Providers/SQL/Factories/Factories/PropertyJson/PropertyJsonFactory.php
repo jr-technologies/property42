@@ -93,7 +93,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
 
     /**
      * @param $result
-     * @return UserJsonPrototype::class
+     * @return PropertyJsonPrototype::class
      **/
     public function map($result)
     {

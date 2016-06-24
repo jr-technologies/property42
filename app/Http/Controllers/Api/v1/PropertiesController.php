@@ -18,6 +18,7 @@ use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
+use App\Http\Requests\Requests\Property\RestorePropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
@@ -136,23 +137,17 @@ class PropertiesController extends ApiController
         ]]);
     }
 
-    public function restore()
+    public function restore(RestorePropertyRequest $request)
     {
-        $request = request();
-        /*$userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        $this->propertyRepo->restoreProperty($this->propertyRepo->getById($request->get('propertyId')));
+        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
         $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
         $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         return $this->response->respond(['data'=>[
-            'property'=>null,
+            'property'=>$this->propertiesJsonRepo->getById($request->get('propertyId')),
             'totalProperties'=>$countUserSearchProperties,
             'propertiesCounts' => $propertiesCounts,
-            'properties'=>[]//$userProperties
-        ]]);*/
-        return $this->response->respond(['data'=>[
-            'property'=>null,
-            'totalProperties'=>200,
-            'propertiesCounts' => [],
-            'properties'=>$this->propertiesJsonRepo->getUserProperties([])
+            'properties'=>$userProperties
         ]]);
     }
 

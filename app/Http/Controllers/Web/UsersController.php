@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Mail\AgentMailRequest;
 use App\Http\Requests\Requests\User\AddUserRequest;
 use App\Http\Requests\Requests\User\DeleteUserRequest;
+use App\Http\Requests\Requests\User\ForgetPasswordRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Requests\Requests\User\GetAgentsRequest;
 use App\Http\Requests\Requests\User\SearchUsersRequest;
 use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
+use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
@@ -20,6 +22,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -28,6 +31,7 @@ class UsersController extends Controller
     public $usersJsonRepo = null;
     public $users = null;
     public $societies = null;
+    public $rand= "";
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
         $this->response = $webResponse;
@@ -35,6 +39,7 @@ class UsersController extends Controller
         $this->societies = (new SocietiesRepoProvider())->repo();
         $this->userTransformer = $userTransformer;
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
+        $this->rand = new Helper();
     }
 
     public function store(AddUserRequest $request)
@@ -43,7 +48,25 @@ class UsersController extends Controller
             ->setView('userRegistered')
             ->respond($this->userTransformer->transform($request->all()));
     }
-
+    public function forgetPassword()
+    {
+        return $this->response
+            ->setView('auth.forget_password')->respond(['data' => []]);
+    }
+    public function getNewPassword(ForgetPasswordRequest $request)
+    {
+        $password  = $this->rand->rands();
+        $user = $this->users->findByEmail($request->get('email'));
+        $user->password = bcrypt($password);
+        $this->users->update($user);
+        Mail::send('frontend.mail.forget_password',['user' => $user,'password'=>$password], function($message) use($user)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
+            $message->to($user->email)->subject('Property42');
+        });
+        //Session::flash('message', 'Your message has been sent');
+        return redirect()->back();
+    }
     public function trustedAgents(GetAgentsRequest $request)
     {
         return $this->response
