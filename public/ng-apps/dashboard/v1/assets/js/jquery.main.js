@@ -1,3 +1,7 @@
+$(document).on('change keyup', 'input, textarea, select', function(){
+	$(this).closest('.error').removeClass('error');
+});
+
 $(function() {
 	initLightbox();
 	if ($(".addPropertyFormContainer")[0]){

@@ -1,4 +1,5 @@
 <div class="registrationFormHolder" ng-init="initialize()">
+    <span class="success-message" ng-class="{'successfully-saved': profileUpdated == true}">Profile Updated</span>
     <form class="registration-form" ng-submit="updateUser()" ng-class="{'agent-info' : userIsAgent == true}">
         <strong class="heading-profile">My Profile.</strong>
         <div class="input-holder" ng-class="{'error' : errors.fName.length > 0}">

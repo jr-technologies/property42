@@ -54,7 +54,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->email =  $this->get('email');
         $property->fax =  $this->get('fax');
         $property->ownerId = $this->get('ownerId');
-        $property->createdBy = 1;
+        $property->createdBy = session()->get('authUser')->id;
 
         return $property;
     }
