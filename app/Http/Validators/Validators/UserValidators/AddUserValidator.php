@@ -10,6 +10,9 @@ namespace App\Http\Validators\Validators\UserValidators;
 
 use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class AddUserValidator extends UserValidator implements ValidatorsInterface
 {
@@ -34,6 +37,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'termsConditions.equals' => $termsConditionsMessage,
             /* Agency messages */
             'agencyName.required' => 'Agency name is required',
+            'agencyName.unique_agent_in_societies' => ':conflictedSocieties',
             'companyPhone.required' => 'Company phone is required',
             'companyAddress.required' => 'Company address is required',
             'societies.required' => 'please select atleast one society',
@@ -59,7 +63,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
     public function agencyRules()
     {
         return [
-            'agencyName' => 'required|unique:agencies,agency|max:255',
+            'agencyName' => 'required|max:255|unique_agent_in_societies',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
             'societies' => 'required',
@@ -67,6 +71,24 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'agencyDescription'=>'max:600',
             'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
         ];
+    }
+    public function registerSocietiesInDealRule()
+    {
+        Validator::extend('unique_agent_in_societies', function($attribute, $value, $parameters)
+        {
+            $societies = $this->request->get('societies');
+            $societies = ($societies == null)?[]: $societies;
+            $finalRecord = [];
+            $existingSocieties = (new SocietiesRepoProvider())->repo()->getSocietiesYouDealIn($this->request->get('agencyName'));
+            foreach ($societies as $key => $val) {
+                foreach ($existingSocieties as $society) {
+                    if ($val == $society->id) {
+                        $finalRecord[] = $society;
+                    }
+                }
+            }
+            dd('working here...');
+        });
     }
 
     /**

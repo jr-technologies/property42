@@ -102,7 +102,8 @@
                             <ul class="role-listing">
                                 @foreach($response['roles'] as $role)
                                     <li>
-                                        <input type="checkbox" id="role_{{$role->id}}" class="userRole-checkbox @if($role->id == 3) agent-brokerCheckbox @endif;" name="userRoles[]" value="{{$role->id}}">
+                                        <input type="checkbox" id="role_{{$role->id}}" class="userRole-checkbox @if($role->id == 3) agent-brokerCheckbox @endif;"
+                                               name="userRoles[]" value="{{$role->id}}" @if(in_array($role->id,(old('userRoles') !=null)?old('userRoles'):[])) checked @endif>
                                         <label for="role_{{$role->id}}">{{$role->name}}</label>
                                     </li>
                                 @endforeach
