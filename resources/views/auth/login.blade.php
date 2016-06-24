@@ -21,7 +21,8 @@
                         @endforeach
                     </span>
                 @endif
-                <span class="global-successMessage">Successfully Okay !</span>
+
+                    @if(\Session::has('success')) <span class="global-successMessage">Successfully Okay !</span> @endif
                     <form class="login-form" action="{{route('login')}}" method="post">
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('email')) error @endif">
                             <label class="icon-envelope" for="email"></label>
