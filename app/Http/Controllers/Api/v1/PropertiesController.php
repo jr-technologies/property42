@@ -147,7 +147,7 @@ class PropertiesController extends ApiController
             'property'=>$this->propertiesJsonRepo->getById($request->get('propertyId')),
             'totalProperties'=>$countUserSearchProperties,
             'propertiesCounts' => $propertiesCounts,
-            'properties'=>$this->propertiesJsonRepo->getUserProperties([])
+            'properties'=>$userProperties
         ]]);
     }
 
