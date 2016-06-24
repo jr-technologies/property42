@@ -225,6 +225,7 @@ return [
         'GetAgentsRequest' => \App\Http\Requests\Requests\User\GetAgentsRequest::class,
         'GetAgentRequest' => \App\Http\Requests\Requests\User\GetAgentRequest::class,
         'TrustedAgentRequest' => \App\Http\Requests\Requests\User\TrustedAgentRequest::class,
+        'ForgetPasswordRequest' => \App\Http\Requests\Requests\User\ForgetPasswordRequest::class,
 
 
         /* Loading Helpers */
@@ -313,7 +314,9 @@ return [
         'DeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
         'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
+        'RestorePropertyRequest' => \App\Http\Requests\Requests\Property\RestorePropertyRequest::class,
         'AddToFavouriteRequest' => \App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest::class,
+
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

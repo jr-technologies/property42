@@ -66,7 +66,7 @@ class AppsResourceController extends ApiController
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
         $societies = $this->societies->all();
-        $propertyStatusesIds =$this->mapStatusesToArray( $this->propertyStatuses->all());
+        $propertyStatusesIds = (object)$this->mapStatusesToArray($this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();

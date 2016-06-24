@@ -36,6 +36,26 @@ Route::get('search',
     ]
 );
 
+Route::post('get-new-password',
+    [
+        'middleware'=>
+            [
+                'webValidate:forgetPasswordRequest'
+            ],
+        'uses'=>'UsersController@getNewPassword',
+    ]
+);
+
+Route::get('forget-password',
+    [
+        'middleware'=>
+            [
+                //'webValidate:forgetPasswordRequest'
+            ],
+        'uses'=>'UsersController@forgetPassword',
+    ]
+);
+
 Route::get('/register',
     [
         'uses'=>'Auth\AuthController@showRegisterPage'

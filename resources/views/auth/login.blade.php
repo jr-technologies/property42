@@ -34,7 +34,7 @@
                             <input name="password" type="password" value="{{old('password')}}" placeholder="Enter Your Password" id="pass" required>
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('password')) {{$validationErrors->first('password')}} @endif</span>
-                            <a href="#" class="forgot-pass"><span class="icon-notification"></span> Forgot Password</a>
+                            <a href={{URL::to('forget-password')}} class="forgot-pass"><span class="icon-notification"></span> Forgot Password</a>
                         </div>
                         <button type="submit">Login <span class="icon-login"></span></button>
                     </form>

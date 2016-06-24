@@ -44,19 +44,6 @@ Route::get('app/dashboard/resources',
     ]
 );
 
-Route::post('foo',function() {
-    $users = (new UsersRepoProvider())->repo()->all();
-    $finalRecord =[];
-
-    foreach($users as $user)
-    {
-        $finalRecord[] = [
-            'user_id'=>$user->id,
-            'josn'=>(new UserJsonCreator($user))->create()
-        ];
-    }
-}
-);
 
 Route::post('favourite/property',
     [
@@ -449,12 +436,31 @@ Route::post('property/restore',
     [
         'middleware'=>
             [
-                //'apiValidate:updatePropertyRequest'
+                'apiValidate:restorePropertyRequest'
             ],
         'uses'=>'PropertiesController@restore'
     ]
 );
+Route::post('foo',function() {
+    $this->propertyJsonRepo = (new PropertiesJsonRepoProvider())->repo();
+    try {
+        $property = $this->propertyJsonRepo->getById(13);
+        $isInDeletedSection = false;
 
+            if ($property->propertyStatus->id == 25 )
+            {
+                $isInDeletedSection = true;
+            }
+
+        if (!$isInDeletedSection)
+            return false;
+
+    } catch (\Exception $e) {
+        return false;
+    }
+
+    return true;
+});
 Route::post('properties/delete',
     [
         'middleware'=>

@@ -14,9 +14,11 @@ use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
 use App\DB\Providers\SQL\Models\FavouriteProperty;
 use App\DB\Providers\SQL\Models\Property;
-use App\DB\Providers\SQL\Models\PropertyType;
+
 use App\Events\Events\Property\PropertiesStatusChanged;
-use App\Events\Events\Property\PropertyCreated;
+
+
+use App\Events\Events\Property\PropertyStatusUpdated;
 
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
 use Illuminate\Support\Facades\Event;
@@ -46,7 +48,13 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->factory->find($id);
     }
-
+    public function restoreProperty(Property $property)
+    {
+        $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
+        $result = $this->factory->restoreProperty($property);
+        Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
     public function all()
     {
         return $this->factory->all();
