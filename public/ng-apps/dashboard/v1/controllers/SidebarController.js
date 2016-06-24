@@ -26,4 +26,12 @@ app.controller("SidebarController",["$scope", "$rootScope", function ($scope, $r
     var contentHeader = {
         title: $rootScope.html_title
     };
+
+    $scope.getUserLogo = function () {
+        if($rootScope.authUser.agencies[0] != undefined && $rootScope.authUser.agencies[0].logo != null && $rootScope.authUser.agencies[0].logo != ''){
+            return domain+'temp/'+$rootScope.authUser.agencies[0].logo;
+        }else{
+            return domain+'ng-apps/dashboard/v1/assets/images/default-dp.png';
+        }
+    }
 }]);

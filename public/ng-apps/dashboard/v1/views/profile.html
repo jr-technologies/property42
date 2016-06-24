@@ -86,7 +86,7 @@
                 <span class="error-text">{{errors.agencyName[0]}}</span>
             </div>
             <div class="input-holder onTop-mobile" ng-class="{'error' : errors.companyLogo.length > 0}">
-                <div class="company-logo" ng-class="{'image-loaded' : form.data.companyLogo != ''}">
+                <div class="company-logo" ng-class="{'image-loaded' : form.data.companyLogo != '' && form.data.companyLogo != undefined}">
                     <input type="file" ngf-select ng-model="form.data.companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
                     <div class="picture-holder"><img src="{{companyLogo}}" class="company-profileP" alt="Company logo"></div>
                     <span class="delete" ng-click="cancelLogo()"><span class="icon-trash"></span></span>
