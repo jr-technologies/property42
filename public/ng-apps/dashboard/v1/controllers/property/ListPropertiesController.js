@@ -194,6 +194,7 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
         }).then(function successCallback(response) {
             $rootScope.restoringPropertyId = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
+            $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.totalProperties = response.data.data.totalProperties;
             $scope.restoringPropertyId = 0;
         }, function errorCallback(response) {

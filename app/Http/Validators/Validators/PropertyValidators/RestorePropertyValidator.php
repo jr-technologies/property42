@@ -36,7 +36,7 @@ class RestorePropertyValidator extends PropertyValidator implements ValidatorsIn
             $this->propertyJsonRepo = (new PropertiesJsonRepoProvider())->repo();
             try {
                 $property = $this->propertyJsonRepo->getById($this->request->get('propertyId'));
-                $isInDeletedSection = false;    
+                $isInDeletedSection = false;
 
                 if ($property->propertyStatus->id == 25 )
                 {
