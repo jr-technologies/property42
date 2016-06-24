@@ -647,7 +647,7 @@ th {
   content: "\e911";
 }
 
-.addAgency-user .addAgency-user-form .input-feilds, .addPropertyFormContainer .errors ul, .addPropertyFormContainer .section-listing, .addPropertyFormContainer .tabset, .addPropertyFormContainer .property-add .radio-holder, .addPropertyFormContainer .feature-list, .addPropertyFormContainer .image-uploading-area, .property-listing-holder .quick-links, .property-listing-holder .listing-cetegories-links ul, .property-listing-holder .property-filter .by-user-sorting ul, .property-listing-holder .property-filter .by-id-sorting ul, .property-listing-holder .properties-table, .changePassword-form .societiesBlock-listing,
+.addAgency-user .addAgency-user-form .input-feilds, .addPropertyFormContainer .errors ul, .addPropertyFormContainer .tabset, .addPropertyFormContainer .property-add .radio-holder, .addPropertyFormContainer .feature-list, .addPropertyFormContainer .image-uploading-area, .property-listing-holder .quick-links, .property-listing-holder .listing-cetegories-links ul, .property-listing-holder .property-filter .by-user-sorting ul, .property-listing-holder .property-filter .by-id-sorting ul, .property-listing-holder .properties-table, .changePassword-form .societiesBlock-listing,
 .changePassword-form .role-listing,
 .registration-form .societiesBlock-listing,
 .registration-form .role-listing, #sidebar-dashboard .notifications-links, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links li .sub-links, .social-networks, .pager, #footer .cols-holder ul {
@@ -1248,14 +1248,6 @@ input[type='submit'] {
   }
 }
 
-.addPropertyFormContainer.sectionListingActive .section-listing {
-  height: auto;
-  max-height: 210px;
-  opacity: 1;
-  visibility: visible;
-  z-index: 9;
-}
-
 .addPropertyFormContainer .attactment-block, .addPropertyFormContainer .basics-block, .addPropertyFormContainer .feature-block, .addPropertyFormContainer .contact-information {
   padding: 0 20px 0;
 }
@@ -1359,197 +1351,6 @@ input[type='submit'] {
 
 .addPropertyFormContainer .listing-holder .listing-opener:hover {
   color: #606060;
-}
-
-.addPropertyFormContainer .section-listing {
-  display: none;
-  font-size: 0;
-  line-height: 0;
-  letter-spacing: -4px;
-  position: relative;
-  background: #dde2e8;
-  transition: padding 0.4s ease;
-  -webkit-transition: padding 0.4s ease;
-  -moz-transition: padding 0.4s ease;
-  -ms-transition: padding 0.4s ease;
-}
-
-.addPropertyFormContainer .section-listing > * {
-  display: inline-block;
-  vertical-align: top;
-  font-size: 18px;
-  line-height: 21px;
-  letter-spacing: 0;
-}
-
-@media (max-width: 767px) {
-  .addPropertyFormContainer .section-listing {
-    display: block;
-  }
-}
-
-.sideBar-active .addPropertyFormContainer .section-listing {
-  padding: 0 0 0 300px;
-}
-
-@media (max-width: 1023px) {
-  .sideBar-active .addPropertyFormContainer .section-listing {
-    padding: 0 0 0 250px;
-    font-size: 0;
-    line-height: 0;
-    letter-spacing: -4px;
-  }
-  .sideBar-active .addPropertyFormContainer .section-listing > * {
-    display: inline-block;
-    vertical-align: top;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .addPropertyFormContainer .section-listing {
-    position: absolute;
-    top: 0;
-    left: -10px;
-    right: -10px;
-    z-index: -1;
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
-    overflow: auto;
-    transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
-    -webkit-transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
-    -moz-transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
-    -ms-transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
-  }
-}
-
-@media (max-width: 767px) {
-  .addPropertyFormContainer .section-listing li {
-    display: block;
-  }
-}
-
-.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink:before {
-  background: #39f;
-}
-
-.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a {
-  color: #000;
-  pointer-events: none;
-}
-
-.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a:after {
-  right: 0;
-}
-
-.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a [class^="icon-"], .addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a [class*="icon-"] {
-  color: #1ab394;
-}
-
-.addPropertyFormContainer .section-listing li:hover:before {
-  background: #39f;
-}
-
-.addPropertyFormContainer .section-listing li:hover a {
-  color: #000;
-}
-
-.addPropertyFormContainer .section-listing li:hover a:after {
-  right: 0;
-}
-
-.addPropertyFormContainer .section-listing li:hover a [class^="icon-"], .addPropertyFormContainer .section-listing li:hover a [class*="icon-"] {
-  color: #1ab394;
-}
-
-.addPropertyFormContainer .section-listing li a {
-  padding: 15px 95px;
-  text-align: center;
-  display: block;
-  text-decoration: none;
-  color: #606060;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-@media (max-width: 1599px) {
-  .addPropertyFormContainer .section-listing li a {
-    padding: 15px 58px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .addPropertyFormContainer .section-listing li a {
-    padding: 15px 45px;
-  }
-}
-
-@media (max-width: 1023px) {
-  .addPropertyFormContainer .section-listing li a {
-    padding: 15px 30px;
-  }
-}
-
-.addPropertyFormContainer .section-listing li a:after {
-  background: #fff;
-  position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: 0;
-  top: 0;
-  z-index: -1;
-  content: '';
-  transition: all 0.4s ease;
-  -webkit-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-  -ms-transition: all 0.4s ease;
-}
-
-.addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
-  position: absolute;
-  top: 50%;
-  left: 40px;
-  margin: -11px 0 0;
-}
-
-@media (max-width: 1599px) {
-  .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
-    left: 25px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
-    left: 15px;
-  }
-}
-
-@media (max-width: 1023px) {
-  .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
-    left: 5px;
-  }
-}
-
-@media (max-width: 767px) {
-  .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
-    left: 35px;
-  }
-}
-
-.addPropertyFormContainer .section-listing li a [class^="icon-"]:before, .addPropertyFormContainer .section-listing li a [class*="icon-"]:before {
-  font-size: 25px;
-  line-height: 1;
-}
-
-@media (max-width: 1023px) {
-  .addPropertyFormContainer .section-listing li a [class^="icon-"]:before, .addPropertyFormContainer .section-listing li a [class*="icon-"]:before {
-    font-size: 20px;
-  }
 }
 
 .addPropertyFormContainer .tabset {
@@ -3401,6 +3202,9 @@ input[type='submit'] {
   margin: 0 5px;
   color: #000;
   cursor: pointer;
+  padding: 0;
+  width: auto;
+  max-width: inherit;
 }
 
 .property-listing-holder .properties-table li a.details {
@@ -4735,6 +4539,13 @@ input[type='submit'] {
     background-size: 24px 24px;
     /*The size of the normal image, half the size of the hi-res image*/
   }
+}
+
+.lightbox {
+  padding: 10px;
+  width: 100%;
+  max-width: 500px;
+  display: none;
 }
 
 html {

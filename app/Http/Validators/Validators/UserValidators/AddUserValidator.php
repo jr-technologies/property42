@@ -29,23 +29,24 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'lName.required' => 'Last name is required',
             'passwordAgain.required' => 'Password Again is required',
             'phone.required' => 'Phone is required',
-            'userRoles.required' => 'User roles is required',
+            'userRoles.required' => 'please select atleast one role',
             'termsConditions.required' => $termsConditionsMessage,
             'termsConditions.equals' => $termsConditionsMessage,
             /* Agency messages */
             'agencyName.required' => 'Agency name is required',
             'companyPhone.required' => 'Company phone is required',
             'companyAddress.required' => 'Company address is required',
+            'societies.required' => 'please select atleast one society',
             'companyEmail.required' => 'Company email is required',
-            'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 500 X 500 px'
+            'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 1000 X 1000 px'
         ];
     }
 
     public function userRules()
     {
         return [
-            'fName' => 'required|min:5|max:55',
-            'lName' => 'required|min:5|max:55',
+            'fName' => 'required|min:3|max:55',
+            'lName' => 'required|min:3|max:55',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:5|max:15',
             'passwordAgain' => 'required|min:5|max:15',
@@ -61,8 +62,9 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName' => 'required|unique:agencies,agency|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
+            'societies' => 'required',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
-            'agencyDescription'=>'required',
+            'agencyDescription'=>'max:600',
             'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
         ];
     }

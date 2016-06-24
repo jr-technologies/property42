@@ -132,6 +132,23 @@
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyDescription')) {{$validationErrors->first('agencyDescription')}} @endif</span>
                         </div>
+                        <div class="input-holder full-width no-indent">
+                            <label for="search-society" class="icon-society"></label>
+                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety">
+                            <span class="border"></span>
+                            <span class="error-text">This is error</span>
+                            <span class="calculatedSocieties"></span>
+                        </div>
+                        <div class="input-holder full-width">
+                            <ul class="societiesBlock-listing">
+                                @foreach($response['societies'] as $society)
+                                    <li>
+                                        <input type="checkbox" id="society{{$society->id}}" class="selectSociety-checkbox" name="societies[]" value="{{$society->id}}">
+                                        <label for="society{{$society->id}}">{{$society->name}}</label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                         <h1> Agency Contact Details</h1>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyPhone')) error @endif">
                             <label for="compny-phone" class="icon-phone"></label>

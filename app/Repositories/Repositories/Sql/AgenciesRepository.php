@@ -54,9 +54,9 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
     {
         return $this->factory->addCities($agencyId, $cityIds);
     }
-    public function addSocieties(array $agencySociety)
+    public function addSocieties(array $agencySocieties)
     {
-        return $this->agencySocietyFactory->addSocieties($agencySociety);
+        return $this->agencySocietyFactory->addSocieties($agencySocieties);
     }
     public function updateAgency(Agency $agency)
     {

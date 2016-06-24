@@ -84,7 +84,7 @@ class RegistrationRequest extends Request implements RequestInterface{
     }
     public function getAgencySocieties($agencyId)
     {
-        $societiesIds = [1,2,3,4];
+        $societiesIds = $this->get('societies');
         $agencySocieties = [];
         foreach ($societiesIds as $societyId) {
             $agencySociety = new AgencySociety();
