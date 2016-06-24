@@ -1,15 +1,15 @@
 
 <div class="addPropertyFormContainer {{formSubmitStatus}}" ng-controller="AddPropertyController" ng-init="initialize()">
 
-    <div class="listing-holder">
-        <a class="listing-opener"><span class="icon-menu"></span></a>
-        <ul class="section-listing">
-            <li class="activeAddPropertyNavLink"><a href="#basics-block" class="scrollAddPropertyNavLink"><span class="icon-info"></span>Basic</a></li>
-            <li><a href="#feature-block" class="scrollAddPropertyNavLink"><span class="icon-symbol"></span> Features</a></li>
-            <li><a href="#attactment-block" class="scrollAddPropertyNavLink"><span class="icon-clip"></span> Attachments</a></li>
-            <li><a href="#contact-information" class="scrollAddPropertyNavLink"><span class="icon-contact_phone"></span> Contact Info</a></li>
-        </ul>
-    </div>
+    <!--<div class="listing-holder">-->
+        <!--<a class="listing-opener"><span class="icon-menu"></span></a>-->
+        <!--<ul class="section-listing">-->
+            <!--<li class="activeAddPropertyNavLink"><a href="#basics-block" class="scrollAddPropertyNavLink"><span class="icon-info"></span>Basic</a></li>-->
+            <!--<li><a href="#feature-block" class="scrollAddPropertyNavLink"><span class="icon-symbol"></span> Features</a></li>-->
+            <!--<li><a href="#attactment-block" class="scrollAddPropertyNavLink"><span class="icon-clip"></span> Attachments</a></li>-->
+            <!--<li><a href="#contact-information" class="scrollAddPropertyNavLink"><span class="icon-contact_phone"></span> Contact Info</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
     <form class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
             <span class="success-message" ng-class="{'successfully-saved': propertySaved == true}">Property Saved</span>
@@ -26,14 +26,12 @@
                         <li>
                             <label for="sale">
                                 <input type="radio" ng-model="form.data.propertyPurpose" value="1" name="propertyPurpose" id="sale">
-                                <span class="fake-radio"></span>
                                 <span class="fake-label">For Sale</span>
                             </label>
                         </li>
                         <li>
                             <label for="rent">
                                 <input type="radio" ng-model="form.data.propertyPurpose" value="2" name="propertyPurpose" id="rent">
-                                <span class="fake-radio"></span>
                                 <span class="fake-label">For Rent</span>
                             </label>
                         </li>
@@ -45,7 +43,7 @@
                 <div class="input-holder">
                     <ul class="radio-holder">
                         <li data-ng-repeat="type in types">
-                            <label for="{{type.name}}">
+                            <label for="{{type.name}}" class="hasChild">
                                 <input type="radio" name="propertyType" ng-model="$parent.form.data.propertyType" value="{{type.id}}" id="{{type.name}}">
                                 <span class="fake-radio"></span>
                                 <span class="fake-label">{{type.name}}</span>
@@ -56,7 +54,7 @@
                         <div id="tab1">
                             <ul class="radio-holder">
                                 <li data-ng-repeat="subType in subTypes | filter:{propertyTypeId : form.data.propertyType}">
-                                    <label for="{{subType.name}}">
+                                    <label for="{{subType.name}}" class="withCheck">
                                         <input type="radio" ng-change="propertySubTypeChanged()" name="propertySubType" ng-model="$parent.form.data.propertySubType" id="{{subType.name}}" value="{{subType.id}}">
                                         <span class="fake-radio"></span>
                                         <span class="fake-label">{{subType.name}}</span>
@@ -87,7 +85,7 @@
                     </ui-select>
                 </div>
             </div>
-            <strong class="form-heading"><span>Property &amp; Area</span></strong>
+            <strong class="form-heading"><span>Property Details</span></strong>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Price:</span>
@@ -107,7 +105,6 @@
                     </select>
                 </div>
             </div>
-            <strong class="form-heading"><span>Property Details</span></strong>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Property Title:</span>
@@ -125,10 +122,13 @@
                     <span class="title">{{feature.name}}:</span>
                     <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
                 </div>
+
+                <div class="layout-holder">
+                    <a class="feature-blockOpener">Click here to see extra feature</a>
+                </div>
             </div>
         </section>
         <section class="feature-block" id="feature-block">
-            <a class="feature-blockOpener">Click here to see extra feature</a>
             <strong class="form-heading"><span>extra features</span></strong>
             <div class="holder">
                     <div class="features-section-holder" data-ng-repeat="featureSection in subTypeAssignedFeatures">

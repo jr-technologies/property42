@@ -403,8 +403,8 @@ th {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?kbn8wj");
-  src: url("../fonts/icomoon.eot?kbn8wj#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?kbn8wj") format("truetype"), url("../fonts/icomoon.woff?kbn8wj") format("woff"), url("../fonts/icomoon.svg?kbn8wj#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?5lf323");
+  src: url("../fonts/icomoon.eot?5lf323#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?5lf323") format("truetype"), url("../fonts/icomoon.woff?5lf323") format("woff"), url("../fonts/icomoon.svg?5lf323#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -421,6 +421,10 @@ th {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-warning:before {
+  content: "\e931";
 }
 
 .icon-refresh-arrow:before {
@@ -650,7 +654,7 @@ th {
 .addAgency-user .addAgency-user-form .input-feilds, .addPropertyFormContainer .errors ul, .addPropertyFormContainer .tabset, .addPropertyFormContainer .property-add .radio-holder, .addPropertyFormContainer .feature-list, .addPropertyFormContainer .image-uploading-area, .property-listing-holder .quick-links, .property-listing-holder .listing-cetegories-links ul, .property-listing-holder .property-filter .by-user-sorting ul, .property-listing-holder .property-filter .by-id-sorting ul, .property-listing-holder .properties-table, .changePassword-form .societiesBlock-listing,
 .changePassword-form .role-listing,
 .registration-form .societiesBlock-listing,
-.registration-form .role-listing, #sidebar-dashboard .notifications-links, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links li .sub-links, .social-networks, .pager, #footer .cols-holder ul {
+.registration-form .role-listing, #sidebar-dashboard .notifications-links, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links li .sub-links, .social-networks, .pager, #footer .cols-holder ul, .alert-modal .links {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -871,6 +875,10 @@ select {
   padding: 0.4em 0.7em;
   font-size: 14px;
   line-height: 18px;
+  background: transparent;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -1126,13 +1134,13 @@ input[type='submit'] {
 
 @media (max-width: 1023px) {
   .sideBar-active .addPropertyFormContainer {
-    padding: 0 10px 0 245px;
+    padding: 10px 10px 0 245px;
   }
 }
 
 @media (max-width: 767px) {
   .sideBar-active .addPropertyFormContainer {
-    padding: 0;
+    padding: 10px 0 0;
   }
 }
 
@@ -1478,10 +1486,20 @@ input[type='submit'] {
   line-height: 15px;
   width: 100%;
   height: 30px;
-  max-width: 260px;
+  max-width: 235px;
   margin: 0 0 0 10px;
   padding: 6px 10px;
   outline: none;
+}
+
+@media (max-width: 1599px) {
+  .addPropertyFormContainer .property-add select,
+  .addPropertyFormContainer .property-add input[type="text"],
+  .addPropertyFormContainer .property-add input[type="search"],
+  .addPropertyFormContainer .property-add input[type="number"],
+  .addPropertyFormContainer .property-add input[type="email"] {
+    max-width: 225px;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -1601,9 +1619,15 @@ input[type='submit'] {
   margin: 0 0 0 9px;
   width: 100%;
   height: 120px;
-  max-width: 710px;
+  max-width: 680px;
   resize: none;
   padding: 10px;
+}
+
+@media (max-width: 1599px) {
+  .addPropertyFormContainer .property-add textarea {
+    max-width: 650px;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -1759,9 +1783,10 @@ input[type='submit'] {
 .addPropertyFormContainer .property-add .radio-holder li label.withCheck .fake-label {
   display: inline-block;
   vertical-align: top;
-  margin: 0 0 0 -5px;
   border: 0;
-  padding: 2px 0 0;
+  padding: 2px 5px 0;
+  max-width: 150px;
+  text-align: left;
 }
 
 .addPropertyFormContainer .property-add .radio-holder li label.withCheck .fake-label:hover {
@@ -1870,6 +1895,12 @@ input[type='submit'] {
   clear: both;
 }
 
+@media (max-width: 1023px) {
+  .addPropertyFormContainer .property-add .layout.add {
+    max-width: 469px;
+  }
+}
+
 @media (max-width: 767px) {
   .addPropertyFormContainer .property-add .layout.add {
     max-width: inherit;
@@ -1934,11 +1965,17 @@ input[type='submit'] {
 }
 
 .addPropertyFormContainer .property-add .layout-holder .title {
-  max-width: 125px;
+  max-width: 185px;
   width: inherit;
   float: none;
   display: inline-block;
   vertical-align: top;
+}
+
+@media (max-width: 1199px) {
+  .addPropertyFormContainer .property-add .layout-holder .title {
+    max-width: 120px;
+  }
 }
 
 @media (max-width: 1023px) {
@@ -1958,7 +1995,7 @@ input[type='submit'] {
   text-align: center;
   cursor: pointer;
   display: block;
-  margin: 0 43px 0 auto;
+  margin: 0;
   color: #000;
   border: 1px solid #58a36f;
   color: #58a36f;
@@ -1973,15 +2010,9 @@ input[type='submit'] {
   -ms-transition: color 0.4s ease, background 0.4s ease;
 }
 
-@media (max-width: 1599px) {
-  .addPropertyFormContainer .property-add .feature-blockOpener {
-    margin: 0 26px 0 auto;
-  }
-}
-
 @media (max-width: 1199px) {
   .addPropertyFormContainer .property-add .feature-blockOpener {
-    margin: 0 13px 0 auto;
+    margin: 0 18px 0 auto;
   }
 }
 
@@ -2039,8 +2070,8 @@ input[type='submit'] {
 
 .addPropertyFormContainer .form-heading span:after {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -1px;
+  right: -1px;
   border: 32px solid transparent;
   border-top: 32px solid #fff;
   border-right: 0;
@@ -4295,7 +4326,6 @@ input[type='submit'] {
 
 .fancybox-skin {
   position: relative;
-  background: #f9f9f9;
   color: #444;
   text-shadow: none;
   -webkit-border-radius: 4px;
@@ -4307,14 +4337,9 @@ input[type='submit'] {
   z-index: 8030;
 }
 
-.fancybox-opened .fancybox-skin {
-  -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
 .fancybox-outer, .fancybox-inner {
   position: relative;
+  background: #fff;
 }
 
 .fancybox-inner {
@@ -4368,12 +4393,13 @@ input[type='submit'] {
 
 .fancybox-close {
   position: absolute;
-  top: -18px;
-  right: -18px;
+  top: -5px;
+  right: -5px;
   width: 36px;
   height: 36px;
   cursor: pointer;
   z-index: 8040;
+  display: none;
 }
 
 .fancybox-nav {
@@ -4453,7 +4479,7 @@ input[type='submit'] {
   left: 0;
   overflow: hidden;
   display: none;
-  z-index: 8010;
+  z-index: 9999;
   background: url("../images/fancybox/fancybox_overlay.png");
 }
 
@@ -4542,9 +4568,12 @@ input[type='submit'] {
 }
 
 .lightbox {
-  padding: 10px;
   width: 100%;
   max-width: 500px;
+  display: none;
+}
+
+.fancybox-title-float-wrap .child {
   display: none;
 }
 
@@ -6127,6 +6156,89 @@ a {
 
 .accordion .slide.slide-active {
   display: block !important;
+}
+
+.alert-modal {
+  width: 100%;
+}
+
+.alert-modal .caution-heading {
+  background: #e14646;
+  color: #fff;
+  position: relative;
+  font-size: 18px;
+  line-height: 21px;
+  display: block;
+  padding: 10px 10px 10px 40px;
+  margin: 0 0 10px;
+}
+
+.alert-modal .caution-heading span[class^="icon-"], .alert-modal .caution-heading span[class*="icon-"] {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  font-size: 22px;
+  line-height: 22px;
+  margin: -11px 0 0;
+}
+
+.alert-modal p {
+  display: block;
+  padding: 0 10px;
+}
+
+.alert-modal .links {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  text-transform: capitalize;
+}
+
+.alert-modal .links > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0;
+}
+
+.alert-modal .links li {
+  width: 25%;
+  padding: 0 10px 10px;
+}
+
+.alert-modal .links li:first-child {
+  width: 75%;
+}
+
+.alert-modal .links li:first-child a {
+  background: #dd3030;
+  color: #fff;
+  border-color: #dd3030;
+}
+
+.alert-modal .links li:first-child a:hover {
+  background: #dd2c2c;
+}
+
+.alert-modal .links li a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 7px 10px;
+  position: relative;
+  color: #606060;
+  border: 1px solid #606060;
+  border-radius: 2px;
+}
+
+.alert-modal .links li a span[class^="icon-"], .alert-modal .links li a span[class*="icon-"] {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  font-size: 16px;
+  line-height: 16px;
+  margin: -8px 0 0;
 }
 
 @keyframes pagelodaer-progress {

@@ -206,13 +206,13 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
 
     $scope.initialize = function () {
         $(document).scroll(function() {
-            onScroll();
+            //onScroll();
         });
         $rootScope.loading_content_class = '';
         $scope.form.data = mapFormData();
 
         $(function() {
-            handleAddPropertyFormScrolling();
+            //handleAddPropertyFormScrolling();
             $('.feature-block').find('.holder').hide();
             $('.feature-block').find('.form-heading').hide();
         });
