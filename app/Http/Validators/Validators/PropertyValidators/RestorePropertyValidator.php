@@ -26,17 +26,17 @@ class RestorePropertyValidator extends PropertyValidator implements ValidatorsIn
     public function rules()
     {
         return [
-            'propertyId'=>'required|exists:properties,id|property_exists_in_deleted_section',
+            'propertyId'=>'required|exists:properties,id|is_deleted',
         ];
     }
     public function registerPropertyIsDeletedRule()
     {
-        Validator::extend('property_exists_in_deleted_section', function($attribute, $value, $parameters)
+        Validator::extend('is_deleted', function($attribute, $value, $parameters)
         {
             $this->propertyJsonRepo = (new PropertiesJsonRepoProvider())->repo();
             try {
-                $property = $this->propertyJsonRepo->getById(13);
-                $isInDeletedSection = false;
+                $property = $this->propertyJsonRepo->getById($this->request->get('propertyId'));
+                $isInDeletedSection = false;    
 
                 if ($property->propertyStatus->id == 25 )
                 {
