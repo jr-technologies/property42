@@ -3,7 +3,7 @@
  */
 var apiPath ="http://localhost/property42/public/api/v1/";
 $(document).on('change', '#society', function(){
-   $('#blocks').addClass('loading');
+   $('.fake-select').addClass('loading');
    var society_id = $(this).val();
 
    $.ajax({
@@ -18,7 +18,7 @@ $(document).on('change', '#society', function(){
          $.each(response.data.blocks, function(i, block) {
             $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
          });
-         $('#blocks').removeClass('loading');
+         $('.fake-select').removeClass('loading');
       }
    })
 });

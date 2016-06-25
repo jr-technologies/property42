@@ -54,16 +54,14 @@
                                         $images[] = url('/') . '/temp/' . $document->path;
                                     }
                                 }
-                                if (sizeof($images == 0)) {
+                                if (sizeof($images ) == 0) {
                                     $images[] = url('/') . "/assets/imgs/no.png";
                                 }
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
                                         <div class="slide"><a href="images/bg-main1.jpeg" rel="lighbox"
-                                                              class="lightbox"><img
-                                                        src="{{$image}}"
-                                                        alt="image description"></a>
+                                             class="lightbox"><img src="{{$image}}" alt="image description"></a>
                                         </div>
                                     @endforeach
                                 </div>

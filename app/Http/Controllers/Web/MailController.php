@@ -66,7 +66,7 @@ class MailController extends Controller
         Mail::send('frontend.mail.agent_mail',['user' => $user], function($message) use($user)
         {
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
-            $message->to($user['Email'], $user['Name'])->subject('Property42');
+            $message->to($user['to'])->subject('Property42');
         });
 
         return redirect()->back();

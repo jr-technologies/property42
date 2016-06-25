@@ -56,11 +56,26 @@
                             <input type="submit" value="Search Agent">
                         {{Form::close()}}
                     </div>
+
                     <section class="property-posts">
                         @foreach($response['data']['agents'] as $agent)
+                            <?php
+                            $image = url('/')."/assets/imgs/no.png";
+                            foreach($agent->agencies as $agency)
+                            {
+                                if($agency->logo !="")
+                                {
+                                    $image = url('/').'/temp/'.$agency->logo;
+                                }
+                            }
+                            ?>
                         <article class="post">
                             <div class="post-holder">
-                                <div class="img-holder"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><img src="{{url('/').'/temp/'.$agent->agencies[0]->logo}}" width="300" height="300" alt="image description"></a></div>
+                                <div class="img-holder">
+                                    <a href="{{ URL::to('agent?agent_id='.$agent->id) }}">
+                                        <img src="{{$image}}" width="300" height="300" alt="image description">
+                                    </a>
+                                </div>
                                 <div class="caption">
                                     <strong class="post-heading"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></strong>
                                     <p>{{str_limit($agent->agencies[0]->description,150)}}</p>

@@ -263,7 +263,11 @@ class PropertiesController extends ApiController
         return $this->response->respond(['data'=>[
             'counts'=>$this->properties->countProperties($user->id)]]);
     }
-
+    public function favouriteProperty(AddToFavouriteRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+            'favouriteProperty'=>$this->properties->favouriteProperty($request->favouriteProperty())]]);
+    }
     public function search(SearchPropertiesRequest $request)
     {
         return $this->propertiesJsonRepo->search($request->getParams());
