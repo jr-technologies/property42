@@ -29,7 +29,11 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
         return [
             'required.required' => ':attribute is required',
             'fName.required' => 'First name is required',
+            'fName.min' => 'First name must be atleast 3 chars',
+            'fName.max' => 'First name must be less then 56 chars',
             'lName.required' => 'Last name is required',
+            'lName.min' => 'Last name must be atleast 3 chars',
+            'lName.max' => 'Last name must be less then 56 chars',
             'passwordAgain.required' => 'Password Again is required',
             'phone.required' => 'Phone is required',
             'userRoles.required' => 'please select atleast one role',
