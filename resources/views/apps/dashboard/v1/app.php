@@ -1,7 +1,7 @@
 <html ng-app="dashboard">
 <head>
 
-    <title>{{html_title}}</title>
+    <title ng-bind="html_title"> Property42.pk </title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
