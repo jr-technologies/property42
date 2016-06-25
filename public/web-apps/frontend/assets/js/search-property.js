@@ -3,24 +3,31 @@
  */
 var apiPath ="http://localhost/property42/public/api/v1/";
 $(document).on('change', '#society', function(){
-   $('.fake-select').addClass('loading');
    var society_id = $(this).val();
-
-   $.ajax({
-      url: apiPath.concat("society/blocks"),
-      data:{
-         society_id:society_id
-      },
-      success: function(response) {
-         console.log(response);
-         $('#blocks').empty();
-         $('#blocks').append($('<option>').text('select a block').attr('value', ''));
-         $.each(response.data.blocks, function(i, block) {
-            $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
-         });
-         $('.fake-select').removeClass('loading');
-      }
-   })
+   if(society_id !="") {
+      $('.fake-select').addClass('loading');
+      $.ajax({
+         url: apiPath.concat("society/blocks"),
+         data: {
+            society_id: society_id
+         },
+         success: function (response) {
+            console.log(response);
+            $('#blocks').empty();
+            $('#blocks').append($('<option>').text('select a block').attr('value', ''));
+            $.each(response.data.blocks, function (i, block) {
+               $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
+            });
+            $('.fake-select').removeClass('loading');
+         }
+      })
+   }
+   else
+   {
+      $('#blocks').empty();
+      $('#blocks').append($('<option>').text('All block').attr('value',''));
+      $('.fake-select').removeClass('loading');
+   }
 });
 $(document).on('change','.property_type',function(){
    var property_type = $(this).val();
