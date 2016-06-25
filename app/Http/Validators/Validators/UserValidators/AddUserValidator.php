@@ -29,7 +29,11 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
         return [
             'required.required' => ':attribute is required',
             'fName.required' => 'First name is required',
+            'fName.min' => 'First name must be atleast 3 chars',
+            'fName.max' => 'First name must be less then 56 chars',
             'lName.required' => 'Last name is required',
+            'lName.min' => 'Last name must be atleast 3 chars',
+            'lName.max' => 'Last name must be less then 56 chars',
             'passwordAgain.required' => 'Password Again is required',
             'phone.required' => 'Phone is required',
             'userRoles.required' => 'please select atleast one role',
@@ -63,12 +67,12 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
     public function agencyRules()
     {
         return [
-            'agencyName' => 'required|max:255|unique_agent_in_societies',
+            'agencyName' => 'required|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
             'societies' => 'required',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
-            'agencyDescription'=>'max:600',
+            'agencyDescription'=>'max:1200',
             'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
         ];
     }

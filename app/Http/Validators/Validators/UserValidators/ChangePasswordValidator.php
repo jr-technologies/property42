@@ -26,7 +26,8 @@ class ChangePasswordValidator extends UserValidator implements ValidatorsInterfa
     public function CustomValidationMessages(){
         return [
             'userId.user_exists' => 'This user does not exists in the system.',
-            'existingPassword.check_password_existence' => 'Incorrect password'
+            'existingPassword.check_password_existence' => 'Incorrect password.',
+            'newPassword.not_same' => ':attribute should be different from you previous password.'
         ];
     }
 
@@ -41,7 +42,7 @@ class ChangePasswordValidator extends UserValidator implements ValidatorsInterfa
         return [
             'userId' => 'required|user_exists',
             'existingPassword' => 'required|check_password_existence',
-            'newPassword' => 'required|min:5|max:20'
+            'newPassword' => 'required|min:5|max:20|not_same'
         ];
     }
 
@@ -63,6 +64,15 @@ class ChangePasswordValidator extends UserValidator implements ValidatorsInterfa
         {
             $user = $this->request->getUserModel();
             if(!Hash::check($this->request->get('existingPassword'), $user->password))
+                return false;
+            return true;
+        });
+    }
+    public function registerDifferentRule()
+    {
+        Validator::extend('not_same', function($attribute, $newPassword, $parameters)
+        {
+            if($this->request->get('existingPassword') == $newPassword)
                 return false;
             return true;
         });
