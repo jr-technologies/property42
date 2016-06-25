@@ -63,12 +63,12 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
     public function agencyRules()
     {
         return [
-            'agencyName' => 'required|max:255|unique_agent_in_societies',
+            'agencyName' => 'required|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
             'societies' => 'required',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
-            'agencyDescription'=>'max:600',
+            'agencyDescription'=>'max:1200',
             'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
         ];
     }

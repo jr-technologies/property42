@@ -65,7 +65,7 @@ Route::post('/register',
     [
         'middleware'=>
             [
-                'webValidate:registrationRequest'
+                //'webValidate:registrationRequest'
             ],
         'uses'=>'Auth\AuthController@register',
         'as' => 'register'
