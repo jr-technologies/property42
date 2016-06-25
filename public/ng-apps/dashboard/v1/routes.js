@@ -66,11 +66,36 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('home.properties.favourites', {
+            url: "/favourites",
+            templateUrl: views+"/properties/favourites.html",
+            controller: 'FavouritePropertiesController',
+            auth: true,
+            resolve: {
+                properties : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
+                    return $http({
+                        method: 'GET',
+                        url: apiPath+'properties/favs',
+                        params: {property_id: 2},
+                        headers: {
+                            Authorization:$AuthService.getAppToken()
+                        }
+                    }).then(function successCallback(response) {
+                        return response.data.data.properties;
+                    }, function errorCallback(response) {
+                        $rootScope.$broadcast('error-response-received',{status:response.status});
+                        return undefined;
+                    });
+                }
+            }
+        })
+
         .state('home.properties.add', {
             url: "/add",
             templateUrl: views+"/properties/addPropertyForm.html",
             auth: true
         })
+
         .state('home.properties.edit', {
             url: "/edit/{propertyId}",
             templateUrl: views+"/properties/editPropertyForm.html",

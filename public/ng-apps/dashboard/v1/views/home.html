@@ -28,13 +28,11 @@
                     <li class="display-badge">
                         <a href="#" title="Email Alerts">
                             <span class="icon-service-courier"></span>
-                            <span class="badge">10</span>
                         </a>
                     </li>
                     <li class="display-badge">
                         <a href="#" title="Messages Alerts">
                             <span class="icon-facebook-chat-balloons"></span>
-                            <span class="badge">99+</span>
                         </a>
                     </li>
                 </ul>
@@ -53,9 +51,7 @@
                         <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
-                <li><a href="#"><span class="icon-favourites-filled-star-symbol"></span>favorites<span class="badge">346</span></a></li>
-                <li><a href="#"><span class="icon-facebook-chat-balloons"></span>Messages<span class="badge">300</span></a></li>
-                <li><a href="#"><span class="icon-service-courier"></span>Email Alerts<span class="badge">55</span></a></li>
+                <li><a href="#home/properties/favourites"><span class="icon-favourites-filled-star-symbol"></span>favorites<span class="badge">346</span></a></li>
                 <li><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
                 <li><a href="#home/change-password"><span  class="icon-key"></span>Change Password</a></li>
             </ul>

@@ -53,6 +53,22 @@ Route::post('favourite/property',
             ],
         'uses'=>'PropertiesController@favouriteProperty'
     ]);
+Route::post('favourite/property/delete', function(){
+    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->all();
+    $collection = collect($properties);
+    $properties = $collection->slice(1, 20)->all();
+    return ['data'=>[
+        'property'=>null,
+        'properties' => $properties
+    ]];
+});
+
+Route::get('properties/favs',function(){
+    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->all();
+    $collection = collect($properties);
+    $properties = $collection->slice(1, 20)->all();
+    return ['data'=>['properties'=>$properties]];
+});
 
 Route::get('/users',
     [
