@@ -48,7 +48,7 @@
 <span class="fake-select">
 <select name="society_id" id="society">
     <option disabled selected value>Society</option>
-    <option disabled selected value="">All Societies</option>
+    <option  value="">All Societies</option>
     @foreach($response['data']['societies'] as $society)
         <option value="{{$society->id}}">{{$society->name}}</option>
     @endforeach
@@ -78,7 +78,7 @@
                         <span class="fake-select">
                             <select name="sub_type_id">
                                 <option disabled selected value>Property SubType</option>
-                                <option disabled selected value="">All Property SubType</option>
+                                <option  value="">All Property SubType</option>
                                 @foreach($response['data']['propertySubtypes'] as $propertySubType)
                                     <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
                                 @endforeach
