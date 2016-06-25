@@ -74,7 +74,6 @@ class PropertiesController extends ApiController
             'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),
         ]]);
-
     }
 
     public function update(UpdatePropertyRequest $request)

@@ -2,9 +2,9 @@
  * Created by noman_2 on 12/8/2015.
  */
 
-var domain = "http://localhost/jr/property42/backend/property42/public/";
+//var domain = "http://localhost/jr/property42/backend/property42/public/";
 //var domain = "http://localhost/production/jr-technologies/property42/public/";
-//var domain = "http://"+window.location.hostname+"/property42/public/";
+var domain = "http://"+window.location.hostname+"/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;

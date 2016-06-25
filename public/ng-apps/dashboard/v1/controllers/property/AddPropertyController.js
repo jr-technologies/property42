@@ -174,7 +174,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
             $rootScope.please_wait_class = '';
             $window.scrollTo(0, 0);
             $scope.propertySaved = true;
-            resetForm();
+            //resetForm();
         }, function (response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
             $rootScope.please_wait_class = '';
