@@ -207,6 +207,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             return 0;
         }
     }
+
     public function countProperties($userId)
     {
         $rawPropertyCounts = $this->rawPropertyCounts($userId);

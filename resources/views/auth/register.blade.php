@@ -102,8 +102,7 @@
                             <ul class="role-listing">
                                 @foreach($response['roles'] as $role)
                                     <li>
-                                        <input type="checkbox" id="role_{{$role->id}}" class="userRole-checkbox @if($role->id == 3) agent-brokerCheckbox @endif;"
-                                               name="userRoles[]" value="{{$role->id}}" @if(in_array($role->id,(old('userRoles') !=null)?old('userRoles'):[])) checked @endif>
+                                        <input type="checkbox" id="role_{{$role->id}}" class="userRole-checkbox @if($role->id == 3) agent-brokerCheckbox @endif;" name="userRoles[]" value="{{$role->id}}" @if(in_array($role->id,(old('userRoles') !=null)?old('userRoles'):[])) checked @endif>
                                         <label for="role_{{$role->id}}">{{$role->name}}</label>
                                     </li>
                                 @endforeach
@@ -140,11 +139,13 @@
                             <span class="error-text">This is error</span>
                             <span class="calculatedSocieties"></span>
                         </div>
+
                         <div class="input-holder full-width">
                             <ul class="societiesBlock-listing">
                                 @foreach($response['societies'] as $society)
                                     <li>
-                                        <input type="checkbox" id="society{{$society->id}}" class="selectSociety-checkbox" name="societies[]" value="{{$society->id}}">
+                                        <input type="checkbox" id="society{{$society->id}}" class="selectSociety-checkbox" name="societies[]" value="{{$society->id}}"
+                                               @if(in_array($society->id,(old('societies') !=null)?old('societies'):[])) checked @endif>
                                         <label for="society{{$society->id}}">{{$society->name}}</label>
                                     </li>
                                 @endforeach

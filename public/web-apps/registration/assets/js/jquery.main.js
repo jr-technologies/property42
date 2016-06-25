@@ -1,3 +1,7 @@
+$(document).on('change keyup', 'input, textarea, select', function(){
+	$(this).closest('.error').removeClass('error');
+});
+
 $(document).on('keyup', '#search-society', function(){
 	var searchValue = $(this).val();
 	$('.societiesBlock-listing').find('li').each( function(){

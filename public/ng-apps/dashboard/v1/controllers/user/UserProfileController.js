@@ -10,6 +10,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
     $scope.companyLogo = '';
     $scope.userIsAgent = false;
     $scope.userWasAgent = false;
+    $scope.profileUpdated = false;
 
     var getUserRolesIds = function () {
         var ids = [];
@@ -32,6 +33,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
     };
 
     $scope.updateUser = function () {
+        $scope.profileUpdated = false;
         $scope.errors = {};
         $rootScope.loading_content_class = 'loading-content';
         var upload = Upload.upload({
@@ -43,15 +45,18 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
             $scope.errors = {};
             $rootScope.loading_content_class = '';
             $window.scrollTo(0, 0);
+            $scope.profileUpdated = true;
             $scope.formSubmitStatus = '';
             $scope.user = response.data.data.user;
             $scope.form.data = mapUsrOnScope($scope.user);
             $rootScope.authUser = angular.copy(response.data.data.user);
         }, function (response) {
+            $scope.profileUpdated = false;
             $rootScope.loading_content_class = '';
             $scope.errors = response.data.error.messages;
             $window.scrollTo(0, 0);
         }, function (evt) {
+            $scope.profileUpdated = false;
             $window.scrollTo(0, 0);
         });
     };

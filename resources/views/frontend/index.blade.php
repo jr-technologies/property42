@@ -25,7 +25,7 @@
                         <li>
                             <label for="anyPro">
                                 <input type="radio" id="anyPro" class="property_type" name="property_type_id" checked
-                                       value="0">
+                                       value="">
                                 <span class="fake-label">All Types</span>
                             </label>
                         </li>
@@ -48,6 +48,7 @@
 <span class="fake-select">
 <select name="society_id" id="society">
     <option disabled selected value>Society</option>
+    <option disabled selected value="">All Societies</option>
     @foreach($response['data']['societies'] as $society)
         <option value="{{$society->id}}">{{$society->name}}</option>
     @endforeach
@@ -60,9 +61,11 @@
 
                             <div class="input-holder">
 <span class="fake-select">
+    <span class="load">
 <select name="block_id" id="blocks">
     <option disabled selected value>Block</option>
 </select>
+        </span>
 </span>
                             </div>
                         </li>
@@ -75,6 +78,7 @@
                         <span class="fake-select">
                             <select name="sub_type_id">
                                 <option disabled selected value>Property SubType</option>
+                                <option disabled selected value="">All Property SubType</option>
                                 @foreach($response['data']['propertySubtypes'] as $propertySubType)
                                     <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
                                 @endforeach
