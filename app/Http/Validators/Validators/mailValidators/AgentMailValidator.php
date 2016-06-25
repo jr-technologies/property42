@@ -20,12 +20,12 @@ class AgentMailValidator extends MailValidator implements ValidatorsInterface
     public function rules()
     {
         return[
-            'subject' => 'required|min:5|max:15',
-            'name'=>'required|min:5|max:15',
+
+            'name'=>'required|min:3|max:15',
+            'to'=> 'required|email|min:5|max:255',
             'email' => 'required|email|min:5|max:255',
-            'phone'=>'required|min:5|max:15',
-            'cell' => 'required|numeric',
-            'message'=>'required|min:5|max:300'
+            'cell'=>'required|min:11|max:25',
+            'message'=>'required|min:3|max:300'
         ];
     }
 }

@@ -16,6 +16,7 @@ use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
@@ -458,24 +459,19 @@ Route::post('property/restore',
     ]
 );
 Route::post('foo',function() {
-    $this->propertyJsonRepo = (new PropertiesJsonRepoProvider())->repo();
-    try {
-        $property = $this->propertyJsonRepo->getById(13);
-        $isInDeletedSection = false;
 
-            if ($property->propertyStatus->id == 25 )
-            {
-                $isInDeletedSection = true;
-            }
-
-        if (!$isInDeletedSection)
-            return false;
-
-    } catch (\Exception $e) {
-        return false;
+    $users = (new UsersRepoProvider())->repo()->all();
+    $societies = (new SocietiesRepoProvider())->repo()->all();
+    //dd($societies[0]->id);
+    $finalRecord =[];
+    foreach($users as $key=>$value)
+    {
+        $finalRecord[] = [
+            'agency_id' => $value->id,
+            'society_id' => $societies[$key]->id,
+        ];
     }
-
-    return true;
+    dd($finalRecord);
 });
 Route::post('properties/delete',
     [

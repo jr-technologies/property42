@@ -13,7 +13,7 @@
                         <label for="email" class="icon-envelope"></label>
                     </div>
                     <button type="submit">Send Password</button>
-                    <a href="regestration.html" class="btn-log">Click for Login</a>
+                    <a href="{{url('/login')}}" class="btn-log">Click for Login</a>
                {{Form::close()}}
             </div>
         </div>

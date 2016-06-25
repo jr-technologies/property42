@@ -68,7 +68,7 @@ class UsersController extends Controller
         return redirect()->back();
     }
     public function trustedAgents(GetAgentsRequest $request)
-    {
+    {//dd($this->releaseUsersAgenciesLogo($this->usersJsonRepo->trustedAgents($request->all())));
         return $this->response
             ->setView('frontend.agent-listing')->respond(['data' => [
                 'agents' => $this->releaseUsersAgenciesLogo($this->usersJsonRepo->trustedAgents($request->all())),

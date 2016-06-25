@@ -17,10 +17,9 @@ class AgentMailTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'subject'=>$this->request->input('subject'),
             'name'=>$this->request->input('name'),
+            'to'=>$this->request->input('to'),
             'email'=>$this->request->input('email'),
-            'phone'=>$this->request->input('phone'),
             'cell'=>$this->request->input('cell'),
             'message'=>$this->request->input('message'),
         ];
