@@ -10,14 +10,14 @@ app.filter('roundup', function () {
             return 1;
     };
 });
-app.controller("FavouritePropertiesController",["properties", "$q", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function (properties, $q, $window, $scope, $rootScope, $http, $state, $AuthService) {
+app.controller("FavouritePropertiesController",["properties", "$q", "$window", "$scope", "$rootScope","$http","$location", "$state", "$stateParams", "$AuthService", function (properties, $q, $window, $scope, $rootScope, $http, $location, $state, $stateParams, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $scope.properties = properties;
     $scope.deletingPropertyId = 0;
     $scope.params = {
         userId: $rootScope.authUser.id,
         start : 0,
-        limit: 20
+        limit: (isNaN($stateParams.limit))?'20':''+$stateParams.limit
     };
     $scope.deletingProperties = {
         ids: []
@@ -41,6 +41,10 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$window", "
     $scope.unCheckAll = function() {
         $scope.deletingProperties.ids = [];
     };
+    $scope.limitChanged = function () {
+        page = (isNaN($stateParams.page))? 1: $stateParams.page;
+        $location.path('/home/properties/favourites').search({page:page,limit:$scope.params.limit});
+    };
     $scope.getProperties = function () {
         if($scope.fetchingProperties == true){
             $q(function(resolve, reject) {
@@ -62,10 +66,6 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$window", "
             $rootScope.$broadcast('error-response-received',{status:response.status});
             return [];
         });
-    };
-
-    $scope.filtersChanged = function () {
-        alert('make it right');
     };
 
     $scope.deleteProperty = function ($index) {
@@ -92,11 +92,8 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$window", "
     $scope.setPage = function (page) {
         if(parseInt(page) < 1 || parseInt(page) > Math.ceil($scope.totalProperties/$rootScope.searchPropertiesParams.limit))
             return false;
-
-        var start = ($rootScope.searchPropertiesParams.limit * parseInt(page)) - $rootScope.searchPropertiesParams.limit;
-        $rootScope.searchPropertiesParams.start = start;
-        $rootScope.$broadcast('searchPropertiesParamsChanged');
         $scope.activePage = page;
+        $location.path('/home/properties/favourites').search({page:page,limit:$scope.params.limit})
     };
     $scope.initialize = function () {
         $rootScope.loading_content_class = '';

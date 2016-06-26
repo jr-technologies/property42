@@ -63,10 +63,18 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
     {
         $conditions =$this->computeUserPropertiesParams($params);
         $table = (new PropertyFactory())->getTable();
+        $propertyJsonTable = (new PropertyJsonFactory())->getTable();
+        $userTable = (new UserFactory())->getTable();
+        $agencyStaff = (new AgencyStaffFactory())->getTable();
+        $agencyTable = (new AgencyFactory())->getTable();
          return DB::table($table)
-            ->leftjoin($this->table,$this->table.'.property_id','=',$table.'.id')
-            ->select($this->table.'.json')
-            ->where($conditions)
-            ->count();
+             ->join($propertyJsonTable,$table.'.id','=',$propertyJsonTable.'.property_id')
+             ->leftjoin($userTable,$table.'.owner_id','=',$userTable.'.id')
+             ->leftjoin($agencyStaff,$userTable.'.id','=',$agencyStaff.'.user_id')
+             ->leftjoin($agencyTable,$agencyStaff.'.agency_id','=',$agencyTable.'.id')
+             ->select($this->table.'.json')
+             ->where($conditions)
+             ->distinct()
+             ->count();
     }
 }

@@ -2,9 +2,9 @@
  * Created by noman_2 on 12/8/2015.
  */
 
-//var domain = "http://localhost/jr/property42/backend/property42/public/";
+var domain = "http://localhost/jr/property42/backend/property42/public/";
 //var domain = "http://localhost/production/jr-technologies/property42/public/";
-var domain = "http://"+window.location.hostname+"/property42/public/";
+//var domain = "http://"+window.location.hostname+"/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
@@ -57,26 +57,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/properties",
             templateUrl: views+"/properties/home.html",
             auth: true,
-            resolve: {
-                resources : function ($ResourceLoader, $rootScope) {
-                    if($ResourceLoader.needsLoading())
-                    {
-                        return $ResourceLoader.loadAll();
-                    }
-                }
-            }
         })
         .state('home.properties.favourites', {
-            url: "/favourites",
+            url: "/favourites?page&limit",
             templateUrl: views+"/properties/favourites.html",
             controller: 'FavouritePropertiesController',
             auth: true,
             resolve: {
                 properties : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
+                    page = (isNaN($stateParams.page))?1:$stateParams.page;
+                    limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+                    limit = (limit > 500)?500:limit;
+                    var start = (limit * parseInt(page)) - limit;
                     return $http({
                         method: 'GET',
                         url: apiPath+'properties/favs',
-                        params: {property_id: 2},
+                        params: {userId: $rootScope.authUser.id, start: start, limit: limit},
                         headers: {
                             Authorization:$AuthService.getAppToken()
                         }

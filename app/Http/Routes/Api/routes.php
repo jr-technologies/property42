@@ -1,27 +1,6 @@
 <?php
-use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
-use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
-use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
-use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
-use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
-use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
-use App\DB\Providers\SQL\Models\AgencySociety;
-use App\DB\Providers\SQL\Models\AssignedFeatures;
-use App\DB\Providers\SQL\Models\PropertySubType;
-use App\Events\Events\Feature\FeatureJsonCreated;
-use App\Http\Controllers\Api\V1\AppsResourceController;
-use App\Http\Controllers\Api\V1\PropertySubTypeController;
-use App\Libs\Json\Creators\Creators\Feature\SectionsFeaturesJsonCreator;
-use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
-use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
-use App\Repositories\Providers\Providers\FeaturesRepoProvider;
-use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
-use App\Repositories\Repositories\Sql\FeaturesRepository;
-use App\Repositories\Repositories\Sql\PropertiesRepository;
-use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,7 +47,7 @@ Route::get('properties/favs',function(){
     $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->all();
     $collection = collect($properties);
     $properties = $collection->slice(1, 20)->all();
-    return ['data'=>['properties'=>$properties]];
+    return response()->json(['data'=>['properties'=>$properties]]);
 });
 
 Route::get('/users',

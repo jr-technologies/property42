@@ -9,6 +9,9 @@
 namespace App\DB\Providers\SQL\Factories\Factories\PropertyJson\Gateways\Helpers;
 
 
+use App\Libs\Helpers\AuthHelper;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\AppTrait;
 
 trait UserPropertiesHelper
@@ -21,12 +24,19 @@ trait UserPropertiesHelper
             $conditions['properties.purpose_id'] = $params['purposeId'];
         if(isset($params['agencyId']) && ($params['agencyId'] != null || $params['agencyId'] !=''))
             $conditions['agencies.id'] = $params['agencyId'];
-        if(isset($params['ownerId']) && ($params['ownerId'] != null || $params['ownerId'] !=''))
+        if(isset($params['ownerId']) && ($params['ownerId'] != null || $params['ownerId'] !='')){
             $conditions['properties.owner_id'] = $params['ownerId'];
+        }
+        else{
+            $user = (new AuthHelper())->user();
+            $agencies = (new AgenciesRepoProvider())->repo()->getByUser($user->id);
+            $conditions['agencies.id'] = $agencies[0]->id;
+        }
         if(isset($params['statusId']) && ($params['statusId'] != null || $params['statusId'] !=''))
             $conditions['properties.property_status_id'] = $params['statusId'];
         if(isset($params['propertyId']) && ($params['propertyId'] != null || $params['propertyId'] !=''))
             $conditions['properties.id'] = $params['propertyId'];
+
         return $conditions;
     }
     public function getLimit($params)
