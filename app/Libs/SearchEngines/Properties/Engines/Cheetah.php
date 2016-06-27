@@ -43,6 +43,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
 
     private function buildQuery()
     {
+        $propertyStatusSeeder = new \PropertyStatusTableSeeder();
         $properties = (new PropertyFactory())->getTable();
         $propertyTypes = (new PropertyTypeFactory())->getTable();
         $propertySubTypes = (new PropertySubTypeFactory())->getTable();
@@ -89,6 +90,11 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
                 }
             }
         }
+
+        /* static conditions by system policies */
+        $query = $query->where($properties.'.property_status_id', $propertyStatusSeeder->getActiveStatusId());
+        /*--------------------------------------*/
+
         $sorting = $this->computeSorting();
         $query = $query->orderBy($sorting['sortBy'],$sorting['order']);
         $query = $query->skip($this->computePagination()['start'])->take($this->computePagination()['limit']);

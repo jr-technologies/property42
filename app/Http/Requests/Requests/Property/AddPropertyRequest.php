@@ -46,7 +46,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->price =  $this->get('price');
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
-        $property->statusId = $this->statusSeeder->getPendingStatusId();
+        $property->statusId = $this->statusSeeder->getActiveStatusId(); /* its temporary */
 
         $property->contactPerson =  $this->get('contactPerson');
         $property->phone =  $this->get('phone');
