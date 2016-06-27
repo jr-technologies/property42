@@ -46,7 +46,7 @@ app.filter('filterBySubType', [function () {
     };
 }]);
 
-app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http", "Upload","$sce", function ($scope, $rootScope, $window, $http, Upload, $sce) {
+app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpService", "$window","$http", "Upload","$sce", "$AuthService", function ($scope, $rootScope, $CustomHttpService, $window, $http, Upload, $sce, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
     $scope.propertySaved = false;
@@ -167,14 +167,18 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
         $rootScope.please_wait_class = 'please-wait';
         var upload = Upload.upload({
             url: apiPath+'property',
-            data: $scope.form.data
+            data: $scope.form.data,
+            headers:{
+                Authorization: $AuthService.getAppToken()
+            }
         });
 
         upload.then(function (response) {
             $rootScope.please_wait_class = '';
             $window.scrollTo(0, 0);
             $scope.propertySaved = true;
-            //resetForm();
+            $rootScope.propertiesCounts = response.data.data.propertiesCounts;
+            resetForm();
         }, function (response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
             $rootScope.please_wait_class = '';
@@ -192,10 +196,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$window","$http
     };
 
     var getBlocks = function () {
-        return $http({
-            method: 'GET',
-            url: apiPath+'society/blocks',
-            params:{society_id: $scope.form.data.society}
+        return $CustomHttpService.$http('GET', apiPath+'society/blocks', {
+            society_id: $scope.form.data.society
         }).then(function successCallback(response) {
             return response.data.data.blocks;
         }, function errorCallback(response) {

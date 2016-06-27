@@ -8,6 +8,7 @@ app.factory("$ErrorResponseHandler", function ($rootScope, $http, $AuthService) 
             switch (status)
             {
                 case 401:
+                    $AuthService.setAppToken(null);
                     alert('Session Expired! please login again.');
                     window.location.href = domain+'logout';
                     break;

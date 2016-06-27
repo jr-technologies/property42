@@ -39,6 +39,7 @@ Route::post('favourite/property/delete', function(){
     $properties = $collection->slice(1, 20)->all();
     return ['data'=>[
         'property'=>null,
+        'favouritesCount' => rand(10,100),
         'properties' => $properties
     ]];
 });
@@ -72,6 +73,7 @@ Route::post('user/update',
     [
         'middleware'=>
             [
+                'apiAuthenticate:UpdateUserRequest',
                 'apiValidate:UpdateUserRequest'
             ],
         'uses'=>'UsersController@updateUser'
@@ -81,6 +83,7 @@ Route::post('user/change-password',
     [
         'middleware'=>
             [
+                'apiAuthenticate:changePasswordRequest',
                 'apiValidate:changePasswordRequest'
             ],
         'uses'=>'UsersController@changePassword'
@@ -90,7 +93,7 @@ Route::post('user/feedback',
     [
         'middleware'=>
             [
-                'apiValidate:UpdateUserRequest'
+
             ],
         'uses'=>'UsersController@feedback'
     ]
@@ -100,8 +103,8 @@ Route::post('user/agency/staff',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:getUsersRequest'
-               'apiValidate:addAgencyStaffRequest'
+                'apiAuthenticate:addAgencyStaffRequest',
+                'apiValidate:addAgencyStaffRequest'
             ],
         'uses'=>'AgencyController@addAgencyStaff'
     ]
@@ -111,7 +114,7 @@ Route::post('user/agency/staff/update',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:getUsersRequest'
+                'apiAuthenticate:updateAgencyStaffRequest',
                 'apiValidate:updateAgencyStaffRequest'
             ],
         'uses'=>'AgencyController@updateAgencyStaff'
@@ -122,7 +125,7 @@ Route::post('user/agency/staff/delete',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:getUsersRequest'
+                'apiAuthenticate:deleteAgencyStaffRequest',
                 'apiValidate:deleteAgencyStaffRequest'
             ],
         'uses'=>'AgencyController@deleteAgencyStaff'
@@ -369,7 +372,7 @@ Route::post('/property',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:addCityRequest',
+                'apiAuthenticate:addPropertyRequest',
                 'apiValidate:addPropertyRequest'
             ],
         'uses'=>'PropertiesController@store'
@@ -381,7 +384,6 @@ Route::get('property',
         'middleware'=>
             [
                 'apiValidate:getPropertyRequest'
-
             ],
         'uses'=>'PropertiesController@store'
     ]
@@ -391,7 +393,7 @@ Route::get('user/properties',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:getUserPropertiesRequest',
+                'apiAuthenticate:getUserPropertiesRequest',
                 'apiValidate:getUserPropertiesRequest'
             ],
         'uses'=>'PropertiesController@getUserProperties'
@@ -402,6 +404,7 @@ Route::post('property/update',
     [
         'middleware'=>
             [
+                'apiAuthenticate:updatePropertyRequest',
                 'apiValidate:updatePropertyRequest'
             ],
         'uses'=>'PropertiesController@update'
@@ -412,6 +415,7 @@ Route::post('property/force_delete',
     [
         'middleware'=>
             [
+                'apiAuthenticate:deletePropertyRequest',
                 'apiValidate:deletePropertyRequest'
             ],
         'uses'=>'PropertiesController@forceDelete'
@@ -421,6 +425,7 @@ Route::post('property/delete',
     [
         'middleware'=>
             [
+                'apiAuthenticate:deletePropertyRequest',
                 'apiValidate:deletePropertyRequest'
             ],
         'uses'=>'PropertiesController@delete'
@@ -431,6 +436,7 @@ Route::post('properties/force_delete',
     [
         'middleware'=>
             [
+                'apiAuthenticate:forceDeleteMultiplePropertiesRequest',
                 'apiValidate:forceDeleteMultiplePropertiesRequest'
             ],
         'uses'=>'PropertiesController@multiForceDelete'
@@ -441,30 +447,18 @@ Route::post('property/restore',
     [
         'middleware'=>
             [
+                'apiAuthenticate:restorePropertyRequest',
                 'apiValidate:restorePropertyRequest'
             ],
         'uses'=>'PropertiesController@restore'
     ]
 );
-Route::post('foo',function() {
 
-    $users = (new UsersRepoProvider())->repo()->all();
-    $societies = (new SocietiesRepoProvider())->repo()->all();
-    //dd($societies[0]->id);
-    $finalRecord =[];
-    foreach($users as $key=>$value)
-    {
-        $finalRecord[] = [
-            'agency_id' => $value->id,
-            'society_id' => $societies[$key]->id,
-        ];
-    }
-    dd($finalRecord);
-});
 Route::post('properties/delete',
     [
         'middleware'=>
             [
+                'apiAuthenticate:deleteMultiplePropertiesRequest',
                 'apiValidate:deleteMultiplePropertiesRequest'
             ],
         'uses'=>'PropertiesController@multiDelete'

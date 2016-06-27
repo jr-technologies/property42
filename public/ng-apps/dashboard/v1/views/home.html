@@ -51,7 +51,7 @@
                         <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                     </ul>
                 </li>
-                <li><a href="#home/properties/favourites"><span class="icon-favourites-filled-star-symbol"></span>favorites<span class="badge">346</span></a></li>
+                <li><a href="#home/properties/favourites"><span class="icon-favourites-filled-star-symbol"></span>favorites<span class="badge">{{favouritesCount}}</span></a></li>
                 <li><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
                 <li><a href="#home/change-password"><span  class="icon-key"></span>Change Password</a></li>
             </ul>

@@ -10,7 +10,7 @@ app.filter('roundup', function () {
             return 1;
     };
 });
-app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $window, $scope, $rootScope, $http, $state, $AuthService) {
+app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $CustomHttpService, $window, $scope, $rootScope, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $rootScope.searchPropertiesParams.start = 1;
     $scope.activeStatus = 1;
@@ -79,29 +79,22 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
             });
         }
         $scope.fetchingProperties = true;
-        return $http({
-            method: 'GET',
-            url: apiPath+'user/properties',
-            params: $rootScope.searchPropertiesParams,
-            headers: {
-                Authorization:$AuthService.getAppToken()
-            }
-        }).then(function successCallback(response) {
-            $scope.fetchingProperties = false;
-            return response.data.data;
-        }, function errorCallback(response) {
-            $rootScope.$broadcast('error-response-received',{status:response.status});
-            return [];
-        });
+        return $CustomHttpService.$http('GET', apiPath+'user/properties', $rootScope.searchPropertiesParams)
+            .then(function successCallback(response) {
+                $scope.fetchingProperties = false;
+                return response.data.data;
+            }, function errorCallback(response) {
+                $rootScope.$broadcast('error-response-received',{status:response.status});
+                return [];
+            });
     };
     var getPropertiesCounts = function () {
-        return $http.get(apiPath+'properties/count', {
-            params: {
-                user_id: $rootScope.authUser.id
-            }
+        return $CustomHttpService.$http('GET', apiPath+'properties/count',  {
+            user_id: $rootScope.authUser.id
         }).then(function successCallback(response) {
             return response.data.data.counts;
         }, function errorCallback(response) {
+            $rootScope.$broadcast('error-response-received',{status:response.status});
             return response;
         });
     };
@@ -144,13 +137,9 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
     };
     var softDelProperty = function ($index) {
         $scope.deletingPropertyId = $scope.properties[$index].id;
-        return $http({
-            method: 'POST',
-            url: apiPath+'property/delete',
-            data:{
-                propertyId: $scope.properties[$index].id,
-                searchParams: $rootScope.searchPropertiesParams
-            }
+        return $CustomHttpService.$http('POST', apiPath+'property/delete', {
+            propertyId: $scope.properties[$index].id,
+            searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
@@ -164,13 +153,9 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
     };
     var forceDelProperty = function ($index) {
         $scope.deletingPropertyId = $scope.properties[$index].id;
-        return $http({
-            method: 'POST',
-            url: apiPath+'property/force_delete',
-            data:{
-                propertyId: $scope.properties[$index].id,
-                searchParams: $rootScope.searchPropertiesParams
-            }
+        return $CustomHttpService.$http('POST', apiPath+'property/force_delete', {
+            propertyId: $scope.properties[$index].id,
+            searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
@@ -184,13 +169,9 @@ app.controller("ListPropertiesController",["$q", "$window", "$scope", "$rootScop
     };
     $scope.restoreProperty = function ($index) {
         $scope.restoringPropertyId = $scope.properties[$index].id;
-        return $http({
-            method: 'POST',
-            url: apiPath+'property/restore',
-            data:{
-                propertyId: $scope.properties[$index].id,
-                searchParams: $rootScope.searchPropertiesParams
-            }
+        return $CustomHttpService.$http('POST', apiPath+'property/restore', {
+            propertyId: $scope.properties[$index].id,
+            searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
             $rootScope.restoringPropertyId = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;

@@ -30,6 +30,7 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
                 $rootScope.authUser = response.data.data.authUser;
                 $rootScope.AUTH_TOKEN = response.data.access_token;
                 $rootScope.propertiesCounts = response.data.data.resources.propertiesCounts;
+                $rootScope.favouritesCount = response.data.data.resources.favouritesCount;
                 $rootScope.resourceLoading = false;
                 $rootScope.please_wait_class = '';
                 $rootScope.loading_resources_class = '';

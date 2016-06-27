@@ -3,7 +3,7 @@
  */
 var app = angular.module('dashboard');
 
-app.controller("ChangePasswordController",["$scope", "$rootScope","$http", "$state", "$AuthService", function ($scope, $rootScope, $http, $state, $AuthService) {
+app.controller("ChangePasswordController",["$scope", "$rootScope", "$CustomHttpService", "$http", "$state", "$AuthService", function ($scope, $rootScope, $CustomHttpService, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Change Password";
     $scope.passwordChanged = false;
     $scope.errors = {};
@@ -19,7 +19,7 @@ app.controller("ChangePasswordController",["$scope", "$rootScope","$http", "$sta
         $scope.passwordChanged = false;
         $scope.errors = {};
         $rootScope.loading_content_class = 'loading-content';
-        $http.post(apiPath+'user/change-password', $scope.form.data)
+        $CustomHttpService.$http('POST', apiPath+'user/change-password', $scope.form.data)
             .then(function (response) {
                 $scope.passwordChanged = true;
                 $scope.errors = {};

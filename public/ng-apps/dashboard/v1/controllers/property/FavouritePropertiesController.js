@@ -10,7 +10,7 @@ app.filter('roundup', function () {
             return 1;
     };
 });
-app.controller("FavouritePropertiesController",["properties", "$q", "$window", "$scope", "$rootScope","$http","$location", "$state", "$stateParams", "$AuthService", function (properties, $q, $window, $scope, $rootScope, $http, $location, $state, $stateParams, $AuthService) {
+app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttpService", "$window", "$scope", "$rootScope","$http","$location", "$state", "$stateParams", "$AuthService", function (properties, $q, $CustomHttpService, $window, $scope, $rootScope, $http, $location, $state, $stateParams, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
     $scope.properties = properties;
     $scope.deletingPropertyId = 0;
@@ -52,34 +52,23 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$window", "
             });
         }
         $scope.fetchingProperties = true;
-        return $http({
-            method: 'GET',
-            url: apiPath+'user/properties',
-            params: $rootScope.searchPropertiesParams,
-            headers: {
-                Authorization:$AuthService.getAppToken()
-            }
-        }).then(function successCallback(response) {
-            $scope.fetchingProperties = false;
-            return response.data.data;
-        }, function errorCallback(response) {
-            $rootScope.$broadcast('error-response-received',{status:response.status});
-            return [];
-        });
+        return $CustomHttpService.$http('GET', apiPath+'user/properties', $rootScope.searchPropertiesParams)
+            .then(function successCallback(response) {
+                $scope.fetchingProperties = false;
+                return response.data.data;
+            }, function errorCallback(response) {
+                $rootScope.$broadcast('error-response-received',{status:response.status});
+                return [];
+            });
     };
 
-    $scope.deleteProperty = function ($index) {
-        $scope.deletingPropertyId = $scope.properties[$index].id;
-        return $http({
-            method: 'POST',
-            url: apiPath+'favourite/property/delete',
-            data:{
-                propertyId: $scope.properties[$index].id,
+    $scope.deleteProperty = function (propertyId) {
+        $scope.deletingPropertyId = propertyId;
+        return $CustomHttpService.$http('POST', apiPath+'favourite/property/delete', {
+                propertyId: propertyId,
                 searchParams: $scope.params
-            }
         }).then(function successCallback(response) {
-            $scope.properties.splice($index, 1);
-            $rootScope.propertiesCounts = response.data.data.propertiesCounts;
+            $rootScope.favouritesCount = response.data.data.favouritesCount;
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
             $scope.deletingPropertyId = 0;

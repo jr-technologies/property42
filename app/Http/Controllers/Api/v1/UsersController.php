@@ -87,6 +87,11 @@ class UsersController extends ApiController
         return $this->response->respond(['data'=>[]]);
     }
 
+    public function feedback()
+    {
+        return $this->response->respond(['data'=>['message'=>'Thank You.']]);
+    }
+
     /**
      * @param UpdateUserRequest $request
      * @return \App\Http\Responses\\json

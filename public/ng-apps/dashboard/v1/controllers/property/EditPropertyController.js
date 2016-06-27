@@ -46,8 +46,8 @@ app.filter('filterBySubType', [function () {
     };
 }]);
 
-app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$window","$http", "Upload","$sce", "$state", "$AuthService", "$location",
-    function (property, $scope, $rootScope, $window, $http, Upload, $sce, $state, $AuthService, $location){
+app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$CustomHttpService", "$window","$http", "Upload","$sce", "$state", "$AuthService", "$location",
+    function (property, $scope, $rootScope, $CustomHttpService, $window, $http, Upload, $sce, $state, $AuthService, $location){
         if(property == undefined){
             alert('Sorry! property not found');
             return $location.path($state.href('home.properties.all').substring(1));
@@ -249,7 +249,10 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
             $scope.propertySaved = false;
             var upload = Upload.upload({
                 url: apiPath+'property/update',
-                data: $scope.form.data
+                data: $scope.form.data,
+                headers: {
+                    Authorization: $AuthService.getAppToken()
+                }
             });
 
             upload.then(function (response) {
@@ -273,10 +276,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$w
         };
 
         var getBlocks = function () {
-            return $http({
-                method: 'GET',
-                url: apiPath+'society/blocks',
-                params:{society_id: $scope.form.data.society}
+            return $CustomHttpService.$http('GET', apiPath+'society/blocks', {
+                society_id: $scope.form.data.society
             }).then(function successCallback(response) {
                 return response.data.data.blocks;
             }, function errorCallback(response) {

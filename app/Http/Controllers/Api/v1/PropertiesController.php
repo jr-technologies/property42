@@ -67,12 +67,12 @@ class PropertiesController extends ApiController
 
         $property->id = $propertyId;
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
-
         $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
         return $this->response->respond(['data' => [
             'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),
+            'propertiesCounts' => $this->properties->countProperties($request->user()->id)
         ]]);
     }
 

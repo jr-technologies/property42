@@ -3,7 +3,7 @@
  */
 var app = angular.module('dashboard');
 
-app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", "$state", "$AuthService", "Upload", "$window", function (user, $scope, $rootScope, $http, $state, $AuthService, Upload, $window) {
+app.controller("UserProfileController",["user", "$scope", "$rootScope", "$CustomHttpService", "$http", "$state", "$AuthService", "Upload", "$window", function (user, $scope, $rootScope, $CustomHttpService, $http, $state, $AuthService, Upload, $window) {
     $scope.idForAgentBroker = 3;
     $scope.html_title = "Property42 | My Profile";
     $scope.user = user;
@@ -38,7 +38,10 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
         $rootScope.loading_content_class = 'loading-content';
         var upload = Upload.upload({
             url: apiPath+'user/update',
-            data: $scope.form.data
+            data: $scope.form.data,
+            headers:{
+                Authorization: $AuthService.getAppToken()
+            }
         });
 
         upload.then(function (response) {
@@ -54,6 +57,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope","$http", 
             $scope.profileUpdated = false;
             $rootScope.loading_content_class = '';
             $scope.errors = response.data.error.messages;
+            $rootScope.$broadcast('error-response-received',{status:response.status});
             $window.scrollTo(0, 0);
         }, function (evt) {
             $scope.profileUpdated = false;

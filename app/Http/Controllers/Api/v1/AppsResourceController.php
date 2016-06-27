@@ -86,6 +86,7 @@ class AppsResourceController extends ApiController
                     'landUnits'=>$landUnits,
                     'agencyStaff'=>$agencyStaff,
                     'propertiesCounts'=>$propertiesCounts,
+                    'favouritesCount'=>rand(10,100),
                     'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson,
                     'userRoles' => $userRoles,
                     'propertyStatusesIds'=>$propertyStatusesIds

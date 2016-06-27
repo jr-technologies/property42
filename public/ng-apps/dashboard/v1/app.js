@@ -50,6 +50,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Property42 Dashboard";
     $rootScope.propertiesCounts = {};
+    $rootScope.favouritesCount = 0;
     $rootScope.authUser = null;
     $rootScope.testUser = null;
     $rootScope.resources = null;
