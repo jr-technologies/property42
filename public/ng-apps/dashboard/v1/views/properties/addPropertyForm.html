@@ -126,8 +126,8 @@
             </div>
             <div class="layout add">
                 <div class="layout-holder add">
-                    <span class="title">Description:</span>
-                    <div class="input-holder">
+                    <span class="title less-width">Description:</span>
+                    <div class="input-holder add">
                         <textarea name="propertyDescription" ng-model="form.data.propertyDescription"></textarea>
                         <span class="error-text"></span>
                     </div>
@@ -136,13 +136,10 @@
             <div class="layout add">
                 <div class="layout-holder" ng-repeat="feature in highPriorityFeatures">
                     <span class="title">{{feature.name}}:</span>
-                    <div class="layout-holder add">
-                        <span class="title">Description:</span>
                         <div class="input-holder">
                             <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
                             <span class="error-text"></span>
                         </div>
-                    </div>
                 </div>
 
                 <div class="layout-holder">

@@ -11,6 +11,9 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertyJson;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\Gateways\PropertyJsonQueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
+use App\DB\Providers\SQL\Models\LandUnit;
+use App\Libs\Helpers\LandArea;
+use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandUnitJsonCreator;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
 use App\Models\Sql\PropertyJson;
@@ -57,7 +60,26 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
 
     public function search(array $params)
     {
-        return $this->mapCollection($this->tableGateway->search($params));
+        $properties = $this->mapCollection($this->tableGateway->search($params));
+        return $this->transformLandUnits($properties, $params);
+    }
+
+    private function transformLandUnits(array $properties, $params)
+    {
+        $landUnit = null;
+        if($params['landUnitId'] != null){
+            $landUnit = new LandUnit();
+            $landUnit->id = $params['landUnitId'];
+            $landUnit->name = config('constants.LAND_UNITS')[$params['landUnitId']];
+            $landUnit = (new PropertyLandUnitJsonCreator($landUnit))->create();
+        }
+        foreach($properties as &$property /* @var $property PropertyJsonPrototype*/){
+            if($landUnit != null){
+                $property->land->area =  LandArea::convert($property->land->unit->name, $landUnit->name, $property->land->area);
+                $property->land->unit = $landUnit;
+            }
+        }
+        return $properties;
     }
 
     /**

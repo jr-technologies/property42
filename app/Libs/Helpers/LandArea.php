@@ -15,7 +15,7 @@ class LandArea extends Helper
             return $area;
 
         $computedArea = $area;
-        switch($from)
+        switch(strtolower($from))
         {
             case 'square feet':
                 switch($to)
@@ -109,19 +109,19 @@ class LandArea extends Helper
 
     public static function marlaToSquareYards($area)
     {
-        return round(($area * 25), 2);
+        return round(($area * 25), 3);
     }
     public static function marlaToSquareFeets($area)
     {
-        return round(($area * 225), 2);
+        return round(($area * 225), 3);
     }
     public static function marlaToSquareMeters($area)
     {
-        return round(($area * 20.9), 2);
+        return round(($area * 20.9), 3);
     }
     public static function marlaToKanal($area)
     {
-        return round(($area / 20), 2);
+        return round(($area / 20), 3);
     }
 
     public static function squareFeetsToSquareYards($area)
@@ -131,7 +131,7 @@ class LandArea extends Helper
     }
     public static function squareFeetsToMarla($area)
     {
-        return round(($area / 225), 2);
+        return round(($area / 225), 3);
     }
     public static function squareFeetsToSquareMeters($area)
     {
@@ -147,7 +147,7 @@ class LandArea extends Helper
 
     public static function squareYardsToMarla($area)
     {
-        return round(($area / 25), 2);
+        return round(($area / 25), 3);
     }
     public static function squareYardsToSquareFeets($area)
     {
@@ -178,7 +178,7 @@ class LandArea extends Helper
     }
     public static function squareMetersToMarla($area)
     {
-        return round(($area / 20.9), 2);
+        return round(($area / 20.9), 3);
     }
     public static function squareMetersToKanal($area)
     {
@@ -199,7 +199,7 @@ class LandArea extends Helper
     }
     public static function kanalToMarla($area)
     {
-        return round(($area * 20), 2);
+        return round(($area * 20), 3);
     }
     public static function kanalToSquareMeters($area)
     {

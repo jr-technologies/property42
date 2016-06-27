@@ -45,6 +45,7 @@ class RegistrationRequest extends Request implements RequestInterface{
         $user->mobile = $this->get('mobile');
         $user->address = $this->get('address');
         $user->zipCode = $this->get('zipCode');
+        $user->trustedAgent = 1; /* its temporary. */
         $user->countryId = 1;
         $user->membershipPlanId = 1;
         $user->notificationSettings = ($this->get('wantNotifications') == null)?0:$this->get('wantNotifications');

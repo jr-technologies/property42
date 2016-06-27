@@ -20,6 +20,9 @@ class PriceHelper extends Helper
         else
             $result = 0;
 
+        if($result == 0)
+            return 0;
+        
         $shortResult = $number/$result;
         $value =  substr($shortResult."", 0, 4);
 

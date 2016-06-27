@@ -45,6 +45,8 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/user/UserProfileController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/user/ChangePasswordController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/SidebarController.js"></script>
+    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/FooterController.js"></script>
+    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/FeedbackController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/ContentHeaderController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/HomeController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/HeaderController.js"></script>
@@ -67,6 +69,7 @@
 <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/js/add-propertyFrom.js" defer></script>
 <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/js/dashboard.js" defer></script>
 <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/js/jquery.main.js" defer></script>
+<script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/js/customSelect.js" defer></script>
 <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/js/lightbox.js" defer></script>
 <!-- include custom JavaScript -->
 <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/js/placeholder.js" defer></script>

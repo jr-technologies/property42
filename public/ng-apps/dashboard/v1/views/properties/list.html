@@ -112,7 +112,7 @@
                                 <p>{{property.description}}</p>
                             </div>
                         </div>
-                        <a class="btn-more">View more</a>
+                        <a target="_blank" href="{{domain}}property?propertyId={{property.id}}" ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.active" class="btn-more">View more</a>
                     </div>
                 </li>
             </ul>

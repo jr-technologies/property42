@@ -60,7 +60,7 @@
             <ui-view></ui-view>
         </div>
     </main>
-    <footer id="footer">
+    <footer id="footer" ng-controller="FooterController">
         <div class="container">
             <div class="cols-holder">
                 <div class="col">
@@ -83,15 +83,15 @@
                         <li><a href="#" class="twitter"><span class="icon-twitter"></span></a></li>
                     </ul>
                 </div>
-                <div class="col">
-                    <h2>Contact Us</h2>
-                    <form class="contact">
-                        <div class="input-holder error">
-                            <input type="email" placeholder="Enter you email address">
+                <div class="col" ng-controller="FeedbackController">
+                    <h2>Feedback</h2>
+                    <form class="contact" ng-submit="sendFeedback()">
+                        <div class="input-holder"  ng-class="{'error' : errors.email.length > 0}">
+                            <input type="email" placeholder="Enter you email address" ng-model="form.data.email">
                             <span class="error-text">Please enter a valid email.</span>
                         </div>
-                        <div class="input-holder error">
-                            <textarea placeholder="Enter you message"></textarea>
+                        <div class="input-holder"  ng-class="{'error' : errors.email.length > 0}">
+                            <textarea placeholder="Enter you message" ng-model="form.data.message"></textarea>
                             <span class="error-text">Please enter a message.</span>
                         </div>
                         <input type="submit"  value="Send">
