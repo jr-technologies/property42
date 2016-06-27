@@ -58,12 +58,15 @@ class PropertiesController extends Controller
     }
 
     public function search(SearchPropertiesRequest $request)
-    {
-
-
+    {//dd($request->all());
         return $this->response->setView('frontend.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($this->properties->search($request->getParams())),
             'totalProperties'=> (new Cheetah())->count(),
+            'societies'=>$this->societies->all(),
+            'propertyTypes'=>$this->propertyTypes->all(),
+            'propertySubtypes'=>$this->propertySubtypes->all(),
+            'landUnits'=>$this->landUnits->all(),
+            'oldValues'=>$request->all()
         ]]);
     }
 

@@ -12,8 +12,8 @@ class PropertyPurposeTableSeeder extends Seeder
     public function run()
     {
         DB::table('property_purposes')->insert([
-            ['purpose'=>'for-sale', 'display_name' => 'For Sale'],
-            ['purpose'=>'for-rent', 'display_name' => 'For Rent']
+            ['id'=>1,'purpose'=>'for-sale', 'display_name' => 'For Sale'],
+            ['id'=>2,'purpose'=>'for-rent', 'display_name' => 'For Rent']
         ]);
 
     }

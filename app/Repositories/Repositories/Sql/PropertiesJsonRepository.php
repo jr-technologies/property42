@@ -39,7 +39,10 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     {
         return $this->factory->find($id);
     }
-
+    public function getFavouriteProperties($params)
+    {
+        return $this->factory->getFavouriteProperties($params);
+    }
     public function store(PropertyJsonPrototype $property)
     {
         return $this->factory->store($property);
