@@ -100,10 +100,7 @@
                                             <span class="hidden-xs">{{$property->phone}}</span>
                                             <span class="show-xs">Call now</span></a>
                                     </li>
-                                    <li>
-                                        <a href="mailto:&#102;&#097;&#108;&#097;&#110;&#097;&#064;&#100;&#104;&#097;&#109;&#107;&#097;&#110;&#097;&#046;&#099;&#111;&#109;">
-                                            <span class="icon-envelope"></span>{{$property->email}}</a>
-                                    </li>
+
                                 </ul>
                                 <div class="state-logo"><a href="#">
                                         <img
@@ -137,17 +134,17 @@
 
             <div class="lightbox" id="SearchPublic-Property">
                 <div class="mySearch-Form">
-                    <form>
+                    {{ Form::open(array('url' => 'search','method' => 'GET')) }}
                         <ul class="propertyPurpose">
                             <li>
                                 <label for="buy-1">
-                                    <input type="radio" name="mySearch" id="buy-1" checked>
+                                    <input type="radio" name="purpose_id" value="1" id="buy1" checked>
                                     <span class="fake-label">Buy</span>
                                 </label>
                             </li>
                             <li>
                                 <label for="rent-1">
-                                    <input type="radio" name="mySearch" id="rent-1">
+                                    <input type="radio" name="purpose_id" id="rent1" value="2">
                                     <span class="fake-label">Rent</span>
                                 </label>
                             </li>
@@ -155,83 +152,82 @@
                         <ul class="propertyType">
                             <li>
                                 <label for="allTypes">
-                                    <input type="radio" id="allTypes" name="typeOfProperty" checked>
+                                    <input type="radio" id="allTypes" name="property_type_id" checked>
                                     <span class="fake-label">All Types</span>
                                 </label>
                             </li>
+
+                            @foreach($response['data']['propertyTypes'] as $propertyType)
                             <li>
-                                <label for="Homes">
-                                    <input type="radio" id="Homes" name="typeOfProperty">
-                                    <span class="fake-label">Homes</span>
+                                <label for={{$propertyType->name.$propertyType->id}}>
+                                    <input type="radio" id={{$propertyType->name.$propertyType->id}}
+                                            class="property_type"  name="property_type_id" value="{{$propertyType->id}}"
+                                           @if($response['data']['oldValues']['purposeId'] == $propertyType->id)checked @endif>
+                                    <span class="fake-label">{{$propertyType->name}}</span>
                                 </label>
                             </li>
-                            <li>
-                                <label for="Plots">
-                                    <input type="radio" id="Plots" name="typeOfProperty">
-                                    <span class="fake-label">Plots</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label for="Commerical">
-                                    <input type="radio" id="Commerical" name="typeOfProperty">
-                                    <span class="fake-label">Commerical</span>
-                                </label>
-                            </li>
+                                @endforeach
                         </ul>
                         <ul class="fields">
                             <li>
                                 <label>Select Sub Type:</label>
-                                <select>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
+                                <select name="sub_type_id" id="property_sub_types">
+                                    <option disabled selected value>Property SubType</option>
+                                    <option  value="">All Property SubType</option>
+                                    @foreach($response['data']['propertySubtypes'] as $propertySubType)
+                                        <option value="{{$propertySubType->id}}" @if($response['data']['oldValues']['purposeId'] ==$propertySubType->id)selected @endif>{{$propertySubType->name}}</option>
+                                    @endforeach
                                 </select>
                             </li>
                             <li>
                                 <label>Select Society:</label>
-                                <select>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
+                                <select name="society_id" id="society">
+                                    <option disabled selected value>Society</option>
+                                    <option  value="">All Societies</option>
+                                    @foreach($response['data']['societies'] as $society)
+                                        <option value="{{$society->id}}">{{$society->name}}</option>
+                                    @endforeach
                                 </select>
                             </li>
                             <li>
                                 <label>Select Block:</label>
-                                <select>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
+                                 <span class="load">
+                                <select name="block_id" id="blocks">
+                                    <option disabled selected value>Block</option>
                                 </select>
+                                 </span>
                             </li>
                             <li>
                                 <label>Select Bedrooms:</label>
-                                <select>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
-                                    <option>1</option>
+                                <select name="property_features[28]">
+                                    <option disabled selected value>Bedrooms</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                    <option value=10>10</option>
+
+
                                 </select>
                             </li>
                             <li>
                                 <label>Price Range (Rs):</label>
-                                <div class="input-holder"><input type="number" placeholder="From"></div>
-                                <div class="input-holder"><input type="number" placeholder="To"></div>
+                                <div class="input-holder"><input type="number" placeholder="From" name="price_from"></div>
+                                <div class="input-holder"><input type="number" placeholder="To" name="price_to"></div>
                             </li>
                             <li>
                                 <label>Land Area:</label>
-                                <div class="input-holder"><input type="number" placeholder="From"></div>
-                                <div class="input-holder"><input type="number" placeholder="To"></div>
+                                <div class="input-holder"><input type="number" placeholder="From" name="land_area_from"></div>
+                                <div class="input-holder"><input type="number" placeholder="To" name="land_area_to"></div>
                             </li>
                         </ul>
                         <button type="submit"><span class="icon-search"></span>Search my property</button>
-                    </form>
+                   {{Form::close()}}
                 </div>
             </div>
          </div>
@@ -250,4 +246,35 @@
     </ul>
 </div>
 </div>
+  <script>
+      function propertyTypeChangedInSearchPopup()
+      {
+          var property_type_id = $('.property_type').val();
+          if(property_type_id !="") {
+              //$('#property_sub_types').closest('.fake-select').addClass('loading');
+              $.ajax({
+                  url: apiPath.concat("types/subtypes"),
+                  data: {
+                      type_id: property_type_id
+                  },
+                  success: function (response) {
+                      $('#property_sub_types').empty();
+                      $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
+                      $.each(response.data.propertySubType, function (i, propertySubType) {
+                          $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
+                      });
+
+
+                      alert('all done. now select the old one.');
+
+                      
+                  }
+              })
+          }
+      }
+
+      $(document).ready(function(){
+         propertyTypeChangedInSearchPopup();
+      });
+  </script>
 @endsection

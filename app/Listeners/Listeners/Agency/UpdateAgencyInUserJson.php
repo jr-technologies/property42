@@ -32,19 +32,25 @@ class UpdateAgencyInUserJson extends Listener implements ListenerInterface
     {
         $agencyJsonCreator = new AgencyJsonCreator($event->agency);
         $agencyJson = $agencyJsonCreator->create();
-        $userJsonObj = $this->usersJsonRepository->find($event->agency->userId);
-        $agencies = $userJsonObj->agencies;
-        $agency = null;
-        $final_agencies = [];
-        foreach($agencies as $agency)
+        $userJsonObjects = $this->usersJsonRepository->getAgencyStaff($event->agency->id);
+        foreach ($userJsonObjects as $userJsonObj)
         {
-           if($event->agency->id == $agency->id){
-               array_push($final_agencies,$agencyJson );
-           }else{
-               array_push($final_agencies, $agency);
-           }
-       }
-        $userJsonObj->agencies = $final_agencies;
-        return $this->usersJsonRepository->update($userJsonObj);
+            $agencies = $userJsonObj->agencies;
+            $agency = null;
+            $final_agencies = [];
+            foreach ($agencies as $agency)
+            {
+                if ($event->agency->id == $agency->id)
+                {
+                    array_push($final_agencies, $agencyJson);
+                } else
+                {
+                    array_push($final_agencies, $agency);
+                }
+            }
+             $userJsonObj->agencies = $final_agencies;
+            return $this->usersJsonRepository->update($userJsonObj);
+        }
+        return true;
     }
 }

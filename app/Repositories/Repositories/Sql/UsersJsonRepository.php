@@ -33,9 +33,13 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     {
 
     }
-    public function getStaffByOwner($agencyId)
+    public function getAgencyStaff($agencyId)
     {
-        return $this->factory->getStaffByOwner($agencyId);
+        return $this->factory->getAgencyStaff($agencyId);
+    }
+    public function getStaffByOwner($userId)
+    {
+        return $this->factory->getStaffByOwner($userId);
     }
     public function trustedAgents(array $params)
     {

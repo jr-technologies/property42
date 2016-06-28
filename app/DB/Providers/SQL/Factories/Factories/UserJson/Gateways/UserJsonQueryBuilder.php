@@ -44,6 +44,20 @@ class UserJsonQueryBuilder extends QueryBuilder{
             ->get();
     }
 
+    public function getAgencyStaff($agencyId)
+    {
+        $agencyStaffTable = (new AgencyStaffFactory())->getTable();
+        $usersTable = (new UserFactory())->getTable();
+        $agenciesTable = (new AgencyFactory())->getTable();
+
+        return DB::table($agenciesTable)
+            ->rightjoin($agencyStaffTable,$agenciesTable.'.id','=',$agencyStaffTable.'.agency_id')
+            ->leftjoin($usersTable,$agencyStaffTable.'.user_id','=',$usersTable.'.id')
+            ->leftjoin($this->table,$usersTable.'.id','=',$this->table.'.user_id')
+            ->select($this->table.'.*')
+            ->where($agenciesTable.'.id','=',$agencyId )
+            ->get();
+    }
     public function search($params)
     {
         $userTable = (new UserFactory())->getTable();

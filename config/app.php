@@ -314,6 +314,7 @@ return [
         'DeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
         'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
+        'GetFavouritePropertyRequest' => \App\Http\Requests\Requests\Property\GetFavouritePropertyRequest::class,
         'RestorePropertyRequest' => \App\Http\Requests\Requests\Property\RestorePropertyRequest::class,
         'AddToFavouriteRequest' => \App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest::class,
 

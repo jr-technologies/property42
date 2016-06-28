@@ -48,19 +48,20 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
     public function userRules()
     {
         return [
-            'userId' => 'required',
-            'fName' => 'required|min:3|max:55',
-            'lName' => 'required|min:3|max:55',
-            'email' => 'required|email|unique:users,email,'.$this->request->get('userId').'|max:255',
-            'password' => 'required|match_existing_password',
-            'phone' => 'required|min:3|max:15',
-            'userRoles' => 'required|cannot_remove_agent',
+            'userId' =>'required',
+            'fName'  =>'required|min:3|max:55',
+            'lName'  =>'required|min:3|max:55',
+            'email'  =>'required|email|unique:users,email,'.$this->request->get('userId').'|max:255',
+            'password' =>'required|match_existing_password',
+            'phone' =>'required|min:3|max:15',
+            'userRoles' =>'required|cannot_remove_agent',
         ];
     }
 
     public function agencyRules()
     {
         return [
+            'agencyId'=>'required',
             'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
@@ -85,9 +86,13 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
         Validator::extend('match_existing_password', function($attribute, $value, $parameters)
         {
             $users = (new UsersRepoProvider())->repo();
-            $user = $users->getById($this->request->get('userId'));
-            if(!Hash::check($this->request->get('password'), $user->password))
+            try{
+                $user = $users->getById($this->request->get('userId'));
+                if(!Hash::check($this->request->get('password'), $user->password))
+                    return false;
+            }catch (\Exception $e){
                 return false;
+            }
 
             return true;
         });

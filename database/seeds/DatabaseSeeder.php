@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AssignedFeatureValidationsTableSeeder::class);
         //$this->call(PropertyDocumentTableSeeder::class);
         $this->call(AgencyTableSeeder::class);
+        $this->call(AgencySocietyTableSeeder::class);
         $this->call(UsersRolesTableSeeder::class);
         $this->call(AgencyStaffTableSeeder::class);
         $this->call(UsersJsonTableSeeder::class);
@@ -40,7 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertyFeatureValuesTableSeeder::class);
         $this->call(PropertiesJsonTableSeeder::class);
         $this->call(AssignedFeaturesJsonTableSeeder::class);
-        $this->call(AgencySocietyTableSeeder::class);
+
 
 
     }

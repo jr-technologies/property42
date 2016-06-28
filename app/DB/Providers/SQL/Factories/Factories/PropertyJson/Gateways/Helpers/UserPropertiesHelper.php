@@ -52,6 +52,19 @@ trait UserPropertiesHelper
 
         return $limit;
     }
+    public function getFavouritePropertyLimit($params)
+    {
+        $limit = [
+            'limit' => config('constants.PROPERTIES_LIMIT'),
+            'start' => 0
+        ];
+        if(isset($params['limit']) && ($params['limit'] !=null || $params['limit'] !=''))
+            $limit['limit']  = $params['limit' ];
+        if(isset($params['start']) && ($params['start'] != null || $params['start'] !=''))
+            $limit['start']  = $params['start'];
+
+        return $limit;
+    }
     public function getParamLimit($params)
     {
         $limit = [

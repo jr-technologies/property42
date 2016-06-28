@@ -44,20 +44,30 @@ Route::post('favourite/property/delete', function(){
     ]];
 });
 
-Route::get('properties/favs',function(){
-    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->all();
-    $collection = collect($properties);
-    $properties = $collection->slice(1, 20)->all();
-    return response()->json(['data'=>['properties'=>$properties]]);
-});
+Route::get('properties/favs',[
+    'middleware'=>
+        [
+            'apiValidate:getFavouritePropertyRequest'
+        ],
+    'uses'=>'PropertiesController@getFavouriteProperties'
+]);
 
 Route::get('/users',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:getUsersRequest'
+
             ],
         'uses'=>'UsersController@index'
+    ]
+);
+Route::get('types/subtypes',
+    [
+        'middleware'=>
+            [
+                //'apiAuthenticate:getUsersRequest'
+            ],
+        'uses'=>'PropertySubTypeController@getByType'
     ]
 );
 Route::get('/user',

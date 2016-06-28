@@ -38,14 +38,17 @@ class UsersController extends ApiController
     private $roles;
     private $userRoles;
     private $idForAgentBroker = 3;
+    private $agencyStaff =null;
     public function __construct
     (
         ApiResponse $apiResponse, UserTransformer $userTransformer,
         UsersRepoProvider $usersRepository, AgenciesRepoProvider $agenciesRepoProvider,
         UsersJsonRepoProvider $usersJsonRepoProvider, RolesRepoProvider $rolesRepoProvider,
-        UserRolesRepoProvider $userRolesRepoProvider
+        UserRolesRepoProvider $userRolesRepoProvider,AgenciesRepoProvider $agenciesRepoProvider
+
     )
     {
+        $this->agencyStaff = $agenciesRepoProvider->repo();
         $this->response = $apiResponse;
         $this->userTransformer = $userTransformer;
         $this->users = $usersRepository->repo();
@@ -111,9 +114,23 @@ class UsersController extends ApiController
         $this->updateUserRoles($request->getUserRoles(), $user->id);
 
         Event::fire(new UserUpdated($user));
-        return $this->response->respond(['data'=>[
-            'user'=>$this->releaseAllUserFiles($this->usersJsonRepo->find($user->id))
+         return $this->response->respond(['data'=>[
+            'user'=>$this->releaseAllUserFiles($this->usersJsonRepo->find($user->id)),
+            'agencyStaff'=>$this->getStaffSiblings($user)
         ]]);
+
+    }
+
+    private function getStaffSiblings($user)
+    {
+
+        $agency = $this->agencyStaff->getStaffAgency($user);
+
+        if($agency !=null)
+         {
+            return $this->usersJsonRepo->getAgencyStaff($agency->id);
+         }
+        return $user;
     }
 
     private function userWasAgent($userId)
@@ -180,7 +197,7 @@ class UsersController extends ApiController
         }
         $agency->logo = $logoPath;
         $agencyId = $this->agencies->storeAgency($agency);
-        $this->agencies->addCities($agencyId, $request->getAgencyCities());
+        //$this->agencies->addCities($agencyId, $request->getAgencyCities());
         return $agencyId;
     }
 

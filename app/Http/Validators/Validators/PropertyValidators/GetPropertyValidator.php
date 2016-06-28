@@ -9,12 +9,17 @@
 namespace App\Http\Validators\Validators\PropertyValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
-
+use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
+use Illuminate\Support\Facades\Validator;
 class GetPropertyValidator extends PropertyValidator implements ValidatorsInterface
 {
+    private $propertyJson =null;
+    private $status = null;
     public function __construct($request)
     {
         parent::__construct($request);
+        $this->propertyJson = (new PropertiesJsonRepoProvider())->repo();
+        $this->status = new \PropertyStatusTableSeeder();
     }
 
     /**
@@ -23,8 +28,30 @@ class GetPropertyValidator extends PropertyValidator implements ValidatorsInterf
     public function rules()
     {
         return [
-            'propertyId'=>'required',
+            'propertyId'=>'required|active_property',
         ];
+    }
+
+    public function registerActivePropertyRule()
+    {
+        Validator::extend('active_property', function($attribute, $value, $parameters)
+        {
+            try{
+                $property = $this->propertyJson->getById($this->request->get('propertyId'));
+                $isActive = false;
+                if($property->propertyStatus->id == $this->status->getActiveStatusId())
+                    {
+                        $isActive = true;
+                    }
+                if( !$isActive)
+                    return false;
+
+            }catch (\Exception $e){
+                return false;
+            }
+
+            return true;
+        });
     }
 }
 

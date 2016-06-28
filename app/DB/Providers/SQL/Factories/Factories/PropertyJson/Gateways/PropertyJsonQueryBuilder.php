@@ -11,6 +11,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\PropertyJson\Gateways;
 
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
+use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\Gateways\Helpers\UserPropertiesHelper;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
@@ -76,5 +77,21 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
              ->where($conditions)
              ->distinct()
              ->count();
+    }
+
+    public function getFavouriteProperties($params)
+    {
+        $propertyTable = (new PropertyFactory())->getTable();
+        $userTable = (new UserFactory())->getTable();
+        $limit = $this->getFavouritePropertyLimit($params);
+        $favouritePropertyTable = (new FavouritePropertyFactory())->getTable();
+        return DB::table($userTable)
+            ->leftjoin($favouritePropertyTable,$userTable.'.id','=',$favouritePropertyTable.'.user_id')
+            ->leftjoin($propertyTable,$propertyTable.'.id','=',$favouritePropertyTable.'.property_id')
+            ->leftjoin($this->table,$propertyTable.'.id','=',$this->table.'.property_id')
+            ->select($this->table.'.json')
+            ->where($userTable.'.id','=',$params['userId'])
+            ->skip($limit['start'])->take($limit['limit'])
+            ->get();
     }
 }

@@ -14,7 +14,7 @@
                     </li>
                     <li>
                         <label for="rent1">
-                            <input type="radio" name="purpose_id" id="rent1" value="1">
+                            <input type="radio" name="purpose_id" id="rent1" value="2">
                             <span class="fake-label">Rent</span>
                         </label>
                     </li>
@@ -54,29 +54,29 @@
     @endforeach
 </select>
 </span>
-                            </div>
-                        </li>
-                        <li>
-                            <label>Block:</label>
+         </div>
+            </li>
 
-                            <div class="input-holder">
-<span class="fake-select">
-    <span class="load">
-<select name="block_id" id="blocks">
-    <option disabled selected value>Block</option>
-</select>
-        </span>
-</span>
-                            </div>
-                        </li>
+             <li>
+                <label>Block:</label>
+                    <div class="input-holder">
+                        <span class="fake-select">
+                            <span class="load">
+                                <select name="block_id" id="blocks">
+                                    <option disabled selected value>Block</option>
+                                </select>
+                            </span>
+                        </span>
+                    </div>
+                </li>
                     </ul>
                     <ul>
                         <li>
                             <label>Property SubType:</label>
-
-                            <div class="input-holder">
+                        <div class="input-holder">
                         <span class="fake-select">
-                            <select name="sub_type_id">
+                           <span class="load">
+                            <select name="sub_type_id" id="property_sub_types">
                                 <option disabled selected value>Property SubType</option>
                                 <option  value="">All Property SubType</option>
                                 @foreach($response['data']['propertySubtypes'] as $propertySubType)
@@ -84,6 +84,7 @@
                                 @endforeach
                             </select>
                           </span>
+                            </span>
                             </div>
                         </li>
                         <li class="bedrooms">

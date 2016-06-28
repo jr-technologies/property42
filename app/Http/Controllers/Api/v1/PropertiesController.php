@@ -17,6 +17,7 @@ use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
+use App\Http\Requests\Requests\Property\GetFavouritePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\RestorePropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
@@ -75,7 +76,16 @@ class PropertiesController extends ApiController
             'propertiesCounts' => $this->properties->countProperties($request->user()->id)
         ]]);
     }
-
+    public function getFavouriteProperties(GetFavouritePropertyRequest $request)
+    {
+        $params = $request->all();
+        $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
+        $totalCount = count($favouriteProperties);
+        return $this->response->respond(['data'=>[
+            'favouriteProperties'=>$favouriteProperties,
+            'favouritesCount'=>$totalCount
+        ]]);
+    }
     public function update(UpdatePropertyRequest $request)
     {
         $property = $request->getPropertyModel();
