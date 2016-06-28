@@ -108,7 +108,7 @@ app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window"
             || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.rejected
             || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.pending
         ){
-            if (confirm('Are you sure you want to delte this property permanently?')) {
+            if (confirm('Are you sure you want to delete this property permanently?')) {
                 forceDelProperty($index);
             }
         }else{
@@ -119,19 +119,48 @@ app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window"
         if($scope.deletingProperties.ids.length < 1)
             return false;
 
-        return $http({
-            method: 'POST',
-            url: apiPath+'properties/delete',
-            data:{
-                propertyIds: $scope.deletingProperties.ids,
-                searchParams: $rootScope.searchPropertiesParams
+        if($rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.deleted
+            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.expired
+            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.rejected
+            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.pending
+        ){
+            if (confirm('Are you sure you want to delete selected properties permanently?')) {
+                forceDelProperties();
             }
+        }else{
+            softDelProperties();
+        }
+    };
+
+    var forceDelProperties = function () {
+        $rootScope.loading_content_class = 'loading-content';
+        return $CustomHttpService.$http('POST', apiPath+'properties/force_delete', {
+            propertyIds: $scope.deletingProperties.ids,
+            searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.deletingProperties.ids = [];
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
+            $rootScope.loading_content_class = '';
         }, function errorCallback(response) {
+            $rootScope.loading_content_class = 'loading-content';
+            $rootScope.$broadcast('error-response-received',{status:response.status});
+        });
+    };
+    var softDelProperties = function () {
+        $rootScope.loading_content_class = 'loading-content';
+        return $CustomHttpService.$http('POST', apiPath+'properties/delete', {
+            propertyIds: $scope.deletingProperties.ids,
+            searchParams: $rootScope.searchPropertiesParams
+        }).then(function successCallback(response) {
+            $scope.deletingProperties.ids = [];
+            $rootScope.propertiesCounts = response.data.data.propertiesCounts;
+            $scope.properties = response.data.data.properties;
+            $scope.totalProperties = response.data.data.totalProperties;
+            $rootScope.loading_content_class = '';
+        }, function errorCallback(response) {
+            $rootScope.loading_content_class = 'loading-content';
             $rootScope.$broadcast('error-response-received',{status:response.status});
         });
     };

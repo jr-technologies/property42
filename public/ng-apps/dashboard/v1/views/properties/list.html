@@ -63,7 +63,7 @@
         </div>
         <div class="table-responsive">
             <ul class="quick-links">
-                <li ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
+                <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
             </ul>
             <ul class="properties-table accordion">
                 <li>

@@ -436,8 +436,8 @@ Route::post('properties/force_delete',
     [
         'middleware'=>
             [
-                'apiAuthenticate:forceDeleteMultiplePropertiesRequest',
-                'apiValidate:forceDeleteMultiplePropertiesRequest'
+                //'apiAuthenticate:forceDeleteMultiplePropertiesRequest',
+                //'apiValidate:forceDeleteMultiplePropertiesRequest'
             ],
         'uses'=>'PropertiesController@multiForceDelete'
     ]

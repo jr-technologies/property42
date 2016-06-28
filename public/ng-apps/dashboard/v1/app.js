@@ -70,8 +70,10 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
 
     $rootScope.propertiesCounts = {};
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
-        console.log($AuthService.getAppToken());
-        if($rootScope.authUser != null && $AuthService.getAppToken() == null){
+        if(next.auth == true && $AuthService.getAppToken() == null){
+            alert('session expired! please login again.');
+            window.location.href = domain+'logout';
+        }else if($rootScope.authUser != null && $AuthService.getAppToken() == null){
             alert('session expired! please login again.');
             window.location.href = domain+'logout';
         }

@@ -135,6 +135,14 @@ class PropertiesController extends ApiController
             'properties'=>$userProperties
         ]]);
     }
+    public function multiForceDelete()
+    {
+        return $this->response->respond(['data'=>[
+            'totalProperties'=>rand(10,200),
+            'propertiesCounts' => (object)[],
+            'properties'=>[]
+        ]]);
+    }
 
     public function restore(RestorePropertyRequest $request)
     {
