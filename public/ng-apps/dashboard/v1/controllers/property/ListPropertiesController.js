@@ -12,7 +12,7 @@ app.filter('roundup', function () {
 });
 app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $CustomHttpService, $window, $scope, $rootScope, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
-    $rootScope.searchPropertiesParams.start = 1;
+    $rootScope.searchPropertiesParams.start = 0;
     $scope.activeStatus = 1;
     $scope.properties = [];
     $scope.deletingPropertyId = 0;

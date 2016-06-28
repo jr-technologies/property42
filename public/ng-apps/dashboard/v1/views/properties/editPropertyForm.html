@@ -1,14 +1,5 @@
 
 <div class="addPropertyFormContainer {{formSubmitStatus}}" ng-init="initialize()">
-    <!--<div class="listing-holder">-->
-        <!--<a class="listing-opener"><span class="icon-menu"></span></a>-->
-        <!--<ul class="section-listing">-->
-            <!--<li class="activeAddPropertyNavLink"><a href="#basics-block" class="scrollAddPropertyNavLink"><span class="icon-info"></span>Basic</a></li>-->
-            <!--<li><a href="#feature-block" class="scrollAddPropertyNavLink"><span class="icon-symbol"></span> Features</a></li>-->
-            <!--<li><a href="#attactment-block" class="scrollAddPropertyNavLink"><span class="icon-clip"></span> Attachments</a></li>-->
-            <!--<li><a href="#contact-information" class="scrollAddPropertyNavLink"><span class="icon-contact_phone"></span> Contact Info</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
     <form class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
             <span class="success-message" ng-class="{'successfully-saved': propertySaved == true}">Property Updated</span>
@@ -67,63 +58,81 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Society:</span>
-                    <ui-select on-select="societySelected($item)" ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
-                        <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">
-                            <div ng-bind-html="society.name | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
+                    <div class="input-holder">
+                        <ui-select on-select="societySelected($item)" ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
+                            <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">
+                                <div ng-bind-html="society.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
                 </div>
                 <div class="layout-holder">
                     <span class="title">Block:</span>
-                    <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
-                        <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search}">
-                            <div ng-bind-html="block.name | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
+                    <div class="input-holder">
+                        <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
+                            <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search}">
+                                <div ng-bind-html="block.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
                 </div>
             </div>
             <strong class="form-heading"><span>Property Details</span></strong>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Price:</span>
-                    <input type="number" name="price" ng-model="form.data.price">
+                    <div class="input-holder">
+                        <input type="number" name="price" ng-model="form.data.price">
+                    </div>
                 </div>
                 <span class="calculatedPrice"></span>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Land Area:</span>
-                    <input type="number" step="any" ng-model="form.data.landArea">
+                    <div class="input-holder">
+                        <input type="number" step="any" ng-model="form.data.landArea">
+                    </div>
                 </div>
                 <div class="layout-holder">
                     <span class="title">Unit:</span>
-                    <select name="land_unit" ng-model="form.data.landUnit">
-                        <option data-ng-repeat="unit in landUnits" value="{{unit.id}}">{{unit.name}}</option>
-                    </select>
+                    <div class="input-holder">
+                        <select name="land_unit" ng-model="form.data.landUnit">
+                            <option data-ng-repeat="unit in landUnits" value="{{unit.id}}">{{unit.name}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Property Title:</span>
-                    <input type="text" name="propertyTitle" ng-model="form.data.propertyTitle">
+                    <div class="input-holder">
+                        <input type="text" name="propertyTitle" ng-model="form.data.propertyTitle">
+                    </div>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder add">
-                    <span class="title">Description:</span>
-                    <textarea name="propertyDescription" ng-model="form.data.propertyDescription"></textarea>
+                    <span class="title less-width">Description:</span>
+                    <div class="input-holder add">
+                        <textarea name="propertyDescription" ng-model="form.data.propertyDescription"></textarea>
+                    </div>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder" ng-repeat="feature in highPriorityFeatures">
                     <span class="title">{{feature.name}}:</span>
-                    <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
+                    <div class="input-holder">
+                        <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
+                    </div>
                 </div>
 
                 <div class="layout-holder">
-                    <a class="feature-blockOpener">Click here to see extra feature</a>
+                    <div class="input-holder">
+                        <a class="feature-blockOpener">Click here to see extra feature</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -213,33 +222,45 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">owner:</span>
-                    <select class="searchable-select" name="owner" ng-model="form.data.owner">
-                        <option data-ng-repeat="owner in resources.agencyStaff" value="{{owner.id}}">{{owner.fName}} {{owner.lName}}</option>
-                    </select>
+                    <div class="input-holder">
+                        <select class="searchable-select" name="owner" ng-model="form.data.owner">
+                            <option data-ng-repeat="owner in resources.agencyStaff" value="{{owner.id}}">{{owner.fName}} {{owner.lName}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="layout-holder">
                     <span class="title">contact person:</span>
-                    <input type="text" name="contact_person" ng-model="form.data.contactPerson">
+                    <div class="input-holder">
+                        <input type="text" name="contact_person" ng-model="form.data.contactPerson">
+                    </div>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Phone:</span>
-                    <input type="text" name="phone" ng-model="form.data.phone">
+                    <div class="input-holder">
+                        <input type="text" name="phone" ng-model="form.data.phone">
+                    </div>
                 </div>
                 <div class="layout-holder">
                     <span class="title">Cell:</span>
-                    <input type="text" name="cell" ng-model="form.data.cell">
+                    <div class="input-holder">
+                        <input type="text" name="cell" ng-model="form.data.cell">
+                    </div>
                 </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">fax:</span>
-                    <input type="text" name="title" ng-model="form.data.fax">
+                    <div class="input-holder">
+                        <input type="text" name="title" ng-model="form.data.fax">
+                    </div>
                 </div>
                 <div class="layout-holder">
                     <span class="title">email:</span>
-                    <input type="email" name="email" ng-model="form.data.email">
+                    <div class="input-holder">
+                        <input type="email" name="email" ng-model="form.data.email">
+                    </div>
                 </div>
             </div>
         </section>
