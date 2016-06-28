@@ -65,19 +65,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: 'FavouritePropertiesController',
             auth: true,
             resolve: {
-                properties : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $location, $state) {
+                properties : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $CustomHttpService, $location, $state) {
                     page = (isNaN($stateParams.page))?1:$stateParams.page;
                     limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
                     limit = (limit > 500)?500:limit;
                     var start = (limit * parseInt(page)) - limit;
-                    return $http({
-                        method: 'GET',
-                        url: apiPath+'properties/favs',
-                        params: {userId: $rootScope.authUser.id, start: start, limit: limit},
-                        headers: {
-                            Authorization:$AuthService.getAppToken()
-                        }
+                    return $CustomHttpService.$http('GET', apiPath+'properties/favs', {
+                        userId: $rootScope.authUser.id,
+                        start: start, limit: limit
                     }).then(function successCallback(response) {
+                        console.log(response);
                         return response.data.data.properties;
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});

@@ -33,10 +33,18 @@ Route::post('favourite/property',
             ],
         'uses'=>'PropertiesController@favouriteProperty'
     ]);
+
 Route::post('favourite/property/delete', function(){
-    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->all();
-    $collection = collect($properties);
-    $properties = $collection->slice(1, 20)->all();
+    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->getFavouriteProperties(request()->all());
+    return ['data'=>[
+        'property'=>null,
+        'favouritesCount' => rand(10,100),
+        'properties' => $properties
+    ]];
+});
+
+Route::post('favourite/properties/delete', function(){
+    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->getFavouriteProperties(request()->all());
     return ['data'=>[
         'property'=>null,
         'favouritesCount' => rand(10,100),
@@ -47,8 +55,10 @@ Route::post('favourite/property/delete', function(){
 Route::get('properties/favs',[
     'middleware'=>
         [
+            'apiAuthenticate:getFavouritePropertyRequest',
             'apiValidate:getFavouritePropertyRequest'
         ],
+
     'uses'=>'PropertiesController@getFavouriteProperties'
 ]);
 

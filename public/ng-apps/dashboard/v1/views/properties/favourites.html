@@ -1,6 +1,9 @@
 <div class="favorite-property-holder" ng-init="initialize()">
     <div class="property-form-table">
         <div class="property-filter">
+            <ul class="quick-links">
+                <li ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
+            </ul>
             <form class="by-user-sorting">
                 <ul>
                     <li>
@@ -16,9 +19,6 @@
             </form>
         </div>
         <div class="table-responsive">
-            <ul class="quick-links">
-                <li ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
-            </ul>
             <ul class="properties-table accordion">
                 <li>
                     <div class="t-head by-id">

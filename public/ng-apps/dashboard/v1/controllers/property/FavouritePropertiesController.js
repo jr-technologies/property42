@@ -55,7 +55,7 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttp
         return $CustomHttpService.$http('GET', apiPath+'user/properties', $rootScope.searchPropertiesParams)
             .then(function successCallback(response) {
                 $scope.fetchingProperties = false;
-                return response.data.data;
+                return response.data.data.properties;
             }, function errorCallback(response) {
                 $rootScope.$broadcast('error-response-received',{status:response.status});
                 return [];
@@ -64,9 +64,30 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttp
 
     $scope.deleteProperty = function (propertyId) {
         $scope.deletingPropertyId = propertyId;
+        page = (isNaN($stateParams.page))?1:$stateParams.page;
+        limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+        limit = (limit > 500)?500:limit;
+        var start = (limit * parseInt(page)) - limit;
         return $CustomHttpService.$http('POST', apiPath+'favourite/property/delete', {
-                propertyId: propertyId,
-                searchParams: $scope.params
+            propertyId: propertyId,
+            userId: $rootScope.authUser.id,
+            start: start, limit: limit
+        }).then(function successCallback(response) {
+            $rootScope.favouritesCount = response.data.data.favouritesCount;
+            $scope.properties = response.data.data.properties;
+            $scope.totalProperties = response.data.data.totalProperties;
+            $scope.deletingPropertyId = 0;
+        }, function errorCallback(response) {
+            $scope.deletingPropertyId = 0;
+            $rootScope.$broadcast('error-response-received',{status:response.status});
+        });
+    };
+    $scope.deleteProperties = function (propertyId) {
+        $scope.deletingPropertyId = propertyId;
+        return $CustomHttpService.$http('POST', apiPath+'favourite/properties/delete', {
+            propertyIds: $scope.deletingProperties.ids,
+            userId: $rootScope.authUser.id,
+            start: computeLimit().start, limit: computeLimit().limit
         }).then(function successCallback(response) {
             $rootScope.favouritesCount = response.data.data.favouritesCount;
             $scope.properties = response.data.data.properties;
@@ -78,6 +99,16 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttp
         });
     };
 
+    var computeLimit = function () {
+        page = (isNaN($stateParams.page))?1:$stateParams.page;
+        limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+        limit = (limit > 500)?500:limit;
+        var start = (limit * parseInt(page)) - limit;
+        return {
+            'start' : start,
+            'limit': limit
+        };
+    };
     $scope.setPage = function (page) {
         if(parseInt(page) < 1 || parseInt(page) > Math.ceil($scope.totalProperties/$rootScope.searchPropertiesParams.limit))
             return false;
