@@ -68,13 +68,15 @@ class UsersController extends Controller
         return redirect()->back();
     }
     public function trustedAgents(GetAgentsRequest $request)
-    {//dd($this->releaseUsersAgenciesLogo($this->usersJsonRepo->trustedAgents($request->all())));
-        return $this->response
-            ->setView('frontend.agent-listing')->respond(['data' => [
-                'agents' => $this->releaseUsersAgenciesLogo($this->usersJsonRepo->trustedAgents($request->all())),
-                'societies'=>$this->societies->all(),
-                'params'=>$request->all(),
-            ]]);
+    {
+        $agents = $this->usersJsonRepo->trustedAgents($request->all());
+        $totalAgentsFound = \Session::get('totalAgentsFound');
+        return $this->response->setView('frontend.agent-listing')->respond(['data' => [
+            'agents' => $this->releaseUsersAgenciesLogo($agents),
+            'societies'=>$this->societies->all(),
+            'params'=>$request->all(),
+            'totalAgentsFound' => $totalAgentsFound
+        ]]);
     }
 
     public function getTrustedAgent(GetAgentRequest $request)

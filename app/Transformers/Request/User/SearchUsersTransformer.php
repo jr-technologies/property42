@@ -18,6 +18,8 @@ class SearchUsersTransformer extends RequestTransformer{
             'userRole'=>$this->request->input('user_role'),
             'society'=>$this->request->input('society'),
             'agencyName'=>$this->request->input('agency_name'),
+            'page' => $this->request->input('page'),
+            'limit' => $this->request->input('limit'),
         ];
     }
 } 

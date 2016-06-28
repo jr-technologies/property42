@@ -66,7 +66,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'blockId' => 'required|exists:blocks,id',
             'title' => 'required|min:3|max:250',
             'description' => 'required|min:5|max:1200',
-            'price' => 'required',
+            'price' => 'required|numeric|min:3',
             'landArea' => 'required|numeric',
             'landUnitId' => 'required|exists:land_units,id',
         ];

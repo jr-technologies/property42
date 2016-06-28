@@ -72,8 +72,9 @@ class UserJsonQueryBuilder extends QueryBuilder{
             ->join($this->table,$userTable.'.id','=',$this->table.'.user_id')
             ->leftjoin($agencyTable,$userTable.'.id','=',$agencyTable.'.user_id')
             ->leftjoin($agencySocietyTable,$agencyTable.'.id','=',$agencySocietyTable.'.agency_id')
-            ->select($this->table.'.json')
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.json'))
             ->distinct();
+
             if($params['society'] !=null && $params['society'] !="")
                 $query = $query->where($agencySocietyTable.'.society_id','=',$params['society']);
 
@@ -82,6 +83,10 @@ class UserJsonQueryBuilder extends QueryBuilder{
 
         $query = $query->where($userRoleTable.'.role_id','=',3);
         $query = $query->where($userTable.'.trusted_agent','=',1);
-            return $query->get();
+        $query = $query->skip($params['start'])->take($params['limit']);
+        $agents = $query->get();
+
+        \Session::flash('totalAgentsFound', DB::select('select FOUND_ROWS() as count'));
+        return $agents;
     }
 }

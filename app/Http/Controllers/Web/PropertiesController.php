@@ -20,6 +20,7 @@ use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Transformers\Response\PropertyTransformer;
+use Illuminate\Support\Facades\DB;
 
 class PropertiesController extends Controller
 {
@@ -59,11 +60,11 @@ class PropertiesController extends Controller
 
     public function search(SearchPropertiesRequest $request)
     {
-
-
+        $properties = $this->properties->search($request->getParams());
+        $totalPropertiesFound = (new Cheetah())->count();
         return $this->response->setView('frontend.property_listing')->respond(['data' => [
-            'properties' => $this->releaseAllPropertiesFiles($this->properties->search($request->getParams())),
-            'totalProperties'=> (new Cheetah())->count(),
+            'properties' => $this->releaseAllPropertiesFiles($properties),
+            'totalProperties'=> $totalPropertiesFound[0]->total_records,
         ]]);
     }
 

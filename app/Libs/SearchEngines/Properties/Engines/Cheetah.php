@@ -38,7 +38,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
 
     public function count()
     {
-        return rand(100,100000);
+        return (DB::select('select FOUND_ROWS() as total_records'));
     }
 
     public function setInstructions(array $instructions)
@@ -64,7 +64,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             ->leftjoin($blocks,$properties.'.block_id','=',$blocks.'.id')
             ->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
             ->leftjoin($propertyFeatureValues,$properties.'.id','=',$propertyFeatureValues.'.property_id')
-            ->select($propertyJsonTable.'.json');
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$propertyJsonTable.'.json'));
 
         if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
             $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
@@ -72,7 +72,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             $query = $query->where($propertySubTypes.'.property_type_id',$this->instructions['propertyTypeId']);
         if(isset($this->instructions['subTypeId']) && $this->instructions['subTypeId'] != null && $this->instructions['subTypeId'] != '')
             $query = $query->where($properties.'.property_sub_type_id',$this->instructions['subTypeId']);
-        else if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
+        if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
             $query = $query->where($societies.'.id',$this->instructions['societyId']);
         if(isset($this->instructions['blockId']) && $this->instructions['blockId'] != null && $this->instructions['blockId'] != '')
             $query = $query->where($properties.'.block_id',$this->instructions['blockId']);

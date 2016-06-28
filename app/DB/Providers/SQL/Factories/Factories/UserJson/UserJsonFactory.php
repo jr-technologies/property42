@@ -14,6 +14,8 @@ use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\Libs\Json\Prototypes\Prototypes\User\UserJsonPrototype;
 
 class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
+    use TrustedAgentsSearchHelper;
+
     private $tableGateway = null;
     public function __construct()
     {
@@ -48,6 +50,8 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
     public function trustedAgents(array $params)
     {
+        $params['start'] = $this->computePagination($params)['start'];
+        $params['limit'] = $this->computePagination($params)['limit'];
         return $this->mapCollection($this->tableGateway->trustedAgents($params));
     }
 
