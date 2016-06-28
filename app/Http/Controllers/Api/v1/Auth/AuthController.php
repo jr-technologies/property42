@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\Events\Events\Agency\AgencyUpdated;
 use App\Events\Events\User\UserCreated;
 use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Requests\Requests\Auth\LoginRequest;
@@ -46,21 +47,23 @@ class AuthController extends ApiController
 
     public function register(RegistrationRequest $request)
     {
-        $userId = $this->saveUser($request);
+        $user = $this->saveUser($request);
         if($request->userIsAgent())
         {
-            $this->saveUserAgency($request, $userId);
+            $this->saveUserAgency($request, $user->id);
         }
-        $user = $this->users->getById($userId);
-        Event::fire(new UserCreated($user));
-        return $this->response->respond(['data'=>['user'=>$user]]);
+        //$user = $this->users->getById($userId);
+       //Event::fire(new UserCreated($user));
+        return $this->response->respond(['data'=>[
+            'user'=>$user
+        ]]);
     }
 
     private function saveUser(RegistrationRequest $request)
     {
-        $userId = $this->users->store($request->getUserModel());
-        $this->users->addRoles($userId, $request->getUserRoles());
-        return $userId;
+        $user = $this->users->store($request->getUserModel());
+        $this->users->addRoles($user->id, $request->getUserRoles());
+        return $user;
     }
 
     private function saveUserAgency(RegistrationRequest $request, $userId)
@@ -68,14 +71,14 @@ class AuthController extends ApiController
         $agency = $request->getAgencyModel();
         $agency->userId = $userId;
         $logoPath = null;
-        if($request->hasCompanyLogo()){
+        if($request->hasCompanyLogo())
+        {
             $logoPath = $this->saveLogo($agency, $request->getCompanyLogo());
         }
         $agency->logo = $logoPath;
         $agencyId = $this->agencies->storeAgency($agency);
         //$this->agencies->addCities($agencyId, $request->getAgencyCities());
         $this->agencies->addSocieties($request->getAgencySocieties($agencyId));
-
         return $agencyId;
     }
 

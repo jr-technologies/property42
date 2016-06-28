@@ -98,12 +98,15 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     public function store(User $user)
     {
         $user->id = $this->factory->store($user);
-        return $user->id;
+        Event::fire(new UserCreated($user));
+        return $user;
     }
 
     public function addRoles($userId, $userRoles)
     {
-        return $this->factory->addRoles($userId, $userRoles);
+         $this->factory->addRoles($userId, $userRoles);
+        Event::fire(new UserRolesChanged($userId));
+        return $userId;
     }
 
     public function delete(User $user)

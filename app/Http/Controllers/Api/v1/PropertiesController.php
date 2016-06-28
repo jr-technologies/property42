@@ -79,8 +79,12 @@ class PropertiesController extends ApiController
     public function getFavouriteProperties(GetFavouritePropertyRequest $request)
     {
         $params = $request->all();
+        $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
+        $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
-            'favouriteProperties'=>$this->propertiesJsonRepo->getFavouriteProperties($params)]]);
+            'favouriteProperties'=>$favouriteProperties,
+            'favouritesCount'=>$totalCount
+        ]]);
     }
     public function update(UpdatePropertyRequest $request)
     {

@@ -267,7 +267,7 @@
 
                       alert('all done. now select the old one.');
 
-                      //$('#property_sub_types').closest('.fake-select').removeClass('loading');
+                      
                   }
               })
           }

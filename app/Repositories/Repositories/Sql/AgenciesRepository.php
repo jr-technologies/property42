@@ -14,6 +14,7 @@ use App\DB\Providers\SQL\Models\Agency;
 use App\DB\Providers\SQL\Models\AgencySociety;
 use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
+use App\Events\Events\Agency\AgencySocietiesUpdated;
 use App\Events\Events\Agency\AgencyUpdated;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
 use Illuminate\Foundation\Auth\User;
@@ -47,6 +48,7 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
     public function storeAgency(Agency $agency)
     {
         $agency->id = $this->factory->store($agency);
+        Event::fire(new AgencyCreated($agency));
         return $agency->id;
     }
     public function getStaffAgency($staff)
@@ -59,7 +61,13 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
     }
     public function addSocieties(array $agencySocieties)
     {
-        return $this->agencySocietyFactory->addSocieties($agencySocieties);
+        if(sizeof($agencySocieties) !=0)
+        {
+            $result = $this->agencySocietyFactory->addSocieties($agencySocieties);
+            Event::fire(new AgencyUpdated($this->getById($agencySocieties[0]->agencyId)));
+            return $result;
+        }
+        return true;
     }
     public function updateAgency(Agency $agency)
     {

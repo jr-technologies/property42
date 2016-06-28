@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
+use App\Events\Events\Agency\AgencySocietiesUpdated;
 use App\Events\Events\Agency\AgencyUpdated;
 use App\Events\Events\Feature\FeatureJsonCreated;
 use App\Events\Events\Property\PropertiesStatusChanged;
