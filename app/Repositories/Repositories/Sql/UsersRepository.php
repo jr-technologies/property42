@@ -104,7 +104,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 
     public function addRoles($userId, $userRoles)
     {
-         $this->factory->addRoles($userId, $userRoles);
+        $this->factory->addRoles($userId, $userRoles);
         Event::fire(new UserRolesChanged($userId));
         return $userId;
     }

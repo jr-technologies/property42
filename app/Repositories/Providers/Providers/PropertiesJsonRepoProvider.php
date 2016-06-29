@@ -16,7 +16,6 @@ use App\Repositories\Repositories\Sql\PropertiesJsonRepository;
 
 class PropertiesJsonRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
 {
-
     public function repo()
     {
         return new PropertiesJsonRepository();

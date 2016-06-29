@@ -21,9 +21,13 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
         $this->model = new Agency();
         $this->tableGateway = new AgencyQueryBuilder();
     }
-    public function getStaffAgency($staff)
+    public function getStaffAgency($staffId)
     {
-        return $this->map($this->tableGateway->getStaffAgency($staff));
+        $agency = $this->tableGateway->getStaffAgency($staffId);
+        if($agency == null)
+            throw new \Exception();
+
+        return $this->map($agency);
     }
     public function findWhere(array $conditions)
     {

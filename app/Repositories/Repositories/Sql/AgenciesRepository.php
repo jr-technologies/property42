@@ -51,9 +51,9 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
         Event::fire(new AgencyCreated($agency));
         return $agency->id;
     }
-    public function getStaffAgency($staff)
+    public function getStaffAgency($staffId)
     {
-        return $this->factory->getStaffAgency($staff);
+        return $this->factory->getStaffAgency($staffId);
     }
     public function addCities($agencyId, $cityIds)
     {

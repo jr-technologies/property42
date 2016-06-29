@@ -25,13 +25,13 @@ class AgencyQueryBuilder extends QueryBuilder{
             $agencyCities[] = ['agency_id' => $agencyId, 'city_id' => $cityId, 'created_at'=>date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')];
         return $this->insertMultiple($agencyCities, 'agency_cities');
     }
-    public function getStaffAgency($staff)
+    public function getStaffAgency($staffId)
     {
        $agencyStaffTable =  (new AgencyStaffFactory())->getTable();
         return DB::table($agencyStaffTable)
             ->leftjoin($this->table,$agencyStaffTable.'.agency_id','=',$this->table.'.id')
             ->select($this->table.'.*')
-            ->where($agencyStaffTable.'.user_id','=',$staff->id)
+            ->where($agencyStaffTable.'.user_id','=',$staffId)
             ->first();
 
     }

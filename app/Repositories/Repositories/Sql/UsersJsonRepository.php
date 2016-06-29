@@ -17,6 +17,7 @@ use App\Models\Sql\UserJson;
 use App\Repositories\Interfaces\Repositories\UsersJsonRepoInterface;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Models\Sql\User;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Transformers\Sql\UserJsonTransformer;
 use Illuminate\Support\Facades\Event;
 
@@ -24,9 +25,12 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
 {
     private $userJsonTransformer;
     private $factory = null;
+    private $agencies = null;
     public function __construct(){
         $this->userJsonTransformer = new UserJsonTransformer();
         $this->factory = new UserJsonFactory();
+
+        $this->agencies = (new AgenciesRepoProvider())->repo();
     }
 
     public function all()
@@ -52,6 +56,19 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     public function find($id)
     {
         return $this->factory->find($id);
+    }
+
+    public function getStaffSiblings($staffId)
+    {
+        $agency = $this->agencies->getStaffAgency($staffId);
+        if($agency !=null)
+        {
+            return $this->getAgencyStaff($agency->id);
+        }
+        else
+        {
+            return $this->find($staffId);
+        }
     }
 
     public function store(UserJsonPrototype $user)

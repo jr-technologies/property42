@@ -419,6 +419,16 @@ Route::get('user/properties',
         'uses'=>'PropertiesController@getUserProperties'
     ]
 );
+Route::get('user/properties/advance_search',
+    [
+        'middleware'=>
+            [
+             //   'apiAuthenticate:AdvanceSearchUserPropertiesRequest',
+             //   'apiValidate:AdvanceSearchUserPropertiesRequest'
+            ],
+        'uses'=>'PropertiesController@advanceSearchUserProperties'
+    ]
+);
 
 Route::post('property/update',
     [

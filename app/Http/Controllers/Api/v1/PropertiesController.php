@@ -14,6 +14,7 @@ use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
+use App\Http\Requests\Requests\Property\AdvanceSearchUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
@@ -26,6 +27,7 @@ use App\Http\Responses\Responses\ApiResponse;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use App\Traits\PropertyFilesReleaser;
@@ -45,6 +47,7 @@ class PropertiesController extends ApiController
     private $propertiesJsonRepo = null;
     private $propertyJsonTransformer = null;
     private $propertyRepo = null;
+    private $usersJsonRepo = null;
     /**
      * @param PropertiesRepoProvider $repoProvider
      * @param ApiResponse $response
@@ -58,6 +61,7 @@ class PropertiesController extends ApiController
         $this->propertyDocuments = new PropertyDocumentsRepository();
         $this->propertiesJsonRepo= (new PropertiesJsonRepoProvider())->repo();
         $this->propertyJsonTransformer = new PropertyJsonTransformer();
+        $this->usersJsonRepo= (new UsersJsonRepoProvider())->repo();
     }
 
     public function store(AddPropertyRequest $request)
@@ -288,5 +292,12 @@ class PropertiesController extends ApiController
     public function search(SearchPropertiesRequest $request)
     {
         return $this->propertiesJsonRepo->search($request->getParams());
+    }
+    public function advanceSearchUserProperties(AdvanceSearchUserPropertiesRequest $request)
+    {
+        $params = $request->getParams();
+        $params['ownerIds'] = $this->usersJsonRepo->getStaffSiblings($request->get('userId'));
+        $properties = $this->propertiesJsonRepo->search($request->getParams());
+
     }
 }
