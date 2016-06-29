@@ -3,7 +3,10 @@
 <main id="main" role="main">
     <div class="container">
         <div class="forgot-passwordHolder">
-            <div class="forgot-password">
+            @if(\Session::has('message'))
+            <span class="global-error"></span>
+            @endif
+             <div class="forgot-password">
                {{ Form::open(array('url' => 'get-new-password','method' => 'POST' ,'class'=>'forgot-form')) }}
                     <strong class="forgot-heading">Let's get you into your account.</strong>
                     <div class="input-holder">

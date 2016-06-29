@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
@@ -18,6 +19,7 @@ use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Transformers\Response\PropertyTransformer;
 use Illuminate\Support\Facades\DB;
@@ -33,6 +35,8 @@ class PropertiesController extends Controller
     public $propertySubtypes =null;
     public $landUnits =null;
     public $propertyStatuses =null;
+    public $favouriteFactory =null;
+    public $users = null;
 
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
@@ -46,9 +50,8 @@ class PropertiesController extends Controller
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
-
-
-
+        $this->favouriteFactory = new FavouritePropertyFactory();
+        $this->users = (new UsersJsonRepoProvider())->repo();
     }
 
     public function update(UpdatePropertyRequest $request)
@@ -84,8 +87,13 @@ class PropertiesController extends Controller
     }
     public function getById(GetPropertyRequest $request)
     {
+        $loggedInUser = $request->user();
+        $property = $this->properties->getById($request->get('propertyId'));
         return $this->response->setView('frontend.property_detail')->respond(['data'=>[
-            'property'=>$this->releaseAllPropertiesFiles([$this->properties->getById($request->get('propertyId'))])[0]
+            'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
+            'property'=>$this->releaseAllPropertiesFiles([$property])[0],
+            'loggedInUser'=>$loggedInUser,
+             'user'=>$this->users->find($property->owner->id)
         ]]);
 
     }

@@ -52,8 +52,6 @@ class AuthController extends ApiController
         {
             $this->saveUserAgency($request, $user->id);
         }
-        //$user = $this->users->getById($userId);
-       //Event::fire(new UserCreated($user));
         return $this->response->respond(['data'=>[
             'user'=>$user
         ]]);

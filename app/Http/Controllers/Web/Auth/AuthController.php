@@ -80,15 +80,11 @@ class AuthController extends WebController
 
     public function register(RegistrationRequest $request)
     {
-        $userId = $this->saveUser($request);
+        $user = $this->saveUser($request);
         if($request->userIsAgent())
         {
-            $this->saveUserAgency($request, $userId);
+            $this->saveUserAgency($request, $user->id);
         }
-        $user = $request->getUserModel();
-        $user->id = $userId;
-        Event::fire(new UserCreated($user));
-
         \Session::flash('success', 'Registered Successfully');
         return redirect()->route('loginPage');
     }
@@ -97,7 +93,7 @@ class AuthController extends WebController
     {
         $user = $this->users->store($request->getUserModel());
         $this->users->addRoles($user->id, $request->getUserRoles());
-        return $user->id;
+        return $user;
     }
 
     private function saveUserAgency(RegistrationRequest $request, $userId)

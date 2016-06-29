@@ -88,7 +88,7 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
         return DB::table($userTable)
             ->leftjoin($favouritePropertyTable,$userTable.'.id','=',$favouritePropertyTable.'.user_id')
             ->leftjoin($propertyTable,$propertyTable.'.id','=',$favouritePropertyTable.'.property_id')
-            ->leftjoin($this->table,$propertyTable.'.id','=',$this->table.'.property_id')
+            ->join($this->table,$propertyTable.'.id','=',$this->table.'.property_id')
             ->select($this->table.'.json')
             ->where($userTable.'.id','=',$params['userId'])
             ->skip($limit['start'])->take($limit['limit'])

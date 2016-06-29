@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\DB\Providers\SQL\Models\Agency;
 use App\DB\Providers\SQL\Models\UserRole;
 use App\Events\Events\User\UserUpdated;
+use App\Http\Requests\Requests\Mail\ContactUSMailRequest;
+use App\Http\Requests\Requests\Mail\MailFeedbackUsRequest;
 use App\Http\Requests\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
@@ -89,9 +91,9 @@ class UsersController extends ApiController
         return $this->response->respond(['data'=>[]]);
     }
 
-    public function feedback()
+    public function feedback(MailFeedbackUsRequest $request)
     {
-        return $this->response->respond(['data'=>['message'=>'Thank You.']]);
+        return $this->MailFeedbackUs($request);
     }
 
     /**

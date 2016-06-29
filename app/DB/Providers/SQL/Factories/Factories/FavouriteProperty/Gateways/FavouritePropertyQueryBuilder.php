@@ -9,6 +9,8 @@ namespace App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\Gateways;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class FavouritePropertyQueryBuilder extends QueryBuilder
 {
 
@@ -17,5 +19,18 @@ class FavouritePropertyQueryBuilder extends QueryBuilder
         $this->table = 'favourite_properties';
     }
 
-
+        public function MultiDeleteFavouriteProperty($propertyIds,$userId)
+        {
+           return  DB::table($this->table)
+                ->whereIn($this->table.'.property_id',$propertyIds)
+                ->where($this->table.'.user_id','=',$userId)
+                ->delete();
+        }
+    public function isFavourite($propertyId,$userId)
+    {
+        return  DB::table($this->table)
+            ->where($this->table.'.property_id',$propertyId)
+            ->where($this->table.'.user_id','=',$userId)
+            ->count();
+    }
 }

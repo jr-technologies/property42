@@ -20,10 +20,20 @@ class FavouritePropertyFactory extends SQLFactory implements SQLFactoriesInterfa
     private $tableGateway = null;
     public function __construct()
     {
-        $this->model = new City();
         $this->tableGateway = new FavouritePropertyQueryBuilder();
     }
-
+    public function deleteFavouriteProperty($params)
+    {
+        return  $this->tableGateway->deleteWhere(['property_id'=>$params['propertyId'],'user_id'=>$params['userId']]);
+    }
+    public function MultiDeleteFavouriteProperty($propertyIds,$userId)
+    {
+       return $this->tableGateway->MultiDeleteFavouriteProperty($propertyIds,$userId);
+    }
+    public function isFavourite($propertyId,$userId)
+    {
+        return $this->tableGateway->isFavourite($propertyId,$userId);
+    }
     function find($id)
     {
         return $this->map($this->tableGateway->find($id));

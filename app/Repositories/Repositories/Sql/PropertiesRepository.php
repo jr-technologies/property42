@@ -29,11 +29,13 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     private $factory;
     private $propertySubTypeFactory;
     private $favouriteFactory;
+
     public function __construct()
     {
         $this->factory = new PropertyFactory();
         $this->favouriteFactory = new FavouritePropertyFactory();
         $this->propertySubTypeFactory = new PropertySubTypeFactory();
+
     }
 
     public function store(Property $property)
@@ -86,8 +88,20 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         $result = $this->factory->deleteByIds($propertyIds);
         Event::fire(new PropertiesStatusChanged($propertyIds, (new \PropertyStatusTableSeeder())->getDeletedStatusId()));
+        return $result;
     }
-
+    public function deleteFavouriteProperty($params)
+    {
+        return  $this->favouriteFactory->deleteFavouriteProperty($params);
+    }
+    public function MultiDeleteFavouriteProperty($propertyIds,$userId)
+    {
+        return  $this->favouriteFactory->MultiDeleteFavouriteProperty($propertyIds,$userId);
+    }
+    public function forceDeleteByIds($propertyIds)
+    {
+        return $this->factory->forceDeleteByIds($propertyIds);
+    }
     public function forceDelete(Property $property)
     {
         return  $this->factory->forceDelete($property);
