@@ -185,7 +185,7 @@
                         <li class="popup-holder">
                             <a class=" @if($response['data']['isFavourite'] != 0) added-to-favs @endif" >
                                 <span class="add-to-favs addTo" property_id="{{$response['data']['property']->id}}"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</span>
-                                <span class="addedToFavs remove-to-favs" property_id="{{$response['data']['property']->id}}"  user_id="{{$response['data']['loggedInUser']->id}}"><span class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
+                                <span class="addedToFavs remove-to-favs" property_id="{{$response['data']['property']->id}}"  user_id="{{($response['data']['loggedInUser'] !=null)?$response['data']['loggedInUser']->id:""}}"><span class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
                             </a>
                         </li>
 

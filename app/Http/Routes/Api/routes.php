@@ -29,6 +29,7 @@ Route::post('favourite/property',
     [
         'middleware'=>
             [
+                'apiAuthenticate:addToFavouriteRequest',
                 'apiValidate:addToFavouriteRequest'
             ],
         'uses'=>'PropertiesController@favouriteProperty'
@@ -38,6 +39,7 @@ Route::post('favourite/property/delete',
     [
         'middleware'=>
             [
+                'apiAuthenticate:DeleteToFavouritePropertyRequest',
                 'apiValidate:DeleteToFavouritePropertyRequest'
             ],
         'uses'=>'PropertiesController@deleteFavouriteProperty'

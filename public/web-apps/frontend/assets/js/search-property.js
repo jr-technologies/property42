@@ -74,8 +74,14 @@ $(document).on('click','.add-to-favs',function(){
       data:{
          property_id:property_id
       },
+      headers: {
+         Authorization: ''
+      },
       success: function(response) {
          $('.add-to-favs').closest('a').addClass('added-to-favs');
+      },
+      error: function () {
+         alert('please login to add this property to your favourites.')
       }
    })
 });
@@ -89,8 +95,14 @@ $(document).on('click','.remove-to-favs',function(){
       data:{
          property_id:property_id,user_id:user_id
       },
+      headers: {
+         Authorization: ''
+      },
       success: function(response) {
          $('.add-to-favs').closest('a').removeClass('added-to-favs');
+      },
+      error: function () {
+         alert('please login to add this property to your favourites.')
       }
    })
 });
