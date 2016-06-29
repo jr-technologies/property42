@@ -296,8 +296,9 @@ class PropertiesController extends ApiController
     public function advanceSearchUserProperties(AdvanceSearchUserPropertiesRequest $request)
     {
         $params = $request->getParams();
-        $params['ownerIds'] = $this->usersJsonRepo->getStaffSiblings($request->get('userId'));
-        $properties = $this->propertiesJsonRepo->search($request->getParams());
-
+        $params['ownerIds'] = Helper::propertyToArray($this->usersJsonRepo->getStaffSiblings($request->get('userId')), 'id');
+        unset($params['userId']);
+        $properties = $this->propertiesJsonRepo->search($params);
+        return $properties;
     }
 }

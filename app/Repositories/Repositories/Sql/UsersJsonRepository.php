@@ -60,14 +60,11 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
 
     public function getStaffSiblings($staffId)
     {
-        $agency = $this->agencies->getStaffAgency($staffId);
-        if($agency !=null)
-        {
+        try{
+            $agency = $this->agencies->getStaffAgency($staffId);
             return $this->getAgencyStaff($agency->id);
-        }
-        else
-        {
-            return $this->find($staffId);
+        }catch (\Exception $e){
+            return [$this->find($staffId)];
         }
     }
 
