@@ -95,9 +95,9 @@ class AuthController extends WebController
 
     private function saveUser(RegistrationRequest $request)
     {
-        $userId = $this->users->store($request->getUserModel());
-        $this->users->addRoles($userId, $request->getUserRoles());
-        return $userId;
+        $user = $this->users->store($request->getUserModel());
+        $this->users->addRoles($user->id, $request->getUserRoles());
+        return $user->id;
     }
 
     private function saveUserAgency(RegistrationRequest $request, $userId)
