@@ -228,6 +228,7 @@ return [
         'ForgetPasswordRequest' => \App\Http\Requests\Requests\User\ForgetPasswordRequest::class,
 
 
+
         /* Loading Helpers */
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
         'PathHelper' => \App\Libs\Helpers\PathHelper::class,
@@ -237,6 +238,7 @@ return [
         'MailPropertyToFriendRequest' => \App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest::class,
         'MailToAgentRequest' => \App\Http\Requests\Requests\Mail\MailToAgentRequest::class,
         'ContactUSMailRequest' => \App\Http\Requests\Requests\Mail\ContactUSMailRequest::class,
+        'MailFeedbackUsRequest' => \App\Http\Requests\Requests\Mail\MailFeedbackUsRequest::class,
 
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
@@ -311,12 +313,15 @@ return [
         'GetUserPropertiesRequest' => \App\Http\Requests\Requests\Property\GetUserPropertiesRequest::class,
         'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
+        'ForceDeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\ForceDeleteMultiplePropertiesRequest::class,
         'DeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest::class,
         'CountPropertiesRequest' => \App\Http\Requests\Requests\Property\CountPropertiesRequest::class,
         'GetPropertyRequest' => \App\Http\Requests\Requests\Property\GetPropertyRequest::class,
         'GetFavouritePropertyRequest' => \App\Http\Requests\Requests\Property\GetFavouritePropertyRequest::class,
         'RestorePropertyRequest' => \App\Http\Requests\Requests\Property\RestorePropertyRequest::class,
         'AddToFavouriteRequest' => \App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest::class,
+        'DeleteToFavouritePropertyRequest' => \App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest::class,
+        'DeleteMultiFavouritePropertyRequest' => \App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest::class,
 
 
         /* Feature Section Requests */

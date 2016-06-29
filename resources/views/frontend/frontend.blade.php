@@ -24,7 +24,7 @@
             <nav id="nav">
                 <ul class="main-navigation">
                     <li>
-                        <a href="">Buy</a>
+                        <a href="#">Buy</a>
                         <ul class="dropDown">
                             @foreach($globals['propertyTypes'] as $propertyType)
                             <li><a href={{URL::to('search?purpose_id=1'.'&property_type_id='.$propertyType->id)}}>{{$propertyType->name }}</a></li>
@@ -32,7 +32,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">Rent</a>
+                        <a href="#">Rent</a>
                         <ul class="dropDown">
                             @foreach($globals['propertyTypes'] as $propertyType)
                                 <li><a href={{URL::to('search?purpose_id=2'.'&property_type_id='.$propertyType->id)}}>{{$propertyType->name }}</a></li>

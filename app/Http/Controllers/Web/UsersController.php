@@ -64,7 +64,7 @@ class UsersController extends Controller
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
             $message->to($user->email)->subject('Property42');
         });
-        //Session::flash('message', 'Your message has been sent');
+        Session::flash('message', 'Your message has been sent');
         return redirect()->back();
     }
     public function trustedAgents(GetAgentsRequest $request)

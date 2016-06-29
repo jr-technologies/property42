@@ -13,10 +13,13 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
+use App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest;
+use App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
+use App\Http\Requests\Requests\Property\ForceDeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\GetFavouritePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\RestorePropertyRequest;
@@ -40,7 +43,7 @@ class PropertiesController extends ApiController
 
     private $properties = null;
     private $propertyFeatureValues = null;
-    public $response = null;
+    public  $response = null;
     private $propertyDocuments = null;
     private $propertiesJsonRepo = null;
     private $propertyJsonTransformer = null;
@@ -131,6 +134,29 @@ class PropertiesController extends ApiController
             'properties'=>$userProperties
         ]]);
     }
+    public function deleteFavouriteProperty(DeleteToFavouritePropertyRequest $request)
+    {
+        $params = $request->all();
+        $this->properties->deleteFavouriteProperty($params);
+
+        $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
+        $totalCount = count($favouriteProperties);
+        return $this->response->respond(['data'=>[
+            'favouriteProperties'=>$favouriteProperties,
+            'favouritesCount'=>$totalCount
+        ]]);
+    }
+    public function deleteMultiFavouriteProperty(DeleteMultiFavouritePropertyRequest $request)
+    {
+        $params = $request->all();
+        $this->properties->MultiDeleteFavouriteProperty($params['propertyIds'],$params['userId']);
+        $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
+        $totalCount = count($favouriteProperties);
+        return $this->response->respond(['data'=>[
+            'favouriteProperties'=>$favouriteProperties,
+            'favouritesCount'=>$totalCount
+        ]]);
+    }
 
     public function multiDelete(DeleteMultiplePropertiesRequest $request)
     {
@@ -145,12 +171,17 @@ class PropertiesController extends ApiController
             'properties'=>$userProperties
         ]]);
     }
-    public function multiForceDelete()
+    public function multiForceDelete(ForceDeleteMultiplePropertiesRequest $request)
     {
+        $propertyIds = $request->get('propertyIds');
+        $this->properties->forceDeleteByIds($propertyIds);
+        $userProperties = $this->propertiesJsonRepo->getUserProperties($request->get('searchParams'));
+        $countUserSearchProperties = $this->propertiesJsonRepo->countSearchedUserProperties($request->get('searchParams'));
+        $propertiesCounts  = $this->properties->countProperties($request->get('searchParams')['ownerId']);
         return $this->response->respond(['data'=>[
-            'totalProperties'=>rand(10,200),
-            'propertiesCounts' => (object)[],
-            'properties'=>[]
+            'totalProperties'=>$countUserSearchProperties,
+            'propertiesCounts' =>$propertiesCounts,
+            'properties'=>$userProperties,
         ]]);
     }
 

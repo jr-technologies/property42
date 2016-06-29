@@ -1,7 +1,7 @@
 /**
  * Created by WAQAS on 6/14/2016.
  */
-var apiPath ="http://localhost/property42/public/api/v1/";
+var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
 $(document).on('change', '#society', function(){
    var society_id = $(this).val();
    if(society_id !="") {
@@ -75,6 +75,22 @@ $(document).on('click','.add-to-favs',function(){
          property_id:property_id
       },
       success: function(response) {
+         $('.add-to-favs').closest('a').addClass('added-to-favs');
+      }
+   })
+});
+
+$(document).on('click','.remove-to-favs',function(){
+   var property_id = $(this).attr('property_id');
+   var user_id = $(this).attr('user_id');
+   $.ajax({
+      type: "POST",
+      url: apiPath.concat("favourite/property/delete"),
+      data:{
+         property_id:property_id,user_id:user_id
+      },
+      success: function(response) {
+         $('.add-to-favs').closest('a').removeClass('added-to-favs');
       }
    })
 });

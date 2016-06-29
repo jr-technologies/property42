@@ -33,16 +33,25 @@ Route::post('favourite/property',
             ],
         'uses'=>'PropertiesController@favouriteProperty'
     ]);
-Route::post('favourite/property/delete', function(){
-    $properties = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->all();
-    $collection = collect($properties);
-    $properties = $collection->slice(1, 20)->all();
-    return ['data'=>[
-        'property'=>null,
-        'favouritesCount' => rand(10,100),
-        'properties' => $properties
-    ]];
-});
+
+Route::post('favourite/property/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:DeleteToFavouritePropertyRequest'
+            ],
+        'uses'=>'PropertiesController@deleteFavouriteProperty'
+    ]);
+
+Route::post('favourite/properties/delete',
+    [
+        'middleware'=>
+            [
+                'apiValidate:DeleteMultiFavouritePropertyRequest'
+            ],
+        'uses'=>'PropertiesController@deleteMultiFavouriteProperty'
+    ]);
+
 
 Route::get('properties/favs',[
     'middleware'=>
@@ -103,7 +112,7 @@ Route::post('user/feedback',
     [
         'middleware'=>
             [
-
+                'apiValidate:mailFeedbackUsRequest',
             ],
         'uses'=>'UsersController@feedback'
     ]
@@ -446,8 +455,7 @@ Route::post('properties/force_delete',
     [
         'middleware'=>
             [
-                //'apiAuthenticate:forceDeleteMultiplePropertiesRequest',
-                //'apiValidate:forceDeleteMultiplePropertiesRequest'
+                'apiValidate:forceDeleteMultiplePropertiesRequest'
             ],
         'uses'=>'PropertiesController@multiForceDelete'
     ]

@@ -55,10 +55,15 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
     }
+    public function forceDeleteByIds($propertyIds)
+    {
+        return $this->tableGateway->forceDeleteByIds($propertyIds);
+    }
     public function forceDelete(Property $property)
     {
         return  $this->tableGateway->delete($property->id);
     }
+
     function all()
     {
        return $this->mapCollection($this->tableGateway->all());

@@ -59,4 +59,10 @@ class PropertyQueryBuilder extends QueryBuilder
             ->whereIn('id',$propertyId)
             ->update(['property_status_id'=>$deleteStatusId]);
     }
+    public function forceDeleteByIds($propertyIds)
+    {
+        return DB::table($this->table)
+            ->whereIn('id',$propertyIds)
+            ->delete();
+    }
 }

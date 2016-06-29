@@ -1,43 +1,7 @@
 @extends('frontend.frontend')
 @section('content')
     <div id="content">
-        <div class="left-content">
-            <div class="company-logos-sliders">
-                <div class="mask">
-                    <div class="slideset">
-                        <div class="slide">
-                            <ul class="company-logo">
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent1.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent2.jpg"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent3.jpg"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent4.jpg"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent5.png"
-                                                     alt="image description"></a></li>
-                            </ul>
-                        </div>
-                        <div class="slide">
-                            <ul class="company-logo">
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent6.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent7.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent8.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent9.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent10.png"
-                                                     alt="image description"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="center-content">
+        <div class="container">
             <div class="page-holder">
                 @if (Session::has('message'))
                     <span class="alert-success"><span class="icon-checkmark"></span>{{ Session::get('message') }} !<a class="close icon-cross"></a></span>
@@ -67,6 +31,7 @@
                                 </div>
                                 <span id="propertyImageCurrentSlide" class="current-num"></span>
                             </div>
+
                             <a href="#" class="propertyImage-slider-btn-prev"><span
                                         class="icon-chevron-thin-left"></span></a>
                             <a href="#" class="propertyImage-slider-btn-next"><span
@@ -90,6 +55,7 @@
                                             class="icon-chevron-thin-right"></span></a>
                             </div>
                         </div>
+
                         <div class="propertyOwnerInfo">
                             <header>
                                 <span class="icon-home-button"></span>
@@ -192,7 +158,11 @@
 
                       @endforeach
                     </div>
-                    <ul class="property-qucikLinks">
+                    <h1>Societies He Deal In</h1>
+                    @foreach($response['data']['user']->agencies[0]->societies as $society )
+                        {{$society->name}}
+                    @endforeach
+                   <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
                         <li class="popup-holder">
                             <a class="popup-opener"><span class="icon-envelope"></span>Email to friend</a>
@@ -212,23 +182,17 @@
                                 <a class="popup-close"><span class="icon-cross"></span></a>
                             </div>
                         </li>
-                        <li class="add-to-favs" property_id="{{$response['data']['property']->id}}"><a href="#"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</a></li>
+                        <li class="popup-holder">
+                            <a class=" @if($response['data']['isFavourite'] != 0) added-to-favs @endif" >
+                                <span class="add-to-favs addTo" property_id="{{$response['data']['property']->id}}"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</span>
+                                <span class="addedToFavs remove-to-favs" property_id="{{$response['data']['property']->id}}"  user_id="{{$response['data']['loggedInUser']->id}}"><span class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
+                            </a>
+                        </li>
+
                     </ul>
 
                 </div>
-            </div>
-        </div>
-        <div class="right-content">
-            <ul class="posters">
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster1.jpg" width="523"
-                                     height="737" alt="image description"></a></li>
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster2.jpg" width="198"
-                                     height="255" alt="image description"></a></li>
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster3.jpg" width="194"
-                                     height="259" alt="image description"></a></li>
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster1.jpg" width="523"
-                                     height="737" alt="image description"></a></li>
-            </ul>
+            </div>    </ul>
         </div>
     </div>
 @endsection
