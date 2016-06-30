@@ -46,7 +46,7 @@ class UsersController extends ApiController
         ApiResponse $apiResponse, UserTransformer $userTransformer,
         UsersRepoProvider $usersRepository, AgenciesRepoProvider $agenciesRepoProvider,
         UsersJsonRepoProvider $usersJsonRepoProvider, RolesRepoProvider $rolesRepoProvider,
-        UserRolesRepoProvider $userRolesRepoProvider,AgenciesRepoProvider $agenciesRepoProvider
+        UserRolesRepoProvider $userRolesRepoProvider
 
     )
     {

@@ -223,10 +223,7 @@
                             $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
                         });
 
-
                         //alert('all done. now select the old one.');
-
-
                     }
                 })
             }
