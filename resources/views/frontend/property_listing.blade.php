@@ -224,7 +224,7 @@
                         });
 
 
-                        alert('all done. now select the old one.');
+                        //alert('all done. now select the old one.');
 
 
                     }
