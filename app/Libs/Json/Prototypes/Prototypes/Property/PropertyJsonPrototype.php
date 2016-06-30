@@ -46,4 +46,5 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     /* @var $Documents PropertyDocumentsJsonPrototype::class*/
     public $documents = [];
     public $features = [];
+    public $createdAt ="";
 }

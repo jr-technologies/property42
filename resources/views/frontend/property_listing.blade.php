@@ -5,10 +5,9 @@
         <div class="container">
             <div class="page-holder">
                 <div class="public-propertyListing">
-                    <a href="#SearchPublic-Property" class="mySearch lightbox">Search My Property<span class="icon-search"></span></a>
-
-                    <div class="holder">
-                        <span class="searchResult-counter">Showing <b>1</b> to <b>{{config('constants.Pagination') }}</b> of <b>{{$response['data']['totalProperties']}}</b> properties</span>
+                     <div class="holder">
+                        <span class="searchResult-counter">Showing <b>1</b> to <b>{{config('constants.Pagination') }}</b> of
+                            <b>{{$response['data']['totalProperties']}}</b> properties</span>
                         <ul class="sortBy">
                             <li>Sorty By</li>
                             <li>
@@ -29,7 +28,11 @@
                                 </select>
                             </li>
                         </ul>
+                         <div class="layout">
+                             <a href="#SearchPublic-Property" class="mySearch lightbox">My Search<span class="icon-search"></span></a>
+                         </div>
                     </div>
+
                     <section class="property-posts">
                         @foreach($response['data']['properties'] as $property)
                             <article class="post">
@@ -60,21 +63,14 @@
                                     <div class="holder">
                                         <ul class="quick-links">
                                             <li><a href="property?propertyId={{$property->id}}"><span class="icon-pencil"></span>More Details</a></li>
-                                            <li><a href="tel:{{$property->phone}}">
-                                                    <span class="icon-phone_iphone"></span>
-                                                    <span class="hidden-xs">{{$property->phone}}</span>
-                                                    <span class="show-xs">Call now</span></a>
-                                            </li>
 
                                         </ul>
 
                                         <?php
-                                        $image = url('/')."/assets/imgs/no.png";
-                                        foreach($property->documents as $document)
-                                        {
-                                            if($property->owner->agency->logo !=null)
-                                            {
-                                                $image = url('/').'/temp/'.$property->owner->agency->logo;
+                                        $image = url('/') . "/assets/imgs/no.png";
+                                        if ($property->owner->agency != null) {
+                                            if ($property->owner->agency->logo != null) {
+                                                $image = url('/') . '/temp/' . $property->owner->agency->logo;
                                             }
                                         }
                                         ?>
@@ -108,13 +104,13 @@
                             <ul class="propertyPurpose">
                                 <li>
                                     <label for="buy-1">
-                                        <input type="radio" name="purpose_id" value="1" id="buy1" checked>
+                                        <input type="radio" name="purpose_id" value="1" id="buy-1" @if($response['data']['oldValues']['purposeId'] == 1) checked @endif>
                                         <span class="fake-label">Buy</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label for="rent-1">
-                                        <input type="radio" name="purpose_id" id="rent1" value="2">
+                                        <input type="radio" name="purpose_id" id="rent-1" value="2" @if($response['data']['oldValues']['purposeId'] == 2) checked @endif>
                                         <span class="fake-label">Rent</span>
                                     </label>
                                 </li>
@@ -132,7 +128,7 @@
                                         <label for={{$propertyType->name.$propertyType->id}}>
                                             <input type="radio" id={{$propertyType->name.$propertyType->id}}
                                                     class="property_type"  name="property_type_id" value="{{$propertyType->id}}"
-                                                   @if($response['data']['oldValues']['purposeId'] == $propertyType->id)checked @endif>
+                                                   @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif>
                                             <span class="fake-label">{{$propertyType->name}}</span>
                                         </label>
                                     </li>
@@ -141,6 +137,8 @@
                             <ul class="fields">
                                 <li>
                                     <label>Select Sub Type:</label>
+                                    <span class="fake-select">
+                                    <span class="load">
                                     <select name="sub_type_id" id="property_sub_types">
                                         <option disabled selected value>Property SubType</option>
                                         <option  value="">All Property SubType</option>
@@ -148,52 +146,62 @@
                                             <option value="{{$propertySubType->id}}" @if($response['data']['oldValues']['purposeId'] ==$propertySubType->id)selected @endif>{{$propertySubType->name}}</option>
                                         @endforeach
                                     </select>
+                                </span>
+                                        </span>
                                 </li>
                                 <li>
                                     <label>Select Society:</label>
+                                    <span class="fake-select">
+                                      <span class="load">
                                     <select name="society_id" id="society">
                                         <option disabled selected value>Society</option>
                                         <option  value="">All Societies</option>
                                         @foreach($response['data']['societies'] as $society)
-                                            <option value="{{$society->id}}">{{$society->name}}</option>
+                                            <option value="{{$society->id}}" @if($response['data']['oldValues']['societyId'] == $society->id) selected @endif>{{$society->name}}</option>
                                         @endforeach
                                     </select>
+                                </span>
+                               </span>
                                 </li>
                                 <li>
                                     <label>Select Block:</label>
-                                 <span class="load">
+                                  <span class="fake-select">
+                                      <span class="load">
                                 <select name="block_id" id="blocks">
                                     <option disabled selected value>Block</option>
                                 </select>
+                                          </span>
                                  </span>
                                 </li>
                                 <li>
                                     <label>Select Bedrooms:</label>
+                                    <span class="fake-select">
+                                    <span class="load">
                                     <select name="property_features[28]">
                                         <option disabled selected value>Bedrooms</option>
-                                        <option value=1>1</option>
-                                        <option value=2>2</option>
-                                        <option value=3>3</option>
-                                        <option value=4>4</option>
-                                        <option value=5>5</option>
-                                        <option value=6>6</option>
-                                        <option value=7>7</option>
-                                        <option value=8>8</option>
-                                        <option value=9>9</option>
-                                        <option value=10>10</option>
-
-
+                                        <option value=1 @if($response['data']['oldValues']['propertyFeatures'][28] == 1) selected @endif>1</option>
+                                        <option value=2 @if($response['data']['oldValues']['propertyFeatures'][28] == 2) selected @endif>2</option>
+                                        <option value=3 @if($response['data']['oldValues']['propertyFeatures'][28] == 3) selected @endif>3</option>
+                                        <option value=4 @if($response['data']['oldValues']['propertyFeatures'][28] == 4) selected @endif>4</option>
+                                        <option value=5 @if($response['data']['oldValues']['propertyFeatures'][28] == 5) selected @endif>5</option>
+                                        <option value=6 @if($response['data']['oldValues']['propertyFeatures'][28] == 6) selected @endif>6</option>
+                                        <option value=7 @if($response['data']['oldValues']['propertyFeatures'][28] == 7) selected @endif>7</option>
+                                        <option value=8 @if($response['data']['oldValues']['propertyFeatures'][28] == 8) selected @endif>8</option>
+                                        <option value=9 @if($response['data']['oldValues']['propertyFeatures'][28] == 9) selected @endif>9</option>
+                                        <option value=10 @if($response['data']['oldValues']['propertyFeatures'][28] == 10) selected @endif>10</option>
                                     </select>
+                                        </span>
+                                        </span>
                                 </li>
                                 <li>
                                     <label>Price Range (Rs):</label>
-                                    <div class="input-holder"><input type="number" placeholder="From" name="price_from"></div>
-                                    <div class="input-holder"><input type="number" placeholder="To" name="price_to"></div>
+                                    <div class="input-holder"><input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}"></div>
+                                    <div class="input-holder"><input type="number" placeholder="To" name="price_to"value="{{$response['data']['oldValues']['priceTo']}}"></div>
                                 </li>
                                 <li>
                                     <label>Land Area:</label>
-                                    <div class="input-holder"><input type="number" placeholder="From" name="land_area_from"></div>
-                                    <div class="input-holder"><input type="number" placeholder="To" name="land_area_to"></div>
+                                    <div class="input-holder"><input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}"></div>
+                                    <div class="input-holder"><input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}"></div>
                                 </li>
                             </ul>
                             <button type="submit"><span class="icon-search"></span>Search my property</button>

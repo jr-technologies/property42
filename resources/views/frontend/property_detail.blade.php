@@ -4,7 +4,8 @@
         <div class="container">
             <div class="page-holder">
                 @if (Session::has('message'))
-                    <span class="alert-success"><span class="icon-checkmark"></span>{{ Session::get('message') }} !<a class="close icon-cross"></a></span>
+                    <span class="alert-success"><span class="icon-checkmark"></span>{{ Session::get('message') }} !<a
+                                class="close icon-cross"></a></span>
                 @endif
                 <div class="propertyDetails-page">
                     <div class="layout">
@@ -12,20 +13,20 @@
                             <div class="mask">
                                 <?php
                                 $images = [];
-                                foreach ($response['data']['property']->documents as $document)
-                                {
+                                foreach ($response['data']['property']->documents as $document) {
                                     if ($document->type == 'image') {
                                         $images[] = url('/') . '/temp/' . $document->path;
                                     }
                                 }
-                                if (sizeof($images ) == 0) {
+                                if (sizeof($images) == 0) {
                                     $images[] = url('/') . "/assets/imgs/no.png";
                                 }
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
                                         <div class="slide"><a href="images/bg-main1.jpeg" rel="lighbox"
-                                             class="lightbox"><img src="{{$image}}" alt="image description"></a>
+                                                              class="lightbox"><img src="{{$image}}"
+                                                                                    alt="image description"></a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -41,10 +42,9 @@
                                 <div class="propertyImage-mask">
                                     <div class="propertyImage-slideset">
                                         @foreach($images as $image)
-                                        <div class="propertyImage-slide"><a href="#"><img
-                                                        src="{{$image}}"
-                                                        alt="image description"></a></div>
-
+                                            <div class="propertyImage-slide"><a href="#"><img
+                                                            src="{{$image}}"
+                                                            alt="image description"></a></div>
                                         @endforeach
                                     </div>
                                     <span class="paginationCurrent-num-1"></span>
@@ -61,49 +61,63 @@
                                 <span class="icon-home-button"></span>
                                 <span>Do you want to view this property?</span>
                             </header>
+                            <?php
+                            $image = url('/') . "/assets/imgs/no.png";
+                            if ($response['data']['property']->owner->agency != null) {
+                                if ($response['data']['property']->owner->agency->logo != null) {
+                                    $image = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
+                                }
+                            }
+                            ?>
                             <div class="description">
                                 <div class="layout">
-                                    @if($response['data']['property']->owner->agency->logo !=null)
-                                    <img src="{{url('/') . '/temp/' . $response['data']['property']->owner->agency->logo}}" width="300"
-                                         height="300" alt="image description">
-                                     @endif
+                                    <img src="{{$image}}"
+                                             width="300"
+                                             height="300" alt="image description">
+
                                     <div class="holder">
                                         <strong class="name">{{$response['data']['property']->contactPerson}}</strong>
                                         @if($response['data']['property']->owner->agency !=null)
                                             <span class="agency-name">{{$response['data']['property']->owner->agency->name}}</span>
-                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->agency->id) }}" class="agency-profile">Agency Profile</a>
+                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->agency->id) }}"
+                                               class="agency-profile">Agency Profile</a>
                                         @endif
                                     </div>
                                 </div>
                                 <ul class="contact-links">
                                     <li class="popup-holder">
                                         <a class="popup-opener"><span class="icon-envelope"></span>Send Email</a>
+
                                         <div class="popup">
                                             {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'email-popup'))}}
 
-                                                <strong class="form-heading">Send Email</strong>
-                                                <div class="input-field">
-                                                    <label for="from">From:</label>
-                                                    <div class="input-holder"><input type="text" id="from" name="from" required></div>
-                                                </div>
-                                                <div class="input-field">
-                                                    <label for="msg">Message:</label>
-                                                    <div class="input-holder"><textarea id="msg" name="message" required></textarea></div>
-                                                </div>
-                                                <div class="input-field"><input type="submit" value="Send"></div>
+                                            <strong class="form-heading">Send Email</strong>
+
+                                            <div class="input-field">
+                                                <label for="from">From:</label>
+
+                                                <div class="input-holder"><input type="text" id="from" name="from"
+                                                                                 required></div>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="msg">Message:</label>
+
+                                                <div class="input-holder"><textarea id="msg" name="message"
+                                                                                    required></textarea></div>
+                                            </div>
+                                            <div class="input-field"><input type="submit" value="Send"></div>
                                             {{Form::close()}}
                                             <a class="popup-close"><span class="icon-cross"></span></a>
                                         </div>
                                     </li>
-                                    <li><a href="tel:03374887421"><span class="icon-phone_iphone"></span>03374887421</a></li>
+                                    <li><a href="tel:{{$response['data']['property']->phone}}"><span class="icon-phone_iphone"></span>{{$response['data']['property']->phone}}</a>
+                                    </li>
                                 </ul>
                                 <?php
-                                $heightPriorityFeatures =[];
-                                foreach($response['data']['property']->features as $section => $features)
-                                {
-                                    foreach($features as $feature){
-                                        if($feature->priority > 0)
-                                        {
+                                $heightPriorityFeatures = [];
+                                foreach ($response['data']['property']->features as $section => $features) {
+                                    foreach ($features as $feature) {
+                                        if ($feature->priority > 0) {
                                             $heightPriorityFeatures[] = $feature;
                                         }
                                     }
@@ -121,11 +135,12 @@
                                         <dd>{{$heightPriorityFeature->value}}</dd>
                                     @endforeach
                                     <dt>Area:</dt>
-                                    <dd>{{$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name}}</dd>
+                                    <dd><b>{{$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name}}</b></dd>
                                     <dt>Price:</dt>
-                                    <dd>Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}</dd>
+                                    <dd>
+                                        <b>Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}</b></dd>
                                     <dt>Added:</dt>
-                                    <dd>1 day ago</dd>
+                                    <dd>{{($response['data']['property']->createdAt)}}</dd>
                                 </dl>
                             </div>
                         </div>
@@ -141,58 +156,70 @@
                     <div class="extraFeature-block">
                         <h1>Property Features</h1>
                         @foreach($response['data']['property']->features as $sectionName=>$features)
-                        <h2>{{$sectionName}}</h2>
+                            <h2>{{$sectionName}}</h2>
 
-                        <ul class="feature-list">
-                            @foreach($features as $feature)
-                            <li>
-                                <span>{{$feature->name}}</span>
-                                @if($feature->htmlStructure->name =='checkbox')
-                                    <span class="last-child">yes</span>
-                                @else
-                                    <span class="last-child">{{$feature->value}}</span>
-                                @endif
-                            </li>
+                            <ul class="feature-list">
+                                @foreach($features as $feature)
+                                    <li>
+                                        <span>{{$feature->name}}</span>
+                                        @if($feature->htmlStructure->name =='checkbox')
+                                            <span class="last-child">yes</span>
+                                        @else
+                                            <span class="last-child">{{$feature->value}}</span>
+                                        @endif
+                                    </li>
                                 @endforeach
-                        </ul>
+                            </ul>
 
-                      @endforeach
+                        @endforeach
                     </div>
                     <h1>Societies He Deal In</h1>
                     @foreach($response['data']['user']->agencies[0]->societies as $society )
                         {{$society->name}}
                     @endforeach
-                   <ul class="property-qucikLinks">
+                    <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
                         <li class="popup-holder">
                             <a class="popup-opener"><span class="icon-envelope"></span>Email to friend</a>
+
                             <div class="popup">
                                 {{Form::open(array('url'=>'property-to-friend','method'=>'POST','class'=>'email-popup'))}}
-                                    <strong class="form-heading">Send Email</strong>
-                                    <div class="input-field">
-                                        <label for="from1">To:</label>
-                                        <div class="input-holder"><input type="text" required name="to" required id="to"></div>
+                                <strong class="form-heading">Send Email</strong>
+
+                                <div class="input-field">
+                                    <label for="from1">To:</label>
+
+                                    <div class="input-holder"><input type="text" required name="to" required id="to">
                                     </div>
-                                    <div class="input-field">
-                                        <label for="msg1">Message:</label>
-                                        <div class="input-holder"><textarea id="msg" required name="message" required></textarea></div>
-                                    </div>
-                                    <div class="input-field"><input type="submit" value="Send"></div>
-                               {{Form::close()}}
+                                </div>
+                                <div class="input-field">
+                                    <label for="msg1">Message:</label>
+
+                                    <div class="input-holder"><textarea id="msg" required name="message"
+                                                                        required></textarea></div>
+                                </div>
+                                <div class="input-field"><input type="submit" value="Send"></div>
+                                {{Form::close()}}
                                 <a class="popup-close"><span class="icon-cross"></span></a>
                             </div>
                         </li>
                         <li class="popup-holder">
-                            <a class=" @if($response['data']['isFavourite'] != 0) added-to-favs @endif" >
-                                <span class="add-to-favs addTo" property_id="{{$response['data']['property']->id}}"><span class="icon-favourites-filled-star-symbol"></span> Add to favorites</span>
-                                <span class="addedToFavs remove-to-favs" property_id="{{$response['data']['property']->id}}"  user_id="{{($response['data']['loggedInUser'] !=null)?$response['data']['loggedInUser']->id:""}}"><span class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
+                            <a class=" @if($response['data']['isFavourite'] != 0) added-to-favs @endif">
+                                <span class="add-to-favs addTo"
+                                      property_id="{{$response['data']['property']->id}}"><span
+                                            class="icon-favourites-filled-star-symbol"></span> Add to favorites</span>
+                                <span class="addedToFavs remove-to-favs"
+                                      property_id="{{$response['data']['property']->id}}"
+                                      user_id="{{($response['data']['loggedInUser'] !=null)?$response['data']['loggedInUser']->id:""}}"><span
+                                            class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
                             </a>
                         </li>
 
                     </ul>
 
                 </div>
-            </div>    </ul>
+            </div>
+            </ul>
         </div>
     </div>
 @endsection

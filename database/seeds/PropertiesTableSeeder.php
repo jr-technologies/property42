@@ -39,7 +39,10 @@ class PropertiesTableSeeder extends Seeder
                 $temp['email'] = 'jrpropedrty167@gmail.com'. rand(1,1000000) ;
                 $temp['owner_id'] = rand(1,2);
                 $temp['created_by'] = 1;
+                $temp['created_at'] = date('Y-m-d h:i:s');
+                $temp['updated_at'] = date('Y-m-d h:i:s');
                 $allProperties[] = $temp;
+
             }
             DB::table('properties')->insert($allProperties);
         }
