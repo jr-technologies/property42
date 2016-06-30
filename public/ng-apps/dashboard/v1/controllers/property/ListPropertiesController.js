@@ -62,9 +62,9 @@ app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window"
         $scope.activePage = 1;
     });
 
-    $scope.$watchGroup(['searchPropertiesParams.owner_id', 'searchPropertiesParams.limit'], function(newValues, oldValues, scope) {
-        $rootScope.$broadcast('searchPropertiesParamsChanged');
-    });
+    //$scope.$watchGroup(['searchPropertiesParams.owner_id', 'searchPropertiesParams.limit'], function(newValues, oldValues, scope) {
+    //    $rootScope.$broadcast('searchPropertiesParamsChanged');
+    //});
 
     $scope.checkAll = function() {
         $scope.deletingProperties.ids = $scope.properties.map(function(item) { return item.id; });
@@ -139,6 +139,7 @@ app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window"
             searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.deletingProperties.ids = [];
+            $scope.checkAllPropertiesChkbx = false;
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
@@ -155,6 +156,7 @@ app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window"
             searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.deletingProperties.ids = [];
+            $scope.checkAllPropertiesChkbx = false;
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
