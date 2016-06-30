@@ -120,7 +120,6 @@ class UsersController extends ApiController
             'user'=>$this->releaseAllUserFiles($this->usersJsonRepo->find($user->id)),
             'agencyStaff'=>$this->usersJsonRepo->getStaffSiblings($user->id)
         ]]);
-
     }
 
     private function userWasAgent($userId)

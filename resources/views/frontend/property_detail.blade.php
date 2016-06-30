@@ -24,7 +24,7 @@
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
-                                        <div class="slide"><a href="images/bg-main1.jpeg" rel="lighbox"
+                                        <div class="slide"><a href="#" rel="lighbox"
                                                               class="lightbox"><img src="{{$image}}"
                                                                                     alt="image description"></a>
                                         </div>
