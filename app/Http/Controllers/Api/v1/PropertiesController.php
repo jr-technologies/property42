@@ -90,7 +90,7 @@ class PropertiesController extends ApiController
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
             'properties'=>$favouriteProperties,
-            'favouritesCount'=>$totalCount
+            'favouriteCount'=>$totalCount
         ]]);
     }
     public function update(UpdatePropertyRequest $request)
@@ -147,7 +147,7 @@ class PropertiesController extends ApiController
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
             'favouriteProperties'=>$favouriteProperties,
-            'favouritesCount'=>$totalCount
+            'favouriteCount'=>$totalCount
         ]]);
     }
     public function deleteMultiFavouriteProperty(DeleteMultiFavouritePropertyRequest $request)
