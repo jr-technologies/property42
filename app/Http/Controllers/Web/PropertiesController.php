@@ -10,6 +10,7 @@ use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
+use App\Libs\Auth\Web;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;

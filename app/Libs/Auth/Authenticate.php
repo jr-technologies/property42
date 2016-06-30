@@ -15,7 +15,7 @@ use App\Libs\Auth\Traits\TokenGenerator;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 abstract class Authenticate
 {
     use TokenGenerator;
@@ -53,7 +53,7 @@ abstract class Authenticate
         $authenticatedUser->access_token = $this->generateToken($authenticatedUser->id);
         $this->users->update($authenticatedUser);
         Event::fire(new UserBasicInfoUpdated($authenticatedUser));
-        request()->session()->put('authUser', $authenticatedUser);
+        Session::put('authUser', $authenticatedUser);
         return $authenticatedUser;
     }
 

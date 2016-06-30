@@ -30,7 +30,8 @@ trait UserPropertiesHelper
         else{
             $user = (new AuthHelper())->user();
             $agencies = (new AgenciesRepoProvider())->repo()->getByUser($user->id);
-            $conditions['agencies.id'] = $agencies[0]->id;
+            if(sizeof($agencies) > 0)
+                $conditions['agencies.id'] = $agencies[0]->id;
         }
         if(isset($params['statusId']) && ($params['statusId'] != null || $params['statusId'] !=''))
             $conditions['properties.property_status_id'] = $params['statusId'];

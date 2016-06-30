@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Libs\Auth\Web;
 use App\Repositories\Repositories\Sql\PropertyTypeRepository;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $data = [
             'propertyTypes' =>$this->propertyTypes->all(),
+            'authUser' => (new Web())->user()
         ];
         view()->share('globals', $data);
     }

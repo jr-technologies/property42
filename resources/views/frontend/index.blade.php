@@ -1,5 +1,6 @@
 @extends('frontend.frontend')
 @section('content')
+
     <div class="main-visual">
         <div class="property-search-holder">
 
