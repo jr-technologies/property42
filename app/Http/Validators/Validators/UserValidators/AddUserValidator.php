@@ -44,7 +44,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName.unique_agent_in_societies' => ':conflictedSocieties',
             'companyPhone.required' => 'Company phone is required',
             'companyAddress.required' => 'Company address is required',
-            'societies.required' => 'please select atleast one society',
+            'societies.required' => 'Please Select atleast 1 society',
+            'societies.societies_limit' => 'You can select only 3 Societies.',
             'companyEmail.required' => 'Company email is required',
             'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 1000 X 1000 px'
         ];
@@ -70,7 +71,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName' => 'required|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
-            'societies' => 'required',
+            'societies' => 'required|societies_limit',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
             'agencyDescription'=>'max:1200',
             'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
@@ -91,6 +92,27 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
                     }
                 }
             }
+        });
+    }
+
+    public function registerSocietiesLimitRule()
+    {
+        Validator::extend('societies_limit', function($attribute, $value, $parameters)
+        {
+            try {
+                $societies = $this->request->get('societies');
+                $societiesLimit = false;
+                if (sizeof($societies) < 4 && sizeof($societies) > 0) {
+                    $societiesLimit = true;
+                }
+                if(!$societiesLimit){
+                    return false;
+                }
+            }catch(\Exception $e)
+            {
+                throw $e;
+            }
+            return true;
         });
     }
 

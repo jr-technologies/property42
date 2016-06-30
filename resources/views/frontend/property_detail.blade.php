@@ -24,7 +24,7 @@
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
-                                        <div class="slide"><a href="images/bg-main1.jpeg" rel="lighbox"
+                                        <div class="slide"><a href="{{$image}}" rel="lighbox"
                                                               class="lightbox"><img src="{{$image}}"
                                                                                     alt="image description"></a>
                                         </div>
@@ -61,20 +61,15 @@
                                 <span class="icon-home-button"></span>
                                 <span>Do you want to view this property?</span>
                             </header>
-                            <?php
-                            $image = url('/') . "/assets/imgs/no.png";
-                            if ($response['data']['property']->owner->agency != null) {
-                                if ($response['data']['property']->owner->agency->logo != null) {
-                                    $image = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
-                                }
-                            }
-                            ?>
                             <div class="description">
                                 <div class="layout">
-                                    <img src="{{$image}}"
+                                    @if ($response['data']['property']->owner->agency != null)
+                                    @if ($response['data']['property']->owner->agency->logo != null)
+                                    <img src="{{url('/') . '/temp/' . $response['data']['property']->owner->agency->logo}}"
                                              width="300"
                                              height="300" alt="image description">
-
+                                        @endif
+                                    @endif
                                     <div class="holder">
                                         <strong class="name">{{$response['data']['property']->contactPerson}}</strong>
                                         @if($response['data']['property']->owner->agency !=null)
@@ -173,10 +168,15 @@
 
                         @endforeach
                     </div>
+
+                    @if(sizeof($response['data']['user']->agencies) > 0 )
+                        @if(sizeof($response['data']['user']->agencies[0]->societies) > 0)
                     <h1>Societies He Deal In</h1>
                     @foreach($response['data']['user']->agencies[0]->societies as $society )
                         {{$society->name}}
                     @endforeach
+                    @endif
+                    @endif
                     <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
                         <li class="popup-holder">
