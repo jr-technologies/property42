@@ -10,8 +10,11 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
 use App\DB\Providers\SQL\Models\AgencySociety;
+use App\Events\Events\Agency\AgencyUpdated;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use Illuminate\Support\Facades\Event;
 
 class AgencySocietiesRepository extends SqlRepository implements AgenciesRepoInterface
 {
@@ -34,6 +37,7 @@ class AgencySocietiesRepository extends SqlRepository implements AgenciesRepoInt
         }
         $this->storeMultiple($newSocietiesModels);
         $this->deleteAgencySocieties($agencyId, $deletingSocietyIds);
+        Event::fire(new AgencyUpdated((new AgenciesRepoProvider())->repo()->getById($agencyId)));
     }
 
     public function storeMultiple(array $agencySocieties)

@@ -131,9 +131,9 @@
 
                             <div class="fake-select">
                                 <select name="land_unit_id" name="land_unit_id">
-                                    <option disabled selected>Select Land Unit</option>
+                                    <option selected value="">All Units</option>
                                     @foreach($response['data']['landUnits'] as $landUnit)
-                                        <option value="{{$landUnit->id}}" @if($landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
+                                        <option value="{{$landUnit->id}}">{{$landUnit->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
