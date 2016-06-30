@@ -37,7 +37,11 @@ class Web extends Authenticate implements AuthInterface
         if(session('authUser') == null){
             return null;
         }else{
-            return $this->users->getById(session('authUser')->id);
+            try{
+                return $this->users->getById(session('authUser')->id);
+            }catch (\Exception $e){
+                return null;
+            }
         }
     }
 

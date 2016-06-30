@@ -68,21 +68,25 @@
             <div class="layout add">
                 <div class="layout-holder">
                     <span class="title">Society:</span>
-                    <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
-                        <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">
-                            <div ng-bind-html="society.name | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
+                    <div class="input-holder">
+                        <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
+                            <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">
+                                <div ng-bind-html="society.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
                 </div>
                 <div class="layout-holder">
                     <span class="title">Block:</span>
-                    <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
-                        <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search} | filter : {societyId : temp.society.id}">
-                            <div ng-bind-html="block.name | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
+                    <div class="input-holder">
+                        <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
+                            <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search} | filter : {societyId : temp.society.id}">
+                                <div ng-bind-html="block.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
                 </div>
             </div>
             <strong class="form-heading"><span>Property Details</span></strong>

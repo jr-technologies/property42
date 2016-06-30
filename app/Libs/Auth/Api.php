@@ -46,7 +46,11 @@ class Api extends Authenticate implements AuthInterface
 
     public function user()
     {
-        return $this->users->getByToken($this->getAccessToken());
+        try{
+            return $this->users->getByToken($this->getAccessToken());
+        }catch (\Exception $e){
+            return null;
+        }
     }
     /**
      * @return null
