@@ -71,6 +71,8 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
 
         if((new UsersRepoProvider())->repo()->userWasAgent($this->request->get('userId')))
             $rules['agencyId'] = 'required';
+
+        return $rules;
     }
 
     /**
