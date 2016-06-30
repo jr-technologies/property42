@@ -25,7 +25,7 @@
                 <ul>
                     <li>
                         <label>Show</label>
-                        <select ng-model="searchPropertiesParams.limit">
+                        <select ng-model="searchPropertiesParams.limit" ng-change="filtersChanged()">
                             <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="50">50</option>
@@ -34,7 +34,7 @@
                     </li>
                     <li>
                         <label>listings per page from</label>
-                        <select ng-model="searchPropertiesParams.owner_id">
+                        <select ng-model="searchPropertiesParams.owner_id" ng-change="filtersChanged()">
                             <option value="">All Members</option>
                             <option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>
                         </select>

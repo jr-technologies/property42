@@ -2,9 +2,9 @@
  * Created by noman_2 on 12/8/2015.
  */
 
-//var domain = "http://localhost/jr/property42/backend/property42/public/";
-//var domain = "http://localhost/production/jr-technologies/property42/public/";
-var domain = "http://"+window.location.hostname+"/property42/public/";
+var domain = "http://"+window.location.hostname+"/jr/property42/backend/property42/public/";
+//var domain = "http://"+window.location.hostname+"/production/jr-technologies/property42/public/";
+//var domain = "http://"+window.location.hostname+"/property42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
@@ -121,7 +121,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('home.properties.for-sale', {
             url: "/for-sale",
             templateUrl: views+"/properties/list.html",
-            controller: 'ListPropertiesController',
             auth: true
         })
         .state('home.properties.for-rent', {
