@@ -15,9 +15,11 @@ use App\DB\Providers\SQL\SQLFactoryProvider;
 use App\Events\Events\User\UserCreated;
 use App\Events\Events\User\UserRolesChanged;
 use App\Events\Events\User\UserUpdated;
+use App\Libs\Helpers\Helper;
 use App\Libs\Json\Creators\Creators\UserJsonCreator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\DB\Providers\SQL\Models\User;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Transformers\Sql\UserTransformer;
 use Illuminate\Support\Facades\Event;
 
@@ -25,6 +27,7 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
 {
     private $userTransformer;
     private $factory = null;
+    private $idForAgentBroker = 3;
     public function __construct(){
         $this->userTransformer = new UserTransformer();
         $this->factory = SQLFactoryProvider::user();
@@ -112,5 +115,13 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
     public function delete(User $user)
     {
         return $this->factory->delete($user);
+    }
+
+
+    public function userWasAgent($userId)
+    {
+        $userRoles = (new RolesRepoProvider())->repo()->getUserRoles($userId);
+        $userRolesIds = Helper::propertyToArray($userRoles, 'id');
+        return (in_array($this->idForAgentBroker, $userRolesIds))?true:false;
     }
 }
