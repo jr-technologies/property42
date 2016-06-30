@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\AgencySocietiesRepoProvider;
 use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Providers\Providers\UserRolesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
@@ -41,13 +42,13 @@ class UsersController extends ApiController
     private $userRoles;
     private $idForAgentBroker = 3;
     private $agencyStaff =null;
+    private $agencySocieties = null;
     public function __construct
     (
         ApiResponse $apiResponse, UserTransformer $userTransformer,
         UsersRepoProvider $usersRepository, AgenciesRepoProvider $agenciesRepoProvider,
         UsersJsonRepoProvider $usersJsonRepoProvider, RolesRepoProvider $rolesRepoProvider,
-        UserRolesRepoProvider $userRolesRepoProvider
-
+        UserRolesRepoProvider $userRolesRepoProvider, AgencySocietiesRepoProvider $agencySocietiesRepoProvider
     )
     {
         $this->response = $apiResponse;
@@ -57,6 +58,7 @@ class UsersController extends ApiController
         $this->usersJsonRepo = $usersJsonRepoProvider->repo();
         $this->roles = $rolesRepoProvider->repo();
         $this->userRoles = $userRolesRepoProvider->repo();
+        $this->agencySocieties = $agencySocietiesRepoProvider->repo();
     }
 
     /**
@@ -173,7 +175,8 @@ class UsersController extends ApiController
             $logoPath = null;
         }
         $existingAgency->logo = $logoPath;
-        return $this->agencies->updateAgency($existingAgency);
+        $this->agencies->updateAgency($existingAgency);
+        $this->agencySocieties->update($existingAgency->id, $request->get('societies'));
     }
     private function saveUserAgency(UpdateUserRequest $request, $userId)
     {

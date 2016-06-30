@@ -64,6 +64,7 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
+            'societies' => 'required',
             'companyEmail' => 'required|email|unique:agencies,email'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'agencyDescription'=>'max:1200',
             'companyLogo'=>'mimes:jpeg,bmp,png,gif|image|max_image_size:1000,1000'

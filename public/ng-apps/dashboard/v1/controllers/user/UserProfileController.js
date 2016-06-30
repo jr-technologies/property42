@@ -11,11 +11,19 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.userIsAgent = false;
     $scope.userWasAgent = false;
     $scope.profileUpdated = false;
+    $scope.searchSocieties = '';
 
     var getUserRolesIds = function () {
         var ids = [];
         angular.forEach($scope.user.roles, function (role, key) {
             ids.push(role.id);
+        });
+        return ids;
+    };
+    var getSocietyIds = function () {
+        var ids = [];
+        angular.forEach($scope.user.agencies[0].societies, function (society, key) {
+            ids.push(society.id);
         });
         return ids;
     };
@@ -36,6 +44,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
         $scope.profileUpdated = false;
         $scope.errors = {};
         $rootScope.loading_content_class = 'loading-content';
+        console.log($scope.form.data);
         var upload = Upload.upload({
             url: apiPath+'user/update',
             data: $scope.form.data,
@@ -121,6 +130,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             else
                 data.companyLogo = '';
             data.agencyDescription = agency.description;
+            data.societies = getSocietyIds();
             data.companyPhone = agency.phone;
             data.companyMobile = agency.mobile;
             data.companyAddress = agency.address;

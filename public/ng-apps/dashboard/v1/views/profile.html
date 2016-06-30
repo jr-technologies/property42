@@ -101,6 +101,21 @@
                 <span class="border"></span>
                 <span class="error-text">{{errors.agencyDescription[0]}}</span>
             </div>
+            <div class="input-holder full-width no-indent">
+                <label for="search-society" class="icon-society"></label>
+                <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
+                <span class="border"></span>
+                <span class="error-text">This is error</span>
+                <span class="calculatedSocieties">{{form.data.societies.length}} selected</span>
+            </div>
+            <div class="input-holder full-width">
+                <ul class="societiesBlock-listing">
+                    <li data-ng-repeat="society in resources.societies | filter:searchSocieties">
+                        <input checklist-model="form.data.societies" checklist-value="society.id"  type="checkbox" id="society{{society.id}}" class="selectSociety-checkbox">
+                        <label for="society{{society.id}}">{{society.name}}</label>
+                    </li>
+                </ul>
+            </div>
             <h1> Agency Contact Details</h1>
             <div class="input-holder" ng-class="{'error' : errors.companyPhone.length > 0}">
                 <label for="compny-phone" class="icon-phone"></label>

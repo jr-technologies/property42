@@ -23,11 +23,15 @@ class AgencySocietyFactory extends SQLFactory implements SQLFactoriesInterface
         $this->model = new AgencySociety();
         $this->tableGateway = new AgencySocietyQueryBuilder();
     }
-   public function all()
+    public function all()
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-     public function find($id)
+    public function get($agencyId)
+    {
+        return $this->mapCollection($this->tableGateway->getWhere(['agency_id'=>$agencyId]));
+    }
+    public function find($id)
     {
         return $this->map($this->tableGateway->find($id));
     }
@@ -62,9 +66,9 @@ class AgencySocietyFactory extends SQLFactory implements SQLFactoriesInterface
     private function mapAgencySocietyOnTable(AgencySociety $agencySociety)
     {
         return [
-            'agency_id'     => $agencySociety->agencyId,
-            'society_id'=> $agencySociety->societyId,
-            'updated_at'=> $agencySociety->updatedAt,
+            'agency_id' => $agencySociety->agencyId,
+            'society_id' => $agencySociety->societyId,
+            'updated_at' => $agencySociety->updatedAt,
         ];
     }
 }
