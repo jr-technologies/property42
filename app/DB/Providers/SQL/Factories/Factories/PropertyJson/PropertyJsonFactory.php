@@ -70,19 +70,18 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
 
     private function transformLandUnits(array $properties, $params)
     {
-        $landUnit = null;
         if($params['landUnitId'] != null){
             $landUnit = new LandUnit();
             $landUnit->id = $params['landUnitId'];
             $landUnit->name = config('constants.LAND_UNITS')[$params['landUnitId']];
             $landUnit = (new PropertyLandUnitJsonCreator($landUnit))->create();
-        }
-        foreach($properties as &$property /* @var $property PropertyJsonPrototype*/){
-            if($landUnit != null){
+
+            foreach($properties as &$property /* @var $property PropertyJsonPrototype*/){
                 $property->land->area =  LandArea::convert($property->land->unit->name, $landUnit->name, $property->land->area);
                 $property->land->unit = $landUnit;
             }
         }
+
         return $properties;
     }
 

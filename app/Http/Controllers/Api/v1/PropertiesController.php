@@ -33,6 +33,7 @@ use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
+use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Traits\PropertyFilesReleaser;
 use App\Transformers\Response\PropertyJson\PropertyJsonTransformer;
 use Illuminate\Support\Facades\Event;
@@ -41,7 +42,7 @@ use Illuminate\Support\Facades\Request;
 
 class PropertiesController extends ApiController
 {
-    use \App\Traits\Property\PropertyFilesReleaser;
+    use \App\Traits\Property\PropertyFilesReleaser, PropertyPriceUnitHelper;
 
     private $properties = null;
     private $propertyFeatureValues = null;
@@ -69,7 +70,7 @@ class PropertiesController extends ApiController
 
     public function store(AddPropertyRequest $request)
     {
-        $property = $request->getPropertyModel();
+        $property = $this->convertPropertyAreaToLowestUnit($request->getPropertyModel());
         $propertyId = $this->properties->store($property);
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
 
