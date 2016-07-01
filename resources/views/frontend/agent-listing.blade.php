@@ -7,7 +7,7 @@
                     <div class="holder">
                         {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'search-agent')) }}
                             <div class="input-holder">
-                                <select  name="society" >
+                                <select  name="society" class="js-example-basic-single">
                                     <option selected disabled>Search by society</option>
                                     <option value="" @if($response['data']['params']['society'] == "") selected @endif>All Societies</option>
                                     @foreach($response['data']['societies'] as $society)
@@ -16,7 +16,7 @@
                                 </select>
                             </div>
                             <div class="input-holder"><input type="text" name="agency_name" placeholder="Search Your Favorite Agent"
-                            value=@if($response['data']['params']['agencyName'] !=""){{$response['data']['params']['agencyName']}}@endif></div>
+                            value="@if($response['data']['params']['agencyName'] !=""){{$response['data']['params']['agencyName']}}@endif"></div>
                             <input type="submit" value="Search Agent">
                         {{Form::close()}}
                     </div>

@@ -17,4 +17,12 @@ class AgencySocietyQueryBuilder extends QueryBuilder
         $this->table = 'agency_societies';
     }
 
+    public function deleteAgencySocieties($agencyId, $societyIds)
+    {
+        return DB::table($this->table)
+            ->where('agency_id',$agencyId)
+            ->whereIn('society_id', $societyIds)
+            ->delete();
+    }
+
 }

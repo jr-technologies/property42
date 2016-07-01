@@ -10,6 +10,7 @@ namespace App\Http\Requests\Requests\User;
 
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\AgencySociety;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\UserValidators\UpdateUserValidator;
@@ -77,6 +78,19 @@ class UpdateUserRequest extends Request implements RequestInterface
     public function hasCompanyLogo()
     {
         return $this->has('companyLogo');
+    }
+
+    public function getAgencySocieties($agencyId)
+    {
+        $societiesIds = $this->get('societies');
+        $agencySocieties = [];
+        foreach ($societiesIds as $societyId) {
+            $agencySociety = new AgencySociety();
+            $agencySociety->agencyId = $agencyId;
+            $agencySociety->societyId = $societyId;
+            $agencySocieties[] =$agencySociety;
+        }
+        return $agencySocieties;
     }
 
     public function getAgencyCities()

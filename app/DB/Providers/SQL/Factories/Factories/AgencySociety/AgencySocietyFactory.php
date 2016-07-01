@@ -44,6 +44,12 @@ class AgencySocietyFactory extends SQLFactory implements SQLFactoriesInterface
         }
         return $this->tableGateway->insertMultiple($agencySocietiesRecord);
     }
+
+    public function deleteAgencySocieties($agencyId, array $societyIds)
+    {
+        return $this->tableGateway->deleteAgencySocieties($agencyId, $societyIds);
+    }
+
     public function getTable()
     {
         return $this->tableGateway->getTable();
@@ -57,8 +63,8 @@ class AgencySocietyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $agencySociety = clone($this->model);
         $agencySociety->id = $result->id;
-        $agencySociety->societyId = $result->agency_id;
-        $agencySociety->agencyId = $result->society_id;
+        $agencySociety->societyId = $result->society_id;
+        $agencySociety->agencyId = $result->agency_id;
         $agencySociety->createdAt = $result->created_at;
         $agencySociety->updatedAt = $result->updated_at;
         return $agencySociety;

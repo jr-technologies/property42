@@ -24,6 +24,7 @@
                             @endforeach
                         </span>
                 @endif
+
                 <form class="registration-form" method="post" action="{{route('register')}}" enctype="multipart/form-data">
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('fName')) error @endif">
                         <label class="icon-user" for="fName"></label>
@@ -132,11 +133,11 @@
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyDescription')) {{$validationErrors->first('agencyDescription')}} @endif</span>
                         </div>
-                        <div class="input-holder full-width no-indent">
+                        <div class="input-holder full-width no-indent  @if(isset($validationErrors) && $validationErrors->has('societies')) error @endif">
                             <label for="search-society" class="icon-society"></label>
                             <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety">
                             <span class="border"></span>
-                            <span class="error-text">This is error</span>
+                            <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('societies')) {{$validationErrors->first('societies')}} @endif</span>
                             <span class="calculatedSocieties"></span>
                         </div>
 
