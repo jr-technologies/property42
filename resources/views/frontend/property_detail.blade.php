@@ -12,15 +12,18 @@
                         <div class="propertyImage-slider">
                             <div class="mask">
                                 <?php
-                                use App\Libs\Helpers\AuthHelper;$images = [];
-                                foreach ($response['data']['property']->documents as $document) {
-                                    if ($document->type == 'image') {
-                                        $images[] = url('/') . '/temp/' . $document->path;
+                                    use App\Libs\Helpers\AuthHelper;$images = [];
+                                    foreach ($response['data']['property']->documents as $document)
+                                    {
+                                        if ($document->type == 'image')
+                                        {
+                                            $images[] = url('/') . '/temp/' . $document->path;
+                                        }
                                     }
-                                }
-                                if (sizeof($images) == 0) {
-                                    $images[] = url('/') . "/assets/imgs/no.png";
-                                }
+                                    if(sizeof($images) == 0)
+                                    {
+                                        $images[] = url('/') . "/assets/imgs/no.png";
+                                    }
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
@@ -146,7 +149,7 @@
                                     $days = "";
                                     if($numberDays == 0){$days = 'today';}elseif($numberDays == 1){ $days= 'day ago';}else{$days='days ago';};
                                     ?>
-                                    <dd>{{$numberDays}} {{$days}}</dd>
+                                    <dd>@if($numberDays !=0){{$numberDays}} @endif {{$days}}</dd>
                                 </dl>
                             </div>
                         </div>
