@@ -16,6 +16,7 @@ use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
 use App\Events\Events\Agency\AgencySocietiesUpdated;
 use App\Events\Events\Agency\AgencyUpdated;
+use App\Listeners\Listeners\Agency\UpdateAgencyInPropertiesJson;
 use App\Repositories\Interfaces\Repositories\AgenciesRepoInterface;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Event;

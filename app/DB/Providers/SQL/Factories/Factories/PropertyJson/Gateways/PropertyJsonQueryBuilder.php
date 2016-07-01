@@ -94,4 +94,18 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
             ->skip($limit['start'])->take($limit['limit'])
             ->get();
     }
+    public function getAgencyProperties($agencyId)
+    {
+        $propertyTable = (new PropertyFactory())->getTable();
+        $agencyTable = (new AgencyFactory())->getTable();
+        $agencyStaff = (new AgencyStaffFactory())->getTable();
+        return DB::table($agencyTable)
+            ->leftjoin($agencyStaff,$agencyStaff.'.agency_id','=',$agencyTable.'.id')
+            ->leftjoin($propertyTable,$propertyTable.'.owner_id','=',$agencyStaff.'.user_id')
+            ->join($this->table,$propertyTable.'.id','=',$this->table.'.property_id')
+            ->select($this->table.'.json')
+            ->where($agencyTable.'.id','=',$agencyId)
+            ->get();
+    }
+
 }

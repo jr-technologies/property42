@@ -56,16 +56,17 @@
                     </section>
                     <ul class="pager">
                         <li><a href="#" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li><a href="#">9</a></li>
-                        <li><a href="#">10</a></li>
+                        <?php
+                        $paginationValue = intval(ceil($response['data']['totalAgentsFound'] / config('constants.Pagination')));
+                        $query_str_to_array = $_GET;
+                        $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
+                        for($i=1; $i<=$paginationValue;$i++){
+                        $query_str_to_array['page'] = $i;
+                        $queryString  = http_build_query($query_str_to_array);
+                        $result = URL('/agents').'?'.$queryString;
+                        ?>
+                        <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
+                        <?php }?>
                         <li><a href="#" class="next"><span class="icon-chevron-thin-right"></span></a></li>
                     </ul>
                 </div>

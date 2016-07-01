@@ -75,6 +75,7 @@ $(document).on('change','.property_type',function(){
 
 $(document).on('click','.add-to-favs',function(){
    var property_id = $(this).attr('property_id');
+   var key = $(this).attr('key');
    $.ajax({
       type: "POST",
       url: apiPath.concat("favourite/property"),
@@ -82,7 +83,7 @@ $(document).on('click','.add-to-favs',function(){
          property_id:property_id
       },
       headers: {
-         Authorization: ''
+         Authorization: key
       },
       success: function(response) {
          $('.add-to-favs').closest('a').addClass('added-to-favs');
@@ -96,6 +97,7 @@ $(document).on('click','.add-to-favs',function(){
 $(document).on('click','.remove-to-favs',function(){
    var property_id = $(this).attr('property_id');
    var user_id = $(this).attr('user_id');
+   var key = $(this).attr('key');
    $.ajax({
       type: "POST",
       url: apiPath.concat("favourite/property/delete"),
@@ -103,7 +105,7 @@ $(document).on('click','.remove-to-favs',function(){
          property_id:property_id,user_id:user_id
       },
       headers: {
-         Authorization: ''
+         Authorization: key
       },
       success: function(response) {
          $('.add-to-favs').closest('a').removeClass('added-to-favs');

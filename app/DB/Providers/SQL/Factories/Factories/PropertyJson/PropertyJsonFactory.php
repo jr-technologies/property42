@@ -33,6 +33,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
+    public function getAgencyProperties($agencyId)
+    {
+        return $this->mapCollection($this->tableGateway->getAgencyProperties($agencyId));
+    }
     public function getFavouriteProperties($params)
     {
         return $this->mapCollection($this->tableGateway->getFavouriteProperties($params));
@@ -40,6 +44,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     public function getTable()
     {
         return $this->tableGateway->getTable();
+    }
+    public function updateMultipleByIds($properties)
+    {
+        return $this->tableGateway->updateMultipleByIds($properties);
     }
     /**
      * @param int $id

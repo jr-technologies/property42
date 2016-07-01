@@ -33,7 +33,7 @@ class MailController extends Controller
         Mail::send('frontend.mail.mail_property_to_friend',['user' => $user], function($message) use($user)
         {
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
-            $message->to($user['to'])->subject('Property42');
+            $message->to(config('constants.REGISTRATION_EMAIL_TO'))->subject('Property42');
         });
         Session::flash('message', 'Your message has been sent');
         return redirect()->back();
@@ -44,7 +44,7 @@ class MailController extends Controller
         Mail::send('frontend.mail.mail_property_to_agent',['user' => $user], function($message) use($user)
         {
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
-            $message->to($user['from'])->subject('Property42');
+            $message->to(config('constants.REGISTRATION_EMAIL_TO'))->subject('Property42');
         });
         Session::flash('message', 'Your message has been sent');
         return redirect()->back();
@@ -66,7 +66,7 @@ class MailController extends Controller
         Mail::send('frontend.mail.agent_mail',['user' => $user], function($message) use($user)
         {
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
-            $message->to($user['to'])->subject('Property42');
+            $message->to(config('constants.REGISTRATION_EMAIL_TO'))->subject('Property42');
         });
 
         return redirect()->back();
