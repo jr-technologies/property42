@@ -99,7 +99,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
         $scope.form = {
             data : {
                 propertyId: property.id,
-                propertyPurpose: 1,
+                propertyPurpose: property.purpose.id,
                 propertyType :property.type.parentType.id,
                 propertySubType :property.type.subType.id,
                 society:property.location.society.id,

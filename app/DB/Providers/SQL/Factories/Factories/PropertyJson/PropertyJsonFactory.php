@@ -151,7 +151,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->mobile = $propertyJson->mobile;
         $property->fax = $propertyJson->fax;
         $property->createdBy = $propertyJson->createdBy;
-        $property->createdAt = $propertyJson->createdAt;
+        //$property->createdAt = $propertyJson->createdAt;
         return $property;
     }
 
