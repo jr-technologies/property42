@@ -14,7 +14,7 @@ return [
     'LAND_UNITS'=>['1'=>'square feet','2'=>'square yards','3'=>'marla','4'=>'kanal','5'=>'square meters'],
     'PROPERTIES_LIMIT' => 20,
     'AGENTS_LIMIT' => 10,
-    'Pagination' => 10,
+    'Pagination' => 20,
     'PROPERTIES_SortOn' => 'id',
     'PROPERTIES_SortBy' => 'asc',
     'REGISTRATION_EMAIL_FROM'=>'info@property42.pk',

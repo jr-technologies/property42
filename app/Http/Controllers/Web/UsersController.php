@@ -75,7 +75,7 @@ class UsersController extends Controller
             'agents' => $this->releaseUsersAgenciesLogo($agents),
             'societies'=>$this->societies->all(),
             'params'=>$request->all(),
-            'totalAgentsFound' => $totalAgentsFound
+            'totalAgentsFound' => $totalAgentsFound[0]->count,
         ]]);
     }
 
