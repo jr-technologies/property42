@@ -160,43 +160,7 @@
         <a href="#content" class="smooth-scroll down-scroll"><span class="icon-angle-down"></span></a>
     </div>
     <div id="content">
-        <div class="left-content">
-            <div class="company-logos-sliders">
-                <div class="mask">
-                    <div class="slideset">
-                        <div class="slide">
-                            <ul class="company-logo">
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent1.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent2.jpg"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent3.jpg"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent4.jpg"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent5.png"
-                                                     alt="image description"></a></li>
-                            </ul>
-                        </div>
-                        <div class="slide">
-                            <ul class="company-logo">
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent6.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent7.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent8.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent9.png"
-                                                     alt="image description"></a></li>
-                                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/agent10.png"
-                                                     alt="image description"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="center-content">
+        <div class="container">
             <div class="page-holder">
                 <div class="index-page">
                     <h1>featured home</h1>
@@ -342,17 +306,6 @@
                 </div>
             </div>
         </div>
-        <div class="right-content">
-            <ul class="posters">
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster1.jpg" width="523"
-                                     height="737" alt="image description"></a></li>
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster2.jpg" width="198"
-                                     height="255" alt="image description"></a></li>
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster3.jpg" width="194"
-                                     height="259" alt="image description"></a></li>
-                <li><a href="#"><img src="{{url('/')}}/web-apps/frontend/assets/images/poster1.jpg" width="523"
-                                     height="737" alt="image description"></a></li>
-            </ul>
-        </div>
+
     </div>
 @endsection
