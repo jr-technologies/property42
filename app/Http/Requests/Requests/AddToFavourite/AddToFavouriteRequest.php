@@ -12,14 +12,17 @@ use App\DB\Providers\SQL\Models\FavouriteProperty;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\AddToFavouriteValidators\AddToFavouriteValidator;
+use App\Libs\Helpers\AuthHelper;
 use App\Transformers\Request\AddToFavourite\AddToFavouriteTransformer;
 
 class AddToFavouriteRequest extends Request implements RequestInterface{
 
     public $validator = null;
+    public $user = null;
     public function __construct(){
         parent::__construct(new AddToFavouriteTransformer($this->getOriginalRequest()));
         $this->validator = new AddToFavouriteValidator($this);
+        $this->user = (new AuthHelper())->user();
     }
 
     /**
@@ -42,7 +45,7 @@ class AddToFavouriteRequest extends Request implements RequestInterface{
     public function favouriteProperty()
     {
         $addToFavourite = new FavouriteProperty();
-        $user = session()->get('authUser');
+        $user = $this->user;
         $addToFavourite->userId =$user->id;
         $addToFavourite->propertyId = $this->get('propertyId');
         return $addToFavourite;

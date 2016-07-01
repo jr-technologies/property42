@@ -12,15 +12,18 @@
                         <div class="propertyImage-slider">
                             <div class="mask">
                                 <?php
-                                $images = [];
-                                foreach ($response['data']['property']->documents as $document) {
-                                    if ($document->type == 'image') {
-                                        $images[] = url('/') . '/temp/' . $document->path;
+                                    use App\Libs\Helpers\AuthHelper;$images = [];
+                                    foreach ($response['data']['property']->documents as $document)
+                                    {
+                                        if ($document->type == 'image')
+                                        {
+                                            $images[] = url('/') . '/temp/' . $document->path;
+                                        }
                                     }
-                                }
-                                if (sizeof($images) == 0) {
-                                    $images[] = url('/') . "/assets/imgs/no.png";
-                                }
+                                    if(sizeof($images) == 0)
+                                    {
+                                        $images[] = url('/') . "/assets/imgs/no.png";
+                                    }
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
@@ -64,10 +67,10 @@
                             <div class="description">
                                 <div class="layout">
                                     @if ($response['data']['property']->owner->agency != null)
-                                    @if ($response['data']['property']->owner->agency->logo != null)
-                                    <img src="{{url('/') . '/temp/' . $response['data']['property']->owner->agency->logo}}"
-                                             width="300"
-                                             height="300" alt="image description">
+                                        @if ($response['data']['property']->owner->agency->logo != null)
+                                            <img src="{{url('/') . '/temp/' . $response['data']['property']->owner->agency->logo}}"
+                                                 width="300"
+                                                 height="300" alt="image description">
                                         @endif
                                     @endif
                                     <div class="holder">
@@ -135,13 +138,23 @@
                                     <dd>
                                         <b>Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}</b></dd>
                                     <dt>Added:</dt>
-                                    <dd>{{($response['data']['property']->createdAt)}}</dd>
+                                    <?php
+                                    $startTimeStamp = strtotime(date("Y/m/d"));
+                                    $myDate =substr($response['data']['property']->createdAt, 0, 10);
+                                    $endTimeStamp = strtotime($myDate);
+                                    $timeDiff = abs($endTimeStamp - $startTimeStamp);
+                                    $numberDays = $timeDiff/86400;  // 86400 seconds in one day
+                                    // and you might want to convert to integer
+                                    $numberDays = intval($numberDays);
+                                    $days = "";
+                                    if($numberDays == 0){$days = 'today';}elseif($numberDays == 1){ $days= 'day ago';}else{$days='days ago';};
+                                    ?>
+                                    <dd>@if($numberDays !=0){{$numberDays}} @endif {{$days}}</dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
                     <h1>overview</h1>
-
                     <div class="overviewText-holder height">
                         <div class="overviewText">
                             <p>{{$response['data']['property']->description}}.</p>
@@ -171,11 +184,11 @@
 
                     @if(sizeof($response['data']['user']->agencies) > 0 )
                         @if(sizeof($response['data']['user']->agencies[0]->societies) > 0)
-                    <h1>Societies He Deal In</h1>
-                    @foreach($response['data']['user']->agencies[0]->societies as $society )
-                        {{$society->name}}
-                    @endforeach
-                    @endif
+                            <h1>Societies He Deal In</h1>
+                            @foreach($response['data']['user']->agencies[0]->societies as $society )
+                                {{$society->name}}
+                            @endforeach
+                        @endif
                     @endif
                     <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
@@ -203,14 +216,17 @@
                                 <a class="popup-close"><span class="icon-cross"></span></a>
                             </div>
                         </li>
+                        <?php
+                        $user = (new AuthHelper())->user();
+                        ?>
                         <li class="popup-holder">
                             <a class=" @if($response['data']['isFavourite'] != 0) added-to-favs @endif">
                                 <span class="add-to-favs addTo"
-                                      property_id="{{$response['data']['property']->id}}"><span
+                                      property_id="{{$response['data']['property']->id}}" key="{{($user !=null)?$user->access_token:""}}"><span
                                             class="icon-favourites-filled-star-symbol"></span> Add to favorites</span>
                                 <span class="addedToFavs remove-to-favs"
                                       property_id="{{$response['data']['property']->id}}"
-                                      user_id="{{($response['data']['loggedInUser'] !=null)?$response['data']['loggedInUser']->id:""}}"><span
+                                      user_id="{{($user !=null)?$user->id:""}}" key="{{($user !=null)?$user->access_token:""}}"><span
                                             class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
                             </a>
                         </li>

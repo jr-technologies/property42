@@ -20,6 +20,7 @@ use App\Events\Events\User\UserUpdated;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
 use App\Listeners\Listeners\Agency\AddOwnerAsStaffMember;
 use App\Listeners\Listeners\Agency\DeleteAgencyInUserJson;
+use App\Listeners\Listeners\Agency\UpdateAgencyInPropertiesJson;
 use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
 use App\Listeners\Listeners\Feature\CreateFeatureJsonDocument;
 use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
@@ -61,6 +62,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         AgencyUpdated::class => [
             UpdateAgencyInUserJson::class,
+            UpdateAgencyInPropertiesJson::Class,
         ],
         AgencyDeleted::class => [
             DeleteAgencyInUserJson::class,

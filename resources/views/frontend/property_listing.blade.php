@@ -46,9 +46,9 @@
                                     }
                                 }
                                 ?>
-                                <div class="img-holder"><a href="#"><img src="{{$image}}" width="600" height="450" alt="image description"></a></div>
+                                <div class="img-holder"><a href="property?propertyId={{$property->id}}"><img src="{{$image}}" width="600" height="450" alt="image description"></a></div>
                                 <div class="caption">
-                                    <strong class="post-heading"><a href="#">{{ $property->land->area.' '.$property->land->unit->name .' '.$property->type->subType->name.'
+                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}">{{ $property->land->area.' '.$property->land->unit->name .' '.$property->type->subType->name.'
                         '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                         ' '.$property->location->society->name}}</a><span
                                                 class="price">Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</span>
@@ -74,7 +74,7 @@
                                             }
                                         }
                                         ?>
-                                        <div class="state-logo"><a href="#">
+                                        <div class="state-logo"><a href="{{ URL::to('agent?agent_id='.$property->owner->id) }}">
                                                 <img src="{{$image}}" width="300" height="300" alt="Property42.pk">
                                             </a>
                                         </div>
@@ -85,16 +85,18 @@
                     </section>
                     <ul class="pager">
                         <li><a href="#" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li><a href="#">9</a></li>
-                        <li><a href="#">10</a></li>
+
+                        <?php
+                            $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
+                            $query_str_to_array = $_GET;
+                            $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
+                            for($i=1; $i<=$paginationValue;$i++){
+                            $query_str_to_array['page'] = $i;
+                            $queryString  = http_build_query($query_str_to_array);
+                            $result = URL('/search').'?'.$queryString;
+                            ?>
+                            <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
+                        <?php }?>
                         <li><a href="#" class="next"><span class="icon-chevron-thin-right"></span></a></li>
                     </ul>
 
