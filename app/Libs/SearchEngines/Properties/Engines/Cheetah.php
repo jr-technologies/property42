@@ -85,7 +85,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
                 $query = $query->where($properties.'.land_area', '>=', LandArea::convert(config('constants.LAND_UNITS')[$this->instructions['landUnitId']], 'square feet',$this->instructions['landAreaFrom']));
         if(isset($this->instructions['landAreaTo']) && $this->instructions['landAreaTo'] != null && $this->instructions['landAreaTo'] != '')
             if(isset($this->instructions['landUnitId']) && $this->instructions['landUnitId'] != null && $this->instructions['landUnitId'] != '')
-                $query = $query->where($properties.'.land_area', '<=', LandArea::convert($this->instructions['landUnitId'], 'square feet',$this->instructions['landAreaTo']));
+                $query = $query->where($properties.'.land_area', '<=', LandArea::convert(config('constants.LAND_UNITS')[$this->instructions['landUnitId']], 'square feet',$this->instructions['landAreaTo']));
         if(isset($this->instructions['ownerIds']) && $this->instructions['ownerIds'] != null && $this->instructions['ownerIds'] != '')
             $query = $query->whereIn($properties.'.owner_id', $this->instructions['ownerIds']);
 

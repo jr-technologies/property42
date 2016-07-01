@@ -65,8 +65,10 @@ $(document).on('change','.property_type',function(){
       var property_type = $(this).val();
       if(property_type !=1 && property_type != ''){
          $('.bedrooms').addClass('hide-bedrooms');
+         $('#bedrooms-select').prop('disabled', true);
       }else{
          $('.bedrooms').removeClass('hide-bedrooms');
+         $('#bedrooms-select').prop('disabled', false);
       }
    }
 });
