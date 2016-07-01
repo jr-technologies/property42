@@ -77,7 +77,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
             $landUnit = (new PropertyLandUnitJsonCreator($landUnit))->create();
 
             foreach($properties as &$property /* @var $property PropertyJsonPrototype*/){
-                $property->land->area =  LandArea::convert($property->land->unit->name, $landUnit->name, $property->land->area);
+                $property->land->area =  LandArea::convert('square feet', $landUnit->name, $property->land->area);
                 $property->land->unit = $landUnit;
             }
         }

@@ -1,8 +1,8 @@
 /**
  * Created by WAQAS on 6/14/2016.
  */
-var apiPath ="http://"+window.location.hostname+"/jr/property42/backend/property42/public/api/v1/";
-//var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
+//var apiPath ="http://"+window.location.hostname+"/jr/property42/backend/property42/public/api/v1/";
+var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
 $(document).on('change', '#society', function(){
    var society_id = $(this).val();
    if(society_id !="") {
@@ -30,40 +30,44 @@ $(document).on('change', '#society', function(){
    }
 });
 
-$(document).on('change', '.property_type', function(){
-   var property_type_id = $(this).val();
-   if(property_type_id !="") {
-      $('#property_sub_types').closest('.fake-select').addClass('loading');
-      $.ajax({
-         url: apiPath.concat("types/subtypes"),
-         data: {
-            type_id: property_type_id
-         },
-         success: function (response) {
-            $('#property_sub_types').empty();
-            $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
-            $.each(response.data.propertySubType, function (i, propertySubType) {
-               $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
-            });
-            $('#property_sub_types').closest('.fake-select').removeClass('loading');
-         }
-      })
-   }
-   else
-   {
-      $('#property_sub_types').empty();
-      $('#property_sub_types').append($('<option>').text('All SubTypes').attr('value',''));
-      $('#property_sub_types').closest('.fake-select').removeClass('loading');
+$(document).on('change', '.property_type', function(event){
+   if($(this).prop('checked') == true){
+      var property_type_id = $(this).val();
+      if(property_type_id !="") {
+         $('#property_sub_types').closest('.fake-select').addClass('loading');
+         $.ajax({
+            url: apiPath.concat("types/subtypes"),
+            data: {
+               type_id: property_type_id
+            },
+            success: function (response) {
+               $('#property_sub_types').empty();
+               $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
+               $.each(response.data.propertySubType, function (i, propertySubType) {
+                  $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
+               });
+               $('#property_sub_types').closest('.fake-select').removeClass('loading');
+            }
+         })
+      }
+      else
+      {
+         $('#property_sub_types').empty();
+         $('#property_sub_types').append($('<option>').text('All SubTypes').attr('value',''));
+         $('#property_sub_types').closest('.fake-select').removeClass('loading');
+      }
    }
 });
 
 
 $(document).on('change','.property_type',function(){
-   var property_type = $(this).val();
-   if(property_type !=1 && property_type != ''){
-      $('.bedrooms').addClass('hide-bedrooms');
-   }else{
-      $('.bedrooms').removeClass('hide-bedrooms');
+   if($(this).prop('checked') == true){
+      var property_type = $(this).val();
+      if(property_type !=1 && property_type != ''){
+         $('.bedrooms').addClass('hide-bedrooms');
+      }else{
+         $('.bedrooms').removeClass('hide-bedrooms');
+      }
    }
 });
 
