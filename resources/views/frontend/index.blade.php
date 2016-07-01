@@ -147,7 +147,7 @@
         <a href="#content" class="smooth-scroll down-scroll"><span class="icon-angle-down"></span></a>
     </div>
     <div id="content">
-        <div class="center-content">
+        <div class="container">
             <div class="page-holder">
                 <div class="index-page">
                     <h1>featured home</h1>
