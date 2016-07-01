@@ -1,8 +1,8 @@
 /**
  * Created by WAQAS on 6/14/2016.
  */
-//var apiPath ="http://"+window.location.hostname+"/jr/property42/backend/property42/public/api/v1/";
-var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
+var apiPath ="http://"+window.location.hostname+"/jr/property42/backend/property42/public/api/v1/";
+//var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
 $(document).on('change', '#society', function(){
    var society_id = $(this).val();
    if(society_id !="") {
