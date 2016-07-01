@@ -49,6 +49,7 @@ Route::post('favourite/properties/delete',
     [
         'middleware'=>
             [
+                'apiAuthenticate:DeleteMultiFavouritePropertyRequest',
                 'apiValidate:DeleteMultiFavouritePropertyRequest'
             ],
         'uses'=>'PropertiesController@deleteMultiFavouriteProperty'
