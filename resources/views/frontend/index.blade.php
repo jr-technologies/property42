@@ -23,17 +23,10 @@
                 <div class="tab-content">
 
                     <ul class="propertyType-buttons">
-                        <li>
-                            <label for="anyPro">
-                                <input type="radio" id="anyPro" class="property_type" name="property_type_id" checked
-                                       value="">
-                                <span class="fake-label">All Types</span>
-                            </label>
-                        </li>
                         @foreach($response['data']['propertyTypes'] as $propertyType)
                             <li>
                                 <label for="{{$propertyType->name."_".$propertyType->id}}">
-                                    <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
+                                    <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}" @if($propertyType->id == 1) checked @endif
                                            name="property_type_id" class="property_type" value="{{$propertyType->id}}">
                                     <span class="fake-label">{{$propertyType->name}}</span>
                                 </label>
@@ -48,7 +41,6 @@
                             <div class="input-holder">
 <span class="fake-select">
 <select name="society_id" id="society">
-    <option disabled selected value>Society</option>
     <option  value="">All Societies</option>
     @foreach($response['data']['societies'] as $society)
         <option value="{{$society->id}}">{{$society->name}}</option>
@@ -64,7 +56,7 @@
                         <span class="fake-select">
                             <span class="load">
                                 <select name="block_id" id="blocks">
-                                    <option disabled selected value>Block</option>
+                                    <option selected value="">All Blocks</option>
                                 </select>
                             </span>
                         </span>
@@ -74,18 +66,14 @@
                     <ul>
                         <li>
                             <label>Property SubType:</label>
-                        <div class="input-holder">
-                        <span class="fake-select">
-                           <span class="load">
-                            <select name="sub_type_id" id="property_sub_types">
-                                <option disabled selected value>Property SubType</option>
-                                <option  value="">All Property SubType</option>
-                                @foreach($response['data']['propertySubtypes'] as $propertySubType)
-                                    <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
-                                @endforeach
-                            </select>
-                          </span>
-                            </span>
+                            <div class="input-holder">
+                                <span class="fake-select">
+                                   <span class="load">
+                                    <select name="sub_type_id" id="property_sub_types">
+                                        <option selected value="">Property SubType</option>
+                                    </select>
+                                  </span>
+                                </span>
                             </div>
                         </li>
                         <li class="bedrooms">
@@ -93,8 +81,8 @@
 
                             <div class="input-holder">
 <span class="fake-select">
-<select name="property_features[28]">
-    <option disabled selected value>Bedrooms</option>
+<select name="property_features[28]" id="bedrooms-select">
+    <option value="" selected>Any</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -131,9 +119,8 @@
 
                             <div class="fake-select">
                                 <select name="land_unit_id" name="land_unit_id">
-                                    <option selected value="">All Units</option>
                                     @foreach($response['data']['landUnits'] as $landUnit)
-                                        <option value="{{$landUnit->id}}">{{$landUnit->name}}</option>
+                                        <option value="{{$landUnit->id}}" @if($landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -306,6 +293,11 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.property_type').trigger('change');
+            $('#society').trigger('change');
+        });
+    </script>
 @endsection

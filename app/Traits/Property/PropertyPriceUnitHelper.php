@@ -10,6 +10,7 @@ namespace App\Traits\Property;
 
 use App\DB\Providers\SQL\Models\Property;
 use App\Libs\Helpers\LandArea;
+use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Traits\AppTrait;
 
 trait PropertyPriceUnitHelper
@@ -19,6 +20,19 @@ trait PropertyPriceUnitHelper
     public function convertPropertyAreaToLowestUnit(Property $property)
     {
         $property->landArea = LandArea::convert(config('constants.LAND_UNITS')[$property->landUnitId], 'square feet', $property->landArea);
+        return $property;
+    }
+
+    public function convertPropertiesAreaToActualUnit(array $properties)
+    {
+        foreach($properties as &$property){
+            $property = $this->convertPropertyAreaToActualUnit($property);
+        }
+        return $properties;
+    }
+    public function convertPropertyAreaToActualUnit(PropertyJsonPrototype $property)
+    {
+        $property->land->area = LandArea::convert('square feet',config('constants.LAND_UNITS')[$property->land->unit->id], $property->land->area);
         return $property;
     }
 }

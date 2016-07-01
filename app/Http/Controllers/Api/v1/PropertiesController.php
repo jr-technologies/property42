@@ -96,7 +96,7 @@ class PropertiesController extends ApiController
     }
     public function update(UpdatePropertyRequest $request)
     {
-        $property = $request->getPropertyModel();
+        $property = $this->convertPropertyAreaToLowestUnit($request->getPropertyModel());
         $this->properties->update($property);
         $this->propertyFeatureValues->updatePropertyFeatures($property->id, $request->getFeaturesValues($property->id));
         $this->updatePropertyFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $property->id);
@@ -206,7 +206,8 @@ class PropertiesController extends ApiController
 
     public function getUserProperties(GetUserPropertiesRequest $request)
     {
-        $properties = $this->releaseAllPropertiesFiles($this->propertiesJsonRepo->getUserProperties($request->all()));
+        $properties = $this->convertPropertiesAreaToActualUnit($this->propertiesJsonRepo->getUserProperties($request->all()));
+        $properties = $this->releaseAllPropertiesFiles($properties);
         return $this->response->respond(['data' => [
             'properties' => $this->propertyJsonTransformer->transformCollection($properties),
             'totalProperties' => $this->propertiesJsonRepo->countSearchedUserProperties($request->all())
