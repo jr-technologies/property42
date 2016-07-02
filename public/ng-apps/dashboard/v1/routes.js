@@ -75,7 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
                         start: start, limit: limit
                     }).then(function successCallback(response) {
                         console.log(response);
-                        return response.data.data.properties;
+                        return response.data.data;
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});
                         return undefined;

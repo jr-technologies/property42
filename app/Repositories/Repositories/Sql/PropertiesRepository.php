@@ -94,9 +94,9 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return  $this->favouriteFactory->deleteFavouriteProperty($params);
     }
-    public function MultiDeleteFavouriteProperty($propertyIds,$userId)
+    public function multiDeleteFavouriteProperty($propertyIds,$userId)
     {
-        return  $this->favouriteFactory->MultiDeleteFavouriteProperty($propertyIds,$userId);
+        return  $this->favouriteFactory->multiDeleteFavouriteProperty($propertyIds,$userId);
     }
     public function forceDeleteByIds($propertyIds)
     {
