@@ -22,12 +22,13 @@ use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
+use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Transformers\Response\PropertyTransformer;
 use Illuminate\Support\Facades\DB;
 
 class PropertiesController extends Controller
 {
-    use PropertyFilesReleaser;
+    use PropertyFilesReleaser, PropertyPriceUnitHelper;
     public $PropertyTransformer = null;
     public $properties = "";
     public $societies =null;
@@ -89,12 +90,12 @@ class PropertiesController extends Controller
     public function getById(GetPropertyRequest $request)
     {
         $loggedInUser = $request->user();
-        $property = $this->properties->getById($request->get('propertyId'));
+        $property = $this->convertPropertyAreaToActualUnit($this->properties->getById($request->get('propertyId')));
         return $this->response->setView('frontend.property_detail')->respond(['data'=>[
             'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
             'property'=>$this->releaseAllPropertiesFiles([$property])[0],
             'loggedInUser'=>$loggedInUser,
-             'user'=>$this->users->find($property->owner->id)
+            'user'=>$this->users->find($property->owner->id)
         ]]);
 
     }
