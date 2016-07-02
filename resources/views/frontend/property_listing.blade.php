@@ -48,7 +48,7 @@
                                 ?>
                                 <div class="img-holder"><a href="property?propertyId={{$property->id}}"><img src="{{$image}}" width="600" height="450" alt="image description"></a></div>
                                 <div class="caption">
-                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}">{{ $property->land->area.' '.$property->land->unit->name .' '.$property->type->subType->name.'
+                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}"><span class="landUnit">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}</span> {{$property->type->subType->name.'
                         '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                         ' '.$property->location->society->name}}</a><span
                                                 class="price">Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</span>

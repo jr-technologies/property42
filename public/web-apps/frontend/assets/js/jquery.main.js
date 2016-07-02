@@ -13,25 +13,25 @@ $(document).on('click', '.propertyImage-slider-btn-next, .propertyImage-slider-b
 	var currentSlideRemainderCeil = Math.ceil(currentSlideRemainder);
 	var currentSlideRemainderFloor = Math.floor(currentSlideNumber);
 	var currentWindowNumber = parseInt($('.paginationCurrent-num-1').text());
-	 
-	 if(currentSlideRemainderCeil > currentWindowNumber)
-	 {
+
+	if(currentSlideRemainderCeil > currentWindowNumber)
+	{
 		var stepsToMove = currentSlideRemainderCeil - currentWindowNumber;
 		for(var i = 0; i< stepsToMove; i++){
 			$('.propertyImage-pagination-btn-next-1').click();
-		}	 
-	 }
-	 else if(currentSlideRemainderCeil < currentWindowNumber)
-	 {
+		}
+	}
+	else if(currentSlideRemainderCeil < currentWindowNumber)
+	{
 		var stepsToMove = currentWindowNumber - currentSlideRemainderCeil;
 		for(var i = 0; i< stepsToMove; i++){
 			$('.propertyImage-pagination-btn-prev-1').click();
 		}
-	 }
+	}
 });
 $(document).ready(function(){
 	setTimeout(function(){
- 		jQuery('body').removeClass('loading-resources');
+		jQuery('body').removeClass('loading-resources');
 	},1000);
 	$('.alert-success').find('.close').on('click', function(){
 		$('.alert-success').hide();
@@ -45,7 +45,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var paraentHeight = $('.overviewText-holder').height();
 	var childHeight = $('.overviewText').height();
-	
+
 	if(childHeight > paraentHeight){
 		$('.btn-showMore').css({
 			'display':'block'
@@ -63,14 +63,22 @@ $(document).on('tap, click', '#main', function(){
 
 $(document).on('click', '.btn-showMore', function(){
 	$('.overviewText-holder').toggleClass('height');
-	
+
 	if($('.overviewText-holder').hasClass('height')){
 		$('.btn-showMore').text('Show More');
 	}
 	else {
 		$('.btn-showMore').text('Show Less');
 	}
-	
+
+});
+
+$(document).on('focusin', '.PriceField', function(){
+	$('.priceArea').removeClass('priceShow');
+	$(this).closest('.priceArea').addClass('priceShow');
+});
+$(document).on('focusout', '.PriceField', function(){
+	$('.priceArea').removeClass('priceShow');
 });
 
 $(document).ready(function(){
@@ -87,9 +95,9 @@ $(document).on('click', '.popup-close', function(){
 	$(this).closest('.popup-holder').removeClass('active');
 });
 $(document).on('keyup',function(evt) {
-    if (evt.keyCode == 27) {
+	if (evt.keyCode == 27) {
 		$('.popup-holder').removeClass('active');
-    }
+	}
 });
 $(window).on(load, function(){
 	alert();
@@ -145,7 +153,7 @@ function initCarousel() {
 		swipeGap: true,
 		step: 1
 	});
-	
+
 	jQuery('.company-logos-sliders').scrollGallery({
 		mask: '.mask',
 		slider: '.slideset',
@@ -173,7 +181,7 @@ function initCarousel() {
 		animSpeed: 500,
 		swipeGap: true
 	});
-	
+
 	jQuery('.propertyImage-pagination').scrollGallery({
 		mask: '.propertyImage-mask',
 		slider: '.propertyImage-slideset',
