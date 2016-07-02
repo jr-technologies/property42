@@ -91,7 +91,7 @@ class PropertiesController extends ApiController
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
             'properties'=>$favouriteProperties,
-            'favouriteCount'=>$totalCount
+            'favouritesCount'=>$totalCount
         ]]);
     }
     public function update(UpdatePropertyRequest $request)
@@ -148,13 +148,13 @@ class PropertiesController extends ApiController
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
             'favouriteProperties'=>$favouriteProperties,
-            'favouriteCount'=>$totalCount
+            'favouritesCount'=>$totalCount
         ]]);
     }
     public function deleteMultiFavouriteProperty(DeleteMultiFavouritePropertyRequest $request)
     {
         $params = $request->all();
-        $this->properties->MultiDeleteFavouriteProperty($params['propertyIds'],$params['userId']);
+        $this->properties->multiDeleteFavouriteProperty($params['propertyIds'],$params['userId']);
         $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[

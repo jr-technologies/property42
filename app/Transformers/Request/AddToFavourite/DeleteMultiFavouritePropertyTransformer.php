@@ -17,8 +17,10 @@ class DeleteMultiFavouritePropertyTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'propertyIds'=> $this->request->input('property_ids'),
-            'userId'=> $this->request->input('user_id'),
+            'propertyIds'=> $this->request->input('propertyIds'),
+            'userId'=> $this->request->input('userId'),
+            'start'=> $this->request->input('start'),
+            'limit'=> $this->request->input('limit'),
         ];
     }
 }

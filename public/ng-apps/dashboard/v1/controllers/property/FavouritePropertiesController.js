@@ -12,7 +12,8 @@ app.filter('roundup', function () {
 });
 app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttpService", "$window", "$scope", "$rootScope","$http","$location", "$state", "$stateParams", "$AuthService", function (properties, $q, $CustomHttpService, $window, $scope, $rootScope, $http, $location, $state, $stateParams, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
-    $scope.properties = properties;
+    $scope.properties = properties.properties;
+    $rootScope.favouritesCount = properties.favouritesCount;
     $scope.deletingPropertyId = 0;
     $scope.params = {
         userId: $rootScope.authUser.id,
