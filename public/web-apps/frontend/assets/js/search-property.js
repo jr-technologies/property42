@@ -19,6 +19,7 @@ $(document).on('change', '#society', function(){
                $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
             });
             $('#blocks').closest('.fake-select').removeClass('loading');
+            $('#blocks').trigger('loaded');
          }
       })
    }
@@ -42,11 +43,12 @@ $(document).on('change', '.property_type', function(event){
             },
             success: function (response) {
                $('#property_sub_types').empty();
-               $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
+               $('#property_sub_types').append($('<option>').text('All Sub Types').attr('value', '').attr('selected','selected'));
                $.each(response.data.propertySubType, function (i, propertySubType) {
                   $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
                });
                $('#property_sub_types').closest('.fake-select').removeClass('loading');
+               $('#property_sub_types').trigger('loaded');
             }
          })
       }

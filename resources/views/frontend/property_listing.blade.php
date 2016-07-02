@@ -134,11 +134,10 @@
                                     <label>Select Sub Type:</label>
                                     <span class="fake-select">
                                     <span class="load">
-                                    <select name="sub_type_id" id="property_sub_types">
-                                        <option disabled selected value>Property SubType</option>
+                                    <select name="sub_type_id" id="property_sub_types" old_sub_type="{{$response['data']['oldValues']['subTypeId']}}">
                                         <option  value="">All Property SubType</option>
                                         @foreach($response['data']['propertySubtypes'] as $propertySubType)
-                                            <option value="{{$propertySubType->id}}" @if($response['data']['oldValues']['purposeId'] ==$propertySubType->id)selected @endif>{{$propertySubType->name}}</option>
+                                            <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
                                         @endforeach
                                     </select>
                                 </span>
@@ -161,17 +160,17 @@
                                     <label>Select Block:</label>
                                   <span class="fake-select">
                                       <span class="load">
-                                <select name="block_id" id="blocks">
-                                    <option disabled selected value>Block</option>
-                                </select>
-                                          </span>
+                                        <select name="block_id" id="blocks" old_block="{{$response['data']['oldValues']['blockId']}}">
+                                            <option selected value="">Any</option>
+                                        </select>
+                                      </span>
                                  </span>
                                 </li>
-                                <li>
+                                <li class="bedrooms">
                                     <label>Select Bedrooms:</label>
                                     <span class="fake-select">
                                     <span class="load">
-                                    <select name="property_features[28]">
+                                    <select name="property_features[28]" id="bedrooms-select">
                                         <option value="">Any</option>
                                         <option value=1 @if($response['data']['oldValues']['propertyFeatures'][28] == 1) selected @endif>1</option>
                                         <option value=2 @if($response['data']['oldValues']['propertyFeatures'][28] == 2) selected @endif>2</option>
@@ -215,31 +214,20 @@
 
     </div>
     <script>
-//        function propertyTypeChangedInSearchPopup()
-//        {
-//            var property_type_id = $('.property_type').val();
-//            if(property_type_id !="") {
-//                //$('#property_sub_types').closest('.fake-select').addClass('loading');
-//                $.ajax({
-//                    url: apiPath.concat("types/subtypes"),
-//                    data: {
-//                        type_id: property_type_id
-//                    },
-//                    success: function (response) {
-//                        $('#property_sub_types').empty();
-//                        $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
-//                        $.each(response.data.propertySubType, function (i, propertySubType) {
-//                            $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
-//                        });
-//
-//                        //alert('all done. now select the old one.');
-//                    }
-//                })
-//            }
-//        }
+        $(document).on('loaded','#property_sub_types', function () {
+            var subTypeId = parseInt($('#property_sub_types').attr('old_sub_type'));
+            if(!isNaN(subTypeId)){
+                $("#property_sub_types").val(subTypeId).change();
+            }
+        });
+        $(document).on('loaded','#blocks', function () {
+            var subTypeId = parseInt($('#blocks').attr('old_block'));
+            if(!isNaN(subTypeId)){
+                $("#blocks").val(subTypeId).change();
+            }
+        });
 
         $(document).ready(function(){
-            //propertyTypeChangedInSearchPopup();
             $('.property_type').trigger('change');
             $('#society').trigger('change');
         });
