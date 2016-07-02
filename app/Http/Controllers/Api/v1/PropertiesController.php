@@ -147,7 +147,7 @@ class PropertiesController extends ApiController
         $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
-            'favouriteProperties'=>$favouriteProperties,
+            'properties'=>$favouriteProperties,
             'favouritesCount'=>$totalCount
         ]]);
     }
@@ -158,7 +158,7 @@ class PropertiesController extends ApiController
         $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
         $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
-            'favouriteProperties'=>$favouriteProperties,
+            'properties'=>$favouriteProperties,
             'favouritesCount'=>$totalCount
         ]]);
     }
