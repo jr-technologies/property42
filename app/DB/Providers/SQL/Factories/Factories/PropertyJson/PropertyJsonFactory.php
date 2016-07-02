@@ -45,6 +45,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->getTable();
     }
+    public function getPendingProperties()
+    {
+        return $this->mapCollection($this->tableGateway->getPendingProperties());
+    }
     public function updateMultipleByIds($properties)
     {
         return $this->tableGateway->updateMultipleByIds($properties);
@@ -158,7 +162,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->mobile = $propertyJson->mobile;
         $property->fax = $propertyJson->fax;
         $property->createdBy = $propertyJson->createdBy;
-        //$property->createdAt = $propertyJson->createdAt;
+        $property->createdAt = $propertyJson->createdAt;
         return $property;
     }
 

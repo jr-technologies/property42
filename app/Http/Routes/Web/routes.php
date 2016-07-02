@@ -1,6 +1,41 @@
 <?php
 
+Route::get('get/property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getById'
+    ]
+);
+Route::post('admin/property/reject',
+    [
+        'middleware'=>
+            [
+                'webValidate:RejectPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@rejectProperty'
+    ]
+);
 
+Route::post('admin/property/approve',
+    [
+        'middleware'=>
+            [
+                'webValidate:ApprovePropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@approveProperty'
+    ]
+);
+
+Route::get('admin/properties',
+    [
+        'middleware'=>
+            [
+            ],
+        'uses'=>'Admin\AdminController@getProperties'
+    ]);
 Route::get('/login',
     [
         'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
@@ -119,6 +154,9 @@ Route::post('mail-to-agent',
             ],
         'uses'=>'MailController@mailToAgent'
     ]);
+
+
+
 
 Route::post('contact_us',
     [
