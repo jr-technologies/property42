@@ -323,6 +323,10 @@ return [
         'DeleteToFavouritePropertyRequest' => \App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest::class,
         'DeleteMultiFavouritePropertyRequest' => \App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest::class,
 
+        /* Admin Requests */
+        'GetAdminPropertyRequest' => \App\Http\Requests\Requests\Property\GetAdminPropertyRequest::class,
+        'RejectPropertyRequest' => \App\Http\Requests\Requests\Property\RejectPropertyRequest::class,
+        'ApprovePropertyRequest' => \App\Http\Requests\Requests\Property\ApprovePropertyRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

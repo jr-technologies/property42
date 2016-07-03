@@ -48,7 +48,7 @@
                                 ?>
                                 <div class="img-holder"><a href="property?propertyId={{$property->id}}"><img src="{{$image}}" width="600" height="450" alt="image description"></a></div>
                                 <div class="caption">
-                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}">{{ $property->land->area.' '.$property->land->unit->name .' '.$property->type->subType->name.'
+                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}"><span class="landUnit">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}</span> {{$property->type->subType->name.'
                         '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                         ' '.$property->location->society->name}}</a><span
                                                 class="price">Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</span>
@@ -56,9 +56,13 @@
                                     </strong>
                                     <address>{{str_limit($property->description,150)}}.</address>
                                     <ul class="property-details">
-                                        <li>4 Bedrooms</li>
-                                        <li>4 Baths</li>
-                                        <li>4 Rooms (total)</li>
+                                     @foreach($property->features as $feature)
+                                         @foreach($feature as $featureSection)
+                                             @if($featureSection->priority ==1)
+                                                <li>{{$featureSection->value}} {{$featureSection->name}}</li>
+                                             @endif
+                                         @endforeach
+                                     @endforeach
                                     </ul>
                                     <div class="holder">
                                         <ul class="quick-links">
@@ -83,8 +87,23 @@
                             </article>
                         @endforeach
                     </section>
+                    <?php
+                    $for_previous_link = $_GET;
+                    $pageValue = (isset($for_previous_link['page']))?$for_previous_link['page']:1;
+                    ($pageValue ==1)?$for_previous_link['page'] = $pageValue:$for_previous_link['page'] = $pageValue-1;
+                    $convertPreviousToQueryString  = http_build_query($for_previous_link);
+                    $previousResult = URL('/search').'?'.$convertPreviousToQueryString;
+                    ?>
+                    <?php
+                    $totalPaginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
+                    $for_next_link = $_GET;
+                    $pageValue = (isset($for_next_link['page']))?$for_next_link['page']:1;
+                    ($pageValue == $totalPaginationValue)?$for_next_link['page'] = $pageValue:$for_next_link['page'] = $pageValue+1;
+                    $convertToQueryString  = http_build_query($for_next_link);
+                    $nextResult = URL('/search').'?'.$convertToQueryString;
+                    ?>
                     <ul class="pager">
-                        <li><a href="#" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
+                        <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
 
                         <?php
                             $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
@@ -97,7 +116,7 @@
                             ?>
                             <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                         <?php }?>
-                        <li><a href="#" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+                        <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
                     </ul>
 
                     <div class="lightbox" id="SearchPublic-Property">

@@ -55,7 +55,6 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->factory->favourites($userId);
     }
-
     public function restoreProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
@@ -63,7 +62,20 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         Event::fire(new PropertyStatusUpdated($property));
         return $result;
     }
-
+    public function rejectProperty(Property $property)
+    {
+        $property->statusId=(new \PropertyStatusTableSeeder())->getRejectedStatusId();
+        $result = $this->factory->restoreProperty($property);
+        Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
+    public function approveProperty(Property $property)
+    {
+        $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
+        $result = $this->factory->restoreProperty($property);
+        Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
     public function all()
     {
         return $this->factory->all();
@@ -118,4 +130,5 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->favouriteFactory->store($addToFavourite);
     }
+
 }

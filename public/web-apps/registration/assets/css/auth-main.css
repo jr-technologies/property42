@@ -403,8 +403,8 @@ th {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?kbn8wj");
-  src: url("../fonts/icomoon.eot?kbn8wj#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?kbn8wj") format("truetype"), url("../fonts/icomoon.woff?kbn8wj") format("woff"), url("../fonts/icomoon.svg?kbn8wj#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?5lf323");
+  src: url("../fonts/icomoon.eot?5lf323#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?5lf323") format("truetype"), url("../fonts/icomoon.woff?5lf323") format("woff"), url("../fonts/icomoon.svg?5lf323#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -421,6 +421,10 @@ th {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-warning:before {
+  content: "\e931";
 }
 
 .icon-refresh-arrow:before {
@@ -2724,7 +2728,7 @@ body {
 
 #footer .cols-holder .col .contact textarea:focus,
 #footer .cols-holder .col .contact input[type="text"]:focus, #footer .cols-holder .col .contact input[type="email"]:focus {
-  background: #779ceb;
+  border-color: #fff;
   color: #fff;
 }
 
@@ -2946,4 +2950,20 @@ body {
 .nav-opener span {
   top: 50%;
   margin: -2px 0 0;
+}
+
+.forgot-form .global-successMessage {
+  display: none !important;
+}
+
+.forgot-form.password-sent .global-successMessage {
+  display: block !important;
+}
+
+.forgot-form.password-sent .forgot-heading, .forgot-form.password-sent .input-holder, .forgot-form.password-sent button[type="submit"] {
+  display: none !important;
+}
+
+.forgot-form.password-sent .btn-log {
+  margin: 0;
 }

@@ -107,5 +107,13 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
             ->where($agencyTable.'.id','=',$agencyId)
             ->get();
     }
-
+    public function getPendingProperties()
+    {
+        $propertyTable = (new PropertyFactory())->getTable();
+        return DB::table($propertyTable)
+            ->join($this->table,$propertyTable.'.id','=',$this->table.'.property_id')
+            ->select($this->table.'.json')
+            ->where($propertyTable.'.property_status_id','=',10)
+            ->get();
+    }
 }

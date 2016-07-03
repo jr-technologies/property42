@@ -74,9 +74,10 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttp
             userId: $rootScope.authUser.id,
             start: start, limit: limit
         }).then(function successCallback(response) {
+            console.log(response.data.data.properties);
             $rootScope.favouritesCount = response.data.data.favouritesCount;
             $scope.properties = response.data.data.properties;
-            $scope.totalProperties = response.data.data.totalProperties;
+            $scope.totalProperties = response.data.data.favouritesCount;
             $scope.deletingPropertyId = 0;
         }, function errorCallback(response) {
             $scope.deletingPropertyId = 0;
@@ -92,7 +93,7 @@ app.controller("FavouritePropertiesController",["properties", "$q", "$CustomHttp
         }).then(function successCallback(response) {
             $rootScope.favouritesCount = response.data.data.favouritesCount;
             $scope.properties = response.data.data.properties;
-            $scope.totalProperties = response.data.data.totalProperties;
+            $scope.totalProperties = response.data.data.favouritesCount;
             $scope.deletingPropertyId = 0;
         }, function errorCallback(response) {
             $scope.deletingPropertyId = 0;
