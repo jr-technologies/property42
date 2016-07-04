@@ -48,7 +48,6 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         return $this->userTransformer->transform($user);
     }
 
-
     /**
      * @param string $column
      * @param string $value

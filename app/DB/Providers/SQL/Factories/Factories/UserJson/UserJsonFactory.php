@@ -60,6 +60,10 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $params['limit'] = $this->computePagination($params)['limit'];
         return $this->mapCollection($this->tableGateway->trustedAgents($params));
     }
+    public function getAllTrustedAgents()
+    {
+        return $this->mapCollection($this->tableGateway->getAllTrustedAgents());
+    }
 
     /**
      * @param UserJsonPrototype $user

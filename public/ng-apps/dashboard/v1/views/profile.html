@@ -101,11 +101,11 @@
                 <span class="border"></span>
                 <span class="error-text">{{errors.agencyDescription[0]}}</span>
             </div>
-            <div class="input-holder full-width no-indent">
+            <div class="input-holder full-width no-indent" ng-class="{'error' : errors.societies.length > 0}">
                 <label for="search-society" class="icon-society"></label>
                 <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
                 <span class="border"></span>
-                <span class="error-text">This is error</span>
+                <span class="error-text">{{errors.societies[0]}}</span>
                 <span class="calculatedSocieties">{{form.data.societies.length}} selected</span>
             </div>
             <div class="input-holder full-width">

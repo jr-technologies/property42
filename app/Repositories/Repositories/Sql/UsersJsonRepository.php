@@ -47,7 +47,11 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     }
     public function trustedAgents(array $params)
     {
-       return $this->factory->trustedAgents($params);
+        return $this->factory->trustedAgents($params);
+    }
+    public function getAllTrustedAgents()
+    {
+        return $this->factory->getAllTrustedAgents();
     }
     public function search(array $params)
     {

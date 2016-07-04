@@ -60,6 +60,7 @@ class UserFactory extends SQLFactory implements SQLFactoriesInterface{
         $user->trustedAgent = 1;
         return $this->tableGateway->updateWhere(['id'=>$user->id],$this->mapUserOnTable($user));
     }
+
     /**
      * @param $id
      * @return UserModel

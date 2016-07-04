@@ -19,9 +19,8 @@
                                 <select  name="agency_name" class="js-example-basic-single">
                                     <option selected disabled>Search by Agents</option>
                                     <option value="" @if($response['data']['params']['agencyName'] == "") selected @endif>All Agent</option>
-                                    @foreach($response['data']['agents'] as $agent)
-                                        <option value="{{$agent->agencies[0]->name}}"
-                                        @if($response['data']['params']['agencyName'] == $agent->agencies[0]->name) selected @endif>{{$agent->agencies[0]->name}}</option>
+                                    @foreach($response['data']['allAgents'] as $agent)
+                                        <option value="{{$agent->agencies[0]->name}}" @if($response['data']['params']['agencyName'] == $agent->agencies[0]->name) selected @endif>{{$agent->agencies[0]->name}}</option>
                                     @endforeach
                                 </select>
                                     <input type="submit" value="Search Agent">

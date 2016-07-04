@@ -128,34 +128,6 @@
                         </div>
 
 
-                        <div class="col">
-                            <header>Property For Sale</header>
-                            <div class="caption">
-                                <ul>
-                                    <li><span>Houses</span><span>2</span></li>
-                                    <li><span>Residential Plots</span><span>370</span></li>
-                                    <li><span>Flats</span><span>56</span></li>
-                                    <li><span>Commercial Plots</span><span>18</span></li>
-                                    <li><span>Industrial Land</span><span>1</span></li>
-                                    <li><span>Buildings</span><span>5</span></li>
-                                    <li><span>Plot Files</span><span>8</span></li>
-                                </ul>
-                                <a href="#" class="view-all">View All</a>
-                            </div>
-                            <header> Properties For Rent</header>
-                            <div class="caption">
-                                <ul>
-                                    <li><span>Houses</span><span>2</span></li>
-                                    <li><span>Residential Plots</span><span>370</span></li>
-                                    <li><span>Flats</span><span>56</span></li>
-                                    <li><span>Commercial Plots</span><span>18</span></li>
-                                    <li><span>Industrial Land</span><span>1</span></li>
-                                    <li><span>Buildings</span><span>5</span></li>
-                                    <li><span>Plot Files</span><span>8</span></li>
-                                </ul>
-                                <a href="#" class="view-all">View All</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
