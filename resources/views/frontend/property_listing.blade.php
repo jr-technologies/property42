@@ -210,8 +210,8 @@
                                 </li>
                                 <li>
                                     <label>Price Range (Rs):</label>
-                                    <div class="input-holder priceArea"><input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="PriceField"><span class="price-Range">Please enter the price</span></div>
-                                    <div class="input-holder priceArea"><input type="number" placeholder="To" name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="PriceField"><span class="price-Range">Please enter the price</span></div>
+                                    <div class="input-holder priceArea"><input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="PriceField priceInputFrom"><span class="price-Range detailedPriceFrom">Please enter the price</span></div>
+                                    <div class="input-holder priceArea"><input type="number" placeholder="To" name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="PriceField priceInputTo"><span class="price-Range detailedPriceTo">Please enter the price</span></div>
                                 </li>
                                 <li>
 

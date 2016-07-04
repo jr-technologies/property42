@@ -233,7 +233,7 @@
                             </a>
                             <div class="popup">
                                 <div class="loginToContinue">
-                                    <p>Dear user ! You are not logged in Please <a href="#">Login</a></p>
+                                    <p>Dear user ! You are not logged in Please <a href="{{url('/login')}}">Login</a></p>
                                     <a class="popup-close"><span class="icon-cross"></span></a>
                                 </div>
                             </div>
