@@ -6,7 +6,7 @@
             <div class="page-holder">
                 <div class="public-propertyListing">
                     <div class="holder">
-                        <span class="searchResult-counter">Showing <b>1</b> to <b>{{config('constants.Pagination') }}</b> of
+                        <span class="searchResult-counter">Showing <b>1</b> to <b>{{$response['data']['propertiesCount'] }}</b> of
                             <b>{{$response['data']['totalProperties']}}</b> properties</span>
                         <ul class="sortBy">
                             <li>Sorty By</li>

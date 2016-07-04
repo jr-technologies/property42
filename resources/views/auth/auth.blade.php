@@ -23,18 +23,19 @@
             <nav id="nav">
                 <ul class="main-navigation">
                     <li>
-                        <a href="#">buy</a>
+                        <a href="#">Buy</a>
                         <ul class="dropDown">
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">plot</a></li>
-                            <li><a href="#">commerical</a></li>
+                            @foreach($globals['propertyTypes'] as $propertyType)
+                                <li><a href={{URL::to('search?purpose_id=1'.'&property_type_id='.$propertyType->id)}}>{{$propertyType->name }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li>
-                        <a href="#">rent</a>
+                        <a href="#">Rent</a>
                         <ul class="dropDown">
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">commerical</a></li>
+                            @foreach($globals['propertyTypes'] as $propertyType)
+                                <li><a href={{URL::to('search?purpose_id=2'.'&property_type_id='.$propertyType->id)}}>{{$propertyType->name }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="agent-link"><a href="{{URL::to('agents')}}">agents</a></li>

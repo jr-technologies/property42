@@ -69,6 +69,7 @@ class UsersController extends Controller
     }
     public function trustedAgents(GetAgentsRequest $request)
     {
+        //dd($request->all());
         $agents = $this->usersJsonRepo->trustedAgents($request->all());
         $totalAgentsFound = \Session::get('totalAgentsFound');
         return $this->response->setView('frontend.agent-listing')->respond(['data' => [
