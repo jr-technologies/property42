@@ -83,12 +83,14 @@ $(document).on('change', '.selectSociety-checkbox', function(){
 
 $(document).on('change', '.agent-brokerCheckbox', function(){
 	if($(this).is(':checked')){
+		addValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', true);
 		});
 		$('.registration-form').addClass('agent-info')
 	}
 	else {
+		removeValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', false);
 			$('.registration-form').removeClass('agent-info')
@@ -114,4 +116,13 @@ $(document).on('click', '.delete', function(){
 		'display':'none'
 	});
 });
- 
+
+
+function addValidationsOnAgentInfo()
+{
+	console.log('ading validations');
+}
+function removeValidationsOnAgentInfo()
+{
+	console.log('removing validations');
+}

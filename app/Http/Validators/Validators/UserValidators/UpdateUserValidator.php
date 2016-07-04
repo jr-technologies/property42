@@ -32,6 +32,7 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
             'lName.required' => 'Last name is required',
             'password.match_existing_password' => 'Password did not match with your existing password.',
             'phone.required' => 'Phone is required',
+            'societies.societies_limit'=>'you can not select more then 3 societies',
             'userRoles.required' => 'User roles is required',
             'userRoles.cannot_remove_agent' => 'Dear user! once you are an agent, you cannot remove this role.',
             'termsConditions.required' => $termsConditionsMessage,
@@ -64,7 +65,7 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
-            'societies' => 'required',
+            'societies' => 'required|societies_limit',
             'companyEmail' => 'required|email|unique:agencies,email'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'agencyDescription'=>'max:1200',
             'companyLogo'=>'max_image_size:1000,1000'
@@ -115,6 +116,27 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
                 if(!in_array($this->idForAgentBroker,$currentRoles)){
                     return false;
                 }
+            }
+            return true;
+        });
+    }
+
+    public function registerSocietiesLimitRule()
+    {
+        Validator::extend('societies_limit', function($attribute, $value, $parameters)
+        {
+            try {
+                $societies = $this->request->get('societies');
+                $societiesLimit = false;
+                if (sizeof($societies) < 4 && sizeof($societies) > 0) {
+                    $societiesLimit = true;
+                }
+                if(!$societiesLimit){
+                    return false;
+                }
+            }catch(\Exception $e)
+            {
+                throw $e;
             }
             return true;
         });
