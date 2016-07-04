@@ -129,7 +129,7 @@
                         </div>
                         <div class="input-holder full-width @if(isset($validationErrors) && $validationErrors->has('agencyDescription')) error @endif">
                             <label for="D-services" class="icon-technical-support"></label>
-                            <textarea id="D-services" name="agencyDescription" value="{{old('agencyDescription')}}" placeholder="Description of Services"></textarea>
+                            <textarea id="D-services" name="agencyDescription" placeholder="Description of Services">{{old('agencyDescription')}}</textarea>
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyDescription')) {{$validationErrors->first('agencyDescription')}} @endif</span>
                         </div>
