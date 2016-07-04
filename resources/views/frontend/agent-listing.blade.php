@@ -27,6 +27,8 @@
                                     <input type="submit" value="Search Agent">
                             {{Form::close()}}
                     </div>
+                </div>
+
 
                     <section class="property-posts">
                         @foreach($response['data']['agents'] as $agent)
@@ -40,26 +42,26 @@
                                 }
                             }
                             ?>
-                        <article class="post">
-                            <div class="post-holder">
-                                <div class="img-holder">
-                                    <a href="{{ URL::to('agent?agent_id='.$agent->id) }}">
-                                        <img src="{{$image}}" width="300" height="300" alt="image description">
-                                    </a>
-                                </div>
-                                <div class="caption">
-                                    <strong class="post-heading"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></strong>
-                                    <p>{{str_limit($agent->agencies[0]->description,150)}}</p>
-                                    <div class="holder">
-                                        <ul class="quick-links">
-                                            <li><a href="tel:{{$agent->agencies[0]->phone}}"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->phone}}</span><span class="show-xs">Call Now</span></a></li>
-                                            <li><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><span class="icon-pencil"></span>View Details</a></li>
-                                        </ul>
+                            <article class="post">
+                                <div class="post-holder">
+                                    <div class="img-holder">
+                                        <a href="{{ URL::to('agent?agent_id='.$agent->id) }}">
+                                            <img src="{{$image}}" width="300" height="300" alt="image description">
+                                        </a>
+                                    </div>
+                                    <div class="caption">
+                                        <strong class="post-heading"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></strong>
+                                        <p>{{str_limit($agent->agencies[0]->description,150)}}</p>
+                                        <div class="holder">
+                                            <ul class="quick-links">
+                                                <li><a href="tel:{{$agent->agencies[0]->phone}}"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->phone}}</span><span class="show-xs">Call Now</span></a></li>
+                                                <li><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><span class="icon-pencil"></span>View Details</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                       @endforeach
+                            </article>
+                        @endforeach
                     </section>
                     <?php
                     $for_previous_link = $_GET;
@@ -92,7 +94,6 @@
 
                         <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
                     </ul>
-                </div>
             </div>
 
     </div>

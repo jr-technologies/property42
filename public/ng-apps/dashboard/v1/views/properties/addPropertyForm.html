@@ -98,7 +98,13 @@
                         <span class="error-text"></span>
                     </div>
                 </div>
-                <span class="calculatedPrice"></span>
+                <div class="layout-holder">
+                    <span class="title">Property Title:</span>
+                    <div class="input-holder">
+                        <input type="text" name="propertyTitle" ng-model="form.data.propertyTitle">
+                        <span class="error-text"></span>
+                    </div>
+                </div>
             </div>
             <div class="layout add">
                 <div class="layout-holder">
@@ -115,15 +121,6 @@
                         <select name="land_unit" ng-model="form.data.landUnit">
                             <option data-ng-repeat="unit in resources.landUnits" value="{{unit.id}}">{{unit.name}}</option>
                         </select>
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="layout add">
-                <div class="layout-holder">
-                    <span class="title">Property Title:</span>
-                    <div class="input-holder">
-                        <input type="text" name="propertyTitle" ng-model="form.data.propertyTitle">
                         <span class="error-text"></span>
                     </div>
                 </div>
