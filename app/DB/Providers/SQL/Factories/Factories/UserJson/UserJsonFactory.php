@@ -22,7 +22,10 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $this->model = new UserJsonPrototype();
         $this->tableGateway = new UserJsonQueryBuilder();
     }
-
+    public function getPendingAgents()
+    {
+        $this->tableGateway->getPendingAgents();
+    }
     public function getAgencyStaff($agencyId)
     {
         return $this->mapCollection($this->tableGateway->getAgencyStaff($agencyId));

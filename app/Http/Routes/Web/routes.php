@@ -36,6 +36,15 @@ Route::get('admin/properties',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);
+
+Route::get('admin/agents',
+    [
+        'middleware'=>
+            [
+            ],
+        'uses'=>'Admin\AdminController@getAgents'
+    ]);
+
 Route::get('/login',
     [
         'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'

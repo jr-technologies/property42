@@ -65,9 +65,15 @@ class AdminController extends Controller
         $this->propertiesRepo->rejectProperty($request->getPropertyModel());
         return redirect('get/property');
     }
-   public function approveProperty(ApprovePropertyRequest $request)
-   {
+    public function approveProperty(ApprovePropertyRequest $request)
+    {
        $this->propertiesRepo->approveProperty($request->getPropertyModel());
        return redirect('get/property');
-   }
+    }
+     public function getAgents()
+     {
+        $this->response->setView('pending-Agents')->respond(['data'=>[
+            'agents'=>$this->users->getPendingAgents()
+        ]]);
+     }
 }

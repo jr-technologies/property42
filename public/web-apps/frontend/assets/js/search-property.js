@@ -91,7 +91,8 @@ $(document).on('click','.add-to-favs',function(){
          $('.add-to-favs').closest('a').addClass('added-to-favs');
       },
       error: function () {
-         alert('please login to add this property to your favourites.')
+         $('.popup-opener').closest('li').addClass('popup-holder');
+
       }
    })
 });
@@ -104,7 +105,7 @@ $(document).on('click','.remove-to-favs',function(){
       type: "POST",
       url: apiPath.concat("favourite/property/delete"),
       data:{
-         property_id:property_id,user_id:user_id
+         propertyId:property_id,userId:user_id
       },
       headers: {
          Authorization: key
@@ -113,7 +114,7 @@ $(document).on('click','.remove-to-favs',function(){
          $('.add-to-favs').closest('a').removeClass('added-to-favs');
       },
       error: function () {
-         alert('please login to add this property to your favourites.')
+         $('.popup-opener').closest('li').removeClass('popup-holder');
       }
    })
 });

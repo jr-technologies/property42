@@ -40,7 +40,7 @@
 
                             <div class="input-holder">
 <span class="fake-select">
-<select name="society_id" id="society">
+<select name="society_id" id="society" class="js-example-basic-single">
     <option  value="">All Societies</option>
     @foreach($response['data']['societies'] as $society)
         <option value="{{$society->id}}">{{$society->name}}</option>
@@ -55,7 +55,7 @@
                     <div class="input-holder">
                         <span class="fake-select">
                             <span class="load">
-                                <select name="block_id" id="blocks">
+                                <select name="block_id" id="blocks" class="js-example-basic-single">
                                     <option selected value="">All Blocks</option>
                                 </select>
                             </span>
@@ -69,7 +69,7 @@
                             <div class="input-holder">
                                 <span class="fake-select">
                                    <span class="load">
-                                    <select name="sub_type_id" id="property_sub_types">
+                                    <select name="sub_type_id" id="property_sub_types" class="js-example-basic-single">
                                         <option selected value="">Property SubType</option>
                                     </select>
                                   </span>
@@ -81,7 +81,7 @@
 
                             <div class="input-holder">
 <span class="fake-select">
-<select name="property_features[28]" id="bedrooms-select">
+<select name="property_features[28]" id="bedrooms-select" >
     <option value="" selected>Any</option>
     <option value=1>1</option>
     <option value=2>2</option>
@@ -102,15 +102,17 @@
                     </ul>
                     <ul class="inline">
                         <li class="full">Price Range (Rs)</li>
-                        <li>
+                        <li class="priceArea">
                             <span>From:</span>
 
-                            <div class="input-holder"><input type="number" name="price_from"></div>
+                            <div class="input-holder"><input type="number" name="price_from" class="PriceField">
+                                <span class="price-Range">Please enter the price</span>
+                            </div>
                         </li>
-                        <li>
+                        <li class="priceArea">
                             <span>to:</span>
 
-                            <div class="input-holder"><input type="number" name="price_to"></div>
+                            <div class="input-holder"><input type="number" name="price_to" class="PriceField"><span class="price-Range">Please enter the price</span></div>
                         </li>
                     </ul>
                     <ul class="inline">

@@ -73,7 +73,15 @@ class UserJsonQueryBuilder extends QueryBuilder{
        return  $query = $query->get();
     }
 
-
+    public function getPendingAgents()
+    {
+        $userTable = (new UserFactory())->getTable();
+       return DB::table($userTable)
+           ->join($this->table,$userTable.'.id','=',$this->table.'.user_id')
+           ->select($this->table.'.json')
+           ->where($userTable.'.trusted_agent','=',0)
+           ->get();
+    }
     public function trustedAgents(array $params)
     {
         $userTable = (new UserFactory())->getTable();
