@@ -135,7 +135,7 @@
                         </div>
                         <div class="input-holder full-width no-indent  @if(isset($validationErrors) && $validationErrors->has('societies')) error @endif">
                             <label for="search-society" class="icon-society"></label>
-                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" required>
+                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('societies')) {{$validationErrors->first('societies')}} @endif</span>
                             <span class="calculatedSocieties"></span>
