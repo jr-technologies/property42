@@ -13,6 +13,8 @@ use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Auth\Web as Authenticator;
 use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
@@ -36,6 +38,8 @@ class AuthController extends WebController
     public $response;
     private $agencies;
     private $roles;
+    public $propertyTypes;
+    public $propertySubtypes;
     public function __construct
     (
         WebResponse $response, Authenticator $authenticator,
@@ -48,13 +52,18 @@ class AuthController extends WebController
         $this->users = $usersRepoProvider->repo();
         $this->response = $response;
         $this->userTransformer = $userTransformer;
+        $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
+        $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
         $this->agencies = (new AgenciesRepoProvider())->repo();
     }
     public function showLoginPage()
     {
         if(\Session::has('authUser'))
             return redirect()->route('dashboard');
-        return $this->response->setView('auth.login')->respond([]);
+        return $this->response->setView('auth.login')->respond(['data'=>[
+            'propertyTypes'=>$this->propertyTypes->all(),
+            'propertySubtypes'=>$this->propertySubtypes->all()
+        ]]);
     }
 
     public function login(LoginRequest $request)
@@ -85,7 +94,7 @@ class AuthController extends WebController
         {
             $this->saveUserAgency($request, $user->id);
         }
-        \Session::flash('success', 'Registered Successfully');
+        \Session::flash('success', ''.$user->fName.' '.$user->lName.' you are register Successfully');
         return redirect()->route('loginPage');
     }
 

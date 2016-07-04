@@ -74,9 +74,12 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'societies' => 'required|societies_limit',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
             'agencyDescription'=>'max:1200',
-            'companyLogo'=>'mimes:jpeg,bmp,png|image|max_image_size:1000,1000'
+            'companyLogo'=>'image_validation|max_image_size:1000,1000'
         ];
     }
+
+
+
     public function registerSocietiesInDealRule()
     {
         Validator::extend('unique_agent_in_societies', function($attribute, $value, $parameters)

@@ -11,14 +11,21 @@
                                     <option selected disabled>Search by society</option>
                                     <option value="" @if($response['data']['params']['society'] == "") selected @endif>All Societies</option>
                                     @foreach($response['data']['societies'] as $society)
-                                    <option value={{$society->id}} @if($response['data']['params']['society'] == $society->id) selected @endif>{{$society->name}}</option>
+                                    <option value="{{$society->id}}" @if($response['data']['params']['society'] == $society->id) selected @endif>{{$society->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="input-holder"><input type="text" name="agency_name" placeholder="Search Your Favorite Agent"
-                            value="@if($response['data']['params']['agencyName'] !=""){{$response['data']['params']['agencyName']}}@endif"></div>
-                            <input type="submit" value="Search Agent">
-                        {{Form::close()}}
+                            <div class="input-holder">
+                                <select  name="agency_name" class="js-example-basic-single">
+                                    <option selected disabled>Search by Agents</option>
+                                    <option value="" @if($response['data']['params']['agencyName'] == "") selected @endif>All Agent</option>
+                                    @foreach($response['data']['agents'] as $agent)
+                                        <option value="{{$agent->agencies[0]->name}}"
+                                        @if($response['data']['params']['agencyName'] == $agent->agencies[0]->name) selected @endif>{{$agent->agencies[0]->name}}</option>
+                                    @endforeach
+                                </select>
+                                    <input type="submit" value="Search Agent">
+                            {{Form::close()}}
                     </div>
 
                     <section class="property-posts">
