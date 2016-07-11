@@ -121,6 +121,8 @@ $(document).on('click', '.delete', function(){
 function addValidationsOnAgentInfo()
 {
 	 $('#agency-name').attr('required','required');
+	 $('#compny-mobile').attr('required','required');
+	 $('#compny-email').attr('required','required');
 }
 function removeValidationsOnAgentInfo()
 {
