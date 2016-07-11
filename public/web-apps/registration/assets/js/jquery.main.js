@@ -126,5 +126,7 @@ function addValidationsOnAgentInfo()
 }
 function removeValidationsOnAgentInfo()
 {
-	console.log('removing validations');
+	$('#agency-name').removeAttr('required');
+	$('#compny-mobile').removeAttr('required');
+	$('#compny-email').removeAttr('required');
 }

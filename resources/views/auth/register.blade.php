@@ -155,7 +155,7 @@
                         <h1> Agency Contact Details</h1>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyPhone')) error @endif">
                             <label for="compny-phone" class="icon-phone"></label>
-                            <input type="tel" placeholder="Enter Company Phone Number" name="companyPhone" value="{{old('companyPhone')}}" id="compny-phone" required>
+                            <input type="tel" placeholder="Enter Company Phone Number" name="companyPhone" value="{{old('companyPhone')}}" id="compny-phone" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyPhone')) {{$validationErrors->first('companyPhone')}} @endif</span>
                         </div>
@@ -167,13 +167,13 @@
                         </div>
                         <div class="input-holder full-width @if(isset($validationErrors) && $validationErrors->has('companyAddress')) error @endif">
                             <label for="compny-address" class="icon-directions"></label>
-                            <input type="text" placeholder="Enter Company Address" name="companyAddress" value="{{old('companyAddress')}}" id="compny-address" required>
+                            <input type="text" placeholder="Enter Company Address" name="companyAddress" value="{{old('companyAddress')}}" id="compny-address" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyAddress')) {{$validationErrors->first('companyAddress')}} @endif</span>
                         </div>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyEmail')) error @endif">
                             <label for="compny-email" class="icon-envelope"></label>
-                            <input type="email" placeholder="Enter Company Email" name="companyEmail" value="{{old('companyEmail')}}" id="compny-email" required>
+                            <input type="email" placeholder="Enter Company Email" name="companyEmail" value="{{old('companyEmail')}}" id="compny-email" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyEmail')) {{$validationErrors->first('companyEmail')}} @endif</span>
                         </div>
