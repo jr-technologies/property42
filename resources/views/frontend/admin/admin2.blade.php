@@ -35,6 +35,9 @@
             <ul class="sideBar-links">
                 <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
                 <li class="active"><a href="{{URL::to('admin/properties')}}"><span class="icon-list"></span>listings <span class="badge">134</span></a></li>
+
+                <li class="active"><a href="{{URL::to('admin/agents')}}"><span class="icon-list"></span>Agents <span class="badge">134</span></a></li>
+
             </ul>
         </aside>
         @yield('content')

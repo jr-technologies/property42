@@ -11,16 +11,14 @@ namespace App\Http\Requests\Requests\Mail;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\MailValidators\AgentMailValidator;
 use App\Http\Validators\Validators\MailValidators\ContactUSMailValidator;
-use App\Transformers\Request\Mail\AgentMailTransformer;
-use App\Transformers\Request\Mail\ContactUSMailTransformer;
+use App\Transformers\Request\Mail\ContactUsMailTransformer;
 
 class ContactUSMailRequest extends Request implements RequestInterface{
 
     public $validator = null;
     public function __construct(){
-        parent::__construct(new ContactUSMailTransformer($this->getOriginalRequest()));
+        parent::__construct(new ContactUsMailTransformer($this->getOriginalRequest()));
         $this->validator = new ContactUSMailValidator($this);
     }
 

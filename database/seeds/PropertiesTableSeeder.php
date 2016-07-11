@@ -17,7 +17,7 @@ class PropertiesTableSeeder extends Seeder
         for($b = 1; $b<=2; $b++)
         {
             $allProperties = [];
-            for($a = 1; $a <= 200; $a++)
+            for($a = 1; $a <= 20; $a++)
 
             {
                 $temp = [];

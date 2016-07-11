@@ -7,11 +7,12 @@ app.controller("FeedbackController",["$scope", "$rootScope", "$CustomHttpService
     $scope.feedBackSent = false;
     $scope.form = {
         data:{
+            userId: $rootScope.authUser.id,
             email: '',
             message: ''
         }
     };
-    $scope.sendFeedback = function () {
+    $scope.sendFeedback = function (){
         $scope.feedBackSent = true;
         return $CustomHttpService.$http('POST', apiPath+'user/feedback', $scope.form.data)
             .then(function successCallback(response) {

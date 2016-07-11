@@ -45,7 +45,7 @@
                                     <p>{{str_limit($agent->agencies[0]->description,150)}}</p>
                                     <div class="holder">
                                         <ul class="quick-links">
-                                            <li><a href="tel:{{$agent->agencies[0]->mobile}}"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->mobile}}</span><span class="show-xs">Call Now</span></a></li>
+                                            <li><a href="tel:{{$agent->agencies[0]->phone}}"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->phone}}</span><span class="show-xs">Call Now</span></a></li>
                                             <li><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><span class="icon-pencil"></span>View Details</a></li>
                                         </ul>
                                     </div>

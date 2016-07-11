@@ -5,7 +5,7 @@
         <div class="container">
             <div class="page-holder">
                 <div class="public-propertyListing">
-                     <div class="holder">
+                    <div class="holder">
                         <span class="searchResult-counter">Showing <b>1</b> to <b>{{config('constants.Pagination') }}</b> of
                             <b>{{$response['data']['totalProperties']}}</b> properties</span>
                         <ul class="sortBy">
@@ -28,9 +28,9 @@
                                 </select>
                             </li>
                         </ul>
-                         <div class="layout">
-                             <a href="#SearchPublic-Property" class="mySearch lightbox">My Search<span class="icon-search"></span></a>
-                         </div>
+                        <div class="layout">
+                            <a href="#SearchPublic-Property" class="mySearch lightbox">My Search<span class="icon-search"></span></a>
+                        </div>
                     </div>
 
                     <section class="property-posts">
@@ -48,7 +48,7 @@
                                 ?>
                                 <div class="img-holder"><a href="property?propertyId={{$property->id}}"><img src="{{$image}}" width="600" height="450" alt="image description"></a></div>
                                 <div class="caption">
-                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}">{{ $property->land->area.' '.$property->land->unit->name .' '.$property->type->subType->name.'
+                                    <strong class="post-heading"><a href="property?propertyId={{$property->id}}"><span class="landUnit">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}</span> {{$property->type->subType->name.'
                         '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                         ' '.$property->location->society->name}}</a><span
                                                 class="price">Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</span>
@@ -56,13 +56,15 @@
                                     </strong>
                                     <address>{{str_limit($property->description,150)}}.</address>
                                     <ul class="property-details">
-                                     @foreach($property->features as $feature)
-                                         @foreach($feature as $featureSection)
-                                             @if($featureSection->priority ==1)
-                                                <li>{{$featureSection->value}} {{$featureSection->name}}</li>
-                                             @endif
-                                         @endforeach
-                                     @endforeach
+
+                                        @foreach($property->features as $feature)
+                                            @foreach($feature as $featureSection)
+                                                @if($featureSection->priority ==1)
+                                                    <li>{{$featureSection->value}} {{$featureSection->name}}</li>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+
                                     </ul>
                                     <div class="holder">
                                         <ul class="quick-links">
@@ -103,20 +105,27 @@
                     $nextResult = URL('/search').'?'.$convertToQueryString;
                     ?>
                     <ul class="pager">
+
+                        @if($totalPaginationValue !=0)
                         <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
+                        @endif
 
                         <?php
-                            $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
-                            $query_str_to_array = $_GET;
-                            $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
-                            for($i=1; $i<=$paginationValue;$i++){
-                            $query_str_to_array['page'] = $i;
-                            $queryString  = http_build_query($query_str_to_array);
-                            $result = URL('/search').'?'.$queryString;
-                            ?>
-                            <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
+                        $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
+                        $query_str_to_array = $_GET;
+                        $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
+                        for($i=1; $i<=$paginationValue;$i++){
+                        $query_str_to_array['page'] = $i;
+                        $queryString  = http_build_query($query_str_to_array);
+                        $result = URL('/search').'?'.$queryString;
+                        ?>
+                        <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                         <?php }?>
-                        <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+
+                            @if($totalPaginationValue !=0)
+                            <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+                          @endif
+
                     </ul>
 
                     <div class="lightbox" id="SearchPublic-Property">
@@ -153,11 +162,10 @@
                                     <label>Select Sub Type:</label>
                                     <span class="fake-select">
                                     <span class="load">
-                                    <select name="sub_type_id" id="property_sub_types">
-                                        <option disabled selected value>Property SubType</option>
+                                    <select name="sub_type_id" id="property_sub_types" old_sub_type="{{$response['data']['oldValues']['subTypeId']}}">
                                         <option  value="">All Property SubType</option>
                                         @foreach($response['data']['propertySubtypes'] as $propertySubType)
-                                            <option value="{{$propertySubType->id}}" @if($response['data']['oldValues']['purposeId'] ==$propertySubType->id)selected @endif>{{$propertySubType->name}}</option>
+                                            <option value="{{$propertySubType->id}}">{{$propertySubType->name}}</option>
                                         @endforeach
                                     </select>
                                 </span>
@@ -167,7 +175,7 @@
                                     <label>Select Society:</label>
                                     <span class="fake-select">
                                       <span class="load">
-                                    <select name="society_id" id="society">
+                                    <select name="society_id" id="society" class="js-example-basic-single">
                                         <option  value="">All Societies</option>
                                         @foreach($response['data']['societies'] as $society)
                                             <option value="{{$society->id}}" @if($response['data']['oldValues']['societyId'] == $society->id) selected @endif>{{$society->name}}</option>
@@ -180,17 +188,17 @@
                                     <label>Select Block:</label>
                                   <span class="fake-select">
                                       <span class="load">
-                                <select name="block_id" id="blocks">
-                                    <option disabled selected value>Block</option>
-                                </select>
-                                          </span>
+                                        <select class="js-example-basic-single" name="block_id" id="blocks" old_block="{{$response['data']['oldValues']['blockId']}}">
+                                            <option selected value="">Any</option>
+                                        </select>
+                                      </span>
                                  </span>
                                 </li>
-                                <li>
+                                <li class="bedrooms">
                                     <label>Select Bedrooms:</label>
                                     <span class="fake-select">
                                     <span class="load">
-                                    <select name="property_features[28]">
+                                    <select name="property_features[28]" id="bedrooms-select">
                                         <option value="">Any</option>
                                         <option value=1 @if($response['data']['oldValues']['propertyFeatures'][28] == 1) selected @endif>1</option>
                                         <option value=2 @if($response['data']['oldValues']['propertyFeatures'][28] == 2) selected @endif>2</option>
@@ -208,20 +216,22 @@
                                 </li>
                                 <li>
                                     <label>Price Range (Rs):</label>
-                                    <div class="input-holder"><input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}"></div>
-                                    <div class="input-holder"><input type="number" placeholder="To" name="price_to"value="{{$response['data']['oldValues']['priceTo']}}"></div>
+                                    <div class="input-holder priceArea"><input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="PriceField priceInputFrom"><span class="price-Range detailedPriceFrom">Please enter the price</span></div>
+                                    <div class="input-holder priceArea"><input type="number" placeholder="To" name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="PriceField priceInputTo"><span class="price-Range detailedPriceTo">Please enter the price</span></div>
                                 </li>
                                 <li>
-                                    <div class="input-holder">
+
                                         <label>Land Unit</label>
+                                        <div class="input-holder add">
                                         <select name="land_unit_id" name="land_unit_id">
                                             @foreach($response['data']['landUnits'] as $landUnit)
                                                 <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @endif>{{$landUnit->name}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                    <div class="input-holder"><input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}"></div>
-                                    <div class="input-holder"><input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}"></div>
+                                        </div>
+
+                                    <div class="input-holder add"><input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}"></div>
+                                    <div class="input-holder add"><input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}"></div>
                                 </li>
                             </ul>
                             <button type="submit"><span class="icon-search"></span>Search my property</button>
@@ -234,31 +244,20 @@
 
     </div>
     <script>
-//        function propertyTypeChangedInSearchPopup()
-//        {
-//            var property_type_id = $('.property_type').val();
-//            if(property_type_id !="") {
-//                //$('#property_sub_types').closest('.fake-select').addClass('loading');
-//                $.ajax({
-//                    url: apiPath.concat("types/subtypes"),
-//                    data: {
-//                        type_id: property_type_id
-//                    },
-//                    success: function (response) {
-//                        $('#property_sub_types').empty();
-//                        $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
-//                        $.each(response.data.propertySubType, function (i, propertySubType) {
-//                            $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
-//                        });
-//
-//                        //alert('all done. now select the old one.');
-//                    }
-//                })
-//            }
-//        }
+        $(document).on('loaded','#property_sub_types', function () {
+            var subTypeId = parseInt($('#property_sub_types').attr('old_sub_type'));
+            if(!isNaN(subTypeId)){
+                $("#property_sub_types").val(subTypeId).change();
+            }
+        });
+        $(document).on('loaded','#blocks', function () {
+            var subTypeId = parseInt($('#blocks').attr('old_block'));
+            if(!isNaN(subTypeId)){
+                $("#blocks").val(subTypeId).change();
+            }
+        });
 
         $(document).ready(function(){
-            //propertyTypeChangedInSearchPopup();
             $('.property_type').trigger('change');
             $('#society').trigger('change');
         });

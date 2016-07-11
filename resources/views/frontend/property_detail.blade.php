@@ -10,20 +10,21 @@
                 <div class="propertyDetails-page">
                     <div class="layout">
                         <div class="propertyImage-slider">
+                            <strong class="property-title">{{$response['data']['property']->title}}</strong>
                             <div class="mask">
                                 <?php
-                                    use App\Libs\Helpers\AuthHelper;$images = [];
-                                    foreach ($response['data']['property']->documents as $document)
+                                use App\Libs\Helpers\AuthHelper;$images = [];
+                                foreach ($response['data']['property']->documents as $document)
+                                {
+                                    if ($document->type == 'image')
                                     {
-                                        if ($document->type == 'image')
-                                        {
-                                            $images[] = url('/') . '/temp/' . $document->path;
-                                        }
+                                        $images[] = url('/') . '/temp/' . $document->path;
                                     }
-                                    if(sizeof($images) == 0)
-                                    {
-                                        $images[] = url('/') . "/assets/imgs/no.png";
-                                    }
+                                }
+                                if(sizeof($images) == 0)
+                                {
+                                    $images[] = url('/') . "/assets/imgs/no.png";
+                                }
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
@@ -162,7 +163,9 @@
                         <a class="btn-showMore">Show more</a>
                     </div>
                     <div class="extraFeature-block">
-                        <h1>Property Features</h1>
+                        @if($response['data']['property']->features !=null)
+                            <h1>Property Features</h1>
+                        @endif
                         @foreach($response['data']['property']->features as $sectionName=>$features)
                             <h2>{{$sectionName}}</h2>
 
@@ -181,15 +184,14 @@
 
                         @endforeach
                     </div>
-
-                    @if(sizeof($response['data']['user']->agencies) > 0 )
-                        @if(sizeof($response['data']['user']->agencies[0]->societies) > 0)
-                            <h1>Societies He Deal In</h1>
-                            @foreach($response['data']['user']->agencies[0]->societies as $society )
-                                {{$society->name}}
-                            @endforeach
-                        @endif
-                    @endif
+                    {{--@if(sizeof($response['data']['user']->agencies) > 0 )--}}
+                        {{--@if(sizeof($response['data']['user']->agencies[0]->societies) > 0)--}}
+                            {{--<h1>Societies He Deal In</h1>--}}
+                            {{--@foreach($response['data']['user']->agencies[0]->societies as $society )--}}
+                                {{--{{$society->name}}--}}
+                            {{--@endforeach--}}
+                        {{--@endif--}}
+                    {{--@endif--}}
                     <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
                         <li class="popup-holder">
@@ -219,8 +221,8 @@
                         <?php
                         $user = (new AuthHelper())->user();
                         ?>
-                        <li class="popup-holder">
-                            <a class=" @if($response['data']['isFavourite'] != 0) added-to-favs @endif">
+                        <li>
+                            <a class="popup-opener @if($response['data']['isFavourite'] != 0) added-to-favs @endif">
                                 <span class="add-to-favs addTo"
                                       property_id="{{$response['data']['property']->id}}" key="{{($user !=null)?$user->access_token:""}}"><span
                                             class="icon-favourites-filled-star-symbol"></span> Add to favorites</span>
@@ -229,6 +231,12 @@
                                       user_id="{{($user !=null)?$user->id:""}}" key="{{($user !=null)?$user->access_token:""}}"><span
                                             class="icon-favourites-filled-star-symbol"></span> Remove from favorites</span>
                             </a>
+                            <div class="popup">
+                                <div class="loginToContinue">
+                                    <p>Dear user ! You are not logged in Please <a href="{{url('/login')}}">Login</a></p>
+                                    <a class="popup-close"><span class="icon-cross"></span></a>
+                                </div>
+                            </div>
                         </li>
 
                     </ul>

@@ -26,9 +26,9 @@ class FavouritePropertyFactory extends SQLFactory implements SQLFactoriesInterfa
     {
         return  $this->tableGateway->deleteWhere(['property_id'=>$params['propertyId'],'user_id'=>$params['userId']]);
     }
-    public function MultiDeleteFavouriteProperty($propertyIds,$userId)
+    public function multiDeleteFavouriteProperty($propertyIds,$userId)
     {
-       return $this->tableGateway->MultiDeleteFavouriteProperty($propertyIds,$userId);
+       return $this->tableGateway->multiDeleteFavouriteProperty($propertyIds,$userId);
     }
     public function isFavourite($propertyId,$userId)
     {

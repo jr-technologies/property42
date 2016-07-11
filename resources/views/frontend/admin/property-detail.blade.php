@@ -182,6 +182,7 @@
                         @endforeach
                     </div>
 
+
                     @if(sizeof($response['data']['user']->agencies) > 0 )
                         @if(sizeof($response['data']['user']->agencies[0]->societies) > 0)
                             <h1>Societies He Deal In</h1>
@@ -190,6 +191,7 @@
                             @endforeach
                         @endif
                     @endif
+
                     <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
                         <li class="popup-holder">

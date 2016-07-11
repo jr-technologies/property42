@@ -114,7 +114,9 @@
                         <h1>Agency Information</h1>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('agencyName')) error @endif">
                             <label for="agency-name" class="icon-agency"></label>
+
                             <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" value="{{old('agencyName')}}" required>
+
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyName')) {{$validationErrors->first('agencyName')}} @endif</span>
                         </div>
@@ -129,13 +131,13 @@
                         </div>
                         <div class="input-holder full-width @if(isset($validationErrors) && $validationErrors->has('agencyDescription')) error @endif">
                             <label for="D-services" class="icon-technical-support"></label>
-                            <textarea id="D-services" name="agencyDescription" value="{{old('agencyDescription')}}" placeholder="Description of Services"></textarea>
+                            <textarea id="D-services" name="agencyDescription" placeholder="Description of Services">{{old('agencyDescription')}}</textarea>
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyDescription')) {{$validationErrors->first('agencyDescription')}} @endif</span>
                         </div>
                         <div class="input-holder full-width no-indent  @if(isset($validationErrors) && $validationErrors->has('societies')) error @endif">
                             <label for="search-society" class="icon-society"></label>
-                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety">
+                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('societies')) {{$validationErrors->first('societies')}} @endif</span>
                             <span class="calculatedSocieties"></span>

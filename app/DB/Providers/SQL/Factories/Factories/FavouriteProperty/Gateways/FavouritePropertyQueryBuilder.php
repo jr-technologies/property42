@@ -19,7 +19,7 @@ class FavouritePropertyQueryBuilder extends QueryBuilder
         $this->table = 'favourite_properties';
     }
 
-        public function MultiDeleteFavouriteProperty($propertyIds,$userId)
+        public function multiDeleteFavouriteProperty($propertyIds,$userId)
         {
            return  DB::table($this->table)
                 ->whereIn($this->table.'.property_id',$propertyIds)

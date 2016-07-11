@@ -1,8 +1,10 @@
 /**
  * Created by WAQAS on 6/14/2016.
  */
+//var apiPath ="http://"+window.location.hostname+"/p42/public/api/v1/";
 //var apiPath ="http://"+window.location.hostname+"/jr/property42/backend/property42/public/api/v1/";
 var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
+
 $(document).on('change', '#society', function(){
    var society_id = $(this).val();
    if(society_id !="") {
@@ -19,6 +21,7 @@ $(document).on('change', '#society', function(){
                $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
             });
             $('#blocks').closest('.fake-select').removeClass('loading');
+            $('#blocks').trigger('loaded');
          }
       })
    }
@@ -42,11 +45,12 @@ $(document).on('change', '.property_type', function(event){
             },
             success: function (response) {
                $('#property_sub_types').empty();
-               $('#property_sub_types').append($('<option>').text('select a SubType').attr('value', ''));
+               $('#property_sub_types').append($('<option>').text('All Sub Types').attr('value', '').attr('selected','selected'));
                $.each(response.data.propertySubType, function (i, propertySubType) {
                   $('#property_sub_types').append($('<option>').text(propertySubType.sub_type).attr('value', propertySubType.id));
                });
                $('#property_sub_types').closest('.fake-select').removeClass('loading');
+               $('#property_sub_types').trigger('loaded');
             }
          })
       }
@@ -80,7 +84,7 @@ $(document).on('click','.add-to-favs',function(){
       type: "POST",
       url: apiPath.concat("favourite/property"),
       data:{
-         property_id:property_id
+         propertyId:property_id
       },
       headers: {
          Authorization: key
@@ -89,7 +93,7 @@ $(document).on('click','.add-to-favs',function(){
          $('.add-to-favs').closest('a').addClass('added-to-favs');
       },
       error: function () {
-         alert('please login to add this property to your favourites.')
+         $('.popup-opener').closest('li').addClass('popup-holder');
       }
    })
 });
@@ -102,7 +106,7 @@ $(document).on('click','.remove-to-favs',function(){
       type: "POST",
       url: apiPath.concat("favourite/property/delete"),
       data:{
-         property_id:property_id,user_id:user_id
+         propertyId:property_id,userId:user_id
       },
       headers: {
          Authorization: key
@@ -111,7 +115,14 @@ $(document).on('click','.remove-to-favs',function(){
          $('.add-to-favs').closest('a').removeClass('added-to-favs');
       },
       error: function () {
-         alert('please login to add this property to your favourites.')
+         $('.popup-opener').closest('li').removeClass('popup-holder');
       }
    })
+});
+
+$(document).on('change keyup','.priceInputFrom',function(){
+   showDetailedPriceAt(digitsToWords($(this).val()), '.detailedPriceFrom');
+});
+$(document).on('change keyup','.priceInputTo',function(){
+   showDetailedPriceAt(digitsToWords($(this).val()), '.detailedPriceTo');
 });

@@ -1,7 +1,7 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-
+//var domain = "http://"+window.location.hostname+"/p42/public/";
 //var domain = "http://"+window.location.hostname+"/jr/property42/backend/property42/public/";
 //var domain = "http://"+window.location.hostname+"/production/jr-technologies/property42/public/";
 var domain = "http://"+window.location.hostname+"/property42/public/";
@@ -75,7 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
                         start: start, limit: limit
                     }).then(function successCallback(response) {
                         console.log(response);
-                        return response.data.data.properties;
+                        return response.data.data;
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});
                         return undefined;
