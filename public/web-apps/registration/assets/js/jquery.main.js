@@ -120,7 +120,7 @@ $(document).on('click', '.delete', function(){
 
 function addValidationsOnAgentInfo()
 {
-	console.log('ading validations');
+	console.log('adding validations');
 }
 function removeValidationsOnAgentInfo()
 {
