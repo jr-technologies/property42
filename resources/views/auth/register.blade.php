@@ -65,7 +65,7 @@
                     </div>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('mobile')) error @endif">
                         <label class="icon-phone_iphone" for="cell"></label>
-                        <input type="tel" placeholder="Enter Your Cell / Mobile Number" value="{{old('mobile')}}" name="mobile" id="cell" >
+                        <input type="tel" placeholder="Enter Your Cell / Mobile Number" value="{{old('mobile')}}" name="mobile" id="cell" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('mobile')) {{$validationErrors->first('mobile')}} @endif</span>
                     </div>
@@ -114,7 +114,7 @@
                         <h1>Agency Information</h1>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('agencyName')) error @endif">
                             <label for="agency-name" class="icon-agency"></label>
-                            <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" value="{{old('agencyName')}}" required>
+                            <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" value="{{old('agencyName')}}" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyName')) {{$validationErrors->first('agencyName')}} @endif</span>
                         </div>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="input-holder full-width @if(isset($validationErrors) && $validationErrors->has('agencyDescription')) error @endif">
                             <label for="D-services" class="icon-technical-support"></label>
-                            <textarea id="D-services" name="agencyDescription" value="{{old('agencyDescription')}}" placeholder="Description of Services"></textarea>
+                            <textarea id="D-services" name="agencyDescription" placeholder="Description of Services">{{old('agencyDescription')}}</textarea>
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyDescription')) {{$validationErrors->first('agencyDescription')}} @endif</span>
                         </div>

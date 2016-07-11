@@ -1,8 +1,10 @@
 /**
  * Created by WAQAS on 6/14/2016.
  */
+//var apiPath ="http://"+window.location.hostname+"/p42/public/api/v1/";
 //var apiPath ="http://"+window.location.hostname+"/jr/property42/backend/property42/public/api/v1/";
 var apiPath ="http://"+window.location.hostname+"/property42/public/api/v1/";
+
 $(document).on('change', '#society', function(){
    var society_id = $(this).val();
    if(society_id !="") {
@@ -82,7 +84,7 @@ $(document).on('click','.add-to-favs',function(){
       type: "POST",
       url: apiPath.concat("favourite/property"),
       data:{
-         property_id:property_id
+         propertyId:property_id
       },
       headers: {
          Authorization: key
@@ -92,7 +94,6 @@ $(document).on('click','.add-to-favs',function(){
       },
       error: function () {
          $('.popup-opener').closest('li').addClass('popup-holder');
-
       }
    })
 });
@@ -117,4 +118,11 @@ $(document).on('click','.remove-to-favs',function(){
          $('.popup-opener').closest('li').removeClass('popup-holder');
       }
    })
+});
+
+$(document).on('change keyup','.priceInputFrom',function(){
+   showDetailedPriceAt(digitsToWords($(this).val()), '.detailedPriceFrom');
+});
+$(document).on('change keyup','.priceInputTo',function(){
+   showDetailedPriceAt(digitsToWords($(this).val()), '.detailedPriceTo');
 });

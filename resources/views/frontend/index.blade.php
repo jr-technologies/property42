@@ -104,15 +104,13 @@
                         <li class="full">Price Range (Rs)</li>
                         <li class="priceArea">
                             <span>From:</span>
-
-                            <div class="input-holder"><input type="number" name="price_from" class="PriceField">
-                                <span class="price-Range">Please enter the price</span>
+                            <div class="input-holder"><input type="number" name="price_from" class="PriceField priceInputFrom">
+                                <span class="price-Range detailedPriceFrom">Please enter the price</span>
                             </div>
                         </li>
                         <li class="priceArea">
                             <span>to:</span>
-
-                            <div class="input-holder"><input type="number" name="price_to" class="PriceField"><span class="price-Range">Please enter the price</span></div>
+                            <div class="input-holder"><input type="number" name="price_to" class="PriceField priceInputTo"><span class="price-Range detailedPriceTo">Please enter the price</span></div>
                         </li>
                     </ul>
                     <ul class="inline">

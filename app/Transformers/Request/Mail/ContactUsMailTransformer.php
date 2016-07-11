@@ -12,7 +12,7 @@ namespace App\Transformers\Request\Mail;
 use App\Transformers\Request\RequestTransformer;
 
 
-class ContactUSMailTransformer extends RequestTransformer
+class ContactUsMailTransformer extends RequestTransformer
 {
     public function transform()
     {

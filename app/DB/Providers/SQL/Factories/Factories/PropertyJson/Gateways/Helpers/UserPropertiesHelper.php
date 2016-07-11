@@ -32,6 +32,8 @@ trait UserPropertiesHelper
             $agencies = (new AgenciesRepoProvider())->repo()->getByUser($user->id);
             if(sizeof($agencies) > 0)
                 $conditions['agencies.id'] = $agencies[0]->id;
+            else
+                $conditions['properties.owner_id'] = $user->id;
         }
         if(isset($params['statusId']) && ($params['statusId'] != null || $params['statusId'] !=''))
             $conditions['properties.property_status_id'] = $params['statusId'];
