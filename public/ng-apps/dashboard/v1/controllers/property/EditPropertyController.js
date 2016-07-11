@@ -113,7 +113,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
                 files : {},
                 deletedFiles: [],
                 owner: property.owner.id+"",
-                contactPerson: property.owner.fName+' '+property.owner.lName,
+                contactPerson: property.contactPerson,
                 phone: property.phone,
                 cell : property.mobile,
                 email: property.email,
