@@ -10,7 +10,12 @@
                 <div class="propertyDetails-page">
                     <div class="layout">
                         <div class="propertyImage-slider">
-                            <strong class="property-title">{{$response['data']['property']->title}}</strong>
+                            <strong class="property-title">
+                                {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
+                                {{$response['data']['property']->type->subType->name.'
+                                 '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->block->name.' Block'.
+                                ' '.$response['data']['property']->location->society->name}}
+                            </strong>
                             <div class="mask">
                                 <?php
                                 use App\Libs\Helpers\AuthHelper;$images = [];
@@ -78,7 +83,7 @@
                                         <strong class="name">{{$response['data']['property']->contactPerson}}</strong>
                                         @if($response['data']['property']->owner->agency !=null)
                                             <span class="agency-name">{{$response['data']['property']->owner->agency->name}}</span>
-                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->agency->id) }}"
+                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}"
                                                class="agency-profile">Agency Profile</a>
                                         @endif
                                     </div>

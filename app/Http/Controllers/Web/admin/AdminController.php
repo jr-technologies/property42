@@ -4,25 +4,14 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Requests\Mail\AgentMailRequest;
-
-use App\Http\Requests\Requests\Mail\ContactUSMailRequest;
-use App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest;
-
-use App\Http\Requests\Requests\Mail\MailToAgentRequest;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
 use App\Http\Requests\Requests\Property\RejectPropertyRequest;
-use App\Http\Requests\Requests\User\ForgetPasswordRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
-use App\Traits\User\UsersFilesReleaser;
-
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -65,6 +54,7 @@ class AdminController extends Controller
         $this->propertiesRepo->rejectProperty($request->getPropertyModel());
         return redirect('get/property');
     }
+
     public function approveProperty(ApprovePropertyRequest $request)
     {
        $this->propertiesRepo->approveProperty($request->getPropertyModel());
@@ -76,4 +66,5 @@ class AdminController extends Controller
             'agents'=>$this->users->getPendingAgents()
         ]]);
      }
+
 }

@@ -23,6 +23,10 @@ class BlocksTableSeeder extends Seeder
                     'block' => $block
                 ];
             }
+            $finalBlocks[] = [
+                'society_id' => $society->id,
+                'block' => 'other'
+            ];
         }
         DB::table('blocks')->insert($finalBlocks);
     }

@@ -113,6 +113,10 @@
                                 <address>{{$response['data']['agent']->agencies[0]->address}}</address>
                             </div>
 
+                        </div>
+
+
+                        <div class="col">
                             @if(sizeof($response['data']['agent']->agencies) > 0 )
                                 @if(sizeof($response['data']['agent']->agencies[0]->societies) > 0)
                                     <header>Society he deal in</header>
@@ -126,8 +130,6 @@
                                         @endif
                                     </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
