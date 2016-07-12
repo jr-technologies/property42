@@ -21,7 +21,7 @@
                     </span>
                 @endif
 
-                    @if(\Session::has('success')) <span class="global-successMessage">ession::get('message') }} !</span> @endif
+                    @if(\Session::has('success')) <span class="global-successMessage">{{ \Session::get('message') }} !</span> @endif
                     <form class="login-form" action="{{route('login')}}" method="post">
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('email')) error @endif">
                             <label class="icon-envelope" for="email"></label>
