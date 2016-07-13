@@ -103,6 +103,7 @@
 <!-- include custom JavaScript -->
 <script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/tabset-plugin.js" defer></script>
+<script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/add-propertyFrom.js" defer></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/helper.js" defer></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/lightBox.js" defer></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/frontend/assets/js/smooth-scroll-plugin.js" defer></script>

@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Auth\Web;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
+use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
@@ -31,15 +32,15 @@ class PropertiesController extends Controller
     use PropertyFilesReleaser, PropertyPriceUnitHelper;
     public $PropertyTransformer = null;
     public $properties = "";
-    public $societies =null;
-    public $blocks =null;
+    public $societies = null;
+    public $blocks = null;
     public $propertyTypes = null;
-    public $propertySubtypes =null;
-    public $landUnits =null;
-    public $propertyStatuses =null;
-    public $favouriteFactory =null;
+    public $propertySubtypes = null;
+    public $landUnits = null;
+    public $propertyStatuses = null;
+    public $favouriteFactory = null;
     public $users = null;
-
+    public $assignedFeaturesJson = null;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
@@ -54,6 +55,7 @@ class PropertiesController extends Controller
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
         $this->favouriteFactory = new FavouritePropertyFactory();
         $this->users = (new UsersJsonRepoProvider())->repo();
+        $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
     }
 
     public function update(UpdatePropertyRequest $request)
@@ -78,6 +80,25 @@ class PropertiesController extends Controller
             'propertiesCount'=>$propertiesCount,
             'oldValues'=>$request->all()
         ]]);
+    }
+
+    public function showAddPropertyForm()
+    {
+        $parentTypes = $this->propertyTypes->all();
+        $groupedSubTypes = collect($this->propertySubtypes->all())->groupBy('propertyTypeId')->toArray();
+        $societies = $this->societies->all();
+        $landUnits = $this->landUnits->all();
+        $assignedFeaturesJsonCollection = collect($this->assignedFeaturesJson->all());
+        $assignedFeaturesJsonCollection->each(function($item, $key) {
+            //
+        });
+        return $this->response->setView('frontend.addProperty')->respond(dd(['data'=>[
+            'subTypes' => $groupedSubTypes,
+            'parentTypes' => $parentTypes,
+            'societies' => $societies,
+            'landUnits' => $landUnits,
+            'assignedFeatures' => $assignedFeaturesJson
+        ]]));
     }
 
     public function index()
