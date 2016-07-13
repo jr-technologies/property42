@@ -243,7 +243,7 @@ Route::get('/logout', function(){
             $authUser->access_token = null;
             (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
         }catch (\Exception $e){
-            
+
         }
     }
     return redirect('/login');

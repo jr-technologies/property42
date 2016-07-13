@@ -62,7 +62,6 @@ class AppsResourceController extends ApiController
         if($user == null)
             return $this->response->respondAuthenticationFailed();
 
-        dd($request->user());
         $user = $this->releaseAllUserFiles($user);
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
