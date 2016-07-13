@@ -43,7 +43,12 @@
                     <li class="hidden-desktop"><a href="{{ URL::to('dashboard#/home/properties/add') }}">Add a property</a></li>
                 </ul>
             </nav>
+
             <a class="nav-opener"><span></span></a>
+            {{ Form::open(array('url' => 'property','method' => 'GET')) }}
+            <input type="text" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="PropertyId">
+            <input type="submit">
+            {{Form::close()}}
             <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
             @if(session()->get('authUser') ==null)
                 <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>

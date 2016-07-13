@@ -46,7 +46,7 @@ class AddToFavouriteRequest extends Request implements RequestInterface{
     {
         $addToFavourite = new FavouriteProperty();
         $user = $this->user;
-        $addToFavourite->userId =$user->id;
+        $addToFavourite->userId = $user->id;
         $addToFavourite->propertyId = $this->get('propertyId');
         return $addToFavourite;
     }

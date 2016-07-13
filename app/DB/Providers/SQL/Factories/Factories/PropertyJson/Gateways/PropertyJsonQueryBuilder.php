@@ -94,6 +94,21 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
             ->skip($limit['start'])->take($limit['limit'])
             ->get();
     }
+
+    public function countFavouriteProperties($userId)
+    {
+        $propertyTable = (new PropertyFactory())->getTable();
+        $userTable = (new UserFactory())->getTable();
+        $favouritePropertyTable = (new FavouritePropertyFactory())->getTable();
+        return DB::table($userTable)
+            ->leftjoin($favouritePropertyTable,$userTable.'.id','=',$favouritePropertyTable.'.user_id')
+            ->leftjoin($propertyTable,$propertyTable.'.id','=',$favouritePropertyTable.'.property_id')
+            ->join($this->table,$propertyTable.'.id','=',$this->table.'.property_id')
+            ->select($this->table.'.json')
+            ->where($userTable.'.id','=',$userId)
+            ->count();
+    }
+
     public function getAgencyProperties($agencyId)
     {
         $propertyTable = (new PropertyFactory())->getTable();

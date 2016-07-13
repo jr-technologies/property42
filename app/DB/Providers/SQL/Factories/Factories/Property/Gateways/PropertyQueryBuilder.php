@@ -65,4 +65,10 @@ class PropertyQueryBuilder extends QueryBuilder
             ->whereIn('id',$propertyIds)
             ->delete();
     }
+    public function IncrementViews($propertyId)
+    {
+        return DB::table($this->table)
+            ->where($this->table.'.id','=',$propertyId)
+            ->increment('total_views', 1);
+    }
 }

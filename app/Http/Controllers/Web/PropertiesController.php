@@ -41,12 +41,13 @@ class PropertiesController extends Controller
     public $favouriteFactory = null;
     public $users = null;
     public $assignedFeaturesJson = null;
+    public $propertiesRepo = null;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
         $this->response = $webResponse;
         $this->PropertyTransformer = $propertyTransformer;
-
+        $this->propertiesRepo = (new PropertiesRepoProvider())->repo();
         $this->properties = (new PropertiesJsonRepoProvider())->repo();
         $this->societies = (new SocietiesRepoProvider())->repo();
         $this->blocks = (new BlocksRepoProvider())->repo();
@@ -112,13 +113,15 @@ class PropertiesController extends Controller
     }
     public function getById(GetPropertyRequest $request)
     {
+        $this->propertiesRepo->IncrementViews($request->get('propertyId'));
         $loggedInUser = $request->user();
         $property = $this->convertPropertyAreaToActualUnit($this->properties->getById($request->get('propertyId')));
         return $this->response->setView('frontend.property_detail')->respond(['data'=>[
             'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
             'property'=>$this->releaseAllPropertiesFiles([$property])[0],
             'loggedInUser'=>$loggedInUser,
-            'user'=>$this->users->find($property->owner->id)
+            'user'=>$this->users->find($property->owner->id),
+            'propertyId'=>$request->get('propertyId')
         ]]);
 
     }

@@ -163,6 +163,7 @@ Route::get('property',
     ]
 );
 
+
 Route::get('agents',
     [
         'middleware'=>
