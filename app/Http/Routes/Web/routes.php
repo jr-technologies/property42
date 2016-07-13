@@ -238,9 +238,13 @@ Route::get('/logout', function(){
     {
         $usersRepo = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo();
         $authUser = session()->pull('authUser');
-        $authUser = $usersRepo->getById($authUser->id);
-        $authUser->access_token = null;
-        (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+        try{
+            $authUser = $usersRepo->getById($authUser->id);
+            $authUser->access_token = null;
+            (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+        }catch (\Exception $e){
+            
+        }
     }
     return redirect('/login');
 });

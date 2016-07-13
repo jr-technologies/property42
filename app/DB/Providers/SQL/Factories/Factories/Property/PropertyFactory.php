@@ -140,7 +140,8 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'email' => $property->email,
             'owner_id'=>$property->ownerId,
             'created_by'=>$property->createdBy,
-            'updated_at' => $property->updatedAt,
+            'created_at' => $property->createdAt,
+            'updated_at' => $property->updatedAt
         ];
     }
 
