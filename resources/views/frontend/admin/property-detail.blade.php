@@ -77,7 +77,7 @@
                                         <strong class="name">{{$response['data']['property']->contactPerson}}</strong>
                                         @if($response['data']['property']->owner->agency !=null)
                                             <span class="agency-name">{{$response['data']['property']->owner->agency->name}}</span>
-                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->agency->id) }}"
+                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}"
                                                class="agency-profile">Agency Profile</a>
                                         @endif
                                     </div>
