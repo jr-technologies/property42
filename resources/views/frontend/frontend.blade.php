@@ -42,8 +42,14 @@
                     <li class="agent-link"><a href="{{URL::to('agents')}}">agents</a></li>
                     <li class="hidden-desktop"><a href="{{ URL::to('dashboard#/home/properties/add') }}">Add a property</a></li>
                 </ul>
+                {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
+                <input type="number" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
+                <button type="submit"><span class="icon-search"></span></button>
+                {{Form::close()}}
             </nav>
+
             <a class="nav-opener"><span></span></a>
+
             <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
             @if(session()->get('authUser') ==null)
                 <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>

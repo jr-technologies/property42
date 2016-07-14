@@ -20,6 +20,7 @@ use App\Events\Events\Property\PropertiesStatusChanged;
 
 use App\Events\Events\Property\PropertyStatusUpdated;
 
+use App\Events\Events\Property\UpdatePropertyTotalView;
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
 use Illuminate\Support\Facades\Event;
 
@@ -45,7 +46,11 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         //Event::fire(new PropertyCreated($property));
         return $propertyId;
     }
-
+    public function IncrementViews($propertyId)
+    {
+        $this->factory->IncrementViews($propertyId);
+        Event::fire(new UpdatePropertyTotalView($this->factory->find($propertyId)));
+    }
     public function getById($id)
     {
         return $this->factory->find($id);
