@@ -41,6 +41,10 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->getFavouriteProperties($params));
     }
+    public function countFavouriteProperties($userId)
+    {
+        return $this->tableGateway->countFavouriteProperties($userId);
+    }
     public function getTable()
     {
         return $this->tableGateway->getTable();

@@ -110,7 +110,7 @@
                         $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
                         $query_str_to_array = $_GET;
                         $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
-                        for($i=1; $i<=$paginationValue;$i++){
+                        for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
                         $query_str_to_array['page'] = $i;
                         $queryString  = http_build_query($query_str_to_array);
                         $result = URL('/search').'?'.$queryString;

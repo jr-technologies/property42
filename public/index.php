@@ -1,5 +1,15 @@
 <?php
-
+//function abc()
+//{
+//    throw new Exception('hahha');
+//}
+//
+//try{
+//    abc();
+//}catch (Exception $e){
+//    die('hi');
+//}
+//die('system is updating please wait..');
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

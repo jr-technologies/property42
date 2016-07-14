@@ -43,6 +43,18 @@ app.filter('filterByCountParam', [function () {
     };
 }]);
 
+app.filter('purposeDisplayName', [function () {
+    return function (purposes, purposeId) {
+        var purposeDesplayName = '';
+        angular.forEach(purposes, function (purpose, key) {
+            if(parseInt(purpose.id) == parseInt(purposeId)){
+                purposeDesplayName = purpose.displayName;
+            }
+        });
+        return purposeDesplayName;
+    };
+}]);
+
 app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHandler) {
     $rootScope.domain = domain;
     $rootScope.AUTH_TOKEN = '';
