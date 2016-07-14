@@ -1,7 +1,7 @@
 /**
  * Created by nomantufail on 09/05/2016.
  */
-var app = angular.module('dashboard');
+var app = angular.module(appName);
 
 app.directive('myDirective', function ($compile) {
     return {

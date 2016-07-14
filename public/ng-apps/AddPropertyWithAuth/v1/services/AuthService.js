@@ -1,7 +1,7 @@
 /**
  * Created by zeenomlabs on 12/11/2015.
  */
-var app = angular.module('dashboard');
+var app = angular.module(appName);
 app.factory("$AuthService", function ($rootScope, $http) {
     return {
         getAppToken: function () {

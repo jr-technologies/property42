@@ -1,7 +1,7 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var app = angular.module('dashboard');
+var app = angular.module(appName);
 app.filter('propsFilter', function() {
     return function(items, props) {
         var out = [];
@@ -97,12 +97,12 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
               fiveFile:{title: '', file: null},
               sixFile:{title: '', file: null}
           },
-          owner: $rootScope.authUser.id+"",
-          contactPerson: $rootScope.authUser.fName+" "+$rootScope.authUser.lName,
-          phone: $rootScope.authUser.phone,
-          cell : $rootScope.authUser.mobile,
-          fax: $rootScope.authUser.fax,
-          email: $rootScope.authUser.email
+          owner: "",
+          contactPerson: '',
+          phone: '',
+          cell : '',
+          fax: '',
+          email: ''
       }
     };
     $scope.propertySubTypeChanged = function () {

@@ -24,6 +24,16 @@ Route::get('app/dashboard/resources',
     ]
 );
 
+Route::get('app/addPropertyWithAuth/resources',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'AppsResourceController@addPropertyWithAuthResources'
+    ]
+);
+
 
 Route::post('favourite/property',
     [

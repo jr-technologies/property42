@@ -1,7 +1,7 @@
 /**
  * Created by zeenomlabs on 12/11/2015.
  */
-var app = angular.module('dashboard');
+var app = angular.module(appName);
 app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
 
     return {
@@ -23,14 +23,10 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
             $rootScope.resourceLoading = true;
             return promise = $http({
                 method: 'GET',
-                url: apiPath+'app/dashboard/resources',
+                url: apiPath+'app/'+appName+'/resources',
                 headers: headerInfo
             }).then(function successCallback(response) {
                 $rootScope.resources = response.data.data.resources;
-                $rootScope.authUser = response.data.data.authUser;
-                $rootScope.AUTH_TOKEN = response.data.access_token;
-                $rootScope.propertiesCounts = response.data.data.resources.propertiesCounts;
-                $rootScope.favouritesCount = response.data.data.resources.favouritesCount;
                 $rootScope.resourceLoading = false;
                 $rootScope.please_wait_class = '';
                 $rootScope.loading_resources_class = '';

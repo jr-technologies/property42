@@ -1,5 +1,5 @@
 
-<div class="addPropertyFormContainer {{formSubmitStatus}}" ng-controller="AddPropertyController" ng-init="initialize()">
+<div class="addPropertyFormContainer {{formSubmitStatus}}" ng-init="initialize()">
 
     <!--<div class="listing-holder">-->
         <!--<a class="listing-opener"><span class="icon-menu"></span></a>-->
@@ -12,7 +12,7 @@
     <!--</div>-->
     <form class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
-            <span class="success-message" ng-class="{'successfully-saved': propertySaved == true}">Property Saved</span>
+            <span ng-show='false' class="alert-success"><span class="icon-checkmark"></span>Property Saved successfully !<a class="close icon-cross"></a></span>
             <div class="errors">
                 <ul>
                     <li data-ng-repeat="error in errors">{{error[0]}}</li>

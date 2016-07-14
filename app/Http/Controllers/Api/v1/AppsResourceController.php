@@ -96,7 +96,31 @@ class AppsResourceController extends ApiController
             'access_token' => session('authUser')->access_token
         ]);
     }
-    public function mapStatusesToArray($propertyStatuses)
+    public function addPropertyWithAuthResources()
+    {
+        $purposes  = $this->purposes->all();
+        $societies = $this->societies->all();
+        $propertyTypes = $this->propertyTypes->all();
+        $propertySubTypes = $this->propertySubTypes->all();
+        $landUnits = $this->landUnits->all();
+        $subTypeAssignedFeaturesJson = $this->assignedFeaturesJson->all();
+        $userRoles = (new RolesRepoProvider())->repo()->all();
+        return $this->response->respond([
+            'data'=>[
+                'resources'=>[
+                    'purposes'=>$purposes,
+                    'propertyTypes'=>$propertyTypes,
+                    'societies'=>$societies,
+                    'propertySubTypes'=>$propertySubTypes,
+                    'landUnits'=>$landUnits,
+                    'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson,
+                    'userRoles' => $userRoles
+                ]
+            ]
+        ]);
+    }
+
+    private function mapStatusesToArray($propertyStatuses)
     {
         $final =[];
         foreach($propertyStatuses as $propertyStatus)
