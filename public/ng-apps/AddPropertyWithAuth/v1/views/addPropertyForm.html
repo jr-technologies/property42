@@ -231,58 +231,65 @@
                 </li>
             </ul>
         </section>
-        <section class="contact-information" id="contact-information">
-            <strong class="form-heading"><span>Contact info</span></strong>
-            <div class="layout add">
-                <div class="layout-holder">
-                    <span class="title">owner:</span>
-                    <div class="input-holder">
-                        <select class="searchable-select" name="owner" ng-model="form.data.owner">
-                            <option data-ng-repeat="owner in resources.agencyStaff" value="{{owner.id}}">{{owner.fName}} {{owner.lName}}</option>
-                        </select>
-                        <span class="error-text"></span>
+        <section class="userRegLogin">
+            <strong class="form-heading"><span>Details</span></strong>
+            <ul class="enterUserType">
+                <li>
+                    <input type="radio" ng-model="form.data.memberType" value="1" name="radio" id="existing-member" checked>
+                    <label for="existing-member">Existing Member</label>
+                    <div class="slide">
+                        <div class="layout">
+                            <span class="title">Email:</span>
+                            <div class="input-holder">
+                                <input type="text" name="login_email" placeholder="Email" ng-model="form.data.loginDetails.email">
+                            </div>
+                        </div>
+                        <div class="layout">
+                            <span class="title">Password:</span>
+                            <div class="input-holder">
+                                <input type="password" name="login_password" placeholder="Password" ng-model="form.data.loginDetails.password">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="layout-holder">
-                    <span class="title">contact person:</span>
-                    <div class="input-holder">
-                        <input type="text" name="contact_person" ng-model="form.data.contactPerson">
-                        <span class="error-text"></span>
+                </li>
+                <li>
+                    <input type="radio" ng-model="form.data.memberType" value="0" name="radio" id="new-member">
+                    <label for="new-member">New Member (Free)</label>
+                    <div class="slide">
+                        <div class="layout">
+                            <span class="title">First Name:</span>
+                            <div class="input-holder">
+                                <input type="text" name="newMember_fName" placeholder="First Name" ng-model="form.data.newMemberDetails.fName">
+                            </div>
+                        </div>
+                        <div class="layout">
+                            <span class="title">Last Name:</span>
+                            <div class="input-holder">
+                                <input type="text" name="newMember_email" placeholder="Last Name" ng-model="form.data.newMemberDetails.lName">
+                            </div>
+                        </div>
+                        <div class="layout">
+                            <span class="title">Email:</span>
+                            <div class="input-holder">
+                                <input type="email" name="newMember_email" placeholder="Email" ng-model="form.data.newMemberDetails.email">
+                            </div>
+                        </div>
+                        <div class="layout">
+                            <span class="title">Phone:</span>
+                            <div class="input-holder">
+                                <input type="tel" name="newMember_phone" placeholder="Phone" ng-model="form.data.newMemberDetails.phone">
+                            </div>
+                        </div>
+                        <div class="layout">
+                            <span class="title">Password:</span>
+                            <div class="input-holder">
+                                <input type="password" name="newMember_password" placeholder="Password" ng-model="form.data.newMemberDetails.password">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="layout add">
-                <div class="layout-holder">
-                    <span class="title">Phone:</span>
-                    <div class="input-holder">
-                        <input type="text" name="phone" ng-model="form.data.phone">
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-                <div class="layout-holder">
-                    <span class="title">Cell:</span>
-                    <div class="input-holder">
-                        <input type="text" name="cell" ng-model="form.data.cell">
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="layout add">
-                <div class="layout-holder">
-                    <span class="title">fax:</span>
-                    <div class="input-holder">
-                        <input type="text" name="cell" ng-model="form.data.fax">
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-                <div class="layout-holder">
-                    <span class="title">email:</span>
-                    <div class="input-holder">
-                        <input type="email" name="email" ng-model="form.data.email">
-                        <span class="error-text"></span>
-                    </div>
-                </div>
-            </div>
+                </li>
+            </ul>
+
         </section>
         <button type="submit"><span class="icon-arrows"></span>Save Property</button>
     </form>

@@ -412,6 +412,17 @@ Route::post('/property',
     ]
 );
 
+Route::post('/propertyWithAuth',
+    [
+        'middleware'=>
+            [
+//                'apiAuthenticate:addPropertyRequest',
+//                'apiValidate:addPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@storeWithAuth'
+    ]
+);
+
 Route::get('property',
     [
         'middleware'=>

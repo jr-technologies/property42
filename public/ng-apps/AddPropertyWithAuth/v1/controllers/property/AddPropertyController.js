@@ -97,12 +97,9 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
               fiveFile:{title: '', file: null},
               sixFile:{title: '', file: null}
           },
-          owner: "",
-          contactPerson: '',
-          phone: '',
-          cell : '',
-          fax: '',
-          email: ''
+          memberType: "1",
+          loginDetails: {},
+          newMemberDetails: {}
       }
     };
     $scope.propertySubTypeChanged = function () {
@@ -166,7 +163,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $scope.errors = {};
         $rootScope.please_wait_class = 'please-wait';
         var upload = Upload.upload({
-            url: apiPath+'property',
+            url: apiPath+'propertyWithAuth',
             data: $scope.form.data,
             headers:{
                 Authorization: $AuthService.getAppToken()

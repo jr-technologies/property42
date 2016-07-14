@@ -16,6 +16,7 @@ use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest;
 use App\Http\Requests\Requests\Property\AddPropertyRequest;
+use App\Http\Requests\Requests\Property\AddPropertyWithAuthRequest;
 use App\Http\Requests\Requests\Property\AdvanceSearchUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
@@ -84,6 +85,12 @@ class PropertiesController extends ApiController
             'propertiesCounts' => $this->properties->countProperties($request->user()->id)
         ]]);
     }
+
+    public function storeWithAuth(AddPropertyWithAuthRequest $request)
+    {
+        
+    }
+
     public function getFavouriteProperties(GetFavouritePropertyRequest $request)
     {
         $params = $request->all();

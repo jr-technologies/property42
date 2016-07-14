@@ -94,6 +94,7 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
             ->skip($limit['start'])->take($limit['limit'])
             ->get();
     }
+
     public function getAgencyProperties($agencyId)
     {
         $propertyTable = (new PropertyFactory())->getTable();
