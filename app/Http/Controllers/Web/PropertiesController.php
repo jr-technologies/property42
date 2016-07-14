@@ -83,11 +83,6 @@ class PropertiesController extends Controller
         ]]);
     }
 
-    public function showAddPropertyForm()
-    {
-        
-    }
-
     public function index()
     {
         return $this->response->setView('frontend.index')->respond(['data' => [

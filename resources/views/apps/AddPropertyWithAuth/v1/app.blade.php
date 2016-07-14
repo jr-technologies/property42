@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="<?= url('/') ?>/javascripts/ui-select/select.min.css">
 
     <!-- Angularjs Libs -->
-    <script src="<?= url('/') ?>/javascripts/firebase.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular/angular.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular-sanitize.js"></script>
     <script src="<?= url('/') ?>/javascripts/ui-select/select.min.js"></script>
@@ -30,22 +29,10 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/services/RouteHelper.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/services/ResourceLoader.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/ParentController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/LoginController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/HomeController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/ContentContainerController.js"></script>
     <!--        Custoemrs Controllers       -->
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/property/AddPropertyController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/property/ListPropertiesController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/property/FavouritePropertiesController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/property/EditPropertyController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/user/UserProfileController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/user/ChangePasswordController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/SidebarController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/FooterController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/FeedbackController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/ContentHeaderController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/HomeController.js"></script>
-    <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/controllers/HeaderController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/routes.js"></script>
 
     <div id="content" ng-app="addPropertyWithAuth">
@@ -61,7 +48,6 @@
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/tabset-plugin.js" defer></script>
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/helper.js" defer></script>
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/add-propertyFrom.js" defer></script>
-    <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/dashboard.js" defer></script>
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/jquery.main.js" defer></script>
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/customSelect.js" defer></script>
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/lightbox.js" defer></script>
