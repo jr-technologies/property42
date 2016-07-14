@@ -34,57 +34,52 @@
                                 <input type="checkbox" id="ID">
                                 <label><span class="descending">ID</span></label>
                             </div>
-                            <div class="t-head by-type"><span class="descending">Type</span></div>
-                            <div class="t-head by-location"><span class="descending">Location</span></div>
-                            <div class="t-head by-price"><span class="descending">Price (PKR)</span></div>
+                            <div class="t-head by-type"><span class="descending">Name</span></div>
+                            <div class="t-head by-location"><span class="descending">Address</span></div>
+                            <div class="t-head by-price"><span class="descending">Phone</span></div>
                             <div class="t-head"><span class="descending">Listed Date</span></div>
-                            <div class="t-head by-view"><span class="descending">Views</span></div>
+                            <div class="t-head by-view"><span class="descending">Status</span></div>
                             <div class="t-head"><span class="descending">Controls</span></div>
                         </li>
-                        @foreach($response['data']['properties'] as $property)
-                        <li class="accordion-row">
-                            <div class="t-data by-id">
-                                <input type="checkbox">
-                                <label for="id1">{{$property->id}}</label>
-                            </div>
-                            <div class="t-data by-type"><p>{{$property->type->parentType->name}}.</p></div>
-                            <div class="t-data by-location"><p>{{$property->location->society->name.' Block '.$property->location->block->name}}</p></div>
-                            <div class="t-data by-price"><p>Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</p></div>
-                            <div class="t-data">
-                                <time datetime="2016-04-18">{{$property->createdAt}}</time>
-                            </div>
-                            <div class="t-data by-view">{{$property->totalViews}}</div>
-                            <div class="t-data">
-                                {{Form::open(array('url'=>'admin/property/approve','method'=>'POST','class'=>'rejectApprove-form'))}}
-                                    <input hidden name="propertyId" value="{{$property->id}}">
-                                 <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
-                                {{Form::close()}}
-                                {{Form::open(array('url'=>'admin/property/reject','method'=>'POST','class'=>'rejectApprove-form'))}}
-                                    <input hidden name="propertyId" value="{{$property->id}}">
-                                <button class="delete" title="Delete the property" type="submit"><span class="icon-sign"></span></button>
-                                {{Form::close()}}
-                                <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
-                            </div>
-                            <div class="slide">
-                                <div class="two-cols">
-                                    <div class="col">
-                                        <h1>Owner info:</h1>
-                                        <p><b>Owner Name:</b> {{$property->contactPerson}}</p>
-                                        <p><b>Owner Email:</b> {{$property->email}}</p>
-                                        <p><b>Owner Phone:</b> {{$property->phone}}</p>
-                                        <p><b>Owner Fax:</b> {{$property->fax}}</p>
-                                    </div>
-                                    <div class="col">
-                                        <h1>property title:</h1>
-                                        <p>{{$property->title}}</p>
-                                        <h1>property description:</h1>
-                                        <p>{{$property->description}}.</p>
-                                    </div>
+
+                        @foreach($response['data']['agents'] as $agent)
+                            <li class="accordion-row">
+                                <div class="t-data by-id">
+                                    <input type="checkbox">
+                                    <label for="id1">{{$agent->id}}</label>
                                 </div>
-                                <a href="{{URL::to('get/property')}}?propertyId={{$property->id}}" class="btn-more">View more</a>
-                            </div>
-                        </li>
-                      @endforeach
+                                <div class="t-data by-type"><p>{{$agent->fName.' '.$agent->lName}}}}.</p></div>
+                                <div class="t-data by-location"><p>{{$agent->address}}</p></div>
+                                <div class="t-data by-price"><p>{{$agent->phone}}</p></div>
+                                <div class="t-data">
+                                    <time datetime="2016-04-18">{{$agent->createdAt}}</time>
+                                </div>
+                                <div class="t-data by-view">@if($agent->trustedAgent !=1) Pending @endif</div>
+                                <div class="t-data">
+                                    {{Form::open(array('url'=>'admin/agent/approve','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                    <input hidden name="userId" value="{{$agent->id}}">
+                                    <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
+                                    {{Form::close()}}
+                                    
+                                    <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
+                                </div>
+                                <div class="slide">
+                                    <div class="two-cols">
+                                        <div class="col">
+                                            <h1>Owner info:</h1>
+                                            <p><b>Owner Name:</b> {{$agent->agencies[0]->name}}</p>
+                                            <p><b>Owner Email:</b> {{$agent->agencies[0]->email}}</p>
+                                            <p><b>Owner Phone:</b> {{$agent->agencies[0]->phone}}</p>
+                                        </div>
+                                        <div class="col">
+                                            <h1>property description:</h1>
+                                            <p>{{$agent->agencies[0]->description}}.</p>
+                                        </div>
+                                    </div>
+                                    <a href="{{URL::to('get/property')}}?propertyId={{$agent->id}}" class="btn-more">View more</a>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <ul class="pager">

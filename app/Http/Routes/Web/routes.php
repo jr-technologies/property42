@@ -29,6 +29,7 @@ Route::post('admin/property/reject',
 );
 
 
+
 Route::post('admin/property/approve',
     [
         'middleware'=>
@@ -65,6 +66,17 @@ Route::post('admin/property/approve',
         'uses'=>'Admin\AdminController@approveProperty'
     ]
 );
+
+Route::post('admin/agent/approve',
+    [
+        'middleware'=>
+            [
+                'webValidate:approveAgentRequest'
+            ],
+        'uses'=>'Admin\AdminController@approveAgent'
+    ]
+);
+
 
 Route::get('admin/properties',
     [

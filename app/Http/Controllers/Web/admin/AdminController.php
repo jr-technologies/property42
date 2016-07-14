@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
 use App\Http\Requests\Requests\Property\RejectPropertyRequest;
+use App\Http\Requests\Requests\User\ApproveAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
 
 class AdminController extends Controller
@@ -21,12 +23,14 @@ class AdminController extends Controller
     public $properties = null;
     public $favouriteFactory=null;
     public $propertiesRepo=null;
+    public $usersRepo = null;
     public function __construct(WebResponse $webResponse)
     {
         $this->response = $webResponse;
         $this->properties = (new PropertiesJsonRepoProvider())->repo();
         $this->propertiesRepo = (new PropertiesRepoProvider())->repo();
         $this->users = (new UsersJsonRepoProvider())->repo();
+        $this->usersRepo = (new UsersRepoProvider())->repo();
         $this->favouriteFactory = new FavouritePropertyFactory();
     }
     public function getProperties()
@@ -62,9 +66,15 @@ class AdminController extends Controller
     }
      public function getAgents()
      {
-        $this->response->setView('pending-Agents')->respond(['data'=>[
-            'agents'=>$this->users->getPendingAgents()
+         //dd($this->users->getPendingAgents());
+         return $this->response->setView('frontend.admin.pending-Agents')->respond(['data'=>[
+            'agents'=>$this->users->getPendingAgents(),
         ]]);
      }
+    public function approveAgent(ApproveAgentRequest $request)
+    {
+         $this->usersRepo->approveAgent($request->getUserModel());
+        return redirect('admin/agents');
+    }
 
 }

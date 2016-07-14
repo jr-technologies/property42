@@ -226,6 +226,7 @@ return [
         'GetAgentRequest' => \App\Http\Requests\Requests\User\GetAgentRequest::class,
         'TrustedAgentRequest' => \App\Http\Requests\Requests\User\TrustedAgentRequest::class,
         'ForgetPasswordRequest' => \App\Http\Requests\Requests\User\ForgetPasswordRequest::class,
+        'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
 
 
 

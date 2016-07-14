@@ -101,7 +101,6 @@
                         ?>
                         <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                         <?php }?>
-
                         <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
                         <?php
                         $totalPaginationValue = intval(ceil($response['data']['totalAgentsFound'] / config('constants.Pagination')));
