@@ -78,7 +78,7 @@ class AppsResourceController extends ApiController
         $subTypeAssignedFeaturesJson = $this->assignedFeaturesJson->all();
         $agencyStaff = $this->agencyStaff->getStaffByOwner($user->id);
         $agencyStaff = ((sizeof($agencyStaff) == 0)?[$user]:$agencyStaff);
-        $favouriteProperties = $this->propertyJsonFactory->CountFavouriteProperties($request->user()->id);
+        $favouriteProperties = $this->propertyJsonFactory->CountFavouriteProperties($user->id);
         $propertiesCounts  = $this->properties->countProperties($user->id);
         $userRoles = (new RolesRepoProvider())->repo()->all();
         return $this->response->respond([
