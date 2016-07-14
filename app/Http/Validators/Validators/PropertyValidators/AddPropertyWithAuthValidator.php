@@ -10,11 +10,14 @@ namespace App\Http\Validators\Validators\PropertyValidators;
 
 
 use App\DB\Providers\SQL\Models\Features\FeatureWithValidationRules;
+use App\Http\Requests\Requests\Property\AddPropertyWithAuthRequest;
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Libs\Auth\Api;
+use Illuminate\Support\Facades\Validator;
 
 class AddPropertyWithAuthValidator extends PropertyValidator implements ValidatorsInterface
 {
-    public function __construct($request)
+    public function __construct(AddPropertyWithAuthRequest $request)
     {
         parent::__construct($request);
     }
@@ -27,8 +30,12 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
         $features = $this->getExtraFeatures();
         foreach($features as $feature /* @var $feature FeatureWithValidationRules::class*/)
         {
-            $customMessages = array_merge($customMessages,$feature->customErrorMessages());
+            $featureCustomMessages = $feature->customErrorMessages();
+            foreach($featureCustomMessages as $key => $message){
+                $customMessages['features.'.$key] = $message;
+            }
         }
+
         return $customMessages;
     }
 
@@ -54,6 +61,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             'contactPerson.required' => 'contact person is required',
             'phone.required' => 'company phone is required',
             'email.required' => 'company email is required',
+            'loginDetails.email.authenticated' => 'Invalid credentials'
         ], $this->customValidationMessagesForExtraFeatures());
     }
 
@@ -91,16 +99,44 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             $featureRules = $feature->rulesToString();
             if(!empty($featureRules) > 0)
             {
-                $rules[$feature->featureInputName] = $featureRules;
+                $rules['features.'.$feature->featureInputName] = $featureRules;
             }
         }
-
         return $rules;
+    }
+
+    private function newMemberValidationRules()
+    {
+        return [
+            'newMemberDetails.fName' => 'required',
+            'newMemberDetails.lName' => 'required',
+            'newMemberDetails.email' => 'required',
+            'newMemberDetails.phone' => 'required',
+            'newMemberDetails.password' => 'required|min:5|max:15',
+        ];
+    }
+
+    private function existingMemberValidationRules()
+    {
+        return [
+            'loginDetails.email' => 'required|authenticated',
+            'loginDetails.password' => 'required'
+        ];
     }
 
     public function rules()
     {
-        return array_merge(array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules()), $this->extraFeaturesValidationRules());
+        $globalRules = array_merge(array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules()), $this->extraFeaturesValidationRules());
+        return ($this->request->isMember())?array_merge($globalRules,$this->existingMemberValidationRules()):array_merge($globalRules, $this->newMemberValidationRules());
     }
+
+    public function registerAuthenticatedRule()
+    {
+        Validator::extend('authenticated', function($attribute, $value, $parameters)
+        {
+            return (new Api())->attempt(['email'=>$this->request->get('loginDetails')['email'], 'password'=>$this->request->get('loginDetails')['password']]);
+        });
+    }
+
 }
 

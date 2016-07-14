@@ -417,7 +417,7 @@ Route::post('/propertyWithAuth',
         'middleware'=>
             [
 //                'apiAuthenticate:addPropertyRequest',
-//                'apiValidate:addPropertyRequest'
+                'apiValidate:addPropertyWithAuthRequest'
             ],
         'uses'=>'PropertiesController@storeWithAuth'
     ]

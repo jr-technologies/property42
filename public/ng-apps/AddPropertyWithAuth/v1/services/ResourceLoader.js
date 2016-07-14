@@ -1,6 +1,7 @@
 /**
  * Created by zeenomlabs on 12/11/2015.
  */
+
 var app = angular.module(appName);
 app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
 

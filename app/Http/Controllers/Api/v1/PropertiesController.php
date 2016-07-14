@@ -9,9 +9,11 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyDocument;
+use App\DB\Providers\SQL\Models\User;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
+use App\Http\Middleware\Authenticator\ApiAuthenticator;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest;
@@ -28,10 +30,12 @@ use App\Http\Requests\Requests\Property\RestorePropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\ApiResponse;
+use App\Libs\Auth\Api as Authenticator;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use App\Traits\Property\PropertyPriceUnitHelper;
@@ -45,6 +49,7 @@ class PropertiesController extends ApiController
 {
     use \App\Traits\Property\PropertyFilesReleaser, PropertyPriceUnitHelper;
 
+    private $auth = null;
     private $properties = null;
     private $propertyFeatureValues = null;
     public  $response = null;
@@ -53,12 +58,14 @@ class PropertiesController extends ApiController
     private $propertyJsonTransformer = null;
     private $propertyRepo = null;
     private $usersJsonRepo = null;
+    private $users = null;
     /**
      * @param PropertiesRepoProvider $repoProvider
      * @param ApiResponse $response
      */
     public function __construct(PropertiesRepoProvider $repoProvider,ApiResponse $response)
     {
+        $this->auth = new Authenticator();
         $this->properties = $repoProvider->repo();
         $this->propertyRepo = (new PropertiesRepoProvider())->repo();
         $this->response = $response;
@@ -67,6 +74,7 @@ class PropertiesController extends ApiController
         $this->propertiesJsonRepo= (new PropertiesJsonRepoProvider())->repo();
         $this->propertyJsonTransformer = new PropertyJsonTransformer();
         $this->usersJsonRepo= (new UsersJsonRepoProvider())->repo();
+        $this->users = (new UsersRepoProvider())->repo();
     }
 
     public function store(AddPropertyRequest $request)
@@ -88,7 +96,27 @@ class PropertiesController extends ApiController
 
     public function storeWithAuth(AddPropertyWithAuthRequest $request)
     {
-        
+        try{
+            $user = (!$request->isMember())?$this->registerAndLogin($request->getUserModel()):$this->loginUser($this->users->findByEmail($request->get('loginDetails')['email']));
+        }catch (\Exception $e){
+            return $this->response->respondInternalServerError();
+        }
+
+        dd($request->getPropertyModel($user));
+
+    }
+
+    private function registerAndLogin(User $user)
+    {
+        $user = $this->users->store($user);
+        $this->users->addRoles($user->id, [1]);
+
+        return $this->loginUser($user);
+    }
+
+    private function loginUser(User $user)
+    {
+        return $this->auth->login($user);
     }
 
     public function getFavouriteProperties(GetFavouritePropertyRequest $request)

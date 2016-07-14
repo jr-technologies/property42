@@ -14,6 +14,7 @@ use App\DB\Providers\SQL\Models\Features\Feature;
 use App\DB\Providers\SQL\Models\Features\PropertyFeatureValue;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\PropertyDocument;
+use App\DB\Providers\SQL\Models\User;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\AddCityValidator;
@@ -42,9 +43,8 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         return ($this->get('memberType') == 1)?true:false;
     }
 
-    public function getPropertyModel()
+    public function getPropertyModel(User $user)
     {
-        $user = $this->user();
         $property = new Property();
         $property->purposeId = $this->get('purposeId');
         $property->subTypeId =  $this->get('subTypeId');
@@ -119,6 +119,19 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $documents[] = $document;
 
         return $documents;
+    }
+
+    public function getUserModel()
+    {
+        $user = new User();
+        $user->fName = $this->get('newMemberDetails')['fName'];
+        $user->lName = $this->get('newMemberDetails')['lName'];
+        $user->email = $this->get('newMemberDetails')['email'];
+        $user->password = bcrypt($this->get('newMemberDetails')['password']);
+        $user->phone = $this->get('newMemberDetails')['phone'];
+        $user->countryId = 1;
+        $user->membershipPlanId = 1;
+        return $user;
     }
 
     public function getFeature($featureName)
