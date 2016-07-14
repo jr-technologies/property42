@@ -85,19 +85,7 @@ class PropertiesController extends Controller
 
     public function showAddPropertyForm()
     {
-        $parentTypes = $this->propertyTypes->all();
-        $groupedSubTypes = collect($this->propertySubtypes->all())->groupBy('propertyTypeId')->toArray();
-        $societies = $this->societies->all();
-        $landUnits = $this->landUnits->all();
-        $assignedFeaturesJson = $this->transformAddPropertyFormFeatures($this->assignedFeaturesJson->all());
-        dd($assignedFeaturesJson[0]->priorityFeatures[0]->htmlStructure);
-        return $this->response->setView('frontend.addProperty')->respond(dd(['data'=>[
-            'subTypes' => $groupedSubTypes,
-            'parentTypes' => $parentTypes,
-            'societies' => $societies,
-            'landUnits' => $landUnits,
-            'assignedFeatures' => $assignedFeaturesJson
-        ]]));
+        
     }
 
     public function index()
