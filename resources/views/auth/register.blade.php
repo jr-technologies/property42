@@ -59,7 +59,7 @@
                     <h1>Contact Information</h1>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('phone')) error @endif">
                         <label class="icon-phone" for="phone"></label>
-                        <input type="tel" placeholder="Enter Your Phone Number" name="phone" value="{{old('phone')}}" id="phone" required>
+                        <input type="tel" placeholder="Enter Your Phone Number" name="phone" value="{{old('phone')}}" id="phone" >
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('phone')) {{$validationErrors->first('phone')}} @endif</span>
                     </div>

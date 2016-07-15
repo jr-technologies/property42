@@ -1,4 +1,4 @@
-@extends('frontend.admin.admin2')
+@extends('admin.admin2')
 @section('content')
     <div id="content">
         <div class="container">

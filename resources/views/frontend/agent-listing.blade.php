@@ -78,6 +78,17 @@
                     $nextResult = URL('/agents').'?'.$convertToQueryString;
                     ?>
                     <ul class="pager">
+                        <?php
+                        $totalPaginationValue = intval(ceil($response['data']['totalAgentsFound'] / config('constants.Pagination')));
+                        $for_first_link = $_GET;
+                        $current_page = (isset($for_first_link['page'])) ? $for_first_link['page']: 1;
+                        $for_first_link['page']=1;
+                        $convertFirstRecordToQueryString  = http_build_query($for_first_link);
+                        $firstResult = URL('/agents').'?'.$convertFirstRecordToQueryString;
+                        ?>
+                        @if($current_page >=5)
+                            <a href="{{$firstResult}}">First</a>
+                         @endif
                         <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
                         <?php
                         $paginationValue = intval(ceil($response['data']['totalAgentsFound'] / config('constants.Pagination')));
@@ -90,8 +101,18 @@
                         ?>
                         <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                         <?php }?>
-
                         <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+                        <?php
+                        $totalPaginationValue = intval(ceil($response['data']['totalAgentsFound'] / config('constants.Pagination')));
+                        $for_last_link = $_GET;
+                        $current_page = (isset($for_last_link['page'])) ? $for_last_link['page']: $totalPaginationValue;
+                        $for_last_link['page']=$totalPaginationValue;
+                        $convertLastRecordToQueryString  = http_build_query($for_last_link);
+                        $lastResult = URL('/agents').'?'.$convertLastRecordToQueryString;
+                        ?>
+                        @if($current_page <=$paginationValue-4)
+                        <a href="{{$lastResult}}">Last</a>
+                        @endif
                     </ul>
             </div>
 

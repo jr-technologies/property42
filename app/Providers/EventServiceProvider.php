@@ -14,6 +14,7 @@ use App\Events\Events\Property\PropertyStatusUpdated;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Events\Events\Property\UpdatePropertyTotalView;
 use App\Events\Events\Section\SectionUpdated;
+use App\Events\Events\User\UpdateAgentStatus;
 use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserCreated;
 use App\Events\Events\User\UserRolesChanged;
@@ -31,6 +32,7 @@ use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyViewsInPropertyJson;
 use App\Listeners\Listeners\Property\UpdateStatusInPropertyJson;
 use App\Listeners\Listeners\Section\RegenerateSectionFeaturesJson;
+use App\Listeners\Listeners\User\UpdateAgentStatusInUserJson;
 use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
 use App\Listeners\Listeners\User\CreateUserJsonDocument;
 use App\Listeners\Listeners\User\UpdateUserJson;
@@ -91,6 +93,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         SectionUpdated::class => [
             RegenerateSectionFeaturesJson::class,
+        ],
+        UpdateAgentStatus::class => [
+            UpdateAgentStatusInUserJson::class,
         ],
         UserRolesChanged::class => [
             UpdateUserRoleInUserJson::class,

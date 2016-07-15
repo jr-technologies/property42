@@ -24,7 +24,7 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
     public function getPendingAgents()
     {
-        $this->tableGateway->getPendingAgents();
+        return $this->mapCollection($this->tableGateway->getPendingAgents());
     }
     public function getAgencyStaff($agencyId)
     {

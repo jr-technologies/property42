@@ -12,27 +12,20 @@ use App\Http\Validators\Interfaces\ValidatorsInterface;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use Illuminate\Support\Facades\Validator;
 
-class GetAdminAgentsValidator extends UserValidator implements ValidatorsInterface
+class ApproveAgentValidator extends UserValidator implements ValidatorsInterface
 {
-    private $userJsonRepo = "";
-    public function __construct($request){
+    public function __construct($request)
+    {
         parent::__construct($request);
-        $this->userJsonRepo = (new UsersJsonRepoProvider())->repo();
-    }
-    public function CustomValidationMessages(){
-        return [
-        ];
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules()
     {
         return [
-            'userId'=>'required'
+            'userId'=>'required',
         ];
     }
 

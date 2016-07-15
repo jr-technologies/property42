@@ -1,4 +1,4 @@
-@extends('frontend.admin.admin2')
+@extends('admin.admin2')
 @section('content')
     <div class="pages-holder">
         <div class="pendingForAdmin-property-holder">

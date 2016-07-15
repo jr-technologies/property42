@@ -12,6 +12,7 @@ namespace App\Repositories\Repositories\Sql;
 use App\Collections\Collections\UserCollection;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
 use App\DB\Providers\SQL\SQLFactoryProvider;
+use App\Events\Events\User\UpdateAgentStatus;
 use App\Events\Events\User\UserCreated;
 use App\Events\Events\User\UserRolesChanged;
 use App\Events\Events\User\UserUpdated;
@@ -116,7 +117,12 @@ class UsersRepository extends SqlRepository implements UsersRepoInterface
         return $this->factory->delete($user);
     }
 
-
+    public function approveAgent(User $user)
+    {
+        $user->trustedAgent = 1;
+        $this->factory->approveAgent($user);
+        Event::fire(new UpdateAgentStatus($user));
+    }
     public function userWasAgent($userId)
     {
         $userRoles = (new RolesRepoProvider())->repo()->getUserRoles($userId);

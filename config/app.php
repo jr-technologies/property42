@@ -226,6 +226,7 @@ return [
         'GetAgentRequest' => \App\Http\Requests\Requests\User\GetAgentRequest::class,
         'TrustedAgentRequest' => \App\Http\Requests\Requests\User\TrustedAgentRequest::class,
         'ForgetPasswordRequest' => \App\Http\Requests\Requests\User\ForgetPasswordRequest::class,
+        'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
 
 
 
@@ -328,6 +329,8 @@ return [
         'GetAdminPropertyRequest' => \App\Http\Requests\Requests\Property\GetAdminPropertyRequest::class,
         'RejectPropertyRequest' => \App\Http\Requests\Requests\Property\RejectPropertyRequest::class,
         'ApprovePropertyRequest' => \App\Http\Requests\Requests\Property\ApprovePropertyRequest::class,
+        'GetAdminAgentRequest' => \App\Http\Requests\Requests\User\GetAdminAgentRequest::class,
+        'AdminLoginRequest' => \App\Http\Requests\Requests\Auth\AdminLoginRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,
