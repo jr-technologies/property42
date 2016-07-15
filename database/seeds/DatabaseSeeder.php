@@ -41,8 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertyFeatureValuesTableSeeder::class);
         $this->call(PropertiesJsonTableSeeder::class);
         $this->call(AssignedFeaturesJsonTableSeeder::class);
-
-
+        $this->call(AdminsTableSeeder::class);
 
     }
 }

@@ -1,5 +1,26 @@
 <?php
 
+Route::get('admin',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'Admin\AuthController@getLoginPage'
+    ]
+);
+
+Route::post('admin/login',
+    [
+        'middleware'=>
+            [
+                // 'webAuthenticate:adminLoginRequest',
+                'webValidate:adminLoginRequest'
+            ],
+        'uses'=>'Admin\AuthController@login'
+    ]
+);
+
 Route::get('get/property',
     [
         'middleware'=>
@@ -9,6 +30,18 @@ Route::get('get/property',
         'uses'=>'Admin\AdminController@getById'
     ]
 );
+
+Route::get('get/agent',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminAgentRequest'
+            ],
+        'uses'=>'Admin\AdminController@getAgent'
+    ]
+);
+
+
 Route::get('add-property',
     [
         'middleware'=>
@@ -44,6 +77,7 @@ Route::get('admin/properties',
     [
         'middleware'=>
             [
+                'webAuthenticate:getAdminPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);

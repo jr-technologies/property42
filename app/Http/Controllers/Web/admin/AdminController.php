@@ -8,6 +8,7 @@ use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
 use App\Http\Requests\Requests\Property\RejectPropertyRequest;
 use App\Http\Requests\Requests\User\ApproveAgentRequest;
+use App\Http\Requests\Requests\User\GetAdminAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
@@ -35,8 +36,10 @@ class AdminController extends Controller
     }
     public function getProperties()
     {
-        return $this->response->setView('frontend.admin.pending-properties')->respond(['data'=>[
-            'properties'=>$this->properties->getPendingProperties()
+        $properties = $this->properties->getPendingProperties();
+        return $this->response->setView('admin.pending-properties')->respond(['data'=>[
+            'properties'=>$properties,
+            'propertiesCount'=>count($properties)
         ]]);
     }
 
@@ -44,7 +47,7 @@ class AdminController extends Controller
     {
         $loggedInUser = $request->user();
         $property = $this->properties->getById($request->get('propertyId'));
-        return $this->response->setView('frontend.admin.property-detail')->respond(['data'=>[
+        return $this->response->setView('admin.property-detail')->respond(['data'=>[
             'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
             'property'=>$this->releaseAllPropertiesFiles([$property])[0],
             'loggedInUser'=>$loggedInUser,
@@ -66,15 +69,20 @@ class AdminController extends Controller
     }
      public function getAgents()
      {
-         //dd($this->users->getPendingAgents());
-         return $this->response->setView('frontend.admin.pending-Agents')->respond(['data'=>[
-            'agents'=>$this->users->getPendingAgents(),
+         $agents = $this->users->getPendingAgents();
+        return $this->response->setView('admin.pending-Agents')->respond(['data'=>[
+            'agents'=>$agents,
+             'agentsCount'=>count($agents)
         ]]);
      }
     public function approveAgent(ApproveAgentRequest $request)
     {
          $this->usersRepo->approveAgent($request->getUserModel());
         return redirect('admin/agents');
+}
+    public function getAgent(GetAdminAgentRequest $request)
+    {
+       return $this->response->setView('admin.Agent_profile')->respond(['data'=>[
+            'agent'=>$this->users->find($request->get('userId'))]]);
     }
-
 }

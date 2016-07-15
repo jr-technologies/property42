@@ -72,11 +72,13 @@
                             </header>
                             <?php
                                 $images = url('/') . "/assets/imgs/no.png";
-
-                             if ($response['data']['property']->owner->agency->logo != null)
+                            if ($response['data']['property']->owner->agency != null)
+                            {
+                                if ($response['data']['property']->owner->agency->logo != null)
                                 {
                                     $images = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
                                 }
+                            }
                             ?>
                             <div class="description">
                                 <div class="layout">

@@ -328,6 +328,8 @@ return [
         'GetAdminPropertyRequest' => \App\Http\Requests\Requests\Property\GetAdminPropertyRequest::class,
         'RejectPropertyRequest' => \App\Http\Requests\Requests\Property\RejectPropertyRequest::class,
         'ApprovePropertyRequest' => \App\Http\Requests\Requests\Property\ApprovePropertyRequest::class,
+        'GetAdminAgentRequest' => \App\Http\Requests\Requests\User\GetAdminAgentRequest::class,
+        'AdminLoginRequest' => \App\Http\Requests\Requests\Auth\AdminLoginRequest::class,
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

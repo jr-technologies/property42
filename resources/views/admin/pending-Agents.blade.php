@@ -1,4 +1,4 @@
-@extends('frontend.admin.admin2')
+@extends('admin.admin2')
 @section('content')
     <div class="pages-holder">
         <div class="pendingForAdmin-property-holder">
@@ -48,7 +48,7 @@
                                     <input type="checkbox">
                                     <label for="id1">{{$agent->id}}</label>
                                 </div>
-                                <div class="t-data by-type"><p>{{$agent->fName.' '.$agent->lName}}}}.</p></div>
+                                <div class="t-data by-type"><p>{{$agent->fName.' '.$agent->lName}}</p></div>
                                 <div class="t-data by-location"><p>{{$agent->address}}</p></div>
                                 <div class="t-data by-price"><p>{{$agent->phone}}</p></div>
                                 <div class="t-data">
@@ -60,7 +60,7 @@
                                     <input hidden name="userId" value="{{$agent->id}}">
                                     <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
                                     {{Form::close()}}
-                                    
+
                                     <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
                                 </div>
                                 <div class="slide">
@@ -76,7 +76,7 @@
                                             <p>{{$agent->agencies[0]->description}}.</p>
                                         </div>
                                     </div>
-                                    <a href="{{URL::to('get/property')}}?propertyId={{$agent->id}}" class="btn-more">View more</a>
+                                    <a href="{{URL::to('get/agent')}}?userId={{$agent->id}}" class="btn-more">View more</a>
                                 </div>
                             </li>
                         @endforeach
