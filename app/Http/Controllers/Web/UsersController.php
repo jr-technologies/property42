@@ -23,6 +23,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -55,8 +56,8 @@ class UsersController extends Controller
     }
     public function getNewPassword(ForgetPasswordRequest $request)
     {
-        $password  = $this->rand->rands();
         $user = $this->users->findByEmail($request->get('email'));
+        $password  = $this->rand->rands();
         $user->password = bcrypt($password);
         $this->users->update($user);
         Mail::send('frontend.mail.forget_password',['user' => $user,'password'=>$password], function($message) use($user)

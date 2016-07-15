@@ -32,7 +32,7 @@ class ForgetPasswordValidator extends UserValidator implements ValidatorsInterfa
     public function rules()
     {
         return [
-           'email'=>'required'
+           'email'=>'required|exists:users,email'
         ];
     }
 }
