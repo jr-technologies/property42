@@ -40,7 +40,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
     }
 
     public function CustomValidationMessages(){
-        return array_merge([
+        $globalMessages = array_merge([
             /* exists messages */
             'ownerId.exists' => 'Owner is invalid',
             'purposeId.exists' => 'Property purpose is invalid',
@@ -63,6 +63,29 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             'email.required' => 'company email is required',
             'loginDetails.email.authenticated' => 'Invalid credentials'
         ], $this->customValidationMessagesForExtraFeatures());
+
+        return ($this->request->isMember())?array_merge($globalMessages,$this->existingMemberCustomRules()):array_merge($globalMessages, $this->newMemberCustomRules());
+
+    }
+
+    private function newMemberCustomRules()
+    {
+        return [
+            'newMemberDetails.fName.required' => 'first name is required',
+            'newMemberDetails.lName.required' => 'last name is required',
+            'newMemberDetails.email.required' => 'email is required',
+            'newMemberDetails.phone.required' => 'phone is required',
+            'newMemberDetails.password.required' => 'password is required'
+        ];
+    }
+
+    private function existingMemberCustomRules()
+    {
+        return [
+            'loginDetails.email.required' => 'email is required',
+            'loginDetails.email.authenticated' => 'Invalid credentials',
+            'loginDetails.password.required' => 'password is required',
+        ];
     }
 
     private function propertyInfoRules()

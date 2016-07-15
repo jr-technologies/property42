@@ -109,14 +109,8 @@ class PropertiesController extends ApiController
     {
         try{
             $user = (!$request->isMember())?$this->registerAndLogin($request->getUserModel()):$this->loginUser($this->users->findByEmail($request->get('loginDetails')['email']));
+            $property = $this->storePropertyCompletely($request, $this->convertPropertyAreaToLowestUnit($request->getPropertyModel($user)));
         }catch (\Exception $e){
-            return $this->response->respondInternalServerError();
-        }
-
-        try{
-            $property = $this->convertPropertyAreaToLowestUnit($request->getPropertyModel($user));
-            $property = $this->storePropertyCompletely($request, $property);
-        }catch(\Exception $e){
             return $this->response->respondInternalServerError();
         }
 
