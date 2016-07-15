@@ -6,6 +6,7 @@ use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouriteProperty
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
+use App\Http\Requests\Requests\Property\RouteToAddPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
@@ -60,6 +61,15 @@ class PropertiesController extends Controller
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
     }
 
+    public function addProperty(RouteToAddPropertyRequest $request)
+    {
+        if($request->isNotAuthentic()){
+            die(header('Location: '.url('/').'/app/add-property#/'));
+        }else{
+            die(header('Location: '.url('/').'/dashboard#/home/properties/add'));
+        }
+    }
+
     public function update(UpdatePropertyRequest $request)
     {
         return $this->response
@@ -82,23 +92,6 @@ class PropertiesController extends Controller
             'propertiesCount'=>$propertiesCount,
             'oldValues'=>$request->all()
         ]]);
-    }
-
-    public function showAddPropertyForm()
-    {
-        $parentTypes = $this->propertyTypes->all();
-        $groupedSubTypes = collect($this->propertySubtypes->all())->groupBy('propertyTypeId')->toArray();
-        $societies = $this->societies->all();
-        $landUnits = $this->landUnits->all();
-        $assignedFeaturesJson = $this->transformAddPropertyFormFeatures($this->assignedFeaturesJson->all());
-        dd($assignedFeaturesJson[0]->priorityFeatures[0]->htmlStructure);
-        return $this->response->setView('frontend.addProperty')->respond(dd(['data'=>[
-            'subTypes' => $groupedSubTypes,
-            'parentTypes' => $parentTypes,
-            'societies' => $societies,
-            'landUnits' => $landUnits,
-            'assignedFeatures' => $assignedFeaturesJson
-        ]]));
     }
 
     public function index()

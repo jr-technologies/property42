@@ -9,15 +9,13 @@ Route::get('get/property',
         'uses'=>'Admin\AdminController@getById'
     ]
 );
+
 Route::get('add-property',
     [
-        'middleware'=>
-            [
-                //'webValidate:getAdminPropertyRequest'
-            ],
-        'uses'=>'PropertiesController@showAddPropertyForm'
+        'uses'=>'PropertiesController@addProperty'
     ]
 );
+
 Route::post('admin/property/reject',
     [
         'middleware'=>

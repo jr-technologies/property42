@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<?= url('/') ?>/javascripts/ui-select/select.min.css">
 
     <!-- Angularjs Libs -->
+    <script src="<?= url('/') ?>/assets/js/helper.js"></script>
     <script src="<?= url('/') ?>/javascripts/firebase.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular/angular.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular-sanitize.js"></script>

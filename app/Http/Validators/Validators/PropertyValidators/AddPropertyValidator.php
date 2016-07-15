@@ -27,8 +27,12 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
         $features = $this->getExtraFeatures();
         foreach($features as $feature /* @var $feature FeatureWithValidationRules::class*/)
         {
-            $customMessages = array_merge($customMessages,$feature->customErrorMessages());
+            $featureCustomMessages = $feature->customErrorMessages();
+            foreach($featureCustomMessages as $key => $message){
+                $customMessages['features.'.$key] = $message;
+            }
         }
+
         return $customMessages;
     }
 
@@ -53,7 +57,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'landArea.required' => 'land area is required',
             'contactPerson.required' => 'contact person is required',
             'phone.required' => 'company phone is required',
-            'email.required' => 'company email is required',
+            'email.required' => 'company email is required'
         ], $this->customValidationMessagesForExtraFeatures());
     }
 
@@ -91,10 +95,9 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             $featureRules = $feature->rulesToString();
             if(!empty($featureRules) > 0)
             {
-                $rules[$feature->featureInputName] = $featureRules;
+                $rules['features.'.$feature->featureInputName] = $featureRules;
             }
         }
-
         return $rules;
     }
 

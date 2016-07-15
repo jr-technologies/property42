@@ -310,6 +310,7 @@ return [
 
         /* Property Requests */
         'AddPropertyRequest' => \App\Http\Requests\Requests\Property\AddPropertyRequest::class,
+        'AddPropertyWithAuthRequest' => \App\Http\Requests\Requests\Property\AddPropertyWithAuthRequest::class,
         'GetUserPropertiesRequest' => \App\Http\Requests\Requests\Property\GetUserPropertiesRequest::class,
         'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
