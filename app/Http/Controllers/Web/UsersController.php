@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Requests\Mail\AgentMailRequest;
 use App\Http\Requests\Requests\User\AddUserRequest;
-use App\Http\Requests\Requests\User\DeleteUserRequest;
 use App\Http\Requests\Requests\User\ForgetPasswordRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Requests\Requests\User\GetAgentsRequest;
@@ -18,10 +16,6 @@ use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\User\UsersFilesReleaser;
 use App\Transformers\Response\UserTransformer;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
@@ -65,7 +59,7 @@ class UsersController extends Controller
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
             $message->to($user->email)->subject('Property42');
         });
-        Session::flash('message', 'Your message has been sent');
+        Session::flash('message', 'New password has been sent to your email address');
         return redirect()->back();
     }
     public function trustedAgents(GetAgentsRequest $request)
