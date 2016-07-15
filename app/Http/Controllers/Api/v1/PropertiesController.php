@@ -94,6 +94,17 @@ class PropertiesController extends ApiController
         ]]);
     }
 
+    private function storePropertyCompletely($request, $property)
+    {
+        $propertyId = $this->properties->store($property);
+        $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
+
+        $property->id = $propertyId;
+        $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
+        $property = $this->properties->getById($propertyId);
+        Event::fire(new PropertyCreated($property));
+        return $property;
+    }
     public function storeWithAuth(AddPropertyWithAuthRequest $request)
     {
         try{
@@ -102,7 +113,18 @@ class PropertiesController extends ApiController
             return $this->response->respondInternalServerError();
         }
 
-        dd($request->getPropertyModel($user));
+        try{
+            $property = $this->convertPropertyAreaToLowestUnit($request->getPropertyModel($user));
+            $property = $this->storePropertyCompletely($request, $property);
+        }catch(\Exception $e){
+            return $this->response->respondInternalServerError();
+        }
+
+        return $this->response->respond(['data' => [
+            'property' => $property,
+            'features' => $request->getFeaturesValues($property->id),
+            'propertiesCounts' => $this->properties->countProperties($user->id)
+        ]]);
 
     }
 

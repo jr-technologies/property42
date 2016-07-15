@@ -68,7 +68,6 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
     private function propertyInfoRules()
     {
         return [
-            'ownerId' => 'required|exists:users,id',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
             'blockId' => 'required|exists:blocks,id',
@@ -77,16 +76,6 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             'price' => 'required|numeric|min:3',
             'landArea' => 'required|numeric',
             'landUnitId' => 'required|exists:land_units,id',
-        ];
-    }
-
-    private function propertyContactInfoRules()
-    {
-        return [
-            'contactPerson' => 'required',
-            'phone' => 'required|max:15',
-            'mobile' => 'required|max:15',
-            'email' => 'required|email'
         ];
     }
 
@@ -126,7 +115,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
 
     public function rules()
     {
-        $globalRules = array_merge(array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules()), $this->extraFeaturesValidationRules());
+        $globalRules = array_merge($this->propertyInfoRules(), $this->extraFeaturesValidationRules());
         return ($this->request->isMember())?array_merge($globalRules,$this->existingMemberValidationRules()):array_merge($globalRules, $this->newMemberValidationRules());
     }
 
