@@ -42,7 +42,6 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             /* Agency messages */
             'agencyName.required' => 'Agency name is required',
             'agencyName.unique_agent_in_societies' => ':conflictedSocieties',
-            'companyPhone.required' => 'Company phone is required',
             'companyAddress.required' => 'Company address is required',
             'societies.required' => 'Please Select atleast 1 society',
             'societies.societies_limit' => 'You can select only 3 Societies.',
@@ -69,7 +68,6 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
     {
         return [
             'agencyName' => 'required|max:255',
-            'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
             'societies' => 'required|societies_limit',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',

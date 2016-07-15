@@ -30,6 +30,7 @@ Route::get('app/addPropertyWithAuth/resources',
             [
 
             ],
+
         'uses'=>'AppsResourceController@addPropertyWithAuthResources'
     ]
 );

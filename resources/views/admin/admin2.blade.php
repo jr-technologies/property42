@@ -19,7 +19,7 @@
     <header id="header">
         <a href="{{URL::to('/')}}" class="logo"><span class="hidden-xs">Property</span>42</a>
         <a class="sideBar-opener"><span></span></a>
-        <a href="#" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
+        <a href="{{url('admin/logout')}}" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
     </header>
     <main id="main" role="main">
         <aside id="sidebar-dashboard">

@@ -73,11 +73,14 @@ Route::get('admin/properties',
     [
         'middleware'=>
             [
-                'webAuthenticate:getAdminPropertiesRequest',
+                'webAuthenticator:getAdminPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);
+Route::get('admin/logout',function(){
 
+    return redirect('admin');
+});
 Route::get('admin/agents',
     [
         'middleware'=>
