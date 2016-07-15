@@ -10,6 +10,12 @@ Route::get('get/property',
     ]
 );
 
+Route::get('add-property',
+    [
+        'uses'=>'PropertiesController@addProperty'
+    ]
+);
+
 Route::post('admin/property/reject',
     [
         'middleware'=>

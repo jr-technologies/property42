@@ -36,11 +36,9 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/routes.js"></script>
 
     <div id="content" ng-app="addPropertyWithAuth">
-        <div class="container">
             <div class="container" ng-controller="ParentController">
                 <ui-view></ui-view>
             </div>
-        </div>
     </div>
 
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?>/js/jquery-1.11.2.min.js" defer></script>

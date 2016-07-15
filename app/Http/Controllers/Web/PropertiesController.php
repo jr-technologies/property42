@@ -59,6 +59,11 @@ class PropertiesController extends Controller
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
     }
 
+    public function addProperty()
+    {
+        dd('hi');
+    }
+
     public function update(UpdatePropertyRequest $request)
     {
         return $this->response

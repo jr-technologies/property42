@@ -157,6 +157,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         });
         $scope.form.data.features = features;
     };
+
     $scope.submitProperty = function() {
         postProcessFormData();
         $scope.propertySaved = false;
@@ -188,6 +189,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
 
     var resetForm = function () {
         $scope.form.data = mapFormData();
+        $scope.temp.society = {};
+        $scope.temp.block = {};
         $('.image-loaded').removeClass('image-loaded');
         $('file-uploader').find('img').attr('src', '#');
     };
