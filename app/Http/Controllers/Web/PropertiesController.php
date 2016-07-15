@@ -6,6 +6,7 @@ use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouriteProperty
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
+use App\Http\Requests\Requests\Property\RouteToAddPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\User\GetAgentRequest;
@@ -59,9 +60,13 @@ class PropertiesController extends Controller
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
     }
 
-    public function addProperty()
+    public function addProperty(RouteToAddPropertyRequest $request)
     {
-        dd('hi');
+        if($request->isNotAuthentic()){
+            die(header('Location: '.url('/').'/app/add-property#/'));
+        }else{
+            die(header('Location: '.url('/').'/dashboard#/home/properties/add'));
+        }
     }
 
     public function update(UpdatePropertyRequest $request)

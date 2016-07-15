@@ -39,11 +39,11 @@
                         </ul>
                     </li>
                     <li class="agent-link"><a href="{{URL::to('agents')}}">agents</a></li>
-                    <li class="hidden-desktop"><a href="#">Add a property</a></li>
+                    <li class="hidden-desktop"><a href="{{URL::to('add-property') }}">Add a property</a></li>
                 </ul>
             </nav>
             <a class="nav-opener"><span></span></a>
-            <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span
+            <a href="{{ URL::to('add-property') }}" class="btn-header hidden-xs"><span
                         class="icon-plus"></span>Add a property</a>
             @if(session()->get('authUser') ==null)
                 <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>

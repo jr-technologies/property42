@@ -74,6 +74,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             'newMemberDetails.fName.required' => 'first name is required',
             'newMemberDetails.lName.required' => 'last name is required',
             'newMemberDetails.email.required' => 'email is required',
+            'newMemberDetails.email.unique' => 'this email has already been taken',
             'newMemberDetails.phone.required' => 'phone is required',
             'newMemberDetails.password.required' => 'password is required'
         ];
@@ -122,7 +123,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
         return [
             'newMemberDetails.fName' => 'required',
             'newMemberDetails.lName' => 'required',
-            'newMemberDetails.email' => 'required',
+            'newMemberDetails.email' => 'required|email|unique:users,email|max:255',
             'newMemberDetails.phone' => 'required',
             'newMemberDetails.password' => 'required|min:5|max:15',
         ];

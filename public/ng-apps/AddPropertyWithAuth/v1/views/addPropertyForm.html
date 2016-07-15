@@ -1,16 +1,13 @@
 
 <div class="addPropertyFormContainer {{please_wait_class}}" ng-init="initialize()">
 
-    <!--<div class="listing-holder">-->
-        <!--<a class="listing-opener"><span class="icon-menu"></span></a>-->
-        <!--<ul class="section-listing">-->
-            <!--<li class="activeAddPropertyNavLink"><a href="#basics-block" class="scrollAddPropertyNavLink"><span class="icon-info"></span>Basic</a></li>-->
-            <!--<li><a href="#feature-block" class="scrollAddPropertyNavLink"><span class="icon-symbol"></span> Features</a></li>-->
-            <!--<li><a href="#attactment-block" class="scrollAddPropertyNavLink"><span class="icon-clip"></span> Attachments</a></li>-->
-            <!--<li><a href="#contact-information" class="scrollAddPropertyNavLink"><span class="icon-contact_phone"></span> Contact Info</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <form class="property-add" ng-submit="submitProperty()">
+    <div ng-show="propertySaved == true" class="thankYou-message-submitPropperty">
+        <div class="messageThankyou-holder">
+            <strong class="ui-thankYou-submitProperty">Your property has been submitted successfully !</strong>
+            <a href="{{domain}}add-property" class="add-anotherProperty">Add an other property</a>
+        </div>
+    </div>
+    <form ng-show="propertySaved == false" class="property-add" ng-submit="submitProperty()">
         <section class="basics-block" id="basics-block">
             <span ng-show='false' class="alert-success"><span class="icon-checkmark"></span>Property Saved successfully !<a class="close icon-cross"></a></span>
             <div class="errors">
@@ -94,8 +91,9 @@
                 <div class="layout-holder">
                     <span class="title">Price:</span>
                     <div class="input-holder">
-                        <input type="number" name="price" ng-model="form.data.price">
+                        <input type="number" class="PriceField" name="price" ng-model="form.data.price">
                         <span class="error-text"></span>
+                        <span class="calculatedPrice">Please enter the price</span>
                     </div>
                 </div>
                 <div class="layout-holder">

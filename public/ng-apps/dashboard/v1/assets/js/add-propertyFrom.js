@@ -60,3 +60,17 @@ function handleAddPropertyFormScrolling()
 		}
 	});
 }
+
+
+
+$(document).on('focusin', '.PriceField', function(){
+	$('.calculatedPrice').removeClass('priceShow');
+	$('.calculatedPrice').addClass('priceShow');
+});
+$(document).on('focusout', '.PriceField', function(){
+	$('.calculatedPrice').removeClass('priceShow');
+});
+
+$(document).on('change keyup','.PriceField',function(){
+	showDetailedPriceAt(digitsToWords($(this).val()), '.calculatedPrice');
+});
