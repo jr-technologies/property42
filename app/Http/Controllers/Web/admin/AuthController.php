@@ -2,21 +2,12 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
-use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Auth\AdminLoginRequest;
-use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
-use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
-use App\Http\Requests\Requests\Property\RejectPropertyRequest;
-use App\Http\Requests\Requests\User\ApproveAgentRequest;
-use App\Http\Requests\Requests\User\GetAdminAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\AdminsRepoProvider;
-use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
-use App\Repositories\Providers\Providers\PropertiesRepoProvider;
-use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
-use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -36,6 +27,7 @@ class AuthController extends Controller
          $admin = $this->adminRepo->getAdmin($request->getCredentials());
         if(sizeof($admin) >0)
         {
+            Session::set('admin',$admin);
             return redirect('admin/agents');
         }
     }
