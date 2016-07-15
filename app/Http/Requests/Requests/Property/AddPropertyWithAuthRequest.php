@@ -128,7 +128,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $user->lName = $this->get('newMemberDetails')['lName'];
         $user->email = $this->get('newMemberDetails')['email'];
         $user->password = bcrypt($this->get('newMemberDetails')['password']);
-        $user->phone = $this->get('newMemberDetails')['phone'];
+        $user->mobile = $this->get('newMemberDetails')['cell'];
         $user->countryId = 1;
         $user->membershipPlanId = 1;
         $user->trustedAgent = 1; /* its temporary. */
