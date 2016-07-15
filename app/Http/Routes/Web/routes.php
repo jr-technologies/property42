@@ -1,5 +1,26 @@
 <?php
 
+Route::get('admin',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'Admin\AuthController@getLoginPage'
+    ]
+);
+
+Route::post('admin/login',
+    [
+        'middleware'=>
+            [
+                // 'webAuthenticate:adminLoginRequest',
+                'webValidate:adminLoginRequest'
+            ],
+        'uses'=>'Admin\AuthController@login'
+    ]
+);
+
 Route::get('get/property',
     [
         'middleware'=>
@@ -9,6 +30,18 @@ Route::get('get/property',
         'uses'=>'Admin\AdminController@getById'
     ]
 );
+
+Route::get('get/agent',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminAgentRequest'
+            ],
+        'uses'=>'Admin\AdminController@getAgent'
+    ]
+);
+
+
 Route::get('add-property',
     [
         'middleware'=>
@@ -29,6 +62,7 @@ Route::post('admin/property/reject',
 );
 
 
+
 Route::post('admin/property/approve',
     [
         'middleware'=>
@@ -43,6 +77,7 @@ Route::get('admin/properties',
     [
         'middleware'=>
             [
+                'webAuthenticate:getAdminPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);
@@ -65,6 +100,17 @@ Route::post('admin/property/approve',
         'uses'=>'Admin\AdminController@approveProperty'
     ]
 );
+
+Route::post('admin/agent/approve',
+    [
+        'middleware'=>
+            [
+                'webValidate:approveAgentRequest'
+            ],
+        'uses'=>'Admin\AdminController@approveAgent'
+    ]
+);
+
 
 Route::get('admin/properties',
     [
@@ -239,9 +285,13 @@ Route::get('/logout', function(){
     {
         $usersRepo = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo();
         $authUser = session()->pull('authUser');
-        $authUser = $usersRepo->getById($authUser->id);
-        $authUser->access_token = null;
-        (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+        try{
+            $authUser = $usersRepo->getById($authUser->id);
+            $authUser->access_token = null;
+            (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+        }catch (\Exception $e){
+
+        }
     }
     return redirect('/login');
 });

@@ -24,12 +24,13 @@ use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Traits\Property\PropertyPriceUnitHelper;
+use App\Traits\Property\ShowAddPropertyFormHelper;
 use App\Transformers\Response\PropertyTransformer;
 use Illuminate\Support\Facades\DB;
 
 class PropertiesController extends Controller
 {
-    use PropertyFilesReleaser, PropertyPriceUnitHelper;
+    use PropertyFilesReleaser, PropertyPriceUnitHelper, ShowAddPropertyFormHelper;
     public $PropertyTransformer = null;
     public $properties = "";
     public $societies = null;
@@ -89,10 +90,8 @@ class PropertiesController extends Controller
         $groupedSubTypes = collect($this->propertySubtypes->all())->groupBy('propertyTypeId')->toArray();
         $societies = $this->societies->all();
         $landUnits = $this->landUnits->all();
-        $assignedFeaturesJsonCollection = collect($this->assignedFeaturesJson->all());
-        $assignedFeaturesJsonCollection->each(function($item, $key) {
-            //
-        });
+        $assignedFeaturesJson = $this->transformAddPropertyFormFeatures($this->assignedFeaturesJson->all());
+        dd($assignedFeaturesJson[0]->priorityFeatures[0]->htmlStructure);
         return $this->response->setView('frontend.addProperty')->respond(dd(['data'=>[
             'subTypes' => $groupedSubTypes,
             'parentTypes' => $parentTypes,

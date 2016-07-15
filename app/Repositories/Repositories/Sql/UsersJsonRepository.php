@@ -93,6 +93,6 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     }
     public function getPendingAgents()
     {
-        $this->factory->getPendingAgents();
+        return $this->factory->getPendingAgents();
     }
 }
