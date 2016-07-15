@@ -27,6 +27,6 @@ class AppsController extends Controller
         }
 
         $version = $appRequest->version();
-        return $this->response->app('addPropertyWithAuth', $version);
+        return $this->response->app('AddPropertyWithAuth', $version);
     }
 }

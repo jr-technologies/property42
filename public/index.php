@@ -16,7 +16,7 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
-
+//die('system is updating. please wait!');
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
