@@ -63,6 +63,20 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
+    $scope.searchSocieties = function ($select) {
+        if($select.search == ""){
+            $rootScope.resources.societies = [];
+            return;
+        }
+        return $http.get(apiPath+'societies/search', {
+            params: {
+                keyword: $select.search
+            }
+        }).then(function(response){
+            console.log(response.data);
+            $rootScope.resources.societies = response.data.results;
+        });
+    };
     $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;
         getBlocks().then(function (blocks) {

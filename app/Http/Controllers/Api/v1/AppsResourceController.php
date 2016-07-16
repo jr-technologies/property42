@@ -87,7 +87,7 @@ class AppsResourceController extends ApiController
                     'purposes'=>$purposes,
                     'propertyStatuses'=>$statuses,
                     'propertyTypes'=>$propertyTypes,
-                    'societies'=>$societies,
+                    'societies'=>[],//$societies,
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
                     'agencyStaff'=>$agencyStaff,
