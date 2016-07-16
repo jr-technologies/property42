@@ -74,7 +74,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
             }
         }).then(function(response){
             console.log(response.data);
-            $rootScope.resources.societies = response.data.results;
+            $rootScope.resources.societies = response.data;
         });
     };
     $scope.societyChanged = function () {

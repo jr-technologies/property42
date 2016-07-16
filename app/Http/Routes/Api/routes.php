@@ -342,6 +342,9 @@ Route::get('societies',
         'uses'=>'SocietiesController@all'
     ]
 );
+Route::get('societies/search',function(){
+    return response()->json(array_values(preg_grep("/".request()->get('keyword')."/", config('constants.societies'))));
+});
 
 /**
  * Block Crud
