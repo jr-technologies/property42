@@ -36,8 +36,12 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/routes.js"></script>
 
     <div id="content" ng-app="addPropertyWithAuth">
-            <div class="container" ng-controller="ParentController">
-                <ui-view></ui-view>
+            <div class="container loading_content_class" ng-controller="ParentController">
+                <ui-view>
+                    <span style="font-size: 20px; color:darkgray;">
+                        Please wait form is loading...
+                    </span>
+                </ui-view>
             </div>
     </div>
 
