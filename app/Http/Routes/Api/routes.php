@@ -343,8 +343,13 @@ Route::get('societies',
     ]
 );
 Route::get('societies/search',function(){
-    return response()->json(config('constants.societies'));
-    //return response()->json(array_values(preg_grep("/".request()->get('keyword')."/", config('constants.societies'))));
+    $results = [];
+    foreach(config('constants.societies') as $society){
+        if(preg_match("/".request()->get('keyword')."/i", $society->name)){
+            $results[] = $society;
+        }
+    }
+    return response()->json($results);
 });
 
 /**

@@ -80,7 +80,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;
         getBlocks().then(function (blocks) {
-            alert($scope.form.data.society);
             $scope.blocks = blocks;
         });
     };

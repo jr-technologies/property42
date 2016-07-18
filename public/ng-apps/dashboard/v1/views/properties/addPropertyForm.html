@@ -74,9 +74,6 @@
                                 <ui-select-choices refresh="searchSocieties($select)" refresh-delay="300" repeat="society in resources.societies">
                                     <div ng-bind-html="society.name"></div>
                                 </ui-select-choices>
-                                <!--<ui-select-choices repeat="society in societies | propsFilter: {name: $select.search}">-->
-                                    <!--<div ng-bind-html="society.name | highlight: $select.search"></div>-->
-                                <!--</ui-select-choices>-->
                             </ui-select>
                     </div>
                 </div>

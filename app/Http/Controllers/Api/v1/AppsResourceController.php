@@ -70,7 +70,7 @@ class AppsResourceController extends ApiController
         $user = $this->releaseAllUserFiles($user);
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
-        $societies = $this->societies->all();
+        //$societies = $this->societies->all();
         $propertyStatusesIds = (object)$this->mapStatusesToArray($this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
@@ -105,7 +105,7 @@ class AppsResourceController extends ApiController
     public function addPropertyWithAuthResources()
     {
         $purposes  = $this->purposes->all();
-        $societies = $this->societies->all();
+        //$societies = $this->societies->all();
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
         $landUnits = $this->landUnits->all();
@@ -116,7 +116,7 @@ class AppsResourceController extends ApiController
                 'resources'=>[
                     'purposes'=>$purposes,
                     'propertyTypes'=>$propertyTypes,
-                    'societies'=>$societies,
+                    'societies'=>[],
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
                     'subTypeAssignedFeatures'=>$subTypeAssignedFeaturesJson,
