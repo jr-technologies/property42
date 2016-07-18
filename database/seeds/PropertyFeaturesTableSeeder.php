@@ -11,7 +11,7 @@ class PropertyFeaturesTableSeeder extends Seeder
     public function run()
     {
         DB::table('property_features')->insert(
-        [
+            [
                 [
                     'feature_section_id' => 7,
                     'feature' => 'Possesion',
@@ -396,6 +396,53 @@ class PropertyFeaturesTableSeeder extends Seeder
                     'priority' =>0,
                 ],
 
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Floor',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+                [
+                    'feature_section_id' => 6,
+                    'Balloted' => 'Laundary or Dry Clean',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+                [
+                    'feature_section_id' => 6,
+                    'Balloted' => 'Laundary or Dry Clean',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+                [
+                    'feature_section_id' => 6,
+                    'Balloted' => 'Communal or shared Kitchen in Building',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+
+                [
+                    'feature_section_id' => 6,
+                    'Balloted' => 'Pet Policy',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 3,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+
 
 
                 [
@@ -544,7 +591,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                     'input_name' => "ext_feature___".uniqid(),
                     'html_structure_id' => 1,
                     'possible_values' => '',
-                    'priority' =>1,
+                    'priority' => 1,
                 ],
 
 
@@ -554,7 +601,7 @@ class PropertyFeaturesTableSeeder extends Seeder
                     'input_name' => "ext_feature___".uniqid(),
                     'html_structure_id' => 1,
                     'possible_values' => '',
-                    'priority' =>1,
+                    'priority' => 1,
                 ],
 
 
@@ -775,11 +822,74 @@ class PropertyFeaturesTableSeeder extends Seeder
 
 
 
+                [
+                    'feature_section_id' => 6,
+                    'Balloted' => 'CCTV Security Installed',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+                [
+                    'feature_section_id' => 6,
+                    'Balloted' => 'Cafeteria or Canteen in Building',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
 
 
 
-        ]);
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Public Parking',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
 
 
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Underground Parking',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Number of Units',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Other Land Features',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+
+                [
+                    'feature_section_id' => 4,
+                    'Balloted' => 'Number of Rooms',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+            ]
+        );
     }
 }

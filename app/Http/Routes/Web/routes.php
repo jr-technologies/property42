@@ -1,5 +1,14 @@
 <?php
-
+Route::get('print-societies/12345',function(){
+        $allSocieties = (new \App\Repositories\Repositories\Sql\SocietiesRepository())->all();
+        foreach($allSocieties as $society)
+        {
+            echo '(object)[
+               "id"=>'.$society->id.' ,"name"=>'."'".$society->name."'".'
+           ],<br />';
+        }
+    }
+);
 Route::get('admin',
     [
         'middleware'=>
