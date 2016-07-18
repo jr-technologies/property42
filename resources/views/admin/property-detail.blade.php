@@ -108,7 +108,7 @@
                                             <a class="popup-close"><span class="icon-cross"></span></a>
                                         </div>
                                     </li>
-                                    <li><a href="tel:{{$response['data']['property']->phone}}"><span class="icon-phone_iphone"></span>{{$response['data']['property']->phone}}</a>
+                                    <li><a href="tel:{{$response['data']['property']->mobile}}"><span class="icon-phone_iphone"></span>{{$response['data']['property']->mobile}}</a>
                                     </li>
                                 </ul>
                                 <?php
