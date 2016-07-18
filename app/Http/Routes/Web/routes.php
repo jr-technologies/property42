@@ -10,6 +10,7 @@ Route::get('admin',
     ]
 );
 
+
 Route::post('admin/login',
     [
         'middleware'=>
@@ -130,6 +131,16 @@ Route::get('admin/agents',
             ],
         'uses'=>'Admin\AdminController@getAgents'
     ]);
+Route::get('society',
+    [
+        'middleware'=>
+            [
+                'webValidate:getSocietyRequest'
+            ],
+        'uses'=>'Admin\PropertiesController@getSociety'
+    ]
+);
+
 
 Route::get('/login',
     [

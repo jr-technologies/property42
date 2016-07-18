@@ -23,6 +23,7 @@ use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Traits\Property\ShowAddPropertyFormHelper;
@@ -44,7 +45,7 @@ class PropertiesController extends Controller
     public $users = null;
     public $assignedFeaturesJson = null;
     public $propertiesRepo = null;
-
+    public $userRepo = null;
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
         $this->response = $webResponse;
@@ -58,6 +59,7 @@ class PropertiesController extends Controller
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
         $this->favouriteFactory = new FavouritePropertyFactory();
         $this->users = (new UsersJsonRepoProvider())->repo();
+        $this->userRepo = (new UsersRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
     }
 
@@ -82,7 +84,7 @@ class PropertiesController extends Controller
         $properties = $this->properties->search($request->getParams());
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
-        return $this->response->setView('frontend.property_listing')->respond(['data' => [
+        return $this->response->setView('frontend.v2.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
             'societies'=>$this->societies->all(),
@@ -96,11 +98,13 @@ class PropertiesController extends Controller
 
     public function index()
     {
-        return $this->response->setView('frontend.index')->respond(['data' => [
+        $agents = $this->users->trustedAgents(['limit'=>36]);
+        return $this->response->setView('frontend.v2.index')->respond(['data' => [
             'societies'=>$this->societies->all(),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all(),
-            'landUnits'=>$this->landUnits->all()
+            'landUnits'=>$this->landUnits->all(),
+            'agents'=>$this->releaseUsersAgenciesLogo($agents)
         ]]);
     }
     public function getById(GetPropertyRequest $request)
