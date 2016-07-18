@@ -9,7 +9,7 @@ var domain = "http://"+window.location.hostname+"/p42/public/";
 
 var api = "api/v1/";
 var apiPath = domain+api;
-var views = domain+"ng-apps/AddPropertyWithAuth/v1/views";
+var views = domain+"ng-apps/addPropertyWithAuth/v1/views";
 var app = angular.module('addPropertyWithAuth');
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
