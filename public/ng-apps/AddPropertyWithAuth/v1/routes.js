@@ -31,5 +31,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         })
 });
+//ashal farig
 
 
