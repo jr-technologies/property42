@@ -28,28 +28,24 @@
            <div class="listing-page">
                 <div class="container">
                     <aside id="aside">
-                        <form class="filter-form">
+                        <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                             <ul class="filters-links text-upparcase">
-                                <li>
-                                    <a href="#" class="opener">SEARCH FILTERS</a>
-                                    <div class="slide"></div>
-                                </li>
                                 <li>
                                     <a href="#" class="opener">PROPERTY FOR</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
                                                 <label for="buy-filter" class="customRadio">
-                                                    <input type="radio" name="typeFor" id="buy-filter">
+                                                    <input type="radio" name="purpose_id" id="buy-filter" class="filter-form-input" value="1" @if($response['data']['oldValues']['purposeId'] == 1) checked @endif>
                                                     <span class="fake-checkbox"></span>
                                                     <span class="fake-label">BUY</span>
                                                 </label>
                                             </li>
                                             <li>
                                                 <label for="rent-filter" class="customRadio">
-                                                    <input type="radio" name="typeFor" id="rent-filter">
+                                                    <input type="radio" name="purpose_id" id="rent-filter" class="filter-form-input" value="2" @if($response['data']['oldValues']['purposeId'] == 2) checked @endif>
                                                     <span class="fake-checkbox"></span>
-                                                    <span class="fake-label">BUY</span>
+                                                    <span class="fake-label">Rent</span>
                                                 </label>
                                             </li>
                                         </ul>
@@ -60,26 +56,25 @@
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
-                                                <label for="house-filter" class="customRadio">
-                                                    <input type="radio" name="propertyType" id="house-filter">
+                                                <label for="all-sub-types" class="customRadio">
+                                                    <input type="radio" id="all-sub-types"
+                                                           @if($response['data']['oldValues']['propertyTypeId'] == "") checked @endif
+                                                           name="property_type_id" class="property_type filter-form-input" value="">
                                                     <span class="fake-checkbox"></span>
-                                                    <span class="fake-label">HOUSE</span>
+                                                    <span class="fake-label">All Types</span>
                                                 </label>
                                             </li>
-                                            <li>
-                                                <label for="plot-filter" class="customRadio">
-                                                    <input type="radio" id="plot-filter" name="propertyType">
-                                                    <span class="fake-checkbox"></span>
-                                                    <span class="fake-label">PLOT</span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label for="commercial-filter" class="customRadio">
-                                                    <input type="radio" id="commercial-filter" name="propertyType">
-                                                    <span class="fake-checkbox"></span>
-                                                    <span class="fake-label">COMMERCIAL</span>
-                                                </label>
-                                            </li>
+                                            @foreach($response['data']['propertyTypes'] as $propertyType)
+                                                <li>
+                                                    <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
+                                                        <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
+                                                               @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
+                                                        name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}">
+                                                        <span class="fake-checkbox"></span>
+                                                        <span class="fake-label">{{$propertyType->name}}</span>
+                                                    </label>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </li>
@@ -88,20 +83,25 @@
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
-                                                <label for="home-filter" class="customRadio">
-                                                    <input type="radio" id="home-filter" name="subType">
+                                                <label for="all-sub-types" class="customRadio">
+                                                    <input type="radio" id="all-sub-types"
+                                                           @if($response['data']['oldValues']['subTypeId'] == "") checked @endif
+                                                           name="sub_type_id" class="property_sub_type filter-form-input" value="">
                                                     <span class="fake-checkbox"></span>
-                                                    <span class="fake-label">HOUSE</span>
+                                                    <span class="fake-label">All Sub Types</span>
                                                 </label>
                                             </li>
-                                            <li>
-                                                <label for="pent-filter" class="customRadio">
-                                                    <input type="radio" id="pent-filter" name="subType">
-                                                    <span class="fake-checkbox"></span>
-                                                    <span class="fake-label">penthouse</span>
-                                                </label>
-                                            </li>
-                                            <li></li>
+                                            @foreach($response['data']['propertySubtypes'] as $propertySubType)
+                                                <li>
+                                                    <label for="{{$propertySubType->name."_".$propertySubType->id}}" class="customRadio">
+                                                        <input type="radio" id="{{$propertySubType->name."_".$propertySubType->id}}"
+                                                               @if($response['data']['oldValues']['subTypeId'] == $propertySubType->id) checked @endif
+                                                               name="sub_type_id" class="property_sub_type filter-form-input" value="{{$propertySubType->id}}">
+                                                        <span class="fake-checkbox"></span>
+                                                        <span class="fake-label">{{$propertySubType->name}}</span>
+                                                    </label>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </li>
@@ -110,25 +110,19 @@
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
-                                                <select class="js-example-basic-single">
-                                                    <option>1dasdasdsa</option>
-                                                    <option>dasdasda1</option>
-                                                    <option>dsadadsadad1</option>
-                                                    <option>1dasdasdas</option>
-                                                    <option>dsadasda1</option>
-                                                    <option>1dsadasd</option>
-                                                    <option>dsadasdasd1</option>
+                                                <select class="js-example-basic-single filter-form-input" name="society_id">
+                                                    <option  value="">All Societies</option>
+                                                    @foreach($response['data']['societies'] as $society)
+                                                        <option value="{{$society->id}}" @if($response['data']['oldValues']['societyId'] == $society->id) selected @endif>{{$society->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </li>
                                             <li>
-                                                <select class="js-example-basic-single">
-                                                    <option>dasdsadad1</option>
-                                                    <option>dsadsadasd1</option>
-                                                    <option>dasdadada1</option>
-                                                    <option>dsadasdad1</option>
-                                                    <option>dasdasdas1</option>
-                                                    <option>dsadasd1</option>
-                                                    <option>adsad1</option>
+                                                <select class="js-example-basic-single filter-form-input  @if(sizeof($response['data']['blocks']) == 0) disabled @endif" name="block_id">
+                                                    <option  value="">All Blocks</option>
+                                                    @foreach($response['data']['blocks'] as $block)
+                                                        <option value="{{$block->id}}" @if($response['data']['oldValues']['blockId'] == $block->id) selected @endif>{{$block->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </li>
                                         </ul>
@@ -138,22 +132,18 @@
                                     <a href="#" class="opener">LAND AREA</a>
                                     <div class="slide">
 											<span class="fake-select">
-												<select>
-                                                    <option>1dasdasdsa</option>
-                                                    <option>dasdasda1</option>
-                                                    <option>dsadadsadad1</option>
-                                                    <option>1dasdasdas</option>
-                                                    <option>dsadasda1</option>
-                                                    <option>1dsadasd</option>
-                                                    <option>dsadasdasd1</option>
+												<select name="land_unit_id" class="filter-form-input">
+                                                    @foreach($response['data']['landUnits'] as $landUnit)
+                                                        <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @elseif($response['data']['oldValues']['landUnitId'] == "" && $landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
+                                                    @endforeach
                                                 </select>
 											</span>
                                         <div class="fromTo">
                                             <div class="field-holder">
-                                                <input type="number" placeholder="From">
+                                                <input type="number" placeholder="From"  name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}">
                                             </div>
                                             <div class="field-holder">
-                                                <input type="number" placeholder="To">
+                                                <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
                                             </div>
                                             <button type="submit">Go</button>
                                         </div>
@@ -164,12 +154,13 @@
                                     <div class="slide">
                                         <div class="fromTo">
                                             <div class="field-holder">
-                                                <input type="number" placeholder="From">
+                                                <input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom">
                                             </div>
                                             <div class="field-holder">
-                                                <input type="number" placeholder="To">
+                                                <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo">
                                             </div>
                                             <button type="submit">Go</button>
+                                            <span class="calculatedPrice"></span>
                                         </div>
                                     </div>
                                 </li>

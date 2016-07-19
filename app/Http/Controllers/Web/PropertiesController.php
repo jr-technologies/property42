@@ -88,8 +88,9 @@ class PropertiesController extends Controller
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
             'societies'=>$this->societies->all(),
+            'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
             'propertyTypes'=>$this->propertyTypes->all(),
-            'propertySubtypes'=>$this->propertySubtypes->all(),
+            'propertySubtypes'=>$this->propertySubtypes->getByType($request->get('propertyTypeId')),
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
             'oldValues'=>$request->all()

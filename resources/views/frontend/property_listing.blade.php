@@ -217,7 +217,7 @@
 
                                         <label>Land Unit</label>
                                         <div class="input-holder add">
-                                        <select name="land_unit_id" name="land_unit_id">
+                                        <select name="land_unit_id">
                                             @foreach($response['data']['landUnits'] as $landUnit)
                                                 <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @endif>{{$landUnit->name}}</option>
                                             @endforeach
