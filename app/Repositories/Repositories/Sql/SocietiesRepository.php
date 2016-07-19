@@ -29,6 +29,10 @@ class SocietiesRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->getSocietiesYouDealIn($agencyName);
     }
+    public function getImportantSocieties()
+    {
+        return $this->factory->getImportantSocieties();
+    }
     public function getById($id)
     {
         return $this->factory->find($id);
