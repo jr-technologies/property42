@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="wrapper">
-    <div class="main-bg-holder">
+    <div class="main-bg-holder byDefault-fixed">
         <header id="header" class="fixed-scroll-block">
             <div class="top-bar">
                 <ul class="social-icons">

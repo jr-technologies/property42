@@ -233,6 +233,40 @@
                         </article>
                             @endforeach
                     </section>
+                    <?php
+                    $for_previous_link = $_GET;
+                    $pageValue = (isset($for_previous_link['page']))?$for_previous_link['page']:1;
+                    ($pageValue ==1)?$for_previous_link['page'] = $pageValue:$for_previous_link['page'] = $pageValue-1;
+                    $convertPreviousToQueryString  = http_build_query($for_previous_link);
+                    $previousResult = URL('/search').'?'.$convertPreviousToQueryString;
+                    ?>
+                    <?php
+                    $totalPaginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
+                    $for_next_link = $_GET;
+                    $pageValue = (isset($for_next_link['page']))?$for_next_link['page']:1;
+                    ($pageValue == $totalPaginationValue)?$for_next_link['page'] = $pageValue:$for_next_link['page'] = $pageValue+1;
+                    $convertToQueryString  = http_build_query($for_next_link);
+                    $nextResult = URL('/search').'?'.$convertToQueryString;
+                    ?>
+                    <ul class="pager">
+                        @if($totalPaginationValue !=0)
+                            <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
+                        @endif
+                        <?php
+                        $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
+                        $query_str_to_array = $_GET;
+                        $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
+                        for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
+                        $query_str_to_array['page'] = $i;
+                        $queryString  = http_build_query($query_str_to_array);
+                        $result = URL('/search').'?'.$queryString;
+                        ?>
+                        <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
+                        <?php }?>
+                        @if($totalPaginationValue !=0)
+                            <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>
