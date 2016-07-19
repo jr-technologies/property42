@@ -56,8 +56,8 @@
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
-                                                <label for="all-sub-types" class="customRadio">
-                                                    <input type="radio" id="all-sub-types"
+                                                <label for="all-types" class="customRadio">
+                                                    <input type="radio" id="all-types"
                                                            @if($response['data']['oldValues']['propertyTypeId'] == "") checked @endif
                                                            name="property_type_id" class="property_type filter-form-input" value="">
                                                     <span class="fake-checkbox"></span>
