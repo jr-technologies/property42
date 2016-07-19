@@ -47,6 +47,10 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->statusId = $this->statusesSeeder->getDeletedStatusId();
         return  $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
     }
+    public function countSaleAndRendProperties()
+    {
+      return $this->tableGateway->countSaleAndRendProperties();
+    }
     public function IncrementViews($propertyId)
     {
         return $this->tableGateway->IncrementViews($propertyId);

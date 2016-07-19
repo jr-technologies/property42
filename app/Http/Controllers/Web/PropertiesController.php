@@ -101,13 +101,15 @@ class PropertiesController extends Controller
     {
         $agents = $this->users->trustedAgents(['limit'=>36]);
         $importantSocieties = $this->societies->getImportantSocieties();
+        $saleAndRentCount = $this->propertiesRepo->countSaleAndRendProperties();
         return $this->response->setView('frontend.v2.index')->respond(['data' => [
             'societies'=>$this->societies->all(),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all(),
             'landUnits'=>$this->landUnits->all(),
             'agents'=>$this->releaseUsersAgenciesLogo($agents),
-            'importantSocieties'=>$importantSocieties
+            'importantSocieties'=>$importantSocieties,
+            'saleAndRentCount'=>$saleAndRentCount
         ]]);
     }
     public function getById(GetPropertyRequest $request)
