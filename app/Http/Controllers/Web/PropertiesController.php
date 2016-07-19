@@ -99,12 +99,14 @@ class PropertiesController extends Controller
     public function index()
     {
         $agents = $this->users->trustedAgents(['limit'=>36]);
+        $importantSocieties = $this->societies->getImportantSocieties();
         return $this->response->setView('frontend.v2.index')->respond(['data' => [
             'societies'=>$this->societies->all(),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all(),
             'landUnits'=>$this->landUnits->all(),
-            'agents'=>$this->releaseUsersAgenciesLogo($agents)
+            'agents'=>$this->releaseUsersAgenciesLogo($agents),
+            'importantSocieties'=>$importantSocieties
         ]]);
     }
     public function getById(GetPropertyRequest $request)

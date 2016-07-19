@@ -16,6 +16,9 @@ class CreateSocietiesTable extends Migration
             $table->increments('id');
             $table->integer('city_id')->unsigned();
             $table->string('society');
+            $table->tinyInteger('important');
+            $table->integer('priority');
+            $table->string('path');
             $table->timestamps();
 
             $table->foreign('city_id')
