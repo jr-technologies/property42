@@ -97,10 +97,10 @@ class UserJsonQueryBuilder extends QueryBuilder{
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.json'))
             ->distinct();
 
-            if($params['society'] !=null && $params['society'] !="")
+            if(isset($params['society']) && $params['society'] !=null && $params['society'] !="")
                 $query = $query->where($agencySocietyTable.'.society_id','=',$params['society']);
 
-            if($params['agencyName'] !=null && $params['agencyName'] !="")
+            if(isset($params['agencyName']) && $params['agencyName'] !=null && $params['agencyName'] !="")
                 $query = $query->where($agencyTable.'.agency','like','%'.$params['agencyName'].'%');
 
         $query = $query->where($userRoleTable.'.role_id','=',3);

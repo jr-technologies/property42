@@ -19,6 +19,7 @@ Route::get('admin',
     ]
 );
 
+
 Route::post('admin/login',
     [
         'middleware'=>
@@ -88,6 +89,10 @@ Route::get('admin/properties',
     ]);
 Route::get('admin/logout',function(){
 
+    if(session()->has('admin'))
+    {
+        session()->pull('admin');
+    }
     return redirect('admin');
 });
 Route::get('admin/agents',
@@ -135,6 +140,16 @@ Route::get('admin/agents',
             ],
         'uses'=>'Admin\AdminController@getAgents'
     ]);
+Route::get('society',
+    [
+        'middleware'=>
+            [
+                'webValidate:getSocietyRequest'
+            ],
+        'uses'=>'Admin\PropertiesController@getSociety'
+    ]
+);
+
 
 Route::get('/login',
     [

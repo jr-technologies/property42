@@ -27,7 +27,7 @@
                 <div class="layout">
                     <a href="#" class="image-thumb"><img src="{{url('/')}}/web-apps/admin/images/user-img.png" width="388" height="395" alt="user-image"></a>
                     <div class="layout">
-                        <a href="#" class="user-name">Zain ali</a>
+                        <a href="#" class="user-name">{{Session('admin')->name}}</a>
                         <span class="account-type">premium</span>
                     </div>
                 </div>
