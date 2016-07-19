@@ -118,7 +118,7 @@
                                                 </select>
                                             </li>
                                             <li>
-                                                <select class="js-example-basic-single filter-form-input  @if(sizeof($response['data']['blocks']) == 0) disabled @endif" name="block_id">
+                                                <select class="js-example-basic-single filter-form-input " @if(sizeof($response['data']['blocks']) == 0) disabled @endif name="block_id">
                                                     <option  value="">All Blocks</option>
                                                     @foreach($response['data']['blocks'] as $block)
                                                         <option value="{{$block->id}}" @if($response['data']['oldValues']['blockId'] == $block->id) selected @endif>{{$block->name}}</option>
