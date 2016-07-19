@@ -3,13 +3,13 @@
       <nav id="nav">
             <ul class="main-navigation text-upparcase">
                 <li class="active">
-                    <a href="#"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
+                    <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
+                    <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
+                    <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
                 </li>
                 <li>
                     <a href="#"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
@@ -168,61 +168,71 @@
                         </form>
                     </aside>
                     <section id="content">
-                        @foreach($response['data']['properties'] as $property)
-                        <article class="publicProperty-post">
-                            <?php
-                            $image = url('/')."/assets/imgs/no.png";
-                            foreach($property->documents as $document)
-                            {
-                                if($document->type == 'image' && $document->main == true)
+                       @foreach($response['data']['properties'] as $property)
+                                <?php
+                                $image = url('/')."/assets/imgs/no.png";
+                                foreach($property->documents as $document)
                                 {
-                                    $image = url('/').'/temp/'.$document->path;
+                                    if($document->type == 'image' && $document->main == true)
+                                    {
+                                        $image = url('/').'/temp/'.$document->path;
+                                    }
                                 }
-                            }
-                            ?>
-                            <div class="image-holder">
-                                <img src="{{$image}}" alt="image description">
-                                <a href="#" class="add-to-favorite"><span class="icon-Vector-Smart-Object31"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span></a>
-                                <span class="premiumProperty text-upparcase">Premium</span>
-                            </div>
-                            <div class="caption">
-                                <div class="layout">
-                                    <div class="left-area">
-                                        <h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.'
-                        '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
-                        ' '.$property->location->society->name}}</h1>
-                                        <p>{{'('.str_limit($property->title,25).')' }}</p>
-                                    </div>
-                                    <div class="right-area">
-                                        <strong class="price"><span>Rs</span> {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</strong>
-                                        <ul class="public-ui-features text-capital">
-                                            @foreach($property->features as $feature)
-                                                @foreach($feature as $featureSection)
-                                                    @if($featureSection->priority ==1)
-                                                        <li><span>{{$featureSection->name}}</span><strong>{{$featureSection->value}}</strong></li>
-                                                    @endif
+                                ?>
+                            <article class="publicProperty-post">
+                                <div class="image-holder">
+                                    <a href="property?propertyId={{$property->id}}"><img src="{{$image}}" alt="image description"></a>
+                                    <a href="#" class="add-to-favorite"></a>
+                                    <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
+                                </div>
+                                <div class="caption text-left">
+                                    <div class="layout">
+                                        <div class="left-area">
+                                            <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.'
+                                             '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
+                                             ' '.$property->location->society->name}}</a></h1>
+                                            <p>{{str_limit($property->description,170) }}</p>
+                                        </div>
+                                        <div class="right-area">
+                                            <strong class="price"><span>Rs</span> {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</strong>
+                                            <ul class="public-ui-features text-capital">
+                                                @foreach($property->features as $feature)
+                                                    @foreach($feature as $featureSection)
+                                                        @if($featureSection->priority ==1)
+                                                            <li>
+                                                                <span><b>{{$featureSection->name}}</b><span {{($featureSection->name == 'bedrooms')?'class="icon-bed':'class="icon-bath'}}></span></span>
+                                                                <strong>{{$featureSection->value}}</strong>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
                                                 @endforeach
-                                            @endforeach
-
-
-                                        </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="layout">
+                                        <div class="links-left">
+                                            <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-Vector-Smart-Object"></span></a>
+                                            <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
+                                        </div>
+                                        <div class="links-right">
+                                            <ul class="quick-links">
+                                                <li><a href="#"><span class="icon-phone"></span></a></li>
+                                                <li><a href="#"><span class="icon-empty-envelop"></span></a></li>
+                                            </ul>
+                                            <?php
+                                            $image = url('/') . "/assets/imgs/no.png";
+                                            if ($property->owner->agency != null) {
+                                                if ($property->owner->agency->logo != null) {
+                                                    $image = url('/') . '/temp/' . $property->owner->agency->logo;
+                                                }
+                                            }
+                                            ?>
+                                            <a href="{{ URL::to('agent?agent_id='.$property->owner->id) }}"> <img src="{{$image}}" alt="image description" class="company-logo"></a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="layout">
-                                    <div class="links-left">
-                                        <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-Vector-Smart-Object"></span></a>
-                                        <a href="#" class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></span>Trusted</a>
-                                    </div>
-                                    <div class="links-right">
-                                        <ul class="quick-links">
-                                            <li><a href="#"><span class="icon-phone-call"></span></a></li>
-                                            <li><a href="#"><span class="icon-close-envelope"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                            @endforeach
+                            </article>
+                        @endforeach
                     </section>
                     <?php
                     $for_previous_link = $_GET;

@@ -40,4 +40,12 @@ class SocietyQueryBuilder extends QueryBuilder
             ->where($agencyTable.'.agency','=',$agencyName)
             ->get();
     }
+    public function getImportantSocieties()
+    {
+        return  DB::table($this->table)
+            ->select($this->table.'.*')
+            ->where($this->table.'.priority','>',0)
+            ->orderBy($this->table.'.priority', 'asc')
+            ->get();
+    }
 }
