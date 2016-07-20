@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$(".js-example-basic-single").select2();
 
 	if(screen.width < 1024){
-		$('#aside').slideUp();
+//		$('#aside').slideUp();
 	}
 });
 

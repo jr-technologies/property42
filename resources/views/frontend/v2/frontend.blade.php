@@ -26,7 +26,7 @@
                     <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;</a>
                     <ul class="loginRegister text-upparcase text-left">
                         <li><a href="{{ URL::to('/login') }}"><span class="icon-avatar hidden"></span><span class="hidden-xs">Login / Register</span></a></li>
-                        <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List your property</span><span class="icon-arrow-with-circle-right"></span></a></li>
+                        <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List your property</span><span class="icon-plus-square"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         </header>
         @yield('content')
     <footer id="footer">
-        <span class="copyright">Copyright,<a href="#">Property42.pk</a></span>
+        <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
     </footer>
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>

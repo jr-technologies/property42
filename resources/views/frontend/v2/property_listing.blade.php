@@ -40,7 +40,7 @@
            <div class="listing-page">
                 <div class="container">
                     <a class="aside-opener-filters">Search Filters<span class="button"><b></b></span></a>
-                    <aside id="aside">
+                    <aside id="aside" class="hideOnMobile">
                         <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                             <ul class="filters-links text-upparcase">
                                 <li class="active">
