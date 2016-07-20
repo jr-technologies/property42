@@ -6,11 +6,11 @@
                 <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                 <ul class="number-of-properties text-upparcase">
                     <li>
-                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][1]->totalProperties}}</strong>
+                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][0]->totalProperties}}</strong>
                         <span class="tag">SALeS</span>
                     </li>
                     <li>
-                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][0]->totalProperties}}</strong>
+                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][1]->totalProperties}}</strong>
                         <span class="tag">RENTALS</span>
                     </li>
                 </ul>
