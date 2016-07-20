@@ -31,7 +31,6 @@ class PropertyTypeQueryBuilder extends QueryBuilder
     public function getSortedPropertyTypes()
     {
         return DB::table($this->table)
-            ->where($this->table.'.priority','>',0)
             ->orderBy($this->table.'.priority','asc')
             ->get();
     }
