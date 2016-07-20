@@ -27,4 +27,12 @@ class PropertyTypeQueryBuilder extends QueryBuilder
                 ->where($subTypeTable.'.id','=',$subTypeId)
                 ->first();
     }
+
+    public function getSortedPropertyTypes()
+    {
+        return DB::table($this->table)
+            ->where($this->table.'.priority','>',0)
+            ->orderBy($this->table.'.priority','asc')
+            ->get();
+    }
 }
