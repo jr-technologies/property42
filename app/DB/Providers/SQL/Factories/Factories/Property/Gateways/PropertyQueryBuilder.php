@@ -10,6 +10,8 @@ use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Factories\Country\CountryFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyType\PropertyTypeFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
@@ -70,5 +72,13 @@ class PropertyQueryBuilder extends QueryBuilder
         return DB::table($this->table)
             ->where($this->table.'.id','=',$propertyId)
             ->increment('total_views', 1);
+    }
+    public function countSaleAndRendProperties()
+    {
+        return DB::table($this->table)
+            ->select(DB::raw('count(*) as totalProperties, purpose_id as purposeId'))
+            ->groupBy($this->table.'.purpose_id')
+            ->get();
+
     }
 }

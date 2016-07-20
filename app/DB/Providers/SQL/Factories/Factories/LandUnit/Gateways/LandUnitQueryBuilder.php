@@ -16,5 +16,10 @@ class LandUnitQueryBuilder extends QueryBuilder
     {
         $this->table = 'land_units';
     }
-
+    public function getSortedLandUnits()
+    {
+        return DB::table($this->table)
+            ->orderBy($this->table.'.priority','asc')
+            ->get();
+    }
 }

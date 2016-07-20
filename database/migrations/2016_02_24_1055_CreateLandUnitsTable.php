@@ -15,6 +15,7 @@ class CreateLandUnitsTable extends Migration
         Schema::create('land_units', function (Blueprint $table) {
             $table->increments('id');
             $table->string('unit');
+            $table->integer('priority')->default(0);
             $table->timestamps();
         });
     }

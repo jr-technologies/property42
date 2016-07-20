@@ -46,6 +46,10 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         //Event::fire(new PropertyCreated($property));
         return $propertyId;
     }
+    public function countSaleAndRendProperties()
+    {
+        return $this->factory->countSaleAndRendProperties();
+    }
     public function IncrementViews($propertyId)
     {
         $this->factory->IncrementViews($propertyId);

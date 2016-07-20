@@ -30,7 +30,7 @@ class PropertyTypeFactory extends SQLFactory implements SQLFactoriesInterface
     }
     function all()
     {
-       return $this->mapCollection($this->tableGateway->all());
+       return $this->mapCollection($this->tableGateway->getSortedPropertyTypes());
     }
 
     public function update(PropertyType $propertyType)
