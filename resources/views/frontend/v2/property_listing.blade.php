@@ -30,8 +30,8 @@
                     <aside id="aside">
                         <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                             <ul class="filters-links text-upparcase">
-                                <li>
-                                    <a href="#" class="opener">PROPERTY FOR</a>
+                                <li class="active">
+                                    <a class="filters-links-opener">PROPERTY FOR</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
@@ -51,8 +51,8 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="opener">Property Type</a>
+                                <li class="active">
+                                    <a class="filters-links-opener">Property Type</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
@@ -78,8 +78,8 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="opener">Property SUB-Type</a>
+                                <li class="active">
+                                    <a class="filters-links-opener">Property SUB-Type</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
@@ -105,8 +105,8 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="opener">LOCATION / SOCITY</a>
+                                <li class="active">
+                                    <a class="filters-links-opener">LOCATION / SOCITY</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
@@ -128,8 +128,8 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="opener">LAND AREA</a>
+                                <li class="active">
+                                    <a class="filters-links-opener">LAND AREA</a>
                                     <div class="slide">
 											<span class="fake-select">
 												<select name="land_unit_id" class="filter-form-input">
@@ -149,8 +149,8 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="#" class="opener">PRICE RANGE</a>
+                                <li class="active">
+                                    <a class="filters-links-opener">PRICE RANGE</a>
                                     <div class="slide">
                                         <div class="fromTo">
                                             <div class="field-holder">
