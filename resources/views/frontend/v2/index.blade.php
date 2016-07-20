@@ -6,11 +6,11 @@
                 <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                 <ul class="number-of-properties text-upparcase">
                     <li>
-                        <strong class="numberOfProperty">{{rand(100,200)}}</strong>
+                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][1]->totalProperties}}</strong>
                         <span class="tag">SALeS</span>
                     </li>
                     <li>
-                        <strong class="numberOfProperty">{{rand(500,1500)}}</strong>
+                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][0]->totalProperties}}</strong>
                         <span class="tag">RENTALS</span>
                     </li>
                 </ul>
@@ -96,41 +96,53 @@
         </div>
     </div>
     <main id="main" role="main">
-        <section class="generic-section">
+      <section class="generic-section">
             <div class="container">
                 <h1>News <span>Update</span></h1>
                 <div class="news-sliderHolder">
-                    <div class="news-carousel">
-                        <div class="mask">
-                            <div class="slideset">
-                                <div class="slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
-                                <div class="slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
-                                <div class="slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
-                            </div>
-                        </div>
-                        <div class="pagination"></div>
-                        <a href="#" class="btn-prev"><span class="icon-left-arrow"></span></a>
-                        <a href="#" class="btn-next"><span class="icon-right-arrow"></span></a>
-                    </div>
                     <div class="news-slideshow">
                         <div class="mask">
                             <div class="slideset">
                                 <div class="slide">
-                                    <p>Real Estate elected committee meet with Finance Minister Ishaq Dar today at Islamabad regarding recently imposed property evolution tax.
-                                        Real estate agents and investors protested against the increase in taxes on Saturday, expecting that the government would take some decisions in their favor.
-                                    </p>
-                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
+                                    <div class="layout">
+                                        <div class="news-carousel">
+                                            <div class="news-mask">
+                                                <div class="news-slideset">
+                                                    <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
+                                                    <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
+                                                    <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
+                                                </div>
+                                            </div>
+                                            <div class="news-pagination"></div>
+                                            <a href="#" class="news-btn-prev"><span class="icon-left-arrow"></span></a>
+                                            <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
+                                        </div>
+                                        <div class="caption">
+                                            <p>{{str_limit("Real Estate elected committee meet with Finance Minister Ishaq Dar today at Islamabad regarding recently imposed property evolution tax.
+                                                Real estate agents and investors protested against the increase in taxes on Saturday, expecting that the government would take some decisions in their favor.",170)}}</p>
+                                            <a href="#" class="btn-default text-upparcase">Learn More</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="slide">
-                                    <p>After the protest of real estate agents protest Prime Minister take an action and ask to finance minister to discuss the matter with real estate stakeholder. .</p>
-                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
-                                </div>
-                                <div class="slide">
-                                    <p>The Excise and Taxation Department will issue property tax notices with a 10% increase in property tax to owners of houses, shops, and other types of property, according to a news source.
-                                        Reportedly, arrangements have been made to collect the specified tax from property owners throughout Punjab. Computerized slips will be sent to all property owners, eliminating any chances of changes to the amount of property tax liable and thus increasing transparency.
-                                        In the event that a property owner fails to pay tax on their property, tenants and shopkeepers in rented residential and commercial property will be required to pay their rent to the tax officer until the required amount of tax is paid off, said the news source.
-                                    </p>
-                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
+                                    <div class="layout">
+                                        <div class="news-carousel">
+                                            <div class="news-mask">
+                                                <div class="news-slideset">
+                                                    <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
+                                                    <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
+                                                    <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
+                                                </div>
+                                            </div>
+                                            <div class="news-pagination"></div>
+                                            <a href="#" class="news-btn-prev"><span class="icon-left-arrow"></span></a>
+                                            <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
+                                        </div>
+                                        <div class="caption">
+                                            <p>{{str_limit("After the protest of real estate agents protest Prime Minister take an action and ask to finance minister to discuss the matter with real estate stakeholder.",170)}}</p>
+                                            <a href="#" class="btn-default text-upparcase">Learn More</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

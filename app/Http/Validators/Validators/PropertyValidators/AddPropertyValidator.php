@@ -80,7 +80,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
     {
         return [
             'contactPerson' => 'required',
-            'phone' => 'required|max:15',
+            'phone' => 'max:15',
             'mobile' => 'required|max:15',
             'email' => 'required|email'
         ];

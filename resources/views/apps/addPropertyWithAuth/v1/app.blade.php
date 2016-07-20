@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?= url('/') ?>/javascripts/ui-select/select.min.css">
 
     <!-- Angularjs Libs -->
+    <script src="<?= url('/') ?>/assets/js/env.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular/angular.min.js"></script>
     <script src="<?= url('/') ?>/javascripts/angular-sanitize.js"></script>
     <script src="<?= url('/') ?>/javascripts/ui-select/select.min.js"></script>
@@ -36,8 +37,12 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('addPropertyWithAuth', $response['version']) ?>/routes.js"></script>
 
     <div id="content" ng-app="addPropertyWithAuth">
-            <div class="container" ng-controller="ParentController">
-                <ui-view></ui-view>
+            <div class="container loading_content_class" ng-controller="ParentController">
+                <ui-view>
+                    <span style="font-size: 20px; color:darkgray;">
+                        Please wait form is loading...
+                    </span>
+                </ui-view>
             </div>
     </div>
 

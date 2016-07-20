@@ -342,6 +342,15 @@ Route::get('societies',
         'uses'=>'SocietiesController@all'
     ]
 );
+Route::get('societies/search',function(){
+    $results = [];
+    foreach(config('constants.societies') as $society){
+        if(preg_match("/".request()->get('keyword')."/i", $society->name)){
+            $results[] = $society;
+        }
+    }
+    return response()->json($results);
+});
 
 /**
  * Block Crud

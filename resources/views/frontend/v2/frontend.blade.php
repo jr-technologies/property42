@@ -37,6 +37,9 @@
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
 <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-1.11.2.min.js" defer><\/script>')</script>
+<script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
+<script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
+<script src="{{url('/')}}/web-apps/frontend/v2/js/property-filter.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/select2-min.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.carousel.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.slideshow.js" type="text/javascript" defer></script>

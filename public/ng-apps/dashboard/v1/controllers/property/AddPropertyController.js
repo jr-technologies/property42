@@ -63,8 +63,23 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
+    $scope.searchSocieties = function ($select) {
+        if($select.search.length < 2){
+            $rootScope.resources.societies = [];
+            return;
+        }
+        return $http.get(apiPath+'societies/search', {
+            params: {
+                keyword: $select.search
+            }
+        }).then(function(response){
+            console.log(response.data);
+            $rootScope.resources.societies = response.data;
+        });
+    };
     $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;
+        $scope.temp.block = {};
         getBlocks().then(function (blocks) {
             $scope.blocks = blocks;
         });
@@ -83,8 +98,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           propertySubType : 0,
           society:'',
           block: '',
-          price: null,
-          landArea: null,
+          price: undefined,
+          landArea: undefined,
           landUnit: 0,
           propertyTitle: '',
           propertyDescription: '',

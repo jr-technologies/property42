@@ -1,15 +1,8 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
+var views = domain+"ng-apps/addPropertyWithAuth/v1/views";
 
-//var domain = "http://"+window.location.hostname+"/p42/public/";
-//var domain = "http://"+window.location.hostname+"/jr/property42/backend/property42/public/";
-//var domain = "http://"+window.location.hostname+"/production/jr-technologies/property42/public/";
-var domain = "http://"+window.location.hostname+"/property42/public/";
-
-var api = "api/v1/";
-var apiPath = domain+api;
-var views = domain+"ng-apps/AddPropertyWithAuth/v1/views";
 var app = angular.module('addPropertyWithAuth');
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
@@ -31,5 +24,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         })
 });
-
-

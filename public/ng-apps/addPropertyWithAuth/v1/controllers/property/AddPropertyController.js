@@ -63,8 +63,24 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
+    $scope.searchSocieties = function ($select) {
+        $rootScope.resources.societies = [];
+        if($select.search.length < 2){
+            $rootScope.resources.societies = [];
+            return;
+        }
+        return $http.get(apiPath+'societies/search', {
+            params: {
+                keyword: $select.search
+            }
+        }).then(function(response){
+            console.log(response.data);
+            $rootScope.resources.societies = response.data;
+        });
+    };
     $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;
+        $scope.temp.block = {};
         getBlocks().then(function (blocks) {
             $scope.blocks = blocks;
         });
@@ -76,6 +92,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.form = {
         data : {}
     };
+
     var mapFormData = function () {
       return {
           propertyPurpose: 0,
@@ -83,8 +100,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           propertySubType : 0,
           society:0,
           block: 0,
-          price: null,
-          landArea: null,
+          price: undefined,
+          landArea: undefined,
           landUnit: 0,
           propertyTitle: '',
           propertyDescription: '',
@@ -102,6 +119,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           newMemberDetails: {}
       }
     };
+
     $scope.propertySubTypeChanged = function () {
         var subTypeId = $scope.form.data.propertySubType;
         var highPriorityFeatures = [];
@@ -163,6 +181,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $scope.propertySaved = false;
         $scope.errors = {};
         $rootScope.please_wait_class = 'please-wait';
+        console.log($scope.form.data);
         var upload = Upload.upload({
             url: apiPath+'propertyWithAuth',
             data: $scope.form.data,
@@ -180,7 +199,10 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         }, function (response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
             $rootScope.please_wait_class = '';
-            $scope.errors = response.data.error.messages;
+            if(parseInt(response.data.error.http_status) >= 500)
+                $scope.errors = [response.data.error.messages];
+            else
+                $scope.errors = response.data.error.messages;
             $window.scrollTo(0, 0);
         }, function (evt) {
             $window.scrollTo(0, 0);

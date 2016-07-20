@@ -78,7 +78,6 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
     {
         return [
             'contactPerson' => 'required',
-            'phone' => 'required',
             'mobile' => 'required',
             'email' => 'required'
         ];
