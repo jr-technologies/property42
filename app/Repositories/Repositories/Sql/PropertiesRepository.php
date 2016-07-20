@@ -20,6 +20,7 @@ use App\Events\Events\Property\PropertiesStatusChanged;
 
 use App\Events\Events\Property\PropertyStatusUpdated;
 
+use App\Events\Events\Property\PropertyVerified;
 use App\Events\Events\Property\UpdatePropertyTotalView;
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
 use Illuminate\Support\Facades\Event;
@@ -67,15 +68,22 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     public function restoreProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
-        $result = $this->factory->restoreProperty($property);
+        $result = $this->factory->update($property);
         Event::fire(new PropertyStatusUpdated($property));
         return $result;
     }
     public function rejectProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getRejectedStatusId();
-        $result = $this->factory->restoreProperty($property);
+        $result = $this->factory->update($property);
         Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
+    public function VerifyProperty(Property $property)
+    {
+        $property->isVerified = 1;
+        $result = $this->factory->update($property);
+        Event::fire(new PropertyVerified($property));
         return $result;
     }
     public function approveProperty(Property $property)

@@ -111,7 +111,18 @@ class UserJsonQueryBuilder extends QueryBuilder{
         \Session::flash('totalAgentsFound', DB::select('select FOUND_ROWS() as count'));
         return $agents;
     }
-
+    public function getTrustedAgentsWithPriority(array $params)
+    {
+        $userTable = (new UserFactory())->getTable();
+         return DB::table($userTable)
+            ->join($this->table,$userTable.'.id','=',$this->table.'.user_id')
+            ->select($this->table.'.json')
+             ->where($userTable.'.priority','>',0)
+             ->where($userTable.'.trusted_agent','=',1)
+            ->orderBy($userTable.'.priority','asc')
+            ->take($params['limit'])
+            ->get();
+    }
     public function getAllTrustedAgents()
     {
         $userTable = (new UserFactory())->getTable();

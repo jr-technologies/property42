@@ -331,7 +331,7 @@ return [
         'ApprovePropertyRequest' => \App\Http\Requests\Requests\Property\ApprovePropertyRequest::class,
         'GetAdminAgentRequest' => \App\Http\Requests\Requests\User\GetAdminAgentRequest::class,
         'AdminLoginRequest' => \App\Http\Requests\Requests\Auth\AdminLoginRequest::class,
-
+        'VerifyPropertyRequest' => \App\Http\Requests\Requests\property\VerifyPropertyRequest::class,
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,
         'UpdateFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest::class,

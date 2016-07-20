@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
 use App\Http\Requests\Requests\Property\RejectPropertyRequest;
+use App\Http\Requests\Requests\Property\VerifyPropertyRequest;
 use App\Http\Requests\Requests\User\ApproveAgentRequest;
 use App\Http\Requests\Requests\User\GetAdminAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
@@ -59,6 +60,11 @@ class AdminController extends Controller
     public function rejectProperty(RejectPropertyRequest $request)
     {
         $this->propertiesRepo->rejectProperty($request->getPropertyModel());
+        return redirect('get/property');
+    }
+    public function VerifyProperty(VerifyPropertyRequest $request)
+    {
+        $this->propertiesRepo->VerifyProperty($request->getPropertyModel());
         return redirect('get/property');
     }
 
