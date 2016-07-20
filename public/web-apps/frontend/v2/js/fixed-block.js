@@ -4,8 +4,8 @@
 ;(function($, window) {
 	'use strict';
 	var isMobileDevice = ('ontouchstart' in window) ||
-						(window.DocumentTouch && document instanceof DocumentTouch) ||
-						/Windows Phone/.test(navigator.userAgent);
+		(window.DocumentTouch && document instanceof DocumentTouch) ||
+		/Windows Phone/.test(navigator.userAgent);
 
 	function FixedScrollBlock(options) {
 		this.options = $.extend({

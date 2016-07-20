@@ -70,7 +70,7 @@ class AppsResourceController extends ApiController
         $user = $this->releaseAllUserFiles($user);
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
-        //$societies = $this->societies->all();
+        $societies = $this->societies->all();
         $propertyStatusesIds = (object)$this->mapStatusesToArray($this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
@@ -87,7 +87,7 @@ class AppsResourceController extends ApiController
                     'purposes'=>$purposes,
                     'propertyStatuses'=>$statuses,
                     'propertyTypes'=>$propertyTypes,
-                    'societies'=>[],//$societies,
+                    'societies'=>$societies,
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
                     'agencyStaff'=>$agencyStaff,

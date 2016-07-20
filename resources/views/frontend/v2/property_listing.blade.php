@@ -1,32 +1,45 @@
 @extends('frontend.v2.frontend')
 @section('content')
       <nav id="nav">
-            <ul class="main-navigation text-upparcase">
-                <li class="active">
-                    <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
-                </li>
-                <li>
-                    <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
-                </li>
-                <li>
-                    <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
-                </li>
-                <li>
-                    <a href="#"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
-                </li>
-                <li>
-                    <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
-                </li>
-                <li>
-                    <a href="#"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
-                </li>
-            </ul>
+          <div class="nav-holder">
+              <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
+              <ul class="main-navigation text-upparcase">
+                  <li>
+                      <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
+                  </li>
+                  <li class="active">
+                      <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
+                  </li>
+                  <li>
+                      <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
+                  </li>
+                  <li>
+                      <a href="#"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
+                  </li>
+                  <li>
+                      <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
+                  </li>
+                  <li>
+                      <a href="#"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
+                  </li>
+              </ul>
+              <div class="mobile-content text-center hidden">
+                  <ul class="social-icons">
+                      <li><a href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
+                      {{--<li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>--}}
+                      {{--<li><a href="#"><span class="icon-linkedin"></span></a></li>--}}
+                      <li><a href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+                  </ul>
+                  <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+              </div>
+          </div>
         </nav>
     </div>
     <main id="main" role="main">
         <div class="page-holder">
            <div class="listing-page">
                 <div class="container">
+                    <a class="aside-opener-filters">Search Filters<span class="button"><b></b></span></a>
                     <aside id="aside">
                         <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                             <ul class="filters-links text-upparcase">
@@ -154,14 +167,14 @@
                                     <div class="slide">
                                         <div class="fromTo">
                                             <div class="field-holder">
-                                                <input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom">
+                                                <input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
                                             </div>
                                             <div class="field-holder">
-                                                <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo">
+                                                <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                             </div>
                                             <button type="submit">Go</button>
-                                            <span class="calculatedPrice"></span>
                                         </div>
+                                        <span class="calculatedPrice">Please enter the price.</span>
                                     </div>
                                 </li>
                             </ul>

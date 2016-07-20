@@ -68,7 +68,7 @@
                     <div class="input-holder">
                         <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
                             <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices refresh="searchSocieties($select)" refresh-delay="300" repeat="society in resources.societies">
+                            <ui-select-choices refresh="searchSocieties($select)" refresh-delay="300" repeat="society in societies">
                                 <div ng-bind-html="society.name"></div>
                             </ui-select-choices>
                         </ui-select>

@@ -53,7 +53,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.types = $rootScope.resources.propertyTypes;
     $scope.subTypes = $rootScope.resources.propertySubTypes;
     $scope.blocks = [];
-    $scope.societies = $rootScope.resources.societies;
+    $scope.societies = [];
     $scope.subTypeAssignedFeatures = [];
     $scope.highPriorityFeatures = [];
     $scope.features = [];
@@ -64,7 +64,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         block: {id:0}
     };
     $scope.searchSocieties = function ($select) {
-        $rootScope.resources.societies = [];
+        $scope.societies = [];
         if($select.search.length < 2){
             $rootScope.resources.societies = [];
             return;
@@ -74,8 +74,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
                 keyword: $select.search
             }
         }).then(function(response){
-            console.log(response.data);
-            $rootScope.resources.societies = response.data;
+            $scope.societies = response.data;
         });
     };
     $scope.societyChanged = function () {

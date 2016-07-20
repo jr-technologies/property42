@@ -2,9 +2,9 @@
 @section('content')
         <div class="main-visualSection">
             <div class="container">
-                <strong class="main-heading text-upparcase"><span class="blue">LIST</span> <span class="black">yOUR</span> PROPERTY</strong>
-                <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
-                <ul class="number-of-properties text-upparcase">
+                <strong class="main-heading text-upparcase hidden-xs"><span class="blue">LIST</span> <span class="black">yOUR</span> PROPERTY</strong>
+                <p class="hidden-xs">Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
+                <ul class="number-of-properties text-upparcase hidden-xs">
                     <li>
                         <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][0]->totalProperties}}</strong>
                         <span class="tag">SALeS</span>
@@ -70,30 +70,42 @@
                         </div>
                     </div>
                 {{Form::close()}}
-                <nav id="nav" class="fixed-scroll-block">
-                    <ul class="main-navigation text-upparcase">
-                        <li class="active">
-                            <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
+        <nav id="nav">
+            <div class="nav-holder">
+                <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
+                <ul class="main-navigation text-upparcase">
+                    <li class="active">
+                        <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
+                    </li>
+                </ul>
+                <div class="mobile-content text-center hidden">
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
+                        {{--<li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>--}}
+                        {{--<li><a href="#"><span class="icon-linkedin"></span></a></li>--}}
+                        <li><a href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+                    </ul>
+                    <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+                </div>
+            </div>
+        </nav>
     </div>
     <main id="main" role="main">
       <section class="generic-section">

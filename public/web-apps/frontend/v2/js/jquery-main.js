@@ -1,5 +1,9 @@
 $(document).ready(function() {
 	$(".js-example-basic-single").select2();
+
+	if(screen.width < 1024){
+		$('#aside').slideUp();
+	}
 });
 
 $(document).on('click', '.navigation-toggler', function(){
@@ -32,9 +36,11 @@ $(document).on('focusout', '.PriceField', function(){
 jQuery(function(){
 	initCarousel();
 	initSlideShow();
+
 	if(screen.width >= 768){
 		initFixedScrollBlock();
 	}
+
 	initAccordion();
 });
 
