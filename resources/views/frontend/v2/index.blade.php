@@ -5,14 +5,12 @@
                 <strong class="main-heading text-upparcase"><span class="blue">LIST</span> <span class="black">yOUR</span> PROPERTY</strong>
                 <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                 <ul class="number-of-properties text-upparcase">
+                    @foreach($response['data']['saleAndRentCount'] as $saleRent)
                     <li>
-                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][0]->totalProperties}}</strong>
-                        <span class="tag">SALeS</span>
+                        <strong class="numberOfProperty">{{$saleRent->totalProperties}}</strong>
+                        <span class="tag">{{$saleRent->display_name}}</span>
                     </li>
-                    <li>
-                        <strong class="numberOfProperty">{{$response['data']['saleAndRentCount'][1]->totalProperties}}</strong>
-                        <span class="tag">RENTALS</span>
-                    </li>
+                    @endforeach
                 </ul>
                 {{ Form::open(array('url' => 'search','method' => 'GET','class'=>'mainSearch-form' )) }}
 
@@ -119,7 +117,7 @@
                                         </div>
                                         <div class="caption">
                                             <p>{{str_limit("Real Estate elected committee meet with Finance Minister Ishaq Dar today at Islamabad regarding recently imposed property evolution tax.
-                                                Real estate agents and investors protested against the increase in taxes on Saturday, expecting that the government would take some decisions in their favor.",170)}}</p>
+                                                Real estate agents and investors protested against the increase in taxes on Saturday, expecting that the government would take some decisions in their favor.",400)}}</p>
                                             <a href="#" class="btn-default text-upparcase">Learn More</a>
                                         </div>
                                     </div>
@@ -139,7 +137,7 @@
                                             <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
                                         </div>
                                         <div class="caption">
-                                            <p>{{str_limit("After the protest of real estate agents protest Prime Minister take an action and ask to finance minister to discuss the matter with real estate stakeholder.",170)}}</p>
+                                            <p>{{str_limit("After the protest of real estate agents protest Prime Minister take an action and ask to finance minister to discuss the matter with real estate stakeholder.",400)}}</p>
                                             <a href="#" class="btn-default text-upparcase">Learn More</a>
                                         </div>
                                     </div>
