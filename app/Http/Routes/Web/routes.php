@@ -87,15 +87,6 @@ Route::post('admin/property/approve',
     ]
 );
 
-Route::get('admin/properties',
-    [
-        'middleware'=>
-            [
-                //'webAuthenticate:getAdminsPropertiesRequest',
-                'webValidate:getAdminsPropertiesRequest'
-            ],
-        'uses'=>'Admin\AdminController@getProperties'
-    ]);
 Route::get('admin/logout',function(){
 
     if(session()->has('admin'))
@@ -127,6 +118,7 @@ Route::post('admin/agent/approve',
     [
         'middleware'=>
             [
+//                'webAuthenticate:getAdminsPropertiesRequest',
                 'webValidate:approveAgentRequest'
             ],
         'uses'=>'Admin\AdminController@approveAgent'
@@ -138,6 +130,7 @@ Route::get('admin/properties',
     [
         'middleware'=>
             [
+//                'webAuthenticate:getAdminsPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);
@@ -146,6 +139,7 @@ Route::get('admin/agents',
     [
         'middleware'=>
             [
+                //'webAuthenticate:getAdminsPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getAgents'
     ]);

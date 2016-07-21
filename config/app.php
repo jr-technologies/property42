@@ -327,6 +327,7 @@ return [
 
         /* Admin Requests */
         'GetAdminPropertyRequest' => \App\Http\Requests\Requests\Property\GetAdminPropertyRequest::class,
+        'GetAdminsPropertiesRequest' => \App\Http\Requests\Requests\Property\GetAdminsPropertiesRequest::class,
         'RejectPropertyRequest' => \App\Http\Requests\Requests\Property\RejectPropertyRequest::class,
         'ApprovePropertyRequest' => \App\Http\Requests\Requests\Property\ApprovePropertyRequest::class,
         'GetAdminAgentRequest' => \App\Http\Requests\Requests\User\GetAdminAgentRequest::class,
