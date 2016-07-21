@@ -18,7 +18,7 @@ class GetAdminPropertiesTransformer extends RequestTransformer
     public function transform()
     {
        return [
-           'propertyId' => $this->request->input('propertyId'),
+
         ];
     }
 
