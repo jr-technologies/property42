@@ -21,7 +21,7 @@ use App\Transformers\Request\Property\GetAdminPropertyTransformer;
 use App\Transformers\Request\Property\GetPropertyTransformer;
 
 
-class GetAdminsPropertyRequest extends Request implements RequestInterface{
+class GetAdminsPropertiesRequest extends Request implements RequestInterface{
 
     public $validator = null;
     private $properties = null;

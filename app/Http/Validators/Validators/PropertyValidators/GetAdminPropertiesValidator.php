@@ -22,7 +22,7 @@ class GetAdminPropertiesValidator extends PropertyValidator implements Validator
     public function rules()
     {
         return [
-            'propertyId'=>'required',
+
         ];
     }
 

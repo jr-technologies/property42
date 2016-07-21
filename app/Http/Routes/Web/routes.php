@@ -91,7 +91,8 @@ Route::get('admin/properties',
     [
         'middleware'=>
             [
-                'webAuthenticator:getAdminPropertiesRequest',
+                'webAuthenticator:getAdminsPropertiesRequest',
+                'webValidate:getAdminsPropertiesRequest'
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);

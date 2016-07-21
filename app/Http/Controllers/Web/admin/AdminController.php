@@ -6,6 +6,7 @@ use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouriteProperty
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
+use App\Http\Requests\Requests\Property\GetAdminsPropertiesRequest;
 use App\Http\Requests\Requests\Property\RejectPropertyRequest;
 use App\Http\Requests\Requests\Property\VerifyPropertyRequest;
 use App\Http\Requests\Requests\User\ApproveAgentRequest;
@@ -35,7 +36,7 @@ class AdminController extends Controller
         $this->usersRepo = (new UsersRepoProvider())->repo();
         $this->favouriteFactory = new FavouritePropertyFactory();
     }
-    public function getProperties()
+    public function getProperties(GetAdminsPropertiesRequest $request)
     {
         $properties = $this->properties->getPendingProperties();
         return $this->response->setView('admin.pending-properties')->respond(['data'=>[
