@@ -9,7 +9,7 @@
 namespace App\Http\Validators\Validators\PropertyValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
-class GetAdminPropertiesValidator extends PropertyValidator implements ValidatorsInterface
+class VerifyPropertyValidator extends PropertyValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -22,7 +22,7 @@ class GetAdminPropertiesValidator extends PropertyValidator implements Validator
     public function rules()
     {
         return [
-
+            'propertyId'=>'required',
         ];
     }
 

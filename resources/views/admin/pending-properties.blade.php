@@ -59,6 +59,10 @@
                                     <input hidden name="propertyId" value="{{$property->id}}">
                                  <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
                                 {{Form::close()}}
+                                {{Form::open(array('url'=>'admin/property/verify','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                <input hidden name="propertyId" value="{{$property->id}}">
+                                <button class="accept" title="Verify"><span class="icon-checkmark" type="submit"></span></button>
+                                {{Form::close()}}
                                 {{Form::open(array('url'=>'admin/property/reject','method'=>'POST','class'=>'rejectApprove-form'))}}
                                     <input hidden name="propertyId" value="{{$property->id}}">
                                 <button class="delete" title="Delete the property" type="submit"><span class="icon-sign"></span></button>

@@ -54,11 +54,10 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
             throw new \Exception();
         return $this->map($user);
     }
-    public function trustedAgents(array $params)
+    public function getTrustedAgentsWithPriority(array $params)
     {
-        $params['start'] = $this->computePagination($params)['start'];
         $params['limit'] = $this->computePagination($params)['limit'];
-        return $this->mapCollection($this->tableGateway->trustedAgents($params));
+        return $this->mapCollection($this->tableGateway->getTrustedAgentsWithPriority($params));
     }
     public function getAllTrustedAgents()
     {
@@ -73,7 +72,6 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->updateWhere(['user_id'=>$user->id], $this->mapUserOnTable($user));
     }
-
     /**
      * @param UserJsonPrototype $user
      * @return int
@@ -82,7 +80,6 @@ class UserJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->insert($this->mapUserOnTable($user));
     }
-
     /**
      * @param $result
      * @return UserJsonPrototype::class

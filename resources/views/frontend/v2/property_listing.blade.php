@@ -223,10 +223,12 @@
                                         </div>
                                     </div>
                                     <div class="layout">
-                                        <div class="links-left">
-                                            <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-Vector-Smart-Object"></span></a>
-                                            <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
-                                        </div>
+                                        @if($property->isVerified == 1)
+                                            <div class="links-left">
+                                                <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-Vector-Smart-Object"></span></a>
+                                                <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
+                                            </div>
+                                            @endif
                                         <div class="links-right">
                                             <ul class="quick-links">
                                                 <li><a href="#"><span class="icon-phone"></span></a></li>

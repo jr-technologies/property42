@@ -26,6 +26,7 @@ class Property {
     public $totalViews;
     public $ratings;
     public $totalLikes;
+    public $isVerified;
     /* contact info */
     public $contactPerson;
     public $phone;

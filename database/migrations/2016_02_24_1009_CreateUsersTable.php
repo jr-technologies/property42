@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->integer('membership_status');
             $table->integer('login_count');
             $table->boolean('trusted_agent')->default(0);
+            $table->integer('priority')->default(0);
             $table->rememberToken();
             $table->timestamps();
 

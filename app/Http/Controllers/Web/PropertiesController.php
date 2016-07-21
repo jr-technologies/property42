@@ -99,7 +99,7 @@ class PropertiesController extends Controller
 
     public function index()
     {
-        $agents = $this->users->trustedAgents(['limit'=>36]);
+        $agents = $this->users->getTrustedAgentsWithPriority(['limit'=>36]);
         $importantSocieties = $this->societies->getImportantSocieties();
         $saleAndRentCount = $this->propertiesRepo->countSaleAndRendProperties();
         return $this->response->setView('frontend.v2.index')->respond(['data' => [

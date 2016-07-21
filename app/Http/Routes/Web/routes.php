@@ -67,7 +67,15 @@ Route::post('admin/property/reject',
     ]
 );
 
-
+Route::post('admin/property/verify',
+    [
+        'middleware'=>
+            [
+                'webValidate:verifyPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@VerifyProperty'
+    ]
+);
 
 Route::post('admin/property/approve',
     [
@@ -83,7 +91,8 @@ Route::get('admin/properties',
     [
         'middleware'=>
             [
-                'webAuthenticator:getAdminPropertiesRequest',
+                //'webAuthenticate:getAdminsPropertiesRequest',
+                'webValidate:getAdminsPropertiesRequest'
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);

@@ -12,6 +12,7 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyStatusUpdated;
 use App\Events\Events\Property\PropertyUpdated;
+use App\Events\Events\Property\PropertyVerified;
 use App\Events\Events\Property\UpdatePropertyTotalView;
 use App\Events\Events\Section\SectionUpdated;
 use App\Events\Events\User\UpdateAgentStatus;
@@ -27,6 +28,7 @@ use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
 use App\Listeners\Listeners\Feature\CreateFeatureJsonDocument;
 use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\DeletePropertyJsonDocument;
+use App\Listeners\Listeners\Property\PropertyVerifyInPropertyJson;
 use App\Listeners\Listeners\Property\UpdatePropertiesStatusInJson;
 use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyViewsInPropertyJson;
@@ -81,6 +83,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UpdatePropertyTotalView::class => [
             UpdatePropertyViewsInPropertyJson::class,
+        ],
+        PropertyVerified::class => [
+            PropertyVerifyInPropertyJson::class,
         ],
         PropertyDeleted::class => [
             DeletePropertyJsonDocument::class,

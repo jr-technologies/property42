@@ -12,13 +12,13 @@ namespace App\Transformers\Request\Property;
 use App\Transformers\Request\RequestTransformer;
 
 
-class GetAdminPropertiesTransformer extends RequestTransformer
+class VerifyPropertyTransformer extends RequestTransformer
 {
 
     public function transform()
     {
        return [
-
+           'propertyId' => $this->request->input('propertyId'),
         ];
     }
 
