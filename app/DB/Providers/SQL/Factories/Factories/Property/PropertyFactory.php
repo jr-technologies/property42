@@ -59,10 +59,8 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->deleteByIds($propertyIds);
     }
-    public function restoreProperty(Property $property)
-    {
-        return $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
-    }
+
+
     public function forceDeleteByIds($propertyIds)
     {
         return $this->tableGateway->forceDeleteByIds($propertyIds);
@@ -146,6 +144,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'mobile' => $property->mobile,
             'fax' => $property->fax,
             'email' => $property->email,
+            'is_verified'=>$property->isVerified,
             'owner_id'=>$property->ownerId,
             'created_by'=>$property->createdBy,
             'created_at' => $property->createdAt,

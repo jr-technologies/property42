@@ -36,6 +36,7 @@ class CreatePropertiesTable extends Migration
             $table->integer('total_views')->default(0);
             $table->integer('rating')->default(0);
             $table->integer('total_likes')->default(0);
+            $table->tinyInteger('is_verified')->default(0);
             $table->softDeletes();
             $table->integer('created_by')->unsigned();
             $table->integer('deleted_by')->nullable();
