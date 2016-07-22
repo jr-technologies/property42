@@ -9,14 +9,11 @@
 namespace App\DB\Providers\SQL\Models;
 
 
-class Society
+class SocietyMaps
 {
     public $id = 0;
-    public $name = "";
-    public $cityId = 0;
-    public $important = 0;
-    public $priority = 0;
-    public $path ="";
+    public $societyId = 0;
+    public $path = "";
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

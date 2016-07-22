@@ -84,7 +84,7 @@
                         <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
                     </li>
                     <li>
-                        <a href="#"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
+                        <a href="{{URL::to('societies/maps')}}"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
                     </li>
                     <li>
                         <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>

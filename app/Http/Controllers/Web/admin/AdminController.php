@@ -55,7 +55,6 @@ class AdminController extends Controller
             'loggedInUser'=>$loggedInUser,
             'user'=>$this->users->find($property->owner->id)
         ]]);
-
     }
 
     public function rejectProperty(RejectPropertyRequest $request)

@@ -48,4 +48,5 @@ class SocietyQueryBuilder extends QueryBuilder
             ->orderBy($this->table.'.priority', 'asc')
             ->get();
     }
+
 }

@@ -87,15 +87,6 @@ Route::post('admin/property/approve',
     ]
 );
 
-Route::get('admin/properties',
-    [
-        'middleware'=>
-            [
-                //'webAuthenticate:getAdminsPropertiesRequest',
-                'webValidate:getAdminsPropertiesRequest'
-            ],
-        'uses'=>'Admin\AdminController@getProperties'
-    ]);
 Route::get('admin/logout',function(){
 
     if(session()->has('admin'))
@@ -134,10 +125,30 @@ Route::post('admin/agent/approve',
 );
 
 
+Route::get('societies/maps',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetAllSocietiesForMapsRequest'
+            ],
+        'uses'=>'SocietiesController@getAllSocietiesForMaps'
+    ]);
+
+Route::get('society/maps',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetSocietyMapsRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyMaps'
+    ]);
+
+
 Route::get('admin/properties',
     [
         'middleware'=>
             [
+                'webAuthenticate:getAdminsPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);

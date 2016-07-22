@@ -268,6 +268,9 @@ return [
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
         'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,
+        'GetAllSocietiesForMapsRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesForMapsRequest::class,
+        'GetSocietyMapsRequest' => \App\Http\Requests\Requests\Society\GetSocietyMapsRequest::class,
+
 
         /* Block Requests */
         'AddBlockRequest' => \App\Http\Requests\Requests\Block\AddBlockRequest::class,
