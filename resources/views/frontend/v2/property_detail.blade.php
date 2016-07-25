@@ -208,7 +208,10 @@
                             </div>
                         </div>
                         <div class="overview-section">
-                            <span class="small-heading">Property Overview</span>
+                            <div class="layout">
+                                <span class="small-heading">Property Overview</span>
+                                <a href="#" class="btn-hollow"><span class="icon-printer"></span>PRINT DETAILS</a>
+                            </div>
                             <p>{{$response['data']['property']->description}}</p>
                         </div>
                         <div class="extra-feature-section">

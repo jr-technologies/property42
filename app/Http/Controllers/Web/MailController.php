@@ -4,16 +4,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Mail\AgentMailRequest;
-
 use App\Http\Requests\Requests\Mail\ContactUSMailRequest;
 use App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest;
-
 use App\Http\Requests\Requests\Mail\MailToAgentRequest;
-use App\Http\Requests\Requests\User\ForgetPasswordRequest;
-use App\Http\Responses\Responses\WebResponse;
-use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Traits\User\UsersFilesReleaser;
-
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
