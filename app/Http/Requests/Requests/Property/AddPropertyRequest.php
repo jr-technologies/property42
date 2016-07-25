@@ -55,6 +55,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->fax =  $this->get('fax');
         $property->ownerId = $this->get('ownerId');
         $property->totalViews = rand(0,170);
+        $property->isVerified = 0;
         $property->createdBy = $this->user()->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');
