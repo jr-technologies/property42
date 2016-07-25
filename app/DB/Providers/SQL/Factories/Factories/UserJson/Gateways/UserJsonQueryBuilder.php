@@ -19,6 +19,7 @@ use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Support\Facades\DB;
 
 class UserJsonQueryBuilder extends QueryBuilder{
+    private $agentPrimaryKey = 3;
     public function __construct(){
         $this->table = "user_json";
     }
@@ -103,7 +104,7 @@ class UserJsonQueryBuilder extends QueryBuilder{
             if(isset($params['agencyName']) && $params['agencyName'] !=null && $params['agencyName'] !="")
                 $query = $query->where($agencyTable.'.agency','like','%'.$params['agencyName'].'%');
 
-        $query = $query->where($userRoleTable.'.role_id','=',3);
+        $query = $query->where($userRoleTable.'.role_id','=',$this->agentPrimaryKey);
         $query = $query->where($userTable.'.trusted_agent','=',1);
         $query = $query->skip($params['start'])->take($params['limit']);
         $agents = $query->get();
@@ -137,8 +138,39 @@ class UserJsonQueryBuilder extends QueryBuilder{
             ->leftjoin($agencySocietyTable,$agencyTable.'.id','=',$agencySocietyTable.'.agency_id')
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.json'))
             ->distinct();
-        $query = $query->where($userRoleTable.'.role_id','=',3);
+        $query = $query->where($userRoleTable.'.role_id','=',$this->agentPrimaryKey);
         $query = $query->where($userTable.'.trusted_agent','=',1);
+        $agents = $query->get();
+
+        \Session::flash('totalAgentsFound', DB::select('select FOUND_ROWS() as count'));
+        return $agents;
+    }
+
+
+    public function searchTrustedAgents(array $params)
+    {
+        $userTable = (new UserFactory())->getTable();
+        $userRoleTable = (new UserRolesFactory())->getTable();
+        $agencyTable = (new AgencyFactory())->getTable();
+        $agencySocietyTable = (new AgencySocietyFactory())->getTable();
+
+        $query = DB::table($userTable)
+            ->leftjoin($userRoleTable,$userTable.'.id','=',$userRoleTable.'.user_id')
+            ->join($this->table,$userTable.'.id','=',$this->table.'.user_id')
+            ->leftjoin($agencyTable,$userTable.'.id','=',$agencyTable.'.user_id')
+            ->leftjoin($agencySocietyTable,$agencyTable.'.id','=',$agencySocietyTable.'.agency_id')
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.json'))
+            ->distinct();
+
+        if($params['society'] !=null && $params['society'] !="")
+            $query = $query->where($agencySocietyTable.'.society_id','=',$params['society']);
+
+        if($params['agencyName'] !=null && $params['agencyName'] !="")
+            $query = $query->where($agencyTable.'.agency','like','%'.$params['agencyName'].'%');
+
+        $query = $query->where($userRoleTable.'.role_id','=',$this->agentPrimaryKey);
+        $query = $query->where($userTable.'.trusted_agent','=',1);
+        $query = $query->skip($params['start'])->take($params['limit']);
         $agents = $query->get();
 
         \Session::flash('totalAgentsFound', DB::select('select FOUND_ROWS() as count'));
