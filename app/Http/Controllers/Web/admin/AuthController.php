@@ -24,7 +24,7 @@ class AuthController extends Controller
     }
     public function login(AdminLoginRequest $request)
     {
-         $admin = $this->adminRepo->getAdmin($request->getCredentials());
+        $admin = $this->adminRepo->getAdmin($request->getCredentials());
         if(sizeof($admin) >0)
         {
             Session::set('admin',$admin);

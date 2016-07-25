@@ -15,7 +15,7 @@ trait TrustedAgentsSearchHelper
     {
         $pagination = [
             'start' => 0,
-            'limit' => config('constants.AGENTS_LIMIT')
+            'limit' => (isset($params))?$params['limit']:config('constants.AGENTS_LIMIT')
         ];
         if(isset($params['page']) ){
             $page = intval($params['page']);

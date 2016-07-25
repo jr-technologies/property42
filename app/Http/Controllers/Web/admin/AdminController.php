@@ -17,10 +17,11 @@ use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
+use App\Traits\Property\PropertyPriceUnitHelper;
 
 class AdminController extends Controller
 {
-    use PropertyFilesReleaser;
+    use PropertyFilesReleaser, PropertyPriceUnitHelper;
     public $users =null;
     public $response = null;
     public $properties = null;
@@ -48,7 +49,7 @@ class AdminController extends Controller
     public function getById(GetAdminPropertyRequest $request)
     {
         $loggedInUser = $request->user();
-        $property = $this->properties->getById($request->get('propertyId'));
+        $property = $this->convertPropertyAreaToActualUnit($this->properties->getById($request->get('propertyId')));
         return $this->response->setView('admin.property-detail')->respond(['data'=>[
             'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
             'property'=>$this->releaseAllPropertiesFiles([$property])[0],
