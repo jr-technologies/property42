@@ -124,6 +124,52 @@ Route::post('admin/agent/approve',
     ]
 );
 
+Route::get('society/doc/download',
+    [
+        'middleware'=>
+            [
+                'webValidate:downloadSocietyAffidavitRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyDoc'
+    ]);
+
+Route::get('society/image/download',
+    [
+        'middleware'=>
+            [
+                'webValidate:downloadSocietyAffidavitRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyImage'
+    ]);
+
+Route::get('society/pdf/download',
+    [
+        'middleware'=>
+            [
+                'webValidate:downloadSocietyFilesRequest'
+            ],
+        'uses'=>'SocietiesController@downloadSocietyPDF'
+    ]);
+
+Route::get('get/society/files',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetSocietyFilesRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyFiles'
+    ]);
+
+
+
+Route::get('societies/files',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetAllSocietiesForFilesRequest'
+            ],
+        'uses'=>'SocietiesController@getAllSocietiesForFiles'
+    ]);
 
 Route::get('societies/maps',
     [

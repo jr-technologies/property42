@@ -269,7 +269,11 @@ return [
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
         'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,
         'GetAllSocietiesForMapsRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesForMapsRequest::class,
+        'GetAllSocietiesForFilesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesForFilesRequest::class,
         'GetSocietyMapsRequest' => \App\Http\Requests\Requests\Society\GetSocietyMapsRequest::class,
+        'GetSocietyFilesRequest' => \App\Http\Requests\Requests\Society\GetSocietyFilesRequest::class,
+        'DownloadSocietyFilesRequest' => \App\Http\Requests\Requests\Society\DownloadSocietyFilesRequest::class,
+        'DownloadSocietyAffidavitRequest' => \App\Http\Requests\Requests\Society\DownloadSocietyAffidavitRequest::class,
 
 
         /* Block Requests */

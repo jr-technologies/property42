@@ -1,9 +1,10 @@
+
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocietiesMaps extends Migration
+class CreateSocietiesFiles extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +13,13 @@ class CreateSocietiesMaps extends Migration
      */
     public function up()
     {
-        Schema::create('societies_maps', function (Blueprint $table) {
+        Schema::create('societies_files', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('society_id')->unsigned();
-            $table->string('path');
+            $table->string('image');
+            $table->string('doc');
+            $table->string('pdf');
             $table->timestamps();
-
 
             $table->foreign('society_id')
                 ->references('id')->on('societies')
@@ -31,6 +33,6 @@ class CreateSocietiesMaps extends Migration
      */
     public function down()
     {
-        Schema::drop('societies_maps');
+        Schema::drop('societies_files');
     }
 }
