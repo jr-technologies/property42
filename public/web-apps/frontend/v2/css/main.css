@@ -610,7 +610,7 @@ th {
   content: "\e907";
 }
 
-.listing-page .filters-links, .listing-page .filterChecks, .propertyDetail-page .feature-list, .social-icons, .loginRegister, .main-visualSection .number-of-properties, .mainSearch-form .typeOfBuying, .mainSearch-form .subTypes, .mainSearch-form .inputsHolder, #nav .main-navigation, .news-carousel .news-pagination ul, .topSocities-holder .socities, .topSocities-holder .socities li .caption .numberOfproperties, .agents-logo, .pager, .quick-links, .public-ui-features, .sumery-list {
+.listing-page .filters-links, .listing-page .filterChecks, .propertyDetail-page .feature-list, .addProperty-form .image-uploading-area, .addProperty-form .existingOrNew-member, .social-icons, .loginRegister, .main-visualSection .number-of-properties, .mainSearch-form .typeOfBuying, .mainSearch-form .subTypes, .mainSearch-form .inputsHolder, #nav .main-navigation, .news-carousel .news-pagination ul, .topSocities-holder .socities, .topSocities-holder .socities li .caption .numberOfproperties, .agents-logo, .pager, .quick-links, .public-ui-features, .sumery-list, .radio-checks-holder {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -646,11 +646,14 @@ th {
   overflow: hidden;
 }
 
-.text-center, .propertyDetail-page .info-blockProperty .price, .propertyDetail-page .info-blockProperty .small-heading, .propertyDetail-page .overview-section, .propertyDetail-page .extra-feature-section .small-heading, h1, .loginRegister li, .main-visualSection, #nav .main-navigation li, .news-carousel .news-pagination ul, .topSocities-holder .socities li a, .heading, .agents-logo li a, .premiumProperty, .public-ui-features li strong {
+.text-center, .propertyNotFound, .propertyDetail-page .info-blockProperty .price, .propertyDetail-page .info-blockProperty .small-heading, .propertyDetail-page .propertyImage-pagination .propertyImage-slide a,
+.propertyDetail-page .propertyImage-pagination .slide a,
+.propertyDetail-page .propertyImage-slider .propertyImage-slide a,
+.propertyDetail-page .propertyImage-slider .slide a, .propertyDetail-page .overview-section, .propertyDetail-page .extra-feature-section .small-heading, .addProperty-form .add-pro-heading, .addProperty-form .extra-features, .addProperty-form .existingOrNew-member li, .addProperty-form .list-extraFeatures .feature-heading, .custom-withouChecks .fake-label, h1, .loginRegister li, .main-visualSection, #nav .main-navigation li, .news-carousel .news-pagination ul, .topSocities-holder .socities li a, .heading, .agents-logo li a, .premiumProperty, .public-ui-features li strong, .generic-lightbox {
   text-align: center;
 }
 
-.text-left, .listing-page .publicProperty-post .caption h1, .propertyDetail-page .property-picture-holder h1, .propertyDetail-page .overview-section .small-heading, .propertyDetail-page .feature .small-heading, .mainSearch-form .inputsHolder, #nav, .topSocities-holder .socities li .caption .numberOfproperties {
+.text-left, .listing-page .publicProperty-post .caption h1, .propertyDetail-page .property-picture-holder h1, .propertyDetail-page .overview-section .small-heading, .propertyDetail-page .feature .small-heading, .addProperty-form .existingOrNew-member li .slide, .mainSearch-form .inputsHolder, #nav, .topSocities-holder .socities li .caption .numberOfproperties, .inquiry-email-form {
   text-align: left;
 }
 
@@ -658,7 +661,7 @@ th {
   text-align: right;
 }
 
-.text-upparcase, .mainSearch-form button[type="submit"], .submit-query button[type="submit"], .small-heading, .btn-hollow {
+.text-upparcase, .addProperty-form input[type="submit"], .mainSearch-form button[type="submit"], .submit-query button[type="submit"], .small-heading, .btn-hollow, .inquiry-email-form button[type="submit"] {
   text-transform: uppercase;
 }
 
@@ -666,11 +669,11 @@ th {
   text-transform: lowercase;
 }
 
-.text-capital, .select2-container .select2-selection--single .select2-selection__rendered, .mainSearch-form .subTypes, .views {
+.text-capital, .propertyNotFound .no-heading, .addProperty-form .add-pro-heading, .addProperty-form .layout label, .addProperty-form .existingOrNew-member, .custom-withouChecks .fake-label, .select2-container .select2-selection--single .select2-selection__rendered, .mainSearch-form .subTypes, .views, .inquiry-email-form label {
   text-transform: capitalize;
 }
 
-.pull-left, .listing-page #aside, .listing-page #content, .listing-page .publicProperty-post .image-holder, .listing-page .publicProperty-post .caption .quick-links, .propertyDetail-page .overview-section .small-heading, .listing-page .publicProperty-post .caption .left-area, .listing-page .publicProperty-post .caption .links-left, .news-slideshow .slide .caption, .agents .left-side {
+.pull-left, .listing-page #aside, .listing-page #content, .listing-page .publicProperty-post .image-holder, .listing-page .publicProperty-post .caption .quick-links, .propertyDetail-page .overview-section .small-heading, .addProperty-form .tips, .listing-page .publicProperty-post .caption .left-area, .listing-page .publicProperty-post .caption .links-left, .news-slideshow .slide .caption, .agents .left-side {
   float: left !important;
 }
 
@@ -678,11 +681,11 @@ th {
   float: right !important;
 }
 
-.layout, .listing-page, .listing-page .filter-form, .listing-page .filters-links li .slide, .listing-page .fromTo, .listing-page .publicProperty-post, .listing-page .publicProperty-post .caption, .propertyDetail-page, .propertyDetail-page .info-blockProperty .pictureHolder, .propertyDetail-page .propertyImage-pagination,
+.layout, .listing-page, .listing-page .filter-form, .listing-page .filters-links li .slide, .listing-page .fromTo, .listing-page .publicProperty-post, .listing-page .publicProperty-post .caption, .propertyNotFound, .propertyDetail-page, .propertyDetail-page .info-blockProperty .pictureHolder, .propertyDetail-page .propertyImage-pagination,
 .propertyDetail-page .propertyImage-slider, .propertyDetail-page .propertyImage-pagination .propertyImage-mask,
 .propertyDetail-page .propertyImage-pagination .mask,
 .propertyDetail-page .propertyImage-slider .propertyImage-mask,
-.propertyDetail-page .propertyImage-slider .mask, .propertyDetail-page .overview-section, .propertyDetail-page .extra-feature-section, .propertyDetail-page .feature, .fake-select, #wrapper, .logo, .main-bg-holder, .main-visualSection, #main, .mainSearch-form .form-holder, .mainSearch-form .inputsHolder li .input-holder, .byDefault-fixed #nav .main-navigation li a span[class^="icon-"], .byDefault-fixed #nav .main-navigation li a span[class*="icon-"], #nav.fixed-position .main-navigation li a span[class^="icon-"], #nav.fixed-position .main-navigation li a span[class*="icon-"], .generic-section, .news-sliderHolder, .news-slideshow, .news-slideshow .mask, .news-slideshow .slideset, .news-carousel, .news-carousel .news-mask, .news-carousel .news-pagination ul a, .topSocities-holder, .topSocities-holder .socities li a:after, .agents, .agent-slider, .agent-slider .mask, .agents-logo li a:after, .submit-query, #footer {
+.propertyDetail-page .propertyImage-slider .mask, .propertyDetail-page .overview-section, .propertyDetail-page .extra-feature-section, .propertyDetail-page .feature, .addProperty-form, .addProperty-form .add-form-holder, .addProperty-form .main-form, .addProperty-form .tips, .addProperty-form .list-extraFeatures, .fake-select, #wrapper, .logo, .main-visualSection, #main, .page-holder, .mainSearch-form .form-holder, .mainSearch-form .inputsHolder li .input-holder, .byDefault-fixed #nav .main-navigation li a span[class^="icon-"], .byDefault-fixed #nav .main-navigation li a span[class*="icon-"], #nav.fixed-position .main-navigation li a span[class^="icon-"], #nav.fixed-position .main-navigation li a span[class*="icon-"], .generic-section, .news-sliderHolder, .news-slideshow, .news-slideshow .mask, .news-slideshow .slideset, .news-carousel, .news-carousel .news-mask, .news-carousel .news-pagination ul a, .topSocities-holder, .topSocities-holder .socities li a:after, .agents, .agent-slider, .agent-slider .mask, .agents-logo li a:after, .submit-query, #footer, .inquiry-email-form .input-holder, .radio-checks-holder {
   overflow: hidden;
 }
 
@@ -697,10 +700,10 @@ th {
   }
 }
 
-.full-width, .submit-query .input-holder.full-width {
-  width: 100%;
-  display: block;
-  clear: both;
+.full-width, .addProperty-form .layout.full-width .layout-holder, .submit-query .input-holder.full-width {
+  width: 100% !important;
+  display: block !important;
+  clear: both !important;
 }
 
 html {
@@ -1564,7 +1567,8 @@ input[type='submit'] {
 .listing-page #aside {
   width: 25%;
   padding: 10px;
-  border-top: 4px solid #fff;
+  border-top: 4px solid #2092d0;
+  overflow: hidden;
   box-shadow: 0 0 20px -9px rgba(0, 0, 0, 0.5);
 }
 
@@ -1746,7 +1750,7 @@ input[type='submit'] {
   font-size: 12px;
   line-height: 15px;
   color: #fff;
-  background: #2092d0;
+  background: #d89429;
   border: 0;
   padding: 5px;
   transition: background 0.5s ease;
@@ -1763,6 +1767,7 @@ input[type='submit'] {
   background: #fff;
   padding: 5px 5px 0;
   margin: 0 0 20px;
+  position: relative;
 }
 
 @media (max-width: 767px) {
@@ -1813,8 +1818,7 @@ input[type='submit'] {
   font-size: 13px;
   line-height: 16px;
   color: #6c6d70;
-  padding: 0 0 80px 10px;
-  position: relative;
+  padding: 0 0 10px 10px;
 }
 
 .listing-page .publicProperty-post .caption h1 {
@@ -1878,7 +1882,7 @@ input[type='submit'] {
 .listing-page .publicProperty-post .caption .links-holder {
   position: absolute;
   bottom: 0;
-  left: 10px;
+  left: 220px;
   right: 0;
 }
 
@@ -1888,12 +1892,19 @@ input[type='submit'] {
     clear: both;
     right: 10px;
     display: block;
+    left: 180px;
+  }
+}
+
+@media (max-width: 479px) {
+  .listing-page .publicProperty-post .caption .links-holder {
+    position: static;
   }
 }
 
 .listing-page .publicProperty-post .caption .links-left {
   width: 70%;
-  padding: 40px 0 0;
+  padding: 35px 0 0;
 }
 
 @media (max-width: 767px) {
@@ -1975,16 +1986,26 @@ input[type='submit'] {
 .aside-opener-filters {
   display: block;
   color: #fff;
-  font-size: 16px;
-  line-height: 20px;
-  background: #2092d0;
+  font-size: 14px;
+  line-height: 19px;
+  background: #d89429;
   font-weight: 600;
-  letter-spacing: 1px;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   position: relative;
   margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.aside-opener-filters b {
+  font-weight: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+  padding: 0 3px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @media (min-width: 1024px) {
@@ -2023,6 +2044,56 @@ input[type='submit'] {
   margin: -1px 0 0;
 }
 
+.propertyNotFound {
+  position: relative;
+  background: #dee1e3;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 600;
+  padding: 80px 20px;
+}
+
+@media (max-width: 767px) {
+  .propertyNotFound {
+    font-size: 13px;
+    line-height: 16px;
+    padding: 65px 5px;
+  }
+}
+
+.propertyNotFound:after {
+  background: url("../images/caution-sign.png") no-repeat;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  content: '';
+  margin: 0 0 0 -100px;
+  opacity: 0.25;
+}
+
+.propertyNotFound .no-heading {
+  display: block;
+  opacity: 0.5;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 33px;
+  padding: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .propertyNotFound .no-heading {
+    font-size: 20px;
+    line-height: 23px;
+  }
+}
+
+.propertyNotFound p {
+  opacity: 0.5;
+}
+
 .propertyDetail-page {
   padding: 5px;
 }
@@ -2033,6 +2104,19 @@ input[type='submit'] {
   margin: 0 0 50px;
   position: relative;
   background: #dee1e3;
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .detail-holder {
+    padding: 0 255px 10px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .detail-holder {
+    padding: 0 10px 0;
+  }
 }
 
 .propertyDetail-page .frame {
@@ -2052,7 +2136,23 @@ input[type='submit'] {
   overflow: hidden;
 }
 
-.propertyDetail-page .info-blockProperty .pull-left, .propertyDetail-page .info-blockProperty .listing-page #aside, .listing-page .propertyDetail-page .info-blockProperty #aside, .propertyDetail-page .info-blockProperty .listing-page #content, .listing-page .propertyDetail-page .info-blockProperty #content, .propertyDetail-page .info-blockProperty .listing-page .publicProperty-post .image-holder, .listing-page .publicProperty-post .propertyDetail-page .info-blockProperty .image-holder, .propertyDetail-page .info-blockProperty .listing-page .publicProperty-post .caption .quick-links, .listing-page .publicProperty-post .caption .propertyDetail-page .info-blockProperty .quick-links, .propertyDetail-page .info-blockProperty .overview-section .small-heading, .propertyDetail-page .overview-section .info-blockProperty .small-heading, .propertyDetail-page .info-blockProperty .pull-right, .propertyDetail-page .info-blockProperty .listing-page .publicProperty-post .caption .company-logo, .listing-page .publicProperty-post .caption .propertyDetail-page .info-blockProperty .company-logo, .propertyDetail-page .info-blockProperty .overview-section .btn-hollow, .propertyDetail-page .overview-section .info-blockProperty .btn-hollow {
+@media (max-width: 1023px) {
+  .propertyDetail-page .info-blockProperty {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .info-blockProperty {
+    max-width: inherit;
+    position: static;
+    width: 100%;
+    margin: 0 0 10px;
+    box-shadow: none;
+  }
+}
+
+.propertyDetail-page .info-blockProperty .pull-left, .propertyDetail-page .info-blockProperty .listing-page #aside, .listing-page .propertyDetail-page .info-blockProperty #aside, .propertyDetail-page .info-blockProperty .listing-page #content, .listing-page .propertyDetail-page .info-blockProperty #content, .propertyDetail-page .info-blockProperty .listing-page .publicProperty-post .image-holder, .listing-page .publicProperty-post .propertyDetail-page .info-blockProperty .image-holder, .propertyDetail-page .info-blockProperty .listing-page .publicProperty-post .caption .quick-links, .listing-page .publicProperty-post .caption .propertyDetail-page .info-blockProperty .quick-links, .propertyDetail-page .info-blockProperty .overview-section .small-heading, .propertyDetail-page .overview-section .info-blockProperty .small-heading, .propertyDetail-page .info-blockProperty .addProperty-form .tips, .addProperty-form .propertyDetail-page .info-blockProperty .tips, .propertyDetail-page .info-blockProperty .pull-right, .propertyDetail-page .info-blockProperty .listing-page .publicProperty-post .caption .company-logo, .listing-page .publicProperty-post .caption .propertyDetail-page .info-blockProperty .company-logo, .propertyDetail-page .info-blockProperty .overview-section .btn-hollow, .propertyDetail-page .overview-section .info-blockProperty .btn-hollow {
   width: 50%;
 }
 
@@ -2063,6 +2163,13 @@ input[type='submit'] {
   padding: 10px;
   margin: 0 0 20px;
   margin: -10px -10px 20px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .info-blockProperty .price {
+    font-size: 30px;
+    line-height: 33px;
+  }
 }
 
 .propertyDetail-page .info-blockProperty .pictureHolder {
@@ -2118,10 +2225,23 @@ input[type='submit'] {
   padding: 50px 0 0;
 }
 
+@media (max-width: 767px) {
+  .propertyDetail-page .info-blockProperty .timeOfAddedProperty {
+    padding: 0;
+  }
+}
+
 .propertyDetail-page .property-picture-holder {
   width: 100%;
   background: #dee1e3;
   padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .property-picture-holder {
+    margin: 0 0 20px;
+    padding: 0;
+  }
 }
 
 .propertyDetail-page .property-picture-holder h1 {
@@ -2130,6 +2250,13 @@ input[type='submit'] {
   font-size: 27px;
   line-height: 30px;
   margin: 0 0 20px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .property-picture-holder h1 {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
 
 .propertyDetail-page .property-picture-holder .quick-links {
@@ -2150,6 +2277,15 @@ input[type='submit'] {
   margin: 0 -5px;
 }
 
+@media (max-width: 1023px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-mask,
+  .propertyDetail-page .propertyImage-pagination .mask,
+  .propertyDetail-page .propertyImage-slider .propertyImage-mask,
+  .propertyDetail-page .propertyImage-slider .mask {
+    margin: 0 -3px;
+  }
+}
+
 .propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-slider-btn-prev, .propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-slider-btn-next,
 .propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-pagination-btn-prev-1, .propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-pagination-btn-next-1,
 .propertyDetail-page .propertyImage-pagination .mask:hover .propertyImage-slider-btn-prev,
@@ -2165,6 +2301,14 @@ input[type='submit'] {
 .propertyDetail-page .propertyImage-slider .mask:hover .propertyImage-pagination-btn-prev-1,
 .propertyDetail-page .propertyImage-slider .mask:hover .propertyImage-pagination-btn-next-1 {
   display: block;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-mask,
+  .propertyDetail-page .propertyImage-slider .propertyImage-mask {
+    max-width: 320px;
+    margin: 0 auto 10px;
+  }
 }
 
 .propertyDetail-page .propertyImage-pagination .propertyImage-slideset,
@@ -2192,6 +2336,41 @@ input[type='submit'] {
   padding: 0 5px 5px;
 }
 
+.propertyDetail-page .propertyImage-pagination .propertyImage-slide a,
+.propertyDetail-page .propertyImage-pagination .slide a,
+.propertyDetail-page .propertyImage-slider .propertyImage-slide a,
+.propertyDetail-page .propertyImage-slider .slide a {
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide,
+  .propertyDetail-page .propertyImage-pagination .slide,
+  .propertyDetail-page .propertyImage-slider .propertyImage-slide,
+  .propertyDetail-page .propertyImage-slider .slide {
+    padding: 0 3px 5px;
+  }
+}
+
+.propertyDetail-page .slide img {
+  min-height: 457px;
+  max-height: 457px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .slide img {
+    max-height: 335px;
+    min-height: 335px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .slide img {
+    max-height: inherit;
+    min-height: inherit;
+  }
+}
+
 .propertyDetail-page .propertyImage-pagination .propertyImage-slide {
   width: 20% !important;
 }
@@ -2199,8 +2378,27 @@ input[type='submit'] {
 .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
   max-width: 155px;
   max-height: 95px;
-  min-width: 155px;
-  min-height: 95px;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+    min-height: 85px;
+    max-height: 85px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+    min-height: 65px;
+    max-height: 65px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+    min-height: 35px;
+    max-height: 35px;
+  }
 }
 
 .propertyDetail-page .propertyImage-slider-btn-prev, .propertyDetail-page .propertyImage-slider-btn-next,
@@ -2211,6 +2409,13 @@ input[type='submit'] {
   text-decoration: none;
   margin: -20px 0 0;
   display: none;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .propertyImage-slider-btn-prev, .propertyDetail-page .propertyImage-slider-btn-next,
+  .propertyDetail-page .propertyImage-pagination-btn-prev-1, .propertyDetail-page .propertyImage-pagination-btn-next-1 {
+    display: none !important;
+  }
 }
 
 .propertyDetail-page .propertyImage-slider-btn-prev span[class^="icon-"], .propertyDetail-page .propertyImage-slider-btn-prev span[class*="icon-"], .propertyDetail-page .propertyImage-slider-btn-next span[class^="icon-"], .propertyDetail-page .propertyImage-slider-btn-next span[class*="icon-"],
@@ -2233,8 +2438,30 @@ input[type='submit'] {
   color: #6c6d70;
 }
 
+@media (max-width: 767px) {
+  .propertyDetail-page .overview-section {
+    margin: 0 0 10px;
+    padding: 10px;
+  }
+}
+
 .propertyDetail-page .overview-section .small-heading {
   padding: 0;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .overview-section .small-heading {
+    float: none !important;
+    padding: 0 0 10px;
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .overview-section .btn-hollow {
+    float: none !important;
+    display: block;
+  }
 }
 
 .propertyDetail-page .overview-section .layout {
@@ -2246,6 +2473,13 @@ input[type='submit'] {
   border-radius: 8px;
   border: 1px solid #6c6d70;
   padding: 20px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .extra-feature-section {
+    padding: 10px;
+    margin: 0 0 10px;
+  }
 }
 
 .propertyDetail-page .extra-feature-section .small-heading {
@@ -2301,6 +2535,12 @@ input[type='submit'] {
   letter-spacing: 0;
 }
 
+@media (max-width: 767px) {
+  .propertyDetail-page .feature-list li {
+    width: 50%;
+  }
+}
+
 .propertyDetail-page .feature-list li span[class^="icon-"], .propertyDetail-page .feature-list li span[class*="icon-"] {
   font-size: 14px;
   line-height: 1;
@@ -2321,6 +2561,755 @@ input[type='submit'] {
 
 .propertyDetail-page .feature-list li .stataus {
   font-weight: bold;
+}
+
+.addProperty-form {
+  background: rgba(222, 225, 227, 0.5);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.22);
+  padding: 20px 10px;
+  margin: 0 auto 30px;
+}
+
+.addProperty-form .select2-container {
+  width: 100% !important;
+}
+
+.addProperty-form h1 {
+  font-size: 60px;
+  line-height: 63px;
+  font-weight: 100;
+}
+
+.addProperty-form h1 span {
+  font-weight: 300;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form h1 {
+    font-size: 30px;
+    line-height: 33px;
+  }
+}
+
+.addProperty-form .add-pro-heading {
+  display: block;
+  color: #555;
+  font-size: 20px;
+  line-height: 23px;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .add-pro-heading {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.addProperty-form .add-pro-heading span {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+  position: relative;
+}
+
+.addProperty-form .add-pro-heading span:before, .addProperty-form .add-pro-heading span:after {
+  position: absolute;
+  top: 50%;
+  left: -9999px;
+  right: 110%;
+  background: #bec0c2;
+  content: '';
+  height: 3px;
+  margin: -2px 0 0;
+}
+
+.addProperty-form .add-pro-heading span:after {
+  right: -9999px;
+  left: 110%;
+}
+
+.addProperty-form .main-form {
+  width: 75%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .main-form {
+    width: 100%;
+  }
+}
+
+.addProperty-form .tips {
+  width: 25%;
+  display: none;
+}
+
+.addProperty-form .image-uploading-area {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  text-align: center;
+  margin: 10px auto;
+  max-width: 1024px;
+}
+
+.addProperty-form .image-uploading-area > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .image-uploading-area {
+    max-width: 480px;
+    margin: 10px auto;
+  }
+}
+
+.addProperty-form .image-uploading-area li {
+  width: 16.66%;
+  position: relative;
+  padding: 0 10px 10px;
+}
+
+@media (max-width: 1199px) {
+  .addProperty-form .image-uploading-area li {
+    padding: 0 5px 10px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .image-uploading-area li {
+    width: 33.33%;
+    padding: 0 5px 10px;
+  }
+}
+
+.addProperty-form .image-uploading-area li.error .error-text {
+  display: block;
+  padding: 3px;
+  text-align: left;
+}
+
+.addProperty-form .image-uploading-area li.image-loaded .image-holder {
+  opacity: 1;
+  z-index: 9;
+}
+
+.addProperty-form .image-uploading-area li.image-loaded .picture-name {
+  pointer-events: inherit;
+}
+
+.addProperty-form .image-uploading-area li.image-loaded .file-uploader:after {
+  display: none;
+}
+
+.addProperty-form .image-uploading-area li:first-child .file-uploader:before {
+  position: absolute;
+  top: 15px;
+  left: -45px;
+  content: 'Main Image';
+  text-transform: capitalize;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 3px;
+  transform: rotate(-40deg);
+  width: 150px;
+  color: #fff;
+  z-index: 999;
+  word-spacing: 1px;
+  background: #d89429;
+}
+
+.addProperty-form .image-uploading-area li .file-uploader {
+  width: 100%;
+  height: 110px;
+  margin: 0 auto 15px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: #6c6d70;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .image-uploading-area li .file-uploader {
+    width: 100%;
+    height: 90px;
+  }
+}
+
+.addProperty-form .image-uploading-area li .file-uploader:hover:after {
+  color: #30ce20;
+}
+
+.addProperty-form .image-uploading-area li .file-uploader:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "\e91b";
+  font-family: 'icomoon';
+  font-size: 50px;
+  line-height: 1;
+  z-index: -1;
+  margin: -25px 0 0 -22px;
+  color: #9da2a8;
+  transition: color 0.4s ease;
+  -webkit-transition: color 0.4s ease;
+  -ms-transition: color 0.4s ease;
+  -moz-transition: color 0.4s ease;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .image-uploading-area li .file-uploader:after {
+    font-size: 60px;
+    margin: -30px 0 0 -30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .image-uploading-area li .file-uploader:after {
+    font-size: 30px;
+    margin: -15px 0 0 -15px;
+  }
+}
+
+.addProperty-form .image-uploading-area li .file-uploader input[type="file"] {
+  display: block;
+  overflow: hidden;
+  border: 0;
+  outline: none;
+  opacity: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.addProperty-form .image-uploading-area li .picture-name {
+  border: 0;
+  display: block;
+  max-width: inherit !important;
+  margin: 0;
+  width: 100%;
+  height: 28px;
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 18px;
+  pointer-events: none;
+}
+
+.addProperty-form .image-uploading-area li .image-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  outline: none;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0;
+  transition: z-index 0.9s ease, opacity 0.9s ease;
+  -webkit-transition: z-index 0.9s ease, opacity 0.9s ease;
+  -moz-transition: z-index 0.9s ease, opacity 0.9s ease;
+  -ms-transition: z-index 0.9s ease, opacity 0.9s ease;
+}
+
+.addProperty-form .image-uploading-area li .image-holder:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  content: '';
+  opacity: 0;
+  transition: top 0.4s ease;
+  -webkit-transition: opacity 0.4s ease;
+  -moz-transition: opacity 0.4s ease;
+  -ms-transition: opacity 0.4s ease;
+}
+
+.addProperty-form .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  text-decoration: none;
+  z-index: 6;
+  font-size: 50px;
+  line-height: 50px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+  -webkit-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+  -ms-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+  -moz-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+  cursor: pointer;
+  color: #f20;
+  margin: -25px -25px 0 0;
+}
+
+@media (max-width: 1424px) {
+  .addProperty-form .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
+    font-size: 50px;
+    line-height: 50px;
+  }
+}
+
+.addProperty-form .image-uploading-area li .image-holder img {
+  width: 100%;
+  display: block;
+  height: 100%;
+  border: 0;
+}
+
+.addProperty-form .image-uploading-area li .image-holder:hover:after {
+  opacity: 1;
+}
+
+.addProperty-form .image-uploading-area li .image-holder:hover .propertyDocumentCloseBtn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.addProperty-form .layout {
+  padding: 3px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  margin: 0 -10px 10px;
+}
+
+.addProperty-form .layout > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .layout {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .addProperty-form .layout > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.addProperty-form .layout.full-width {
+  margin: 0;
+}
+
+.addProperty-form .layout.full-width .layout-holder {
+  padding: 0;
+}
+
+.addProperty-form .layout.full-width label {
+  width: 12.2%;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .layout.full-width label {
+    width: 35%;
+  }
+}
+
+.addProperty-form .layout.full-width .input-holder {
+  width: 80.5%;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .layout.full-width .input-holder {
+    width: 87.5%;
+  }
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .layout.full-width .input-holder {
+    width: 65%;
+  }
+}
+
+.addProperty-form .layout .layout-holder {
+  width: 50%;
+  padding: 0 10px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.addProperty-form .layout .layout-holder > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .layout .layout-holder {
+    width: 100%;
+    display: block;
+    margin: 0 0 10px;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .addProperty-form .layout .layout-holder > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.addProperty-form .layout label {
+  color: #555;
+  opacity: 0.80;
+  font-family: "Open Sans", "Arial", sans-serif;
+  width: 25%;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 7px 0 0;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .layout label {
+    font-size: 12px;
+    line-height: 15px;
+    width: 35%;
+  }
+}
+
+.addProperty-form .layout label:after {
+  display: inline-block;
+  vertical-align: top;
+  color: #f20;
+  content: '*';
+}
+
+.addProperty-form .input-holder {
+  width: 60%;
+  padding: 2px;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .input-holder {
+    width: 65%;
+  }
+}
+
+.addProperty-form .fake-select select {
+  font-size: 13px;
+  line-height: 16px;
+  color: #555;
+  padding: 6px;
+}
+
+.addProperty-form textarea,
+.addProperty-form input[type="text"], .addProperty-form input[type="tel"], .addProperty-form input[type="password"], .addProperty-form input[type="number"], .addProperty-form input[type="email"] {
+  border: 0;
+  width: 100%;
+  padding: 6px;
+  font-size: 13px;
+  line-height: 16px;
+  height: 28px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form textarea,
+  .addProperty-form input[type="text"], .addProperty-form input[type="tel"], .addProperty-form input[type="password"], .addProperty-form input[type="number"], .addProperty-form input[type="email"] {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.addProperty-form textarea::-webkit-input-placeholder,
+.addProperty-form input[type="text"]::-webkit-input-placeholder, .addProperty-form input[type="tel"]::-webkit-input-placeholder, .addProperty-form input[type="password"]::-webkit-input-placeholder, .addProperty-form input[type="number"]::-webkit-input-placeholder, .addProperty-form input[type="email"]::-webkit-input-placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.addProperty-form textarea::-moz-placeholder,
+.addProperty-form input[type="text"]::-moz-placeholder, .addProperty-form input[type="tel"]::-moz-placeholder, .addProperty-form input[type="password"]::-moz-placeholder, .addProperty-form input[type="number"]::-moz-placeholder, .addProperty-form input[type="email"]::-moz-placeholder {
+  opacity: 1;
+  color: #555;
+  opacity: 1;
+}
+
+.addProperty-form textarea:-moz-placeholder,
+.addProperty-form input[type="text"]:-moz-placeholder, .addProperty-form input[type="tel"]:-moz-placeholder, .addProperty-form input[type="password"]:-moz-placeholder, .addProperty-form input[type="number"]:-moz-placeholder, .addProperty-form input[type="email"]:-moz-placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.addProperty-form textarea:-ms-input-placeholder,
+.addProperty-form input[type="text"]:-ms-input-placeholder, .addProperty-form input[type="tel"]:-ms-input-placeholder, .addProperty-form input[type="password"]:-ms-input-placeholder, .addProperty-form input[type="number"]:-ms-input-placeholder, .addProperty-form input[type="email"]:-ms-input-placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.addProperty-form textarea.placeholder,
+.addProperty-form input[type="text"].placeholder, .addProperty-form input[type="tel"].placeholder, .addProperty-form input[type="password"].placeholder, .addProperty-form input[type="number"].placeholder, .addProperty-form input[type="email"].placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.addProperty-form textarea {
+  height: 90px;
+  resize: none;
+}
+
+.addProperty-form input[type="submit"] {
+  display: block;
+  width: 245px;
+  border: 0;
+  margin: 0 auto;
+  padding: 10px;
+  color: #fff;
+  background: #2092d0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  transition: background 0.5s ease;
+  -webkit-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  -ms-transition: background 0.5s ease;
+}
+
+.addProperty-form input[type="submit"]:hover {
+  background: #30ce20;
+}
+
+.addProperty-form .extra-features {
+  font-size: 16px;
+  line-height: 18px;
+  font-family: "Open Sans", "Arial", sans-serif;
+  color: #fff;
+  font-weight: 700;
+  background: #2092d0;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px 40px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .extra-features {
+    font-size: 12px;
+    line-height: 15px;
+    padding: 5px 10px;
+  }
+}
+
+.addProperty-form .extra-features.active, .addProperty-form .extra-features:hover {
+  background: #d89429;
+}
+
+.addProperty-form .existingOrNew-member {
+  max-width: 520px;
+  margin: 30px auto 10px;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.addProperty-form .existingOrNew-member > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .existingOrNew-member {
+    max-width: 300px;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .addProperty-form .existingOrNew-member > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.addProperty-form .existingOrNew-member li {
+  width: 50%;
+  padding: 0 20px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .existingOrNew-member li {
+    padding: 0 5px;
+  }
+}
+
+.addProperty-form .existingOrNew-member li:nth-child(2) .slide {
+  margin: 0 0 0 -210px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .existingOrNew-member li:nth-child(2) .slide {
+    margin: 0 0 0 -145px;
+  }
+}
+
+.addProperty-form .existingOrNew-member li input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  top: -999px;
+  left: -999px;
+}
+
+.addProperty-form .existingOrNew-member li input[type="radio"]:checked ~ label {
+  background: #d89429;
+}
+
+.addProperty-form .existingOrNew-member li input[type="radio"]:checked ~ .slide {
+  display: block;
+}
+
+.addProperty-form .existingOrNew-member li label {
+  font-weight: 700;
+  display: block;
+  color: #fff;
+  cursor: pointer;
+  background: #2092d0;
+  padding: 5px 25px;
+}
+
+.addProperty-form .existingOrNew-member li .layout {
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.addProperty-form .existingOrNew-member li .layout label {
+  display: inline-block;
+  vertical-align: top;
+  background: transparent;
+  color: #555;
+  opacity: 0.80;
+  padding: 9px 0 0;
+  cursor: default;
+}
+
+.addProperty-form .existingOrNew-member li .slide {
+  padding: 20px 0;
+  display: none;
+  margin: 0 -260px 0 50px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .existingOrNew-member li .slide {
+    margin: 0 -145px 0 0;
+  }
+}
+
+.addProperty-form .forgot-pass {
+  display: inline-block;
+  vertical-align: top;
+  color: #555;
+  text-decoration: none;
+  margin: 10px 0 0;
+}
+
+.addProperty-form .forgot-pass:hover {
+  color: #2092d0;
+}
+
+.addProperty-form .list-extraFeatures {
+  background: #dee1e3;
+  margin: 0 -5px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.addProperty-form .list-extraFeatures > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+.addProperty-form .list-extraFeatures .col {
+  width: 50%;
+  padding: 0 5px;
+  margin: 0 0 20px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .list-extraFeatures .col {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+}
+
+.addProperty-form .list-extraFeatures .col .layout {
+  margin: 0 -5px 10px;
+}
+
+.addProperty-form .list-extraFeatures .col .layout-holder {
+  padding: 0 5px;
+}
+
+.addProperty-form .list-extraFeatures label {
+  width: 50%;
+  padding: 5px;
+}
+
+.addProperty-form .list-extraFeatures .input-holder {
+  width: 50%;
+}
+
+.addProperty-form .list-extraFeatures .input-holder input[type="radio"], .addProperty-form .list-extraFeatures .input-holder input[type="checkbox"] {
+  margin: 6px 0 0;
+}
+
+.addProperty-form .list-extraFeatures .feature-heading {
+  display: block;
+  padding: 5px;
+  background: #777;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.addProperty-form .calculatedPrice {
+  background: transparent;
+  color: #555;
+  border-radius: 0;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .calculatedPrice {
+    margin: 0;
+    text-align: center;
+    display: block !important;
+  }
 }
 
 /*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
@@ -2350,12 +3339,9 @@ input[type='submit'] {
 
 .fancybox-skin {
   position: relative;
-  background: #f9f9f9;
-  color: #444;
+  background: #dee1e3;
+  color: #6c6d70;
   text-shadow: none;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
 }
 
 .fancybox-opened {
@@ -2399,7 +3385,7 @@ input[type='submit'] {
   max-height: 100%;
 }
 
-#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+#fancybox-loading, .fancybox-prev span, .fancybox-next span {
   background-image: url("../images/fancybox/fancybox_sprite.png");
 }
 
@@ -2423,12 +3409,26 @@ input[type='submit'] {
 
 .fancybox-close {
   position: absolute;
-  top: -18px;
-  right: -18px;
-  width: 36px;
-  height: 36px;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   z-index: 8040;
+  color: #fff;
+  background: #2092d0;
+  border: 2px solid #2092d0;
+}
+
+.fancybox-close:after {
+  content: "\e920";
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  font-size: 24px;
+  line-height: 1;
+  font-family: 'icomoon';
+  margin: -12px 0 0;
 }
 
 .fancybox-nav {
@@ -2509,7 +3509,6 @@ input[type='submit'] {
   overflow: hidden;
   display: none;
   z-index: 8010;
-  background: url("../images/fancybox/fancybox_overlay.png");
 }
 
 .fancybox-overlay-fixed {
@@ -2601,19 +3600,20 @@ html {
   height: 100%;
 }
 
-html.nav-active {
-  height: 100vh;
-  overflow: hidden;
-}
-
 body {
   width: 100%;
   height: 100%;
   background: url("../images/bg.jpg") no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100% 100%;
   z-index: 999999999;
   position: relative;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-size: 100% cover;
+  }
 }
 
 body:after {
@@ -2709,6 +3709,7 @@ h1 {
   height: 22px;
   border: 3px solid #2092d0;
   position: relative;
+  color: #555;
 }
 
 .customCheckbox .fake-checkbox:after,
@@ -2731,14 +3732,55 @@ h1 {
 .customCheckbox .fake-label,
 .customRadio .fake-label {
   padding: 0 0 0 10px;
+  color: #555;
+}
+
+.custom-withouChecks {
+  display: block;
+  width: 100%;
+}
+
+.custom-withouChecks.transparent input[type="radio"]:checked ~ .fake-label, .custom-withouChecks.transparent input[type="checkbox"]:checked ~ .fake-label {
+  color: #fff;
+  background: #2092d0;
+}
+
+.custom-withouChecks.transparent .fake-label {
+  background: transparent;
+  border: 1px solid #2092d0;
+  color: #2092d0;
+}
+
+.custom-withouChecks input[type="radio"], .custom-withouChecks input[type="checkbox"] {
+  position: fixed;
+  top: -999px;
+  left: -999px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.custom-withouChecks input[type="radio"]:checked ~ .fake-label, .custom-withouChecks input[type="checkbox"]:checked ~ .fake-label {
+  background: #d89429;
+}
+
+.custom-withouChecks .fake-label {
+  display: block;
+  background: #2092d0;
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  transition: background 0.5s ease;
+  -webkit-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  -ms-transition: background 0.5s ease;
 }
 
 .fake-select {
   width: 100%;
-  border: 1px solid #2092d0;
   display: block;
   position: relative;
   z-index: 1;
+  cursor: pointer;
 }
 
 .fake-select:after {
@@ -2749,6 +3791,8 @@ h1 {
   width: 28px;
   background: #2092d0;
   content: '';
+  pointer-events: none;
+  cursor: pointer;
 }
 
 .fake-select:before {
@@ -2760,6 +3804,8 @@ h1 {
   content: '';
   z-index: 1;
   margin: -2px 0 0;
+  pointer-events: none;
+  cursor: pointer;
 }
 
 .fake-select select {
@@ -2826,6 +3872,10 @@ h1 span {
   border-collapse: collapse;
 }
 
+#wrapper.fancy-overlay {
+  filter: blur(15px);
+}
+
 #header {
   position: absolute;
   top: 0;
@@ -2859,7 +3909,7 @@ h1 span {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  z-index: 999 !important;
+  z-index: 99981 !important;
   background: rgba(222, 225, 227, 0.95) !important;
   box-shadow: 0 0 20px -1px rgba(0, 0, 0, 0.5);
 }
@@ -3269,20 +4319,15 @@ h1 span {
 }
 
 .main-bg-holder {
+  width: 100%;
+  display: block;
   position: relative;
   padding: 230px 0 113px;
-}
-
-@media (max-width: 1023px) {
-  .main-bg-holder {
-    background-size: 100% 100%;
-  }
 }
 
 @media (max-width: 767px) {
   .main-bg-holder {
     padding: 90px 0 20px;
-    z-index: auto;
   }
 }
 
@@ -3312,7 +4357,7 @@ h1 span {
 
 @media (max-width: 767px) {
   .main-visualSection {
-    padding: 0;
+    padding: 60px 0 0;
   }
   .main-visualSection .container {
     padding: 0 8px;
@@ -3383,6 +4428,10 @@ h1 span {
 #main {
   position: relative;
   z-index: 9;
+}
+
+.page-holder {
+  padding: 5px;
 }
 
 .mainSearch-form {
@@ -3668,7 +4717,7 @@ h1 span {
     height: 100vh !important;
     width: 100% !important;
     overflow: auto !important;
-    z-index: 9999 !important;
+    z-index: 999999999 !important;
     background: rgba(108, 109, 112, 0.9);
     transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
@@ -3758,6 +4807,7 @@ h1 span {
 @media (max-width: 767px) {
   #nav .nav-holder {
     overflow: hidden;
+    height: 100vh;
   }
 }
 
@@ -3767,7 +4817,31 @@ h1 span {
   top: auto !important;
   left: 0 !important;
   right: 0 !important;
-  z-index: 999 !important;
+  z-index: 999999999 !important;
+}
+
+@media (max-width: 767px) {
+  .byDefault-fixed #nav, #nav.fixed-position {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: 100% !important;
+    overflow: auto !important;
+    z-index: 999999999 !important;
+    background: rgba(108, 109, 112, 0.9);
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+  .nav-active .byDefault-fixed #nav, .nav-active #nav.fixed-position {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+  }
 }
 
 .byDefault-fixed #nav .main-navigation li, #nav.fixed-position .main-navigation li {
@@ -4963,6 +6037,7 @@ h1 span {
 
 .price span {
   font-weight: 400;
+  padding: 0 5px;
 }
 
 .nav-opener {
@@ -5092,8 +6167,15 @@ h1 span {
 
 .pager li a.previous, .pager li a.next {
   border: 0;
-  padding: 6px 0;
+  padding: 8px 0;
   vertical-align: middle;
+  color: #2092d0;
+}
+
+@media (max-width: 767px) {
+  .pager li a.previous, .pager li a.next {
+    display: none;
+  }
 }
 
 .pager li a.previous:hover, .pager li a.next:hover {
@@ -5328,7 +6410,7 @@ h1 span {
   width: 120px;
   height: 24px;
   position: relative;
-  background: url(../images/star-setted.gif) repeat-x;
+  background: url(../images/star-setted.png) repeat-x;
   overflow: hidden;
 }
 
@@ -5349,7 +6431,7 @@ h1 span {
 .star-rating li a:hover,
 .star-rating li.active a,
 .star-rating li.setted a {
-  background: url(../images/star-setted.gif) 0 -24px;
+  background: url(../images/star-setted.png) 0 -24px;
   z-index: 1;
   left: 0px;
 }
@@ -5409,12 +6491,6 @@ h1 span {
   width: 120px;
 }
 
-.resize-active * {
-  transition: none;
-  -webkit-transition: none;
-  -moz-transition: none;
-}
-
 .sumery-list li {
   display: block;
   font-size: 0;
@@ -5440,6 +6516,11 @@ h1 span {
   color: #2092d0;
 }
 
+.sumery-list li .quantity {
+  font-size: 14px;
+  line-height: 18px;
+}
+
 .timeOfAddedProperty {
   display: block;
   font-size: 12px;
@@ -5461,6 +6542,13 @@ h1 span {
   font-size: 21px;
   line-height: 24px;
   padding: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .small-heading {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .btn-hollow {
@@ -5493,4 +6581,260 @@ h1 span {
 .btn-hollow:hover {
   color: #fff;
   background: #2092d0;
+}
+
+.generic-lightbox {
+  width: 475px;
+  position: relative;
+  padding: 30px 0 0;
+}
+
+@media (max-width: 767px) {
+  .generic-lightbox {
+    width: 100%;
+  }
+}
+
+.generic-lightbox .lighbox-heading {
+  color: #6c6d70;
+  display: block;
+  font-size: 48px;
+  line-height: 52px;
+  font-weight: 100;
+  padding: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .generic-lightbox .lighbox-heading {
+    font-size: 30px;
+    line-height: 33px;
+  }
+}
+
+.generic-lightbox.call-agent p {
+  position: relative;
+  font-size: 33px;
+  line-height: 36px;
+  font-weight: 700;
+  padding: 0 30px 10px;
+  margin: 0 0 10px;
+}
+
+.generic-lightbox.call-agent p:before {
+  font-family: 'icomoon';
+  content: "\e90f";
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 42px;
+  line-height: 1;
+  color: #2092d0;
+  padding: 0 5px;
+}
+
+.inquiry-email-form {
+  overflow: hidden;
+  padding: 3px;
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+.inquiry-email-form .field-holder {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.inquiry-email-form .field-holder > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
+.inquiry-email-form label {
+  width: 25%;
+  color: #6c6d70;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .inquiry-email-form label {
+    display: block;
+    width: 100%;
+    padding: 3px;
+  }
+}
+
+.inquiry-email-form label:after {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  content: '*';
+  margin: 0 0 0 -1px;
+}
+
+.inquiry-email-form .input-holder {
+  padding: 3px;
+  width: 75%;
+  margin: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .inquiry-email-form .input-holder {
+    display: block;
+    width: 100%;
+    margin: 0 0 5px;
+  }
+}
+
+.inquiry-email-form .input-holder p {
+  font-size: 12px;
+  line-height: 15px;
+  padding: 3px 0;
+}
+
+.inquiry-email-form input[type="text"], .inquiry-email-form input[type="email"], .inquiry-email-form input[type="tel"], .inquiry-email-form textarea {
+  width: 100%;
+  height: 28px;
+  border: 0;
+  font-size: 13px;
+  line-height: 17px;
+  padding: 5px;
+}
+
+.inquiry-email-form textarea {
+  height: 80px;
+  resize: none;
+  overflow: auto;
+}
+
+.inquiry-email-form button[type="submit"] {
+  display: block;
+  color: #fff;
+  width: 200px;
+  background: #2092d0;
+  border: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  padding: 10px;
+  margin: 0 3px 0 auto;
+}
+
+@media (max-width: 767px) {
+  .inquiry-email-form button[type="submit"] {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.inquiry-email-form button[type="submit"]:hover {
+  background: #30ce20;
+}
+
+.radio-checks-holder {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  font: "Open Sans", "Arial", sans-serif;
+  font-weight: 700;
+  margin: 10px 0 0;
+}
+
+.radio-checks-holder > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1023px) {
+  .radio-checks-holder {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    text-align: center;
+  }
+  .radio-checks-holder > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.radio-checks-holder.subtype-links {
+  border-radius: 8px;
+  margin: -2px 0 10px;
+  background: #dee1e3;
+}
+
+@media (max-width: 1023px) {
+  .radio-checks-holder.subtype-links {
+    text-align: left;
+  }
+  .radio-checks-holder.subtype-links li {
+    padding: 5px;
+  }
+}
+
+.radio-checks-holder li {
+  width: 25%;
+  font-weight: 600;
+  padding: 10px 20px;
+}
+
+@media (max-width: 1023px) {
+  .radio-checks-holder li {
+    width: 33.33%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .radio-checks-holder li {
+    padding: 10px 3px;
+  }
+}
+
+.radio-checks-holder li.active {
+  border-radius: 8px 8px 0 0;
+  background: #dee1e3;
+  position: relative;
+}
+
+.radio-checks-holder li.active:after {
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  right: -1px;
+  background: #dee1e3;
+  content: '';
+  height: 5px;
+}
+
+.radio-checks-holder li .custom-withouChecks {
+  margin: 0 auto;
+  max-width: 170px;
+  width: 100%;
+}
+
+.error-text {
+  display: none;
+  font-size: 13px;
+  line-height: 16px;
+  color: #f20;
+  padding: 2px;
+}
+
+.error .error-text {
+  display: block;
+}
+
+.resize-active * {
+  transition: none;
+  -webkit-transition: none;
+  -moz-transition: none;
 }

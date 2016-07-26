@@ -7,10 +7,60 @@ $(document).ready(function() {
 			$(this).attr('href', 'tel:'+mobileNumber)
 		});
 	}
+
+	if($('.publicProperty-post').length == 0){
+		$('.propertyNotFound').removeClass('hidden');
+	}
+
+	$('.addPro-type:first').trigger('change');
+
+	$('.list-extraFeatures').slideUp();
+
+});
+
+$(document).on('change keyup', 'input, textarea, select', function(){
+	$(this).closest('.input-holder').removeClass('error');
+});
+
+
+$(document).on('click', 'a.lightbox', function(){
+	$('#wrapper').addClass('fancy-overlay');
+});
+
+$(document).mouseup(function (e)
+{
+	var container = $(".fancybox-opened");
+
+	if (!container.is(e.target)
+		&& container.has(e.target).length === 0)
+	{
+		$('#wrapper').removeClass('fancy-overlay');
+	}
+});
+
+$(document).on('click', '.generic-lightbox>.close, .fancybox-close', function(){
+	$('#wrapper').removeClass('fancy-overlay');
+});
+
+$(document).keyup(function(e) {
+	if (e.keyCode === 27){
+		$('#wrapper').removeClass('fancy-overlay');
+	}   // esc
+});
+
+$(document).on('change', '.addPro-type', function(){
+	$(this).closest('ul').find('li').removeClass('active');
+
+	$('.addPro-type').each(function(){
+		if($(this).is(':checked')){
+			$(this).closest('li').addClass('active');
+			$('.subtype-links').removeClass('hidden');
+		}
+	});
 });
 
 $(document).on('click', '.propertyImage-slider-btn-next, .propertyImage-slider-btn-prev', function(){
-	var windowSize = 6;
+	var windowSize = 5;
 	var currentSlideNumber = parseInt($('#propertyImageCurrentSlide').text());
 	var currentSlideRemainder = currentSlideNumber/ windowSize;
 	var currentSlideRemainderCeil = Math.ceil(currentSlideRemainder);
@@ -62,6 +112,41 @@ $(document).on('focusout', '.PriceField', function(){
 $(document).on('click', '.call-agent-btn', function(){
 	var phoneNumber = $(this).attr('data-tel');
 	var placeToGo = $('.call-agent').find('p').text(phoneNumber);
+});
+
+function previewAddPropertyImg(file, target)
+{
+	previewFile(file, target);
+	$(file).closest('li').addClass('image-loaded');
+	$(file).closest('li').find('.picture-name').focus();
+}
+
+
+function previewFile(file, target) {
+	var preview = document.querySelector(target);
+	var file    = file.files[0];
+	var reader  = new FileReader();
+
+	reader.onloadend = function () {
+		preview.src = reader.result;
+	}
+
+	if (file) {
+		reader.readAsDataURL(file);
+	} else {
+		preview.src = "";
+	}
+}
+
+$(document).on('click', '.propertyDocumentCloseBtn', function(){
+	$(this).closest('li').find('.picture-name').val('');
+	$(this).closest('li').find('img').attr('src', '#');
+	$(this).closest('li').removeClass('image-loaded');
+});
+
+$(document).on('click', '.extra-features', function(){
+	$(this).toggleClass('active');
+	$('.list-extraFeatures').slideToggle();
 });
 
 // page init

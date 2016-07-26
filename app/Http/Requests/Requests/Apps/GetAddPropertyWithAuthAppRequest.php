@@ -26,7 +26,7 @@ class GetAddPropertyWithAuthAppRequest extends AppsRequest implements RequestInt
 
     public function version()
     {
-        return 'v1';
+        return 'v2';
     }
 
     public function authorize(){
