@@ -117,14 +117,15 @@ class PropertiesController extends Controller
         $this->propertiesRepo->IncrementViews($request->get('propertyId'));
         $loggedInUser = $request->user();
         $property = $this->convertPropertyAreaToActualUnit($this->properties->getById($request->get('propertyId')));
-        return $this->response->setView('frontend.property_detail')->respond(['data'=>[
+        $propertyOwner = $this->users->find($property->owner->id);
+        return $this->response->setView('frontend.v2.property_detail')->respond(['data'=>[
             'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
             'property'=>$this->releaseAllPropertiesFiles([$property])[0],
             'loggedInUser'=>$loggedInUser,
             'user'=>$this->users->find($property->owner->id),
+            'propertyOwner'=>$propertyOwner,
             'propertyId'=>$request->get('propertyId')
         ]]);
-
     }
 
 

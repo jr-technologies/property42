@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\Requests\Society\GetAllSocietiesForMapsRequest;
 use App\Http\Requests\Requests\Society\GetBlocksBySocietyRequest;
 use App\Http\Requests\Requests\Society\AddSocietyRequest;
 use App\Http\Requests\Requests\Society\DeleteSocietyRequest;
@@ -37,8 +38,8 @@ class SocietiesController extends ApiController
         return $this->response->respond(['data'=>[
             'society'=>$society
         ]]);
-
     }
+
     public function all(GetAllSocietiesRequest $request)
     {
         return $this->response->respond(['data'=>[

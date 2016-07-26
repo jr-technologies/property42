@@ -51,7 +51,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     }
     public function getPendingProperties()
     {
-        return $this->mapCollection($this->tableGateway->getPendingProperties());
+        return $this->mapCollection($this->tableGateway->all());
     }
     public function updateMultipleByIds($properties)
     {

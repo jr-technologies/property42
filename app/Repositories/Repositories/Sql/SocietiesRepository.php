@@ -11,7 +11,6 @@ namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Models\Society;
-use App\Http\Requests\Requests\Block\GetBlocksBySocietyRequest;
 use App\Repositories\Interfaces\Repositories\SocietiesRepoInterface;
 
 class SocietiesRepository extends SqlRepository implements SocietiesRepoInterface
@@ -24,6 +23,10 @@ class SocietiesRepository extends SqlRepository implements SocietiesRepoInterfac
     public function store(Society $society)
     {
         return $this->factory->store($society);
+    }
+    public function find($societyId)
+    {
+        return $this->factory->find($societyId);
     }
     public function getSocietiesYouDealIn($agencyName)
     {
@@ -42,7 +45,10 @@ class SocietiesRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->all();
     }
-
+    public function getSocietiesForFiles()
+    {
+        return $this->factory->getSocietiesForFile();
+    }
     public function update(Society $society)
     {
         $this->factory->update($society);

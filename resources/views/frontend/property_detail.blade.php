@@ -18,7 +18,8 @@
                             </strong>
                             <div class="mask">
                                 <?php
-                                use App\Libs\Helpers\AuthHelper;$images = [];
+                                use App\Libs\Helpers\AuthHelper;
+                                $images = [];
                                 foreach ($response['data']['property']->documents as $document)
                                 {
                                     if ($document->type == 'image')
@@ -132,7 +133,6 @@
                                         }
                                     }
                                 }
-
                                 ?>
                                 <strong class="summary">Summary:</strong>
                                 <dl>

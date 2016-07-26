@@ -41,7 +41,6 @@
                             <div class="t-head by-view"><span class="descending">Status</span></div>
                             <div class="t-head"><span class="descending">Controls</span></div>
                         </li>
-
                         @foreach($response['data']['agents'] as $agent)
                             <li class="accordion-row">
                                 <div class="t-data by-id">
@@ -66,14 +65,18 @@
                                 <div class="slide">
                                     <div class="two-cols">
                                         <div class="col">
+                                            @if($agent->agencies !=null)
                                             <h1>Owner info:</h1>
-                                            <p><b>Owner Name:</b> {{$agent->agencies[0]->name}}</p>
+                                            <p><b>Owner Name:</b>  {{$agent->agencies[0]->name}}</p>
                                             <p><b>Owner Email:</b> {{$agent->agencies[0]->email}}</p>
                                             <p><b>Owner Phone:</b> {{$agent->agencies[0]->phone}}</p>
+                                                @endif
                                         </div>
                                         <div class="col">
+                                            @if($agent->agencies !=null)
                                             <h1>property description:</h1>
                                             <p>{{$agent->agencies[0]->description}}.</p>
+                                                @endif
                                         </div>
                                     </div>
                                     <a href="{{URL::to('get/agent')}}?userId={{$agent->id}}" class="btn-more">View more</a>
