@@ -495,6 +495,33 @@ class PropertyFeaturesTableSeeder extends Seeder
 
                 [
                     'feature_section_id' => 1,
+                    'Balloted' => 'Underground Parking',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Number of Units',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Other Land Features',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
+
+                [
+                    'feature_section_id' => 1,
                     'Balloted' => 'Other Main Features',
                     'input_name' => "ext_feature___".uniqid(),
                     'html_structure_id' => 1,
@@ -513,6 +540,14 @@ class PropertyFeaturesTableSeeder extends Seeder
                 ],
 
 
+                [
+                    'feature_section_id' => 1,
+                    'Balloted' => 'Public Parking',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 5,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
 
 
                 [
@@ -722,6 +757,14 @@ class PropertyFeaturesTableSeeder extends Seeder
                     'priority' =>0,
                 ],
 
+                [
+                    'feature_section_id' => 4,
+                    'Balloted' => 'Number of Rooms',
+                    'input_name' => "ext_feature___".uniqid(),
+                    'html_structure_id' => 1,
+                    'possible_values' => '',
+                    'priority' =>0,
+                ],
 
                 [
                     'feature_section_id' => 4,
@@ -819,9 +862,6 @@ class PropertyFeaturesTableSeeder extends Seeder
                     'possible_values' => '',
                     'priority' =>0,
                 ],
-
-
-
                 [
                     'feature_section_id' => 6,
                     'Balloted' => 'CCTV Security Installed',
@@ -839,56 +879,6 @@ class PropertyFeaturesTableSeeder extends Seeder
                     'possible_values' => '',
                     'priority' =>0,
                 ],
-
-
-
-                [
-                    'feature_section_id' => 1,
-                    'Balloted' => 'Public Parking',
-                    'input_name' => "ext_feature___".uniqid(),
-                    'html_structure_id' => 5,
-                    'possible_values' => '',
-                    'priority' =>0,
-                ],
-
-
-                [
-                    'feature_section_id' => 1,
-                    'Balloted' => 'Underground Parking',
-                    'input_name' => "ext_feature___".uniqid(),
-                    'html_structure_id' => 5,
-                    'possible_values' => '',
-                    'priority' =>0,
-                ],
-                [
-                    'feature_section_id' => 1,
-                    'Balloted' => 'Number of Units',
-                    'input_name' => "ext_feature___".uniqid(),
-                    'html_structure_id' => 1,
-                    'possible_values' => '',
-                    'priority' =>0,
-                ],
-
-
-                [
-                    'feature_section_id' => 1,
-                    'Balloted' => 'Other Land Features',
-                    'input_name' => "ext_feature___".uniqid(),
-                    'html_structure_id' => 1,
-                    'possible_values' => '',
-                    'priority' =>0,
-                ],
-
-
-                [
-                    'feature_section_id' => 4,
-                    'Balloted' => 'Number of Rooms',
-                    'input_name' => "ext_feature___".uniqid(),
-                    'html_structure_id' => 1,
-                    'possible_values' => '',
-                    'priority' =>0,
-                ],
-
             ]
         );
     }

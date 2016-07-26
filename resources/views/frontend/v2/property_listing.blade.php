@@ -44,6 +44,42 @@
                         <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                             <ul class="filters-links text-upparcase">
                                 <li class="active">
+                                    <a class="filters-links-opener">LAND AREA</a>
+                                    <div class="slide">
+											<span class="fake-select">
+												<select name="land_unit_id" class="filter-form-input">
+                                                    @foreach($response['data']['landUnits'] as $landUnit)
+                                                        <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @elseif($response['data']['oldValues']['landUnitId'] == "" && $landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
+                                                    @endforeach
+                                                </select>
+											</span>
+                                        <div class="fromTo">
+                                            <div class="field-holder">
+                                                <input type="number" placeholder="From"  name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}">
+                                            </div>
+                                            <div class="field-holder">
+                                                <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
+                                            </div>
+                                            <button type="submit">Go</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="active">
+                                    <a class="filters-links-opener">PRICE RANGE</a>
+                                    <div class="slide">
+                                        <div class="fromTo">
+                                            <div class="field-holder">
+                                                <input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
+                                            </div>
+                                            <div class="field-holder">
+                                                <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
+                                            </div>
+                                            <button type="submit">Go</button>
+                                        </div>
+                                        <span class="calculatedPrice">Please enter the price.</span>
+                                    </div>
+                                </li>
+                                <li class="active">
                                     <a class="filters-links-opener">PROPERTY FOR</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
@@ -139,42 +175,6 @@
                                                 </select>
                                             </li>
                                         </ul>
-                                    </div>
-                                </li>
-                                <li class="active">
-                                    <a class="filters-links-opener">LAND AREA</a>
-                                    <div class="slide">
-											<span class="fake-select">
-												<select name="land_unit_id" class="filter-form-input">
-                                                    @foreach($response['data']['landUnits'] as $landUnit)
-                                                        <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @elseif($response['data']['oldValues']['landUnitId'] == "" && $landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
-                                                    @endforeach
-                                                </select>
-											</span>
-                                        <div class="fromTo">
-                                            <div class="field-holder">
-                                                <input type="number" placeholder="From"  name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}">
-                                            </div>
-                                            <div class="field-holder">
-                                                <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
-                                            </div>
-                                            <button type="submit">Go</button>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="active">
-                                    <a class="filters-links-opener">PRICE RANGE</a>
-                                    <div class="slide">
-                                        <div class="fromTo">
-                                            <div class="field-holder">
-                                                <input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
-                                            </div>
-                                            <div class="field-holder">
-                                                <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
-                                            </div>
-                                            <button type="submit">Go</button>
-                                        </div>
-                                        <span class="calculatedPrice">Please enter the price.</span>
                                     </div>
                                 </li>
                             </ul>
