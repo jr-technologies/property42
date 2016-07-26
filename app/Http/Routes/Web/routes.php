@@ -190,7 +190,6 @@ Route::get('society/maps',
         'uses'=>'SocietiesController@getSocietyMaps'
     ]);
 
-
 Route::get('admin/properties',
     [
         'middleware'=>
