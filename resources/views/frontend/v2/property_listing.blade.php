@@ -204,8 +204,8 @@
                                             <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.'
                                              '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                                              ' '.$property->location->society->name}}</a></h1>
-                                            <p>{{str_limit($property->description,170) }}</p>
-                                        </div>
+                                            <p>{{str_limit($property->title,50) }}<br />{{str_limit($property->description,100) }}</p>
+                                    </div>
                                         <div class="right-area">
                                             <strong class="price"><span>Rs</span> {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</strong>
                                             <ul class="public-ui-features text-capital">
@@ -284,33 +284,35 @@
                         @endif
                     </ul>
                     <div class="popup-holder">
-                        <div id="callPopup" class="lightbox call-agent">
+                        <div id="callPopup" class="lightbox call-agent generic-lightbox">
+                            <span class="lighbox-heading">Phone Number</span>
                             <p></p>
                         </div>
-                        <div id="sendEmail-popup" class="lightbox">
-                            <form class="inquiry-email-form">
-                                <div class="field-holder">
+                        <div id="sendEmail-popup" class="lightbox generic-lightbox">
+                            <span class="lighbox-heading">Send Email</span>
+                            {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                             <div class="field-holder">
                                     <label for="name">Name</label>
-                                    <div class="input-holder"><input type="text" id="name"></div>
+                                    <div class="input-holder"><input type="text" id="name" name="name"></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="email">Email</label>
-                                    <div class="input-holder"><input type="email" id="email"></div>
+                                    <div class="input-holder"><input type="email" id="email" name="email" required></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="phone">phone</label>
-                                    <div class="input-holder"><input type="tel" id="phone"></div>
+                                    <div class="input-holder"><input type="tel" id="phone" name="phone" required></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="subject">subject</label>
-                                    <div class="input-holder"><input type="text" id="subject"></div>
+                                    <div class="input-holder"><input type="text" id="subject" name="subject"></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="message">message</label>
-                                    <div class="input-holder"><textarea id="message"></textarea></div>
+                                    <div class="input-holder"><textarea id="message" name="message" required></textarea></div>
                                 </div>
                                 <button type="submit">SEND</button>
-                            </form>
+                            {{Form::close()}}
                         </div>
                     </div>
                 </div>

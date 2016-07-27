@@ -6,23 +6,25 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\MailValidators;
-
+namespace App\Http\Validators\Validators\PropertyValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
-
-class MailToAgentValidator extends MailValidator implements ValidatorsInterface
+class deVerifyPropertyValidator extends PropertyValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
         parent::__construct($request);
     }
+
+    /**
+     * @return array
+     */
     public function rules()
     {
-        return[
-            'email' => 'required|email|min:5|max:255',
-            'message'=>'required|min:5|max:300'
+        return [
+            'propertyId'=>'required',
         ];
     }
+
 }
 

@@ -39,7 +39,9 @@
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
 <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-1.11.2.min.js" defer><\/script>')</script>
-<script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
+
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script>
+    <script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/fixed-block.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.accordion.js" type="text/javascript" defer></script>
@@ -50,6 +52,5 @@
 <script src="{{url('/')}}/web-apps/frontend/v2/js/placeholder.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/lightBox.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-main.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script>
 </body>
 </html>

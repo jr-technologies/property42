@@ -66,8 +66,7 @@
                                             <div class="slideset">
                                                 @foreach($images as $image)
                                                     <div class="slide">
-                                                        <a href="{{$image}}" rel="lighbox" class="lightbox"><img src="{{$image}}"
-                                                                                                                 alt="image description"></a>
+                                                        <a href="{{$image}}" rel="lighbox" class="lightbox"><img src="{{$image}}" alt="image description"></a>
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -75,11 +74,11 @@
                                     </div>
                                     <a href="#" class="propertyImage-slider-btn-prev"><span class="icon-left-arrow"></span></a>
                                     <a href="#" class="propertyImage-slider-btn-next"><span class="icon-right-arrow"></span></a>
-                                    <div class="propertyImage-pagination carousal">
-                                        <div class="propertyImage-mask mask">
-                                            <div class="propertyImage-slideset slideset">
+                                    <div class="propertyImage-pagination ">
+                                        <div class="propertyImage-mask">
+                                            <div class="propertyImage-slideset">
                                                 @foreach($images as $image)
-                                                    <div class="propertyImage-slide slide"><a href="#"><img src="{{$image}}" alt="image description"></a></div>
+                                                    <div class="propertyImage-slide "><a href="#"><img src="{{$image}}" alt="image description"></a></div>
                                                 @endforeach
                                               </div>
                                             <span class="paginationCurrent-num-1"></span>
@@ -90,11 +89,11 @@
                                 </div>
                                 <span class="views">View <span class="number">{{$response['data']['property']->totalViews}}</span></span>
                                 <ul class="star-rating">
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
+                                    <li><a href="#" class="one-star">star</a></li>
+                                    <li><a href="#" class="two-stars">star</a></li>
+                                    <li><a href="#" class="three-stars">star</a></li>
+                                    <li><a href="#" class="four-stars">star</a></li>
+                                    <li><a href="#" class="five-stars">star</a></li>
                                 </ul>
                             </div>
                             <?php
@@ -106,6 +105,7 @@
                                     $images = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
                                 }
                             }
+
                             ?>
                             <div class="info-blockProperty">
                                 <strong class="price"><span>Rs</span>{{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}</strong>
@@ -121,18 +121,51 @@
                                         <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Trusted</span>
                                         @endif
                                             <ul class="star-rating">
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
+                                            <li><a href="#" class="one-star">star</a></li>
+                                            <li><a href="#" class="two-stars">star</a></li>
+                                            <li><a href="#" class="three-stars">star</a></li>
+                                            <li><a href="#" class="four-stars">star</a></li>
+                                            <li><a href="#" class="five-stars">star</a></li>
                                         </ul>
                                     </div>
+
                                     <div class="pull-right">
                                         <ul class="quick-links">
                                             <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="03154379760"><span class="icon-phone"></span></a></li>
-                                            <li><a href="#"><span class="icon-empty-envelop"></span></a></li>
+                                            <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                         </ul>
+                                    </div>
+                                </div>
+                                <div class="popup-holder">
+                                    <div id="callPopup" class="lightbox call-agent generic-lightbox">
+                                        <span class="lighbox-heading">Phone Number</span>
+                                        <p></p>
+                                    </div>
+                                    <div id="sendEmail-popup" class="lightbox generic-lightbox">
+                                        <span class="lighbox-heading">Send Email</span>
+                                        {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                                        <div class="field-holder">
+                                            <label for="name">Name</label>
+                                            <div class="input-holder"><input type="text" id="name" name="name"></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="email">Email</label>
+                                            <div class="input-holder"><input type="email" id="email" name="email" required></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="phone">phone</label>
+                                            <div class="input-holder"><input type="tel" id="phone" name="phone" required></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="subject">subject</label>
+                                            <div class="input-holder"><input type="text" id="subject" name="subject"></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="message">message</label>
+                                            <div class="input-holder"><textarea id="message" name="message" required></textarea></div>
+                                        </div>
+                                        <button type="submit">SEND</button>
+                                        {{Form::close()}}
                                     </div>
                                 </div>
                                 <span class="small-heading">Summary</span>
