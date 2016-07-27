@@ -1,7 +1,7 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-var views = domain+"ng-apps/addPropertyWithAuth/v1/views";
+var views = domain+"ng-apps/addPropertyWithAuth/v2/views";
 
 var app = angular.module('addPropertyWithAuth');
 app.config(function($stateProvider, $urlRouterProvider) {

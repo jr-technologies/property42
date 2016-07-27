@@ -94,7 +94,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
 
     var mapFormData = function () {
       return {
-          propertyPurpose: 0,
+          propertyPurpose: "1",
           propertyType :0,
           propertySubType : 0,
           society:0,
@@ -236,7 +236,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
 
         $(function() {
             //handleAddPropertyFormScrolling();
-            $('.feature-block').find('.holder').hide();
+            $('.list-extraFeatures').slideUp();
             $('.feature-block').find('.form-heading').hide();
         });
 

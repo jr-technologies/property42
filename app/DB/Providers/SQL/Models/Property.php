@@ -22,11 +22,11 @@ class Property {
     public $landArea;
     public $statusId;
     public $isFeatured;
-    public $isHot;
+    public $isHot = 0;
     public $totalViews;
     public $ratings;
     public $totalLikes;
-    public $isVerified;
+    public $isVerified = 0;
     /* contact info */
     public $contactPerson;
     public $phone;

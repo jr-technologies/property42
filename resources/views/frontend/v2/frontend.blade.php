@@ -11,7 +11,6 @@
 <body>
 <div id="wrapper">
     <div class="main-bg-holder {{(Route::getCurrentRoute()->getPath() !='/')?'byDefault-fixed':''}}">
-        <img src="{{url('/')}}/web-apps/frontend/v2/images/bg.jpg" alt="image description" class="main-bg">
         <header id="header">
             <div class="top-bar">
                 <ul class="social-icons">
@@ -32,16 +31,125 @@
             </div>
             <div class="logo"><a href="{{URL::to('/')}}"><img src="{{url('/')}}/web-apps/frontend/v2/images/logo.png" width="477" height="150" alt="Property42"></a></div>
         </header>
+        @if(Route::getCurrentRoute()->getPath() =='/')
+            <div class="main-visualSection">
+                <div class="container">
+                    <strong class="main-heading text-upparcase"><span class="blue">LIST</span> <span class="black">yOUR</span> PROPERTY</strong>
+                    <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
+                    <ul class="number-of-properties text-upparcase">
+                        @foreach($response['data']['saleAndRentCount'] as $saleRent)
+                            <li>
+                                <strong class="numberOfProperty">{{$saleRent->totalProperties}}</strong>
+                                <span class="tag">{{$saleRent->displayName}}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                    {{ Form::open(array('url' => 'search','method' => 'GET','class'=>'mainSearch-form' )) }}
+
+                    <ul class="typeOfBuying text-upparcase">
+                        <li>
+                            <label for="buy1">
+                                <input type="radio" name="purpose_id" value="1" id="buy1" checked >
+                                <span class="fake-label">Buy</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="rent1">
+                                <input type="radio" name="purpose_id" id="rent1" value="2">
+                                <span class="fake-label">Rent</span>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="form-holder">
+                        <ul class="subTypes">
+                            <li>
+                                <label for="all-type" class="customRadio">
+                                    <input type="radio" name="property_type_id" id="all-type" value="">
+                                    <span class="fake-radio"></span>
+                                    <span class="fake-label">All types</span>
+                                </label>
+                            </li>
+                            @foreach($response['data']['propertyTypes'] as $propertyType)
+                                <li>
+                                    <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
+                                        <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
+                                               name="property_type_id" class="property_type" value="{{$propertyType->id}}">
+                                        <span class="fake-radio"></span>
+                                        <span class="fake-label">{{$propertyType->name}}</span>
+                                    </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="layout">
+                            <ul class="inputsHolder">
+                                <li>
+                                    <span class="label">Location / Society</span>
+                                    <div class="input-holder">
+                                        <select name="society_id" id="society" class="js-example-basic-single">
+                                            <option value="">All Societies</option>
+                                            @foreach($response['data']['societies'] as $society)
+                                                <option value="{{$society->id}}">{{$society->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button type="submit"><span class="icon-search"></span>search</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{Form::close()}}
+                </div>
+            </div>
+        @endif
+        <nav id="nav">
+            <div class="nav-holder">
+                <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
+                <ul class="main-navigation text-upparcase">
+                    <li class="active">
+                        <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
+                    </li>
+                    <li>
+                        <a href="{{URL::to('societies/maps')}}"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
+                    </li>
+                </ul>
+                <div class="mobile-content text-center hidden">
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
+                        {{--<li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>--}}
+                        {{--<li><a href="#"><span class="icon-linkedin"></span></a></li>--}}
+                        <li><a href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+                    </ul>
+                    <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <main id="main" role="main">
         @yield('content')
+    </main>
     <footer id="footer">
         <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
     </footer>
-</div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
 <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-1.11.2.min.js" defer><\/script>')</script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/fixed-block.js" type="text/javascript" defer></script>
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/smooth-scroll.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.accordion.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/property-filter.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/select2-min.js" type="text/javascript" defer></script>

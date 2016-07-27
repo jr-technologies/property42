@@ -54,7 +54,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $property->price =  $this->get('price');
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
-        $property->statusId = $this->statusSeeder->getActiveStatusId(); /* its temporary */
+        $property->statusId = $this->statusSeeder->getPendingStatusId();
         $property->totalViews = rand(0,170);
         $property->contactPerson =  $user->fName." ".$user->lName;
         $property->phone =  $user->phone;
@@ -62,6 +62,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $property->email =  $user->email;
         $property->fax =  $user->fax;
         $property->ownerId = $user->id;
+        $property->isVerified = 0;
         $property->createdBy = $user->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');
