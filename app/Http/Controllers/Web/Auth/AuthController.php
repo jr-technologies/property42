@@ -81,7 +81,7 @@ class AuthController extends WebController
 
     public function showRegisterPage()
     {
-        return $this->response->setView('auth.register')->respond([
+        return $this->response->setView('frontend.v2.auth.register')->respond([
             'roles' => $this->roles->all(),
             'societies' => $this->societies->all()
         ]);
