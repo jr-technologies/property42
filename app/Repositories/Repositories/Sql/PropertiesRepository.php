@@ -162,5 +162,8 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->favouriteFactory->store($addToFavourite);
     }
-
+    public function userPropertiesState($userId)
+    {
+        return $this->factory->userPropertiesState($userId);
+    }
 }

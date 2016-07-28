@@ -80,8 +80,8 @@
                                         </ul>
                                         <button type="submit"><span class="icon-envelope"></span>Send email</button>
                                         {{Form::close()}}
-                                        </div>
                                     </div>
+                                </div>
                             </li>
                             <li><a href="tel:{{$response['data']['agent']->agencies[0]->phone}}"><span
                                             class="icon-phone_iphone"></span><span
@@ -114,8 +114,6 @@
                             </div>
 
                         </div>
-
-
                         <div class="col">
                             @if(sizeof($response['data']['agent']->agencies) > 0 )
                                 @if(sizeof($response['data']['agent']->agencies[0]->societies) > 0)

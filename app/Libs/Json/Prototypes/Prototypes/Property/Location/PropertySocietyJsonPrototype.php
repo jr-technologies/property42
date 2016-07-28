@@ -14,4 +14,5 @@ class PropertySocietyJsonPrototype extends JsonPrototype implements JsonPrototyp
 {
     public $id = "";
     public $name = "";
+    public $path = "";
 }

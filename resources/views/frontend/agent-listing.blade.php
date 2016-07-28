@@ -63,6 +63,14 @@
                         @endforeach
                     </section>
                     <?php
+                    $urlParams = $_GET;
+                    $agentLimits = 0;
+                    $actualPage = (isset($urlParams['page']))?$urlParams['page']:1;
+                    (isset($urlParams['limit'])?$agentLimits = $urlParams['limit']:$agentLimits = config('constants.Pagination'));
+                    $totalPages = intval(ceil($response['data']['totalAgentsFound'] / $agentLimits));
+                    $pageValue = (isset($urlParams['page']))?$urlParams['page']:1;
+                    ?>
+                    <?php
                     $for_previous_link = $_GET;
                     $pageValue = (isset($for_previous_link['page']))?$for_previous_link['page']:1;
                     ($pageValue ==1)?$for_previous_link['page'] = $pageValue:$for_previous_link['page'] = $pageValue-1;
@@ -71,29 +79,18 @@
                     ?>
                     <?php
                         //This section manage the > button in pagination
-                    $for_next_link = $_GET;
-                    $agentLimits =0;
-                    $actualPage = $for_next_link['page'];
-                    (isset($for_next_link['limit'])?$agentLimits = $for_next_link['limit']:$agentLimits = config('constants.Pagination'));
-                    $totalPaginationValues = intval(ceil($response['data']['totalAgentsFound'] / $agentLimits));
-                    $pageValue = (isset($for_next_link['page']))?$for_next_link['page']:1;
-                    ($pageValue == $totalPaginationValues)?$for_next_link['page'] = $pageValue:$for_next_link['page'] = $pageValue+1;
-                    $convertToQueryString  = http_build_query($for_next_link);
+
+                    ($pageValue == $totalPages)?$urlParams['page'] = $pageValue:$urlParams['page'] = $pageValue+1;
+                    $convertToQueryString  = http_build_query($urlParams);
                     $nextResult = URL('/agents').'?'.$convertToQueryString;
                     ?>
                     <ul class="pager">
                         <?php
-                        $for_first_link = $_GET;
-                        $agentLimits =0;
-                        $actualPage = $for_first_link['page'];
-                        (isset($for_next_link['limit'])?$agentLimits = $for_first_link['limit']:$agentLimits = config('constants.Pagination'));
-                        $totalPaginationValue = intval(ceil($response['data']['totalAgentsFound'] / $agentLimits));
-                        $current_page = (isset($for_first_link['page'])) ? $for_first_link['page']: 1;
-                        $for_first_link['page']=1;
-                        $convertFirstRecordToQueryString  = http_build_query($for_first_link);
+                        $urlParams['page']=1;
+                        $convertFirstRecordToQueryString  = http_build_query($urlParams);
                         $firstResult = URL('/agents').'?'.$convertFirstRecordToQueryString;
                         ?>
-                        @if($current_page >=5)
+                        @if($actualPage >=5)
                             <a href="{{$firstResult}}">First</a>
                          @endif
                         <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
@@ -111,7 +108,7 @@
                         ?>
                         <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                         <?php }?>
-                         @if($actualPage != $totalPaginationValues)
+                         @if($actualPage != $totalPages)
                         <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
                         @endif
                         <?php
