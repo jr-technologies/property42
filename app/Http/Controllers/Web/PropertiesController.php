@@ -81,6 +81,8 @@ class PropertiesController extends Controller
 
     public function search(SearchPropertiesRequest $request)
     {
+        $params = $request->getParams();
+        $params['sortBy'] = 'updated_at';
         $properties = $this->properties->search($request->getParams());
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();

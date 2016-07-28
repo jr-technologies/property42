@@ -153,6 +153,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         return [
             'id' => 'properties.id',
             'type' => 'property_types.type',
+            'updated_at' => 'properties.updated_at',
         ];
     }
 
