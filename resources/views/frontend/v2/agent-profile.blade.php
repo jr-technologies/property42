@@ -52,8 +52,8 @@
                                 ?>
                                 <div class="agent-picture">
                                     <img src="{{$image}}" alt="image description">
-                                    <a class="add-to-favorite added" href="#"></a>
-                                    <span class="premiumProperty text-upparcase">Premium</span>
+                                    {{--<a class="add-to-favorite added" href="#"></a>--}}
+                                    {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
                                 </div>
                                 <div class="agent-description">
                                     <div class="layout">
@@ -125,6 +125,7 @@
                                     </li>
                                 </ul>
                                 {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                                <span class="small-heading">Send email</span>
                                 <div class="field-holder">
                                     <label for="name">Name</label>
 
@@ -149,6 +150,7 @@
                                     <label for="message">message</label>
 
                                     <div class="input-holder"><textarea id="message" name="message" required></textarea>
+                                        <p>By submitting this form I agree to <a href="#">Terms of Use</a></p>
                                     </div>
                                 </div>
                                 <button type="submit">SEND</button>

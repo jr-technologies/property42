@@ -222,6 +222,10 @@
                         </form>
                     </aside>
                     <section id="content">
+                        <div class="propertyNotFound hidden">
+                            <strong class="no-heading">sorry, no property found</strong>
+                            <p>Maybe your search was to specific, please try searching with another term.</p>
+                        </div>
                         @foreach($response['data']['properties'] as $property)
                             <?php
                             $image = url('/') . "/assets/imgs/no.png";

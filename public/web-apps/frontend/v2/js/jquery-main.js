@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	$(".js-example-basic-single").select2();
-
 	if (screen.width < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');
@@ -13,7 +12,6 @@ $(document).ready(function() {
 	$('.addPro-type:first').trigger('change');
 	$('.list-extraFeatures').slideUp();
 	$('.registration-form').find('.role-listing').hide();
-
 });
 
 // page init
@@ -112,6 +110,23 @@ function initCarousel() {
 		currentNumber: '.paginationCurrent-num-1',
 		totalNumber: '.total-num-1',
 		swipeGap: true
+	});
+
+	jQuery('.agent-societies').scrollGallery({
+		mask: '.agent-mask',
+		slider: '.agent-slideset',
+		slides: '.agent-slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		circularRotation: true,
+		pauseOnHover: true,
+		autoRotation: false,
+		maskAutoSize: false,
+		stretchSlideToMask: true,
+		switchTime: 2000,
+		step:1,
+		animSpeed: 600
 	});
 }
 
