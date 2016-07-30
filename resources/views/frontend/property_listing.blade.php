@@ -6,7 +6,7 @@
             <div class="page-holder">
                 <div class="public-propertyListing">
                     <div class="holder">
-                        <span class="searchResult-counter">Showing <b>1</b> to <b>{{config('constants.Pagination') }}</b> of
+                        <span class="searchResult-counter">Showing <b>1</b> to <b>{{$response['data']['propertiesCount'] }}</b> of
                             <b>{{$response['data']['totalProperties']}}</b> properties</span>
                         <ul class="sortBy">
                             <li>Sorty By</li>
@@ -110,7 +110,7 @@
                         $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
                         $query_str_to_array = $_GET;
                         $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
-                        for($i=1; $i<=$paginationValue;$i++){
+                        for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
                         $query_str_to_array['page'] = $i;
                         $queryString  = http_build_query($query_str_to_array);
                         $result = URL('/search').'?'.$queryString;
@@ -217,7 +217,7 @@
 
                                         <label>Land Unit</label>
                                         <div class="input-holder add">
-                                        <select name="land_unit_id" name="land_unit_id">
+                                        <select name="land_unit_id">
                                             @foreach($response['data']['landUnits'] as $landUnit)
                                                 <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @endif>{{$landUnit->name}}</option>
                                             @endforeach

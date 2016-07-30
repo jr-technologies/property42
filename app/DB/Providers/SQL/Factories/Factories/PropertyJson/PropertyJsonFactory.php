@@ -41,13 +41,17 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->getFavouriteProperties($params));
     }
+    public function countFavouriteProperties($userId)
+    {
+        return $this->tableGateway->countFavouriteProperties($userId);
+    }
     public function getTable()
     {
         return $this->tableGateway->getTable();
     }
-    public function getPendingProperties()
+    public function getAllProperties()
     {
-        return $this->mapCollection($this->tableGateway->getPendingProperties());
+        return $this->mapCollection($this->tableGateway->all());
     }
     public function updateMultipleByIds($properties)
     {
@@ -82,16 +86,18 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
 
     private function transformLandUnits(array $properties, $params)
     {
-        if($params['landUnitId'] != null){
-            $landUnit = new LandUnit();
-            $landUnit->id = $params['landUnitId'];
-            $landUnit->name = config('constants.LAND_UNITS')[$params['landUnitId']];
-            $landUnit = (new PropertyLandUnitJsonCreator($landUnit))->create();
+        if($params['landUnitId'] == null){
+            $params['landUnitId'] = 3;
+        }
 
-            foreach($properties as &$property /* @var $property PropertyJsonPrototype*/){
-                $property->land->area =  LandArea::convert('square feet', $landUnit->name, $property->land->area);
-                $property->land->unit = $landUnit;
-            }
+        $landUnit = new LandUnit();
+        $landUnit->id = $params['landUnitId'];
+        $landUnit->name = config('constants.LAND_UNITS')[$params['landUnitId']];
+        $landUnit = (new PropertyLandUnitJsonCreator($landUnit))->create();
+
+        foreach($properties as &$property /* @var $property PropertyJsonPrototype*/){
+            $property->land->area =  LandArea::convert('square feet', $landUnit->name, $property->land->area);
+            $property->land->unit = $landUnit;
         }
 
         return $properties;
@@ -160,6 +166,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->email = $propertyJson->email;
         $property->phone = $propertyJson->phone;
         $property->mobile = $propertyJson->mobile;
+        $property->isVerified = $propertyJson->isVerified;
         $property->fax = $propertyJson->fax;
         $property->createdBy = $propertyJson->createdBy;
         $property->createdAt = $propertyJson->createdAt;

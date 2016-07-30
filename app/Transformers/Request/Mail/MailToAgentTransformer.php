@@ -17,7 +17,10 @@ class MailToAgentTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'from'=>$this->request->input('from'),
+            'email'=>$this->request->input('email'),
+            'name'=>$this->request->input('name'),
+            'phone'=>$this->request->input('phone'),
+            'subject'=>$this->request->input('subject'),
             'message'=>$this->request->input('message'),
         ];
     }

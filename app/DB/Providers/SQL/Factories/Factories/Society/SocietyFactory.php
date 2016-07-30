@@ -27,9 +27,18 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->mapCollection($this->tableGateway->all());
     }
+    public function getSocietiesForFile()
+    {
+        return $this->mapCollection($this->tableGateway->getSocietiesForFile());
+    }
     public function getSocietiesYouDealIn($agencyName)
     {
         return $this->tableGateway->getSocietiesYouDealIn($agencyName);
+    }
+
+    public function getImportantSocieties()
+    {
+        return $this->mapCollection($this->tableGateway->getImportantSocieties());
     }
     /**
      * @param string $id
@@ -91,6 +100,9 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
         $society->id = $result->id;
         $society->name = $result->society;
         $society->cityId = $result->city_id;
+        $society->important = $result->important;
+        $society->priority = $result->priority;
+        $society->path = $result->path;
         $society->createdAt = $result->created_at;
         $society->updatedAt = $result->updated_at;
         return $society;
@@ -101,6 +113,9 @@ class SocietyFactory extends SQLFactory implements SQLFactoriesInterface
         return [
             'society'    => $society->name,
             'city_id'    => $society->cityId,
+            'important'    => $society->important,
+            'priority'    => $society->priority,
+            'path'    => $society->path,
             'updated_at' => $society->updatedAt,
         ];
     }

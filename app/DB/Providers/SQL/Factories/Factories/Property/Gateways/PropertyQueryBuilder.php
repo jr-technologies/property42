@@ -10,6 +10,9 @@ use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Factories\Country\CountryFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyPurpose\PropertyPurposeFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyType\PropertyTypeFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
@@ -64,5 +67,36 @@ class PropertyQueryBuilder extends QueryBuilder
         return DB::table($this->table)
             ->whereIn('id',$propertyIds)
             ->delete();
+    }
+    public function IncrementViews($propertyId)
+    {
+        return DB::table($this->table)
+            ->where($this->table.'.id','=',$propertyId)
+            ->increment('total_views', 1);
+    }
+    public function countSaleAndRendProperties()
+    {
+        $propertyPurpose = (new PropertyPurposeFactory())->getTable();
+        return DB::table($this->table)
+            ->leftjoin($propertyPurpose,$propertyPurpose.'.id','=',$this->table.'.purpose_id')
+            ->select(DB::raw('count(*) as totalProperties, purpose_id as purposeId'),$propertyPurpose.'.display_name as displayName')
+            ->groupBy($this->table.'.purpose_id')
+            ->get();
+
+    }
+
+    public function userPropertiesState($userId)
+    {
+        $purposeTable = (new PropertyPurposeFactory())->getTable();
+        $propertySubtypeTable = (new PropertySubTypeFactory())->getTable();
+
+        return DB::table($this->table)
+            ->leftjoin($purposeTable,$this->table.'.purpose_id','=',$purposeTable.'.id')
+            ->leftjoin($propertySubtypeTable,$this->table.'.property_sub_type_id','=',$propertySubtypeTable.'.id')
+            ->select(DB::raw('count('.$this->table.'.id) as  totalProperties, purpose_id as purposeId'),$purposeTable.'.display_name as purpose',$propertySubtypeTable.'.sub_type as subType')
+            ->where($this->table.'.owner_id','=',$userId)
+            ->groupBy($this->table.'.purpose_id')
+            ->groupBy($this->table.'.property_sub_type_id')
+            ->get();
     }
 }

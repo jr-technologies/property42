@@ -25,7 +25,7 @@ class PriceHelper extends Helper
         
         $shortResult = $number/$result;
         $value =  substr($shortResult."", 0, 4);
-
+        $price = preg_replace("/\.?0*$/",'',$value);
         $price_unit = '';
         if($length > 3 && $length < 6){
             $price_unit = 'thousand';
@@ -40,6 +40,6 @@ class PriceHelper extends Helper
         elseif($length > 9 && $length < 12){
             $price_unit = 'Arab';
         }
-        return  $value." ".$price_unit;
+        return  $price." ".$price_unit;
     }
 }

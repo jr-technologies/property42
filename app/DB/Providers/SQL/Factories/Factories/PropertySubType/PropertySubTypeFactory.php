@@ -62,7 +62,7 @@ class PropertySubTypeFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function getByType($id)
     {
-        return $this->tableGateway->getWhere(['property_type_id'=>$id]);
+        return $this->mapCollection($this->tableGateway->getWhere(['property_type_id'=>$id]));
     }
 
     private function mapPropertyCompleteType($result)

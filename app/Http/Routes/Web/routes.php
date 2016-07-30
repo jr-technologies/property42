@@ -1,4 +1,35 @@
 <?php
+Route::get('print-societies/12345',function(){
+        $allSocieties = (new \App\Repositories\Repositories\Sql\SocietiesRepository())->all();
+        foreach($allSocieties as $society)
+        {
+            echo '(object)[
+               "id"=>'.$society->id.' ,"name"=>'."'".$society->name."'".'
+           ],<br />';
+        }
+    }
+);
+Route::get('admin',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'Admin\AuthController@getLoginPage'
+    ]
+);
+
+
+Route::post('admin/login',
+    [
+        'middleware'=>
+            [
+                // 'webAuthenticate:adminLoginRequest',
+                'webValidate:adminLoginRequest'
+            ],
+        'uses'=>'Admin\AuthController@login'
+    ]
+);
 
 Route::get('get/property',
     [
@@ -9,6 +40,23 @@ Route::get('get/property',
         'uses'=>'Admin\AdminController@getById'
     ]
 );
+
+Route::get('get/agent',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminAgentRequest'
+            ],
+        'uses'=>'Admin\AdminController@getAgent'
+    ]
+);
+
+Route::get('add-property',
+    [
+        'uses'=>'PropertiesController@addProperty'
+    ]
+);
+
 Route::post('admin/property/reject',
     [
         'middleware'=>
@@ -16,6 +64,36 @@ Route::post('admin/property/reject',
                 'webValidate:RejectPropertyRequest'
             ],
         'uses'=>'Admin\AdminController@rejectProperty'
+    ]
+);
+
+Route::post('admin/property/verify',
+    [
+        'middleware'=>
+            [
+                'webValidate:verifyPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@VerifyProperty'
+    ]
+);
+
+Route::post('admin/property/deActive',
+    [
+        'middleware'=>
+            [
+                'webValidate:deActivePropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@deActiveProperty'
+    ]
+);
+
+Route::post('admin/property/deVerify',
+    [
+        'middleware'=>
+            [
+                'webValidate:deVerifyPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@deVerifyProperty'
     ]
 );
 
@@ -29,10 +107,115 @@ Route::post('admin/property/approve',
     ]
 );
 
+Route::get('admin/logout',function(){
+
+    if(session()->has('admin'))
+    {
+        session()->pull('admin');
+    }
+    return redirect('admin');
+});
+Route::get('admin/agents',
+    [
+        'middleware'=>
+            [
+            ],
+        'uses'=>'Admin\AdminController@getAgents'
+    ]);
+
+
+Route::post('admin/property/approve',
+    [
+        'middleware'=>
+            [
+                'webValidate:ApprovePropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@approveProperty'
+    ]
+);
+
+Route::post('admin/agent/approve',
+    [
+        'middleware'=>
+            [
+//                'webAuthenticate:getAdminsPropertiesRequest',
+                'webValidate:approveAgentRequest'
+            ],
+        'uses'=>'Admin\AdminController@approveAgent'
+    ]
+);
+
+Route::get('society/doc/download',
+    [
+        'middleware'=>
+            [
+                'webValidate:downloadSocietyAffidavitRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyDoc'
+    ]);
+
+Route::get('society/image/download',
+    [
+        'middleware'=>
+            [
+                'webValidate:downloadSocietyAffidavitRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyImage'
+    ]);
+
+Route::get('society/pdf/download',
+    [
+        'middleware'=>
+            [
+                'webValidate:downloadSocietyFilesRequest'
+            ],
+        'uses'=>'SocietiesController@downloadSocietyPDF'
+    ]);
+
+Route::get('get/society/files',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetSocietyFilesRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyFiles'
+    ]);
+
+
+
+Route::get('societies/files',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetAllSocietiesForFilesRequest'
+            ],
+        'uses'=>'SocietiesController@getAllSocietiesForFiles'
+    ]);
+
+Route::get('societies/maps',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetAllSocietiesForMapsRequest'
+            ],
+        'uses'=>'SocietiesController@getAllSocietiesForMaps'
+    ]);
+
+Route::get('society/maps',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetSocietyMapsRequest'
+            ],
+        'uses'=>'SocietiesController@getSocietyMaps'
+    ]);
+
+
 Route::get('admin/properties',
     [
         'middleware'=>
             [
+//                'webAuthenticate:getAdminsPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getProperties'
     ]);
@@ -41,9 +224,20 @@ Route::get('admin/agents',
     [
         'middleware'=>
             [
+                //'webAuthenticate:getAdminsPropertiesRequest',
             ],
         'uses'=>'Admin\AdminController@getAgents'
     ]);
+Route::get('society',
+    [
+        'middleware'=>
+            [
+                'webValidate:getSocietyRequest'
+            ],
+        'uses'=>'Admin\PropertiesController@getSociety'
+    ]
+);
+
 
 Route::get('/login',
     [
@@ -126,6 +320,7 @@ Route::get('property',
     ]
 );
 
+
 Route::get('agents',
     [
         'middleware'=>
@@ -165,7 +360,14 @@ Route::post('mail-to-agent',
     ]);
 
 
-
+Route::post('property/wanted',
+    [
+        'middleware'=>
+            [
+                'webValidate:wantedMailRequest'
+            ],
+        'uses'=>'MailController@propertyWanted'
+    ]);
 
 Route::post('contact_us',
     [
@@ -201,9 +403,13 @@ Route::get('/logout', function(){
     {
         $usersRepo = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo();
         $authUser = session()->pull('authUser');
-        $authUser = $usersRepo->getById($authUser->id);
-        $authUser->access_token = null;
-        (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+        try{
+            $authUser = $usersRepo->getById($authUser->id);
+            $authUser->access_token = null;
+            (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);
+        }catch (\Exception $e){
+
+        }
     }
     return redirect('/login');
 });

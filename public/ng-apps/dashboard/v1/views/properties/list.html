@@ -2,9 +2,9 @@
     <div class="listing-cetegories-links">
         <ul class="navFor-mobile">
             <li>
-                <span class="tag">For Sale</span>
+                <span class="tag">{{resources.purposes | purposeDisplayName:searchPropertiesParams.purpose_id}}</span>
                 <a class="slide-onMobile-opener">
-                    <strong class="active"> active <span class="numbering">999+</span></strong>
+                    <strong class="active"> active <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : resources.propertyStatusesIds.active}}</span></strong>
                 </a>
             </li>
         </ul>

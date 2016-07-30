@@ -11,12 +11,15 @@ namespace App\Http\Validators\Validators\PropertyValidators;
 
 use App\DB\Providers\SQL\Models\Features\FeatureWithValidationRules;
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use Illuminate\Support\Facades\Validator;
+use Psy\Exception\FatalErrorException;
 
 class AddPropertyValidator extends PropertyValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
         parent::__construct($request);
+
     }
      /**
      * @return array
@@ -27,8 +30,12 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
         $features = $this->getExtraFeatures();
         foreach($features as $feature /* @var $feature FeatureWithValidationRules::class*/)
         {
-            $customMessages = array_merge($customMessages,$feature->customErrorMessages());
+            $featureCustomMessages = $feature->customErrorMessages();
+            foreach($featureCustomMessages as $key => $message){
+                $customMessages['features.'.$key] = $message;
+            }
         }
+
         return $customMessages;
     }
 
@@ -54,12 +61,14 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'contactPerson.required' => 'contact person is required',
             'phone.required' => 'company phone is required',
             'email.required' => 'company email is required',
+            'files.addProperty_max_image_size'=> 'Invalid Image or Image Size is too big'
         ], $this->customValidationMessagesForExtraFeatures());
     }
 
     private function propertyInfoRules()
     {
         return [
+            'files'=>'addProperty_max_image_size',
             'ownerId' => 'required|exists:users,id',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
@@ -76,7 +85,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
     {
         return [
             'contactPerson' => 'required',
-            'phone' => 'required|max:15',
+            'phone' => 'max:15',
             'mobile' => 'required|max:15',
             'email' => 'required|email'
         ];
@@ -91,13 +100,36 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             $featureRules = $feature->rulesToString();
             if(!empty($featureRules) > 0)
             {
-                $rules[$feature->featureInputName] = $featureRules;
+                $rules['features.'.$feature->featureInputName] = $featureRules;
             }
         }
-
         return $rules;
     }
 
+    public function registerDashboardImageSizeRule()
+    {
+        Validator::extend('addProperty_max_image_size', function($attribute, $value, $parameters)
+        {
+            $files = $this->request->get('files');
+            $originalFiles = [];
+            foreach($files as $file)
+            {
+                if($file['file'] != "null"){
+                    $originalFiles[] = $file['file'];
+                }
+            }
+            foreach($originalFiles as $file)
+            {
+                $fileName = $file->getClientOriginalExtension();
+                $image_size = getimagesize($file);
+                if((strtolower($fileName) != 'jpg' && strtolower($fileName) != 'jpeg' && strtolower($fileName) !='png' && strtolower($fileName) !='gif') || ($image_size[0] >5000  || $image_size[1] >5000 ))
+                {
+                    return false;
+                }
+            }
+            return true;
+        });
+    }
     public function rules()
     {
         return array_merge(array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules()), $this->extraFeaturesValidationRules());

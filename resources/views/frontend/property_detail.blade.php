@@ -10,10 +10,16 @@
                 <div class="propertyDetails-page">
                     <div class="layout">
                         <div class="propertyImage-slider">
-                            <strong class="property-title">{{$response['data']['property']->title}}</strong>
+                            <strong class="property-title">
+                                {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
+                                {{$response['data']['property']->type->subType->name.'
+                                 '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->block->name.' Block'.
+                                ' '.$response['data']['property']->location->society->name}}
+                            </strong>
                             <div class="mask">
                                 <?php
-                                use App\Libs\Helpers\AuthHelper;$images = [];
+                                use App\Libs\Helpers\AuthHelper;
+                                $images = [];
                                 foreach ($response['data']['property']->documents as $document)
                                 {
                                     if ($document->type == 'image')
@@ -28,9 +34,9 @@
                                 ?>
                                 <div class="slideset">
                                     @foreach($images as $image)
-                                        <div class="slide"><a href="{{$image}}" rel="lighbox"
-                                                              class="lightbox"><img src="{{$image}}"
-                                                                                    alt="image description"></a>
+                                        <div class="slide">
+                                            <a href="{{$image}}" rel="lighbox" class="lightbox"><img src="{{$image}}"
+                                            alt="image description"></a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -65,20 +71,26 @@
                                 <span class="icon-home-button"></span>
                                 <span>Do you want to view this property?</span>
                             </header>
+                            <?php
+                                $images = url('/') . "/assets/imgs/no.png";
+                                if ($response['data']['property']->owner->agency != null)
+                                {
+                                    if ($response['data']['property']->owner->agency->logo != null)
+                                    {
+                                        $images = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
+                                    }
+                                }
+                            ?>
                             <div class="description">
                                 <div class="layout">
                                     @if ($response['data']['property']->owner->agency != null)
-                                        @if ($response['data']['property']->owner->agency->logo != null)
-                                            <img src="{{url('/') . '/temp/' . $response['data']['property']->owner->agency->logo}}"
-                                                 width="300"
-                                                 height="300" alt="image description">
-                                        @endif
+                                        <img src="{{$images}}" width="300" height="300" alt="image description">
                                     @endif
                                     <div class="holder">
                                         <strong class="name">{{$response['data']['property']->contactPerson}}</strong>
                                         @if($response['data']['property']->owner->agency !=null)
                                             <span class="agency-name">{{$response['data']['property']->owner->agency->name}}</span>
-                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->agency->id) }}"
+                                            <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}"
                                                class="agency-profile">Agency Profile</a>
                                         @endif
                                     </div>
@@ -109,7 +121,7 @@
                                             <a class="popup-close"><span class="icon-cross"></span></a>
                                         </div>
                                     </li>
-                                    <li><a href="tel:{{$response['data']['property']->phone}}"><span class="icon-phone_iphone"></span>{{$response['data']['property']->phone}}</a>
+                                    <li><a href="tel:{{$response['data']['property']->mobile}}"><span class="icon-phone_iphone"></span>{{$response['data']['property']->mobile}}</a>
                                     </li>
                                 </ul>
                                 <?php
@@ -121,12 +133,17 @@
                                         }
                                     }
                                 }
-
                                 ?>
                                 <strong class="summary">Summary:</strong>
                                 <dl>
                                     <dt>Property ID:</dt>
                                     <dd>{{$response['data']['property']->id}}</dd>
+                                    <dt>Society:</dt>
+                                    <dd>{{$response['data']['property']->location->society->name}}</dd>
+                                    @if($response['data']['property']->location->block != null && $response['data']['property']->location->block->name != 'other')
+                                        <dt>Block:</dt>
+                                        <dd>{{$response['data']['property']->location->block->name}}</dd>
+                                    @endif
                                     <dt>Type:</dt>
                                     <dd>{{$response['data']['property']->type->parentType->name}}</dd>
                                     @foreach($heightPriorityFeatures as $heightPriorityFeature)
@@ -151,6 +168,8 @@
                                     if($numberDays == 0){$days = 'today';}elseif($numberDays == 1){ $days= 'day ago';}else{$days='days ago';};
                                     ?>
                                     <dd>@if($numberDays !=0){{$numberDays}} @endif {{$days}}</dd>
+                                    <dt>Total Views:</dt>
+                                    <dd>{{$response['data']['property']->totalViews}}</dd>
                                 </dl>
                             </div>
                         </div>
@@ -184,14 +203,6 @@
 
                         @endforeach
                     </div>
-                    {{--@if(sizeof($response['data']['user']->agencies) > 0 )--}}
-                        {{--@if(sizeof($response['data']['user']->agencies[0]->societies) > 0)--}}
-                            {{--<h1>Societies He Deal In</h1>--}}
-                            {{--@foreach($response['data']['user']->agencies[0]->societies as $society )--}}
-                                {{--{{$society->name}}--}}
-                            {{--@endforeach--}}
-                        {{--@endif--}}
-                    {{--@endif--}}
                     <ul class="property-qucikLinks">
                         <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
                         <li class="popup-holder">

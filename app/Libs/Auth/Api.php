@@ -36,12 +36,9 @@ class Api extends Authenticate implements AuthInterface
         if($this->getAccessToken() == "" || $this->getAccessToken() == null)
             return false;
 
-        try{
-            $this->user();
-            return true;
-        }catch (\Exception $e){
+        if($this->user() == null)
             return false;
-        }
+        return true;
     }
 
     public function user()

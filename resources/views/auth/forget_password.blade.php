@@ -3,14 +3,20 @@
 <main id="main" role="main">
     <div class="container">
         <div class="forgot-passwordHolder">
-            @if(\Session::has('message'))
-            <span class="global-error"></span>
-            @endif
+
+                <?php
+                if(\Session::has('validationErrors')){
+                    $validationErrors = \Session::get('validationErrors');
+                }
+                ?>
              <div class="forgot-password">
+                 @if(\Session::has('message'))
+                     <span class="global-successMessage">{{\Session::get('message')}}</span>
+                 @endif
                {{ Form::open(array('url' => 'get-new-password','method' => 'POST' ,'class'=>'forgot-form')) }}
                     <strong class="forgot-heading">Let's get you into your account.</strong>
-                    <div class="input-holder">
-                        <span class="error-text">This Error</span>
+                    <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('email')) error @endif">
+                        <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('email')) {{$validationErrors->first('email')}} @endif</span>
                         <input type="email" name="email" placeholder="Enter Your Email Address" id="email">
                         <span class="border"></span>
                         <label for="email" class="icon-envelope"></label>

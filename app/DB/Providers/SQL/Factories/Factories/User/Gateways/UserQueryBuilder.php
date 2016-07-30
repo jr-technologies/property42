@@ -10,8 +10,10 @@ namespace App\DB\Providers\SQL\Factories\Factories\User\Gateways;
 
 
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
+use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencyStaff\AgencyStaffFactory;
 use App\DB\Providers\SQL\Factories\Factories\User\UserFactory;
+use App\DB\Providers\SQL\Factories\Factories\UserRole\UserRolesFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 

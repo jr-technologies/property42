@@ -47,14 +47,20 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->statusId = $this->statusesSeeder->getDeletedStatusId();
         return  $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
     }
+    public function countSaleAndRendProperties()
+    {
+      return $this->tableGateway->countSaleAndRendProperties();
+    }
+    public function IncrementViews($propertyId)
+    {
+        return $this->tableGateway->IncrementViews($propertyId);
+    }
     public function deleteByIds(array $propertyIds)
     {
         return $this->tableGateway->deleteByIds($propertyIds);
     }
-    public function restoreProperty(Property $property)
-    {
-        return $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
-    }
+
+
     public function forceDeleteByIds($propertyIds)
     {
         return $this->tableGateway->forceDeleteByIds($propertyIds);
@@ -82,7 +88,13 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->mapPropertyCompleteLocation($this->tableGateway->getCompleteLocation($propertyId));
     }
-
+    public function userPropertiesState($userId)
+    {
+        $records = $this->tableGateway->userPropertiesState($userId);
+        $collection  = collect($records);
+        $result = $collection->groupBy('purpose');
+        return $result->toArray();
+    }
     public function favourites($userId)
     {
         return $this->mapCollection($this->tableGateway->getFavourites($userId));
@@ -138,9 +150,11 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'mobile' => $property->mobile,
             'fax' => $property->fax,
             'email' => $property->email,
+            'is_verified'=>$property->isVerified,
             'owner_id'=>$property->ownerId,
             'created_by'=>$property->createdBy,
-            'updated_at' => $property->updatedAt,
+            'created_at' => $property->createdAt,
+            'updated_at' => $property->updatedAt
         ];
     }
 

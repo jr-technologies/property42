@@ -39,7 +39,6 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
             'termsConditions.equals' => $termsConditionsMessage,
             /* Agency messages */
             'agencyName.required' => 'Agency name is required',
-            'companyPhone.required' => 'Company phone is required',
             'companyAddress.required' => 'Company address is required',
             'companyEmail.required' => 'Company email is required',
             'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 1000 X 1000 px'
@@ -63,12 +62,11 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
     {
         $rules = [
             'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
-            'companyPhone' => 'required|max:15',
             'companyAddress' => 'required|max:225',
             'societies' => 'required|societies_limit',
             'companyEmail' => 'required|email|unique:agencies,email'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'agencyDescription'=>'max:1200',
-            'companyLogo'=>'max_image_size:1000,1000'
+            'companyLogo'=>'image_validation|max_image_size:1000,1000'
         ];
 
         if((new UsersRepoProvider())->repo()->userWasAgent($this->request->get('userId')))

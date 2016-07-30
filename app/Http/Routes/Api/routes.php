@@ -24,6 +24,17 @@ Route::get('app/dashboard/resources',
     ]
 );
 
+Route::get('app/addPropertyWithAuth/resources',
+    [
+        'middleware'=>
+            [
+
+            ],
+
+        'uses'=>'AppsResourceController@addPropertyWithAuthResources'
+    ]
+);
+
 
 Route::post('favourite/property',
     [
@@ -331,6 +342,15 @@ Route::get('societies',
         'uses'=>'SocietiesController@all'
     ]
 );
+Route::get('societies/search',function(){
+    $results = [];
+    foreach(config('constants.societies') as $society){
+        if(preg_match("/".request()->get('keyword')."/i", $society->name)){
+            $results[] = $society;
+        }
+    }
+    return response()->json($results);
+});
 
 /**
  * Block Crud
@@ -399,6 +419,17 @@ Route::post('/property',
                 'apiValidate:addPropertyRequest'
             ],
         'uses'=>'PropertiesController@store'
+    ]
+);
+
+Route::post('/propertyWithAuth',
+    [
+        'middleware'=>
+            [
+//                'apiAuthenticate:addPropertyRequest',
+                'apiValidate:addPropertyWithAuthRequest'
+            ],
+        'uses'=>'PropertiesController@storeWithAuth'
     ]
 );
 

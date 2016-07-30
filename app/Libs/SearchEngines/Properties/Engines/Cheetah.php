@@ -137,7 +137,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
     private function defaultSorting()
     {
         return [
-            'sortBy' => 'total_views',
+            'sortBy' => 'properties.id',
             'order' => 'desc'
         ];
     }

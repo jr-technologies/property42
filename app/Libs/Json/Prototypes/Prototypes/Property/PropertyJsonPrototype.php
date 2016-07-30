@@ -43,6 +43,7 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     public $totalViews ="";
     public $rating ="";
     public $totalLikes = "";
+    public $isVerified = 0;
     /* @var $Documents PropertyDocumentsJsonPrototype::class*/
     public $documents = [];
     public $features = [];

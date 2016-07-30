@@ -45,9 +45,17 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     {
         return $this->factory->getStaffByOwner($userId);
     }
-    public function trustedAgents(array $params)
+    public function getTrustedAgentsWithPriority(array $params)
     {
-       return $this->factory->trustedAgents($params);
+        return $this->factory->getTrustedAgentsWithPriority($params);
+    }
+    public function getAllTrustedAgents()
+    {
+        return $this->factory->getAllTrustedAgents();
+    }
+    public function searchTrustedAgents($params)
+    {
+        return $this->factory->searchTrustedAgents($params);
     }
     public function search(array $params)
     {
@@ -89,6 +97,6 @@ class UsersJsonRepository extends SqlRepository implements UsersJsonRepoInterfac
     }
     public function getPendingAgents()
     {
-        $this->factory->getPendingAgents();
+        return $this->factory->getPendingAgents();
     }
 }

@@ -28,31 +28,31 @@
                 <form class="registration-form" method="post" action="{{route('register')}}" enctype="multipart/form-data">
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('fName')) error @endif">
                         <label class="icon-user" for="fName"></label>
-                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" value="{{old('fName')}}" >
+                        <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" value="{{old('fName')}}" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('fName')) {{$validationErrors->first('fName')}} @endif</span>
                     </div>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('lName')) error @endif">
                         <label class="icon-user" for="lName"></label>
-                        <input type="text" placeholder="Enter Your Last Name" name="lName" value="{{old('lName')}}" id="lName" >
+                        <input type="text" placeholder="Enter Your Last Name" name="lName" value="{{old('lName')}}" id="lName" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('lName')) {{$validationErrors->first('lName')}} @endif</span>
                     </div>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('password')) error @endif">
                         <label class="icon-key" for="pass1"></label>
-                        <input type="password" placeholder="Enter Your Password" id="pass1"  name="password" >
+                        <input type="password" placeholder="Enter Your Password" id="pass1"  name="password" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('password')) {{$validationErrors->first('password')}} @endif</span>
                     </div>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('passwordAgain')) error @endif">
                         <label class="icon-key" for="cpass"></label>
-                        <input type="password"  placeholder="Confirm Password" name="passwordAgain" id="cpass" >
+                        <input type="password"  placeholder="Confirm Password" name="passwordAgain" id="cpass" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('passwordAgain')) {{$validationErrors->first('passwordAgain')}} @endif</span>
                     </div>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('email')) error @endif">
                         <label class="icon-envelope" for="email1"></label>
-                        <input type="email" placeholder="Enter Your Email Address"  id="email1" value="{{old('email')}}" name="email" >
+                        <input type="email" placeholder="Enter Your Email Address"  id="email1" value="{{old('email')}}" name="email" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('email')) {{$validationErrors->first('email')}} @endif</span>
                     </div>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('mobile')) error @endif">
                         <label class="icon-phone_iphone" for="cell"></label>
-                        <input type="tel" placeholder="Enter Your Cell / Mobile Number" value="{{old('mobile')}}" name="mobile" id="cell" >
+                        <input type="tel" placeholder="Enter Your Cell / Mobile Number" value="{{old('mobile')}}" name="mobile" id="cell" required>
                         <span class="border"></span>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('mobile')) {{$validationErrors->first('mobile')}} @endif</span>
                     </div>
@@ -114,7 +114,7 @@
                         <h1>Agency Information</h1>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('agencyName')) error @endif">
                             <label for="agency-name" class="icon-agency"></label>
-                            <input type="text" placeholder="Enter An Agency Name" id="agency-name"  name="agencyName" value="{{old('agencyName')}}" >
+                            <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" value="{{old('agencyName')}}" >
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyName')) {{$validationErrors->first('agencyName')}} @endif</span>
                         </div>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="input-holder full-width no-indent  @if(isset($validationErrors) && $validationErrors->has('societies')) error @endif">
                             <label for="search-society" class="icon-society"></label>
-                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" >
+                            <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety">
                             <span class="border"></span>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('societies')) {{$validationErrors->first('societies')}} @endif</span>
                             <span class="calculatedSocieties"></span>
@@ -181,7 +181,7 @@
                     <div class="input-holder full-width @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
                         <ul class="terms-listing">
                             <li>
-                                <input type="checkbox" id="terms-Cond" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif >
+                                <input type="checkbox" id="terms-Cond" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif required>
                                 <label for="terms-Cond">I have read and agree to Property42.pk <a href="#">Terms and Conditions</a> <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span></label>
                             </li>
                             <li>

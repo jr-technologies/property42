@@ -226,6 +226,7 @@ return [
         'GetAgentRequest' => \App\Http\Requests\Requests\User\GetAgentRequest::class,
         'TrustedAgentRequest' => \App\Http\Requests\Requests\User\TrustedAgentRequest::class,
         'ForgetPasswordRequest' => \App\Http\Requests\Requests\User\ForgetPasswordRequest::class,
+        'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
 
 
 
@@ -239,6 +240,7 @@ return [
         'MailToAgentRequest' => \App\Http\Requests\Requests\Mail\MailToAgentRequest::class,
         'ContactUSMailRequest' => \App\Http\Requests\Requests\Mail\ContactUSMailRequest::class,
         'MailFeedbackUsRequest' => \App\Http\Requests\Requests\Mail\MailFeedbackUsRequest::class,
+        'WantedMailRequest' => \App\Http\Requests\Requests\Mail\WantedMailRequest::class,
 
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
@@ -267,6 +269,13 @@ return [
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
         'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,
+        'GetAllSocietiesForMapsRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesForMapsRequest::class,
+        'GetAllSocietiesForFilesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesForFilesRequest::class,
+        'GetSocietyMapsRequest' => \App\Http\Requests\Requests\Society\GetSocietyMapsRequest::class,
+        'GetSocietyFilesRequest' => \App\Http\Requests\Requests\Society\GetSocietyFilesRequest::class,
+        'DownloadSocietyFilesRequest' => \App\Http\Requests\Requests\Society\DownloadSocietyFilesRequest::class,
+        'DownloadSocietyAffidavitRequest' => \App\Http\Requests\Requests\Society\DownloadSocietyAffidavitRequest::class,
+
 
         /* Block Requests */
         'AddBlockRequest' => \App\Http\Requests\Requests\Block\AddBlockRequest::class,
@@ -310,6 +319,7 @@ return [
 
         /* Property Requests */
         'AddPropertyRequest' => \App\Http\Requests\Requests\Property\AddPropertyRequest::class,
+        'AddPropertyWithAuthRequest' => \App\Http\Requests\Requests\Property\AddPropertyWithAuthRequest::class,
         'GetUserPropertiesRequest' => \App\Http\Requests\Requests\Property\GetUserPropertiesRequest::class,
         'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
@@ -325,8 +335,15 @@ return [
 
         /* Admin Requests */
         'GetAdminPropertyRequest' => \App\Http\Requests\Requests\Property\GetAdminPropertyRequest::class,
+        'GetAdminsPropertiesRequest' => \App\Http\Requests\Requests\Property\GetAdminsPropertiesRequest::class,
         'RejectPropertyRequest' => \App\Http\Requests\Requests\Property\RejectPropertyRequest::class,
         'ApprovePropertyRequest' => \App\Http\Requests\Requests\Property\ApprovePropertyRequest::class,
+        'GetAdminAgentRequest' => \App\Http\Requests\Requests\User\GetAdminAgentRequest::class,
+        'AdminLoginRequest' => \App\Http\Requests\Requests\Auth\AdminLoginRequest::class,
+        'VerifyPropertyRequest' => \App\Http\Requests\Requests\property\VerifyPropertyRequest::class,
+        'DeVerifyPropertyRequest' => \App\Http\Requests\Requests\property\DeVerifyPropertyRequest::class,
+        'DeActivePropertyRequest' => \App\Http\Requests\Requests\property\DeActivePropertyRequest::class,
+
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

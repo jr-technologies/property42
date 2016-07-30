@@ -18,8 +18,11 @@ use App\DB\Providers\SQL\Models\Property;
 use App\Events\Events\Property\PropertiesStatusChanged;
 
 
+use App\Events\Events\Property\PropertyDEVerified;
 use App\Events\Events\Property\PropertyStatusUpdated;
 
+use App\Events\Events\Property\PropertyVerified;
+use App\Events\Events\Property\UpdatePropertyTotalView;
 use App\Repositories\Interfaces\Repositories\PropertyTypeRepoInterface;
 use Illuminate\Support\Facades\Event;
 
@@ -45,7 +48,15 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         //Event::fire(new PropertyCreated($property));
         return $propertyId;
     }
-
+    public function countSaleAndRendProperties()
+    {
+        return $this->factory->countSaleAndRendProperties();
+    }
+    public function IncrementViews($propertyId)
+    {
+        $this->factory->IncrementViews($propertyId);
+        Event::fire(new UpdatePropertyTotalView($this->factory->find($propertyId)));
+    }
     public function getById($id)
     {
         return $this->factory->find($id);
@@ -58,21 +69,42 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     public function restoreProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
-        $result = $this->factory->restoreProperty($property);
+        $result = $this->factory->update($property);
         Event::fire(new PropertyStatusUpdated($property));
         return $result;
     }
     public function rejectProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getRejectedStatusId();
-        $result = $this->factory->restoreProperty($property);
+        $result = $this->factory->update($property);
         Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
+    public function VerifyProperty(Property $property)
+    {
+        $property->isVerified = 1;
+        $result = $this->factory->update($property);
+        Event::fire(new PropertyVerified($property));
+        return $result;
+    }
+    public function deVerifyProperty(Property $property)
+    {
+        $property->isVerified = 0;
+        $result = $this->factory->update($property);
+        Event::fire(new PropertyDEVerified($property));
         return $result;
     }
     public function approveProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
-        $result = $this->factory->restoreProperty($property);
+        $result = $this->factory->update($property);
+        Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
+    public function deActiveProperty(Property $property)
+    {
+        $property->statusId=(new \PropertyStatusTableSeeder())->getPendingStatusId();
+        $result = $this->factory->update($property);
         Event::fire(new PropertyStatusUpdated($property));
         return $result;
     }
@@ -130,5 +162,8 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->favouriteFactory->store($addToFavourite);
     }
-
+    public function userPropertiesState($userId)
+    {
+        return $this->factory->userPropertiesState($userId);
+    }
 }

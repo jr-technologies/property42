@@ -34,4 +34,5 @@ class AddSocietyRequest extends Request implements RequestInterface
         $society->cityId = $this->get('cityId');
         return $society;
     }
+
 }

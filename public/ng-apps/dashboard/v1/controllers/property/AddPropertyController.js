@@ -53,7 +53,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.types = $rootScope.resources.propertyTypes;
     $scope.subTypes = $rootScope.resources.propertySubTypes;
     $scope.blocks = [];
-    $scope.societies = $rootScope.resources.societies;
+    $scope.societies = [];
     $scope.subTypeAssignedFeatures = [];
     $scope.highPriorityFeatures = [];
     $scope.features = [];
@@ -63,8 +63,23 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
+    $scope.searchSocieties = function ($select) {
+        $scope.societies = [];
+        if($select.search.length < 2){
+            $scope.societies = [];
+            return;
+        }
+        return $http.get(apiPath+'societies/search', {
+            params: {
+                keyword: $select.search
+            }
+        }).then(function(response){
+            $scope.societies = response.data;
+        });
+    };
     $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;
+        $scope.temp.block = {};
         getBlocks().then(function (blocks) {
             $scope.blocks = blocks;
         });
@@ -81,10 +96,10 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           propertyPurpose: 0,
           propertyType :0,
           propertySubType : 0,
-          society:0,
-          block: 0,
-          price: null,
-          landArea: null,
+          society:'',
+          block: '',
+          price: undefined,
+          landArea: undefined,
           landUnit: 0,
           propertyTitle: '',
           propertyDescription: '',
@@ -179,6 +194,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
             $scope.propertySaved = true;
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             resetForm();
+            console.log($scope.form.data);
         }, function (response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
             $rootScope.please_wait_class = '';
@@ -191,6 +207,8 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
 
     var resetForm = function () {
         $scope.form.data = mapFormData();
+        $scope.temp.society = "";
+        $scope.temp.block = "";
         $('.image-loaded').removeClass('image-loaded');
         $('file-uploader').find('img').attr('src', '#');
     };

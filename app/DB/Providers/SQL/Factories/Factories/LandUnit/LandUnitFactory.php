@@ -30,7 +30,7 @@ class LandUnitFactory extends SQLFactory implements SQLFactoriesInterface
     }
     function all()
     {
-       return $this->mapCollection($this->tableGateway->all());
+       return $this->mapCollection($this->tableGateway->getSortedLandUnits());
     }
     public function update(LandUnit $landUnit)
     {

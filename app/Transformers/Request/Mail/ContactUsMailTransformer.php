@@ -18,6 +18,8 @@ class ContactUsMailTransformer extends RequestTransformer
     {
         return [
             'email'=>$this->request->input('email'),
+            'name'=>$this->request->input('name'),
+            'subject'=>$this->request->input('subject'),
             'message'=>$this->request->input('message'),
         ];
     }

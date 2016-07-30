@@ -46,7 +46,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->price =  $this->get('price');
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
-        $property->statusId = $this->statusSeeder->getActiveStatusId(); /* its temporary */
+        $property->statusId = $this->statusSeeder->getPendingStatusId(); /* its temporary */
 
         $property->contactPerson =  $this->get('contactPerson');
         $property->phone =  $this->get('phone');
@@ -54,6 +54,8 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->email =  $this->get('email');
         $property->fax =  $this->get('fax');
         $property->ownerId = $this->get('ownerId');
+        $property->totalViews = rand(0,170);
+        $property->isVerified = 0;
         $property->createdBy = $this->user()->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');

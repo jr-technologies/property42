@@ -8,6 +8,8 @@ namespace App\DB\Providers\SQL\Factories\Factories\Society\Gateways;
  */
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
+use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
+use App\DB\Providers\SQL\Factories\Factories\SocietyFiles\SocietyFilesFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 
@@ -38,6 +40,22 @@ class SocietyQueryBuilder extends QueryBuilder
             ->leftjoin($agencyTable ,$agencySociety.'.agency_id','=',$agencyTable.'.id')
             ->select($this->table.'.*')
             ->where($agencyTable.'.agency','=',$agencyName)
+            ->get();
+    }
+    public function getImportantSocieties()
+    {
+        return  DB::table($this->table)
+            ->select($this->table.'.*')
+            ->where($this->table.'.priority','>',0)
+            ->orderBy($this->table.'.priority', 'asc')
+            ->get();
+    }
+    public function getSocietiesForFile()
+    {
+        $societyFilesTable = (new SocietyFilesFactory())->getTable();
+        return  DB::table($societyFilesTable)
+            ->join($this->table,$societyFilesTable.'.society_id','=',$this->table.'.id')
+            ->select($this->table.'.*')
             ->get();
     }
 }

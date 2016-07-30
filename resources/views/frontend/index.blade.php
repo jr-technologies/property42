@@ -104,7 +104,6 @@
                         <li class="full">Price Range (Rs)</li>
                         <li class="priceArea">
                             <span>From:</span>
-
                             <div class="input-holder"><input type="number" name="price_from" class="PriceField priceInputFrom">
                                 <span class="price-Range detailedPriceFrom">Please enter the price</span>
                             </div>

@@ -23,26 +23,27 @@
             <nav id="nav">
                 <ul class="main-navigation">
                     <li>
-                        <a href="#">buy</a>
+                        <a href="#">Buy</a>
                         <ul class="dropDown">
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">plot</a></li>
-                            <li><a href="#">commerical</a></li>
+                            @foreach($globals['propertyTypes'] as $propertyType)
+                                <li><a href={{URL::to('search?purpose_id=1'.'&property_type_id='.$propertyType->id)}}>{{$propertyType->name }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li>
-                        <a href="#">rent</a>
+                        <a href="#">Rent</a>
                         <ul class="dropDown">
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">commerical</a></li>
+                            @foreach($globals['propertyTypes'] as $propertyType)
+                                <li><a href={{URL::to('search?purpose_id=2'.'&property_type_id='.$propertyType->id)}}>{{$propertyType->name }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="agent-link"><a href="{{URL::to('agents')}}">agents</a></li>
-                    <li class="hidden-desktop"><a href="#">Add a property</a></li>
+                    <li class="hidden-desktop"><a href="{{URL::to('add-property') }}">Add a property</a></li>
                 </ul>
             </nav>
             <a class="nav-opener"><span></span></a>
-            <a href="{{ URL::to('dashboard#/home/properties/add') }}" class="btn-header hidden-xs"><span
+            <a href="{{ URL::to('add-property') }}" class="btn-header hidden-xs"><span
                         class="icon-plus"></span>Add a property</a>
             @if(session()->get('authUser') ==null)
                 <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>
