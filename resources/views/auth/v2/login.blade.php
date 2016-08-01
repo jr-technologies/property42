@@ -45,7 +45,7 @@
    <main id="main" role="main">
         <div class="page-holder">
             <div class="login-page container">
-                @if(\Session::has('success'))<span class="global-success">{{ \Session::get('message') }}</span>@endif
+                @if(\Session::has('success'))<span class="global-success">{{ \Session::get('success') }}</span>@endif
                     @if(\Session::has('errors'))
                         <span class="global-error"> @foreach(\Session::get('errors') as $error) {{$error}}<br> @endforeach
                     </span>

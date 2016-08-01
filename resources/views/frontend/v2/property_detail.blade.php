@@ -43,16 +43,20 @@
                 <div class="container">
                     <div class="detail-holder">
                         <div class="frame">
+
                             <div class="property-picture-holder">
                                 <h1><span> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
                                         {{$response['data']['property']->type->subType->name.'
                                          '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->block->name.' Block'.
                                         ' '.$response['data']['property']->location->society->name}}</span></h1>
-
+                                <?php
+                                $user = (new \App\Libs\Helpers\AuthHelper())->user();
+                                ?>
                                 <div class="propertyImage-slider carousal">
+                                    <a href="#"  property_id="{{$response['data']['property']->id}}" key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite @if($response['data']['property']->isVerified != 0) added @endif"></a>
+                                    <span class="premiumProperty text-upparcase">Premium</span>
                                     <div class="mask">
                                         <?php
-                                        use App\Libs\Helpers\AuthHelper;
                                         $images = [];
                                         foreach ($response['data']['property']->documents as $document) {
                                             if ($document->type == 'image') {
