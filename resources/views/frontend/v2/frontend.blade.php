@@ -11,7 +11,7 @@
 <body>
 <div id="wrapper">
     <div class="main-bg-holder {{(Route::getCurrentRoute()->getPath() !='/')?'byDefault-fixed':''}}">
-        <img src="{{url('/')}}/web-apps/frontend/v2/images/bg.jpg" alt="image description" class="main-bg">
+        
         <header id="header">
             <div class="top-bar">
                 <ul class="social-icons">
