@@ -7,6 +7,7 @@
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/main.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,300,500,600,700,800,400italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -104,6 +105,10 @@
             </div>
         @endif
         <nav id="nav">
+            <form class="searchByID">
+                <input type="search" placeholder="Search by ID">
+                <button type="submit"><span class="icon-search"></span></button>
+            </form>
             <div class="nav-holder">
                 <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
                 <ul class="main-navigation text-upparcase">
@@ -144,8 +149,6 @@
     <footer id="footer">
         <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
     </footer>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" defer></script>
-<script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-1.11.2.min.js" defer><\/script>')</script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/fixed-block.js" type="text/javascript" defer></script>
@@ -157,7 +160,8 @@
 <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.slideshow.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/placeholder.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/lightBox.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-main.js" type="text/javascript" defer></script>
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-main.js" type="text/javascript" defer></script>
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script>
 </body>
 </html>
