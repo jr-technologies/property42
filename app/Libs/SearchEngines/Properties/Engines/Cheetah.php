@@ -13,17 +13,11 @@ use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyFeatureValue\PropertyFeatureValueFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
-use App\DB\Providers\SQL\Factories\Factories\PropertyPurpose\PropertyPurposeFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyType\PropertyTypeFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
-use App\DB\Providers\SQL\Models\LandUnit;
 use App\Libs\Helpers\LandArea;
-use App\Libs\Json\Creators\Creators\Property\Land\PropertyLandUnitJsonCreator;
-use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Libs\SearchEngines\Properties\PropertiesSearchEngineInterface;
-use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
-use App\Repositories\Repositories\Sql\LandUnitsRepository;
 use Illuminate\Support\Facades\DB;
 
 class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineInterface
