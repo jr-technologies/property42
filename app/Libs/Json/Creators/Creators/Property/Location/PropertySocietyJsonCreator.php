@@ -26,6 +26,7 @@ class PropertySocietyJsonCreator extends JsonCreator implements JsonCreatorInter
     {
         $this->prototype->id = $this->model->id;
         $this->prototype->name = $this->model->name;
+        $this->prototype->path = $this->model->path;
         return $this->prototype;
     }
 }

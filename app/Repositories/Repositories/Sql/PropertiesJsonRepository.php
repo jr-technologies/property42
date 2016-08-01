@@ -34,9 +34,9 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     {
         return $this->factory->search($instructions);
     }
-    public function getPendingProperties()
+    public function getAllProperties()
     {
-        return $this->factory->getPendingProperties();
+        return $this->factory->getAllProperties();
     }
     public function find($id)
     {

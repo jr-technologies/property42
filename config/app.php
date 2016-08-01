@@ -240,6 +240,7 @@ return [
         'MailToAgentRequest' => \App\Http\Requests\Requests\Mail\MailToAgentRequest::class,
         'ContactUSMailRequest' => \App\Http\Requests\Requests\Mail\ContactUSMailRequest::class,
         'MailFeedbackUsRequest' => \App\Http\Requests\Requests\Mail\MailFeedbackUsRequest::class,
+        'WantedMailRequest' => \App\Http\Requests\Requests\Mail\WantedMailRequest::class,
 
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
@@ -340,6 +341,10 @@ return [
         'GetAdminAgentRequest' => \App\Http\Requests\Requests\User\GetAdminAgentRequest::class,
         'AdminLoginRequest' => \App\Http\Requests\Requests\Auth\AdminLoginRequest::class,
         'VerifyPropertyRequest' => \App\Http\Requests\Requests\property\VerifyPropertyRequest::class,
+        'DeVerifyPropertyRequest' => \App\Http\Requests\Requests\property\DeVerifyPropertyRequest::class,
+        'DeActivePropertyRequest' => \App\Http\Requests\Requests\property\DeActivePropertyRequest::class,
+
+
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,
         'UpdateFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest::class,

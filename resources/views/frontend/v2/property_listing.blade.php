@@ -3,7 +3,7 @@
     <div class="page-holder">
         <div class="listing-page">
             <div class="container">
-                <a class="aside-opener-filters">Search Filters<span class="button"><b></b></span></a>
+                <a class="aside-opener-filters">More Search Filters (Land, Area, ...)<span class="button"><b></b></span></a>
                 <aside id="aside" class="hideOnMobile">
                     <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                         <ul class="filters-links text-upparcase">
@@ -13,7 +13,9 @@
 											<span class="fake-select">
 												<select name="land_unit_id" class="filter-form-input">
                                                     @foreach($response['data']['landUnits'] as $landUnit)
-                                                        <option value="{{$landUnit->id}}" @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected @elseif($response['data']['oldValues']['landUnitId'] == "" && $landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
+                                                        <option value="{{$landUnit->id}}"
+                                                                @if($response['data']['oldValues']['landUnitId'] == $landUnit->id) selected
+                                                                @elseif($response['data']['oldValues']['landUnitId'] == "" && $landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
                                                     @endforeach
                                                 </select>
 											</span>

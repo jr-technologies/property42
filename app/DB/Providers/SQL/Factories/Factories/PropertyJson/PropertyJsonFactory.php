@@ -49,7 +49,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->tableGateway->getTable();
     }
-    public function getPendingProperties()
+    public function getAllProperties()
     {
         return $this->mapCollection($this->tableGateway->all());
     }

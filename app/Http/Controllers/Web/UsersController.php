@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\User\SearchUsersRequest;
 use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Helpers\Helper;
+use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
@@ -27,10 +28,12 @@ class UsersController extends Controller
     public $users = null;
     public $societies = null;
     public $rand= "";
+    public $properties = "";
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
         $this->response = $webResponse;
         $this->users = (new UsersRepoProvider())->repo();
+        $this->properties = (new PropertiesRepoProvider())->repo();
         $this->societies = (new SocietiesRepoProvider())->repo();
         $this->userTransformer = $userTransformer;
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
@@ -66,7 +69,7 @@ class UsersController extends Controller
     {
         $searchedAgents = $this->usersJsonRepo->searchTrustedAgents($request->all());
         $totalAgentsFound = \Session::get('totalAgentsFound');
-        return $this->response->setView('frontend.agent-listing')->respond(['data' => [
+        return $this->response->setView('frontend.v2.agent_listing')->respond(['data' => [
             'agents' => $this->releaseUsersAgenciesLogo($searchedAgents),
             'allAgents' => $this->usersJsonRepo->getAllTrustedAgents(),
             'societies'=>$this->societies->all(),
@@ -77,8 +80,10 @@ class UsersController extends Controller
 
     public function getTrustedAgent(GetAgentRequest $request)
     {
-        return $this->response->setView('frontend.agent-profile')->respond(['data' => [
-            'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId')))
+        $userPropertiesState = $this->properties->userPropertiesState($request->get('userId'));
+        return $this->response->setView('frontend.v2.agent-profile')->respond(['data' => [
+            'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId'))),
+            'userPropertiesState' => $userPropertiesState
         ]]);
     }
     public function makeTrustedAgent(TrustedAgentRequest $request)

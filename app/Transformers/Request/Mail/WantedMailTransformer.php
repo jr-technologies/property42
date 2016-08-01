@@ -12,16 +12,15 @@ namespace App\Transformers\Request\Mail;
 use App\Transformers\Request\RequestTransformer;
 
 
-class MailToAgentTransformer extends RequestTransformer
+class WantedMailTransformer extends RequestTransformer
 {
     public function transform()
     {
         return [
-            'email'=>$this->request->input('email'),
             'name'=>$this->request->input('name'),
+            'email'=>$this->request->input('email'),
             'phone'=>$this->request->input('phone'),
-            'subject'=>$this->request->input('subject'),
-            'message'=>$this->request->input('message'),
+            'requirements'=>$this->request->input('requirements'),
         ];
     }
 }

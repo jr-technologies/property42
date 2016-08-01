@@ -25,7 +25,18 @@
                 <div class="right-sideTop text-right">
                     <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;</a>
                     <ul class="loginRegister text-upparcase text-left">
+                        @if(session()->get('authUser') ==null)
                         <li><a href="{{ URL::to('/login') }}"><span class="icon-avatar hidden"></span><span class="hidden-xs">Login / Register</span></a></li>
+                        @else
+                            <li>
+                            <a><span class="icon-avatar"></span><span class="hidden-xs">{{str_limit(session()->get('authUser')->fName.' '.session()->get('authUser')->lName,13)}}</span></a>
+                            <ul class="dropDown">
+                                <li><a href="{{URL::to('dashboard#/home/profile')}}">MY PROFILE</a></li>
+                                <li><a href="{{URL::to('dashboard#/home/properties/all')}}">My Listing</a></li>
+                                <li><a href="{{URL::to('/logout')}}"><span class="icon-login"></span>logout</a></li>
+                            </ul>
+                        </li>
+                        @endif
                         <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List your property</span><span class="icon-plus-square"></span></a></li>
                     </ul>
                 </div>
@@ -163,5 +174,6 @@
     <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-main.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script>
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 </body>
 </html>

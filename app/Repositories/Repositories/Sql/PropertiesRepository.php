@@ -18,6 +18,7 @@ use App\DB\Providers\SQL\Models\Property;
 use App\Events\Events\Property\PropertiesStatusChanged;
 
 
+use App\Events\Events\Property\PropertyDEVerified;
 use App\Events\Events\Property\PropertyStatusUpdated;
 
 use App\Events\Events\Property\PropertyVerified;
@@ -86,10 +87,24 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         Event::fire(new PropertyVerified($property));
         return $result;
     }
+    public function deVerifyProperty(Property $property)
+    {
+        $property->isVerified = 0;
+        $result = $this->factory->update($property);
+        Event::fire(new PropertyDEVerified($property));
+        return $result;
+    }
     public function approveProperty(Property $property)
     {
         $property->statusId=(new \PropertyStatusTableSeeder())->getActiveStatusId();
-        $result = $this->factory->restoreProperty($property);
+        $result = $this->factory->update($property);
+        Event::fire(new PropertyStatusUpdated($property));
+        return $result;
+    }
+    public function deActiveProperty(Property $property)
+    {
+        $property->statusId=(new \PropertyStatusTableSeeder())->getPendingStatusId();
+        $result = $this->factory->update($property);
         Event::fire(new PropertyStatusUpdated($property));
         return $result;
     }
@@ -147,5 +162,8 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
     {
         return $this->favouriteFactory->store($addToFavourite);
     }
-
+    public function userPropertiesState($userId)
+    {
+        return $this->factory->userPropertiesState($userId);
+    }
 }

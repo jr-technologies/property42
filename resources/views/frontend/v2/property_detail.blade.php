@@ -6,76 +6,87 @@
                 <div class="container">
                     <div class="detail-holder">
                         <div class="frame">
+
                             <div class="property-picture-holder">
                                 <h1><span> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
                                         {{$response['data']['property']->type->subType->name.'
                                          '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->block->name.' Block'.
                                         ' '.$response['data']['property']->location->society->name}}</span></h1>
+                                <?php
+                                $user = (new \App\Libs\Helpers\AuthHelper())->user();
+                                ?>
                                 <div class="propertyImage-slider carousal">
+                                    <a href="#"  property_id="{{$response['data']['property']->id}}" key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite @if($response['data']['property']->isVerified != 0) added @endif"></a>
+                                    <span class="premiumProperty text-upparcase">Premium</span>
                                     <div class="mask">
                                         <?php
-                                        use App\Libs\Helpers\AuthHelper;
                                         $images = [];
-                                        foreach ($response['data']['property']->documents as $document)
-                                        {
-                                            if ($document->type == 'image')
-                                            {
+                                        foreach ($response['data']['property']->documents as $document) {
+                                            if ($document->type == 'image') {
                                                 $images[] = url('/') . '/temp/' . $document->path;
                                             }
                                         }
-                                        if(sizeof($images) == 0)
-                                        {
+                                        if (sizeof($images) == 0) {
                                             $images[] = url('/') . "/assets/imgs/no.png";
                                         }
                                         ?>
-                                            <div class="slideset">
+                                        <div class="slideset">
+                                            @foreach($images as $image)
+                                                <div class="slide">
+                                                    <a href="{{$image}}" rel="lighbox" class="lightbox"><img
+                                                                src="{{$image}}" alt="image description"></a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <span id="propertyImageCurrentSlide" class="current-num"></span>
+                                    </div>
+                                    <a href="#" class="propertyImage-slider-btn-prev"><span
+                                                class="icon-left-arrow"></span></a>
+                                    <a href="#" class="propertyImage-slider-btn-next"><span
+                                                class="icon-right-arrow"></span></a>
+
+                                    <div class="propertyImage-pagination ">
+                                        <div class="propertyImage-mask">
+                                            <div class="propertyImage-slideset">
                                                 @foreach($images as $image)
-                                                    <div class="slide">
-                                                        <a href="{{$image}}" rel="lighbox" class="lightbox"><img src="{{$image}}"
-                                                                                                                 alt="image description"></a>
+                                                    <div class="propertyImage-slide "><a href="#"><img src="{{$image}}"
+                                                                                                       alt="image description"></a>
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            <span id="propertyImageCurrentSlide" class="current-num"></span>
-                                    </div>
-                                    <a href="#" class="propertyImage-slider-btn-prev"><span class="icon-left-arrow"></span></a>
-                                    <a href="#" class="propertyImage-slider-btn-next"><span class="icon-right-arrow"></span></a>
-                                    <div class="propertyImage-pagination carousal">
-                                        <div class="propertyImage-mask mask">
-                                            <div class="propertyImage-slideset slideset">
-                                                @foreach($images as $image)
-                                                    <div class="propertyImage-slide slide"><a href="#"><img src="{{$image}}" alt="image description"></a></div>
-                                                @endforeach
-                                              </div>
                                             <span class="paginationCurrent-num-1"></span>
                                         </div>
-                                        <a href="#" class="propertyImage-pagination-btn-prev-1"><span class="icon-left-arrow"></span></a>
-                                        <a href="#" class="propertyImage-pagination-btn-next-1"><span class="icon-right-arrow"></span></a>
+                                        <a href="#" class="propertyImage-pagination-btn-prev-1"><span
+                                                    class="icon-left-arrow"></span></a>
+                                        <a href="#" class="propertyImage-pagination-btn-next-1"><span
+                                                    class="icon-right-arrow"></span></a>
                                     </div>
                                 </div>
-                                <span class="views">View <span class="number">{{$response['data']['property']->totalViews}}</span></span>
+                                <span class="views">View <span
+                                            class="number">{{$response['data']['property']->totalViews}}</span></span>
                                 <ul class="star-rating">
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
-                                    <li><a href="#">star</a></li>
+                                    <li><a href="#" class="one-star">star</a></li>
+                                    <li><a href="#" class="two-stars">star</a></li>
+                                    <li><a href="#" class="three-stars">star</a></li>
+                                    <li><a href="#" class="four-stars">star</a></li>
+                                    <li><a href="#" class="five-stars">star</a></li>
                                 </ul>
                             </div>
                             <?php
                             $images = url('/') . "/assets/imgs/no.png";
-                            if ($response['data']['property']->owner->agency != null)
-                            {
-                                if ($response['data']['property']->owner->agency->logo != null)
-                                {
+                            if ($response['data']['property']->owner->agency != null) {
+                                if ($response['data']['property']->owner->agency->logo != null) {
                                     $images = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
                                 }
                             }
+
                             ?>
                             <div class="info-blockProperty">
-                                <strong class="price"><span>Rs</span>{{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}</strong>
+                                <strong class="price"><span>Rs</span>{{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}
+                                </strong>
                                 @if ($response['data']['property']->owner->agency != null)
-                                <div class="pictureHolder"><a href="#"><img src="{{$images}}" alt="image description"></a></div>
+                                    <div class="pictureHolder"><a href="#"><img src="{{$images}}"
+                                                                                alt="image description"></a></div>
                                 @endif
                                 @if($response['data']['property']->owner->agency !=null)
                                     <span class="heading">{{$response['data']['property']->owner->agency->name}}</span>
@@ -83,21 +94,71 @@
                                 <div class="layout">
                                     <div class="pull-left">
                                         @if(isset($response['data']['propertyOwner']->trustedAgent) && $response['data']['propertyOwner']->trustedAgent == 1)
-                                        <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Trusted</span>
+                                            <span class="trusted-agent"><span class="icon-trusted"><span
+                                                            class="path1"></span><span class="path2"></span><span
+                                                            class="path3"></span><span class="path4"></span><span
+                                                            class="path5"></span><span class="path6"></span><span
+                                                            class="path7"></span><span class="path8"></span></span>Trusted</span>
                                         @endif
-                                            <ul class="star-rating">
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
-                                            <li><a href="#">star</a></li>
+                                        <ul class="star-rating">
+                                            <li><a href="#" class="one-star">star</a></li>
+                                            <li><a href="#" class="two-stars">star</a></li>
+                                            <li><a href="#" class="three-stars">star</a></li>
+                                            <li><a href="#" class="four-stars">star</a></li>
+                                            <li><a href="#" class="five-stars">star</a></li>
                                         </ul>
                                     </div>
+
                                     <div class="pull-right">
                                         <ul class="quick-links">
-                                            <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="03154379760"><span class="icon-phone"></span></a></li>
-                                            <li><a href="#"><span class="icon-empty-envelop"></span></a></li>
+                                            <li><a href="#callPopup" class="lightbox call-agent-btn"
+                                                   data-tel="03154379760"><span class="icon-phone"></span></a></li>
+                                            <li><a href="#sendEmail-popup" class="lightbox"><span
+                                                            class="icon-empty-envelop"></span></a></li>
                                         </ul>
+                                    </div>
+                                </div>
+                                <div class="popup-holder">
+                                    <div id="callPopup" class="lightbox call-agent generic-lightbox">
+                                        <span class="lighbox-heading">Phone Number</span>
+
+                                        <p></p>
+                                        <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on Property42.pk</span>
+                                    </div>
+                                    <div id="sendEmail-popup" class="lightbox generic-lightbox">
+                                        <span class="lighbox-heading">Send Email</span>
+                                        {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                                        <div class="field-holder">
+                                            <label for="name">Name</label>
+
+                                            <div class="input-holder"><input type="text" id="name" name="name"></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="email">Email</label>
+
+                                            <div class="input-holder"><input type="email" id="email" name="email"
+                                                                             required></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="phone">phone</label>
+
+                                            <div class="input-holder"><input type="tel" id="phone" name="phone"
+                                                                             required></div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="subject">subject</label>
+
+                                            <div class="input-holder"><input type="text" id="subject" name="subject">
+                                            </div>
+                                        </div>
+                                        <div class="field-holder">
+                                            <label for="message">message</label>
+
+                                            <div class="input-holder"><textarea id="message" name="message"
+                                                                                required></textarea></div>
+                                        </div>
+                                        <button type="submit">SEND</button>
+                                        {{Form::close()}}
                                     </div>
                                 </div>
                                 <span class="small-heading">Summary</span>
@@ -136,14 +197,20 @@
                                         <span class="timeOfAddedProperty">Property Added
                                             <?php
                                             $startTimeStamp = strtotime(date("Y/m/d"));
-                                            $myDate =substr($response['data']['property']->createdAt, 0, 10);
+                                            $myDate = substr($response['data']['property']->createdAt, 0, 10);
                                             $endTimeStamp = strtotime($myDate);
                                             $timeDiff = abs($endTimeStamp - $startTimeStamp);
-                                            $numberDays = $timeDiff/86400;  // 86400 seconds in one day
+                                            $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
                                             // and you might want to convert to integer
                                             $numberDays = intval($numberDays);
                                             $days = "";
-                                            if($numberDays == 0){$days = 'today';}elseif($numberDays == 1){ $days= 'day ago';}else{$days='days ago';};
+                                            if ($numberDays == 0) {
+                                                $days = 'today';
+                                            } elseif ($numberDays == 1) {
+                                                $days = 'day ago';
+                                            } else {
+                                                $days = 'days ago';
+                                            };
                                             ?>
                                             <b>@if($numberDays !=0){{$numberDays}} @endif {{$days}}</b></span>
 
@@ -152,8 +219,8 @@
                                         <?php
                                         $heightPriorityFeatures = [];
                                         foreach ($response['data']['property']->features as $section => $features) {
-                                            foreach($features as $feature) {
-                                                if($feature->priority > 0) {
+                                            foreach ($features as $feature) {
+                                                if ($feature->priority > 0) {
                                                     $heightPriorityFeatures[] = $feature;
                                                 }
                                             }
@@ -161,10 +228,10 @@
                                         ?>
                                         <ul class="public-ui-features text-capital">
                                             @foreach($heightPriorityFeatures as $heightPriorityFeature)
-                                            <li>
-                                                <span><b>{{$heightPriorityFeature->name}}</b></span>
-                                                <strong>{{$heightPriorityFeature->value}}</strong>
-                                            </li>
+                                                <li>
+                                                    <span><b>{{$heightPriorityFeature->name}}</b></span>
+                                                    <strong>{{$heightPriorityFeature->value}}</strong>
+                                                </li>
                                             @endforeach
 
                                         </ul>
@@ -186,20 +253,21 @@
                                 @endif
                                 <div class="feature">
                                     @foreach($response['data']['property']->features as $sectionName=>$features)
-                                    <span class="small-heading">{{$sectionName}}</span>
-                                    <ul class="feature-list">
-                                        @foreach($features as $feature)
-                                            <li>
-                                                <span class="text-feature"><span class="icon-bed"></span>{{$feature->name}}</span>
-                                                @if($feature->htmlStructure->name =='checkbox')
-                                                    <span class="stataus">yes</span>
-                                                @else
-                                                    <span class="stataus">{{$feature->value}}</span>
-                                                @endif
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                   @endforeach
+                                        <span class="small-heading">{{$sectionName}}</span>
+                                        <ul class="feature-list">
+                                            @foreach($features as $feature)
+                                                <li>
+                                                    <span class="text-feature"><span
+                                                                class="icon-bed"></span>{{$feature->name}}</span>
+                                                    @if($feature->htmlStructure->name =='checkbox')
+                                                        <span class="stataus">yes</span>
+                                                    @else
+                                                        <span class="stataus">{{$feature->value}}</span>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

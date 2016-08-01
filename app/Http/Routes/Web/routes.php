@@ -78,6 +78,26 @@ Route::post('admin/property/verify',
     ]
 );
 
+Route::post('admin/property/deActive',
+    [
+        'middleware'=>
+            [
+                'webValidate:deActivePropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@deActiveProperty'
+    ]
+);
+
+Route::post('admin/property/deVerify',
+    [
+        'middleware'=>
+            [
+                'webValidate:deVerifyPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@deVerifyProperty'
+    ]
+);
+
 Route::post('admin/property/approve',
     [
         'middleware'=>
@@ -340,7 +360,14 @@ Route::post('mail-to-agent',
     ]);
 
 
-
+Route::post('property/wanted',
+    [
+        'middleware'=>
+            [
+                'webValidate:wantedMailRequest'
+            ],
+        'uses'=>'MailController@propertyWanted'
+    ]);
 
 Route::post('contact_us',
     [

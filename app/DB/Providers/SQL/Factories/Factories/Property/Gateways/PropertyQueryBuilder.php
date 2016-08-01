@@ -84,4 +84,19 @@ class PropertyQueryBuilder extends QueryBuilder
             ->get();
 
     }
+
+    public function userPropertiesState($userId)
+    {
+        $purposeTable = (new PropertyPurposeFactory())->getTable();
+        $propertySubtypeTable = (new PropertySubTypeFactory())->getTable();
+
+        return DB::table($this->table)
+            ->leftjoin($purposeTable,$this->table.'.purpose_id','=',$purposeTable.'.id')
+            ->leftjoin($propertySubtypeTable,$this->table.'.property_sub_type_id','=',$propertySubtypeTable.'.id')
+            ->select(DB::raw('count('.$this->table.'.id) as  totalProperties, purpose_id as purposeId'),$purposeTable.'.display_name as purpose',$propertySubtypeTable.'.sub_type as subType')
+            ->where($this->table.'.owner_id','=',$userId)
+            ->groupBy($this->table.'.purpose_id')
+            ->groupBy($this->table.'.property_sub_type_id')
+            ->get();
+    }
 }

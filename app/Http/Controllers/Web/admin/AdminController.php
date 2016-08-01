@@ -39,7 +39,7 @@ class AdminController extends Controller
     }
     public function getProperties(GetAdminsPropertiesRequest $request)
     {
-        $properties = $this->properties->getPendingProperties();
+        $properties = $this->properties->getAllProperties();
         return $this->response->setView('admin.pending-properties')->respond(['data'=>[
             'properties'=>$properties,
             'propertiesCount'=>count($properties)
@@ -68,11 +68,21 @@ class AdminController extends Controller
         $this->propertiesRepo->VerifyProperty($request->getPropertyModel());
         return redirect('get/property');
     }
+    public function deVerifyProperty(VerifyPropertyRequest $request)
+    {
+        $this->propertiesRepo->deVerifyProperty($request->getPropertyModel());
+        return redirect('get/property');
+    }
 
     public function approveProperty(ApprovePropertyRequest $request)
     {
        $this->propertiesRepo->approveProperty($request->getPropertyModel());
        return redirect('get/property');
+    }
+    public function deActiveProperty(ApprovePropertyRequest $request)
+    {
+        $this->propertiesRepo->deActiveProperty($request->getPropertyModel());
+        return redirect('get/property');
     }
      public function getAgents()
      {

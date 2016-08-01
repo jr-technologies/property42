@@ -88,7 +88,13 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->mapPropertyCompleteLocation($this->tableGateway->getCompleteLocation($propertyId));
     }
-
+    public function userPropertiesState($userId)
+    {
+        $records = $this->tableGateway->userPropertiesState($userId);
+        $collection  = collect($records);
+        $result = $collection->groupBy('purpose');
+        return $result->toArray();
+    }
     public function favourites($userId)
     {
         return $this->mapCollection($this->tableGateway->getFavourites($userId));
