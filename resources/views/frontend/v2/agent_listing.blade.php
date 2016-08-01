@@ -46,7 +46,7 @@
                         {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'filter-form')) }}
                          <ul class="filters-links text-upparcase">
                                <li class="active">
-                                    <a class="filters-links-opener">LOCATION / SOCITY</a>
+                                    <a class="filters-links-opener">Search Agent</a>
                                     <div class="slide">
                                         <ul class="filterChecks">
                                             <li>
@@ -69,11 +69,12 @@
                                                 </select>
 
                                             </li>
+                                            <input class="btn-default" type="submit" value="Search Agent">
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
-                        <input type="submit" value="Search Agent">
+
                         {{Form::close()}}
                     </aside>
                     <section id="content">
@@ -99,13 +100,11 @@
                                         <a href="{{ URL::to('agent?agent_id='.$agent->id) }}">
                                         <img src="{{$image}}" alt="image description">
                                             </a>
-                                        {{--<a href="#" class="add-to-favorite added"></a>--}}
-                                        {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
                                     </div>
                                     <div class="caption text-left">
                                         <div class="layout">
                                             <h1>{{$agent->agencies[0]->name}}</h1>
-                                            <p>{{str_limit($agent->agencies[0]->description,100)}}</p>
+                                            <p>{{str_limit($agent->agencies[0]->description,67)}}</p>
                                         </div>
                                         <div class="layout">
                                             @if($agent->trustedAgent ==1)

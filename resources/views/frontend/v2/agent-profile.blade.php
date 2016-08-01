@@ -161,6 +161,7 @@
                             <span class="small-heading full-width">Agent Overview</span>
                             <p>{{$response['data']['agent']->agencies[0]->description}}</p>
                         </div>
+                        @if($response['data']['userPropertiesState'] !=null)
                         <div class="extra-feature-section">
                             <span class="small-heading">Properties LISTING</span>
                             <div class="layout">
@@ -169,13 +170,14 @@
                                     <span class="small-heading">{{$key}}</span>
                                     <ul class="list">
                                         @foreach($propertySubTypes as $propertySubType)
-                                        <li><span><span class="icon-folder"></span>{{$propertySubType->subType}}</span><span>{{$propertySubType->totalProperties}}</span></li>
+                                        <li><span>{{$propertySubType->subType}}</span><span>{{$propertySubType->totalProperties}}</span></li>
                                         @endforeach
                                     </ul>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
+                            @endif
                     </div>
                 </div>
             </div>
