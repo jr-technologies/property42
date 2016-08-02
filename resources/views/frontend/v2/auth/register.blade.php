@@ -1,5 +1,6 @@
 @extends('frontend.v2.frontend')
 @section('content')
+
     <div class="registerNow container">
         <?php
             if(\Session::has('validationErrors')){
@@ -94,8 +95,8 @@
             <strong class="registerNow-heading smaller">
             <span>
                 Are you an Agent ? <b>No</b>
-                <label for="agent" class="agent-check">
-                    <input type="checkbox" class="hidden-checkfield agent-brokerCheckbox" name="agent" @if(old('agent') !="")checked @endif  id="agent">
+                <label for="agentCheck-field" class="agent-check">
+                    <input type="checkbox" class="hidden-checkfield agent-brokerCheckbox" name="agent" @if(old('agent') !="")checked @endif  id="agentCheck-field" checked>
                     <span class="fake-checkbox">
                         <span class="fake-button"></span>
                     </span>
