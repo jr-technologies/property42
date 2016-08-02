@@ -46,6 +46,8 @@ class PropertiesController extends Controller
     public $assignedFeaturesJson = null;
     public $propertiesRepo = null;
     public $userRepo = null;
+    public $status = null;
+
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
         $this->response = $webResponse;
@@ -61,6 +63,7 @@ class PropertiesController extends Controller
         $this->users = (new UsersJsonRepoProvider())->repo();
         $this->userRepo = (new UsersRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
+        $this->status = new \PropertyStatusTableSeeder();
     }
 
     public function addProperty(RouteToAddPropertyRequest $request)
@@ -116,18 +119,34 @@ class PropertiesController extends Controller
     }
     public function getById(GetPropertyRequest $request)
     {
-        $this->propertiesRepo->IncrementViews($request->get('propertyId'));
-        $loggedInUser = $request->user();
-        $property = $this->convertPropertyAreaToActualUnit($this->properties->getById($request->get('propertyId')));
-        $propertyOwner = $this->users->find($property->owner->id);
-        return $this->response->setView('frontend.v2.property_detail')->respond(['data'=>[
-            'isFavourite'=>($loggedInUser == null)?false:$this->favouriteFactory->isFavourite($request->get('propertyId'),$loggedInUser->id),
-            'property'=>$this->releaseAllPropertiesFiles([$property])[0],
-            'loggedInUser'=>$loggedInUser,
-            'user'=>$this->users->find($property->owner->id),
-            'propertyOwner'=>$propertyOwner,
-            'propertyId'=>$request->get('propertyId')
-        ]]);
+       try {
+           $property = $this->properties->getById($request->get('propertyId'));
+           if ($property->propertyStatus->id == ($this->status->getActiveStatusId()))
+           {
+               $this->propertiesRepo->IncrementViews($request->get('propertyId'));
+               $loggedInUser = $request->user();
+               $property = $this->convertPropertyAreaToActualUnit($property);
+               $propertyOwner = $this->users->find($property->owner->id);
+               return $this->response->setView('frontend.v2.property_detail')->respond(['data' => [
+                   'isFavourite' => ($loggedInUser == null) ? false : $this->favouriteFactory->isFavourite($request->get('propertyId'), $loggedInUser->id),
+                   'property' => $this->releaseAllPropertiesFiles([$property])[0],
+                   'loggedInUser' => $loggedInUser,
+                   'user' => $this->users->find($property->owner->id),
+                   'propertyOwner' => $propertyOwner,
+                   'propertyId' => $request->get('propertyId')
+               ]]);
+           }else {
+               return $this->response->setView('frontend.v2.No-result')->respond(['data' => [
+                   'propertyId' => $request->get('propertyId')
+               ]]);
+           }
+       }
+       catch(\Exception $e){
+           return $this->response->setView('frontend.v2.No-result')->respond(['data' => [
+               'propertyId' => $request->get('propertyId')
+           ]]);
+       }
+
     }
 
 

@@ -46,7 +46,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'societies.required' => 'Please Select atleast 1 society',
             'societies.societies_limit' => 'You can select only 3 Societies.',
             'companyEmail.required' => 'Company email is required',
-            'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 1000 X 1000 px'
+            'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 1000 X 1000 px',
+            'companyLogo.image_validation' => 'invalid Company Logo'
         ];
     }
 

@@ -6,7 +6,6 @@
                 <div class="container">
                     <div class="detail-holder">
                         <div class="frame">
-
                             <div class="property-picture-holder">
                                 <h1><span> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
                                         {{$response['data']['property']->type->subType->name.'
@@ -68,7 +67,7 @@
                                                     class="icon-right-arrow"></span></a>
                                     </div>
                                 </div>
-                                <span class="views">View <span
+                                <span class="views">Views <span
                                             class="number">{{$response['data']['property']->totalViews}}</span></span>
                                 <ul class="star-rating">
                                     <li><a href="#" class="one-star">star</a></li>
