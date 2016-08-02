@@ -117,7 +117,7 @@
         @endif
         <nav id="nav">
             {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
-            <input type="number" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
+            <input type="search" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
             <button type="submit"><span class="icon-search"></span></button>
             {{Form::close()}}
             <div class="nav-holder">

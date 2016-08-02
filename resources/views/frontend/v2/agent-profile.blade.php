@@ -82,10 +82,6 @@
                                         <span class="icon-old-phone"></span>
                                         <span class="text-tag"><a href="tel:{{$response['data']['agent']->phone}}">{{$response['data']['agent']->phone}}</a></span>
                                     </li>
-                                    <li>
-                                        <span class="icon-domain"></span>
-                                        <span class="text-tag"><a href="#">{{$response['data']['agent']->email}}</a></span>
-                                    </li>
                                 </ul>
                                 {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
                                 <span class="small-heading">Send email</span>
