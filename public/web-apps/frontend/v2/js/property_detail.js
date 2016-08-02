@@ -20,6 +20,9 @@ $(document).on('click','.add-to-favorite',function(){
             },
             success: function(response) {
          $('.add-to-favorite').closest('a').removeClass('added');
+      },
+            error: function () {
+         $('.popup-opener').closest('li').addClass('popup-holder');
       }
 
 

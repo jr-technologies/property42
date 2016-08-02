@@ -16,8 +16,14 @@
                                 $user = (new \App\Libs\Helpers\AuthHelper())->user();
                                 ?>
                                 <div class="propertyImage-slider carousal">
-                                    <a href="#"  property_id="{{$response['data']['property']->id}}" user_id="{{($user !=null)?$user->id:""}}" key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite @if($response['data']['isFavourite'] != 0) added @endif"></a>
+                                    <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$response['data']['property']->id}}" user_id="{{($user !=null)?$user->id:""}}" key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite {{($user == null)?'lightbox':''}}  @if($response['data']['isFavourite'] != 0) added @endif"></a>
                                     {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
+                                    <div class="popup-holder">
+                                        <div class="lightbox generic-lightbox" id="login-to-continue">
+                                            <p>Dear user ! You are not logged in Please <a href="{{url('/login')}}">Login</a></p>
+
+                                        </div>
+                                    </div>
                                     <div class="mask">
                                         <?php
                                         $images = [];
