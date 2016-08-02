@@ -10,8 +10,14 @@ $(document).ready(function() {
 		$('.propertyNotFound').removeClass('hidden');
 	}
 	$('.addPro-type:first').trigger('change');
-	$('.list-extraFeatures').slideUp();
+	$('.list-extraFeatures, .agent-information').slideUp();
 	$('.registration-form').find('.role-listing').hide();
+
+	if($('.agent-slide').length > 5){
+		$('.agent-societies').find('.btn-prev, .btn-next').css({
+			'display':'block'
+		});
+	}
 });
 
 // page init

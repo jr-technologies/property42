@@ -74,7 +74,7 @@
                 </div>
                 <div class="layout-holder otherRole">
                     <label for="address">Other Roles</label>
-                    <div class="input-holder">
+                    <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('userRoles')) error @endif">
                         <a class="role-opener">0 Selected</a>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('userRoles')) {{$validationErrors->first('userRoles')}} @endif</span>
                     </div>
