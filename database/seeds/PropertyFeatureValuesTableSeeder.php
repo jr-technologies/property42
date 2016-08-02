@@ -25,7 +25,7 @@ class PropertyFeatureValuesTableSeeder extends Seeder
                 $temp = [];
                 $temp['property_id'] = $property->id;
                 $temp['property_feature_id'] = $feature->id;
-                $temp['value'] = $feature->inputName;
+                $temp['value'] = rand(1,10);
                 $allProperties[] = $temp;
 
             }

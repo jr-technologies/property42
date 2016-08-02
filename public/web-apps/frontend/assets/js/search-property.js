@@ -74,48 +74,48 @@ $(document).on('change','.property_type',function(){
    }
 });
 
-$(document).on('click','.add-to-favs',function(){
-   var property_id = $(this).attr('property_id');
-   var key = $(this).attr('key');
-   $.ajax({
-      type: "POST",
-      url: apiPath.concat("favourite/property"),
-      data:{
-         propertyId:property_id
-      },
-      headers: {
-         Authorization: key
-      },
-      success: function(response) {
-         $('.add-to-favs').closest('a').addClass('added-to-favs');
-      },
-      error: function () {
-         $('.popup-opener').closest('li').addClass('popup-holder');
-      }
-   })
-});
-
-$(document).on('click','.remove-to-favs',function(){
-   var property_id = $(this).attr('property_id');
-   var user_id = $(this).attr('user_id');
-   var key = $(this).attr('key');
-   $.ajax({
-      type: "POST",
-      url: apiPath.concat("favourite/property/delete"),
-      data:{
-         propertyId:property_id,userId:user_id
-      },
-      headers: {
-         Authorization: key
-      },
-      success: function(response) {
-         $('.add-to-favs').closest('a').removeClass('added-to-favs');
-      },
-      error: function () {
-         $('.popup-opener').closest('li').removeClass('popup-holder');
-      }
-   })
-});
+//$(document).on('click','.add-to-favs',function(){
+//   var property_id = $(this).attr('property_id');
+//   var key = $(this).attr('key');
+//   $.ajax({
+//      type: "POST",
+//      url: apiPath.concat("favourite/property"),
+//      data:{
+//         propertyId:property_id
+//      },
+//      headers: {
+//         Authorization: key
+//      },
+//      success: function(response) {
+//         $('.add-to-favs').closest('a').addClass('added-to-favs');
+//      },
+//      error: function () {
+//         $('.popup-opener').closest('li').addClass('popup-holder');
+//      }
+//   })
+//});
+//
+//$(document).on('click','.remove-to-favs',function(){
+//   var property_id = $(this).attr('property_id');
+//   var user_id = $(this).attr('user_id');
+//   var key = $(this).attr('key');
+//   $.ajax({
+//      type: "POST",
+//      url: apiPath.concat("favourite/property/delete"),
+//      data:{
+//         propertyId:property_id,userId:user_id
+//      },
+//      headers: {
+//         Authorization: key
+//      },
+//      success: function(response) {
+//         $('.add-to-favs').closest('a').removeClass('added-to-favs');
+//      },
+//      error: function () {
+//         $('.popup-opener').closest('li').removeClass('popup-holder');
+//      }
+//   })
+//});
 
 $(document).on('change keyup','.priceInputFrom',function(){
    showDetailedPriceAt(digitsToWords($(this).val()), '.detailedPriceFrom');

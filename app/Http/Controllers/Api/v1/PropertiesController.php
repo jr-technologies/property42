@@ -190,18 +190,7 @@ class PropertiesController extends ApiController
             'properties'=>$userProperties
         ]]);
     }
-    public function deleteFavouriteProperty(DeleteToFavouritePropertyRequest $request)
-    {
-        $params = $request->all();
-        $this->properties->deleteFavouriteProperty($params);
 
-        $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
-        $totalCount = count($favouriteProperties);
-        return $this->response->respond(['data'=>[
-            'properties'=>$favouriteProperties,
-            'favouritesCount'=>$totalCount
-        ]]);
-    }
     public function deleteMultiFavouriteProperty(DeleteMultiFavouritePropertyRequest $request)
     {
         $params = $request->all();
@@ -368,10 +357,24 @@ class PropertiesController extends ApiController
         return $this->response->respond(['data'=>[
             'counts'=>$this->properties->countProperties($user->id)]]);
     }
+
     public function favouriteProperty(AddToFavouriteRequest $request)
     {
+       return $this->response->respond(['data'=>[
+            'favouriteProperty'=>$this->properties->favouriteProperty($request->favouriteProperty())
+       ]]);
+    }
+
+    public function deleteFavouriteProperty(DeleteToFavouritePropertyRequest $request)
+    {
+        $params = $request->all();
+        $this->properties->deleteFavouriteProperty($params);
+        $favouriteProperties = $this->propertiesJsonRepo->getFavouriteProperties($params);
+        $totalCount = count($favouriteProperties);
         return $this->response->respond(['data'=>[
-            'favouriteProperty'=>$this->properties->favouriteProperty($request->favouriteProperty())]]);
+            'properties'=>$favouriteProperties,
+            'favouritesCount'=>$totalCount
+        ]]);
     }
     public function search(SearchPropertiesRequest $request)
     {

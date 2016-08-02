@@ -116,10 +116,10 @@
             </div>
         @endif
         <nav id="nav">
-            <form class="searchByID">
-                <input type="search" placeholder="Search by ID">
-                <button type="submit"><span class="icon-search"></span></button>
-            </form>
+            {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
+            <input type="number" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
+            <button type="submit"><span class="icon-search"></span></button>
+            {{Form::close()}}
             <div class="nav-holder">
                 <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
                 <ul class="main-navigation text-upparcase">
