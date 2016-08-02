@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="caption text-left">
                                         <div class="layout">
-                                            <h1>{{$agent->agencies[0]->name}}</h1>
+                                            <a href="{{ URL::to('agent?agent_id='.$agent->id) }}"> <h1>{{$agent->agencies[0]->name}}</h1></a>
                                             <p>{{str_limit($agent->agencies[0]->description,67)}}</p>
                                         </div>
                                         <div class="layout">
