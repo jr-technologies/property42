@@ -25,7 +25,6 @@ $(document).on('click','.add-to-favorite',function(){
          $('.popup-opener').closest('li').addClass('popup-holder');
       }
 
-
         });
     }
     else {
@@ -46,5 +45,3 @@ $(document).on('click','.add-to-favorite',function(){
         })
     }
 });
-
-

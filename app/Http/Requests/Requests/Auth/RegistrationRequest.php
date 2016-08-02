@@ -16,6 +16,7 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\UserValidators\AddUserValidator;
 use App\Transformers\Request\Auth\RegisterUserTransformer;
+use Illuminate\Support\Facades\Validator;
 
 class RegistrationRequest extends Request implements RequestInterface{
 
@@ -106,4 +107,6 @@ class RegistrationRequest extends Request implements RequestInterface{
         else
             return false;
     }
+
+
 }

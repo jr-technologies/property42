@@ -42,9 +42,7 @@ class UserValidator extends AppValidator
                 $companyLogo = $this->request->get('companyLogo');
                 $logo = false;
                 $logoExtension = $companyLogo->getClientOriginalExtension();
-                if(strtolower($logoExtension) =='jpg'
-                    ||strtolower($logoExtension) =='jpeg'
-                    ||strtolower($logoExtension) =='png')
+                if(strtolower($logoExtension) =='jpg' ||strtolower($logoExtension) =='jpeg' ||strtolower($logoExtension) =='png')
                 {
                     $logo = true;
                 }

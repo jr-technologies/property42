@@ -77,7 +77,7 @@
                     <div class="layout-holder">
                         <label for="property-title">Property Title</label>
                         <div class="input-holder">
-                            <input type="text" name="propertyTitle" ng-model="form.data.propertyTitle" id="property-title">
+                            <input type="text" name="propertyTitle" placeholder="Please add property title" ng-model="form.data.propertyTitle" id="property-title">
                         </div>
                     </div>
                 </div>
@@ -85,14 +85,15 @@
                     <div class="layout-holder">
                         <label for="land-area">Area</label>
                         <div class="input-holder">
-                            <input type="number" step="any" ng-model="form.data.landArea" min="1" id="land-area">
+                            <input type="number" step="any" placeholder="Area of Property" ng-model="form.data.landArea" min="1" id="land-area">
                         </div>
                     </div>
                     <div class="layout-holder">
                         <label for="land-unit">Unit</label>
                         <div class="input-holder">
                             <span class="fake-select">
-                                <select name="land_unit" ng-model="form.data.landUnit" id="land-unit">
+                                <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" >
+                                    <option value="" selected disabled >Please Choose...</option>
                                     <option data-ng-repeat="unit in resources.landUnits" value="{{unit.id}}">{{unit.name}}</option>
                                 </select>
                             </span>
@@ -103,7 +104,7 @@
                     <div class="layout-holder">
                         <label for="property-price">Price</label>
                         <div class="input-holder">
-                            <input type="number" min="1" class="PriceField" name="price" ng-model="form.data.price" id="property-price">
+                            <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price">
                         </div>
                     </div>
                     <div class="layout-holder">
@@ -114,7 +115,7 @@
                     <div class="layout-holder">
                         <label for="description">Description</label>
                         <div class="input-holder">
-                            <textarea name="propertyDescription" ng-model="form.data.propertyDescription" id="description"></textarea>
+                            <textarea name="propertyDescription" placeholder="Please write about your property" ng-model="form.data.propertyDescription" id="description"></textarea>
                         </div>
                     </div>
                 </div>

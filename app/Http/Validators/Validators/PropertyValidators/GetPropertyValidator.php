@@ -28,7 +28,7 @@ class GetPropertyValidator extends PropertyValidator implements ValidatorsInterf
     public function rules()
     {
         return [
-            'propertyId'=>'required|active_property',
+            'propertyId'=>'required',
         ];
     }
 
