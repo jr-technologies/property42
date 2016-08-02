@@ -96,7 +96,7 @@
             <span>
                 Are you an Agent ? <b>No</b>
                 <label for="agentCheck-field" class="agent-check">
-                    <input type="checkbox" class="hidden-checkfield agent-brokerCheckbox" name="agent" @if(old('agent') !="")checked @endif  id="agentCheck-field" checked>
+                    <input type="checkbox" class="hidden-checkfield agent-brokerCheckbox" name="agent" @if(old('agent') !="")checked @endif  id="agentCheck-field">
                     <span class="fake-checkbox">
                         <span class="fake-button"></span>
                     </span>
