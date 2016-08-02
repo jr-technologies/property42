@@ -16,8 +16,14 @@
                                 $user = (new \App\Libs\Helpers\AuthHelper())->user();
                                 ?>
                                 <div class="propertyImage-slider carousal">
-                                    <a href="#"  property_id="{{$response['data']['property']->id}}" key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite @if($response['data']['property']->isVerified != 0) added @endif"></a>
-                                    <span class="premiumProperty text-upparcase">Premium</span>
+                                    <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$response['data']['property']->id}}" user_id="{{($user !=null)?$user->id:""}}" key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite {{($user == null)?'lightbox':''}}  @if($response['data']['isFavourite'] != 0) added @endif"></a>
+                                    {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
+                                    <div class="popup-holder">
+                                        <div class="lightbox generic-lightbox" id="login-to-continue">
+                                            <p>Dear user ! You are not logged in Please <a href="{{url('/login')}}">Login</a></p>
+
+                                        </div>
+                                    </div>
                                     <div class="mask">
                                         <?php
                                         $images = [];
@@ -79,17 +85,23 @@
                                     $images = url('/') . '/temp/' . $response['data']['property']->owner->agency->logo;
                                 }
                             }
-
                             ?>
                             <div class="info-blockProperty">
                                 <strong class="price"><span>Rs</span>{{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}
                                 </strong>
                                 @if ($response['data']['property']->owner->agency != null)
-                                    <div class="pictureHolder"><a href="#"><img src="{{$images}}"
-                                                                                alt="image description"></a></div>
+                                    <div class="pictureHolder">
+                                        @if($response['data']['user']->roles[0]->id ==3 && $response['data']['user']->trustedAgent ==1)
+                                        <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}">
+                                            @endif
+                                            <img src="{{$images}}" alt="image description"> </a></div>
                                 @endif
                                 @if($response['data']['property']->owner->agency !=null)
-                                    <span class="heading">{{$response['data']['property']->owner->agency->name}}</span>
+                                    @if($response['data']['user']->roles[0]->id ==3 && $response['data']['user']->trustedAgent ==1)
+                                    <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}">
+                                        @endif
+                                        <span class="heading">{{$response['data']['property']->owner->agency->name}}</span>
+                                    </a>
                                 @endif
                                 <div class="layout">
                                     <div class="pull-left">
@@ -246,11 +258,12 @@
                             </div>
                             <p>{{$response['data']['property']->description}}</p>
                         </div>
+                        @if($response['data']['property']->features !=null)
                         <div class="extra-feature-section">
                             <div class="extra-feature-holder">
-                                @if($response['data']['property']->features !=null)
+
                                     <span class="small-heading">Property Features</span>
-                                @endif
+
                                 <div class="feature">
                                     @foreach($response['data']['property']->features as $sectionName=>$features)
                                         <span class="small-heading">{{$sectionName}}</span>
@@ -271,6 +284,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
