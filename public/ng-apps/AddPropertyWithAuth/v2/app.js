@@ -12,7 +12,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.domain = domain;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Add Property";
-    $rootScope.resources = null;
+    $rootScope.resources = rawResources;
     $rootScope.resourceLoading = false;
     $rootScope.please_wait_class = '';
     $rootScope.loading_resources_class = '';

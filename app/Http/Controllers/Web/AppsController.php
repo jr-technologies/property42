@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Apps\GetAddPropertyWithAuthAppRequest;
 use App\Http\Requests\Requests\Apps\GetDashboardAppRequest;
 use App\Http\Responses\Responses\WebResponse;
-
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
+use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
+use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
+use App\Repositories\Providers\Providers\RolesRepoProvider;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
+use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 
 class AppsController extends Controller
 {
