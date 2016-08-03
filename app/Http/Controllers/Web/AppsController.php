@@ -26,6 +26,8 @@ class AppsController extends Controller
             die(header('Location: '.url('/').'/dashboard#/home/properties/add'));
         }
 
+        \Illuminate\Support\Facades\Blade::setEscapedContentTags('[[', ']]');
+        \Illuminate\Support\Facades\Blade::setContentTags('[[[', ']]]');
         $version = $appRequest->version();
         return $this->response->app('addPropertyWithAuth', $version);
     }
