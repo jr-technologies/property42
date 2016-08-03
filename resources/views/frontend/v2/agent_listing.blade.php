@@ -3,7 +3,7 @@
     <div class="page-holder">
         <div class="agent-listing-page">
             <div class="container">
-                <a class="aside-opener-filters">More Filters <b>(Land Area / Price...)</b><span class="button"><b></b></span></a>
+                <a class="aside-opener-filters">Search Filters<span class="button"><b></b></span></a>
                 <aside id="aside" class="hideOnMobile">
                     {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'filter-form')) }}
                     <ul class="filters-links text-upparcase">
