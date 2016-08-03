@@ -121,7 +121,7 @@
                                 </div>
                             </li>
                             <li class="active">
-                                <a class="filters-links-opener">LOCATION / SOCITY</a>
+                                <a class="filters-links-opener">LOCATION / SOCIETY</a>
                                 <div class="slide">
                                     <ul class="filterChecks">
                                         <li>
@@ -147,6 +147,10 @@
                     </form>
                 </aside>
                 <section id="content">
+                    <div class="propertyNotFound hidden">
+                        <strong class="no-heading">sorry, no property found</strong>
+                        <p>Maybe your search was to specific, please try searching with another term.</p>
+                    </div>
                     @foreach($response['data']['properties'] as $property)
                         <?php
                         $image = url('/')."/assets/imgs/no.png";
@@ -161,7 +165,6 @@
                         <article class="publicProperty-post">
                             <div class="image-holder">
                                 <a href="property?propertyId={{$property->id}}"><img src="{{$image}}" alt="image description"></a>
-                                <a href="#" class="add-to-favorite"></a>
                                 <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
                             </div>
                             <div class="caption text-left">
@@ -188,9 +191,9 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="layout">
+                                <div class="layout links-holder">
                                     <div class="links-left">
-                                        <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-Vector-Smart-Object"></span></a>
+                                        <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span `lass="icon-Vector-Smart-Object"></span></a>
                                         @if(isset($property->isVerified) && $property->isVerified == 1)
                                             <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
                                         @endif
@@ -208,7 +211,7 @@
                                             }
                                         }
                                         ?>
-                                        <a href="{{ URL::to('agent?agent_id='.$property->owner->id) }}"> <img src="{{$image}}" alt="image description" class="company-logo"></a>
+                                        <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent?agent_id='.$property->owner->id) }}" @endif> <img src="{{$image}}" alt="image description" class="company-logo"></a>
                                     </div>
                                 </div>
                             </div>

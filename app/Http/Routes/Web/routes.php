@@ -259,11 +259,22 @@ Route::get('/',
     [
         'middleware'=>
             [
-                //'webValidate:searchRequest'
+                'webValidate:indexRequest'
             ],
         'uses'=>'PropertiesController@index',
     ]
 );
+
+Route::post('feedback',
+    [
+        'middleware'=>
+            [
+                'webValidate:feedbackRequest'
+            ],
+        'uses'=>'MailController@feedback',
+    ]
+);
+
 Route::get('search',
     [
         'middleware'=>

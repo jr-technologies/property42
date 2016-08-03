@@ -63,7 +63,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="info-blockAgent">
+                            <div class="info-blockAgent" id="fixed-block">
                                 <span class="heading text-upparcase">Contact Details</span>
                                 <ul class="agentDetail-list">
                                     <li>

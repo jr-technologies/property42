@@ -1,19 +1,13 @@
 <div class="addProperty-form container {{please_wait_class}}"  ng-init="initialize()">
-    <h1>Add <span>Property</span></h1>
-    <div class="add-form-holder">
-        <div ng-show="propertySaved == true" class="thankYou-message-submitPropperty">
-            <div class="messageThankyou-holder">
-                <strong class="ui-thankYou-submitProperty">Your property has been submitted successfully !</strong>
-                <a href="{{domain}}add-property" class="add-anotherProperty">Add an other property</a>
-            </div>
-        </div>
+    <div class="add-form-holder"  ng-show="propertySaved == false">
+        <h1>Add <span>Property</span></h1>
         <div class="main-form">
             <ul class="error">
                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
             </ul>
-            <form ng-show="propertySaved == false" class="property-add" ng-submit="submitProperty()">
+            <form class="property-add" ng-submit="submitProperty()">
                 <strong class="add-pro-heading"><span>property for</span></strong>
-                <ul class="radio-checks-holder">
+                <ul class="radio-checks-holder text-center">
                     <li>
                         <label for="for-sale" class="custom-withouChecks transparent">
                             <input type="radio" name="add-for" id="for-sale" value="1" ng-model="form.data.propertyPurpose">
@@ -28,7 +22,7 @@
                     </li>
                 </ul>
                 <strong class="add-pro-heading"><span>Property Type</span></strong>
-                <ul class="radio-checks-holder">
+                <ul class="radio-checks-holder text-center">
                     <li data-ng-repeat="type in types">
                         <label for="{{type.name}}" class="custom-withouChecks transparent">
                             <input type="radio" name="propertyType" ng-model="$parent.form.data.propertyType" value="{{type.id}}" id="{{type.name}}" class="addPro-type">
@@ -48,7 +42,7 @@
                 <strong class="add-pro-heading"><span>Property Location</span></strong>
                 <div class="layout clearfix">
                     <div class="layout-holder">
-                        <label>Society</label>
+                        <label class="required-field">Socity</label>
                         <div class="input-holder">
                             <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society" required >
                                 <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
@@ -59,7 +53,7 @@
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <label>Block</label>
+                        <label class="required-field">Block</label>
                         <div class="input-holder">
                             <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block" required>
                                 <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
@@ -80,13 +74,13 @@
                 </div>
                 <div class="layout">
                     <div class="layout-holder">
-                        <label for="land-area">Area</label>
+                        <label class="required-field" for="land-area">Area</label>
                         <div class="input-holder">
                             <input type="number" step="any" placeholder="Area of Property" ng-model="form.data.landArea" min="1" id="land-area" required >
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <label for="land-unit">Unit</label>
+                        <label class="required-field" for="land-unit">Unit</label>
                         <div class="input-holder">
                             <span class="fake-select">
                                 <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" required>
@@ -99,7 +93,7 @@
                 </div>
                 <div class="layout">
                     <div class="layout-holder">
-                        <label for="property-price">Price</label>
+                        <label class="required-field" for="property-price">Price</label>
                         <div class="input-holder">
                             <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
                         </div>
@@ -268,5 +262,17 @@
         <div class="tips">
             <strong class="add-pro-heading"><span>tips</span></strong>
         </div>
+    </div>
+    <div class="thankYou-message" ng-show="propertySaved == true">
+        <h1>Safe <span>successfully</span></h1>
+        <div class="layout">
+            <div class="left"><span class="icon-check"></span></div>
+            <div class="right">
+                <p>Your property details have been received. It will be reviewed by our staff within 24 hours.</p>
+                <p>Property type: <b>Free Listing</b></p>
+                <p>Property status: <b>Pending</b></p>
+            </div>
+        </div>
+        <a href="{{domain}}" class="btn-default">Got it !</a>
     </div>
 </div>

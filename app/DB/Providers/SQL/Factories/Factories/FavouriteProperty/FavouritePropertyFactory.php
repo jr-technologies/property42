@@ -43,6 +43,11 @@ class FavouritePropertyFactory extends SQLFactory implements SQLFactoriesInterfa
        return $this->mapCollection($this->tableGateway->all());
     }
 
+    public function getUserFavouritePropertiesIds($userId)
+    {
+        return $this->tableGateway->getUserFavouritePropertiesIds($userId);
+    }
+
     public function store(FavouriteProperty $favouriteProperty)
     {
         $favouriteProperty->createdAt = date('Y-m-d h:i:s');

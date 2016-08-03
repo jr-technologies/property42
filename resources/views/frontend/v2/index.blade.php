@@ -1,7 +1,6 @@
 @extends('frontend.v2.frontend')
 @section('content')
-
-    <section class="generic-section">
+<section class="generic-section">
         <div class="container">
             <h1>News <span>Update</span></h1>
             <div class="news-sliderHolder">
@@ -66,14 +65,14 @@
                     <li @if($society->important == 1)class="double-width"@endif>
                         <a href="{{url('/')}}/search?society_id={{$society->id}}">
                             <img src="{{url('/')}}/{{$society->path}}" alt="PARAGON CITY">
-                            <div class="caption">
-                                <strong class="heading">{{$society->name}}</strong>
-                                <ul class="numberOfproperties">
-                                    <li><span>Commercial</span><span>{{rand(0,100)}}</span></li>
-                                    <li><span>Home</span><span>{{rand(0,130)}}</span></li>
-                                    <li><span>Land</span><span>{{rand(0,120)}}</span></li>
-                                </ul>
-                            </div>
+                            {{--<div class="caption">--}}
+                                {{--<strong class="heading">{{$society->name}}</strong>--}}
+                                {{--<ul class="numberOfproperties">--}}
+                                    {{--<li><span>Commercial</span><span>{{rand(0,100)}}</span></li>--}}
+                                    {{--<li><span>Home</span><span>{{rand(0,130)}}</span></li>--}}
+                                    {{--<li><span>Land</span><span>{{rand(0,120)}}</span></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
                         </a>
                     </li>
                 @endforeach
@@ -116,7 +115,7 @@
             </div>
         </div>
     </section>
-    <section class="generic-section about-us">
+    <section class="generic-section about-us" id="about-us">
         <div class="container text-center">
             <h1>About <span>Us</span></h1>
             <p>PROPERTY42.PK is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
@@ -125,7 +124,7 @@
                 PROPERTY42.PK is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
         </div>
     </section>
-    <section class="generic-section questions">
+    <section class="generic-section questions" id="contact-us">
         <div class="container text-center">
             <h1>Have any <span>Question?</span></h1>
             <p>Please Let us know if you need some help, our team is always ready to help you!</p>

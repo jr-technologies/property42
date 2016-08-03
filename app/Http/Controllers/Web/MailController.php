@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Mail\AgentMailRequest;
 use App\Http\Requests\Requests\Mail\ContactUSMailRequest;
+use App\Http\Requests\Requests\Mail\FeedbackRequest;
 use App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest;
 use App\Http\Requests\Requests\Mail\MailToAgentRequest;
 use App\Http\Requests\Requests\Mail\WantedMailRequest;
@@ -37,6 +38,18 @@ class MailController extends Controller
     {
         $user = $request->all();
         Mail::send('frontend.mail.mail_property_to_agent',['user' => $user], function($message) use($user)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
+            $message->to(config('constants.REGISTRATION_EMAIL_TO'))->subject('Property42');
+        });
+        Session::flash('message', 'Your message has been sent');
+        return redirect()->back();
+    }
+
+    public function feedback(FeedbackRequest $request)
+    {
+        $user = $request->all();
+        Mail::send('frontend.mail.feedback',['user' => $user], function($message) use($user)
         {
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
             $message->to(config('constants.REGISTRATION_EMAIL_TO'))->subject('Property42');

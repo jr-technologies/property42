@@ -11,21 +11,21 @@
             <h1>Register <span>Now</span></h1>
             <div class="layout">
                 <div class="layout-holder">
-                    <label for="f-name">First Name</label>
+                    <label class="required-field" for="f-name">First Name</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('fName')) error @endif">
                         <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" value="{{old('fName')}}" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('fName')) {{$validationErrors->first('fName')}} @endif</span>
                     </div>
                 </div>
                 <div class="layout-holder">
-                    <label for="l-name">Last Name</label>
+                    <label class="required-field" for="l-name">Last Name</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('lName')) error @endif">
                         <input type="text" placeholder="Enter Your Last Name" name="lName" value="{{old('lName')}}" id="lName" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('lName')) {{$validationErrors->first('lName')}} @endif</span>
                     </div>
                 </div>
                 <div class="layout-holder">
-                    <label for="email">Email</label>
+                    <label class="required-field" for="email">Email</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('email')) error @endif">
                         <input type="email" placeholder="Enter Your Email Address"  id="email1" value="{{old('email')}}" name="email" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('email')) {{$validationErrors->first('email')}} @endif</span>
@@ -34,14 +34,14 @@
             </div>
             <div class="layout">
                 <div class="layout-holder">
-                    <label for="pass">Password</label>
+                    <label class="required-field" for="pass">Password</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('password')) error @endif">
                         <input type="password" placeholder="Enter Your Password" id="pass1"  name="password" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('password')) {{$validationErrors->first('password')}} @endif</span>
                     </div>
                 </div>
                 <div class="layout-holder">
-                    <label for="re-pass">Re-Enter Password</label>
+                    <label class="required-field" for="re-pass">Re-Enter Password</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('passwordAgain')) error @endif">
                         <input type="password"  placeholder="Confirm Password" name="passwordAgain" id="cpass" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('passwordAgain')) {{$validationErrors->first('passwordAgain')}} @endif</span>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="layout-holder">
-                    <label for="m-number">Mobile Number</label>
+                    <label class="required-field" for="m-number">Mobile Number</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('mobile')) error @endif">
                         <input type="tel" placeholder="Enter Your Cell / Mobile Number" value="{{old('mobile')}}" name="mobile" id="cell" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('mobile')) {{$validationErrors->first('mobile')}} @endif</span>
@@ -122,9 +122,9 @@
                     </div>
                     <div class="layout-holder">
                         <div class="full-width">
-                            <label for="agencyName">Agency Name</label>
+                            <label class="required-field" for="agencyName">Agency Name</label>
                             <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('agencyName')) error @endif">
-                                <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" value="{{old('agencyName')}}" >
+                                <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" value="{{old('agencyName')}}" required>
                                 <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('agencyName')) {{$validationErrors->first('agencyName')}} @endif</span>
                             </div>
                         </div>
@@ -175,14 +175,14 @@
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <label for="company-mobile">Mobile Number</label>
+                        <label class="required-field" for="company-mobile">Mobile Number</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyMobile')) error @endif">
                             <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" required >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyMobile')) {{$validationErrors->first('companyMobile')}} @endif</span>
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <label for="compny-email">Company E-mail</label>
+                        <label class="required-field" for="compny-email">Company E-mail</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyEmail')) error @endif">
                             <input type="email" placeholder="Enter Company Email" name="companyEmail" value="{{old('companyEmail')}}" id="compny-email" required >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyEmail')) {{$validationErrors->first('companyEmail')}} @endif</span>
@@ -202,19 +202,19 @@
             <div class="layout two">
                 <div class="layout-holder">
                     <ul class="agree-with-terms">
-                        <li class="input-holder @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
-                            <label for="terms-Cond" class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
-                                <input type="checkbox" id="terms-Cond" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif>
-                                <span class="fake-checkbox"></span>
-                                <span class="fake-label">I have read and agree to Property42.pk Terms and Conditions</span>
-                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
-                            </label>
-                        </li>
                         <li>
-                            <label for="newslatter" class="customCheckbox">
-                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif >
+                            <label class="customCheckbox" for="newslatter" class="customCheckbox">
+                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif required >
                                 <span class="fake-checkbox"></span>
                                 <span class="fake-label">I want to receive notifications for promotions, newsletters and website updates.</span>
+                            </label>
+                        </li>
+                        <li class="input-holder @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
+                            <label class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
+                                <input type="checkbox" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif checked>
+                                <span class="fake-checkbox hidden"></span>
+                                <span class="fake-label">I have read and agree to Property42.pk Terms and Conditions</span>
+                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
                             </label>
                         </li>
                     </ul>

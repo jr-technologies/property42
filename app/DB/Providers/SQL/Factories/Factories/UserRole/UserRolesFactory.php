@@ -24,6 +24,10 @@ class UserRolesFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
+    public function getUserRole($userId)
+    {
+        return $this->map($this->tableGateway->getWhere(['user_id'=>$userId]));
+    }
     public function getTable()
     {
         return $this->tableGateway->getTable();
