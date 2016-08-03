@@ -49,6 +49,7 @@ $(document).on('change', '.userRole-checkbox', function(){
 
 $(document).on('change', '.agent-brokerCheckbox', function(){
 	if($(this).is(':checked')){
+		addValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', true);
 		});
@@ -56,6 +57,7 @@ $(document).on('change', '.agent-brokerCheckbox', function(){
 		$('.agent-information').slideDown();
 	}
 	else {
+		removeValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', false);
 			$('.registration-form').removeClass('agent-info')

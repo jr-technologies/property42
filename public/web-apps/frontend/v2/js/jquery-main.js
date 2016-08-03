@@ -327,11 +327,6 @@ $('.hidden-checkfield').change(function(){
 	}
 });
 
-$(document).on('click', '.role-opener', function(){
-	$('.registration-form').find('.role-listing').slideToggle();
-	$(this).toggleClass('active');
-});
-
 function countCheckedRoles(){
 	var totalCheckedRoles = 0;
 	$('.userRole-checkbox').each(function() {
@@ -402,4 +397,8 @@ $(document).on('click', '.packetData>.delete', function(){
 	var targetId = $(this).attr('data-target');
 	$("#"+targetId).prop("checked", false);
 	$(this).closest('li').remove();
+});
+
+$(document).on('click', '.btn-close-working', function(){
+	$('.weAreWorking').addClass('hide');
 });

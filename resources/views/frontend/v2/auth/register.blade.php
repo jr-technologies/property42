@@ -177,7 +177,7 @@
                     <div class="layout-holder">
                         <label class="required-field" for="company-mobile">Mobile Number</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyMobile')) error @endif">
-                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" required >
+                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyMobile')) {{$validationErrors->first('companyMobile')}} @endif</span>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                     <ul class="agree-with-terms">
                         <li>
                             <label class="customCheckbox" for="newslatter" class="customCheckbox">
-                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif required >
+                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif>
                                 <span class="fake-checkbox"></span>
                                 <span class="fake-label">I want to receive notifications for promotions, newsletters and website updates.</span>
                             </label>
