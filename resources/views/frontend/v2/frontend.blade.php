@@ -20,11 +20,11 @@
         <header id="header">
             <div class="top-bar">
                 <ul class="social-icons">
-                    <li><a href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
-                    {{--<li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>--}}
-                    <li><a href="https://www.linkedin.com/in/propertyfortytwo-pk-275899124"><span class="icon-linkedin"></span></a></li>
-                    <li><a href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
-                    <li><a href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
+                    <li><a target="_blank" href="https://plus.google.com/115605703040474791286"><span class="icon-google-plus-symbol"></span></a></li>
+                    <li><a target="_blank" href="https://www.linkedin.com/in/propertyfortytwo-pk-275899124"><span class="icon-linkedin"></span></a></li>
+                    <li><a target="_blank" href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
                 </ul>
                 <a href="#" class="navigation-toggler nav-opener"><span></span></a>
                 <div class="right-sideTop text-right">
@@ -138,9 +138,6 @@
                         <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
                     </li>
                     <li>
-                        <a href="{{URL::to('societies/maps')}}"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
-                    </li>
-                    <li>
                         <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="scroll"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
                     </li>
                     <li>
@@ -149,10 +146,11 @@
                 </ul>
                 <div class="mobile-content text-center hidden">
                     <ul class="social-icons">
-                        <li><a href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
-                        {{--<li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>--}}
-                        {{--<li><a href="#"><span class="icon-linkedin"></span></a></li>--}}
-                        <li><a href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
+                        <li><a target="_blank" href="https://plus.google.com/115605703040474791286"><span class="icon-google-plus-symbol"></span></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/propertyfortytwo-pk-275899124"><span class="icon-linkedin"></span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
                     </ul>
                     <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
                 </div>

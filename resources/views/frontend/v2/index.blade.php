@@ -65,14 +65,14 @@
                     <li @if($society->important == 1)class="double-width"@endif>
                         <a href="{{url('/')}}/search?society_id={{$society->id}}">
                             <img src="{{url('/')}}/{{$society->path}}" alt="PARAGON CITY">
-                            <div class="caption">
-                                <strong class="heading">{{$society->name}}</strong>
+                            {{--<div class="caption">--}}
+                                {{--<strong class="heading">{{$society->name}}</strong>--}}
                                 {{--<ul class="numberOfproperties">--}}
                                     {{--<li><span>Commercial</span><span>{{rand(0,100)}}</span></li>--}}
                                     {{--<li><span>Home</span><span>{{rand(0,130)}}</span></li>--}}
                                     {{--<li><span>Land</span><span>{{rand(0,120)}}</span></li>--}}
                                 {{--</ul>--}}
-                            </div>
+                            {{--</div>--}}
                         </a>
                     </li>
                 @endforeach
