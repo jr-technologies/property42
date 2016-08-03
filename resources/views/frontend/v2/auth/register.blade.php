@@ -176,14 +176,14 @@
                     <div class="layout-holder">
                         <label for="company-mobile">Mobile Number</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyMobile')) error @endif">
-                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" >
+                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" required >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyMobile')) {{$validationErrors->first('companyMobile')}} @endif</span>
                         </div>
                     </div>
                     <div class="layout-holder">
                         <label for="compny-email">Company E-mail</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyEmail')) error @endif">
-                            <input type="email" placeholder="Enter Company Email" name="companyEmail" value="{{old('companyEmail')}}" id="compny-email" >
+                            <input type="email" placeholder="Enter Company Email" name="companyEmail" value="{{old('companyEmail')}}" id="compny-email" required >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyEmail')) {{$validationErrors->first('companyEmail')}} @endif</span>
                         </div>
                     </div>
@@ -192,7 +192,7 @@
                     <div class="layout-holder">
                         <label for="compny-address">Company Address</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyAddress')) error @endif">
-                            <input type="text" placeholder="Enter Company Address" name="companyAddress" value="{{old('companyAddress')}}" id="compny-address" >
+                            <input type="text" placeholder="Enter Company Address" name="companyAddress" value="{{old('companyAddress')}}" id="compny-address"  >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyAddress')) {{$validationErrors->first('companyAddress')}} @endif</span>
                         </div>
                     </div>

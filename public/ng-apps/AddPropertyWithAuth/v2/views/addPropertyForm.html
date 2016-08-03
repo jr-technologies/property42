@@ -53,7 +53,7 @@
                     <div class="layout-holder">
                         <label>Socity</label>
                         <div class="input-holder">
-                            <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society">
+                            <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society" required >
                                 <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices refresh="searchSocieties($select)" refresh-delay="300" repeat="society in societies">
                                     <div ng-bind-html="society.name"></div>
@@ -64,7 +64,7 @@
                     <div class="layout-holder">
                         <label>Block</label>
                         <div class="input-holder">
-                            <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block">
+                            <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block" required>
                                 <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
                                 <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search} | filter : {societyId : temp.society.id}">
                                     <div ng-bind-html="block.name | highlight: $select.search"></div>
@@ -77,7 +77,7 @@
                     <div class="layout-holder">
                         <label for="property-title">Property Title</label>
                         <div class="input-holder">
-                            <input type="text" name="propertyTitle" placeholder="Please add property title" ng-model="form.data.propertyTitle" id="property-title">
+                            <input type="text" name="propertyTitle" placeholder="Please add property title" ng-model="form.data.propertyTitle" id="property-title"  >
                         </div>
                     </div>
                 </div>
@@ -85,14 +85,14 @@
                     <div class="layout-holder">
                         <label for="land-area">Area</label>
                         <div class="input-holder">
-                            <input type="number" step="any" placeholder="Area of Property" ng-model="form.data.landArea" min="1" id="land-area">
+                            <input type="number" step="any" placeholder="Area of Property" ng-model="form.data.landArea" min="1" id="land-area" required >
                         </div>
                     </div>
                     <div class="layout-holder">
                         <label for="land-unit">Unit</label>
                         <div class="input-holder">
                             <span class="fake-select">
-                                <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" >
+                                <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" required>
                                     <option value="" selected disabled >Please Choose...</option>
                                     <option data-ng-repeat="unit in resources.landUnits" value="{{unit.id}}">{{unit.name}}</option>
                                 </select>
@@ -104,7 +104,7 @@
                     <div class="layout-holder">
                         <label for="property-price">Price</label>
                         <div class="input-holder">
-                            <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price">
+                            <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
                         </div>
                     </div>
                     <div class="layout-holder">
