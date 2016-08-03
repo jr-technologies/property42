@@ -33,4 +33,11 @@ class FavouritePropertyQueryBuilder extends QueryBuilder
             ->where($this->table.'.user_id','=',$userId)
             ->count();
     }
+    public function getUserFavouritePropertiesIds($userId)
+    {
+        return  DB::table($this->table)
+            ->select($this->table.'.property_id')
+            ->where($this->table.'.user_id','=',$userId)
+            ->get();
+    }
 }

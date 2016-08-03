@@ -24,6 +24,10 @@ class UserRolesRepository extends SqlRepository implements UserRoleRepoInterface
     {
         return $this->factory->find($id);
     }
+    public function getUserRole($id)
+    {
+        return $this->factory->getUserRole($id);
+    }
     public function all()
     {
        return  $this->factory->all();

@@ -19,6 +19,8 @@ class PropertyOwnerJsonPrototype extends JsonPrototype implements JsonPrototypeI
     public $phone = "";
     public $mobile = "";
     public $address = "";
+    public $isTrusted = 0;
+    public $isAgent =0;
     /* @var $agency PropertyAgencyJsonPrototype ::class*/
     public $agency  = null;
 }

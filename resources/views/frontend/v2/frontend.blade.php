@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property42</title>
+    <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-32x32.png" sizes="32x32">
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/main.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,300,500,600,700,800,400italic' rel='stylesheet' type='text/css'>
@@ -17,9 +22,9 @@
                 <ul class="social-icons">
                     <li><a href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
                     {{--<li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>--}}
-                    {{--<li><a href="#"><span class="icon-linkedin"></span></a></li>--}}
+                    <li><a href="https://www.linkedin.com/in/propertyfortytwo-pk-275899124"><span class="icon-linkedin"></span></a></li>
                     <li><a href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
-                    {{--<li><a href="#"><span class="icon-instagram"></span></a></li>--}}
+                    <li><a href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
                 </ul>
                 <a href="#" class="navigation-toggler nav-opener"><span></span></a>
                 <div class="right-sideTop text-right">
@@ -117,7 +122,7 @@
         @endif
         <nav id="nav">
             {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
-            <input type="number" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
+            <input type="search" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
             <button type="submit"><span class="icon-search"></span></button>
             {{Form::close()}}
             <div class="nav-holder">
@@ -136,10 +141,10 @@
                         <a href="{{URL::to('societies/maps')}}"><span class="middle-align"><span class="icon-street-map"></span>MAPS</span></a>
                     </li>
                     <li>
-                        <a href="#"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
+                        <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="scroll"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
                     </li>
                     <li>
-                        <a href="#"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
+                        <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#contact-us':'#contact-us'}}" class="scroll"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
                     </li>
                 </ul>
                 <div class="mobile-content text-center hidden">
@@ -160,6 +165,45 @@
     <footer id="footer">
         <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
     </footer>
+    <a href="#feedback" class="feedBack lightbox">Feedback</a>
+    <div class="popup-holder">
+        <div id="feedback" class="lightbox generic-lightbox">
+            <span class="lighbox-heading">Feed<span>back</span></span>
+            {{Form::open(array('url'=>'feedback','method'=>'POST','class'=>'inquiry-email-form'))}}
+            <div class="field-holder">
+                <label for="name">Name</label>
+
+                <div class="input-holder"><input type="text" id="name" name="name"></div>
+            </div>
+            <div class="field-holder">
+                <label for="email">Email</label>
+
+                <div class="input-holder"><input type="email" id="email" name="email"
+                                                 required></div>
+            </div>
+            <div class="field-holder">
+                <label for="phone">phone</label>
+
+                <div class="input-holder"><input type="tel" id="phone" name="phone"
+                                                 required></div>
+            </div>
+            <div class="field-holder">
+                <label for="subject">subject</label>
+
+                <div class="input-holder"><input type="text" id="subject" name="subject">
+                </div>
+            </div>
+            <div class="field-holder">
+                <label for="message">message</label>
+
+                <div class="input-holder"><textarea id="message" name="message"
+                                                    required></textarea></div>
+            </div>
+            <button type="submit">SEND</button>
+            {{Form::close()}}
+        </div>
+    </div>
+    </div>
 <script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/fixed-block.js" type="text/javascript" defer></script>
@@ -173,7 +217,6 @@
     <script src="{{url('/')}}/web-apps/frontend/v2/js/lightBox.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-main.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script>
-    <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
+<script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script><script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 </body>
 </html>

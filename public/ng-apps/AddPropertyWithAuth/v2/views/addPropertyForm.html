@@ -51,7 +51,7 @@
                 <strong class="add-pro-heading"><span>Property Location</span></strong>
                 <div class="layout">
                     <div class="layout-holder">
-                        <label>Socity</label>
+                        <label class="required-field">Socity</label>
                         <div class="input-holder">
                             <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society" required >
                                 <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <label>Block</label>
+                        <label class="required-field">Block</label>
                         <div class="input-holder">
                             <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block" required>
                                 <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
@@ -83,13 +83,13 @@
                 </div>
                 <div class="layout">
                     <div class="layout-holder">
-                        <label for="land-area">Area</label>
+                        <label class="required-field" for="land-area">Area</label>
                         <div class="input-holder">
                             <input type="number" step="any" placeholder="Area of Property" ng-model="form.data.landArea" min="1" id="land-area" required >
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <label for="land-unit">Unit</label>
+                        <label class="required-field" for="land-unit">Unit</label>
                         <div class="input-holder">
                             <span class="fake-select">
                                 <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" required>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="layout">
                     <div class="layout-holder">
-                        <label for="property-price">Price</label>
+                        <label class="required-field" for="property-price">Price</label>
                         <div class="input-holder">
                             <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
                         </div>

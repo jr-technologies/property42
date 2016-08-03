@@ -24,6 +24,7 @@ $(document).on('click','.add-to-favorite',function(){
             error: function () {
          $('.popup-opener').closest('li').addClass('popup-holder');
       }
+
         });
     }
     else {

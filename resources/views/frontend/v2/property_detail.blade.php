@@ -85,7 +85,7 @@
                                 }
                             }
                             ?>
-                            <div class="info-blockProperty">
+                            <div class="info-blockProperty" id="fixed-block">
                                 <strong class="price"><span>Rs</span>{{App\Libs\Helpers\PriceHelper::numberToRupees($response['data']['property']->price)}}
                                 </strong>
                                 @if ($response['data']['property']->owner->agency != null)
@@ -96,11 +96,13 @@
                                             <img src="{{$images}}" alt="image description"> </a></div>
                                 @endif
                                 @if($response['data']['property']->owner->agency !=null)
-                                    @if($response['data']['user']->roles[0]->id ==3 && $response['data']['user']->trustedAgent ==1)
-                                    <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}">
-                                        @endif
-                                        <span class="heading">{{$response['data']['property']->owner->agency->name}}</span>
-                                    </a>
+
+                                        <span class="heading">@if($response['data']['user']->roles[0]->id ==3 && $response['data']['user']->trustedAgent ==1)
+                                                <a href="{{ URL::to('agent?agent_id='.$response['data']['property']->owner->id) }}">
+                                            @endif
+                                            {{$response['data']['property']->owner->agency->name}}</a>
+                                        </span>
+
                                 @endif
                                 <div class="layout">
                                     <div class="pull-left">

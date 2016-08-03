@@ -14,9 +14,12 @@ $(document).on('keyup', '#search-society', function(){
 $('.hidden-checkfield').change(function(){
 	if($(this).is(":checked")) {
 		$('.registration-form').addClass("agent-info");
+		$('.agent-information').slideDown();
+
 	} else {
 		$('.registration-form').removeClass("agent-info");
 		$('.company-logo').removeClass('hover');
+		$('.agent-information').slideUp();
 		$('.picture-holder').css({
 			'display':'none'
 		});
@@ -46,18 +49,18 @@ $(document).on('change', '.userRole-checkbox', function(){
 
 $(document).on('change', '.agent-brokerCheckbox', function(){
 	if($(this).is(':checked')){
-		addValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', true);
 		});
 		$('.registration-form').addClass('agent-info')
+		$('.agent-information').slideDown();
 	}
 	else {
-		removeValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', false);
 			$('.registration-form').removeClass('agent-info')
 		});
+		$('.agent-information').slideUp();
 	}
 	countCheckedRoles();
 });

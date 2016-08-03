@@ -60,7 +60,7 @@ class AuthController extends WebController
     {
         if(\Session::has('authUser'))
             return redirect()->route('dashboard');
-        return $this->response->setView('auth.v2.login')->respond(['data'=>[
+        return $this->response->setView('frontend.v2.auth.login')->respond(['data'=>[
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all()
         ]]);
