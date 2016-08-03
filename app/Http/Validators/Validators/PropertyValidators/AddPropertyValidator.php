@@ -68,7 +68,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
     private function propertyInfoRules()
     {
         return [
-            'files'=>'addProperty_max_image_size',
+            //'files'=>'addProperty_max_image_size',
             'ownerId' => 'required|exists:users,id',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
@@ -106,30 +106,6 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
         return $rules;
     }
 
-    public function registerDashboardImageSizeRule()
-    {
-        Validator::extend('addProperty_max_image_size', function($attribute, $value, $parameters)
-        {
-            $files = $this->request->get('files');
-            $originalFiles = [];
-            foreach($files as $file)
-            {
-                if($file['file'] != "null"){
-                    $originalFiles[] = $file['file'];
-                }
-            }
-            foreach($originalFiles as $file)
-            {
-                $fileName = $file->getClientOriginalExtension();
-                $image_size = getimagesize($file);
-                if((strtolower($fileName) != 'jpg' && strtolower($fileName) != 'jpeg' && strtolower($fileName) !='png' && strtolower($fileName) !='gif') || ($image_size[0] >5000  || $image_size[1] >5000 ))
-                {
-                    return false;
-                }
-            }
-            return true;
-        });
-    }
     public function rules()
     {
         return array_merge(array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules()), $this->extraFeaturesValidationRules());

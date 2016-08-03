@@ -10,6 +10,7 @@ namespace App\Http\Validators\Validators\PropertyValidators;
 
 use App\Http\Validators\Validators\AppValidator;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
+use Illuminate\Support\Facades\Validator;
 
 class PropertyValidator extends AppValidator
 {
@@ -47,5 +48,30 @@ class PropertyValidator extends AppValidator
         return [
 
         ];
+    }
+
+    public function registerDashboardImageSizeRule()
+    {
+        Validator::extend('addProperty_max_image_size', function($attribute, $value, $parameters)
+        {
+            $files = $this->request->get('files');
+            $originalFiles = [];
+            foreach($files as $file)
+            {
+                if($file['file'] != "null"){
+                    $originalFiles[] = $file['file'];
+                }
+            }
+            foreach($originalFiles as $file)
+            {
+                $fileName = $file->getClientOriginalExtension();
+                $image_size = getimagesize($file);
+                if((strtolower($fileName) != 'jpg' && strtolower($fileName) != 'jpeg' && strtolower($fileName) !='png' && strtolower($fileName) !='gif') || ($image_size[0] >5000  || $image_size[1] >5000 ))
+                {
+                    return false;
+                }
+            }
+            return true;
+        });
     }
 }

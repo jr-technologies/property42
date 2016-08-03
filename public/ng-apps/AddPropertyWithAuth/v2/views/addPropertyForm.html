@@ -8,13 +8,10 @@
             </div>
         </div>
         <div class="main-form">
+            <ul class="error">
+                <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
+            </ul>
             <form ng-show="propertySaved == false" class="property-add" ng-submit="submitProperty()">
-                <div class="errors">
-                    <ul>
-                        <li data-ng-repeat="error in errors">{{error[0]}}</li>
-                    </ul>
-                </div>
-
                 <strong class="add-pro-heading"><span>property for</span></strong>
                 <ul class="radio-checks-holder">
                     <li>
@@ -49,9 +46,9 @@
                     </li>
                 </ul>
                 <strong class="add-pro-heading"><span>Property Location</span></strong>
-                <div class="layout">
+                <div class="layout clearfix">
                     <div class="layout-holder">
-                        <label>Socity</label>
+                        <label>Society</label>
                         <div class="input-holder">
                             <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society" required >
                                 <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
@@ -223,8 +220,7 @@
                             <div class="layout">
                                 <label for="password">Password</label>
                                 <div class="input-holder">
-                                    <input type="password" id="password" placeholder="Please enter the Password">
-                                    <a target="_blank" href="{{domain}}forget-password" class="forgot-pass">Forgot Password</a>
+                                    <input type="password" ng-model="form.data.loginDetails.password" id="password" placeholder="Please enter the Password">
                                 </div>
                             </div>
                         </div>
