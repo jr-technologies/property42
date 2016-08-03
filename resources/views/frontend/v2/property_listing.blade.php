@@ -287,7 +287,7 @@
                     </div>
                 </div>
                 <ul class="Ads">
-                    <li><a ><img src="{{url('/')}}/assets/imgs/42_ads/add1.jpg"></a></li>
+                    <li><a ><img src="{{url('/')}}/assets/imgs/42_ads/add1.png"></a></li>
                 </ul>
             </div>
         </div>

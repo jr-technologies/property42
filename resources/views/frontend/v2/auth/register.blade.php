@@ -204,7 +204,7 @@
                     <ul class="agree-with-terms">
                         <li>
                             <label class="customCheckbox" for="newslatter" class="customCheckbox">
-                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif>
+                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif >
                                 <span class="fake-checkbox"></span>
                                 <span class="fake-label">I want to receive notifications for promotions, newsletters and website updates.</span>
                             </label>
