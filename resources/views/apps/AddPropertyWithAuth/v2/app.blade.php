@@ -2,6 +2,7 @@
 @section('content')
     <script type='text/javascript' >
         var appName = 'addPropertyWithAuth';
+        var rawResources = <?= json_encode($response['data']['resources']) ?>;
     </script>
     <!--    <link media="all" rel="stylesheet" href="--><?//= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?><!--/css/addPropertyForm.css">-->
     <!--    <link media="all" rel="stylesheet" href="--><?//= \App\Libs\Helpers\AppHelper::assetsPath('addPropertyWithAuth', $response['version']) ?><!--/css/propertyListings.css">-->
