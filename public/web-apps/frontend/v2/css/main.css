@@ -395,8 +395,8 @@ th {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?vrjqez");
-  src: url("../fonts/icomoon.eot?vrjqez#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?vrjqez") format("truetype"), url("../fonts/icomoon.woff?vrjqez") format("woff"), url("../fonts/icomoon.svg?vrjqez#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?918kqm");
+  src: url("../fonts/icomoon.eot?918kqm#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?918kqm") format("truetype"), url("../fonts/icomoon.woff?918kqm") format("woff"), url("../fonts/icomoon.svg?918kqm#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -410,9 +410,149 @@ th {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check:before {
+  content: "\e930";
+}
+
+.icon-domain:before {
+  content: "\e925";
+}
+
+.icon-folder:before {
+  content: "\e926";
+}
+
+.icon-front-store:before {
+  content: "\e927";
+}
+
+.icon-paperclip-tool:before {
+  content: "\e928";
+}
+
+.icon-printer:before {
+  content: "\e922";
+}
+
+.icon-avatar2:before {
+  content: "\e919";
+}
+
+.icon-empty-envelop:before {
+  content: "\e91f";
+}
+
+.icon-bath:before {
+  content: "\e91c";
+}
+
+.icon-bed:before {
+  content: "\e91d";
+}
+
+.icon-room:before {
+  content: "\e91e";
+}
+
+.icon-phone2:before {
+  content: "\e90f";
+}
+
+.icon-trusted .path1:before {
+  content: "\e910";
+  color: #dd372d;
+}
+
+.icon-trusted .path2:before {
+  content: "\e911";
+  margin-left: -0.8701171875em;
+  color: #b02a24;
+}
+
+.icon-trusted .path3:before {
+  content: "\e912";
+  margin-left: -0.8701171875em;
+  color: #ffedb6;
+}
+
+.icon-trusted .path4:before {
+  content: "\e913";
+  margin-left: -0.8701171875em;
+  color: #fde187;
+}
+
+.icon-trusted .path5:before {
+  content: "\e914";
+  margin-left: -0.8701171875em;
+  color: #d28b29;
+}
+
+.icon-trusted .path6:before {
+  content: "\e915";
+  margin-left: -0.8701171875em;
+  color: #ffc71e;
+}
+
+.icon-trusted .path7:before {
+  content: "\e917";
+  margin-left: -0.8701171875em;
+  color: #ffc71e;
+}
+
+.icon-trusted .path8:before {
+  content: "\e918";
+  margin-left: -0.8701171875em;
+  color: #fde187;
+}
+
+.icon-Vector-Smart-Object:before {
+  content: "\e916";
+}
+
+.icon-right-arrow:before {
+  content: "\e90c";
+}
+
+.icon-left-arrow:before {
+  content: "\e90d";
+}
+
+.icon-d-building:before {
+  content: "\e900";
+}
+
+.icon-close-envelope:before {
+  content: "\e909";
+}
+
+.icon-light-bulb:before {
+  content: "\e90a";
+}
+
+.icon-male-close-up-silhouette-with-tie:before {
+  content: "\e90b";
+}
+
+.icon-street-map:before {
+  content: "\e90e";
+}
+
+.icon-google-plus-symbol:before {
+  content: "\e908";
 }
 
 .icon-warning:before {
@@ -567,133 +707,6 @@ th {
   content: "\e901";
 }
 
-.icon-domain:before {
-  content: "\e925";
-}
-
-.icon-folder:before {
-  content: "\e926";
-}
-
-.icon-front-store:before {
-  content: "\e927";
-}
-
-.icon-paperclip-tool:before {
-  content: "\e928";
-}
-
-.icon-printer:before {
-  content: "\e922";
-}
-
-.icon-avatar2:before {
-  content: "\e919";
-}
-
-.icon-empty-envelop:before {
-  content: "\e91f";
-}
-
-.icon-bath:before {
-  content: "\e91c";
-}
-
-.icon-bed:before {
-  content: "\e91d";
-}
-
-.icon-room:before {
-  content: "\e91e";
-}
-
-.icon-phone2:before {
-  content: "\e90f";
-}
-
-.icon-trusted .path1:before {
-  content: "\e910";
-  color: #dd372d;
-}
-
-.icon-trusted .path2:before {
-  content: "\e911";
-  margin-left: -0.8701171875em;
-  color: #b02a24;
-}
-
-.icon-trusted .path3:before {
-  content: "\e912";
-  margin-left: -0.8701171875em;
-  color: #ffedb6;
-}
-
-.icon-trusted .path4:before {
-  content: "\e913";
-  margin-left: -0.8701171875em;
-  color: #fde187;
-}
-
-.icon-trusted .path5:before {
-  content: "\e914";
-  margin-left: -0.8701171875em;
-  color: #d28b29;
-}
-
-.icon-trusted .path6:before {
-  content: "\e915";
-  margin-left: -0.8701171875em;
-  color: #ffc71e;
-}
-
-.icon-trusted .path7:before {
-  content: "\e917";
-  margin-left: -0.8701171875em;
-  color: #ffc71e;
-}
-
-.icon-trusted .path8:before {
-  content: "\e918";
-  margin-left: -0.8701171875em;
-  color: #fde187;
-}
-
-.icon-Vector-Smart-Object:before {
-  content: "\e916";
-}
-
-.icon-right-arrow:before {
-  content: "\e90c";
-}
-
-.icon-left-arrow:before {
-  content: "\e90d";
-}
-
-.icon-d-building:before {
-  content: "\e900";
-}
-
-.icon-close-envelope:before {
-  content: "\e909";
-}
-
-.icon-light-bulb:before {
-  content: "\e90a";
-}
-
-.icon-male-close-up-silhouette-with-tie:before {
-  content: "\e90b";
-}
-
-.icon-street-map:before {
-  content: "\e90e";
-}
-
-.icon-google-plus-symbol:before {
-  content: "\e908";
-}
-
 .icon-old-phone:before {
   content: "\e92d";
 }
@@ -777,7 +790,7 @@ th {
 .propertyDetail-page .propertyImage-slider .slide a, .agent-detail-page .extra-feature-section .small-heading,
 .propertyDetail-page .extra-feature-section .small-heading, .agent-detail-page .agent-societies .agent-slide a,
 .propertyDetail-page .agent-societies .agent-slide a, .agent-detail-page .agent-picture,
-.propertyDetail-page .agent-picture, .addProperty-form .extra-features, .addProperty-form .existingOrNew-member li, .addProperty-form .list-extraFeatures .feature-heading, .registerNow .role-opener, .forgot-form .buttons-holder li a,
+.propertyDetail-page .agent-picture, .addProperty-form .extra-features, .addProperty-form .existingOrNew-member li, .addProperty-form .list-extraFeatures .feature-heading, .addProperty-form .thankYou-message, .addProperty-form .thankYou-message .left, .registerNow .role-opener, .forgot-form .buttons-holder li a,
 .login-form .buttons-holder li a, .global-error,
 .global-success, .custom-withouChecks .fake-label, h1, .loginRegister li, .main-visualSection, #nav .main-navigation li, .news-carousel .news-pagination ul, .topSocities-holder .socities li a, .heading, .agents-logo li a, .premiumProperty, .public-ui-features li strong, .generic-lightbox, .login-heading,
 .registerNow-heading,
@@ -794,7 +807,7 @@ th {
 .propertyDetail-page .property-picture-holder h1, .agent-detail-page .overview-section,
 .propertyDetail-page .overview-section, .agent-detail-page .overview-section .small-heading,
 .propertyDetail-page .overview-section .small-heading, .agent-detail-page .feature .small-heading,
-.propertyDetail-page .feature .small-heading, .agent-detail-page .col .list li > span:first-child, .addProperty-form .existingOrNew-member li .slide, .mainSearch-form .inputsHolder, #nav, .topSocities-holder .socities li .caption .numberOfproperties, .inquiry-email-form, .information {
+.propertyDetail-page .feature .small-heading, .agent-detail-page .col .list li > span:first-child, .addProperty-form .existingOrNew-member li .slide, .addProperty-form .thankYou-message .layout, .addProperty-form .thankYou-message .agent-listing-page #content, .agent-listing-page .addProperty-form .thankYou-message #content, .mainSearch-form .inputsHolder, #nav, .topSocities-holder .socities li .caption .numberOfproperties, .inquiry-email-form, .information {
   text-align: left;
 }
 
@@ -899,8 +912,8 @@ th {
 }
 
 .hidden, .agent-detail-page .propertyImage-slide.active a:after,
-.propertyDetail-page .propertyImage-slide.active a:after, .registerNow .layout label[for="address"]:after, .registerNow .agent-listing-page #content label[for="address"]:after, .agent-listing-page .registerNow #content label[for="address"]:after, .paginationCurrent-num-1,
-.current-num, .registerNow .company-logo.hover label span[class^="icon-"], .registerNow .company-logo.hover label span[class*="icon-"] {
+.propertyDetail-page .propertyImage-slide.active a:after, .addProperty-form.successfully-saved .add-form-holder, .registerNow .layout label[for="address"]:after, .registerNow .agent-listing-page #content label[for="address"]:after, .agent-listing-page .registerNow #content label[for="address"]:after, .paginationCurrent-num-1,
+.current-num, .addProperty-form .list-extraFeatures label:after, .registerNow .company-logo.hover label span[class^="icon-"], .registerNow .company-logo.hover label span[class*="icon-"] {
   display: none !important;
 }
 
@@ -4079,10 +4092,14 @@ input[type='submit'] {
 }
 
 .addProperty-form {
-  background: rgba(222, 225, 227, 0.5);
+  background: rgba(222, 225, 227, 0.8);
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.22);
   padding: 20px 10px;
   margin: 0 auto 30px;
+}
+
+.addProperty-form.successfully-saved .thankYou-message {
+  display: block;
 }
 
 .addProperty-form .select2-container {
@@ -4745,6 +4762,12 @@ input[type='submit'] {
   padding: 5px;
 }
 
+.addProperty-form .list-extraFeatures select {
+  width: 100%;
+  border: 0;
+  height: 28px;
+}
+
 .addProperty-form .list-extraFeatures .input-holder {
   width: 50%;
 }
@@ -4773,6 +4796,64 @@ input[type='submit'] {
     margin: 0;
     text-align: center;
     display: block !important;
+  }
+}
+
+.addProperty-form .thankYou-message {
+  display: none;
+}
+
+.addProperty-form .thankYou-message .layout, .addProperty-form .thankYou-message .agent-listing-page #content, .agent-listing-page .addProperty-form .thankYou-message #content {
+  margin: 0;
+  padding: 0;
+}
+
+.addProperty-form .thankYou-message .left {
+  width: 30%;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .thankYou-message .left {
+    width: 100%;
+    display: block;
+  }
+}
+
+.addProperty-form .thankYou-message .left span {
+  color: #2092d0;
+  display: block;
+  font-size: 200px;
+  line-height: 1;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .thankYou-message .left span {
+    font-size: 150px;
+  }
+}
+
+.addProperty-form .thankYou-message .right {
+  width: 70%;
+  font-size: 16px;
+  line-height: 20px;
+  color: #555;
+}
+
+@media (max-width: 1023px) {
+  .addProperty-form .thankYou-message .right {
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0 30px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .thankYou-message .right {
+    width: 100%;
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 0 20px;
   }
 }
 
@@ -7037,7 +7118,7 @@ h1 span {
 @media (max-width: 767px) {
   .loginRegister li:first-child a .hidden, .loginRegister li:first-child a .agent-detail-page .propertyImage-slide.active a:after, .agent-detail-page .propertyImage-slide.active .loginRegister li:first-child a a:after, .loginRegister li:first-child a
   .propertyDetail-page .propertyImage-slide.active a:after,
-  .propertyDetail-page .propertyImage-slide.active .loginRegister li:first-child a a:after, .loginRegister li:first-child a .registerNow .layout label[for="address"]:after, .registerNow .layout .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .registerNow .agent-listing-page #content label[for="address"]:after, .registerNow .agent-listing-page #content .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .agent-listing-page .registerNow #content label[for="address"]:after, .agent-listing-page .registerNow #content .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .paginationCurrent-num-1, .loginRegister li:first-child a
+  .propertyDetail-page .propertyImage-slide.active .loginRegister li:first-child a a:after, .loginRegister li:first-child a .addProperty-form.successfully-saved .add-form-holder, .addProperty-form.successfully-saved .loginRegister li:first-child a .add-form-holder, .loginRegister li:first-child a .registerNow .layout label[for="address"]:after, .registerNow .layout .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .registerNow .agent-listing-page #content label[for="address"]:after, .registerNow .agent-listing-page #content .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .agent-listing-page .registerNow #content label[for="address"]:after, .agent-listing-page .registerNow #content .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .paginationCurrent-num-1, .loginRegister li:first-child a
   .current-num {
     display: inline-block !important;
     vertical-align: top;
@@ -7598,7 +7679,7 @@ h1 span {
 @media (max-width: 767px) {
   #nav .mobile-content.hidden, #nav .agent-detail-page .propertyImage-slide.active a.mobile-content:after, .agent-detail-page .propertyImage-slide.active #nav a.mobile-content:after, #nav
   .propertyDetail-page .propertyImage-slide.active a.mobile-content:after,
-  .propertyDetail-page .propertyImage-slide.active #nav a.mobile-content:after, #nav .registerNow .layout label.mobile-content[for="address"]:after, .registerNow .layout #nav label.mobile-content[for="address"]:after, #nav .registerNow .agent-listing-page #content label.mobile-content[for="address"]:after, .registerNow .agent-listing-page #content #nav label.mobile-content[for="address"]:after, #nav .agent-listing-page .registerNow #content label.mobile-content[for="address"]:after, .agent-listing-page .registerNow #content #nav label.mobile-content[for="address"]:after, #nav .mobile-content.paginationCurrent-num-1, #nav
+  .propertyDetail-page .propertyImage-slide.active #nav a.mobile-content:after, #nav .addProperty-form.successfully-saved .mobile-content.add-form-holder, .addProperty-form.successfully-saved #nav .mobile-content.add-form-holder, #nav .registerNow .layout label.mobile-content[for="address"]:after, .registerNow .layout #nav label.mobile-content[for="address"]:after, #nav .registerNow .agent-listing-page #content label.mobile-content[for="address"]:after, .registerNow .agent-listing-page #content #nav label.mobile-content[for="address"]:after, #nav .agent-listing-page .registerNow #content label.mobile-content[for="address"]:after, .agent-listing-page .registerNow #content #nav label.mobile-content[for="address"]:after, #nav .mobile-content.paginationCurrent-num-1, #nav
   .mobile-content.current-num {
     display: block !important;
   }

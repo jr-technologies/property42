@@ -3,7 +3,7 @@
     <div class="page-holder">
         <div class="agent-listing-page">
             <div class="container">
-                <a class="aside-opener-filters">More Filters <b>(Land Area / Price...)</b><span class="button"><b></b></span></a>
+                <a class="aside-opener-filters">Search Filters <span class="button"><b></b></span></a>
                 <aside id="aside" class="hideOnMobile">
                     {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'filter-form')) }}
                     <ul class="filters-links text-upparcase">
@@ -31,7 +31,7 @@
                                         </select>
 
                                     </li>
-                                    <input class="btn-default" type="submit" value="Search Agent">
+                                    <input class="btn-default full-width" type="submit" value="Search Agent">
                                 </ul>
                             </div>
                         </li>
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="caption text-left">
                                         <div class="layout">
-                                            <a href="{{ URL::to('agent?agent_id='.$agent->id) }}"> <h1>{{$agent->agencies[0]->name}}</h1></a>
+                                             <h1><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></h1>
                                             <p>{{str_limit($agent->agencies[0]->description,67)}}</p>
                                         </div>
                                         <div class="layout">

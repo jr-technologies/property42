@@ -2,33 +2,29 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
+use App\Http\Requests\Requests\IndexRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
 use App\Http\Requests\Requests\Property\RouteToAddPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
-use App\Http\Requests\Requests\User\GetAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
-use App\Libs\Auth\Web;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
-use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
+use App\Repositories\Repositories\Sql\FavouritePropertyRepository;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Traits\Property\ShowAddPropertyFormHelper;
 use App\Transformers\Response\PropertyTransformer;
-use Illuminate\Support\Facades\DB;
 
 class PropertiesController extends Controller
 {
@@ -59,7 +55,7 @@ class PropertiesController extends Controller
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
-        $this->favouriteFactory = new FavouritePropertyFactory();
+        $this->favouriteFactory = new FavouritePropertyRepository();
         $this->users = (new UsersJsonRepoProvider())->repo();
         $this->userRepo = (new UsersRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
@@ -98,11 +94,11 @@ class PropertiesController extends Controller
             'propertySubtypes'=>$this->propertySubtypes->getByType($request->get('propertyTypeId')),
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
-            'oldValues'=>$request->all()
+            'oldValues'=>$request->all(),
         ]]);
     }
 
-    public function index()
+    public function index(IndexRequest $request)
     {
         $agents = $this->users->getTrustedAgentsWithPriority(['limit'=>36]);
         $importantSocieties = $this->societies->getImportantSocieties();
@@ -121,7 +117,7 @@ class PropertiesController extends Controller
     {
        try {
            $property = $this->properties->getById($request->get('propertyId'));
-           if ($property->propertyStatus->id == ($this->status->getActiveStatusId()))
+           if($property->propertyStatus->id == ($this->status->getActiveStatusId()))
            {
                $this->propertiesRepo->IncrementViews($request->get('propertyId'));
                $loggedInUser = $request->user();

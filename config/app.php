@@ -227,6 +227,7 @@ return [
         'TrustedAgentRequest' => \App\Http\Requests\Requests\User\TrustedAgentRequest::class,
         'ForgetPasswordRequest' => \App\Http\Requests\Requests\User\ForgetPasswordRequest::class,
         'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
+        'IndexRequest' => \App\Http\Requests\Requests\IndexRequest::class,
 
 
 
@@ -241,6 +242,7 @@ return [
         'ContactUSMailRequest' => \App\Http\Requests\Requests\Mail\ContactUSMailRequest::class,
         'MailFeedbackUsRequest' => \App\Http\Requests\Requests\Mail\MailFeedbackUsRequest::class,
         'WantedMailRequest' => \App\Http\Requests\Requests\Mail\WantedMailRequest::class,
+        'FeedbackRequest' => \App\Http\Requests\Requests\Mail\FeedbackRequest::class,
 
         /*  Country Requests */
         'AddCountryRequest' => \App\Http\Requests\Requests\Country\AddCountryRequest::class,
