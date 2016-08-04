@@ -10,6 +10,7 @@ Route::get('print-societies/12345',function(){
         }
     }
 );
+
 Route::get('admin',
     [
         'middleware'=>
@@ -244,6 +245,7 @@ Route::get('/login',
         'uses'=>'Auth\AuthController@showLoginPage', 'as'=>'loginPage'
     ]
 );
+
 Route::post('/login',
     [
         'middleware'=>
@@ -400,6 +402,7 @@ Route::post('property-to-friend',
 /**
 trusted-agent route is not redirect on right path its temporary
 **/
+
 Route::post('trusted-agent',
     [
         'middleware'=>
