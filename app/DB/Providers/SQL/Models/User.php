@@ -7,9 +7,11 @@
  */
 
 namespace App\DB\Providers\SQL\Models;
-
+use App\Traits\Authorization\ShouldBeAuthorized;
 
 class User {
+    use ShouldBeAuthorized;
+
     public $id = 0;
     public $fName = "";
     public $lName = "";

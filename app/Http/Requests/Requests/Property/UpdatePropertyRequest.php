@@ -122,7 +122,10 @@ class UpdatePropertyRequest extends Request implements RequestInterface{
     }
 
     public function authorize(){
-        return true;
+        if($this->user()->can('update','property',$this->getPropertyModel())){
+            return true;
+        }
+        return false;
     }
 
     public function validate(){

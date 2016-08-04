@@ -469,6 +469,7 @@ Route::post('property/update',
         'middleware'=>
             [
                 'apiAuthenticate:updatePropertyRequest',
+                'apiAuthorize:updatePropertyRequest',
                 'apiValidate:updatePropertyRequest'
             ],
         'uses'=>'PropertiesController@update'

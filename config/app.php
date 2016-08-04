@@ -383,6 +383,9 @@ return [
 
         /* Apps Requests */
         'GetDashboardAppRequest' => \App\Http\Requests\Requests\Apps\GetDashboardAppRequest::class,
+
+        /* Registering Policies */
+        'PropertyPolicy' => \App\Policies\PropertyPolicy::class,
     ],
 
 ];
