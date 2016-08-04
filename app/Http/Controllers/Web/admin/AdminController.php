@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\DB\Providers\SQL\Factories\Factories\FavouriteProperty\FavouritePropertyFactory;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Requests\Admin\GetAdminActivePropertyRequest;
+use App\Http\Requests\Requests\Admin\GetAdminDeletedPropertyRequest;
+use App\Http\Requests\Requests\Admin\GetAdminExpiredPropertyRequest;
+use App\Http\Requests\Requests\Admin\GetAdminPendingPropertyRequest;
+use App\Http\Requests\Requests\Admin\GetAdminRejectedPropertyRequest;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminsPropertiesRequest;
@@ -40,7 +45,50 @@ class AdminController extends Controller
     public function getProperties(GetAdminsPropertiesRequest $request)
     {
         $properties = $this->properties->getAllProperties();
-        return $this->response->setView('admin.pending-properties')->respond(['data'=>[
+        return $this->response->setView('admin.properties')->respond(['data'=>[
+            'properties'=>$properties,
+            'propertiesCount'=>count($properties)
+        ]]);
+    }
+
+    public function getActiveProperties(GetAdminActivePropertyRequest $request)
+    {
+        $properties = $this->properties->getActiveProperties();
+        return $this->response->setView('admin.properties')->respond(['data'=>[
+            'properties'=>$properties,
+            'propertiesCount'=>count($properties)
+        ]]);
+    }
+
+    public function getPendingProperties(GetAdminPendingPropertyRequest $request)
+    {
+        $properties = $this->properties->getPendingProperties();
+        return $this->response->setView('admin.properties')->respond(['data'=>[
+            'properties'=>$properties,
+            'propertiesCount'=>count($properties)
+        ]]);
+    }
+    public function getExpiredProperties(GetAdminExpiredPropertyRequest $request)
+    {
+        $properties = $this->properties->getExpiredProperties();
+        return $this->response->setView('admin.properties')->respond(['data'=>[
+            'properties'=>$properties,
+            'propertiesCount'=>count($properties)
+        ]]);
+    }
+    public function getRejectedProperties(GetAdminRejectedPropertyRequest $request)
+    {
+        $properties = $this->properties->getRejectedProperties();
+        return $this->response->setView('admin.properties')->respond(['data'=>[
+            'properties'=>$properties,
+            'propertiesCount'=>count($properties)
+        ]]);
+    }
+
+    public function getDeletedProperties(GetAdminDeletedPropertyRequest $request)
+    {
+        $properties = $this->properties->getDeletedProperties();
+        return $this->response->setView('admin.properties')->respond(['data'=>[
             'properties'=>$properties,
             'propertiesCount'=>count($properties)
         ]]);

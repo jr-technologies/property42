@@ -346,6 +346,12 @@ return [
         'DeVerifyPropertyRequest' => \App\Http\Requests\Requests\property\DeVerifyPropertyRequest::class,
         'DeActivePropertyRequest' => \App\Http\Requests\Requests\property\DeActivePropertyRequest::class,
 
+        'GetAdminActivePropertyRequest' => \App\Http\Requests\Requests\Admin\GetAdminActivePropertyRequest::class,
+        'GetAdminPendingPropertyRequest' => \App\Http\Requests\Requests\Admin\GetAdminPendingPropertyRequest::class,
+        'GetAdminExpiredPropertyRequest' => \App\Http\Requests\Requests\Admin\GetAdminExpiredPropertyRequest::class,
+        'GetAdminRejectedPropertyRequest' => \App\Http\Requests\Requests\Admin\GetAdminRejectedPropertyRequest::class,
+        'GetAdminDeletedPropertyRequest' => \App\Http\Requests\Requests\Admin\GetAdminDeletedPropertyRequest::class,
+
 
         /* Feature Section Requests */
         'AddFeatureSectionRequest' => \App\Http\Requests\Requests\FeatureSection\AddFeatureSectionRequest::class,

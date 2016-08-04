@@ -34,8 +34,13 @@
             </div>
             <ul class="sideBar-links">
                 <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
-               <li class="active"><a href="{{URL::to('admin/properties')}}"><span class="icon-list"></span>listings  {{--<span class="badge">{{(isset($response['data']['propertiesCount']))?$response['data']['propertiesCount']:0}}</span>--}}</a></li>
-                <li class="active"><a href="{{URL::to('admin/agents')}}"><span class="icon-list"></span>Agents  {{--<span class="badge">{{(isset($response['data']['agentsCount']))?$response['data']['agentsCount']:0}}</span>--}}</a></li>
+               <li class="active"><a href="{{URL::to('admin/properties')}}"><span class="icon-list"></span>listings  </a></li>
+                <li class="active"><a href="{{URL::to('get/active/property')}}"><span class="icon-list"></span>Active Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/pending/property')}}"><span class="icon-list"></span>pending Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/rejected/property')}}"><span class="icon-list"></span>Rejected Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/expired/property')}}"><span class="icon-list"></span>Expired Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/deleted/property')}}"><span class="icon-list"></span>Deleted Properties </a></li>
+                <li class="active"><a href="{{URL::to('admin/agents')}}"><span class="icon-list"></span>Agents </a></li>
             </ul>
         </aside>
         @yield('content')

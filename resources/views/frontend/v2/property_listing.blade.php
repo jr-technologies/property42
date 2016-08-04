@@ -10,6 +10,29 @@
                             <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                                 <ul class="filters-links text-upparcase">
                                     <li class="active">
+                                        <a class="filters-links-opener">LOCATION / SOCIETY</a>
+                                        <div class="slide">
+                                            <ul class="filterChecks">
+                                                <li>
+                                                    <select class="js-example-basic-single filter-form-input" name="society_id">
+                                                        <option  value="">All Societies</option>
+                                                        @foreach($response['data']['societies'] as $society)
+                                                            <option value="{{$society->id}}" @if($response['data']['oldValues']['societyId'] == $society->id) selected @endif>{{$society->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </li>
+                                                <li>
+                                                    <select class="js-example-basic-single filter-form-input " @if(sizeof($response['data']['blocks']) == 0) disabled @endif name="block_id">
+                                                        <option  value="">All Blocks</option>
+                                                        @foreach($response['data']['blocks'] as $block)
+                                                            <option value="{{$block->id}}" @if($response['data']['oldValues']['blockId'] == $block->id) selected @endif>{{$block->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="active">
                                         <a class="filters-links-opener">LAND AREA</a>
                                         <div class="slide">
 											<span class="fake-select">
@@ -122,29 +145,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="active">
-                                        <a class="filters-links-opener">LOCATION / SOCIETY</a>
-                                        <div class="slide">
-                                            <ul class="filterChecks">
-                                                <li>
-                                                    <select class="js-example-basic-single filter-form-input" name="society_id">
-                                                        <option  value="">All Societies</option>
-                                                        @foreach($response['data']['societies'] as $society)
-                                                            <option value="{{$society->id}}" @if($response['data']['oldValues']['societyId'] == $society->id) selected @endif>{{$society->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </li>
-                                                <li>
-                                                    <select class="js-example-basic-single filter-form-input " @if(sizeof($response['data']['blocks']) == 0) disabled @endif name="block_id">
-                                                        <option  value="">All Blocks</option>
-                                                        @foreach($response['data']['blocks'] as $block)
-                                                            <option value="{{$block->id}}" @if($response['data']['oldValues']['blockId'] == $block->id) selected @endif>{{$block->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+
                                 </ul>
                             </form>
                         </aside>
@@ -195,7 +196,7 @@
                                         </div>
                                         <div class="layout links-holder">
                                             <div class="links-left">
-                                                <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span `lass="icon-Vector-Smart-Object"></span></a>
+                                                <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-Vector-Smart-Object"></span></a>
                                                 @if(isset($property->isVerified) && $property->isVerified == 1)
                                                     <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
                                                 @endif
@@ -237,7 +238,7 @@
                         ?>
                         <ul class="pager">
                             @if($totalPaginationValue !=0)
-                                <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
+                                <li><a href="{{$previousResult}}" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
                             @endif
                             <?php
                             $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
@@ -251,7 +252,7 @@
                             <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                             <?php }?>
                             @if($totalPaginationValue !=0)
-                                <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
+                                <li><a href="{{$nextResult}}" class="next"><span class="icon-bold-arrow-right"></span></a></li>
                             @endif
                         </ul>
                         <div class="popup-holder">

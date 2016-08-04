@@ -15,6 +15,11 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
+<div class="page-loader">
+    <div class="page-loader-holder">
+        <img src="{{url('/')}}/assets/imgs/loader.gif" alt="Property42 loading">
+    </div>
+</div>
 <div id="wrapper">
     <div class="main-bg-holder {{(Route::getCurrentRoute()->getPath() !='/')?'byDefault-fixed':''}}">
         <header id="header">
@@ -234,7 +239,7 @@
     </div>
     @if(Route::getCurrentRoute()->getPath() =='/')
         <div class="weAreWorking">
-            <p>We would be very grateful if you could spare a few minutes to help us improve our website by giving us <a href="#feedback" class="lightbox">FEEDBACK</a></p>
+            <p><b>We are working on it...</b>We would be very grateful if you could spare a few minutes to help us improve our website by giving us <a href="#feedback" class="lightbox">FEEDBACK</a></p>
             <a class="btn-close-working">Got it.</a>
         </div>
     @endif

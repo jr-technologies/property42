@@ -257,7 +257,7 @@
                         <div class="overview-section">
                             <div class="layout">
                                 <span class="small-heading">Property Overview</span>
-                                <a href="#" class="btn-hollow"><span class="icon-printer"></span>PRINT DETAILS</a>
+                                <a href="#" onclick="window.print()" class="btn-hollow"><span class="icon-printer"></span>PRINT DETAILS</a>
                             </div>
                             <p>{{$response['data']['property']->description}}</p>
                         </div>

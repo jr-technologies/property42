@@ -126,10 +126,10 @@
                             $firstResult = URL('/agents').'?'.$convertFirstRecordToQueryString;
                             ?>
                             @if($actualPage >=5)
-                                <a href="{{$firstResult}}">First</a>
+                                <li><a href="{{$firstResult}}" class="first"><span class="icon-arrow1-left"></span></a></li>
                             @endif
 
-                            <li><a href="{{$previousResult}}" class="previous"><span class="icon-left-arrow"></span></a></li>
+                            <li><a href="{{$previousResult}}" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
                             <?php
                             //This is section of code print the pagination
                             $query_str_to_array = $_GET;
@@ -145,7 +145,7 @@
                             <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                             <?php }?>
                             @if($actualPage != $totalPages)
-                                <li><a href="{{$nextResult}}" class="next"><span class="icon-right-arrow"></span></a></li>
+                                <li><a href="{{$nextResult}}" class="next"><span class="icon-bold-arrow-right"></span></a></li>
                             @endif
                             <?php
 
@@ -159,7 +159,7 @@
                             $lastResult = URL('/agents').'?'.$convertLastRecordToQueryString;
                             ?>
                             @if($current_page2 <=$paginationValue-4)
-                                <a href="{{$lastResult}}">Last</a>
+                                <li><a href="{{$lastResult}}" class="last"><span class="icon-arrow1-right"></span></a></li>
                             @endif</ul>
                 </section>
                 <div class="popup-holder">

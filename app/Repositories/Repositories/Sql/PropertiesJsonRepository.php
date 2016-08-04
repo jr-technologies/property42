@@ -19,10 +19,12 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     private $userJsonTransformer;
     private $factory = null;
     private $cheetah = null;
+    private $propertyStatus = null;
     public function __construct(){
         $this->userJsonTransformer = null;
         $this->factory = new PropertyJsonFactory();
         $this->cheetah = (new SearchEngineProvider())->cheetah();
+        $this->propertyStatus =  new \PropertyStatusTableSeeder();
     }
 
     public function all()
@@ -37,6 +39,26 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
     public function getAllProperties()
     {
         return $this->factory->getAllProperties();
+    }
+    public function getActiveProperties()
+    {
+        return $this->factory->getActiveProperties($this->propertyStatus->getActiveStatusId());
+    }
+    public function getPendingProperties()
+    {
+        return $this->factory->getPendingProperties($this->propertyStatus->getPendingStatusId());
+    }
+    public function getExpiredProperties()
+    {
+        return $this->factory->getExpiredProperties($this->propertyStatus->getExpiredStatusId());
+    }
+    public function getRejectedProperties()
+    {
+        return $this->factory->getRejectedProperties($this->propertyStatus->getRejectedStatusId());
+    }
+    public function getDeletedProperties()
+    {
+        return $this->factory->getDeletedProperties($this->propertyStatus->getDeletedStatusId());
     }
     public function find($id)
     {

@@ -35,6 +35,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'lName.min' => 'Last name must be atleast 3 chars',
             'lName.max' => 'Last name must be less then 56 chars',
             'passwordAgain.required' => 'Password Again is required',
+            'passwordAgain.conform_password' => 'Your password is not matching',
             'phone.required' => 'Phone is required',
             'userRoles.required' => 'please select atleast one role',
             'termsConditions.required' => $termsConditionsMessage,
@@ -58,7 +59,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'lName' => 'required|min:3|max:55',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:5|max:15',
-            'passwordAgain' => 'required|min:5|max:15',
+            'passwordAgain' => 'required|conform_password|min:5|max:15',
             'phone' => 'required|min:5|max:15',
             'userRoles' => 'required',
             'termsConditions' => 'required|equals:1'
@@ -108,6 +109,27 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
                     $societiesLimit = true;
                 }
                 if(!$societiesLimit){
+                    return false;
+                }
+            }catch(\Exception $e)
+            {
+                return false;
+            }
+            return true;
+        });
+    }
+    public function registerConformPasswordRule()
+    {
+        Validator::extend('conform_password', function($attribute, $value, $parameters)
+        {
+            try {
+                $conformPassword = false;
+                $password = $this->request->get('password');
+                $againPassword = $this->request->get('passwordAgain');
+                if ($password == $againPassword) {
+                    $conformPassword = true;
+                }
+                if(!$conformPassword){
                     return false;
                 }
             }catch(\Exception $e)

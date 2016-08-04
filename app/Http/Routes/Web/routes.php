@@ -43,6 +43,56 @@ Route::get('get/property',
     ]
 );
 
+Route::get('get/active/property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminActivePropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getActiveProperties'
+    ]
+);
+
+Route::get('get/expired/property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminExpiredPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getExpiredProperties'
+    ]
+);
+
+Route::get('get/rejected/property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminRejectedPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getRejectedProperties'
+    ]
+);
+
+Route::get('get/deleted/property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminDeletedPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getDeletedProperties'
+    ]
+);
+
+Route::get('get/pending/property',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAdminPendingPropertyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getPendingProperties'
+    ]
+);
+
 Route::get('get/agent',
     [
         'middleware'=>
