@@ -213,7 +213,7 @@
                             <label class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
                                 <input type="checkbox" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif checked>
                                 <span class="fake-checkbox hidden"></span>
-                                <span class="fake-label">I have read and agree to Property42.pk Terms and Conditions</span>
+                                <span>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></span>
                                 <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
                             </label>
                         </li>

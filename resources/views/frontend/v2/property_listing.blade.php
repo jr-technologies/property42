@@ -255,10 +255,13 @@
                             @endif
                         </ul>
                         <div class="popup-holder">
-                            <div id="callPopup" class="lightbox call-agent">
+                            <div id="callPopup" class="lightbox call-agent generic-lightbox">
+                                <span class="lighbox-heading">Phone Number</span>
                                 <p></p>
+                                <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on Property42.pk</span>
                             </div>
-                            <div id="sendEmail-popup" class="lightbox">
+                            <div id="sendEmail-popup" class="lightbox generic-lightbox">
+                                <span class="lighbox-heading">Send Email</span>
                                 <form class="inquiry-email-form">
                                     <div class="field-holder">
                                         <label for="name">Name</label>
@@ -278,7 +281,9 @@
                                     </div>
                                     <div class="field-holder">
                                         <label for="message">message</label>
-                                        <div class="input-holder"><textarea id="message"></textarea></div>
+                                        <div class="input-holder"><textarea id="message"></textarea>
+                                            <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                                        </div>
                                     </div>
                                     <button type="submit">SEND</button>
                                 </form>
