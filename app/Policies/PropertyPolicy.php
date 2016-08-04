@@ -13,7 +13,7 @@ use App\DB\Providers\SQL\Models\User;
 
 class PropertyPolicy extends Policy
 {
-    public function update(User $object ,Property $property=null)
+    public function update(User $user ,Property $property=null)
     {
         return true;
     }
