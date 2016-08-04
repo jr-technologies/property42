@@ -34,6 +34,7 @@ class MailController extends Controller
         Session::flash('message', 'Your message has been sent');
         return redirect()->back();
     }
+
     public function mailToAgent(MailToAgentRequest $request)
     {
         $user = $request->all();
