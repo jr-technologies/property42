@@ -1,22 +1,13 @@
 <div class="addProperty-form container {{please_wait_class}}"  ng-init="initialize()">
-    <h1>Add <span>Property</span></h1>
-    <div class="add-form-holder">
-        <div ng-show="propertySaved == true" class="thankYou-message-submitPropperty">
-            <div class="messageThankyou-holder">
-                <strong class="ui-thankYou-submitProperty">Your property has been submitted successfully !</strong>
-                <a href="{{domain}}add-property" class="add-anotherProperty">Add an other property</a>
-            </div>
-        </div>
+    <div class="add-form-holder"  ng-show="propertySaved == false">
+        <h1>Add <span>Property</span></h1>
         <div class="main-form">
-            <form ng-show="propertySaved == false" class="property-add" ng-submit="submitProperty()">
-                <div class="errors">
-                    <ul>
-                        <li data-ng-repeat="error in errors">{{error[0]}}</li>
-                    </ul>
-                </div>
-
+            <ul class="error">
+                <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
+            </ul>
+            <form class="property-add" ng-submit="submitProperty()">
                 <strong class="add-pro-heading"><span>property for</span></strong>
-                <ul class="radio-checks-holder">
+                <ul class="radio-checks-holder text-center">
                     <li>
                         <label for="for-sale" class="custom-withouChecks transparent">
                             <input type="radio" name="add-for" id="for-sale" value="1" ng-model="form.data.propertyPurpose">
@@ -31,7 +22,7 @@
                     </li>
                 </ul>
                 <strong class="add-pro-heading"><span>Property Type</span></strong>
-                <ul class="radio-checks-holder">
+                <ul class="radio-checks-holder text-center">
                     <li data-ng-repeat="type in types">
                         <label for="{{type.name}}" class="custom-withouChecks transparent">
                             <input type="radio" name="propertyType" ng-model="$parent.form.data.propertyType" value="{{type.id}}" id="{{type.name}}" class="addPro-type">
@@ -49,7 +40,7 @@
                     </li>
                 </ul>
                 <strong class="add-pro-heading"><span>Property Location</span></strong>
-                <div class="layout">
+                <div class="layout clearfix">
                     <div class="layout-holder">
                         <label class="required-field">Socity</label>
                         <div class="input-holder">
@@ -223,8 +214,7 @@
                             <div class="layout">
                                 <label for="password">Password</label>
                                 <div class="input-holder">
-                                    <input type="password" id="password" placeholder="Please enter the Password">
-                                    <a target="_blank" href="{{domain}}forget-password" class="forgot-pass">Forgot Password</a>
+                                    <input type="password" ng-model="form.data.loginDetails.password" id="password" placeholder="Please enter the Password">
                                 </div>
                             </div>
                         </div>
@@ -272,5 +262,17 @@
         <div class="tips">
             <strong class="add-pro-heading"><span>tips</span></strong>
         </div>
+    </div>
+    <div class="thankYou-message" ng-show="propertySaved == true">
+        <h1>Safe <span>successfully</span></h1>
+        <div class="layout">
+            <div class="left"><span class="icon-check"></span></div>
+            <div class="right">
+                <p>Your property details have been received. It will be reviewed by our staff within 24 hours.</p>
+                <p>Property type: <b>Free Listing</b></p>
+                <p>Property status: <b>Pending</b></p>
+            </div>
+        </div>
+        <a href="{{domain}}" class="btn-default">Got it !</a>
     </div>
 </div>

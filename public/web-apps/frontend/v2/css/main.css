@@ -395,8 +395,8 @@ th {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?918kqm");
-  src: url("../fonts/icomoon.eot?918kqm#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?918kqm") format("truetype"), url("../fonts/icomoon.woff?918kqm") format("woff"), url("../fonts/icomoon.svg?918kqm#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?xw6ppn");
+  src: url("../fonts/icomoon.eot?xw6ppn#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?xw6ppn") format("truetype"), url("../fonts/icomoon.woff?xw6ppn") format("woff"), url("../fonts/icomoon.svg?xw6ppn#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -424,135 +424,16 @@ th {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-check:before {
-  content: "\e930";
+.icon-arrow-right:before {
+  content: "\e931";
 }
 
-.icon-domain:before {
-  content: "\e925";
+.icon-right:before {
+  content: "\e931";
 }
 
-.icon-folder:before {
-  content: "\e926";
-}
-
-.icon-front-store:before {
-  content: "\e927";
-}
-
-.icon-paperclip-tool:before {
-  content: "\e928";
-}
-
-.icon-printer:before {
-  content: "\e922";
-}
-
-.icon-avatar2:before {
-  content: "\e919";
-}
-
-.icon-empty-envelop:before {
-  content: "\e91f";
-}
-
-.icon-bath:before {
-  content: "\e91c";
-}
-
-.icon-bed:before {
-  content: "\e91d";
-}
-
-.icon-room:before {
-  content: "\e91e";
-}
-
-.icon-phone2:before {
-  content: "\e90f";
-}
-
-.icon-trusted .path1:before {
-  content: "\e910";
-  color: #dd372d;
-}
-
-.icon-trusted .path2:before {
-  content: "\e911";
-  margin-left: -0.8701171875em;
-  color: #b02a24;
-}
-
-.icon-trusted .path3:before {
-  content: "\e912";
-  margin-left: -0.8701171875em;
-  color: #ffedb6;
-}
-
-.icon-trusted .path4:before {
-  content: "\e913";
-  margin-left: -0.8701171875em;
-  color: #fde187;
-}
-
-.icon-trusted .path5:before {
-  content: "\e914";
-  margin-left: -0.8701171875em;
-  color: #d28b29;
-}
-
-.icon-trusted .path6:before {
-  content: "\e915";
-  margin-left: -0.8701171875em;
-  color: #ffc71e;
-}
-
-.icon-trusted .path7:before {
-  content: "\e917";
-  margin-left: -0.8701171875em;
-  color: #ffc71e;
-}
-
-.icon-trusted .path8:before {
-  content: "\e918";
-  margin-left: -0.8701171875em;
-  color: #fde187;
-}
-
-.icon-Vector-Smart-Object:before {
-  content: "\e916";
-}
-
-.icon-right-arrow:before {
-  content: "\e90c";
-}
-
-.icon-left-arrow:before {
-  content: "\e90d";
-}
-
-.icon-d-building:before {
-  content: "\e900";
-}
-
-.icon-close-envelope:before {
-  content: "\e909";
-}
-
-.icon-light-bulb:before {
-  content: "\e90a";
-}
-
-.icon-male-close-up-silhouette-with-tie:before {
-  content: "\e90b";
-}
-
-.icon-street-map:before {
-  content: "\e90e";
-}
-
-.icon-google-plus-symbol:before {
-  content: "\e908";
+.icon-next:before {
+  content: "\e931";
 }
 
 .icon-warning:before {
@@ -691,6 +572,137 @@ th {
   content: "\e906";
 }
 
+.icon-check:before {
+  content: "\e930";
+}
+
+.icon-domain:before {
+  content: "\e925";
+}
+
+.icon-folder:before {
+  content: "\e926";
+}
+
+.icon-front-store:before {
+  content: "\e927";
+}
+
+.icon-paperclip-tool:before {
+  content: "\e928";
+}
+
+.icon-printer:before {
+  content: "\e922";
+}
+
+.icon-avatar2:before {
+  content: "\e919";
+}
+
+.icon-empty-envelop:before {
+  content: "\e91f";
+}
+
+.icon-bath:before {
+  content: "\e91c";
+}
+
+.icon-bed:before {
+  content: "\e91d";
+}
+
+.icon-room:before {
+  content: "\e91e";
+}
+
+.icon-phone2:before {
+  content: "\e90f";
+}
+
+.icon-trusted .path1:before {
+  content: "\e910";
+  color: #dd372d;
+}
+
+.icon-trusted .path2:before {
+  content: "\e911";
+  margin-left: -0.8701171875em;
+  color: #b02a24;
+}
+
+.icon-trusted .path3:before {
+  content: "\e912";
+  margin-left: -0.8701171875em;
+  color: #ffedb6;
+}
+
+.icon-trusted .path4:before {
+  content: "\e913";
+  margin-left: -0.8701171875em;
+  color: #fde187;
+}
+
+.icon-trusted .path5:before {
+  content: "\e914";
+  margin-left: -0.8701171875em;
+  color: #d28b29;
+}
+
+.icon-trusted .path6:before {
+  content: "\e915";
+  margin-left: -0.8701171875em;
+  color: #ffc71e;
+}
+
+.icon-trusted .path7:before {
+  content: "\e917";
+  margin-left: -0.8701171875em;
+  color: #ffc71e;
+}
+
+.icon-trusted .path8:before {
+  content: "\e918";
+  margin-left: -0.8701171875em;
+  color: #fde187;
+}
+
+.icon-Vector-Smart-Object:before {
+  content: "\e916";
+}
+
+.icon-right-arrow:before {
+  content: "\e90c";
+}
+
+.icon-left-arrow:before {
+  content: "\e90d";
+}
+
+.icon-d-building:before {
+  content: "\e900";
+}
+
+.icon-close-envelope:before {
+  content: "\e909";
+}
+
+.icon-light-bulb:before {
+  content: "\e90a";
+}
+
+.icon-male-close-up-silhouette-with-tie:before {
+  content: "\e90b";
+}
+
+.icon-street-map:before {
+  content: "\e90e";
+}
+
+.icon-google-plus-symbol:before {
+  content: "\e908";
+}
+
 .icon-thumbs-up:before {
   content: "\e92f";
 }
@@ -726,9 +738,9 @@ th {
 .agent-listing-page .filters-links,
 .listing-page .filters-links, .agent-listing-page .filterChecks,
 .listing-page .filterChecks, .agent-detail-page .feature-list,
-.propertyDetail-page .feature-list, .agent-detail-page .col .list, .agent-detail-page .agentDetail-list, .addProperty-form .image-uploading-area, .addProperty-form .existingOrNew-member, .registerNow .packetData-list,
+.propertyDetail-page .feature-list, .agent-detail-page .col .list, .agent-detail-page .agentDetail-list, .addProperty-form .error, .addProperty-form .image-uploading-area, .addProperty-form .existingOrNew-member, .registerNow .packetData-list,
 .registerNow .societiesBlock-listing, .registerNow .role-listing, .registerNow .agree-with-terms, .forgot-form .buttons-holder,
-.login-form .buttons-holder, .social-icons, .loginRegister, .dropDown, .main-visualSection .number-of-properties, .mainSearch-form .typeOfBuying, .mainSearch-form .subTypes, .mainSearch-form .inputsHolder, #nav .main-navigation, .news-carousel .news-pagination ul, .topSocities-holder .socities, .topSocities-holder .socities li .caption .numberOfproperties, .agents-logo, .pager, .quick-links, .public-ui-features, .sumery-list, .radio-checks-holder {
+.login-form .buttons-holder, .social-icons, .loginRegister, .dropDown, .main-visualSection .number-of-properties, .mainSearch-form .typeOfBuying, .mainSearch-form .subTypes, .mainSearch-form .inputsHolder, #nav .main-navigation, .news-carousel .news-pagination ul, .topSocities-holder .socities, .topSocities-holder .socities li .caption .numberOfproperties, .agents-logo, .pager, .quick-links, .public-ui-features, .sumery-list, .radio-checks-holder, .Ads {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -759,7 +771,7 @@ th {
   display: block;
 }
 
-.container, #nav {
+.container, #nav, .weAreWorking {
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 15px;
@@ -792,9 +804,9 @@ th {
 .propertyDetail-page .agent-societies .agent-slide a, .agent-detail-page .agent-picture,
 .propertyDetail-page .agent-picture, .addProperty-form .extra-features, .addProperty-form .existingOrNew-member li, .addProperty-form .list-extraFeatures .feature-heading, .addProperty-form .thankYou-message, .addProperty-form .thankYou-message .left, .registerNow .role-opener, .forgot-form .buttons-holder li a,
 .login-form .buttons-holder li a, .global-error,
-.global-success, .custom-withouChecks .fake-label, h1, .loginRegister li, .main-visualSection, #nav .main-navigation li, .news-carousel .news-pagination ul, .topSocities-holder .socities li a, .heading, .agents-logo li a, .premiumProperty, .public-ui-features li strong, .generic-lightbox, .login-heading,
+.global-success, .custom-withouChecks .fake-label, h1, .loginRegister li, .main-visualSection, .byDefault-fixed #nav .main-navigation, #nav.fixed-position .main-navigation, #nav .main-navigation li, .news-carousel .news-pagination ul, .topSocities-holder .socities li a, .heading, .agents-logo li a, .premiumProperty, .public-ui-features li strong, .generic-lightbox, .login-heading,
 .registerNow-heading,
-.add-pro-heading {
+.add-pro-heading, .weAreWorking {
   text-align: center;
 }
 
@@ -843,7 +855,7 @@ th {
 .listing-page .publicProperty-post .image-holder, .agent-listing-page .publicAgent-post .caption .quick-links,
 .agent-listing-page .publicProperty-post .caption .quick-links,
 .listing-page .publicAgent-post .caption .quick-links,
-.listing-page .publicProperty-post .caption .quick-links, .agent-listing-page .publicAgent-post, .agent-listing-page .publicAgent-post .trusted-agent, .agent-detail-page .overview-section .small-heading,
+.listing-page .publicProperty-post .caption .quick-links, .agent-listing-page .publicAgent-post .trusted-agent, .agent-detail-page .overview-section .small-heading,
 .propertyDetail-page .overview-section .small-heading, .agent-detail-page .agent-picture,
 .propertyDetail-page .agent-picture, .agent-detail-page .agent-description .left-side,
 .propertyDetail-page .agent-description .left-side, .agent-detail-page .col, .addProperty-form .tips, .agent-listing-page .publicAgent-post .caption .left-area,
@@ -878,7 +890,8 @@ th {
 }
 
 .layout, .agent-listing-page #content, .agent-listing-page,
-.listing-page, .agent-listing-page .filter-form,
+.listing-page, .agent-listing-page .container,
+.listing-page .container, .agent-listing-page .filter-form,
 .listing-page .filter-form, .agent-listing-page .filters-links li .slide,
 .listing-page .filters-links li .slide, .agent-listing-page .fromTo,
 .listing-page .fromTo, .agent-listing-page .publicAgent-post,
@@ -905,14 +918,15 @@ th {
 .propertyDetail-page .propertyImage-slider .mask, .agent-detail-page .overview-section,
 .propertyDetail-page .overview-section, .agent-detail-page .extra-feature-section,
 .propertyDetail-page .extra-feature-section, .agent-detail-page .feature,
-.propertyDetail-page .feature, .agent-detail-page .agent-description,
+.propertyDetail-page .feature, .agent-detail-page .agent-picture,
+.propertyDetail-page .agent-picture, .agent-detail-page .agent-description,
 .propertyDetail-page .agent-description, .agent-detail-page .frame, .addProperty-form, .addProperty-form .add-form-holder, .addProperty-form .main-form, .addProperty-form .tips, .addProperty-form .list-extraFeatures, .registerNow, .registerNow .registration-form, .registerNow .company-logo, .registerNow .company-logo .logo-holder, .registerNow .packetData, .registerNow .role-listing, .registerNow .agent-information, .login-page, .forgot-form,
-.login-form, .fake-select, #wrapper, .logo, .main-visualSection, #main, .page-holder, .mainSearch-form .form-holder, .mainSearch-form .inputsHolder li .input-holder, .byDefault-fixed #nav .main-navigation li a span[class^="icon-"], .byDefault-fixed #nav .main-navigation li a span[class*="icon-"], #nav.fixed-position .main-navigation li a span[class^="icon-"], #nav.fixed-position .main-navigation li a span[class*="icon-"], .searchByID, .generic-section, .news-sliderHolder, .news-slideshow, .news-slideshow .mask, .news-slideshow .slideset, .news-carousel, .news-carousel .news-mask, .news-carousel .news-pagination ul a, .topSocities-holder, .topSocities-holder .socities li a:after, .agents, .agent-slider, .agent-slider .mask, .agents-logo li a:after, .submit-query, #footer, .inquiry-email-form .input-holder, .radio-checks-holder {
+.login-form, .fake-select, #wrapper, .logo, .main-visualSection, #main, .page-holder, .mainSearch-form .form-holder, .mainSearch-form .inputsHolder li .input-holder, .byDefault-fixed #nav .main-navigation li a span[class^="icon-"], .byDefault-fixed #nav .main-navigation li a span[class*="icon-"], #nav.fixed-position .main-navigation li a span[class^="icon-"], #nav.fixed-position .main-navigation li a span[class*="icon-"], .searchByID, .generic-section, .news-sliderHolder, .news-slideshow, .news-slideshow .mask, .news-slideshow .slideset, .news-carousel, .news-carousel .news-mask, .news-carousel .news-pagination ul a, .topSocities-holder, .topSocities-holder .socities li a:after, .agents, .agent-slider, .agent-slider .mask, .agents-logo li a:after, .submit-query, #footer, .inquiry-email-form .input-holder, .radio-checks-holder, .add-holder-page, .weAreWorking {
   overflow: hidden;
 }
 
 .hidden, .agent-detail-page .propertyImage-slide.active a:after,
-.propertyDetail-page .propertyImage-slide.active a:after, .addProperty-form.successfully-saved .add-form-holder, .registerNow .layout label[for="address"]:after, .registerNow .agent-listing-page #content label[for="address"]:after, .agent-listing-page .registerNow #content label[for="address"]:after, .paginationCurrent-num-1,
+.propertyDetail-page .propertyImage-slide.active a:after, .paginationCurrent-num-1,
 .current-num, .addProperty-form .list-extraFeatures label:after, .registerNow .company-logo.hover label span[class^="icon-"], .registerNow .company-logo.hover label span[class*="icon-"] {
   display: none !important;
 }
@@ -1832,6 +1846,13 @@ input[type='submit'] {
   padding: 0 0 0 20px;
 }
 
+@media (max-width: 1199px) {
+  .agent-listing-page #content,
+  .listing-page #content {
+    padding: 0 0 0 10px;
+  }
+}
+
 @media (max-width: 1023px) {
   .agent-listing-page #content,
   .listing-page #content {
@@ -1852,6 +1873,14 @@ input[type='submit'] {
 .listing-page .filters-links {
   font-size: 14px;
   line-height: 17px;
+}
+
+@media (max-width: 1199px) {
+  .agent-listing-page .filters-links,
+  .listing-page .filters-links {
+    font-size: 13px;
+    line-height: 16px;
+  }
 }
 
 .agent-listing-page .filters-links li,
@@ -1877,6 +1906,13 @@ input[type='submit'] {
   -webkit-transition: color 0.5s ease, background 0.5s ease;
   -moz-transition: color 0.5s ease, background 0.5s ease;
   -ms-transition: color 0.5s ease, background 0.5s ease;
+}
+
+@media (max-width: 1199px) {
+  .agent-listing-page .filters-links li a,
+  .listing-page .filters-links li a {
+    padding: 8px 33px 8px 5px;
+  }
 }
 
 .agent-listing-page .filters-links li a:after,
@@ -2084,10 +2120,22 @@ input[type='submit'] {
 .agent-listing-page .publicProperty-post .image-holder img,
 .listing-page .publicAgent-post .image-holder img,
 .listing-page .publicProperty-post .image-holder img {
-  max-height: 208px;
-  min-height: 208px;
-  min-width: 208px;
-  max-width: 208px;
+  max-height: 180px;
+  min-height: 180px;
+  min-width: 180px;
+  max-width: 180px;
+}
+
+@media (max-width: 1023px) {
+  .agent-listing-page .publicAgent-post .image-holder img,
+  .agent-listing-page .publicProperty-post .image-holder img,
+  .listing-page .publicAgent-post .image-holder img,
+  .listing-page .publicProperty-post .image-holder img {
+    max-height: 220px;
+    max-width: 220px;
+    min-height: 220px;
+    min-width: 220px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2113,6 +2161,15 @@ input[type='submit'] {
   padding: 0 0 10px 10px;
 }
 
+@media (max-width: 1199px) {
+  .agent-listing-page .publicAgent-post .caption,
+  .agent-listing-page .publicProperty-post .caption,
+  .listing-page .publicAgent-post .caption,
+  .listing-page .publicProperty-post .caption {
+    padding: 0 0 55px 10px;
+  }
+}
+
 .agent-listing-page .publicAgent-post .caption h1,
 .agent-listing-page .publicProperty-post .caption h1,
 .listing-page .publicAgent-post .caption h1,
@@ -2122,6 +2179,15 @@ input[type='submit'] {
   color: #2092d0;
   font-size: 18px;
   line-height: 21px;
+}
+
+@media (max-width: 1199px) {
+  .agent-listing-page .publicAgent-post .caption h1,
+  .agent-listing-page .publicProperty-post .caption h1,
+  .listing-page .publicAgent-post .caption h1,
+  .listing-page .publicProperty-post .caption h1 {
+    margin: 0 0 6px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2204,8 +2270,17 @@ input[type='submit'] {
 .listing-page .publicProperty-post .caption .links-holder {
   position: absolute;
   bottom: 0;
-  left: 220px;
+  left: 195px;
   right: 0;
+}
+
+@media (max-width: 1023px) {
+  .agent-listing-page .publicAgent-post .caption .links-holder,
+  .agent-listing-page .publicProperty-post .caption .links-holder,
+  .listing-page .publicAgent-post .caption .links-holder,
+  .listing-page .publicProperty-post .caption .links-holder {
+    left: 15px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2238,12 +2313,36 @@ input[type='submit'] {
   padding: 35px 0 0;
 }
 
-@media (max-width: 767px) {
+.agent-listing-page .publicAgent-post .caption .links-left .btn-default,
+.agent-listing-page .publicProperty-post .caption .links-left .btn-default,
+.listing-page .publicAgent-post .caption .links-left .btn-default,
+.listing-page .publicProperty-post .caption .links-left .btn-default {
+  padding: 10px 31px 10px 5px;
+}
+
+.agent-listing-page .publicAgent-post .caption .links-left .btn-default span[class^="icon-"], .agent-listing-page .publicAgent-post .caption .links-left .btn-default span[class*="icon-"],
+.agent-listing-page .publicProperty-post .caption .links-left .btn-default span[class^="icon-"],
+.agent-listing-page .publicProperty-post .caption .links-left .btn-default span[class*="icon-"],
+.listing-page .publicAgent-post .caption .links-left .btn-default span[class^="icon-"],
+.listing-page .publicAgent-post .caption .links-left .btn-default span[class*="icon-"],
+.listing-page .publicProperty-post .caption .links-left .btn-default span[class^="icon-"],
+.listing-page .publicProperty-post .caption .links-left .btn-default span[class*="icon-"] {
+  right: 5px;
+}
+
+.agent-listing-page .publicAgent-post .caption .links-left .trusted-agent,
+.agent-listing-page .publicProperty-post .caption .links-left .trusted-agent,
+.listing-page .publicAgent-post .caption .links-left .trusted-agent,
+.listing-page .publicProperty-post .caption .links-left .trusted-agent {
+  margin: 15px 0 0 5px;
+}
+
+@media (max-width: 1539px) {
   .agent-listing-page .publicAgent-post .caption .links-left,
   .agent-listing-page .publicProperty-post .caption .links-left,
   .listing-page .publicAgent-post .caption .links-left,
   .listing-page .publicProperty-post .caption .links-left {
-    padding: 10px 0 0;
+    width: 60%;
   }
 }
 
@@ -2252,7 +2351,16 @@ input[type='submit'] {
   .agent-listing-page .publicProperty-post .caption .links-left,
   .listing-page .publicAgent-post .caption .links-left,
   .listing-page .publicProperty-post .caption .links-left {
-    width: 60%;
+    width: 55%;
+  }
+}
+
+@media (max-width: 767px) {
+  .agent-listing-page .publicAgent-post .caption .links-left,
+  .agent-listing-page .publicProperty-post .caption .links-left,
+  .listing-page .publicAgent-post .caption .links-left,
+  .listing-page .publicProperty-post .caption .links-left {
+    padding: 10px 0 0;
   }
 }
 
@@ -2263,12 +2371,21 @@ input[type='submit'] {
   width: 30%;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1539px) {
   .agent-listing-page .publicAgent-post .caption .links-right,
   .agent-listing-page .publicProperty-post .caption .links-right,
   .listing-page .publicAgent-post .caption .links-right,
   .listing-page .publicProperty-post .caption .links-right {
     width: 40%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .agent-listing-page .publicAgent-post .caption .links-right,
+  .agent-listing-page .publicProperty-post .caption .links-right,
+  .listing-page .publicAgent-post .caption .links-right,
+  .listing-page .publicProperty-post .caption .links-right {
+    width: 45%;
   }
 }
 
@@ -2323,6 +2440,19 @@ input[type='submit'] {
   min-height: 76px;
 }
 
+@media (max-width: 1199px) {
+  .agent-listing-page .publicAgent-post .caption .company-logo,
+  .agent-listing-page .publicProperty-post .caption .company-logo,
+  .listing-page .publicAgent-post .caption .company-logo,
+  .listing-page .publicProperty-post .caption .company-logo {
+    max-width: 60px;
+    max-height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    margin: 16px 10px 0;
+  }
+}
+
 @media (max-width: 767px) {
   .agent-listing-page .publicAgent-post .caption .company-logo,
   .agent-listing-page .publicProperty-post .caption .company-logo,
@@ -2352,6 +2482,17 @@ input[type='submit'] {
 
 .agent-listing-page .artical-holder {
   margin: 0 -3px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+}
+
+.agent-listing-page .artical-holder > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0;
 }
 
 .agent-listing-page #content {
@@ -2366,6 +2507,7 @@ input[type='submit'] {
 
 .agent-listing-page .publicAgent-post {
   width: 50%;
+  float: none !important;
   background: transparent;
   padding: 0 3px 6px;
   margin: 0 0 5px;
@@ -2385,8 +2527,17 @@ input[type='submit'] {
 .agent-listing-page .publicAgent-post .image-holder img {
   max-width: 150px;
   min-width: 150px;
-  max-height: 153px;
-  min-height: 153px;
+  max-height: 159px;
+  min-height: 159px;
+}
+
+@media (max-width: 1199px) {
+  .agent-listing-page .publicAgent-post .image-holder img {
+    max-width: 190px;
+    min-width: 190px;
+    max-height: 145px;
+    min-height: 145px;
+  }
 }
 
 .agent-listing-page .publicAgent-post .caption {
@@ -2701,7 +2852,7 @@ input[type='submit'] {
 .listing-page .publicAgent-post .caption .quick-links,
 .listing-page .publicAgent-post .caption .agent-detail-page .info-blockAgent .quick-links, .agent-detail-page .info-blockAgent
 .listing-page .publicProperty-post .caption .quick-links,
-.listing-page .publicProperty-post .caption .agent-detail-page .info-blockAgent .quick-links, .agent-detail-page .info-blockAgent .agent-listing-page .publicAgent-post, .agent-listing-page .agent-detail-page .info-blockAgent .publicAgent-post, .agent-detail-page .info-blockAgent .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post .agent-detail-page .info-blockAgent .trusted-agent, .agent-detail-page .info-blockAgent .overview-section .small-heading, .agent-detail-page .overview-section .info-blockAgent .small-heading,
+.listing-page .publicProperty-post .caption .agent-detail-page .info-blockAgent .quick-links, .agent-detail-page .info-blockAgent .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post .agent-detail-page .info-blockAgent .trusted-agent, .agent-detail-page .info-blockAgent .overview-section .small-heading, .agent-detail-page .overview-section .info-blockAgent .small-heading,
 .propertyDetail-page .overview-section .agent-detail-page .info-blockAgent .small-heading, .agent-detail-page .info-blockAgent .agent-picture, .agent-detail-page .info-blockAgent .agent-description .left-side, .agent-detail-page .agent-description .info-blockAgent .left-side,
 .propertyDetail-page .agent-description .agent-detail-page .info-blockAgent .left-side, .agent-detail-page .info-blockAgent .col, .agent-detail-page .info-blockAgent .addProperty-form .tips, .addProperty-form .agent-detail-page .info-blockAgent .tips, .agent-detail-page .info-blockAgent .pull-right, .agent-detail-page .info-blockAgent .agent-listing-page .publicAgent-post .caption .company-logo, .agent-listing-page .publicAgent-post .caption .agent-detail-page .info-blockAgent .company-logo, .agent-detail-page .info-blockAgent
 .agent-listing-page .publicProperty-post .caption .company-logo,
@@ -2753,8 +2904,6 @@ input[type='submit'] {
 .listing-page .publicProperty-post .caption .quick-links,
 .listing-page .publicProperty-post .caption
 .agent-detail-page .info-blockProperty .quick-links,
-.agent-detail-page .info-blockProperty .agent-listing-page .publicAgent-post, .agent-listing-page
-.agent-detail-page .info-blockProperty .publicAgent-post,
 .agent-detail-page .info-blockProperty .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post
 .agent-detail-page .info-blockProperty .trusted-agent, .agent-detail-page .info-blockProperty .overview-section .small-heading, .agent-detail-page .overview-section .info-blockProperty .small-heading,
 .propertyDetail-page .overview-section
@@ -2825,8 +2974,6 @@ input[type='submit'] {
 .listing-page .publicProperty-post .caption .quick-links,
 .listing-page .publicProperty-post .caption
 .propertyDetail-page .info-blockAgent .quick-links,
-.propertyDetail-page .info-blockAgent .agent-listing-page .publicAgent-post, .agent-listing-page
-.propertyDetail-page .info-blockAgent .publicAgent-post,
 .propertyDetail-page .info-blockAgent .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post
 .propertyDetail-page .info-blockAgent .trusted-agent, .agent-detail-page .overview-section
 .propertyDetail-page .info-blockAgent .small-heading,
@@ -2904,8 +3051,6 @@ input[type='submit'] {
 .listing-page .publicProperty-post .caption .quick-links,
 .listing-page .publicProperty-post .caption
 .propertyDetail-page .info-blockProperty .quick-links,
-.propertyDetail-page .info-blockProperty .agent-listing-page .publicAgent-post, .agent-listing-page
-.propertyDetail-page .info-blockProperty .publicAgent-post,
 .propertyDetail-page .info-blockProperty .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post
 .propertyDetail-page .info-blockProperty .trusted-agent, .agent-detail-page .overview-section
 .propertyDetail-page .info-blockProperty .small-heading,
@@ -3674,7 +3819,6 @@ input[type='submit'] {
   .propertyDetail-page .agent-societies .small-heading {
     font-size: 12px;
     line-height: 15px;
-    text-align: center;
   }
 }
 
@@ -3768,6 +3912,9 @@ input[type='submit'] {
   display: inline-block;
   vertical-align: middle;
   white-space: normal;
+  max-width: 100px;
+  max-height: 100px;
+  height: 100%;
 }
 
 .agent-detail-page .agent-picture .premiumProperty,
@@ -4098,8 +4245,61 @@ input[type='submit'] {
   margin: 0 auto 30px;
 }
 
-.addProperty-form.successfully-saved .thankYou-message {
+.addProperty-form .error {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  margin: 0 0 10px;
+}
+
+.addProperty-form .error > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .error {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .addProperty-form .error > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.addProperty-form .error li {
+  width: 33.33%;
+  padding: 0 3px 5px;
+}
+
+@media (max-width: 767px) {
+  .addProperty-form .error li {
+    width: 50%;
+  }
+}
+
+.addProperty-form .error span {
   display: block;
+  padding: 5px 5px 5px 25px;
+  color: #fff;
+  background: #ce2020;
+  position: relative;
+}
+
+.addProperty-form .error span:after {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  content: "\e92e";
+  font-family: 'icomoon';
 }
 
 .addProperty-form .select2-container {
@@ -4487,7 +4687,7 @@ input[type='submit'] {
   }
 }
 
-.addProperty-form .layout label:after, .addProperty-form .agent-listing-page #content label:after, .agent-listing-page .addProperty-form #content label:after {
+.addProperty-form .layout label.required-field:after, .addProperty-form .agent-listing-page #content label.required-field:after, .agent-listing-page .addProperty-form #content label.required-field:after {
   display: inline-block;
   vertical-align: top;
   color: #ce2020;
@@ -4688,7 +4888,7 @@ input[type='submit'] {
   color: #fff;
   cursor: pointer;
   background: #2092d0;
-  padding: 5px 25px;
+  padding: 5px 20px;
 }
 
 .addProperty-form .existingOrNew-member li .layout, .addProperty-form .existingOrNew-member li .agent-listing-page #content, .agent-listing-page .addProperty-form .existingOrNew-member li #content {
@@ -4707,7 +4907,7 @@ input[type='submit'] {
 }
 
 .addProperty-form .existingOrNew-member li .slide {
-  padding: 20px 0;
+  padding: 20px 5px;
   display: none;
   margin: 0 -260px 0 50px;
 }
@@ -4720,7 +4920,6 @@ input[type='submit'] {
 
 .addProperty-form .list-extraFeatures {
   background: #dee1e3;
-  margin: 0 -5px;
   font-size: 0;
   line-height: 0;
   letter-spacing: -4px;
@@ -4797,10 +4996,6 @@ input[type='submit'] {
     text-align: center;
     display: block !important;
   }
-}
-
-.addProperty-form .thankYou-message {
-  display: none;
 }
 
 .addProperty-form .thankYou-message .layout, .addProperty-form .thankYou-message .agent-listing-page #content, .agent-listing-page .addProperty-form .thankYou-message #content {
@@ -5247,7 +5442,7 @@ input[type='submit'] {
   }
 }
 
-.registerNow .layout label:after, .registerNow .agent-listing-page #content label:after, .agent-listing-page .registerNow #content label:after {
+.registerNow .layout label.required-field:after, .registerNow .agent-listing-page #content label.required-field:after, .agent-listing-page .registerNow #content label.required-field:after {
   display: inline-block;
   vertical-align: top;
   color: #ce2020;
@@ -6360,20 +6555,6 @@ input[type='submit'] {
   background: rgba(0, 0, 0, 0.8);
 }
 
-/*Retina graphics!*/
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-    background-image: url("../images/fancybox/fancybox_sprite@2x.png");
-    background-size: 44px 152px;
-    /*The size of the normal image, half the size of the hi-res image*/
-  }
-  #fancybox-loading div {
-    background-image: url("../images/fancybox/fancybox_loading@2x.gif");
-    background-size: 24px 24px;
-    /*The size of the normal image, half the size of the hi-res image*/
-  }
-}
-
 html {
   width: 100%;
   height: 100%;
@@ -6959,8 +7140,15 @@ h1 span {
   .byDefault-fixed .logo,
   .fixed-position .logo {
     max-width: 250px;
-    top: 11px;
+    top: 2px;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 1023px) {
+  .byDefault-fixed .logo,
+  .fixed-position .logo {
+    top: 7px;
   }
 }
 
@@ -7118,7 +7306,7 @@ h1 span {
 @media (max-width: 767px) {
   .loginRegister li:first-child a .hidden, .loginRegister li:first-child a .agent-detail-page .propertyImage-slide.active a:after, .agent-detail-page .propertyImage-slide.active .loginRegister li:first-child a a:after, .loginRegister li:first-child a
   .propertyDetail-page .propertyImage-slide.active a:after,
-  .propertyDetail-page .propertyImage-slide.active .loginRegister li:first-child a a:after, .loginRegister li:first-child a .addProperty-form.successfully-saved .add-form-holder, .addProperty-form.successfully-saved .loginRegister li:first-child a .add-form-holder, .loginRegister li:first-child a .registerNow .layout label[for="address"]:after, .registerNow .layout .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .registerNow .agent-listing-page #content label[for="address"]:after, .registerNow .agent-listing-page #content .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .agent-listing-page .registerNow #content label[for="address"]:after, .agent-listing-page .registerNow #content .loginRegister li:first-child a label[for="address"]:after, .loginRegister li:first-child a .paginationCurrent-num-1, .loginRegister li:first-child a
+  .propertyDetail-page .propertyImage-slide.active .loginRegister li:first-child a a:after, .loginRegister li:first-child a .paginationCurrent-num-1, .loginRegister li:first-child a
   .current-num {
     display: inline-block !important;
     vertical-align: top;
@@ -7679,7 +7867,7 @@ h1 span {
 @media (max-width: 767px) {
   #nav .mobile-content.hidden, #nav .agent-detail-page .propertyImage-slide.active a.mobile-content:after, .agent-detail-page .propertyImage-slide.active #nav a.mobile-content:after, #nav
   .propertyDetail-page .propertyImage-slide.active a.mobile-content:after,
-  .propertyDetail-page .propertyImage-slide.active #nav a.mobile-content:after, #nav .addProperty-form.successfully-saved .mobile-content.add-form-holder, .addProperty-form.successfully-saved #nav .mobile-content.add-form-holder, #nav .registerNow .layout label.mobile-content[for="address"]:after, .registerNow .layout #nav label.mobile-content[for="address"]:after, #nav .registerNow .agent-listing-page #content label.mobile-content[for="address"]:after, .registerNow .agent-listing-page #content #nav label.mobile-content[for="address"]:after, #nav .agent-listing-page .registerNow #content label.mobile-content[for="address"]:after, .agent-listing-page .registerNow #content #nav label.mobile-content[for="address"]:after, #nav .mobile-content.paginationCurrent-num-1, #nav
+  .propertyDetail-page .propertyImage-slide.active #nav a.mobile-content:after, #nav .mobile-content.paginationCurrent-num-1, #nav
   .mobile-content.current-num {
     display: block !important;
   }
@@ -9160,15 +9348,13 @@ h1 span {
 
 @media (max-width: 1199px) {
   .price {
-    font-size: 22px;
-    line-height: 25px;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
 
 @media (max-width: 767px) {
   .price {
-    font-size: 18px;
-    line-height: 22px;
     padding: 0 75px 10px 0;
   }
 }
@@ -9401,6 +9587,11 @@ h1 span {
   }
 }
 
+.clearfix {
+  display: block;
+  overflow: visible;
+}
+
 .feedBack {
   font-size: 16px;
   line-height: 20px;
@@ -9513,6 +9704,18 @@ h1 span {
   padding: 0;
 }
 
+@media (max-width: 1023px) {
+  .public-ui-features li span[class^="icon-"], .public-ui-features li span[class*="icon-"] {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .public-ui-features li span[class^="icon-"], .public-ui-features li span[class*="icon-"] {
+    display: inline-block;
+  }
+}
+
 .public-ui-features li b {
   display: inline-block;
   vertical-align: top;
@@ -9544,6 +9747,12 @@ h1 span {
   font-weight: 700;
   padding: 0 10px 10px;
   border-left: 1px solid #6c6d70;
+}
+
+@media (max-width: 767px) {
+  .public-ui-features li strong {
+    padding: 0 5px 5px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -9975,6 +10184,12 @@ h1 span {
   }
 }
 
+@media (max-width: 1023px) and (max-width: 479px) {
+  .radio-checks-holder.subtype-links li {
+    width: 50%;
+  }
+}
+
 .radio-checks-holder li {
   width: 25%;
   font-weight: 600;
@@ -9987,7 +10202,7 @@ h1 span {
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   .radio-checks-holder li {
     padding: 10px 3px;
   }
@@ -10162,6 +10377,166 @@ h1 span {
   -moz-transition: none;
 }
 
+.add-holder-page .container-holder {
+  float: right;
+  width: 100%;
+  max-width: calc(100% - 215px);
+}
+
+@media (max-width: 1199px) {
+  .add-holder-page .container-holder {
+    max-width: calc(100% - 160px);
+  }
+}
+
+@media (max-width: 767px) {
+  .add-holder-page .container-holder {
+    float: none;
+    max-width: inherit;
+    overflow: hidden;
+    width: 100%;
+  }
+}
+
+.add-holder-page .container-holder .container {
+  margin: 0;
+}
+
+.Ads {
+  float: left;
+  max-width: 215px;
+}
+
+@media (max-width: 1199px) {
+  .Ads {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 767px) {
+  .Ads {
+    float: none;
+    max-width: inherit;
+    overflow: hidden;
+    width: 100%;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .Ads > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0;
+  }
+}
+
+.Ads li {
+  display: block;
+  padding: 0 5px 10px;
+}
+
+@media (max-width: 767px) {
+  .Ads li {
+    width: 33.33%;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.Ads li a {
+  display: block;
+}
+
+.Ads li a:hover {
+  opacity: 0.8;
+}
+
+.termsOfUse {
+  display: inline-block;
+  vertical-align: top;
+  color: #6c6d70;
+}
+
+.weAreWorking {
+  color: #fff;
+  margin: 0 auto !important;
+  width: 100%;
+  background: #2092d0;
+  border-radius: 4px;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999999914;
+  transition: bottom 0.5s ease;
+  -webkit-transition: bottom 0.5s ease;
+  -moz-transition: bottom 0.5s ease;
+}
+
+@media (max-width: 1023px) {
+  .weAreWorking {
+    padding: 5px;
+  }
+}
+
+.weAreWorking.hide {
+  bottom: -200px;
+}
+
+.weAreWorking p {
+  font-size: 22px;
+  line-height: 25px;
+  margin: 0 0 20px;
+}
+
+@media (max-width: 1023px) {
+  .weAreWorking p {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .weAreWorking p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 5px;
+  }
+}
+
+.weAreWorking a {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: underline;
+}
+
+.weAreWorking a:hover {
+  text-decoration: none;
+}
+
+.weAreWorking .btn-close-working {
+  background: #d89429;
+  padding: 10px 30px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+  .weAreWorking .btn-close-working {
+    padding: 5px 25px;
+  }
+}
+
+.weAreWorking .btn-close-working:hover {
+  background: #ae7720;
+}
+
 @media print {
   * {
     background: none !important;
@@ -10234,7 +10609,7 @@ h1 span {
   .listing-page .publicProperty-post .image-holder, .agent-listing-page .publicAgent-post .caption .quick-links,
   .agent-listing-page .publicProperty-post .caption .quick-links,
   .listing-page .publicAgent-post .caption .quick-links,
-  .listing-page .publicProperty-post .caption .quick-links, .agent-listing-page .publicAgent-post, .agent-listing-page .publicAgent-post .trusted-agent, .agent-detail-page .overview-section .small-heading,
+  .listing-page .publicProperty-post .caption .quick-links, .agent-listing-page .publicAgent-post .trusted-agent, .agent-detail-page .overview-section .small-heading,
   .propertyDetail-page .overview-section .small-heading, .agent-detail-page .agent-picture,
   .propertyDetail-page .agent-picture, .agent-detail-page .agent-description .left-side,
   .propertyDetail-page .agent-description .left-side, .agent-detail-page .col, .addProperty-form .tips, .pull-right, .agent-listing-page .publicAgent-post .caption .company-logo,
@@ -10295,7 +10670,7 @@ h1 span {
   .listing-page .publicAgent-post .caption .quick-links,
   .listing-page .publicAgent-post .caption #fixed-block .quick-links, #fixed-block
   .listing-page .publicProperty-post .caption .quick-links,
-  .listing-page .publicProperty-post .caption #fixed-block .quick-links, #fixed-block .agent-listing-page .publicAgent-post, .agent-listing-page #fixed-block .publicAgent-post, #fixed-block .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post #fixed-block .trusted-agent, #fixed-block .agent-detail-page .overview-section .small-heading, .agent-detail-page .overview-section #fixed-block .small-heading, #fixed-block
+  .listing-page .publicProperty-post .caption #fixed-block .quick-links, #fixed-block .agent-listing-page .publicAgent-post .trusted-agent, .agent-listing-page .publicAgent-post #fixed-block .trusted-agent, #fixed-block .agent-detail-page .overview-section .small-heading, .agent-detail-page .overview-section #fixed-block .small-heading, #fixed-block
   .propertyDetail-page .overview-section .small-heading,
   .propertyDetail-page .overview-section #fixed-block .small-heading, #fixed-block .agent-detail-page .agent-picture, .agent-detail-page #fixed-block .agent-picture, #fixed-block
   .propertyDetail-page .agent-picture,

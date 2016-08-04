@@ -3,7 +3,7 @@
     <div class="page-holder">
         <div class="agent-listing-page">
             <div class="container">
-                <a class="aside-opener-filters">Search Filters <span class="button"><b></b></span></a>
+                <a class="aside-opener-filters">Search Filters<span class="button"><b></b></span></a>
                 <aside id="aside" class="hideOnMobile">
                     {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'filter-form')) }}
                     <ul class="filters-links text-upparcase">
@@ -198,7 +198,9 @@
                             <label for="message">message</label>
 
                             <div class="input-holder"><textarea id="message" name="message"
-                                                                required></textarea></div>
+                                                                required></textarea>
+                                <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                            </div>
                         </div>
                         <button type="submit">SEND</button>
                         {{Form::close()}}

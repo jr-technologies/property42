@@ -109,7 +109,7 @@
                                     <label for="message">message</label>
 
                                     <div class="input-holder"><textarea id="message" name="message" required></textarea>
-                                        <p>By submitting this form I agree to <a href="#">Terms of Use</a></p>
+                                        <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
                                     </div>
                                 </div>
                                 <button type="submit">SEND</button>

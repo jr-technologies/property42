@@ -177,7 +177,7 @@
                     <div class="layout-holder">
                         <label class="required-field" for="company-mobile">Mobile Number</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyMobile')) error @endif">
-                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" required >
+                            <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" value="{{old('companyMobile')}}" id="company-mobile" >
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('companyMobile')) {{$validationErrors->first('companyMobile')}} @endif</span>
                         </div>
                     </div>
@@ -202,19 +202,19 @@
             <div class="layout two">
                 <div class="layout-holder">
                     <ul class="agree-with-terms">
-                        <li class="input-holder @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
-                            <label for="terms-Cond" class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
-                                <input type="checkbox" id="terms-Cond" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif>
-                                <span class="fake-checkbox"></span>
-                                <span class="fake-label">I have read and agree to Property42.pk Terms and Conditions</span>
-                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
-                            </label>
-                        </li>
                         <li>
-                            <label class="required-field" for="newslatter" class="customCheckbox">
-                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif required >
+                            <label class="customCheckbox" for="newslatter" class="customCheckbox">
+                                <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif >
                                 <span class="fake-checkbox"></span>
                                 <span class="fake-label">I want to receive notifications for promotions, newsletters and website updates.</span>
+                            </label>
+                        </li>
+                        <li class="input-holder @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
+                            <label class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
+                                <input type="checkbox" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif checked>
+                                <span class="fake-checkbox hidden"></span>
+                                <span>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></span>
+                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
                             </label>
                         </li>
                     </ul>

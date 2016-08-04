@@ -61,7 +61,8 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             'contactPerson.required' => 'contact person is required',
             'phone.required' => 'company phone is required',
             'email.required' => 'company email is required',
-            'loginDetails.email.authenticated' => 'Invalid credentials'
+            'loginDetails.email.authenticated' => 'Invalid credentials',
+            'files.addProperty_max_image_size'=> 'Invalid Image or Image Size is too big'
         ], $this->customValidationMessagesForExtraFeatures());
 
         return ($this->request->isMember())?array_merge($globalMessages,$this->existingMemberCustomRules()):array_merge($globalMessages, $this->newMemberCustomRules());
@@ -92,6 +93,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
     private function propertyInfoRules()
     {
         return [
+            //'files'=>'addProperty_max_image_size',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
             'blockId' => 'required|exists:blocks,id',
