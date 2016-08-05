@@ -27,20 +27,20 @@
                 <div class="layout">
                     <a href="#" class="image-thumb"><img src="{{url('/')}}/web-apps/admin/images/user-img.png" width="388" height="395" alt="user-image"></a>
                     <div class="layout">
-                        <a href="#" class="user-name">{{Session('admin')->name}}</a>
+                        <a href="#" class="user-name">{{isset(Session('admin')->name)}}</a>
                         <span class="account-type">premium</span>
                     </div>
                 </div>
             </div>
             <ul class="sideBar-links">
                 <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
-               <li class="active"><a href="{{URL::to('admin/properties')}}"><span class="icon-list"></span>listings  </a></li>
-                <li class="active"><a href="{{URL::to('get/active/property')}}"><span class="icon-list"></span>Active Properties </a></li>
-                <li class="active"><a href="{{URL::to('get/pending/property')}}"><span class="icon-list"></span>pending Properties </a></li>
-                <li class="active"><a href="{{URL::to('get/rejected/property')}}"><span class="icon-list"></span>Rejected Properties </a></li>
-                <li class="active"><a href="{{URL::to('get/expired/property')}}"><span class="icon-list"></span>Expired Properties </a></li>
-                <li class="active"><a href="{{URL::to('get/deleted/property')}}"><span class="icon-list"></span>Deleted Properties </a></li>
-                <li class="active"><a href="{{URL::to('admin/agents')}}"><span class="icon-list"></span>Agents </a></li>
+               <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/properties')}}"><span class="icon-list"></span>listings  </a></li>
+                <li class="active"><a href="{{URL::to('get/maliksajidawan786@gmail.com/active/property')}}"><span class="icon-list"></span>Active Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/maliksajidawan786@gmail.com/pending/property')}}"><span class="icon-list"></span>pending Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/maliksajidawan786@gmail.com/rejected/property')}}"><span class="icon-list"></span>Rejected Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/maliksajidawan786@gmail.com/expired/property')}}"><span class="icon-list"></span>Expired Properties </a></li>
+                <li class="active"><a href="{{URL::to('get/maliksajidawan786@gmail.com/deleted/property')}}"><span class="icon-list"></span>Deleted Properties </a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/agents')}}"><span class="icon-list"></span>Agents </a></li>
             </ul>
         </aside>
         @yield('content')

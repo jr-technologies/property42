@@ -19,21 +19,23 @@ use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\AddCityValidator;
 use App\Http\Validators\Validators\PropertyValidators\AddPropertyValidator;
 use App\Http\Validators\Validators\PropertyValidators\DeletePropertyValidator;
+use App\Http\Validators\Validators\PropertyValidators\ForceDeletePropertyValidator;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Transformers\Request\City\AddCityTransformer;
 use App\Transformers\Request\Property\AddPropertyTransformer;
 use App\Transformers\Request\Property\DeletePropertyTransformer;
+use App\Transformers\Request\Property\ForceDeletePropertyTransformer;
 
-class DeletePropertyRequest extends Request implements RequestInterface{
+class ForceDeletePropertyRequest extends Request implements RequestInterface{
 
     public $validator = null;
     private $properties = null;
 
     public function __construct(){
-        parent::__construct(new DeletePropertyTransformer($this->getOriginalRequest()));
-        $this->validator = new DeletePropertyValidator($this);
+        parent::__construct(new ForceDeletePropertyTransformer($this->getOriginalRequest()));
+        $this->validator = new ForceDeletePropertyValidator($this);
         $this->properties = (new PropertiesRepoProvider())->repo();
     }
     /**
@@ -45,7 +47,7 @@ class DeletePropertyRequest extends Request implements RequestInterface{
     }
     public function authorize()
     {
-        if($this->user()->can('delete','property',$this->getPropertyModel())){
+        if($this->user()->can('forceDelete','property',$this->getPropertyModel())){
             return true;
         }
         return false;

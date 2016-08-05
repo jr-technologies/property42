@@ -2547,6 +2547,10 @@ input[type='submit'] {
   }
 }
 
+.agent-listing-page .publicAgent-post .caption .links-left .btn-default {
+  padding: 7px 31px 7px 5px;
+}
+
 .agent-listing-page .publicAgent-post .post-holder {
   background: #fff;
   padding: 5px 3px;
@@ -3590,6 +3594,7 @@ input[type='submit'] {
     float: none !important;
     padding: 0 0 10px;
     display: block;
+    text-align: center;
   }
 }
 
@@ -3598,6 +3603,7 @@ input[type='submit'] {
   .propertyDetail-page .overview-section .btn-hollow {
     float: none !important;
     display: block;
+    text-align: center;
   }
 }
 
@@ -5900,6 +5906,12 @@ input[type='submit'] {
   margin: 0 0 10px;
 }
 
+.registerNow .agree-with-terms li .customCheckbox input {
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
 .registerNow .agree-with-terms label {
   width: 100%;
   padding: 0 20px 0 30px;
@@ -7051,7 +7063,10 @@ h1 span {
     width: 30%;
   }
   .byDefault-fixed #header .right-sideTop .loginRegister li:first-child a, #header.fixed-position .right-sideTop .loginRegister li:first-child a {
-    padding: 19px 23px 7px 7px;
+    padding: 11px 23px 7px 7px;
+  }
+  .byDefault-fixed #header .right-sideTop .loginRegister li:first-child a span[class^="icon-"], .byDefault-fixed #header .right-sideTop .loginRegister li:first-child a span[class*="icon-"], #header.fixed-position .right-sideTop .loginRegister li:first-child a span[class^="icon-"], #header.fixed-position .right-sideTop .loginRegister li:first-child a span[class*="icon-"] {
+    display: none;
   }
 }
 
@@ -7221,20 +7236,6 @@ h1 span {
   top: 4px;
   left: 0;
   right: 0;
-}
-
-@media (max-width: 1539px) {
-  .byDefault-fixed .logo,
-  .fixed-position .logo {
-    max-width: 280px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .byDefault-fixed .logo,
-  .fixed-position .logo {
-    max-width: 250px;
-  }
 }
 
 @media (max-width: 1199px) {
@@ -7579,6 +7580,22 @@ h1 span {
   padding: 0 0 20px;
 }
 
+@media (max-width: 1023px) {
+  .main-visualSection .main-heading {
+    font-size: 35px;
+    line-height: 38px;
+    padding: 13px 0 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-visualSection .main-heading {
+    font-size: 20px;
+    line-height: 23px;
+    padding: 0 0 5px;
+  }
+}
+
 .main-visualSection .main-heading .blue {
   color: #2092d0;
   font-weight: 800;
@@ -7595,6 +7612,15 @@ h1 span {
   font-size: 14px;
   line-height: 20px;
   font-weight: 300;
+}
+
+@media (max-width: 767px) {
+  .main-visualSection p {
+    font-size: 12px;
+    line-height: 15px;
+    max-width: inherit;
+    margin: 0 0 5px;
+  }
 }
 
 .main-visualSection .number-of-properties {
@@ -7614,9 +7640,45 @@ h1 span {
   letter-spacing: 0;
 }
 
+@media (max-width: 1023px) {
+  .main-visualSection .number-of-properties {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .main-visualSection .number-of-properties > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-visualSection .number-of-properties {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .main-visualSection .number-of-properties > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0;
+  }
+}
+
 .main-visualSection .number-of-properties li {
   width: 50%;
   margin: 0 0 25px;
+}
+
+@media (max-width: 767px) {
+  .main-visualSection .number-of-properties li {
+    margin: 0 0 10px;
+  }
 }
 
 .main-visualSection .number-of-properties li span, .main-visualSection .number-of-properties li strong {
@@ -7629,6 +7691,21 @@ h1 span {
   font-size: 40px;
   line-height: 43px;
   padding: 0 0 10px;
+}
+
+@media (max-width: 1023px) {
+  .main-visualSection .number-of-properties li .numberOfProperty {
+    font-size: 30px;
+    line-height: 33px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-visualSection .number-of-properties li .numberOfProperty {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0 0 5px;
+  }
 }
 
 #main {
@@ -10695,6 +10772,36 @@ h1 span {
 
 .weAreWorking .btn-close-working:hover {
   background: #d89429;
+}
+
+.please-wait {
+  position: relative;
+}
+
+.please-wait:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 789;
+  content: '';
+}
+
+.please-wait:before {
+  background: url("../images/ring1.gif") no-repeat 50% 0;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 790;
+  width: 150px;
+  height: 150px;
+  content: 'Please wait...';
+  color: #000;
+  margin: -75px  0 0 -75px;
+  padding: 140px 0 0 30px;
 }
 
 @media print {

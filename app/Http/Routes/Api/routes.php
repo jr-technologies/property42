@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('app/dashboard/resources',
     [
         'middleware'=>
@@ -108,6 +110,7 @@ Route::post('user/update',
         'middleware'=>
             [
                 'apiAuthenticate:UpdateUserRequest',
+                'apiAuthorize:UpdateUserRequest',
                 'apiValidate:UpdateUserRequest'
             ],
         'uses'=>'UsersController@updateUser'
@@ -480,8 +483,9 @@ Route::post('property/force_delete',
     [
         'middleware'=>
             [
-                'apiAuthenticate:deletePropertyRequest',
-                'apiValidate:deletePropertyRequest'
+                'apiAuthenticate:forceDeletePropertyRequest',
+                'apiAuthorize:forceDeletePropertyRequest',
+                'apiValidate:forceDeletePropertyRequest'
             ],
         'uses'=>'PropertiesController@forceDelete'
     ]
@@ -491,6 +495,7 @@ Route::post('property/delete',
         'middleware'=>
             [
                 'apiAuthenticate:deletePropertyRequest',
+                'apiAuthorize:deletePropertyRequest',
                 'apiValidate:deletePropertyRequest'
             ],
         'uses'=>'PropertiesController@delete'
@@ -501,6 +506,7 @@ Route::post('properties/force_delete',
     [
         'middleware'=>
             [
+
                 'apiValidate:forceDeleteMultiplePropertiesRequest'
             ],
         'uses'=>'PropertiesController@multiForceDelete'
