@@ -22,10 +22,14 @@ class PriceHelper extends Helper
 
         if($result == 0)
             return 0;
-        
         $shortResult = $number/$result;
-        $value =  substr($shortResult."", 0, 4);
-        $price = preg_replace("/\.?0*$/",'',$value);
+        $price =  substr($shortResult."", 0, 4);
+        $result = (explode(".",$price));
+        if(isset($result[1]) && intval($result[1]) == 0){
+            $price = $result[0];
+        }
+
+        //$price = preg_replace("/\.?0*$/",'',$value);
         $price_unit = '';
         if($length > 3 && $length < 6){
             $price_unit = 'thousand';

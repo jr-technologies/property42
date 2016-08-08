@@ -45,6 +45,7 @@ class AddPropertyTransformer extends RequestTransformer
            'mobile' => $this->request->input('cell'),
            'email' => $this->request->input('email'),
            'fax' => $this->request->input('fax'),
+           'wanted' => $this->request->input('wanted'),
 
            'features' => $this->request->input('features'),
            'files' => $files,

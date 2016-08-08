@@ -14,10 +14,10 @@ class PropertiesTableSeeder extends Seeder
     {
       $statusesSeeder = new PropertyStatusTableSeeder();
         $statuses = $statusesSeeder->getAllStatusIds();
-        for($b = 1; $b<=2; $b++)
+        for($b = 1; $b<=1; $b++)
         {
             $allProperties = [];
-            for($a = 1; $a <= 20; $a++)
+            for($a = 1; $a <= 200; $a++)
 
             {
                 $temp = [];
@@ -29,6 +29,7 @@ class PropertiesTableSeeder extends Seeder
                 $temp['price'] = rand(2000000,250000000);
                 $temp['land_area'] = rand(1,20);
                 $temp['land_unit_id'] = rand(1,4);
+                $temp['wanted'] = rand(0,1);
                 $temp['contact_person'] = 'ab'.rand(1,100000);
                 $temp['phone'] = '0321450405'. rand(1,3) ;
                 $temp['mobile'] = '0321450405'. rand(1,10);

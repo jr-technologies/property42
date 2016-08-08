@@ -1,6 +1,7 @@
 <?php
 
-Route::get('foo',function(){
+Route::get('foo',function()
+{
 
     $statusesSeeder = new PropertyStatusTableSeeder();
     $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();

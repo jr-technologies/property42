@@ -36,6 +36,7 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     public $land = "";
     /* @var $propertyStatus PropertyStatusJsonPrototype::class*/
     public $propertyStatus =null;
+    public $wanted = 0;
     public $isFeatured = "";
     public $isHot ="";
     public $isDeleted ="";
