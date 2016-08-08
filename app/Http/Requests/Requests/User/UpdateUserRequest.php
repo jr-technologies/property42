@@ -32,7 +32,11 @@ class UpdateUserRequest extends Request implements RequestInterface
     }
 
     public function authorize(){
-        return true;
+        if($this->user()->can('update','user',$this->getUserModel()))
+        {
+            return true;
+        }
+        return false;
     }
 
     public function validate(){

@@ -24,6 +24,7 @@ use App\Http\Requests\Requests\Property\CountPropertiesRequest;
 use App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest;
 use App\Http\Requests\Requests\Property\DeletePropertyRequest;
 use App\Http\Requests\Requests\Property\ForceDeleteMultiplePropertiesRequest;
+use App\Http\Requests\Requests\Property\ForceDeletePropertyRequest;
 use App\Http\Requests\Requests\Property\GetFavouritePropertyRequest;
 use App\Http\Requests\Requests\Property\GetUserPropertiesRequest;
 use App\Http\Requests\Requests\Property\RestorePropertyRequest;
@@ -174,7 +175,7 @@ class PropertiesController extends ApiController
         ]]);
     }
 
-    public function forceDelete(DeletePropertyRequest $request)
+    public function forceDelete(ForceDeletePropertyRequest $request)
     {
         $property = $request->getPropertyModel();
         $this->properties->forceDelete($property);

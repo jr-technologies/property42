@@ -14,7 +14,7 @@ $(document).ready(function() {
 		$('.propertyNotFound').removeClass('hidden');
 	}
 	$('.addPro-type:first').trigger('change');
-	$('.registration-form').find('.role-listing').hide();
+	//$('.registration-form').find('.role-listing').hide();
 
 	if($('.agent-slide').length > 5){
 		$('.agent-societies').find('.btn-prev, .btn-next').css({

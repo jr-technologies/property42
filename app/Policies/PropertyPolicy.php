@@ -15,6 +15,27 @@ class PropertyPolicy extends Policy
 {
     public function update(User $user ,Property $property=null)
     {
-        return true;
+        if($user->id == $property->ownerId || $user->id == $property->createdBy)
+        {
+            return true;
+        }
+        return false;
+    }
+    public function delete(User $user ,Property $property=null)
+    {
+        if($user->id == $property->ownerId || $user->id == $property->createdBy)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function forceDelete(User $user ,Property $property=null)
+    {
+        if($user->id == $property->ownerId || $user->id == $property->createdBy)
+        {
+            return true;
+        }
+        return false;
     }
 }
