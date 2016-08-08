@@ -22,8 +22,10 @@
                                         <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
                                     </div>
                                     <div class="caption">
-                                        <p>{{str_limit("Real Estate elected committee meet with Finance Minister Ishaq Dar today at Islamabad regarding recently imposed property evolution tax.
-                                                Real estate agents and investors protested against the increase in taxes on Saturday, expecting that the government would take some decisions in their favor.",400)}}</p>
+                                        <p>{{str_limit("Real Estate elected committee meet with Finance Minister Ishaq Dar today at
+                                        Islamabad regarding recently imposed property evolution tax. Real estate agents
+                                         and investors protested against the increase in taxes on Saturday, expecting that
+                                         the government would take some decisions in their favor.",400)}}</p>
                                         <a href="#" class="btn-default text-upparcase">Learn More</a>
                                     </div>
                                 </div>

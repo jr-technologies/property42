@@ -49,6 +49,7 @@ class UpdatePropertyRequest extends Request implements RequestInterface{
         $property->price =  $this->get('price');
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
+        $property->wanted = $this->get('wanted');
         $property->statusId = $this->statusSeeder->getPendingStatusId();
 
         $property->contactPerson =  $this->get('contactPerson');
