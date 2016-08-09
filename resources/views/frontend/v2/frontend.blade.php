@@ -14,7 +14,7 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,300,500,600,700,800,400italic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
-<body>
+<body class="loading-page">
 <div class="page-loader">
     <div class="page-loader-holder">
         <img src="{{url('/')}}/assets/imgs/loader.gif" alt="Property42 loading">
@@ -240,7 +240,8 @@
     @if(Route::getCurrentRoute()->getPath() =='/')
         <div class="weAreWorking">
             <p><b>We are working on it...</b>We would be very grateful if you could spare a few minutes to help us improve our website by giving us <a href="#feedback" class="lightbox">FEEDBACK</a></p>
-            <a class="btn-close-working">Got it.</a>
+            <a class="btn-close-working got-it">Got it.</a>
+            <a class="btn-close-working close"><span class="icon-cross"></span></a>
         </div>
     @endif
     </div>

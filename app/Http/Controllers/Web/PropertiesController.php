@@ -61,7 +61,6 @@ class PropertiesController extends Controller
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
         $this->status = new \PropertyStatusTableSeeder();
     }
-
     public function addProperty(RouteToAddPropertyRequest $request)
     {
         if($request->isNotAuthentic()){

@@ -2,13 +2,19 @@
 
 Route::get('foo',function()
 {
-
+   // DB::table('properties')->delete();
+    $lastProperty =  DB::table('properties')
+                    ->orderBy('properties.id','DESC')
+                    ->skip(0)->take(1)->get();
+    $lastId = $lastProperty[0]->id;
     $statusesSeeder = new PropertyStatusTableSeeder();
-    $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();
-    $statuses = $statusesSeeder->getAllStatusIds();
+    $PropertyFactory = (new \App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory());
+    $activeStatus = $statusesSeeder->getActiveStatusId();
+
+
     for($b = 1; $b<=2; $b++) {
         $allProperties = [];
-        for ($a = 1; $a <= 1000; $a++) {
+        for ($a = 1; $a <= 200; $a++) {
             $temp = [];
             $temp['purpose_id'] = rand(1, 2);
             $temp['property_sub_type_id'] = rand(1, 19);
@@ -21,7 +27,8 @@ Route::get('foo',function()
             $temp['contact_person'] = 'ab' . rand(1, 100000);
             $temp['phone'] = '0321450405' . rand(1, 3);
             $temp['mobile'] = '0321450405' . rand(1, 10);
-            $temp['property_status_id'] = $statuses[rand(0, (sizeof($statuses) - 1))];
+            $temp['wanted'] = rand(0,1);
+            $temp['property_status_id'] = $activeStatus;
             $temp['total_views'] = rand(1, 100000);
             $temp['rating'] = rand(1, 10);
             $temp['total_likes'] = rand(1, 100000);
@@ -35,7 +42,7 @@ Route::get('foo',function()
         }
         DB::table('properties')->insert($allProperties);
     }
-    $allProperties = $propertyRepo->all();
+    $allProperties = $PropertyFactory->mapCollection( DB::table('properties')->select('properties.*')->where('properties.id','>',$lastId)->get());
     $finalResult =[];
     foreach($allProperties as $property)
     {
@@ -43,6 +50,28 @@ Route::get('foo',function()
         $finalResult[] = ['property_id' => $property->id, 'json'=> json_encode($propertyJson)];
     }
     DB::table('property_json')->insert($finalResult);
+    return view('frontend.foo');
+
+});
+
+Route::get('foo/blocks',function(){
+    $societyTable = (new \App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory())->getTable();
+    $blocks = DB::table('blocks')
+        ->select('blocks.society_id')
+        ->groupBy('blocks.society_id')
+        ->where('blocks.block','other')
+        ->get();
+     $blocks = (new \App\Libs\Helpers\Helper())->propertyToArray($blocks,'society_id');
+     $societies = DB::table($societyTable)
+        ->select($societyTable.'.*')
+        ->whereNotIn($societyTable.'.id', $blocks)
+        ->get();
+    $insertBlocks =[];
+    foreach($societies as $society)
+    {
+        $insertBlocks[] = ['society_id'=>$society->id,'block'=>'other'];
+    }
+    DB::table('blocks')->insert($insertBlocks);
 });
 
 Route::get('print-societies/12345',function(){
@@ -55,6 +84,8 @@ Route::get('print-societies/12345',function(){
         }
     }
 );
+
+
 
 Route::get('admin',
     [
