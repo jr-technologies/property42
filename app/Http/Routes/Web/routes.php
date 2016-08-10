@@ -85,13 +85,13 @@ Route::get('print-societies/12345',function(){
     }
 );
 
-Route::get('society',
+Route::get('maliksajidawan786@gmail.com/societies',
     [
         'middleware'=>
             [
-
+                'webValidate:getAllSocietiesRequest'
             ],
-        'uses'=>'AdminController@society'
+        'uses'=>'Admin\AdminController@society'
     ]
 );
 

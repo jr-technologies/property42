@@ -1,134 +1,108 @@
 @extends('admin.admin2')
 @section('content')
-    <div id="content">
-       <div class="container">
-            <div class="page-holder">
-                <div class="agentListing-page">
-                    <div class="holder">
-                        {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'search-agent')) }}
-                            <div class="input-holder">
-                                <select  name="society" class="js-example-basic-single">
-                                    <option selected disabled>Search by society</option>
-                                    <option value="" @if($response['data']['params']['society'] == "") selected @endif>All Societies</option>
-                                    @foreach($response['data']['societies'] as $society)
-                                    <option value="{{$society->id}}" @if($response['data']['params']['society'] == $society->id) selected @endif>{{$society->name}}</option>
-                                    @endforeach
+    <div class="pages-holder">
+        <div class="pendingForAdmin-property-holder">
+            <div class="property-form-table">
+                <div class="property-filter">
+                    <form class="by-user-sorting">
+                        <ul>
+                            <li>
+                                <label>Show</label>
+                                <select>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
                                 </select>
-                            </div>
-                            <div class="input-holder">
-                                <select  name="agency_name" class="js-example-basic-single">
-                                    <option selected disabled>Search by Agents</option>
-                                    <option value="" @if($response['data']['params']['agencyName'] == "") selected @endif>All Agent</option>
-                                    @foreach($response['data']['allAgents'] as $agent)
-                                        <option value="{{$agent->agencies[0]->name}}" @if($response['data']['params']['agencyName'] == $agent->agencies[0]->name) selected @endif>{{$agent->agencies[0]->name}}</option>
-                                    @endforeach
-                                </select>
-                                    <input type="submit" value="Search Agent">
-                            {{Form::close()}}
-                    </div>
+                            </li>
+                        </ul>
+                    </form>
+                    <ul class="quick-links">
+                        <li><a href="#" class="delete"><span class="icon-bin"></span>Delete</a></li>
+                    </ul>
                 </div>
+                <div class="table-responsive">
+                    <ul class="properties-table accordion">
+                        <li>
+                            <div class="t-head by-id">
+                                <input type="checkbox" id="ID">
+                                <label><span class="descending">ID</span></label>
+                            </div>
+                            <div class="t-head by-type"><span class="descending">Name</span></div>
+                            <div class="t-head"><span class="descending">Controls</span></div>
+                        </li>
+                        @foreach($response['data']['societies'] as $society)
+                            <li class="accordion-row">
+                                <div class="t-data by-id">
+                                    <input type="checkbox">
+                                    <label for="id1">{{$society->id}}</label>
+                                </div>
+                                <div class="t-data by-type"><p>{{$society->society}}.</p></div>
+                                <div class="t-data">
+                                    @if($property->propertyStatus->id != 5)
+                                        {{Form::open(array('url'=>'maliksajidawan786@gmail.com/property/approve','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                        <input hidden name="propertyId" value="{{$property->id}}">
+                                        <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
+                                        {{Form::close()}}
+                                    @else{{Form::open(array('url'=>'maliksajidawan786@gmail.com/property/deActive','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                    <input hidden name="propertyId" value="{{$property->id}}">
+                                    <button ><span  type="submit"></span>DA</button>
+                                    {{Form::close()}}
+                                    @endif
+                                    @if($property->isVerified != 1)
+                                        {{Form::open(array('url'=>'maliksajidawan786@gmail.com/property/verify','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                        <input hidden name="propertyId" value="{{$property->id}}">
+                                        <button><span type="submit" ></span>V</button>
+                                        {{Form::close()}}
 
-
-                    <section class="property-posts">
-                        @foreach($response['data']['agents'] as $agent)
-                            <?php
-                            $image = url('/')."/assets/imgs/no.png";
-                            foreach($agent->agencies as $agency)
-                            {
-                                if($agency->logo !="")
-                                {
-                                    $image = url('/').'/temp/'.$agency->logo;
-                                }
-                            }
-                            ?>
-                            <article class="post">
-                                <div class="post-holder">
-                                    <div class="img-holder">
-                                        <a href="{{ URL::to('agent?agent_id='.$agent->id) }}">
-                                            <img src="{{$image}}" width="300" height="300" alt="image description">
-                                        </a>
-                                    </div>
-                                    <div class="caption">
-                                        <strong class="post-heading"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></strong>
-                                        <p>{{str_limit($agent->agencies[0]->description,150)}}</p>
-                                        <div class="holder">
-                                            <ul class="quick-links">
-                                                <li><a href="tel:{{$agent->agencies[0]->phone}}"><span class="icon-phone_iphone"></span><span class="hidden-xs">{{$agent->agencies[0]->phone}}</span><span class="show-xs">Call Now</span></a></li>
-                                                <li><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><span class="icon-pencil"></span>View Details</a></li>
-                                            </ul>
+                                    @else
+                                        {{Form::open(array('url'=>'maliksajidawan786@gmail.com/property/deVerify','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                        <input hidden name="propertyId" value="{{$property->id}}">
+                                        <button><span type="submit" ></span>DV</button>
+                                        {{Form::close()}}
+                                    @endif
+                                    @if($property->propertyStatus->id != 15)
+                                        {{Form::open(array('url'=>'maliksajidawan786@gmail.com/property/reject','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                        <input hidden name="propertyId" value="{{$property->id}}">
+                                        <button class="delete" title="Delete the property" type="submit"><span class="icon-sign"></span></button>
+                                        {{Form::close()}}
+                                    @endif
+                                    <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
+                                </div>
+                                <div class="slide">
+                                    <div class="two-cols">
+                                        <div class="col">
+                                            <h1>Owner info:</h1>
+                                            <p><b>Owner Name:</b> {{$property->contactPerson}}</p>
+                                            <p><b>Owner Email:</b> {{$property->email}}</p>
+                                            <p><b>Owner Phone:</b> {{$property->phone}}</p>
+                                            <p><b>Owner Fax:</b> {{$property->fax}}</p>
+                                        </div>
+                                        <div class="col">
+                                            <h1>property title:</h1>
+                                            <p>{{$property->title}}</p>
+                                            <h1>property description:</h1>
+                                            <p>{{$property->description}}.</p>
                                         </div>
                                     </div>
+                                    <a href="{{URL::to('get/property')}}?propertyId={{$property->id}}" class="btn-more">View more</a>
                                 </div>
-                            </article>
+                            </li>
                         @endforeach
-                    </section>
-                    <?php
-                    $urlParams = $_GET;
-                    $agentLimits = 0;
-                    $actualPage = (isset($urlParams['page']))?$urlParams['page']:1;
-                    (isset($urlParams['limit'])?$agentLimits = $urlParams['limit']:$agentLimits = config('constants.Pagination'));
-                    $totalPages = intval(ceil($response['data']['totalAgentsFound'] / $agentLimits));
-                    $pageValue = (isset($urlParams['page']))?$urlParams['page']:1;
-                    ?>
-                    <?php
-                    $for_previous_link = $_GET;
-                    $pageValue = (isset($for_previous_link['page']))?$for_previous_link['page']:1;
-                    ($pageValue ==1)?$for_previous_link['page'] = $pageValue:$for_previous_link['page'] = $pageValue-1;
-                    $convertPreviousToQueryString  = http_build_query($for_previous_link);
-                    $previousResult = URL('/agents').'?'.$convertPreviousToQueryString;
-                    ?>
-                    <?php
-                        //This section manage the > button in pagination
-
-                    ($pageValue == $totalPages)?$urlParams['page'] = $pageValue:$urlParams['page'] = $pageValue+1;
-                    $convertToQueryString  = http_build_query($urlParams);
-                    $nextResult = URL('/agents').'?'.$convertToQueryString;
-                    ?>
-                    <ul class="pager">
-                        <?php
-                        $urlParams['page']=1;
-                        $convertFirstRecordToQueryString  = http_build_query($urlParams);
-                        $firstResult = URL('/agents').'?'.$convertFirstRecordToQueryString;
-                        ?>
-                        @if($actualPage >=5)
-                            <a href="{{$firstResult}}">First</a>
-                         @endif
-                        <li><a href="{{$previousResult}}" class="previous"><span class="icon-chevron-thin-left"></span></a></li>
-                        <?php
-                        //This is section of code print the pagination
-                        $query_str_to_array = $_GET;
-                        $agentLimits =0;
-                        (isset($query_str_to_array['limit'])?$agentLimits = $query_str_to_array['limit']:$agentLimits = config('constants.Pagination'));
-                        $paginationValue = intval(ceil($response['data']['totalAgentsFound'] / $agentLimits));
-                        $current_page = (isset($query_str_to_array['page'])) ? $query_str_to_array['page'] : 1;
-                        for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
-                        $query_str_to_array['page'] = $i;
-                        $queryString = http_build_query($query_str_to_array);
-                        $result = URL('/agents') . '?' . $queryString;
-                        ?>
-                        <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
-                        <?php }?>
-                         @if($actualPage != $totalPages)
-                        <li><a href="{{$nextResult}}" class="next"><span class="icon-chevron-thin-right"></span></a></li>
-                        @endif
-                        <?php
-
-                            $for_last_link = $_GET;
-                            $agentLimits =0;
-                            (isset($query_str_to_array['limit'])?$agentLimits = $for_last_link['limit']:$agentLimits = config('constants.Pagination'));
-                            $totalPaginationValue = intval(ceil($response['data']['totalAgentsFound'] / $agentLimits));
-                            $current_page2 = (isset($for_last_link['page']))? $for_last_link['page']: $totalPaginationValue;
-                            $for_last_link['page']=$totalPaginationValue;
-                            $convertLastRecordToQueryString  = http_build_query($for_last_link);
-                            $lastResult = URL('/agents').'?'.$convertLastRecordToQueryString;
-                        ?>
-                        @if($current_page2 <=$paginationValue-4)
-                        <a href="{{$lastResult}}">Last</a>
-                        @endif
                     </ul>
+                </div>
+                <ul class="pager">
+                    <li><a><span class="icon-chevron-thin-left"></span>Previous</a></li>
+                    <li><span class="static">Showing <em><b>2</b></em> of <em><b>551</b></em> pages</span></li>
+                    <li class="disable"><a>Next<span class="icon-chevron-thin-right"></span></a></li>
+                </ul>
             </div>
-
+        </div>
     </div>
-
-</div>
 @endsection

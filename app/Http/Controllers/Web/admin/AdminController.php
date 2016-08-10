@@ -10,15 +10,18 @@ use App\Http\Requests\Requests\Admin\GetAdminExpiredPropertyRequest;
 use App\Http\Requests\Requests\Admin\GetAdminPendingPropertyRequest;
 use App\Http\Requests\Requests\Admin\GetAdminRejectedPropertyRequest;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
+use App\Http\Requests\Requests\Property\DeVerifyPropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminPropertyRequest;
 use App\Http\Requests\Requests\Property\GetAdminsPropertiesRequest;
 use App\Http\Requests\Requests\Property\RejectPropertyRequest;
 use App\Http\Requests\Requests\Property\VerifyPropertyRequest;
+use App\Http\Requests\Requests\Society\GetAllSocietiesRequest;
 use App\Http\Requests\Requests\User\ApproveAgentRequest;
 use App\Http\Requests\Requests\User\GetAdminAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Traits\Property\PropertyFilesReleaser;
@@ -27,12 +30,13 @@ use App\Traits\Property\PropertyPriceUnitHelper;
 class AdminController extends Controller
 {
     use PropertyFilesReleaser, PropertyPriceUnitHelper;
-    public $users =null;
+    public $users = null;
     public $response = null;
     public $properties = null;
-    public $favouriteFactory=null;
-    public $propertiesRepo=null;
+    public $favouriteFactory= null;
+    public $propertiesRepo= null;
     public $usersRepo = null;
+    public $factoryRepo = null;
     public function __construct(WebResponse $webResponse)
     {
         $this->response = $webResponse;
@@ -41,6 +45,7 @@ class AdminController extends Controller
         $this->users = (new UsersJsonRepoProvider())->repo();
         $this->usersRepo = (new UsersRepoProvider())->repo();
         $this->favouriteFactory = new FavouritePropertyFactory();
+        $this->factoryRepo = (new SocietiesRepoProvider())->repo();
     }
     public function getProperties(GetAdminsPropertiesRequest $request)
     {
@@ -116,7 +121,7 @@ class AdminController extends Controller
         $this->propertiesRepo->VerifyProperty($request->getPropertyModel());
         return redirect('get/property');
     }
-    public function deVerifyProperty(VerifyPropertyRequest $request)
+    public function deVerifyProperty(DeVerifyPropertyRequest $request)
     {
         $this->propertiesRepo->deVerifyProperty($request->getPropertyModel());
         return redirect('get/property');
@@ -150,8 +155,10 @@ class AdminController extends Controller
        return $this->response->setView('admin.Agent_profile')->respond(['data'=>[
             'agent'=>$this->users->find($request->get('userId'))]]);
     }
-    public function society()
+    public function society(GetAllSocietiesRequest $request)
     {
-        return $this->response->setView('admin.society')->respond([]);
+        return $this->response->setView('admin.society.society-listing')->respond(['data'=>[
+            'societies'=>$this->factoryRepo->all()
+        ]]);
     }
 }
