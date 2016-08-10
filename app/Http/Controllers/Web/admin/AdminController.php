@@ -150,4 +150,8 @@ class AdminController extends Controller
        return $this->response->setView('admin.Agent_profile')->respond(['data'=>[
             'agent'=>$this->users->find($request->get('userId'))]]);
     }
+    public function society()
+    {
+        return $this->response->setView('admin.society')->respond([]);
+    }
 }
