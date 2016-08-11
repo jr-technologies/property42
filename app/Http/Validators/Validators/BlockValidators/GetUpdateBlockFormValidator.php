@@ -11,7 +11,7 @@ namespace App\Http\Validators\Validators\BlockValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
 
-class UpdateBlockValidator extends BlockValidator implements ValidatorsInterface
+class GetUpdateBlockFormValidator extends BlockValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -21,8 +21,7 @@ class UpdateBlockValidator extends BlockValidator implements ValidatorsInterface
     {
         return[
             'id' => 'required',
-            'block'=>'required|min:1|max:25',
-            'societyId' => 'required'
+
         ];
     }
 }

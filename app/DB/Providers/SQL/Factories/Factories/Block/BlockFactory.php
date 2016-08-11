@@ -37,7 +37,10 @@ class BlockFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($id));
     }
-
+    public function getBlocksWithSociety()
+    {
+        return $this->tableGateway->getBlocksWithSociety();
+    }
     /**
      * @param Block $block
      * @return bool

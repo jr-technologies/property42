@@ -6,12 +6,13 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\BlockValidators;
+namespace App\Http\Validators\Validators\SocietyValidators;
 
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Http\Validators\Validators\SocietyValidators\SocietyValidator;
 
-class UpdateBlockValidator extends BlockValidator implements ValidatorsInterface
+class GetUpdateSocietyFormValidator extends SocietyValidator implements ValidatorsInterface
 {
     public function __construct($request)
     {
@@ -20,9 +21,8 @@ class UpdateBlockValidator extends BlockValidator implements ValidatorsInterface
     public function rules()
     {
         return[
-            'id' => 'required',
-            'block'=>'required|min:1|max:25',
-            'societyId' => 'required'
+            'societyId' => 'required',
+
         ];
     }
 }

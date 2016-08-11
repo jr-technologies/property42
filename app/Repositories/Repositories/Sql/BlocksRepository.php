@@ -36,7 +36,10 @@ class BlocksRepository extends SqlRepository implements BlocksRepoInterface
     {
         return $this->factory->find($id);
     }
-
+    public function getBlocksWithSociety()
+    {
+        return $this->factory->getBlocksWithSociety();
+    }
     public function all()
     {
         return $this->factory->all();

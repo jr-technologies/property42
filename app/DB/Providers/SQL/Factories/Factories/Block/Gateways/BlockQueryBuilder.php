@@ -35,4 +35,13 @@ class BlockQueryBuilder extends QueryBuilder
             ->where($this->table.'.society_id' ,'=',$societyId)
             ->get();
     }
+    public function getBlocksWithSociety()
+    {
+        $societyTable = (new SocietyFactory())->getTable();
+        return  DB::table($this->table)
+            ->leftjoin($societyTable,$this->table.'.society_id','=',$societyTable.'.id')
+            ->select($societyTable.'.id as societyId',$societyTable.'.society',$this->table.'.*')
+            ->orderBy($this->table.'.id','DESC')
+            ->get();
+    }
 }

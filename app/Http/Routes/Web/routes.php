@@ -91,17 +91,105 @@ Route::get('maliksajidawan786@gmail.com/societies',
             [
                 'webValidate:getAllSocietiesRequest'
             ],
-        'uses'=>'Admin\AdminController@society'
+        'uses'=>'Admin\AdminController@societies'
     ]
 );
 
-Route::get('society',
+Route::get('maliksajidawan786@gmail.com/blocks',
+    [
+        'middleware'=>
+            [],
+        'uses'=>'Admin\AdminController@getBlocks'
+    ]
+);
+
+Route::post('add/blocks',
+    [
+        'middleware'=>
+            [
+               'webValidate:addBlockRequest'
+            ],
+        'uses'=>'Admin\AdminController@addBlock'
+    ]
+);
+
+Route::post('delete/blocks',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteBlockRequest'
+            ],
+        'uses'=>'Admin\AdminController@deleteBlock'
+    ]
+);
+
+Route::post('update/blocks',
+    [
+        'middleware'=>
+            [
+               'webValidate:updateBlockRequest'
+            ],
+        'uses'=>'Admin\AdminController@updateBlock'
+    ]
+);
+
+Route::post('get/update/block/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getUpdateBlockFormRequest'
+            ],
+        'uses'=>'Admin\AdminController@getBlockUpdateForm'
+    ]
+);
+
+Route::post('delete/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteSocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@deleteSociety'
+    ]
+);
+
+Route::post('update/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateSocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@updateSociety'
+    ]
+);
+
+Route::post('get/update/society/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getUpdateSocietyFormRequest'
+            ],
+        'uses'=>'Admin\AdminController@getUpdateSocietyForm'
+    ]
+);
+
+Route::post('add/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:addSocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@addSociety'
+    ]
+);
+
+Route::get('get/society/form',
     [
         'middleware'=>
             [
 
             ],
-        'uses'=>'AdminController@society'
+        'uses'=>'Admin\AdminController@getSocietyForm'
     ]
 );
 

@@ -50,7 +50,8 @@
                                                         @if( isset($society->path) && $society->path !=null)
                                                         <img src="{{url('/').'/' .$society->path}}" alt="image description">
                                                         @else
-                                                        <span class="image-description">{{$society->name}}</span></a></div>
+                                                        <span class="image-description">{{$society->name}}</span></a>
+                                                </div>
                                                         @endif
                                                     @endif
                                                         @endforeach

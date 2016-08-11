@@ -1,6 +1,7 @@
 @extends('frontend.v2.frontend')
 @section('content')
     <main id="main" role="main">
+
         <div class="page-holder">
             <div class="propertyDetail-page">
                 <div class="container">

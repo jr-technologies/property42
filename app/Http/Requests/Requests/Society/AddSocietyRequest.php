@@ -32,6 +32,7 @@ class AddSocietyRequest extends Request implements RequestInterface
         $society = new Society();
         $society->name = $this->get('society');
         $society->cityId = $this->get('cityId');
+        $society->priority = $this->get('priority');
         return $society;
     }
 

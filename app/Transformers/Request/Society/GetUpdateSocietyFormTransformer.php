@@ -6,20 +6,21 @@
  * Time: 10:27 AM
  */
 
-namespace App\Transformers\Request\Block;
+namespace App\Transformers\Request\Society;
 
 
 use App\Transformers\Request\RequestTransformer;
 
-class UpdateBlockTransformer extends RequestTransformer
+class GetUpdateSocietyFormTransformer extends RequestTransformer
 {
+    /**
+     * @return array
+     */
     public function transform()
     {
-
         return [
-                'id'=>$this->request->input('block_id'),
                 'societyId'=>$this->request->input('society_id'),
-                'block'=>$this->request->input('block_name')
+
         ];
     }
 }
