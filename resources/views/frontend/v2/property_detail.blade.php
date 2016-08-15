@@ -126,7 +126,7 @@
                                     <div class="pull-right">
                                         <ul class="quick-links">
                                             <li><a href="#callPopup" class="lightbox call-agent-btn"
-                                                   data-tel="03154379760"><span class="icon-phone"></span></a></li>
+                                                   data-tel="{{$response['data']['property']->mobile}}"><span class="icon-phone"></span></a></li>
                                             <li><a href="#sendEmail-popup" class="lightbox"><span
                                                             class="icon-empty-envelop"></span></a></li>
                                         </ul>

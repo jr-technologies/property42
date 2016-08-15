@@ -22,7 +22,7 @@ class AddSocietyValidator extends SocietyValidator implements ValidatorsInterfac
     {
         return[
             'cityId' => 'required',
-            'society'=>'required|min:5|max:55'
+            'society'=>'required|min:2|max:55'
         ];
     }
 }

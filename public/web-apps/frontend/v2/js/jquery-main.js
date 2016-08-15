@@ -1,6 +1,5 @@
 jQuery(window).load(function(){
 	$('.page-loader').fadeOut();
-	$('body').removeClass('loading-page');
 });
 
 $(document).ready(function() {
@@ -136,7 +135,6 @@ function initCarousel() {
 		stretchSlideToMask: true,
 		switchTime: 2000,
 		step:1,
-		swipeGap: true,
 		animSpeed: 600
 	});
 }
@@ -337,10 +335,6 @@ $('.hidden-checkfield').change(function(){
 	}
 });
 
-$(document).on('click', '.role-opener', function(){
-	$('.registration-form').find('.role-listing').slideToggle();
-	$(this).toggleClass('active');
-});
 
 function countCheckedRoles(){
 	var totalCheckedRoles = 0;
