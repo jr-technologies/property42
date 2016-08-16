@@ -24,7 +24,7 @@ class GetDashboardAppRequest extends AppsRequest implements RequestInterface{
 
     public function version()
     {
-        return 'v1';
+        return 'v2';
     }
 
     public function authorize(){
