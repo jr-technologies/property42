@@ -13,14 +13,15 @@ class CreateBannersTargetedSizeTable extends Migration
     public function up()
     {
         Schema::create('banners_targeted_sizes', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->integer('banner_id');
-            $table->integer('size')->default(0);
+            $table->increments('id');
+            $table->integer('banner_id')->unsigned();
+            $table->integer('area');
+            $table->string('unit');
             $table->timestamps();
 
 
-            $table->foreign('banners')
-                ->references('id')->on('banner_id')
+            $table->foreign('banner_id')
+                ->references('id')->on('banners')
                 ->onDelete('cascade');
 
         });

@@ -85,6 +85,26 @@ Route::get('print-societies/12345',function(){
     }
 );
 
+Route::get('maliksajidawan786@gmail.com/banners',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'Admin\BannersController@banners'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/add/banner',
+    [
+        'middleware'=>
+            [
+                'webValidate:addBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@addBanner'
+    ]
+);
+
 Route::get('maliksajidawan786@gmail.com/societies',
     [
         'middleware'=>

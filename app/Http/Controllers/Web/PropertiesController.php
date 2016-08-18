@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\DB\Providers\SQL\Factories\Factories\Banners\BannersFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\IndexRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
@@ -43,6 +44,7 @@ class PropertiesController extends Controller
     public $propertiesRepo = null;
     public $userRepo = null;
     public $status = null;
+    public $banners = null;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
@@ -60,6 +62,7 @@ class PropertiesController extends Controller
         $this->userRepo = (new UsersRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
         $this->status = new \PropertyStatusTableSeeder();
+        $this->banners = new BannersFactory();
     }
     public function addProperty(RouteToAddPropertyRequest $request)
     {
@@ -84,6 +87,8 @@ class PropertiesController extends Controller
         $properties = $this->properties->search($request->getParams());
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
+        $banners = $this->banners->getBanners($params);
+        dd($banners);
         return $this->response->setView('frontend.v2.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
@@ -94,6 +99,7 @@ class PropertiesController extends Controller
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
             'oldValues'=>$request->all(),
+            'banners'=>$banners
         ]]);
     }
 

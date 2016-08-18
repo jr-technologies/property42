@@ -1,10 +1,9 @@
-
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocietiesFiles extends Migration
+class CreateBannersTargetedSocietiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +12,24 @@ class CreateSocietiesFiles extends Migration
      */
     public function up()
     {
-        Schema::create('societies_files', function (Blueprint $table) {
+        Schema::create('banners_targeted_societies', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('banner_id')->unsigned();
             $table->integer('society_id')->unsigned();
-            $table->string('image');
-            $table->string('doc');
-            $table->string('pdf');
             $table->timestamps();
+
+
+            $table->foreign('banner_id')
+                ->references('id')->on('banners')
+                ->onDelete('cascade');
 
             $table->foreign('society_id')
                 ->references('id')->on('societies')
                 ->onDelete('cascade');
+
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -33,6 +37,6 @@ class CreateSocietiesFiles extends Migration
      */
     public function down()
     {
-        Schema::drop('societies_files');
+        Schema::drop('banners_targeted_societies');
     }
 }

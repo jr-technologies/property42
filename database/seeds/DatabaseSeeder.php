@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AssignedFeaturesJsonTableSeeder::class);
         $this->call(AdminsTableSeeder::class);
         $this->call(SocietiesFilesTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
 
 
     }

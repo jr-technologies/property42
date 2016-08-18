@@ -43,6 +43,7 @@
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/agents')}}"><span class="icon-list"></span>Agents </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/societies')}}"><span class="icon-list"></span>Societies </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/blocks')}}"><span class="icon-list"></span>Blocks </a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/banners')}}"><span class="icon-list"></span>Banners </a></li>
             </ul>
         </aside>
         @yield('content')

@@ -13,18 +13,18 @@ class CreateBannersTargetedPagesTable extends Migration
     public function up()
     {
         Schema::create('banners_targeted_Pages', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->integer('banner_id');
-            $table->integer('page_id')->default(0);
+            $table->increments('id');
+            $table->integer('banner_id')->unsigned();
+            $table->integer('page_id')->unsigned();
             $table->timestamps();
 
 
-            $table->foreign('banners')
-                ->references('id')->on('banner_id')
+            $table->foreign('banner_id')
+                ->references('id')->on('banners')
                 ->onDelete('cascade');
 
-            $table->foreign('pages')
-                ->references('id')->on('page_id')
+            $table->foreign('page_id')
+                ->references('id')->on('pages')
                 ->onDelete('cascade');
 
         });

@@ -229,7 +229,8 @@ return [
         'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
         'IndexRequest' => \App\Http\Requests\Requests\IndexRequest::class,
 
-
+        /* Banners */
+        'AddBannerRequest' => \App\Http\Requests\Requests\Banners\AddBannerRequest::class,
 
         /* Loading Helpers */
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
