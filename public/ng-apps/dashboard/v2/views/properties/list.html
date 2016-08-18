@@ -1,44 +1,23 @@
-<div class="property-listing-page">
+
+<div class="property-listing-page" ng-init="initialize()" ng-controller="ListPropertiesController">
     <ul class="property-status-links">
-        <li><a href="#" class="active">ACTIVE <span class="number">117</span></a></li>
-        <li><a href="#" class="pending">pending <span class="number">17</span></a></li>
-        <li><a href="#" class="rejected">rejected <span class="number">11</span></a></li>
-        <li><a href="#" class="expired">expired <span class="number">114</span></a></li>
-        <li><a href="#" class="deleted">deleted <span class="number">1174</span></a></li>
+        <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active':searchPropertiesParams.status_id === propertyStatus.id}">
+            <a ng-click="setPropertyStatus(propertyStatus.id)" href="" class="{{propertyStatus.name | lowercase}}">
+                {{propertyStatus.name}} <span class="number">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span>
+            </a>
+        </li>
     </ul>
     <ul class="sorting-filtering">
         <li>
-            <label for="sort-by">Sort By</label>
+            <label for="show-properties">View</label>
             <div class="input-holder">
                 <span class="fake-select">
-                    <select id="sort-by">
-                        <option>ID</option>
-                        <option>ID</option>
-                        <option>ID</option>
-                        <option>ID</option>
-                    </select>
-                </span>
-            </div>
-        </li>
-        <li>
-            <label for="order-by">Order</label>
-            <div class="input-holder">
-                <span class="fake-select">
-                    <select id="order-by">
-                        <option>Ascending</option>
-                    </select>
-                </span>
-            </div>
-        </li>
-        <li>
-            <label for="view-by">View</label>
-            <div class="input-holder">
-                <span class="fake-select">
-                    <select id="view-by">
-                        <option>20</option>
-                        <option>20</option>
-                        <option>20</option>
-                    </select>
+                   <select id="show-properties" ng-model="searchPropertiesParams.limit" ng-change="filtersChanged()">
+                       <option value="10">10</option>
+                       <option value="20">20</option>
+                       <option value="50">50</option>
+                       <option value="100">100</option>
+                   </select>
                 </span>
             </div>
         </li>
@@ -46,9 +25,9 @@
             <label for="staff">Staff</label>
             <div class="input-holder">
                 <span class="fake-select">
-                    <select id="staff">
-                        <option>Atif Sultan</option>
-                        <option>Zain</option>
+                    <select ng-model="searchPropertiesParams.owner_id" ng-change="filtersChanged()" id="staff">
+                        <option value="">All Members</option>
+                        <option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>
                     </select>
                 </span>
             </div>
@@ -58,8 +37,8 @@
     <ul class="listing-pro">
         <li class="t-h text-upparcase text-center">
             <div class="pro-id border">
-                <label for="property-id" class="customCheckbox">
-                    <input type="checkbox" id="property-id">
+                <label for="property-ids" class="customCheckbox">
+                    <input type="checkbox" ng-model="checkAllPropertiesChkbx" id="property-ids">
                     <span class="fake-checkbox"></span>
                     <span class="fake-label">ID</span>
                 </label>
@@ -72,223 +51,26 @@
             <div class="pro-view border"><p>VIEWS</p></div>
             <div class="pro-controls border"><p>Controls</p></div>
         </li>
-        <li class="t-d text-center">
+        <li class="t-d text-center" data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
             <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
+                <label for="{{property.id}}" class="customCheckbox">
+                    <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id" id="{{property.id}}">
                     <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
+                    <span class="fake-label">{{property.id}}</span>
                 </label>
             </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
+            <div class="pro-type border"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}}</p></div>
+            <div class="pro-location border"><p>{{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
+            <div class="pro-price border"><p>{{property.price}}</p></div>
+            <div class="pro-size border"><p>under dev..</p></div>
             <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
+            <div class="pro-view border"><p>{{property.totalLikes}}</p></div>
             <div class="pro-controls border">
                 <ul class="control-link">
                     <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="t-d text-center">
-            <div class="pro-id border">
-                <label for="property-id-td" class="customCheckbox">
-                    <input type="checkbox" id="property-id-td">
-                    <span class="fake-checkbox"></span>
-                    <span class="fake-label">8787</span>
-                </label>
-            </div>
-            <div class="pro-type border"><p>Plots. Residential Plot 1 Kanal</p></div>
-            <div class="pro-location border"><p>DHA Phase 9 Prism - C Block</p></div>
-            <div class="pro-price border"><p>12300000</p></div>
-            <div class="pro-size border"><p>12300000</p></div>
-            <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>88</p></div>
-            <div class="pro-controls border">
-                <ul class="control-link">
-                    <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a href="#"><span class="icon-pencil"></span></a></li>
-                    <li><a href="#"><span class="icon-bin-delete"></span></a></li>
+                    <li><a ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" href="#/home/properties/edit/{{property.id}}" ><span class="icon-pencil"></span></a></li>
+                    <li><a ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-refresh-arrow"></span></a></li>
+                    <li><a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
                 </ul>
             </div>
         </li>
