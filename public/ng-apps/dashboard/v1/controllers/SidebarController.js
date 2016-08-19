@@ -5,7 +5,6 @@ var app = angular.module('dashboard');
 app.directive('filterList', function($timeout) {
     return {
         link: function(scope, element, attrs) {
-
             var li = Array.prototype.slice.call(element[0].children);
 
             function filterBy(value) {

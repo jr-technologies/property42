@@ -190,10 +190,6 @@ $('.hidden-checkfield').change(function(){
     }
 });
 
-$(document).on('click', '.role-opener', function(){
-    $('.registration-form').find('.role-listing').slideToggle();
-    $(this).toggleClass('active');
-});
 
 function countCheckedRoles(){
     var totalCheckedRoles = 0;

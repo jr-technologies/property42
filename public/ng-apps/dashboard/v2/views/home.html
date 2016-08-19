@@ -45,7 +45,7 @@
                 <button type="submit"><span class="icon-search"></span></button>
             </form>
             <div class="scroll-able">
-                <ul class="sideBar-links">
+                <ul class="sideBar-links" filter-list="search">
                     <li><a href="#"><span class="icon-home-dash"></span>DASHBOARD</a></li>
                     <li ng-class="{'active':activeLink==='home.properties.all'}">
                         <a href="#home/listings/all"><span class="icon-list"></span>LISTINGS <span class="badge">{{propertiesCounts | filterByCountParam: undefined}}</span></a>

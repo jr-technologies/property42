@@ -1,80 +1,69 @@
-<div class="favorite-property-holder" ng-init="initialize()">
-    <div class="property-form-table">
-        <div class="property-filter">
-            <ul class="quick-links">
-                <li ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
-            </ul>
-            <form class="by-user-sorting">
-                <ul>
-                    <li>
-                        <label>Show</label>
-                        <select ng-model="params.limit" ng-change="limitChanged()">
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </li>
+<div class="property-listing-page" ng-init="initialize()">
+    <ul class="sorting-filtering">
+        <li>
+            <label for="show_total">View</label>
+            <div class="input-holder">
+                <span class="fake-select">
+                 <select ng-model="params.limit" ng-change="limitChanged()" id="show_total">
+                     <option>20</option>
+                     <option>20</option>
+                     <option>20</option>
+                 </select>
+                </span>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="listing-pro">
+        <li class="t-h text-upparcase text-center">
+            <div class="pro-id border">
+                <label for="property-ids" class="customCheckbox">
+                    <input type="checkbox" ng-model="checkAllPropertiesChkbx" id="property-ids">
+                    <span class="fake-checkbox"></span>
+                    <span class="fake-label">ID</span>
+                </label>
+            </div>
+            <div class="pro-type border"><p>TYPE</p></div>
+            <div class="pro-location border"><p>LOCATION</p></div>
+            <div class="pro-price border"><p>PRICE (Pkr)</p></div>
+            <div class="pro-size border"><p>Size</p></div>
+            <div class="pro-date border"><p>Date</p></div>
+            <div class="pro-view border"><p>VIEWS</p></div>
+            <div class="pro-controls border"><p>Controls</p></div>
+        </li>
+        <li class="t-d text-center" data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
+            <div class="pro-id border">
+                <label for="{{property.id}}" class="customCheckbox">
+                    <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id" id="{{property.id}}">
+                    <span class="fake-checkbox"></span>
+                    <span class="fake-label">{{property.id}}</span>
+                </label>
+            </div>
+            <div class="pro-type border"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}}</p></div>
+            <div class="pro-location border"><p>{{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
+            <div class="pro-price border"><p>{{property.price}}</p></div>
+            <div class="pro-size border"><p>under dev..</p></div>
+            <div class="pro-date border"><p>18 Apr 2016</p></div>
+            <div class="pro-view border"><p>{{property.totalLikes}}</p></div>
+            <div class="pro-controls border">
+                <ul class="control-link">
+                    <li><a class="details opener" title="Details"><span class="icon-search-doc"></span></a></li>
+                    <li><a ng-click="deleteProperty(property.id)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
                 </ul>
-            </form>
-        </div>
-        <div class="table-responsive">
-            <ul class="properties-table accordion">
-                <li>
-                    <div class="t-head by-id">
-                        <input type="checkbox" id="ID" ng-model="checkAllPropertiesChkbx">
-                        <label><span class="descending">ID</span></label>
-                    </div>
-                    <div class="t-head by-type"><span class="descending">Type</span></div>
-                    <div class="t-head by-location"><span class="descending">Location</span></div>
-                    <div class="t-head by-price"><span class="descending">Price (PKR)</span></div>
-                    <div class="t-head"><span class="descending">Listed Date</span></div>
-                    <div class="t-head by-view"><span class="descending">Views</span></div>
-                    <div class="t-head"><span class="descending">Controls</span></div>
-                </li>
-                <li data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
-                    <div class="t-data by-id">
-                        <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id">
-                        <label for="id1">{{property.id}} </label>
-                    </div>
-                    <div class="t-data by-type"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}} </p></div>
-                    <div class="t-data by-location"><p> {{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
-                    <div class="t-data by-price"><p>{{property.price}}</p></div>
-                    <div class="t-data">
-                        <time datetime="2016-04-18">18 Apr 2016</time>
-                    </div>
-                    <div class="t-data by-view">{{property.totalLikes}}</div>
-                    <div class="t-data">
-                        <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
-
-                        <a ng-click="deleteProperty(property.id)" class="delete" title="Delete this property"><span class="icon-trash"></span></a>
-                    </div>
-                    <div class="slide">
-                        <div class="two-cols">
-                            <div class="col">
-                                <h1>Owner info:</h1>
-                                <p><b>Owner Name:</b> {{property.owner.fName}} {{ property.owner.lName }}</p>
-                                <p><b>Owner Email:</b> {{property.email}} </p>
-                                <p><b>Owner Phone:</b> {{property.phone}} </p>
-                                <p><b>Owner Fax:</b> {{property.fax}} </p>
-                            </div>
-                            <div class="col">
-                                <h1>property title:</h1>
-                                <p>{{property.title}}</p>
-                                <h1>property description:</h1>
-                                <p>{{property.description}}</p>
-                            </div>
-                        </div>
-                        <a target="_blank" href="{{domain}}property?propertyId={{property.id}}"  class="btn-more">View more</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <ul class="pager">
-            <li ng-class="{'disable' : activePage == 1}" ng-click="setPage(activePage - 1)"><a><span class="icon-chevron-thin-left"></span>Previous</a></li>
-            <li><span class="static">Showing <em><b>{{activePage}}</b></em> of <em><b>{{totalProperties/searchPropertiesParams.limit | roundup}}</b></em> pages</span></li>
-            <li ng-class="{'disable' : activePage >= totalProperties/searchPropertiesParams.limit}" ng-click="setPage(activePage+1)"><a>Next<span class="icon-chevron-thin-right"></span></a></li>
-        </ul>
-    </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="pager">
+        <li><a href="#" class="first"><span class="icon-arrow1-left"></span></a></li>
+        <li><a href="#" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+        <li><a href="#" class="next"><span class="icon-bold-arrow-right"></span></a></li>
+        <li><a href="#" class="last"><span class="icon-arrow1-right"></span></a></li>
+    </ul>
 </div>
