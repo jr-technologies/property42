@@ -28,17 +28,23 @@ class BannersQueryBuilder extends QueryBuilder
             ->leftjoin($bannerSizeTable,$this->table.'.id','=',$bannerSizeTable.'.banner_id')
             ->select($this->table.'.*');
 
-        if(isset($params['societyId']) && $params['societyId'] !=null && $params['societyId'] !="")
-            $query = $query->orWhere($bannerSocietiesTable.'.society_id','=',$params['societyId']);
-        $query = $query->orWhere(function ($query) use ($bannerSizeTable, $landUnit, $params) {
-            if(isset($params['landAreaFrom']) && $params['landAreaFrom'] !=null && $params['landAreaFrom'] != "")
-                $query = $query->where($bannerSizeTable.'.area','>=',LandArea::convert($landUnit,'square feet',$params['landAreaFrom']));
-            if(isset($params['landAreaTo']) && $params['landAreaTo'] !=null && $params['landAreaTo'] !="")
-                $query = $query->where($bannerSizeTable.'.area','<=',LandArea::convert($landUnit,'square feet',$params['landAreaTo']));
+        $query = $query->orWhere(function ($query)  use ($bannerSocietiesTable, $bannerSizeTable, $landUnit, $params) {
+            if(isset($params['societyId']) && $params['societyId'] !=null && $params['societyId'] !="")
+                $query = $query->orWhere($bannerSocietiesTable.'.society_id','=',$params['societyId']);
+            $query = $query->orWhere(function ($query) use ($bannerSizeTable, $landUnit, $params) {
+                if(isset($params['landAreaFrom']) && $params['landAreaFrom'] !=null && $params['landAreaFrom'] != "")
+                    $query = $query->where($bannerSizeTable.'.area','>=',LandArea::convert($landUnit,'square feet',$params['landAreaFrom']));
+                if(isset($params['landAreaTo']) && $params['landAreaTo'] !=null && $params['landAreaTo'] !="")
+                    $query = $query->where($bannerSizeTable.'.area','<=',LandArea::convert($landUnit,'square feet',$params['landAreaTo']));
+                return $query;
+            });
             return $query;
         });
-
-        $query = $query->groupBy($this->table.'.id');
+        $query = $query->orWhere(function ($query) {
+            return $query->where($this->table.'.banner_type','=','fix');
+        });
+         $query = $query->orderBy($this->table.'.banner_priority', 'DESC');
+         $query = $query->groupBy($this->table.'.id');
          $query = $query->get();
         return $query;
     }

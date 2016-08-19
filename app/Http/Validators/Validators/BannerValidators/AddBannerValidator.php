@@ -34,10 +34,9 @@ class AddBannerValidator extends BannersValidator implements ValidatorsInterface
         Validator::extend('banner_size_validation', function($attribute, $value, $parameters)
         {
             $file = $this->request->get('bannerImage');
-
                 $fileName = $file->getClientOriginalExtension();
-                $image_size = getimagesize($file);
-                if((strtolower($fileName) != 'jpg' && strtolower($fileName) != 'jpeg' && strtolower($fileName) !='png' && strtolower($fileName) !='gif') || ($image_size[0] >=1024  || $image_size[1] >=1024 ))
+                $image_size = $file->getClientSize();
+        if((strtolower($fileName) != 'jpg' && strtolower($fileName) != 'jpeg' && strtolower($fileName) !='png' && strtolower($fileName) !='gif') || ($image_size<=1024))
                 {
                     return false;
                 }

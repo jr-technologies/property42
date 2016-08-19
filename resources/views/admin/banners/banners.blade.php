@@ -1,6 +1,11 @@
 @extends('admin.admin2')
 @section('content')
-
+    <?php
+    if(\Session::has('validationErrors')){
+        $validationErrors = \Session::get('validationErrors');
+        //dd($validationErrors);
+    }
+    ?>
     <style>
         table, th, td {
             border: 1px solid black;

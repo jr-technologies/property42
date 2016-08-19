@@ -154,6 +154,10 @@
                                 <strong class="no-heading">sorry, no property found</strong>
                                 <p>Maybe your search was to specific, please try searching with another term.</p>
                             </div>
+                            <?php
+                            $count = 0;
+                            $betweenCountIndex=0;
+                            ?>
                             @foreach($response['data']['properties'] as $property)
                                 <?php
                                 $image = url('/')."/assets/imgs/no.png";
@@ -164,6 +168,7 @@
                                         $image = url('/').'/temp/'.$document->path;
                                     }
                                 }
+                                $count++
                                 ?>
                                 <article class="publicProperty-post">
                                     <div class="image-holder">
@@ -219,7 +224,18 @@
                                         </div>
                                     </div>
                                 </article>
+                                <?php
+                                if(($count %3) == 0)
+                                if(isset($response['data']['banners']['relevantBanners']['between']) && isset($response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]))
+
+                                { ?>
+                                <li><a><img src="{{$response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a></li>
+                                <?php
+                                $betweenCountIndex++;
+                                }
+                                ?>
                             @endforeach
+
                         </section>
                         <?php
                         $for_previous_link = $_GET;
@@ -293,7 +309,12 @@
                     </div>
                 </div>
                 <ul class="Ads">
-                    <li><a ><img src="{{url('/')}}/assets/imgs/42_ads/add1.png"></a></li>
+
+                    @if(isset($response['data']['banners']['relevantBanners']['left']))
+                        @foreach($response['data']['banners']['relevantBanners']['left'] as $leftBanner)
+                            <li><a ><img src="{{$leftBanner->image}}"></a></li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </div>

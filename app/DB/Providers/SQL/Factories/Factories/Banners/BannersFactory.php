@@ -42,7 +42,12 @@ class BannersFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $collection = collect($this->tableGateway->getBanners($params));
         $bannerType = $collection->groupBy('banner_type');
-        dd($bannerType);
+        $fixedBanners = (isset($bannerType['fix']))?$bannerType['fix']:[];
+        $groupedRelevantBanners = (isset($bannerType['relevant']))?$bannerType['relevant']->groupBy('position'):[];
+        return [
+            'fixBanners' => $fixedBanners,
+            'relevantBanners' =>$groupedRelevantBanners
+        ];
     }
     public function getBlocksWithSociety()
     {

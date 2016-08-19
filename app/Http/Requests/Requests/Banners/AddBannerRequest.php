@@ -21,7 +21,7 @@ class AddBannerRequest extends Request implements RequestInterface{
     public $validator;
     public function __construct(){
         parent::__construct(new AddBannerTransformer($this->getOriginalRequest()));
-                $this->validator = new AddBannerValidator($this->getOriginalRequest());
+        $this->validator = new AddBannerValidator($this);
     }
 
     public function authorize(){

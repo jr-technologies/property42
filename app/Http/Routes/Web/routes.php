@@ -123,6 +123,16 @@ Route::get('maliksajidawan786@gmail.com/blocks',
     ]
 );
 
+Route::get('get/blocks',
+    [
+        'middleware'=>
+            [
+                'webValidate:getBlocksBySocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getBlocksBySociety'
+    ]
+);
+
 Route::post('add/blocks',
     [
         'middleware'=>

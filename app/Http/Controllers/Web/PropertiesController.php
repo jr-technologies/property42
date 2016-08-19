@@ -80,6 +80,10 @@ class PropertiesController extends Controller
             ->respond($this->PropertyTransformer->transform($request->all()));
     }
 
+    /**
+     * @param SearchPropertiesRequest $request
+     * @return $this
+     */
     public function search(SearchPropertiesRequest $request)
     {
         $params = $request->getParams();
@@ -88,7 +92,6 @@ class PropertiesController extends Controller
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
         $banners = $this->banners->getBanners($params);
-        dd($banners);
         return $this->response->setView('frontend.v2.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,

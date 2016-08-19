@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\Admin\GetAdminPendingPropertyRequest;
 use App\Http\Requests\Requests\Admin\GetAdminRejectedPropertyRequest;
 use App\Http\Requests\Requests\Block\AddBlockRequest;
 use App\Http\Requests\Requests\Block\DeleteBlockRequest;
+use App\Http\Requests\Requests\Block\GetBlocksBySocietyRequest;
 use App\Http\Requests\Requests\Block\GetUpdateBlockFormRequest;
 use App\Http\Requests\Requests\Block\UpdateBlockRequest;
 use App\Http\Requests\Requests\Property\ApprovePropertyRequest;
@@ -218,26 +219,42 @@ class AdminController extends Controller
     public function getBlocks()
     {
         return $this->response->setView('admin.block.block-listing')->respond(['data'=>[
-            'blocks'=>$this->blocksRepo->getBlocksWithSociety(),
             'societies'=>$this->societyRepo->all()
         ]]);
     }
     public function addBlock(AddBlockRequest $request)
     {
         $this->blocksRepo->store($request->getBlockModel());
-        return redirect('maliksajidawan786@gmail.com/blocks');
+        return $this->response->setView('admin.block.block-listing')->respond(['data'=>[
+            'blocks'=>$this->blocksRepo->getBlocksBySociety($request->get('societyId')),
+            'societyId'=>$request->get('societyId'),
+            'societies'=>$this->societyRepo->all()
+        ]]);
     }
     public function deleteBlock(DeleteBlockRequest $request)
     {
         $this->blocksRepo->delete($request->getBlockModel());
-        return redirect('maliksajidawan786@gmail.com/blocks');
+        return $this->response->setView('admin.block.block-listing')->respond(['data'=>[
+            'blocks'=>$this->blocksRepo->getBlocksBySociety($request->get('societyId')),
+            'societyId'=>$request->get('societyId'),
+            'societies'=>$this->societyRepo->all()
+        ]]);
     }
 
     public function getBlockUpdateForm(GetUpdateBlockFormRequest $request)
     {
         return $this->response->setView('admin.block.update_block_form')->respond(['data'=>[
             'block'=>$this->blocksRepo->getById($request->getBlockModel()->id),
-            'blocks'=>$this->blocksRepo->getBlocksWithSociety(),
+            'societies'=>$this->societyRepo->all(),
+            'societyId'=>$request->get('societyId'),
+        ]]);
+    }
+
+    public function getBlocksBySociety(GetBlocksBySocietyRequest $request)
+    {
+        return $this->response->setView('admin.block.block-listing')->respond(['data'=>[
+            'blocks'=>$this->blocksRepo->getBlocksBySociety($request->get('societyId')),
+            'societyId'=>$request->get('societyId'),
             'societies'=>$this->societyRepo->all()
         ]]);
     }
@@ -245,6 +262,10 @@ class AdminController extends Controller
     public function updateBlock(UpdateBlockRequest $request)
     {
         $this->blocksRepo->update($request->getBlockModel());
-        return redirect('maliksajidawan786@gmail.com/blocks');
+        return $this->response->setView('admin.block.block-listing')->respond(['data'=>[
+            'blocks'=>$this->blocksRepo->getBlocksBySociety($request->get('societyId')),
+            'societyId'=>$request->get('societyId'),
+            'societies'=>$this->societyRepo->all()
+        ]]);
     }
 }
