@@ -111,4 +111,3 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
         return array_merge(array_merge($this->propertyInfoRules(),$this->propertyContactInfoRules()), $this->extraFeaturesValidationRules());
     }
 }
-

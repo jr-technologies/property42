@@ -13,6 +13,11 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.profileUpdated = false;
     $scope.searchSocieties = '';
 
+    $scope.getSelectedSocieties = function () {
+        if($scope.user.agencies[0] != undefined)
+            return $scope.user.agencies[0].societies;
+        return [];
+    };
     var getUserRolesIds = function () {
         var ids = [];
         angular.forEach($scope.user.roles, function (role, key) {

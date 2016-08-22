@@ -212,7 +212,7 @@ $(document).on('change', '.agent-brokerCheckbox', function(){
         $('.agent-brokerCheckbox').each(function(){
             $(this).prop('checked', true);
         });
-        $('.registration-form').addClass('agent-info')
+        $('.registration-form').addClass('agent-info');
         $('.agent-information').slideDown();
     }
     else {

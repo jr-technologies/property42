@@ -125,14 +125,16 @@
                 <div class="layout-holder">
                     <label for="search-society">Filter Socities You Deal In</label>
                     <div class="input-holder" ng-class="{'error' : errors.societies.length > 0}">
-                        <input type="text" placeholder="Select Societies You Deal In" id="search-society" name="SelectDealSociety" required ng-model="searchSocieties">
+                        <input type="text" placeholder="Select Societies You Deal In" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
                         <span class="error-text">{{errors.societies[0]}}</span>
                         <span class="calculatedSocieties">{{form.data.societies.length}} selected</span>
                     </div>
                 </div>
                 <div class="layout-holder">
                     <ul class="packetData-list">
-
+                        <li ng-repeat="society in getSelectedSocieties()">
+                            <strong class="packetData">{{society.name}}<a class="delete" data-target="society{{society.id}}"><span class="icon-cross"></span></a></strong>
+                        </li>
                     </ul>
                 </div>
             </div>

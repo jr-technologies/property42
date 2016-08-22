@@ -232,8 +232,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $scope.form.data = mapFormData();
 
         $(function() {
-            //handleAddPropertyFormScrolling();
-            $('.feature-block').find('.holder').hide();
+            $('.list-extraFeatures').slideUp();
             $('.feature-block').find('.form-heading').hide();
         });
 
