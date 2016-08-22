@@ -38,6 +38,7 @@ class AddBannerRequest extends Request implements RequestInterface{
         $banner->bannerPriority = $this->get('priority');
         $banner->bannerType = $this->get('type');
         $banner->position = $this->get('position');
+        $banner->bannerLink = $this->get('bannerLink');
         return $banner;
     }
     public function getImageName($originalName)

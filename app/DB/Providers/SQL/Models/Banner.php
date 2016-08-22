@@ -16,6 +16,7 @@ class Banner
     public $position ="";
     public $bannerType ="";
     public $bannerPriority ="";
+    public $bannerLink ="";
 
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';

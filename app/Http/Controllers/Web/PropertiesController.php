@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
+use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
@@ -62,7 +63,7 @@ class PropertiesController extends Controller
         $this->userRepo = (new UsersRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
         $this->status = new \PropertyStatusTableSeeder();
-        $this->banners = new BannersFactory();
+        $this->banners = (new BannersRepoProvider())->repo();
     }
     public function addProperty(RouteToAddPropertyRequest $request)
     {
@@ -110,6 +111,12 @@ class PropertiesController extends Controller
     {
         $agents = $this->users->getTrustedAgentsWithPriority(['limit'=>36]);
         $importantSocieties = $this->societies->getImportantSocieties();
+        $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
+        $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
+        $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners
+        ];
         $saleAndRentCount = $this->propertiesRepo->countSaleAndRendProperties();
         return $this->response->setView('frontend.v2.index')->respond(['data' => [
             'societies'=>$this->societies->all(),
@@ -118,7 +125,8 @@ class PropertiesController extends Controller
             'landUnits'=>$this->landUnits->all(),
             'agents'=>$this->releaseUsersAgenciesLogo($agents),
             'importantSocieties'=>$importantSocieties,
-            'saleAndRentCount'=>$saleAndRentCount
+            'saleAndRentCount'=>$saleAndRentCount,
+            'banners'=>$banners
         ]]);
     }
     public function getById(GetPropertyRequest $request)

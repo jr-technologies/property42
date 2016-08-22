@@ -74,13 +74,16 @@ class BannersFactory extends SQLFactory implements SQLFactoriesInterface
 
     public function map($result)
     {
-        $society = clone($this->model);
-        $society->id = $result->id;
-        $society->name = $result->block;
-        $society->societyId = $result->society_id;
-        $society->createdAt = $result->created_at;
-        $society->updatedAt = $result->updated_at;
-        return $society;
+        $banner = clone($this->model);
+        $banner->id = $result->id;
+        $banner->bannerLink = $result->banner_link;
+        $banner->bannerPriority = $result->banner_priority;
+        $banner->bannerType = $result->banner_type;
+        $banner->image = $result->image;
+        $banner->position = $result->position;
+        $banner->createdAt = $result->created_at;
+        $banner->updatedAt = $result->updated_at;
+        return $banner;
     }
     private function mapBlockOnTable(Banner $banner)
     {
@@ -89,7 +92,8 @@ class BannersFactory extends SQLFactory implements SQLFactoriesInterface
             'banner_type'=> $banner->bannerType,
             'image'=> $banner->image,
             'banner_priority'=> $banner->bannerPriority,
-            'updated_at'=> $banner->createdAt,
+            'banner_link'=>$banner->bannerLink,
+            'created_at'=> $banner->createdAt,
         ];
     }
 }

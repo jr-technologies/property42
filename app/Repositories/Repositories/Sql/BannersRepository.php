@@ -31,6 +31,10 @@ class BannersRepository extends SqlRepository implements BannersRepoInterface
         $this->bannerPages = new BannersPagesFactory();
 
     }
+    public function getBanners($params)
+    {
+        return $this->factory->getBanners($params);
+    }
     public function saveBanner(Banner $banner)
     {
         return $this->factory->store($banner);

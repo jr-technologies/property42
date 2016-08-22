@@ -25,6 +25,7 @@ class AddBannerTransformer extends RequestTransformer
             'position'=>$this->request->input('position'),
             'type'=>$this->request->input('type'),
             'priority'=>$this->request->input('priority'),
+            'bannerLink'=>$this->request->input('banner_link'),
         ];
     }
 }

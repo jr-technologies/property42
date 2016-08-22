@@ -229,7 +229,7 @@
                                 if(isset($response['data']['banners']['relevantBanners']['between']) && isset($response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]))
 
                                 { ?>
-                                <li><a><img src="{{$response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a></li>
+                                <li><a href="{{$response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]->banner_link}}"><img src="{{$response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a></li>
                                 <?php
                                 $betweenCountIndex++;
                                 }
@@ -312,7 +312,7 @@
 
                     @if(isset($response['data']['banners']['relevantBanners']['left']))
                         @foreach($response['data']['banners']['relevantBanners']['left'] as $leftBanner)
-                            <li><a ><img src="{{$leftBanner->image}}"></a></li>
+                            <li><a href="{{$response['data']['banners']['relevantBanners']['left'][$betweenCountIndex]->banner_link}}"><img src="{{$leftBanner->image}}"></a></li>
                         @endforeach
                     @endif
                 </ul>

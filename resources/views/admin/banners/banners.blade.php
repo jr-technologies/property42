@@ -102,6 +102,14 @@
                 <td><br/><br/>
                     <label>select Priority</label>
                     <input type="text" name="priority" value="" placeholder="please Enter priority" required><br/><br/>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td><br/><br/>
+                    <label>Post Banner Link</label>
+                    <input type="text" name="banner_link" value="" placeholder="please Enter Banner Link" required><br/><br/>
                     <button type="submit">Add Banner</button>
                 </td>
 

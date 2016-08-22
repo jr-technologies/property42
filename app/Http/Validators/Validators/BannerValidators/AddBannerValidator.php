@@ -25,7 +25,8 @@ class AddBannerValidator extends BannersValidator implements ValidatorsInterface
             'pagesIds'=>'required',
             'position'=>'required',
             'type'=>'required',
-            'priority'=>'required'
+            'priority'=>'required',
+            'bannerLink'=>'required'
         ];
     }
 

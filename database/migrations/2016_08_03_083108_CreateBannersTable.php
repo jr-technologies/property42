@@ -18,6 +18,7 @@ class CreateBannersTable extends Migration
             $table->string('position');
             $table->string('banner_type');
             $table->integer('banner_priority');
+            $table->string('banner_link');
             $table->integer('isActive')->default(0);
             $table->timestamps();
 
