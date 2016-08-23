@@ -28,7 +28,6 @@
             <div class="pro-price border"><p>PRICE (Pkr)</p></div>
             <div class="pro-size border"><p>Size</p></div>
             <div class="pro-date border"><p>Date</p></div>
-            <div class="pro-view border"><p>VIEWS</p></div>
             <div class="pro-controls border"><p>Controls</p></div>
         </li>
         <li class="t-d text-center" data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
@@ -42,9 +41,8 @@
             <div class="pro-type border"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}}</p></div>
             <div class="pro-location border"><p>{{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
             <div class="pro-price border"><p>{{property.price}}</p></div>
-            <div class="pro-size border"><p>under dev..</p></div>
+            <div class="pro-size border"><p>{{property.land.area}} {{property.land.unit.name}}</p></div>
             <div class="pro-date border"><p>18 Apr 2016</p></div>
-            <div class="pro-view border"><p>{{property.totalLikes}}</p></div>
             <div class="pro-controls border">
                 <ul class="control-link">
                     <li><a class="details opener" title="Details"><span class="icon-search-doc"></span></a></li>

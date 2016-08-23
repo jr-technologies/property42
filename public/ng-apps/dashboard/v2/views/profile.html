@@ -1,5 +1,5 @@
 <div class="updatePro" ng-init="initialize()">
-    <span class="success-message" ng-class="{'successfully-saved': profileUpdated == true}">Profile Updated</span>
+    <span class="global-success" ng-show="profileUpdated == true">Profile Updated</span>
     <form class="registration-form" ng-submit="updateUser()" ng-class="{'agent-info' : userIsAgent == true}">
         <h1>Update <span>Profile</span></h1>
         <div class="layout">

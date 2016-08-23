@@ -92,6 +92,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
         }
         $rootScope.activeLink = next.name;
         $rootScope.loading_content_class = 'loading-content';
+
         /*
         * Description:
         * if the next route is for authenticated users and
@@ -107,6 +108,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
         * if the next route is login and user is already logged in
         * then whe should take him back to his profile.
         * */
+
         if(next.name == "login" && $AuthService.getAppToken() != null){
             $location.path($state.href('home').substring(1));
         }

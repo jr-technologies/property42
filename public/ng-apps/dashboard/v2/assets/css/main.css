@@ -803,8 +803,11 @@ th {
   content: "\e907";
 }
 
-.addProperty-form .error, .addProperty-form .image-uploading-area, .addProperty-form .existingOrNew-member, .updatePro .packetData-list,
-.updatePro .societiesBlock-listing, .updatePro .role-listing, .updatePro .agree-with-terms, .property-listing-page .property-status-links, .property-listing-page .sorting-filtering, .property-listing-page .listing-pro, .property-listing-page .listing-pro .control-link, .logout-list, #sidebar-dashboard .alerts, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links .sub-links, .social-icons, .radio-checks-holder, .pager, .quick-links, .public-ui-features, .sumery-list {
+.UpdateProperty-form .error,
+.addProperty-form .error, .UpdateProperty-form .image-uploading-area,
+.addProperty-form .image-uploading-area, .UpdateProperty-form .existingOrNew-member,
+.addProperty-form .existingOrNew-member, .updatePro .packetData-list,
+.updatePro .societiesBlock-listing, .updatePro .role-listing, .updatePro .agree-with-terms, .property-listing-page .property-status-links, .property-listing-page .sorting-filtering, .property-listing-page .listing-pro, .property-listing-page .listing-pro .control-link, .propertyDetail-page .feature-list, .logout-list, #sidebar-dashboard .alerts, #sidebar-dashboard .sideBar-links, #sidebar-dashboard .sideBar-links .sub-links, .social-icons, .radio-checks-holder, .pager, .quick-links, .public-ui-features, .sumery-list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -816,7 +819,10 @@ th {
   clear: both;
 }
 
-.updatePro .company-logo .logo-holder .picture-holder img, .page-loader .page-loader-holder img, .logo img, #sidebar-dashboard .profile-picture .image-holder img {
+.updatePro .company-logo .logo-holder .picture-holder img, .propertyDetail-page .info-blockProperty .pictureHolder img, .propertyDetail-page .propertyImage-pagination .propertyImage-slide img,
+.propertyDetail-page .propertyImage-pagination .slide img,
+.propertyDetail-page .propertyImage-slider .propertyImage-slide img,
+.propertyDetail-page .propertyImage-slider .slide img, .page-loader .page-loader-holder img, .logo img, #sidebar-dashboard .profile-picture .image-holder img {
   width: 100%;
   height: auto;
   display: block;
@@ -837,21 +843,33 @@ th {
   overflow: hidden;
 }
 
-.text-center, .addProperty-form .extra-features, .addProperty-form .existingOrNew-member li, .addProperty-form .list-extraFeatures .feature-heading, .addProperty-form .thankYou-message, .addProperty-form .thankYou-message .left, .updatePro .role-opener, .property-listing-page .property-status-links, .property-listing-page .sorting-filtering, .property-listing-page .property-for, .page-loader, .global-error,
-.global-success, .custom-withouChecks .fake-label, .logout-list li, h1, #header .left-header .home, #sidebar-dashboard .alerts li .count, .social-icons, .registerNow-heading,
+.text-center, .UpdateProperty-form .extra-features,
+.addProperty-form .extra-features, .UpdateProperty-form .existingOrNew-member li,
+.addProperty-form .existingOrNew-member li, .UpdateProperty-form .list-extraFeatures .feature-heading,
+.addProperty-form .list-extraFeatures .feature-heading, .UpdateProperty-form .thankYou-message,
+.addProperty-form .thankYou-message, .UpdateProperty-form .thankYou-message .left,
+.addProperty-form .thankYou-message .left, .updatePro .role-opener, .property-listing-page .property-status-links-opener, .property-listing-page .property-status-links, .property-listing-page .sorting-filtering, .property-listing-page .property-for, .propertyDetail-page .info-blockProperty .price, .propertyDetail-page .info-blockProperty .heading, .propertyDetail-page .info-blockProperty .small-heading, .propertyDetail-page .propertyImage-pagination .propertyImage-slide a,
+.propertyDetail-page .propertyImage-pagination .slide a,
+.propertyDetail-page .propertyImage-slider .propertyImage-slide a,
+.propertyDetail-page .propertyImage-slider .slide a, .propertyDetail-page .extra-feature-section .small-heading, .propertyDetail-page .agent-societies .agent-slide a, .propertyDetail-page .agent-picture, .page-loader, .global-error,
+.global-success, .custom-withouChecks .fake-label, .logout-list li, h1, #header .left-header .searchOpener-Mobile,
+#header .left-header .home, #sidebar-dashboard .alerts li .count, .social-icons, .registerNow-heading,
 .add-pro-heading, .public-ui-features li strong, .generic-lightbox {
   text-align: center;
 }
 
-.text-left, .addProperty-form .existingOrNew-member li .slide, .addProperty-form .thankYou-message .layout, .property-listing-page .listing-pro li .pro-id, .inquiry-email-form, .information {
+.text-left, .UpdateProperty-form .existingOrNew-member li .slide,
+.addProperty-form .existingOrNew-member li .slide, .UpdateProperty-form .thankYou-message .layout,
+.addProperty-form .thankYou-message .layout, .property-listing-page .listing-pro li .pro-id, .propertyDetail-page .property-picture-holder h1, .propertyDetail-page .overview-section, .propertyDetail-page .overview-section .small-heading, .propertyDetail-page .feature .small-heading, .inquiry-email-form, .information {
   text-align: left;
 }
 
-.text-right, #header .right-header, #sidebar-dashboard .alerts, .sumery-list li .quantity {
+.text-right, .propertyDetail-page .feature-list li .stataus, #header .right-header, #sidebar-dashboard .alerts, .sumery-list li .quantity {
   text-align: right;
 }
 
-.text-upparcase, .addProperty-form input[type="submit"], .property-listing-page .property-status-links, .property-listing-page .property-for, #sidebar-dashboard .sideBar-links, .submit-query button[type="submit"], .small-heading, .btn-hollow, .inquiry-email-form button[type="submit"] {
+.text-upparcase, .UpdateProperty-form input[type="submit"],
+.addProperty-form input[type="submit"], .property-listing-page .property-status-links-opener, .property-listing-page .property-status-links, .property-listing-page .property-for, #sidebar-dashboard .sideBar-links, .submit-query button[type="submit"], .small-heading, .btn-hollow, .inquiry-email-form button[type="submit"] {
   text-transform: uppercase;
 }
 
@@ -859,27 +877,41 @@ th {
   text-transform: lowercase;
 }
 
-.text-capital, .addProperty-form .layout label, .addProperty-form .existingOrNew-member, .updatePro .layout label, .global-error,
+.text-capital, .UpdateProperty-form .layout label,
+.addProperty-form .layout label, .UpdateProperty-form .existingOrNew-member,
+.addProperty-form .existingOrNew-member, .updatePro .layout label, .changePassword .layout label, .propertyDetail-page .agent-societies .agent-slide .image-description, .global-error,
 .global-success, .custom-withouChecks .fake-label, .registerNow-heading,
 .add-pro-heading, .views, .inquiry-email-form label {
   text-transform: capitalize;
 }
 
-.pull-left, .addProperty-form .tips, #header .left-header, #header .left-header .home, #header .left-header .searchByID, #sidebar-dashboard .profile-picture .image-holder {
+.pull-left, .UpdateProperty-form .tips,
+.addProperty-form .tips, .propertyDetail-page .overview-section .small-heading, .propertyDetail-page .agent-picture, .propertyDetail-page .agent-description .left-side, .searchByID, #header .left-header, #header .left-header .searchOpener-Mobile,
+#header .left-header .home, #sidebar-dashboard .profile-picture .image-holder {
   float: left !important;
 }
 
-.pull-right, #header .right-header {
+.pull-right, .propertyDetail-page .overview-section .btn-hollow, .propertyDetail-page .agent-description .right-side, #header .right-header, .propertyDetail-page .info-blockProperty .quick-links, .propertyDetail-page .property-picture-holder .star-rating {
   float: right !important;
 }
 
-.layout, .addProperty-form, .addProperty-form .add-form-holder, .addProperty-form .main-form, .addProperty-form .tips, .addProperty-form .list-extraFeatures, .updatePro, .updatePro .registration-form, .updatePro .company-logo, .updatePro .company-logo .logo-holder, .updatePro .packetData, .updatePro .role-listing, .updatePro .agent-information, .property-listing-page, .property-listing-page .sorting-filtering li, .property-listing-page .listing-pro li, .page-loader, .searchByID, .fake-select, .fake-select select, #wrapper, #page-holder,
+.layout, .UpdateProperty-form,
+.addProperty-form, .UpdateProperty-form .add-form-holder,
+.addProperty-form .add-form-holder, .UpdateProperty-form .main-form,
+.addProperty-form .main-form, .UpdateProperty-form .tips,
+.addProperty-form .tips, .UpdateProperty-form .list-extraFeatures,
+.addProperty-form .list-extraFeatures, .updatePro, .updatePro .registration-form, .updatePro .company-logo, .updatePro .company-logo .logo-holder, .updatePro .packetData, .updatePro .role-listing, .updatePro .agent-information, .property-listing-page, .property-listing-page .sorting-filtering li, .property-listing-page .listing-pro li, .changePassword, .propertyDetail-page, .propertyDetail-page .detail-holder, .propertyDetail-page .info-blockProperty .pictureHolder, .propertyDetail-page .propertyImage-pagination,
+.propertyDetail-page .propertyImage-slider, .propertyDetail-page .propertyImage-pagination .propertyImage-mask,
+.propertyDetail-page .propertyImage-pagination .mask,
+.propertyDetail-page .propertyImage-slider .propertyImage-mask,
+.propertyDetail-page .propertyImage-slider .mask, .propertyDetail-page .overview-section, .propertyDetail-page .extra-feature-section, .propertyDetail-page .feature, .propertyDetail-page .agent-picture, .propertyDetail-page .agent-description, .page-loader, .searchByID, .fake-select, .fake-select select, #wrapper, #page-holder,
 #main, #sidebar-dashboard, #sidebar-dashboard .profile-picture, #sidebar-dashboard .profile-picture .image-holder, #sidebar-dashboard .profile-picture .name, #sidebar-dashboard .alerts-links, #sidebar-dashboard .alerts li .count, #sidebar-dashboard .search-side-links, #sidebar-dashboard .sideBar-links, .radio-checks-holder, .submit-query, .inquiry-email-form .input-holder {
   overflow: hidden;
 }
 
-.hidden, .paginationCurrent-num-1,
-.current-num, .addProperty-form .list-extraFeatures label:after, .updatePro .company-logo.hover label span[class^="icon-"], .updatePro .company-logo.hover label span[class*="icon-"] {
+.hidden, .propertyDetail-page .propertyImage-slide.active a:after, .paginationCurrent-num-1,
+.current-num, .UpdateProperty-form .list-extraFeatures label:after,
+.addProperty-form .list-extraFeatures label:after, .updatePro .company-logo.hover label span[class^="icon-"], .updatePro .company-logo.hover label span[class*="icon-"], #sidebar-dashboard .sideBar-opener:after {
   display: none !important;
 }
 
@@ -889,7 +921,8 @@ th {
   }
 }
 
-.full-width, .addProperty-form .layout.full-width .layout-holder, .submit-query .input-holder.full-width {
+.full-width, .UpdateProperty-form .layout.full-width .layout-holder,
+.addProperty-form .layout.full-width .layout-holder, .submit-query .input-holder.full-width {
   width: 100% !important;
   display: block !important;
   clear: both !important;
@@ -1125,6 +1158,7 @@ input[type='submit'] {
   outline: none;
 }
 
+.UpdateProperty-form,
 .addProperty-form {
   background: #dee1e3;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.22);
@@ -1132,6 +1166,7 @@ input[type='submit'] {
   margin: 0 auto 30px;
 }
 
+.UpdateProperty-form .error,
 .addProperty-form .error {
   font-size: 0;
   line-height: 0;
@@ -1139,6 +1174,7 @@ input[type='submit'] {
   margin: 0 0 10px;
 }
 
+.UpdateProperty-form .error > *,
 .addProperty-form .error > * {
   display: inline-block;
   vertical-align: top;
@@ -1148,11 +1184,13 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .error,
   .addProperty-form .error {
     font-size: 0;
     line-height: 0;
     letter-spacing: -4px;
   }
+  .UpdateProperty-form .error > *,
   .addProperty-form .error > * {
     display: inline-block;
     vertical-align: top;
@@ -1162,17 +1200,20 @@ input[type='submit'] {
   }
 }
 
+.UpdateProperty-form .error li,
 .addProperty-form .error li {
   width: 33.33%;
   padding: 0 3px 5px;
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .error li,
   .addProperty-form .error li {
     width: 50%;
   }
 }
 
+.UpdateProperty-form .error span,
 .addProperty-form .error span {
   display: block;
   padding: 5px 5px 5px 25px;
@@ -1181,6 +1222,7 @@ input[type='submit'] {
   position: relative;
 }
 
+.UpdateProperty-form .error span:after,
 .addProperty-form .error span:after {
   position: absolute;
   top: 4px;
@@ -1189,43 +1231,51 @@ input[type='submit'] {
   font-family: 'icomoon';
 }
 
+.UpdateProperty-form .select2-container,
 .addProperty-form .select2-container {
   width: 100% !important;
 }
 
+.UpdateProperty-form h1,
 .addProperty-form h1 {
   font-size: 60px;
   line-height: 63px;
   font-weight: 100;
 }
 
+.UpdateProperty-form h1 span,
 .addProperty-form h1 span {
   font-weight: 300;
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form h1,
   .addProperty-form h1 {
     font-size: 30px;
     line-height: 33px;
   }
 }
 
+.UpdateProperty-form .main-form,
 .addProperty-form .main-form {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
+  .UpdateProperty-form .main-form,
   .addProperty-form .main-form {
     width: 100%;
   }
 }
 
+.UpdateProperty-form .tips,
 .addProperty-form .tips {
   width: 25%;
   display: none;
 }
 
+.UpdateProperty-form .image-uploading-area,
 .addProperty-form .image-uploading-area {
   font-size: 0;
   line-height: 0;
@@ -1235,6 +1285,7 @@ input[type='submit'] {
   max-width: 1024px;
 }
 
+.UpdateProperty-form .image-uploading-area > *,
 .addProperty-form .image-uploading-area > * {
   display: inline-block;
   vertical-align: top;
@@ -1244,12 +1295,14 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .UpdateProperty-form .image-uploading-area,
   .addProperty-form .image-uploading-area {
     max-width: 480px;
     margin: 10px auto;
   }
 }
 
+.UpdateProperty-form .image-uploading-area li,
 .addProperty-form .image-uploading-area li {
   width: 16.66%;
   position: relative;
@@ -1257,37 +1310,44 @@ input[type='submit'] {
 }
 
 @media (max-width: 1199px) {
+  .UpdateProperty-form .image-uploading-area li,
   .addProperty-form .image-uploading-area li {
     padding: 0 5px 10px;
   }
 }
 
 @media (max-width: 1023px) {
+  .UpdateProperty-form .image-uploading-area li,
   .addProperty-form .image-uploading-area li {
     width: 33.33%;
     padding: 0 5px 10px;
   }
 }
 
+.UpdateProperty-form .image-uploading-area li.error .error-text,
 .addProperty-form .image-uploading-area li.error .error-text {
   display: block;
   padding: 3px;
   text-align: left;
 }
 
+.UpdateProperty-form .image-uploading-area li.image-loaded .image-holder,
 .addProperty-form .image-uploading-area li.image-loaded .image-holder {
   opacity: 1;
   z-index: 9;
 }
 
+.UpdateProperty-form .image-uploading-area li.image-loaded .picture-name,
 .addProperty-form .image-uploading-area li.image-loaded .picture-name {
   pointer-events: inherit;
 }
 
+.UpdateProperty-form .image-uploading-area li.image-loaded .file-uploader:after,
 .addProperty-form .image-uploading-area li.image-loaded .file-uploader:after {
   display: none;
 }
 
+.UpdateProperty-form .image-uploading-area li:first-child .file-uploader:before,
 .addProperty-form .image-uploading-area li:first-child .file-uploader:before {
   position: absolute;
   top: 15px;
@@ -1305,6 +1365,7 @@ input[type='submit'] {
   background: #d89429;
 }
 
+.UpdateProperty-form .image-uploading-area li .file-uploader,
 .addProperty-form .image-uploading-area li .file-uploader {
   width: 100%;
   height: 110px;
@@ -1316,16 +1377,14 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .image-uploading-area li .file-uploader,
   .addProperty-form .image-uploading-area li .file-uploader {
     width: 100%;
     height: 90px;
   }
 }
 
-.addProperty-form .image-uploading-area li .file-uploader:hover:after {
-  color: #30ce20;
-}
-
+.UpdateProperty-form .image-uploading-area li .file-uploader:after,
 .addProperty-form .image-uploading-area li .file-uploader:after {
   position: absolute;
   top: 50%;
@@ -1344,6 +1403,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .UpdateProperty-form .image-uploading-area li .file-uploader:after,
   .addProperty-form .image-uploading-area li .file-uploader:after {
     font-size: 60px;
     margin: -30px 0 0 -30px;
@@ -1351,12 +1411,14 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .image-uploading-area li .file-uploader:after,
   .addProperty-form .image-uploading-area li .file-uploader:after {
     font-size: 30px;
     margin: -15px 0 0 -15px;
   }
 }
 
+.UpdateProperty-form .image-uploading-area li .file-uploader input[type="file"],
 .addProperty-form .image-uploading-area li .file-uploader input[type="file"] {
   display: block;
   overflow: hidden;
@@ -1367,6 +1429,7 @@ input[type='submit'] {
   height: 100% !important;
 }
 
+.UpdateProperty-form .image-uploading-area li .picture-name,
 .addProperty-form .image-uploading-area li .picture-name {
   border: 0;
   display: block;
@@ -1380,6 +1443,7 @@ input[type='submit'] {
   pointer-events: none;
 }
 
+.UpdateProperty-form .image-uploading-area li .image-holder,
 .addProperty-form .image-uploading-area li .image-holder {
   position: absolute;
   top: 0;
@@ -1397,6 +1461,7 @@ input[type='submit'] {
   -ms-transition: z-index 0.9s ease, opacity 0.9s ease;
 }
 
+.UpdateProperty-form .image-uploading-area li .image-holder:after,
 .addProperty-form .image-uploading-area li .image-holder:after {
   position: absolute;
   top: 0;
@@ -1412,6 +1477,7 @@ input[type='submit'] {
   -ms-transition: opacity 0.4s ease;
 }
 
+.UpdateProperty-form .image-uploading-area li .image-holder .propertyDocumentCloseBtn,
 .addProperty-form .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
   position: absolute;
   top: 50%;
@@ -1432,12 +1498,14 @@ input[type='submit'] {
 }
 
 @media (max-width: 1424px) {
+  .UpdateProperty-form .image-uploading-area li .image-holder .propertyDocumentCloseBtn,
   .addProperty-form .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
     font-size: 50px;
     line-height: 50px;
   }
 }
 
+.UpdateProperty-form .image-uploading-area li .image-holder img,
 .addProperty-form .image-uploading-area li .image-holder img {
   width: 100%;
   display: block;
@@ -1445,15 +1513,18 @@ input[type='submit'] {
   border: 0;
 }
 
+.UpdateProperty-form .image-uploading-area li .image-holder:hover:after,
 .addProperty-form .image-uploading-area li .image-holder:hover:after {
   opacity: 1;
 }
 
+.UpdateProperty-form .image-uploading-area li .image-holder:hover .propertyDocumentCloseBtn,
 .addProperty-form .image-uploading-area li .image-holder:hover .propertyDocumentCloseBtn {
   opacity: 1;
   visibility: visible;
 }
 
+.UpdateProperty-form .layout,
 .addProperty-form .layout {
   padding: 3px;
   font-size: 0;
@@ -1462,6 +1533,7 @@ input[type='submit'] {
   margin: 0 -10px 10px;
 }
 
+.UpdateProperty-form .layout > *,
 .addProperty-form .layout > * {
   display: inline-block;
   vertical-align: top;
@@ -1471,6 +1543,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .layout,
   .addProperty-form .layout {
     margin: 0;
     padding: 0;
@@ -1478,6 +1551,7 @@ input[type='submit'] {
     line-height: 0;
     letter-spacing: -4px;
   }
+  .UpdateProperty-form .layout > *,
   .addProperty-form .layout > * {
     display: inline-block;
     vertical-align: top;
@@ -1487,40 +1561,17 @@ input[type='submit'] {
   }
 }
 
+.UpdateProperty-form .layout.full-width,
 .addProperty-form .layout.full-width {
   margin: 0;
 }
 
+.UpdateProperty-form .layout.full-width .layout-holder,
 .addProperty-form .layout.full-width .layout-holder {
   padding: 0;
 }
 
-.addProperty-form .layout.full-width label {
-  width: 12.2%;
-}
-
-@media (max-width: 767px) {
-  .addProperty-form .layout.full-width label {
-    width: 35%;
-  }
-}
-
-.addProperty-form .layout.full-width .input-holder {
-  width: 80.5%;
-}
-
-@media (max-width: 1023px) {
-  .addProperty-form .layout.full-width .input-holder {
-    width: 87.5%;
-  }
-}
-
-@media (max-width: 767px) {
-  .addProperty-form .layout.full-width .input-holder {
-    width: 65%;
-  }
-}
-
+.UpdateProperty-form .layout .layout-holder,
 .addProperty-form .layout .layout-holder {
   width: 50%;
   padding: 0 10px;
@@ -1529,6 +1580,7 @@ input[type='submit'] {
   letter-spacing: -4px;
 }
 
+.UpdateProperty-form .layout .layout-holder > *,
 .addProperty-form .layout .layout-holder > * {
   display: inline-block;
   vertical-align: top;
@@ -1538,6 +1590,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .layout .layout-holder,
   .addProperty-form .layout .layout-holder {
     width: 100%;
     display: block;
@@ -1547,6 +1600,7 @@ input[type='submit'] {
     line-height: 0;
     letter-spacing: -4px;
   }
+  .UpdateProperty-form .layout .layout-holder > *,
   .addProperty-form .layout .layout-holder > * {
     display: inline-block;
     vertical-align: top;
@@ -1556,24 +1610,27 @@ input[type='submit'] {
   }
 }
 
+.UpdateProperty-form .layout label,
 .addProperty-form .layout label {
   color: #555;
   opacity: 0.80;
   font-family: "Open Sans", "Arial", sans-serif;
-  width: 25%;
+  width: 120px;
   font-size: 13px;
   line-height: 16px;
   padding: 7px 0 0;
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .layout label,
   .addProperty-form .layout label {
     font-size: 12px;
     line-height: 15px;
-    width: 35%;
+    width: 90px;
   }
 }
 
+.UpdateProperty-form .layout label.required-field:after,
 .addProperty-form .layout label.required-field:after {
   display: inline-block;
   vertical-align: top;
@@ -1581,17 +1638,20 @@ input[type='submit'] {
   content: '*';
 }
 
+.UpdateProperty-form .input-holder,
 .addProperty-form .input-holder {
-  width: 60%;
+  width: calc(90% - 120px);
   padding: 2px;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
+  .UpdateProperty-form .input-holder,
   .addProperty-form .input-holder {
-    width: 65%;
+    width: calc(95% - 90px);
   }
 }
 
+.UpdateProperty-form .fake-select select,
 .addProperty-form .fake-select select {
   font-size: 13px;
   line-height: 16px;
@@ -1599,8 +1659,14 @@ input[type='submit'] {
   padding: 6px;
 }
 
+.UpdateProperty-form textarea,
+.UpdateProperty-form input[type="text"], .UpdateProperty-form input[type="tel"], .UpdateProperty-form input[type="password"], .UpdateProperty-form input[type="number"], .UpdateProperty-form input[type="email"],
 .addProperty-form textarea,
-.addProperty-form input[type="text"], .addProperty-form input[type="tel"], .addProperty-form input[type="password"], .addProperty-form input[type="number"], .addProperty-form input[type="email"] {
+.addProperty-form input[type="text"],
+.addProperty-form input[type="tel"],
+.addProperty-form input[type="password"],
+.addProperty-form input[type="number"],
+.addProperty-form input[type="email"] {
   border: 0;
   width: 100%;
   padding: 6px;
@@ -1611,49 +1677,87 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form textarea,
+  .UpdateProperty-form input[type="text"], .UpdateProperty-form input[type="tel"], .UpdateProperty-form input[type="password"], .UpdateProperty-form input[type="number"], .UpdateProperty-form input[type="email"],
   .addProperty-form textarea,
-  .addProperty-form input[type="text"], .addProperty-form input[type="tel"], .addProperty-form input[type="password"], .addProperty-form input[type="number"], .addProperty-form input[type="email"] {
+  .addProperty-form input[type="text"],
+  .addProperty-form input[type="tel"],
+  .addProperty-form input[type="password"],
+  .addProperty-form input[type="number"],
+  .addProperty-form input[type="email"] {
     font-size: 12px;
     line-height: 16px;
   }
 }
 
+.UpdateProperty-form textarea::-webkit-input-placeholder,
+.UpdateProperty-form input[type="text"]::-webkit-input-placeholder, .UpdateProperty-form input[type="tel"]::-webkit-input-placeholder, .UpdateProperty-form input[type="password"]::-webkit-input-placeholder, .UpdateProperty-form input[type="number"]::-webkit-input-placeholder, .UpdateProperty-form input[type="email"]::-webkit-input-placeholder,
 .addProperty-form textarea::-webkit-input-placeholder,
-.addProperty-form input[type="text"]::-webkit-input-placeholder, .addProperty-form input[type="tel"]::-webkit-input-placeholder, .addProperty-form input[type="password"]::-webkit-input-placeholder, .addProperty-form input[type="number"]::-webkit-input-placeholder, .addProperty-form input[type="email"]::-webkit-input-placeholder {
+.addProperty-form input[type="text"]::-webkit-input-placeholder,
+.addProperty-form input[type="tel"]::-webkit-input-placeholder,
+.addProperty-form input[type="password"]::-webkit-input-placeholder,
+.addProperty-form input[type="number"]::-webkit-input-placeholder,
+.addProperty-form input[type="email"]::-webkit-input-placeholder {
   color: #555;
   opacity: 0.7;
 }
 
+.UpdateProperty-form textarea::-moz-placeholder,
+.UpdateProperty-form input[type="text"]::-moz-placeholder, .UpdateProperty-form input[type="tel"]::-moz-placeholder, .UpdateProperty-form input[type="password"]::-moz-placeholder, .UpdateProperty-form input[type="number"]::-moz-placeholder, .UpdateProperty-form input[type="email"]::-moz-placeholder,
 .addProperty-form textarea::-moz-placeholder,
-.addProperty-form input[type="text"]::-moz-placeholder, .addProperty-form input[type="tel"]::-moz-placeholder, .addProperty-form input[type="password"]::-moz-placeholder, .addProperty-form input[type="number"]::-moz-placeholder, .addProperty-form input[type="email"]::-moz-placeholder {
+.addProperty-form input[type="text"]::-moz-placeholder,
+.addProperty-form input[type="tel"]::-moz-placeholder,
+.addProperty-form input[type="password"]::-moz-placeholder,
+.addProperty-form input[type="number"]::-moz-placeholder,
+.addProperty-form input[type="email"]::-moz-placeholder {
   opacity: 1;
   color: #555;
   opacity: 0.7;
 }
 
+.UpdateProperty-form textarea:-moz-placeholder,
+.UpdateProperty-form input[type="text"]:-moz-placeholder, .UpdateProperty-form input[type="tel"]:-moz-placeholder, .UpdateProperty-form input[type="password"]:-moz-placeholder, .UpdateProperty-form input[type="number"]:-moz-placeholder, .UpdateProperty-form input[type="email"]:-moz-placeholder,
 .addProperty-form textarea:-moz-placeholder,
-.addProperty-form input[type="text"]:-moz-placeholder, .addProperty-form input[type="tel"]:-moz-placeholder, .addProperty-form input[type="password"]:-moz-placeholder, .addProperty-form input[type="number"]:-moz-placeholder, .addProperty-form input[type="email"]:-moz-placeholder {
+.addProperty-form input[type="text"]:-moz-placeholder,
+.addProperty-form input[type="tel"]:-moz-placeholder,
+.addProperty-form input[type="password"]:-moz-placeholder,
+.addProperty-form input[type="number"]:-moz-placeholder,
+.addProperty-form input[type="email"]:-moz-placeholder {
   color: #555;
   opacity: 0.7;
 }
 
+.UpdateProperty-form textarea:-ms-input-placeholder,
+.UpdateProperty-form input[type="text"]:-ms-input-placeholder, .UpdateProperty-form input[type="tel"]:-ms-input-placeholder, .UpdateProperty-form input[type="password"]:-ms-input-placeholder, .UpdateProperty-form input[type="number"]:-ms-input-placeholder, .UpdateProperty-form input[type="email"]:-ms-input-placeholder,
 .addProperty-form textarea:-ms-input-placeholder,
-.addProperty-form input[type="text"]:-ms-input-placeholder, .addProperty-form input[type="tel"]:-ms-input-placeholder, .addProperty-form input[type="password"]:-ms-input-placeholder, .addProperty-form input[type="number"]:-ms-input-placeholder, .addProperty-form input[type="email"]:-ms-input-placeholder {
+.addProperty-form input[type="text"]:-ms-input-placeholder,
+.addProperty-form input[type="tel"]:-ms-input-placeholder,
+.addProperty-form input[type="password"]:-ms-input-placeholder,
+.addProperty-form input[type="number"]:-ms-input-placeholder,
+.addProperty-form input[type="email"]:-ms-input-placeholder {
   color: #555;
   opacity: 0.7;
 }
 
+.UpdateProperty-form textarea.placeholder,
+.UpdateProperty-form input[type="text"].placeholder, .UpdateProperty-form input[type="tel"].placeholder, .UpdateProperty-form input[type="password"].placeholder, .UpdateProperty-form input[type="number"].placeholder, .UpdateProperty-form input[type="email"].placeholder,
 .addProperty-form textarea.placeholder,
-.addProperty-form input[type="text"].placeholder, .addProperty-form input[type="tel"].placeholder, .addProperty-form input[type="password"].placeholder, .addProperty-form input[type="number"].placeholder, .addProperty-form input[type="email"].placeholder {
+.addProperty-form input[type="text"].placeholder,
+.addProperty-form input[type="tel"].placeholder,
+.addProperty-form input[type="password"].placeholder,
+.addProperty-form input[type="number"].placeholder,
+.addProperty-form input[type="email"].placeholder {
   color: #555;
   opacity: 0.7;
 }
 
+.UpdateProperty-form textarea,
 .addProperty-form textarea {
   height: 90px;
   resize: none;
 }
 
+.UpdateProperty-form input[type="submit"],
 .addProperty-form input[type="submit"] {
   display: block;
   width: 245px;
@@ -1671,10 +1775,12 @@ input[type='submit'] {
   -ms-transition: background 0.5s ease;
 }
 
+.UpdateProperty-form input[type="submit"]:hover,
 .addProperty-form input[type="submit"]:hover {
   background: #30ce20;
 }
 
+.UpdateProperty-form .extra-features,
 .addProperty-form .extra-features {
   font-size: 16px;
   line-height: 18px;
@@ -1689,6 +1795,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .extra-features,
   .addProperty-form .extra-features {
     font-size: 12px;
     line-height: 15px;
@@ -1696,10 +1803,13 @@ input[type='submit'] {
   }
 }
 
-.addProperty-form .extra-features.active, .addProperty-form .extra-features:hover {
+.UpdateProperty-form .extra-features.active, .UpdateProperty-form .extra-features:hover,
+.addProperty-form .extra-features.active,
+.addProperty-form .extra-features:hover {
   background: #d89429;
 }
 
+.UpdateProperty-form .existingOrNew-member,
 .addProperty-form .existingOrNew-member {
   max-width: 520px;
   margin: 30px auto 10px;
@@ -1709,6 +1819,7 @@ input[type='submit'] {
   letter-spacing: -4px;
 }
 
+.UpdateProperty-form .existingOrNew-member > *,
 .addProperty-form .existingOrNew-member > * {
   display: inline-block;
   vertical-align: top;
@@ -1718,12 +1829,14 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .existingOrNew-member,
   .addProperty-form .existingOrNew-member {
     max-width: 300px;
     font-size: 0;
     line-height: 0;
     letter-spacing: -4px;
   }
+  .UpdateProperty-form .existingOrNew-member > *,
   .addProperty-form .existingOrNew-member > * {
     display: inline-block;
     vertical-align: top;
@@ -1733,27 +1846,32 @@ input[type='submit'] {
   }
 }
 
+.UpdateProperty-form .existingOrNew-member li,
 .addProperty-form .existingOrNew-member li {
   width: 50%;
   padding: 0 20px;
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .existingOrNew-member li,
   .addProperty-form .existingOrNew-member li {
     padding: 0 5px;
   }
 }
 
+.UpdateProperty-form .existingOrNew-member li:nth-child(2) .slide,
 .addProperty-form .existingOrNew-member li:nth-child(2) .slide {
   margin: 0 0 0 -210px;
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .existingOrNew-member li:nth-child(2) .slide,
   .addProperty-form .existingOrNew-member li:nth-child(2) .slide {
     margin: 0 0 0 -145px;
   }
 }
 
+.UpdateProperty-form .existingOrNew-member li input[type="radio"],
 .addProperty-form .existingOrNew-member li input[type="radio"] {
   opacity: 0;
   position: fixed;
@@ -1761,14 +1879,17 @@ input[type='submit'] {
   left: -999px;
 }
 
+.UpdateProperty-form .existingOrNew-member li input[type="radio"]:checked ~ label,
 .addProperty-form .existingOrNew-member li input[type="radio"]:checked ~ label {
   background: #d89429;
 }
 
+.UpdateProperty-form .existingOrNew-member li input[type="radio"]:checked ~ .slide,
 .addProperty-form .existingOrNew-member li input[type="radio"]:checked ~ .slide {
   display: block;
 }
 
+.UpdateProperty-form .existingOrNew-member li label,
 .addProperty-form .existingOrNew-member li label {
   font-weight: 700;
   display: block;
@@ -1778,11 +1899,13 @@ input[type='submit'] {
   padding: 5px 20px;
 }
 
+.UpdateProperty-form .existingOrNew-member li .layout,
 .addProperty-form .existingOrNew-member li .layout {
   margin: 0 0 10px;
   padding: 0;
 }
 
+.UpdateProperty-form .existingOrNew-member li .layout label,
 .addProperty-form .existingOrNew-member li .layout label {
   display: inline-block;
   vertical-align: top;
@@ -1793,6 +1916,7 @@ input[type='submit'] {
   cursor: default;
 }
 
+.UpdateProperty-form .existingOrNew-member li .slide,
 .addProperty-form .existingOrNew-member li .slide {
   padding: 20px 5px;
   display: none;
@@ -1800,11 +1924,13 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .existingOrNew-member li .slide,
   .addProperty-form .existingOrNew-member li .slide {
     margin: 0 -145px 0 0;
   }
 }
 
+.UpdateProperty-form .list-extraFeatures,
 .addProperty-form .list-extraFeatures {
   background: #dee1e3;
   font-size: 0;
@@ -1812,6 +1938,7 @@ input[type='submit'] {
   letter-spacing: -4px;
 }
 
+.UpdateProperty-form .list-extraFeatures > *,
 .addProperty-form .list-extraFeatures > * {
   display: inline-block;
   vertical-align: top;
@@ -1820,6 +1947,7 @@ input[type='submit'] {
   letter-spacing: 0;
 }
 
+.UpdateProperty-form .list-extraFeatures .col,
 .addProperty-form .list-extraFeatures .col {
   width: 50%;
   padding: 0 5px;
@@ -1827,6 +1955,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .list-extraFeatures .col,
   .addProperty-form .list-extraFeatures .col {
     width: 100%;
     display: block;
@@ -1835,33 +1964,42 @@ input[type='submit'] {
   }
 }
 
+.UpdateProperty-form .list-extraFeatures .col .layout,
 .addProperty-form .list-extraFeatures .col .layout {
   margin: 0 -5px 10px;
 }
 
+.UpdateProperty-form .list-extraFeatures .col .layout-holder,
 .addProperty-form .list-extraFeatures .col .layout-holder {
   padding: 0 5px;
 }
 
+@media (max-width: 1199px) {
+  .UpdateProperty-form .list-extraFeatures .col .layout-holder,
+  .addProperty-form .list-extraFeatures .col .layout-holder {
+    width: 100%;
+  }
+}
+
+.UpdateProperty-form .list-extraFeatures label,
 .addProperty-form .list-extraFeatures label {
-  width: 50%;
   padding: 5px;
 }
 
+.UpdateProperty-form .list-extraFeatures select,
 .addProperty-form .list-extraFeatures select {
   width: 100%;
   border: 0;
   height: 28px;
 }
 
-.addProperty-form .list-extraFeatures .input-holder {
-  width: 50%;
-}
-
-.addProperty-form .list-extraFeatures .input-holder input[type="radio"], .addProperty-form .list-extraFeatures .input-holder input[type="checkbox"] {
+.UpdateProperty-form .list-extraFeatures .input-holder input[type="radio"], .UpdateProperty-form .list-extraFeatures .input-holder input[type="checkbox"],
+.addProperty-form .list-extraFeatures .input-holder input[type="radio"],
+.addProperty-form .list-extraFeatures .input-holder input[type="checkbox"] {
   margin: 6px 0 0;
 }
 
+.UpdateProperty-form .list-extraFeatures .feature-heading,
 .addProperty-form .list-extraFeatures .feature-heading {
   display: block;
   padding: 5px;
@@ -1870,6 +2008,7 @@ input[type='submit'] {
   margin: 0 0 10px;
 }
 
+.UpdateProperty-form .calculatedPrice,
 .addProperty-form .calculatedPrice {
   background: transparent;
   color: #555;
@@ -1878,6 +2017,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .calculatedPrice,
   .addProperty-form .calculatedPrice {
     margin: 0;
     text-align: center;
@@ -1885,22 +2025,45 @@ input[type='submit'] {
   }
 }
 
+.UpdateProperty-form .thankYou-message,
+.addProperty-form .thankYou-message {
+  margin: 200px 0;
+}
+
+@media (max-width: 1199px) {
+  .UpdateProperty-form .thankYou-message,
+  .addProperty-form .thankYou-message {
+    margin: 100px 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .UpdateProperty-form .thankYou-message,
+  .addProperty-form .thankYou-message {
+    margin: 0;
+  }
+}
+
+.UpdateProperty-form .thankYou-message .layout,
 .addProperty-form .thankYou-message .layout {
   margin: 0;
   padding: 0;
 }
 
+.UpdateProperty-form .thankYou-message .left,
 .addProperty-form .thankYou-message .left {
   width: 30%;
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .thankYou-message .left,
   .addProperty-form .thankYou-message .left {
     width: 100%;
     display: block;
   }
 }
 
+.UpdateProperty-form .thankYou-message .left span,
 .addProperty-form .thankYou-message .left span {
   color: #2092d0;
   display: block;
@@ -1909,11 +2072,13 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .UpdateProperty-form .thankYou-message .left span,
   .addProperty-form .thankYou-message .left span {
     font-size: 150px;
   }
 }
 
+.UpdateProperty-form .thankYou-message .right,
 .addProperty-form .thankYou-message .right {
   width: 70%;
   font-size: 16px;
@@ -1922,6 +2087,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 1023px) {
+  .UpdateProperty-form .thankYou-message .right,
   .addProperty-form .thankYou-message .right {
     font-size: 14px;
     line-height: 17px;
@@ -1930,6 +2096,7 @@ input[type='submit'] {
 }
 
 @media (max-width: 767px) {
+  .UpdateProperty-form .thankYou-message .right,
   .addProperty-form .thankYou-message .right {
     width: 100%;
     display: block;
@@ -1944,6 +2111,13 @@ input[type='submit'] {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.22);
   padding: 20px 10px;
   margin: 0 auto 30px;
+  width: 85%;
+}
+
+@media (max-width: 1199px) {
+  .updatePro {
+    width: 100%;
+  }
 }
 
 .updatePro .registerNow-heading {
@@ -2289,7 +2463,7 @@ input[type='submit'] {
 
 @media (max-width: 1199px) {
   .updatePro .layout .input-holder {
-    width: calc(100% - 140px);
+    width: calc(100% - 100px);
   }
 }
 
@@ -2301,7 +2475,7 @@ input[type='submit'] {
 
 @media (max-width: 767px) {
   .updatePro .layout .input-holder {
-    width: calc(100% - 80px);
+    width: calc(95% - 80px);
   }
 }
 
@@ -2313,6 +2487,12 @@ input[type='submit'] {
   font-size: 13px;
   line-height: 16px;
   padding: 7px 5px 0 0;
+}
+
+@media (max-width: 1199px) {
+  .updatePro .layout label {
+    width: 100px;
+  }
 }
 
 @media (max-width: 1023px) {
@@ -2787,7 +2967,75 @@ input[type='submit'] {
 
 .property-listing-page {
   background: #dee1e3;
-  min-height: 100%;
+  position: relative;
+  min-height: 830px;
+}
+
+@media (max-width: 1023px) {
+  .property-listing-page {
+    min-height: auto;
+  }
+}
+
+.property-listing-page .property-status-links-opener {
+  display: block;
+  font-size: 20px;
+  line-height: 21px;
+  font-weight: 700;
+  padding: 10px;
+  cursor: pointer;
+  background: #2092d0;
+  color: #fff;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .property-listing-page .property-status-links-opener {
+    display: none;
+  }
+}
+
+.property-listing-page .property-status-links-opener.active .lines {
+  display: none;
+}
+
+.property-listing-page .property-status-links-opener.active:after {
+  top: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+}
+
+.property-listing-page .property-status-links-opener.active:before {
+  top: 21px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+}
+
+.property-listing-page .property-status-links-opener .lines, .property-listing-page .property-status-links-opener:after, .property-listing-page .property-status-links-opener:before {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 0;
+  height: 2px;
+  width: 30px;
+  content: '';
+  background: #fff;
+  transform: rotate(0);
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  transition: transform 0.5s ease, top 0.5s ease;
+  -webkit-transition: transform 0.5s ease, top 0.5s ease;
+  -moz-transition: transform 0.5s ease, top 0.5s ease;
+}
+
+.property-listing-page .property-status-links-opener .lines {
+  top: 20px;
+}
+
+.property-listing-page .property-status-links-opener:before {
+  top: 30px;
 }
 
 .property-listing-page .property-status-links {
@@ -2806,8 +3054,55 @@ input[type='submit'] {
   letter-spacing: 0;
 }
 
+@media (max-width: 1539px) {
+  .property-listing-page .property-status-links {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .property-listing-page .property-status-links > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .property-listing-page .property-status-links {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .property-listing-page .property-status-links > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .property-listing-page .property-status-links {
+    position: absolute;
+    top: 41px;
+    left: 0;
+    right: 0;
+    z-index: 500;
+  }
+}
+
 .property-listing-page .property-status-links li {
   width: 20%;
+}
+
+@media (max-width: 1023px) {
+  .property-listing-page .property-status-links li {
+    width: 100%;
+    display: block;
+  }
 }
 
 .property-listing-page .property-status-links li.active a {
@@ -2885,6 +3180,30 @@ input[type='submit'] {
   margin: -8px 0 0;
 }
 
+@media (max-width: 1199px) {
+  .property-listing-page .property-status-links li a .number {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .property-listing-page .property-status-links li a .number {
+    position: static;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 5px 0;
+  }
+  .property-listing-page .property-status-links li a .number:before, .property-listing-page .property-status-links li a .number:after {
+    display: inline-block;
+    vertical-align: top;
+    content: '(';
+  }
+  .property-listing-page .property-status-links li a .number:after {
+    content: ')';
+  }
+}
+
 .property-listing-page .sorting-filtering {
   font-size: 0;
   line-height: 0;
@@ -2902,9 +3221,21 @@ input[type='submit'] {
   letter-spacing: 0;
 }
 
+@media (max-width: 1199px) {
+  .property-listing-page .sorting-filtering {
+    margin: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .sorting-filtering {
+    text-align: left;
+  }
+}
+
 .property-listing-page .sorting-filtering li {
   color: #555;
-  width: 25%;
+  width: 33.33%;
   padding: 0 10px 15px;
   font-size: 0;
   line-height: 0;
@@ -2919,12 +3250,48 @@ input[type='submit'] {
   letter-spacing: 0;
 }
 
+@media (max-width: 767px) {
+  .property-listing-page .sorting-filtering li {
+    padding: 0 5px 5px;
+    width: 50%;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .property-listing-page .sorting-filtering li > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
 .property-listing-page .sorting-filtering label {
   width: 100px;
+  margin: 5px 0 0;
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .sorting-filtering label {
+    width: 50px;
+  }
 }
 
 .property-listing-page .sorting-filtering .input-holder {
   width: calc(80% - 100px);
+}
+
+@media (max-width: 1199px) {
+  .property-listing-page .sorting-filtering .input-holder {
+    width: calc(100% - 100px);
+  }
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .sorting-filtering .input-holder {
+    width: calc(100% - 50px);
+  }
 }
 
 .property-listing-page .property-for {
@@ -2939,6 +3306,12 @@ input[type='submit'] {
 
 .property-listing-page .listing-pro {
   border-bottom: 1px solid rgba(108, 109, 112, 0.35);
+}
+
+@media (max-width: 1199px) {
+  .property-listing-page .listing-pro {
+    width: 1125px;
+  }
 }
 
 .property-listing-page .listing-pro li {
@@ -3032,7 +3405,7 @@ input[type='submit'] {
 }
 
 .property-listing-page .listing-pro li .pro-size {
-  width: 8%;
+  width: 13%;
   padding: 15px 15px 13px;
 }
 
@@ -3041,13 +3414,8 @@ input[type='submit'] {
   padding: 15px 15px 13px;
 }
 
-.property-listing-page .listing-pro li .pro-view {
-  width: 10%;
-  padding: 15px 15px 13px;
-}
-
 .property-listing-page .listing-pro li .pro-controls {
-  width: 10%;
+  width: 15%;
   padding: 15px 15px 13px;
 }
 
@@ -3089,6 +3457,1008 @@ input[type='submit'] {
 
 .property-listing-page .listing-pro .control-link li a:hover {
   color: #2092d0;
+}
+
+.changePassword {
+  max-width: 800px;
+  background: rgba(222, 225, 227, 0.7);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.22);
+  margin: 100px auto;
+  padding: 10px 15px 20px;
+}
+
+.changePassword .global-error,
+.changePassword .global-success {
+  margin: 0 -15px;
+}
+
+.changePassword h1 {
+  font-size: 60px;
+  line-height: 63px;
+  font-weight: 100;
+}
+
+.changePassword h1 span {
+  font-weight: 300;
+}
+
+@media (max-width: 767px) {
+  .changePassword h1 {
+    font-size: 30px;
+    line-height: 33px;
+  }
+}
+
+.changePassword input[type="text"], .changePassword input[type="password"] {
+  border: 0;
+  width: 100%;
+  padding: 6px;
+  font-size: 13px;
+  line-height: 16px;
+  height: 28px;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .changePassword input[type="text"], .changePassword input[type="password"] {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.changePassword input[type="text"]::-webkit-input-placeholder, .changePassword input[type="password"]::-webkit-input-placeholder {
+  color: #555;
+  opacity: 0.7;
+}
+
+@media (max-width: 1199px) {
+  .changePassword input[type="text"]::-webkit-input-placeholder, .changePassword input[type="password"]::-webkit-input-placeholder {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.changePassword input[type="text"]::-moz-placeholder, .changePassword input[type="password"]::-moz-placeholder {
+  opacity: 1;
+  color: #555;
+  opacity: 0.7;
+}
+
+@media (max-width: 1199px) {
+  .changePassword input[type="text"]::-moz-placeholder, .changePassword input[type="password"]::-moz-placeholder {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.changePassword input[type="text"]:-moz-placeholder, .changePassword input[type="password"]:-moz-placeholder {
+  color: #555;
+  opacity: 0.7;
+}
+
+@media (max-width: 1199px) {
+  .changePassword input[type="text"]:-moz-placeholder, .changePassword input[type="password"]:-moz-placeholder {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.changePassword input[type="text"]:-ms-input-placeholder, .changePassword input[type="password"]:-ms-input-placeholder {
+  color: #555;
+  opacity: 0.7;
+}
+
+@media (max-width: 1199px) {
+  .changePassword input[type="text"]:-ms-input-placeholder, .changePassword input[type="password"]:-ms-input-placeholder {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.changePassword input[type="text"].placeholder, .changePassword input[type="password"].placeholder {
+  color: #555;
+  opacity: 0.7;
+}
+
+@media (max-width: 1199px) {
+  .changePassword input[type="text"].placeholder, .changePassword input[type="password"].placeholder {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.changePassword .layout {
+  padding: 3px;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  margin: 0 0 20px;
+}
+
+.changePassword .layout > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .changePassword .layout {
+    margin: 0 0 20px;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .changePassword .layout > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+  }
+}
+
+.changePassword .layout .input-holder {
+  width: calc(100% - 200px);
+  padding: 2px;
+}
+
+@media (max-width: 767px) {
+  .changePassword .layout .input-holder {
+    width: calc(95% - 90px);
+  }
+}
+
+.changePassword .layout label {
+  color: #555;
+  font-weight: 700;
+  font-family: "Open Sans", "Arial", sans-serif;
+  width: 200px;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 7px 5px 0 0;
+}
+
+@media (max-width: 767px) {
+  .changePassword .layout label {
+    font-size: 12px;
+    line-height: 15px;
+    width: 90px;
+  }
+}
+
+.changePassword .layout label:after {
+  display: inline-block;
+  vertical-align: top;
+  color: #ce2020;
+  content: '*';
+  padding: 0 4px;
+}
+
+.changePassword input[type="submit"] {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: #2092d0;
+  color: #fff;
+  font-size: 22px;
+  line-height: 25px;
+  padding: 15px;
+  font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .changePassword input[type="submit"] {
+    font-size: 14px;
+    line-height: 17px;
+    padding: 10px 5px;
+  }
+}
+
+.changePassword input[type="submit"] span[class^="icon-"], .changePassword input[type="submit"] span[class*="icon-"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin: -3px 0 0;
+  padding: 0 5px;
+}
+
+.changePassword input[type="submit"]:hover {
+  background: #30ce20;
+}
+
+.propertyDetail-page {
+  padding: 5px;
+}
+
+.propertyDetail-page .detail-holder {
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
+  padding: 0 305px 10px 0;
+  margin: 0 0 50px;
+  position: relative;
+  background: #dee1e3;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .detail-holder {
+    padding: 0 200px 10px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .detail-holder {
+    padding: 0 10px 0;
+  }
+}
+
+.propertyDetail-page .frame {
+  display: block;
+  width: 100%;
+}
+
+.propertyDetail-page .info-blockProperty {
+  background: #dee1e3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 91;
+  width: 100%;
+  max-width: 305px;
+  box-shadow: -7px 0 15px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .info-blockProperty {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .info-blockProperty {
+    max-width: inherit;
+    position: static !important;
+    width: 100%;
+    margin: 0 0 10px;
+    box-shadow: none;
+  }
+}
+
+.propertyDetail-page .info-blockProperty .pull-left, .propertyDetail-page .info-blockProperty .UpdateProperty-form .tips, .UpdateProperty-form .propertyDetail-page .info-blockProperty .tips, .propertyDetail-page .info-blockProperty
+.addProperty-form .tips,
+.addProperty-form .propertyDetail-page .info-blockProperty .tips, .propertyDetail-page .info-blockProperty .overview-section .small-heading, .propertyDetail-page .overview-section .info-blockProperty .small-heading, .propertyDetail-page .info-blockProperty .agent-picture, .propertyDetail-page .info-blockProperty .agent-description .left-side, .propertyDetail-page .agent-description .info-blockProperty .left-side, .propertyDetail-page .info-blockProperty .searchByID, .propertyDetail-page .info-blockProperty #header .left-header, #header .propertyDetail-page .info-blockProperty .left-header, .propertyDetail-page .info-blockProperty #header .left-header .searchOpener-Mobile, #header .left-header .propertyDetail-page .info-blockProperty .searchOpener-Mobile, .propertyDetail-page .info-blockProperty
+#header .left-header .home,
+#header .left-header .propertyDetail-page .info-blockProperty .home, .propertyDetail-page .info-blockProperty .pull-right, .propertyDetail-page .info-blockProperty .overview-section .btn-hollow, .propertyDetail-page .overview-section .info-blockProperty .btn-hollow, .propertyDetail-page .info-blockProperty .agent-description .right-side, .propertyDetail-page .agent-description .info-blockProperty .right-side, .propertyDetail-page .info-blockProperty #header .right-header, #header .propertyDetail-page .info-blockProperty .right-header {
+  width: 50%;
+}
+
+.propertyDetail-page .info-blockProperty .price {
+  font-size: 38px;
+  line-height: 40px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin: 0 0 20px;
+  margin: -10px -10px 20px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .info-blockProperty .price {
+    font-size: 30px;
+    line-height: 33px;
+  }
+}
+
+.propertyDetail-page .info-blockProperty .pictureHolder {
+  width: 145px;
+  margin: 0 auto 10px;
+  height: 145px;
+  white-space: nowrap;
+  background: #fff;
+}
+
+.propertyDetail-page .info-blockProperty .pictureHolder:after {
+  display: inline-block;
+  vertical-align: middle;
+  height: 145px;
+  overflow: hidden;
+  margin: 0 0 0 -5px;
+  content: '';
+}
+
+.propertyDetail-page .info-blockProperty .pictureHolder img {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+}
+
+.propertyDetail-page .info-blockProperty .heading {
+  color: #2092d0;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 21px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  display: block;
+}
+
+.propertyDetail-page .info-blockProperty .heading a {
+  color: #2092d0;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.propertyDetail-page .info-blockProperty .heading a:hover {
+  color: #d89429;
+}
+
+.propertyDetail-page .info-blockProperty .quick-links {
+  padding: 18px 0 0;
+}
+
+.propertyDetail-page .info-blockProperty .small-heading {
+  padding: 10px 0;
+  text-transform: normal;
+}
+
+.propertyDetail-page .info-blockProperty .star-rating {
+  margin: 0;
+}
+
+.propertyDetail-page .info-blockProperty .star-rating li {
+  padding: 0;
+}
+
+.propertyDetail-page .info-blockProperty .timeOfAddedProperty {
+  padding: 50px 0 0;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .info-blockProperty .timeOfAddedProperty {
+    padding: 0;
+  }
+}
+
+.propertyDetail-page .property-picture-holder {
+  width: 100%;
+  background: #dee1e3;
+  padding: 10px;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .property-picture-holder {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .property-picture-holder {
+    margin: 0 0 20px;
+    padding: 0;
+  }
+}
+
+.propertyDetail-page .property-picture-holder h1 {
+  font-weight: 700;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 27px;
+  line-height: 30px;
+  margin: 0 0 15px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .property-picture-holder h1 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.propertyDetail-page .property-picture-holder .quick-links {
+  padding: 7px 0 0;
+}
+
+.propertyDetail-page .propertyImage-pagination,
+.propertyDetail-page .propertyImage-slider {
+  position: relative;
+  width: 100%;
+}
+
+.propertyDetail-page .propertyImage-pagination .add-to-favorite,
+.propertyDetail-page .propertyImage-slider .add-to-favorite {
+  top: 1px;
+}
+
+.propertyDetail-page .propertyImage-pagination .premiumProperty,
+.propertyDetail-page .propertyImage-slider .premiumProperty {
+  top: 46px;
+  width: 195px;
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-mask,
+.propertyDetail-page .propertyImage-pagination .mask,
+.propertyDetail-page .propertyImage-slider .propertyImage-mask,
+.propertyDetail-page .propertyImage-slider .mask {
+  width: 100% !important;
+  margin: 0 -5px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-mask,
+  .propertyDetail-page .propertyImage-pagination .mask,
+  .propertyDetail-page .propertyImage-slider .propertyImage-mask,
+  .propertyDetail-page .propertyImage-slider .mask {
+    margin: 0 -3px;
+  }
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-slider-btn-prev, .propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-slider-btn-next,
+.propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-pagination-btn-prev-1, .propertyDetail-page .propertyImage-pagination .propertyImage-mask:hover .propertyImage-pagination-btn-next-1,
+.propertyDetail-page .propertyImage-pagination .mask:hover .propertyImage-slider-btn-prev,
+.propertyDetail-page .propertyImage-pagination .mask:hover .propertyImage-slider-btn-next,
+.propertyDetail-page .propertyImage-pagination .mask:hover .propertyImage-pagination-btn-prev-1,
+.propertyDetail-page .propertyImage-pagination .mask:hover .propertyImage-pagination-btn-next-1,
+.propertyDetail-page .propertyImage-slider .propertyImage-mask:hover .propertyImage-slider-btn-prev,
+.propertyDetail-page .propertyImage-slider .propertyImage-mask:hover .propertyImage-slider-btn-next,
+.propertyDetail-page .propertyImage-slider .propertyImage-mask:hover .propertyImage-pagination-btn-prev-1,
+.propertyDetail-page .propertyImage-slider .propertyImage-mask:hover .propertyImage-pagination-btn-next-1,
+.propertyDetail-page .propertyImage-slider .mask:hover .propertyImage-slider-btn-prev,
+.propertyDetail-page .propertyImage-slider .mask:hover .propertyImage-slider-btn-next,
+.propertyDetail-page .propertyImage-slider .mask:hover .propertyImage-pagination-btn-prev-1,
+.propertyDetail-page .propertyImage-slider .mask:hover .propertyImage-pagination-btn-next-1 {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-mask,
+  .propertyDetail-page .propertyImage-slider .propertyImage-mask {
+    max-width: 320px;
+    margin: 0 auto 10px;
+  }
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-slideset,
+.propertyDetail-page .propertyImage-pagination .slideset,
+.propertyDetail-page .propertyImage-slider .propertyImage-slideset,
+.propertyDetail-page .propertyImage-slider .slideset {
+  width: 100% !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  letter-spacing: -4px !important;
+  white-space: nowrap !important;
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-slide,
+.propertyDetail-page .propertyImage-pagination .slide,
+.propertyDetail-page .propertyImage-slider .propertyImage-slide,
+.propertyDetail-page .propertyImage-slider .slide {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  width: 100% !important;
+  font-size: 14px !important;
+  line-height: 17px !important;
+  letter-spacing: 0 !important;
+  float: none !important;
+  padding: 0 5px 5px;
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-slide a,
+.propertyDetail-page .propertyImage-pagination .slide a,
+.propertyDetail-page .propertyImage-slider .propertyImage-slide a,
+.propertyDetail-page .propertyImage-slider .slide a {
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide,
+  .propertyDetail-page .propertyImage-pagination .slide,
+  .propertyDetail-page .propertyImage-slider .propertyImage-slide,
+  .propertyDetail-page .propertyImage-slider .slide {
+    padding: 0 3px 5px;
+  }
+}
+
+.propertyDetail-page .slide img {
+  min-height: 442px;
+  max-height: 442px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .slide img {
+    max-height: 335px;
+    min-height: 335px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .slide img {
+    max-height: inherit;
+    min-height: inherit;
+  }
+}
+
+.propertyDetail-page .propertyImage-slide a {
+  position: relative;
+}
+
+.propertyDetail-page .propertyImage-slide a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 54;
+  background: rgba(255, 255, 255, 0.7);
+  content: '';
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-slide {
+  width: 20% !important;
+}
+
+.propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+  max-width: 155px;
+  max-height: 95px;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+    min-height: 85px;
+    max-height: 85px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+    min-height: 65px;
+    max-height: 65px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .propertyImage-pagination .propertyImage-slide img {
+    min-height: 35px;
+    max-height: 35px;
+  }
+}
+
+.propertyDetail-page .propertyImage-slider-btn-prev, .propertyDetail-page .propertyImage-slider-btn-next,
+.propertyDetail-page .propertyImage-pagination-btn-prev-1, .propertyDetail-page .propertyImage-pagination-btn-next-1 {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  text-decoration: none;
+  margin: -20px 0 0;
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .propertyImage-slider-btn-prev, .propertyDetail-page .propertyImage-slider-btn-next,
+  .propertyDetail-page .propertyImage-pagination-btn-prev-1, .propertyDetail-page .propertyImage-pagination-btn-next-1 {
+    display: none !important;
+  }
+}
+
+.propertyDetail-page .propertyImage-slider-btn-prev span[class^="icon-"], .propertyDetail-page .propertyImage-slider-btn-prev span[class*="icon-"], .propertyDetail-page .propertyImage-slider-btn-next span[class^="icon-"], .propertyDetail-page .propertyImage-slider-btn-next span[class*="icon-"],
+.propertyDetail-page .propertyImage-pagination-btn-prev-1 span[class^="icon-"],
+.propertyDetail-page .propertyImage-pagination-btn-prev-1 span[class*="icon-"], .propertyDetail-page .propertyImage-pagination-btn-next-1 span[class^="icon-"], .propertyDetail-page .propertyImage-pagination-btn-next-1 span[class*="icon-"] {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.propertyDetail-page .propertyImage-slider-btn-next, .propertyDetail-page .propertyImage-pagination-btn-next-1 {
+  left: auto;
+  right: 20px;
+}
+
+.propertyDetail-page .overview-section {
+  background: #fff;
+  margin: 10px;
+  display: block;
+  padding: 20px;
+  color: #6c6d70;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .overview-section {
+    margin: 0 0 10px;
+    padding: 10px;
+  }
+}
+
+.propertyDetail-page .overview-section .small-heading {
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .overview-section .small-heading {
+    float: none !important;
+    padding: 0 0 10px;
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .overview-section .btn-hollow {
+    float: none !important;
+    display: block;
+    text-align: center;
+  }
+}
+
+.propertyDetail-page .overview-section .layout {
+  padding: 0 0 15px;
+}
+
+.propertyDetail-page .extra-feature-section {
+  margin: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(108, 109, 112, 0.5);
+  padding: 20px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .extra-feature-section {
+    padding: 10px;
+    margin: 0 0 10px;
+  }
+}
+
+.propertyDetail-page .extra-feature-section .small-heading {
+  border-bottom: 1px solid rgba(108, 109, 112, 0.5);
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+}
+
+.propertyDetail-page .trusted-agent {
+  margin: 15px 0 10px;
+}
+
+.propertyDetail-page .feature {
+  margin: 0 0 25px;
+}
+
+.propertyDetail-page .feature .small-heading {
+  border: 0;
+  margin: 0;
+}
+
+.propertyDetail-page .feature-list {
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  color: #6c6d70;
+  margin: 0 -1px;
+}
+
+.propertyDetail-page .feature-list > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0;
+}
+
+.propertyDetail-page .feature-list li {
+  width: 33.33%;
+  color: #6c6d70;
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: -4px;
+  padding: 5px 10px 10px;
+  border-left: 1px solid #555;
+}
+
+.propertyDetail-page .feature-list li > * {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .feature-list li {
+    width: 50%;
+  }
+}
+
+.propertyDetail-page .feature-list li span[class^="icon-"], .propertyDetail-page .feature-list li span[class*="icon-"] {
+  font-size: 14px;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.propertyDetail-page .feature-list li .text-feature, .propertyDetail-page .feature-list li .stataus {
+  width: 70%;
+  position: relative;
+}
+
+.propertyDetail-page .feature-list li .text-feature {
+  padding: 0 0 0 15px;
+}
+
+.propertyDetail-page .feature-list li .text-feature:after {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  border: 5px solid transparent;
+  border-left: 5px solid #6c6d70;
+  content: '';
+  width: 5px;
+  height: 5px;
+}
+
+.propertyDetail-page .feature-list li .stataus {
+  font-weight: bold;
+  width: 30%;
+}
+
+.propertyDetail-page .agent-societies {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(119, 119, 119, 0.7);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.propertyDetail-page .agent-societies .agent-mask {
+  overflow: hidden;
+  position: relative;
+  margin: 0 -5px;
+}
+
+.propertyDetail-page .agent-societies .agent-slideset {
+  width: 100% !important;
+  white-space: nowrap;
+  font: 0 !important;
+  line-height: 0 !important;
+  letter-spacing: -7px !important;
+}
+
+.propertyDetail-page .agent-societies .agent-slide {
+  display: inline-block !important;
+  vertical-align: top !important;
+  letter-spacing: 0 !important;
+  font-size: 12px !important;
+  line-height: 15px !important;
+  width: 20% !important;
+  padding: 0 5px;
+  white-space: normal;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .agent-societies .agent-slide {
+    width: 33.33% !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-societies .agent-slide {
+    width: 50%  !important;
+    text-align: center;
+    background: #fff;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .agent-societies .agent-slide {
+    width: 100% !important;
+  }
+}
+
+.propertyDetail-page .agent-societies .agent-slide a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  white-space: nowrap;
+  background: #fff;
+  padding: 3px;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #2092d0;
+}
+
+.propertyDetail-page .agent-societies .agent-slide a:after {
+  height: 100px;
+  margin: 0 0 0 -5px;
+  display: inline-block;
+  vertical-align: middle;
+  content: '';
+  width: 1px;
+}
+
+.propertyDetail-page .agent-societies .agent-slide a img {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  margin: 0 0 0 -4px;
+}
+
+.propertyDetail-page .agent-societies .agent-slide .image-description {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  word-break: break-all;
+  white-space: normal;
+  margin: 0 0 0 -4px;
+}
+
+.propertyDetail-page .agent-societies .small-heading {
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0 0 5px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-societies .small-heading {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.propertyDetail-page .agent-societies .btn-prev, .propertyDetail-page .agent-societies .btn-next {
+  text-decoration: none;
+  color: #30ce20;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin: -4px 0 0;
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-societies .btn-prev, .propertyDetail-page .agent-societies .btn-next {
+    left: 0;
+  }
+}
+
+.propertyDetail-page .agent-societies .btn-prev span[class^="icon-"], .propertyDetail-page .agent-societies .btn-prev span[class*="icon-"], .propertyDetail-page .agent-societies .btn-next span[class^="icon-"], .propertyDetail-page .agent-societies .btn-next span[class*="icon-"] {
+  font-size: 25px;
+  line-height: 0;
+}
+
+.propertyDetail-page .agent-societies .btn-next {
+  left: auto;
+  right: 10px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-societies .btn-next {
+    right: 0;
+  }
+}
+
+.propertyDetail-page .agent-picture {
+  width: 260px;
+  height: 260px;
+  position: relative;
+  background: #fff;
+  white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-picture {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .agent-picture {
+    float: none !important;
+    margin: 0 auto 10px;
+    width: 100%;
+  }
+}
+
+.propertyDetail-page .agent-picture:after {
+  height: 260px;
+  overflow: hidden;
+  margin: 0 0 0 -5px;
+  display: inline-block;
+  vertical-align: middle;
+  content: '';
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-picture:after {
+    height: 150px;
+  }
+}
+
+.propertyDetail-page .agent-picture img {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  max-width: 100px;
+  max-height: 100px;
+  height: 100%;
+}
+
+.propertyDetail-page .agent-picture .premiumProperty {
+  top: 20px;
+  width: 165px;
+}
+
+.propertyDetail-page .agent-description {
+  padding: 0 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .agent-description {
+    padding: 0;
+  }
+}
+
+.propertyDetail-page .agent-description h1 {
+  margin: 0 0 5px;
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-description h1 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.propertyDetail-page .agent-description .location {
+  padding: 0 0 5px;
+  display: block;
+}
+
+.propertyDetail-page .agent-description .left-side {
+  width: 75%;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .agent-description .left-side {
+    width: 65%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-description .left-side {
+    width: 50%;
+  }
+}
+
+.propertyDetail-page .agent-description .right-side {
+  width: 25%;
+}
+
+@media (max-width: 1199px) {
+  .propertyDetail-page .agent-description .right-side {
+    width: 35%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .propertyDetail-page .agent-description .right-side {
+    width: 50%;
+  }
+}
+
+.propertyDetail-page .agent-description .trusted-agent {
+  margin: 15px 0 20px 40px;
+}
+
+@media (max-width: 767px) {
+  .propertyDetail-page .agent-description .trusted-agent {
+    float: right;
+    margin: 15px 24px 20px 40px;
+  }
+}
+
+.propertyDetail-page .agent-description .star-rating {
+  float: none !important;
+  margin: 0 auto 10px;
 }
 
 /*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
@@ -3619,12 +4989,28 @@ h1 {
   width: 200px;
   height: 45px;
   position: relative;
+  margin: 0 0 0 5px;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
   .searchByID {
     width: 150px;
-    height: 37px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 767px) {
+  .searchByID {
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 991;
+    background: #6c6d70;
+    width: 100%;
+    height: 45px;
+    display: none;
   }
 }
 
@@ -3645,7 +5031,7 @@ h1 {
 @media (max-width: 1199px) {
   .searchByID input[type="text"], .searchByID input[type="search"] {
     width: 100%;
-    height: 37px;
+    height: 45px;
     padding: 8px 35px 8px 8px;
   }
 }
@@ -3653,7 +5039,6 @@ h1 {
 @media (max-width: 767px) {
   .searchByID input[type="text"], .searchByID input[type="search"] {
     color: #fff;
-    border: 1px solid #fff;
   }
 }
 
@@ -3664,7 +5049,7 @@ h1 {
 
 @media (max-width: 767px) {
   .searchByID input[type="text"]:focus, .searchByID input[type="search"]:focus {
-    border-color: #fff;
+    border-color: #6c6d70;
     color: #fff;
   }
 }
@@ -3792,12 +5177,6 @@ h1 {
   padding: 0;
 }
 
-@media (max-width: 767px) {
-  .searchByID button {
-    color: #fff;
-  }
-}
-
 .searchByID button span[class^="icon-"], .searchByID button span[class*="icon-"] {
   font-size: 20px;
   line-height: 45px;
@@ -3805,13 +5184,13 @@ h1 {
 
 @media (max-width: 1199px) {
   .searchByID button span[class^="icon-"], .searchByID button span[class*="icon-"] {
-    line-height: 15px;
+    line-height: 45px;
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   .searchByID button span[class^="icon-"], .searchByID button span[class*="icon-"] {
-    line-height: 37px;
+    color: #fff;
   }
 }
 
@@ -3973,6 +5352,12 @@ h1 {
   padding: 10px;
 }
 
+@media (max-width: 1199px) {
+  .logout-list li:first-child a {
+    text-align: center;
+  }
+}
+
 @media (max-width: 767px) {
   .logout-list li:first-child a {
     padding: 5px;
@@ -3980,7 +5365,7 @@ h1 {
 }
 
 @media (max-width: 767px) {
-  .logout-list li:first-child a .hidden, .logout-list li:first-child a .paginationCurrent-num-1, .logout-list li:first-child a
+  .logout-list li:first-child a .hidden, .logout-list li:first-child a .propertyDetail-page .propertyImage-slide.active a:after, .propertyDetail-page .propertyImage-slide.active .logout-list li:first-child a a:after, .logout-list li:first-child a .paginationCurrent-num-1, .logout-list li:first-child a
   .current-num {
     display: inline-block !important;
     vertical-align: top;
@@ -3990,7 +5375,7 @@ h1 {
 .logout-list li a {
   display: block;
   text-decoration: none;
-  padding: 10px 25px 10px 5px;
+  padding: 10px 25px 10px 3px;
   color: #fff;
   background: #2092d0;
   border-radius: 3px;
@@ -4008,10 +5393,17 @@ h1 {
   }
 }
 
+@media (max-width: 1199px) {
+  .logout-list li a {
+    text-align: left;
+    padding: 10px 20px 10px 8px;
+  }
+}
+
 @media (max-width: 767px) {
   .logout-list li a {
     padding: 5px;
-    min-height: 40px;
+    text-align: center;
   }
 }
 
@@ -4027,8 +5419,8 @@ h1 {
 @media (max-width: 767px) {
   .logout-list li a span[class^="icon-"], .logout-list li a span[class*="icon-"] {
     position: static;
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 18pxpx;
+    line-height: 23px;
     margin: 0;
   }
 }
@@ -4069,13 +5461,37 @@ h1 span {
   background: #dee1e3;
   padding: 5px 5px 5px 50px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
-  transition: left 0.5s linear;
-  -webkit-transition: left 0.5s linear;
-  -moz-transition: left 0.5s linear;
+  transition: left 0.5s ease;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+}
+
+@media (max-width: 1539px) {
+  #header {
+    padding: 10px 5px 10px 50px;
+  }
+}
+
+@media (max-width: 1199px) {
+  #header {
+    padding: 10px 5px 10px 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  #header {
+    padding: 8px 5px 7px 35px;
+  }
 }
 
 .sideBar-active #header {
   left: 260px;
+}
+
+@media (max-width: 1023px) {
+  .sideBar-active #header {
+    left: 0;
+  }
 }
 
 #header .left-header {
@@ -4084,6 +5500,20 @@ h1 span {
   position: relative;
 }
 
+@media (max-width: 1539px) {
+  #header .left-header {
+    width: 30%;
+  }
+}
+
+@media (max-width: 767px) {
+  #header .left-header {
+    position: static;
+    margin: 0;
+  }
+}
+
+#header .left-header .searchOpener-Mobile,
 #header .left-header .home {
   background: #6c6d70;
   width: 45px;
@@ -4093,31 +5523,99 @@ h1 span {
   font-size: 30px;
   line-height: 1;
   border-radius: 2px;
+  cursor: pointer;
 }
 
+@media (max-width: 767px) {
+  #header .left-header .searchOpener-Mobile,
+  #header .left-header .home {
+    width: 36px;
+    height: 33px;
+    font-size: 18px;
+  }
+}
+
+#header .left-header .searchOpener-Mobile:hover,
 #header .left-header .home:hover {
   background: #d89429;
   color: #fff;
 }
 
+#header .left-header .searchOpener-Mobile span,
 #header .left-header .home span {
   display: inline-block;
   vertical-align: top;
   margin: 6px 0 0;
 }
 
-#header .left-header .searchByID {
-  margin: 0 0 0 5px;
+@media (max-width: 767px) {
+  #header .left-header .searchOpener-Mobile span,
+  #header .left-header .home span {
+    margin: 7px 0 0;
+  }
+}
+
+#header .left-header .searchOpener-Mobile {
+  margin: 0 3px;
+}
+
+@media (min-width: 768px) {
+  #header .left-header .searchOpener-Mobile {
+    display: none;
+  }
 }
 
 #header .right-header {
   width: 30%;
 }
 
+@media (max-width: 1539px) {
+  #header .right-header {
+    width: 40%;
+  }
+}
+
+@media (max-width: 1199px) {
+  #header .right-header {
+    width: 37%;
+  }
+}
+
+@media (max-width: 767px) {
+  #header .right-header {
+    width: 30%;
+  }
+}
+
 .logo {
   width: 100%;
   max-width: 215px;
   margin: 0 auto;
+}
+
+@media (max-width: 1539px) {
+  .logo {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    margin: 0 0 0 -135px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .logo {
+    max-width: 175px;
+    margin: 0 0 0 -110px;
+    top: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .logo {
+    max-width: 100px;
+    margin: 0 0 0 -40px;
+    top: 6px;
+  }
 }
 
 .logo a {
@@ -4131,20 +5629,55 @@ h1 span {
 
 #page-holder {
   padding: 87px 0 0;
-  transition: padding 0.5s linear;
-  -webkit-transition: padding 0.5s linear;
-  -moz-transition: padding 0.5s linear;
-  -ms-transition: padding 0.5s linear;
+  transition: padding 0.5s ease;
+  -webkit-transition: padding 0.5s ease;
+  -moz-transition: padding 0.5s ease;
+  -ms-transition: padding 0.5s ease;
+}
+
+@media (max-width: 1539px) {
+  #page-holder {
+    padding: 89px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #page-holder {
+    padding: 53px 0 0;
+  }
 }
 
 .sideBar-active #page-holder {
   padding: 87px 0 0 270px;
 }
 
+@media (max-width: 1539px) {
+  .sideBar-active #page-holder {
+    padding: 89px 0 0 270px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sideBar-active #page-holder {
+    padding: 89px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .sideBar-active #page-holder {
+    padding: 53px 0 0;
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+  display: block;
+}
+
 .sideBar-opener {
   position: absolute;
   top: 0;
-  left: 15px;
+  left: 10px;
   bottom: 0;
   width: 15px;
   border: 1px solid #6c6d70;
@@ -4171,10 +5704,18 @@ h1 span {
   bottom: 0;
   z-index: 9999;
   box-shadow: 1px 0 15px 0 rgba(0, 0, 0, 0.4);
-  transition: left 0.5s linear;
-  -webkit-transition: left 0.5s linear;
-  -moz-transition: left 0.5s linear;
-  -ms-transition: left 0.5s linear;
+  transition: left 0.5s ease;
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -ms-transition: left 0.5s ease;
+}
+
+@media (max-width: 1023px) {
+  #sidebar-dashboard {
+    width: 100%;
+    left: -100%;
+    background: #a7afb4;
+  }
 }
 
 .sideBar-active #sidebar-dashboard {
@@ -4183,7 +5724,36 @@ h1 span {
 
 #sidebar-dashboard .scroll-able {
   overflow: auto;
-  height: calc(100vh - 235px);
+  position: absolute;
+  top: 200px;
+  left: 0;
+  right: 0;
+  bottom: 45px;
+}
+
+#sidebar-dashboard .sideBar-opener {
+  border: 2px solid #fff;
+  border-radius: 0;
+  width: auto;
+  bottom: auto;
+  left: auto;
+  right: 20px;
+  top: 20px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 100%;
+}
+
+@media (min-width: 1024px) {
+  #sidebar-dashboard .sideBar-opener {
+    display: none;
+  }
+}
+
+#sidebar-dashboard .sideBar-opener span {
+  display: block;
+  font-size: 30px;
+  line-height: 1;
 }
 
 #sidebar-dashboard .profile-picture {
@@ -4345,7 +5915,7 @@ h1 span {
   position: relative;
   display: block;
   padding: 15px 15px 15px 45px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
 }
 
@@ -4480,6 +6050,12 @@ h1 span {
   padding: 10px 20px;
 }
 
+@media (max-width: 1199px) {
+  .radio-checks-holder li {
+    padding: 10px;
+  }
+}
+
 @media (max-width: 1023px) {
   .radio-checks-holder li {
     width: 33.33%;
@@ -4506,6 +6082,10 @@ h1 span {
   background: #dee1e3;
   content: '';
   height: 5px;
+}
+
+.radio-checks-holder li .customCheckbox, .radio-checks-holder li .customRadio {
+  padding: 0 0 0 30px;
 }
 
 .radio-checks-holder li .custom-withouChecks {
@@ -4903,7 +6483,7 @@ h1 span {
   line-height: 20px;
   color: #fff;
   text-decoration: none;
-  background: #2092d0;
+  background: #d89429;
   position: relative;
   font-weight: 700;
   padding: 3px 34px 3px 15px;
@@ -5119,6 +6699,21 @@ h1 span {
   letter-spacing: 0;
 }
 
+@media (max-width: 1199px) {
+  .sumery-list li {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+  }
+  .sumery-list li > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+  }
+}
+
 .sumery-list li span {
   width: 50%;
 }
@@ -5208,7 +6803,7 @@ h1 span {
 
 @media (max-width: 479px) {
   .generic-lightbox {
-    width: 320px;
+    width: 245px;
   }
 }
 
@@ -5422,11 +7017,11 @@ h1 span {
   color: #6c6d70;
 }
 
-.please-wait {
+.loading-content {
   position: relative;
 }
 
-.please-wait:after {
+.loading-content:after {
   position: absolute;
   top: 0;
   right: 0;
@@ -5437,7 +7032,7 @@ h1 span {
   content: '';
 }
 
-.please-wait:before {
+.loading-content:before {
   background: url("../images/ring1.gif") no-repeat 50% 0;
   background-size: 100% 100%;
   position: absolute;

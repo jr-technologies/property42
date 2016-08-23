@@ -286,29 +286,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             });
         };
 
-        //var getFeatureSections = function () {
-        //    return $http({
-        //        method: 'GET',
-        //        url: apiPath+'feature/sections',
-        //        data:{}
-        //    }).then(function successCallback(response) {
-        //        return response.data.data.featureSections;
-        //    }, function errorCallback(response) {
-        //        return response;
-        //    });
-        //};
-        //var getAssignedFeatures = function () {
-        //    return $http({
-        //        method: 'GET',
-        //        url: apiPath+'features/assigned',
-        //        data:{}
-        //    }).then(function successCallback(response) {
-        //        return response.data.data.features;
-        //    }, function errorCallback(response) {
-        //        return response;
-        //    });
-        //};
-
         var getPropertyDocsAndSetToScope = function () {
             $scope.propertyDocuments = getPropertyDocuments();
             $scope.form.data.files = {
@@ -328,21 +305,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             $scope.blockChanged();
             $scope.propertySubTypeChanged();
             getPropertyDocsAndSetToScope();
-            //getAssignedFeatures().then(function successCallback(features) {
-            //    $scope.features = features;
-            //}, function errorCallback(response) {
-            //    console.log('fucked up');
-            //});
-            //
-            //getFeatureSections().then(function successCallback(sections) {
-            //    $scope.featureSections = sections;
-            //}, function errorCallback(response) {
-            //    console.log('fucked up');
-            //});
-
             $(function() {
-                //handleAddPropertyFormScrolling();
-                $('.feature-block').find('.holder').hide();
+                $('.list-extraFeatures').slideUp();
                 $('.feature-block').find('.form-heading').hide();
             });
 

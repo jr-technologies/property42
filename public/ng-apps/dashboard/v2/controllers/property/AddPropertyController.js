@@ -224,6 +224,9 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         });
     };
 
+    $scope.showFreshForm = function () {
+        $scope.propertySaved = false;
+    };
     $scope.initialize = function () {
         $(document).scroll(function() {
             //onScroll();

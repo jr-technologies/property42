@@ -199,6 +199,47 @@
                         <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" placeholder="Title">
                     </li>
                 </ul>
+                <strong class="add-pro-heading"><span>contact info</span></strong>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="owner">owner</label>
+                        <div class="input-holder">
+                            <span class="fake-select">
+                               <select class="searchable-select" name="owner" ng-model="form.data.owner">
+                                   <option data-ng-repeat="owner in resources.agencyStaff" value="{{owner.id}}">{{owner.fName}} {{owner.lName}}</option>
+                               </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <label for="contact-person">contact person</label>
+                        <div class="input-holder">
+                            <input type="text" name="contact_person" ng-model="form.data.contactPerson">
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="phone">phone</label>
+                        <div class="input-holder">
+                            <input type="text" name="phone" ng-model="form.data.phone">
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <label for="block">cell</label>
+                        <div class="input-holder">
+                            <input type="text" name="cell" ng-model="form.data.cell">
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="email">email</label>
+                        <div class="input-holder">
+                            <input type="email" name="email" ng-model="form.data.email">
+                        </div>
+                    </div>
+                </div>
                 <input type="submit" value="SUBMIT PROPERTY">
             </form>
         </div>
@@ -216,6 +257,6 @@
                 <p>Property status: <b>Pending</b></p>
             </div>
         </div>
-        <a href="{{domain}}" class="btn-default">Got it !</a>
+        <a ng-click="showFreshForm()" class="btn-default">Got it !</a>
     </div>
 </div>
