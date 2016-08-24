@@ -10,33 +10,35 @@ app.filter('roundup', function () {
             return 1;
     };
 });
-app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, $CustomHttpService, $window, $scope, $rootScope, $http, $state, $AuthService) {
+app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, data, $CustomHttpService, $window, $scope, $rootScope, $http, $state, $AuthService) {
     $scope.html_title = "Property42 | Add Property";
+    $scope.currentRoute = $state.current;
+    $scope.propertiesPurpose = $state.current.name.split(".")[2];
+    $scope.propertiesLimit = 20;
     $rootScope.searchPropertiesParams.start = 0;
     $scope.activeStatus = 1;
-    $scope.properties = [];
+    $scope.properties = data.properties;
     $scope.deletingPropertyId = 0;
     $scope.restoringPropertyId = 0;
     $scope.deletingProperties = {
         ids: []
     };
-    $scope.totalProperties = 0;
-    $scope.pages = [];
+    $scope.totalProperties = data.totalProperties;
     $scope.checkAllPropertiesChkbx = false;
     $scope.activePage = 1;
     $scope.fetchingProperties = false;
 
     $scope.$on('searchPropertiesParamsChanged', function () {
-        $rootScope.loading_content_class = 'loading-content';
-        $scope.getProperties().then(function successCallback(data) {
-            $scope.properties = data.properties;
-            $scope.totalProperties = data.totalProperties;
-            $scope.checkAllPropertiesChkbx = false;
-            $rootScope.loading_content_class = '';
-            $window.scrollTo(0,0);
-        }, function errorCallback(response) {
-
-        });
+        //$rootScope.loading_content_class = 'loading-content';
+        //$scope.getProperties().then(function successCallback(data) {
+        //    $scope.properties = data.properties;
+        //    $scope.totalProperties = data.totalProperties;
+        //    $scope.checkAllPropertiesChkbx = false;
+        //    $rootScope.loading_content_class = '';
+        //    $window.scrollTo(0,0);
+        //}, function errorCallback(response) {
+        //
+        //});
     });
 
     $scope.setPropertyStatus = function (status) {
@@ -224,7 +226,35 @@ app.controller("ListPropertiesController",["$q", "$CustomHttpService", "$window"
         $rootScope.$broadcast('searchPropertiesParamsChanged');
         $scope.activePage = page;
     };
+    $scope.getPages = function () {
+        var pages = [];
+        for(var i = 1; i<= $scope.totalProperties/$scope.propertiesLimit; i++){
+            pages.push(i);
+        }
+        return pages;
+    };
+
+    $scope.getCurrentPage = function () {
+        if($state.params['page'] != undefined){
+            console.log($state.params);
+            return parseInt($state.params['page']);
+        }
+        return 1;
+    };
+    $scope.updateQueryString = function (key, value) {
+        var params = angular.copy($state.params);
+        params[key] = value;
+        var paramsStr = "";
+        angular.forEach(params, function (value, key) {
+            if(value != undefined)
+                paramsStr+= key+"="+value+"&"
+        });
+        console.log(paramsStr.slice(0, -1));
+        return paramsStr.slice(0, -1);
+    };
     $scope.initialize = function () {
+        $scope.checkAllPropertiesChkbx = false;
+        $rootScope.loading_content_class = '';
         getPropertiesCounts().then(function successCallback(counts) {
             $rootScope.propertiesCounts = counts;
         }, function errorCallback(response) {

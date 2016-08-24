@@ -110,19 +110,79 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         })
         .state('home.properties.all', {
-            url: "/all",
+            url: "/all?status&page&limit",
             templateUrl: views+"/properties/list.html",
-            auth: true
+            controller: "ListPropertiesController",
+            auth: true,
+            resolve: {
+                data : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $CustomHttpService, $location, $state) {
+                    page = (isNaN($stateParams.page))?1:$stateParams.page;
+                    limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+                    limit = (limit > 500)?500:limit;
+                    status = (isNaN($stateParams.status))?5:$stateParams.status;
+                    var start = (limit * parseInt(page)) - limit;
+                    return $CustomHttpService.$http('GET', apiPath+'user/properties', {
+                        owner_id: $rootScope.authUser.id,
+                        purpose_id: null,
+                        start: start, limit: limit, status_id: status
+                    }).then(function successCallback(response) {
+                        return response.data.data;
+                    }, function errorCallback(response) {
+                        $rootScope.$broadcast('error-response-received',{status:response.status});
+                        return undefined;
+                    });
+                }
+            }
         })
         .state('home.properties.for-sale', {
-            url: "/for-sale",
+            url: "/for-sale?status&page&limit",
             templateUrl: views+"/properties/list.html",
-            auth: true
+            controller: "ListPropertiesController",
+            auth: true,
+            resolve: {
+                data : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $CustomHttpService, $location, $state) {
+                    page = (isNaN($stateParams.page))?1:$stateParams.page;
+                    limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+                    limit = (limit > 500)?500:limit;
+                    status = (isNaN($stateParams.status))?5:$stateParams.status;
+                    var start = (limit * parseInt(page)) - limit;
+                    return $CustomHttpService.$http('GET', apiPath+'user/properties', {
+                        owner_id: $rootScope.authUser.id,
+                        purpose_id: 1,
+                        start: start, limit: limit, status_id: status
+                    }).then(function successCallback(response) {
+                        return response.data.data;
+                    }, function errorCallback(response) {
+                        $rootScope.$broadcast('error-response-received',{status:response.status});
+                        return undefined;
+                    });
+                }
+            }
         })
         .state('home.properties.for-rent', {
-            url: "/for-rent",
+            url: "/for-rent?status&page&limit",
             templateUrl: views+"/properties/list.html",
-            auth: true
+            controller: "ListPropertiesController",
+            auth: true,
+            resolve: {
+                data : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $CustomHttpService, $location, $state) {
+                    page = (isNaN($stateParams.page))?1:$stateParams.page;
+                    limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+                    limit = (limit > 500)?500:limit;
+                    status = (isNaN($stateParams.status))?5:$stateParams.status;
+                    var start = (limit * parseInt(page)) - limit;
+                    return $CustomHttpService.$http('GET', apiPath+'user/properties', {
+                        owner_id: $rootScope.authUser.id,
+                        purpose_id: 2,
+                        start: start, limit: limit, status_id: status
+                    }).then(function successCallback(response) {
+                        return response.data.data;
+                    }, function errorCallback(response) {
+                        $rootScope.$broadcast('error-response-received',{status:response.status});
+                        return undefined;
+                    });
+                }
+            }
         })
 });
 

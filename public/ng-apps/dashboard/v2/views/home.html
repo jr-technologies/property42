@@ -15,7 +15,7 @@
                 <li><a href="#home/properties/add"><span class="hidden-xs">Add property</span><span class="icon-plus-square"></span></a></li>
             </ul>
         </div>
-        <div class="logo"><a href="#"><img width="477" height="150" alt="Property42" src="{{appPath}}/assets/images/logo.png"></a></div>
+        <div class="logo"><a href="{{domain}}"><img width="477" height="150" alt="Property42" src="{{appPath}}/assets/images/logo.png"></a></div>
     </header>
 
     <main id="main" role="main">
@@ -47,7 +47,7 @@
             <div class="scroll-able">
                 <ul class="sideBar-links" filter-list="search">
                     <li><a href="#"><span class="icon-home-dash"></span>DASHBOARD</a></li>
-                    <li ng-class="{'active':activeLink==='home.properties.all'}">
+                    <li ng-class="{'active':activeLink === 'home.properties.all'}">
                         <a href="#home/listings/all"><span class="icon-list"></span>LISTINGS <span class="badge">{{propertiesCounts | filterByCountParam: undefined}}</span></a>
                         <ul class="sub-links">
                             <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="total-tag">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
