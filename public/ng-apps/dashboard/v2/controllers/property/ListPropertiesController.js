@@ -14,8 +14,8 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
     $scope.html_title = "Property42 | Add Property";
     $scope.currentRoute = $state.current;
     $scope.propertiesPurpose = $state.current.name.split(".")[2];
-    $scope.propertiesLimit = 20;
-    $rootScope.searchPropertiesParams.start = 0;
+    $scope.propertiesLimit = '20';
+    $scope.searchPropertiesParams = data.searchPropertiesParams;
     $scope.activeStatus = 1;
     $scope.properties = data.properties;
     $scope.deletingPropertyId = 0;
@@ -42,9 +42,9 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
     });
 
     $scope.setPropertyStatus = function (status) {
-        $scope.activeStatus = status;
-        $rootScope.searchPropertiesParams.status_id = status;
-        $rootScope.$broadcast('searchPropertiesParamsChanged');
+        //$scope.activeStatus = status;
+        //$rootScope.searchPropertiesParams.status_id = status;
+        //$rootScope.$broadcast('searchPropertiesParamsChanged');
     };
 
     $scope.$watch('checkAllPropertiesChkbx', function () {
@@ -54,19 +54,6 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
             $scope.unCheckAll();
         }
     });
-
-    $scope.$watchGroup(['totalProperties', 'searchPropertiesParams.limit'], function(newValues, oldValues, scope) {
-        var pages = [];
-        for(var i = 0; i < $scope.totalProperties / $rootScope.searchPropertiesParams.limit; i++){
-            pages.push(i+1);
-        }
-        $scope.pages = pages;
-        $scope.activePage = 1;
-    });
-
-    //$scope.$watchGroup(['searchPropertiesParams.owner_id', 'searchPropertiesParams.limit'], function(newValues, oldValues, scope) {
-    //    $rootScope.$broadcast('searchPropertiesParamsChanged');
-    //});
 
     $scope.checkAll = function() {
         $scope.deletingProperties.ids = $scope.properties.map(function(item) { return item.id; });
@@ -105,10 +92,10 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         $rootScope.$broadcast('searchPropertiesParamsChanged');
     };
     $scope.deleteProperty = function ($index) {
-        if($rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.deleted
-            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.expired
-            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.rejected
-            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.pending
+        if($state.params['status'] == $rootScope.resources.propertyStatusesIds.deleted
+            || $state.params['status'] == $rootScope.resources.propertyStatusesIds.expired
+            || $state.params['status'] == $rootScope.resources.propertyStatusesIds.rejected
+            || $state.params['status'] == $rootScope.resources.propertyStatusesIds.pending
         ){
             if (confirm('Are you sure you want to delete this property permanently?')) {
                 forceDelProperty($index);
@@ -190,7 +177,7 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
             propertyId: $scope.properties[$index].id,
             searchParams: $rootScope.searchPropertiesParams
         }).then(function successCallback(response) {
-            $scope.properties.splice($index, 1);
+            //$scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
@@ -236,7 +223,6 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
 
     $scope.getCurrentPage = function () {
         if($state.params['page'] != undefined){
-            console.log($state.params);
             return parseInt($state.params['page']);
         }
         return 1;
@@ -249,7 +235,6 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
             if(value != undefined)
                 paramsStr+= key+"="+value+"&"
         });
-        console.log(paramsStr.slice(0, -1));
         return paramsStr.slice(0, -1);
     };
     $scope.initialize = function () {
@@ -260,21 +245,5 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         }, function errorCallback(response) {
 
         });
-
-        $rootScope.searchPropertiesParams.status_id = $rootScope.resources.propertyStatuses[0].id;
-        $rootScope.searchPropertiesParams.owner_id = $rootScope.authUser.id+'';
-        if($state.current.name == 'home.properties.all')
-        {
-            $rootScope.searchPropertiesParams.purpose_id = null;
-        }
-        else if($state.current.name == 'home.properties.for-sale')
-        {
-            $rootScope.searchPropertiesParams.purpose_id = 1;
-        }
-        else if($state.current.name == 'home.properties.for-rent')
-        {
-            $rootScope.searchPropertiesParams.purpose_id = 2;
-        }
-        $rootScope.$broadcast('searchPropertiesParamsChanged');
     };
 }]);

@@ -66,8 +66,8 @@
             <div class="pro-controls border">
                 <ul class="control-link">
                     <li><a href="#"><span class="icon-search-doc"></span></a></li>
-                    <li><a ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" href="#/home/properties/edit/{{property.id}}" ><span class="icon-pencil"></span></a></li>
-                    <li><a ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-refresh-arrow"></span></a></li>
+                    <li ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted"><a href="#/home/properties/edit/{{property.id}}" ><span class="icon-pencil"></span></a></li>
+                    <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted"><a ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-refresh-arrow"></span>r</a></li>
                     <li><a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
                 </ul>
             </div>

@@ -78,7 +78,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
         limit: '20',
         start: '0'
     };
-    $rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
+    //$rootScope.searchPropertiesParams = $rootScope.defaultSearchPropertiesParams;
     $rootScope.activeLink = '';
 
     $rootScope.propertiesCounts = {};

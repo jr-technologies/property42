@@ -121,12 +121,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
                     limit = (limit > 500)?500:limit;
                     status = (isNaN($stateParams.status))?5:$stateParams.status;
                     var start = (limit * parseInt(page)) - limit;
-                    return $CustomHttpService.$http('GET', apiPath+'user/properties', {
+                    params = {
                         owner_id: $rootScope.authUser.id,
                         purpose_id: null,
                         start: start, limit: limit, status_id: status
-                    }).then(function successCallback(response) {
-                        return response.data.data;
+                    };
+                    return $CustomHttpService.$http('GET', apiPath+'user/properties', params)
+                        .then(function successCallback(response) {
+                            var data = angular.copy(response.data.data);
+                            data.searchPropertiesParams = params;
+                            return data;
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});
                         return undefined;
@@ -146,12 +150,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
                     limit = (limit > 500)?500:limit;
                     status = (isNaN($stateParams.status))?5:$stateParams.status;
                     var start = (limit * parseInt(page)) - limit;
-                    return $CustomHttpService.$http('GET', apiPath+'user/properties', {
+                    params = {
                         owner_id: $rootScope.authUser.id,
                         purpose_id: 1,
                         start: start, limit: limit, status_id: status
-                    }).then(function successCallback(response) {
-                        return response.data.data;
+                    };
+                    return $CustomHttpService.$http('GET', apiPath+'user/properties', params)
+                    .then(function successCallback(response) {
+                            var data = angular.copy(response.data.data);
+                            data.searchPropertiesParams = params;
+                            return data;
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});
                         return undefined;
@@ -171,12 +179,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
                     limit = (limit > 500)?500:limit;
                     status = (isNaN($stateParams.status))?5:$stateParams.status;
                     var start = (limit * parseInt(page)) - limit;
-                    return $CustomHttpService.$http('GET', apiPath+'user/properties', {
+                    params = {
                         owner_id: $rootScope.authUser.id,
                         purpose_id: 2,
                         start: start, limit: limit, status_id: status
-                    }).then(function successCallback(response) {
-                        return response.data.data;
+                    };
+                    return $CustomHttpService.$http('GET', apiPath+'user/properties', params)
+                        .then(function successCallback(response) {
+                            var data = angular.copy(response.data.data);
+                            data.searchPropertiesParams = params;
+                            return data;
                     }, function errorCallback(response) {
                         $rootScope.$broadcast('error-response-received',{status:response.status});
                         return undefined;
