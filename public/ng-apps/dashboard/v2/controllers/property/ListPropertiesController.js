@@ -10,7 +10,7 @@ app.filter('roundup', function () {
             return 1;
     };
 });
-app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", function ($q, data, $CustomHttpService, $window, $scope, $rootScope, $http, $state, $AuthService) {
+app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "$window", "$scope", "$rootScope","$http", "$state", "$AuthService", "$location", function ($q, data, $CustomHttpService, $window, $scope, $rootScope, $http, $state, $AuthService, $location) {
     $scope.html_title = "Property42 | Add Property";
     $scope.currentRoute = $state.current;
     $scope.propertiesPurpose = $state.current.name.split(".")[2];
@@ -91,6 +91,12 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
     $scope.filtersChanged = function () {
         $rootScope.$broadcast('searchPropertiesParamsChanged');
     };
+    $scope.limitChanged = function () {
+        page = (isNaN($state.params.page))? 1: $state.params.page;
+        $params = angular.copy($state.params);
+        $params.limit = $scope.propertiesLimit;
+        $location.path('/home/properties/'+$scope.propertiesPurpose).search($params);
+    };
     $scope.deleteProperty = function ($index) {
         if($state.params['status'] == $rootScope.resources.propertyStatusesIds.deleted
             || $state.params['status'] == $rootScope.resources.propertyStatusesIds.expired
@@ -108,10 +114,10 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         if($scope.deletingProperties.ids.length < 1)
             return false;
 
-        if($rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.deleted
-            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.expired
-            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.rejected
-            || $rootScope.searchPropertiesParams.status_id == $rootScope.resources.propertyStatusesIds.pending
+        if($state.params['status'] == $rootScope.resources.propertyStatusesIds.deleted
+            || $state.params['status'] == $rootScope.resources.propertyStatusesIds.expired
+            || $state.params['status'] == $rootScope.resources.propertyStatusesIds.rejected
+            || $state.params['status'] == $rootScope.resources.propertyStatusesIds.pending
         ){
             if (confirm('Are you sure you want to delete selected properties permanently?')) {
                 forceDelProperties();
@@ -125,7 +131,7 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         $rootScope.loading_content_class = 'loading-content';
         return $CustomHttpService.$http('POST', apiPath+'properties/force_delete', {
             propertyIds: $scope.deletingProperties.ids,
-            searchParams: $rootScope.searchPropertiesParams
+            searchParams: $scope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.deletingProperties.ids = [];
             $scope.checkAllPropertiesChkbx = false;
@@ -142,7 +148,7 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         $rootScope.loading_content_class = 'loading-content';
         return $CustomHttpService.$http('POST', apiPath+'properties/delete', {
             propertyIds: $scope.deletingProperties.ids,
-            searchParams: $rootScope.searchPropertiesParams
+            searchParams: $scope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.deletingProperties.ids = [];
             $scope.checkAllPropertiesChkbx = false;
@@ -159,7 +165,7 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         $scope.deletingPropertyId = $scope.properties[$index].id;
         return $CustomHttpService.$http('POST', apiPath+'property/delete', {
             propertyId: $scope.properties[$index].id,
-            searchParams: $rootScope.searchPropertiesParams
+            searchParams: $scope.searchPropertiesParams
         }).then(function successCallback(response) {
             $scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
@@ -175,9 +181,9 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         $scope.deletingPropertyId = $scope.properties[$index].id;
         return $CustomHttpService.$http('POST', apiPath+'property/force_delete', {
             propertyId: $scope.properties[$index].id,
-            searchParams: $rootScope.searchPropertiesParams
+            searchParams: $scope.searchPropertiesParams
         }).then(function successCallback(response) {
-            //$scope.properties.splice($index, 1);
+            $scope.properties.splice($index, 1);
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
             $scope.totalProperties = response.data.data.totalProperties;
@@ -191,7 +197,7 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         $scope.restoringPropertyId = $scope.properties[$index].id;
         return $CustomHttpService.$http('POST', apiPath+'property/restore', {
             propertyId: $scope.properties[$index].id,
-            searchParams: $rootScope.searchPropertiesParams
+            searchParams: $scope.searchPropertiesParams
         }).then(function successCallback(response) {
             $rootScope.restoringPropertyId = response.data.data.propertiesCounts;
             $scope.properties = response.data.data.properties;
