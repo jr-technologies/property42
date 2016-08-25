@@ -93,7 +93,7 @@
             <div class="layout two first-small">
                 <div class="layout-holder">
                     <div class="company-logo">
-                        <input type="file" id="c-logo" name="companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
+                        <input id="c-logo" type="file" ngf-select ng-model="form.data.companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
                         <span class="name-tag">Add Company Logo</span>
                         <div class="logo-holder">
                             <label for="c-logo"><span class="icon-plus-square"></span></label>

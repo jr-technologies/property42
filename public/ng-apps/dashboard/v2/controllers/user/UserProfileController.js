@@ -26,12 +26,10 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
         return ids;
     };
     var getSocietyIds = function () {
-        console.log($scope.user.agencies[0].societies);
         var ids = [];
         angular.forEach($scope.user.agencies[0].societies, function (society, key) {
             ids.push(society.id);
         });
-        console.log(ids.length);
         return ids;
     };
 
