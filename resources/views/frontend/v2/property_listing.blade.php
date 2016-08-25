@@ -229,7 +229,7 @@
                                 if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 
                                 { ?>
-                                <li><a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a></li>
+                                <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a>
                                 <?php
                                 $betweenCountIndex++;
                                 }
