@@ -21,16 +21,79 @@ $(document).ready(function() {
             'display':'block'
         });
     }
+    if (screen.width < 1024){
+        $('body').removeClass('sideBar-active');
+        $(document).on('click', '.sideBar-links li a', function(){
+            $('body').removeClass('sideBar-active');
+        });
+    }
+
 });
 
 // page init
 jQuery(function(){
-    initLightbox();
+    //initLightbox();
+    //initCarousel();
 });
+function initCarousel() {
+    jQuery('.propertyImage-slider').scrollGallery({
+        mask: '.mask',
+        slider: '.slideset',
+        slides: '.slide',
+        btnPrev: '.propertyImage-slider-btn-prev',
+        btnNext: '.propertyImage-slider-btn-next',
+        pagerLinks: '.propertyImage-pagination .propertyImage-slide',
+        autoRotation: false,
+        circularRotation: true,
+        switchTime: 3000,
+        animSpeed: 500,
+        swipeGap: true
+    });
+
+    jQuery('.propertyImage-pagination').scrollGallery({
+        mask: '.propertyImage-mask',
+        slider: '.propertyImage-slideset',
+        slides: '.propertyImage-slide',
+        btnPrev: '.propertyImage-pagination-btn-prev-1',
+        btnNext: '.propertyImage-pagination-btn-next-1',
+        pagerLinks: '.pagination li',
+        autoRotation: false,
+        circularRotation: true,
+        switchTime: 3000,
+        animSpeed: 500,
+        currentNumber: '.paginationCurrent-num-1',
+        totalNumber: '.total-num-1',
+        swipeGap: true
+    });
+}
+
 $(document).on('change keyup', 'input, textarea, select', function(){
     $(this).closest('.input-holder').removeClass('error');
 });
 
+$(document).on('click', '.propertyImage-slider-btn-next, .propertyImage-slider-btn-prev', function(){
+    var windowSize = 5;
+    var currentSlideNumber = parseInt($('#propertyImageCurrentSlide').text());
+    var currentSlideRemainder = currentSlideNumber/ windowSize;
+    var currentSlideRemainderCeil = Math.ceil(currentSlideRemainder);
+    var currentSlideRemainderFloor = Math.floor(currentSlideNumber);
+    var currentWindowNumber = parseInt($('.paginationCurrent-num-1').text());
+
+    if(currentSlideRemainderCeil > currentWindowNumber)
+    {
+        var stepsToMove = currentSlideRemainderCeil - currentWindowNumber;
+        for(var i = 0; i< stepsToMove; i++){
+            $('.propertyImage-pagination-btn-next-1').click();
+        }
+    }
+    else if(currentSlideRemainderCeil < currentWindowNumber)
+    {
+        var stepsToMove = currentWindowNumber - currentSlideRemainderCeil;
+        for(var i = 0; i< stepsToMove; i++){
+            $('.propertyImage-pagination-btn-prev-1').click();
+        }
+    }
+});
 
 $(document).on('click', 'a.lightbox', function(){
     $('#wrapper').addClass('fancy-overlay');
@@ -190,6 +253,10 @@ $('.hidden-checkfield').change(function(){
     }
 });
 
+$(document).on('click', '.role-opener', function(){
+    $('.registration-form').find('.role-listing').slideToggle();
+    $(this).toggleClass('active');
+});
 
 function countCheckedRoles(){
     var totalCheckedRoles = 0;
@@ -212,7 +279,7 @@ $(document).on('change', '.agent-brokerCheckbox', function(){
         $('.agent-brokerCheckbox').each(function(){
             $(this).prop('checked', true);
         });
-        $('.registration-form').addClass('agent-info');
+        $('.registration-form').addClass('agent-info')
         $('.agent-information').slideDown();
     }
     else {
@@ -256,14 +323,30 @@ $(document).on('change', '.selectSociety-checkbox', function(){
         $('.packetData>a[data-target="'+targetId+'"]').closest('li').remove();
     }
 });
-
 $(document).on('click', '.packetData>.delete', function(){
     var targetId = $(this).attr('data-target');
     $("#"+targetId).prop("checked", false);
     $(this).closest('li').remove();
 });
-
-
 $(document).on('click', '.sideBar-opener', function(){
     $('body').toggleClass('sideBar-active');
+});
+$(document).on('click', '.property-status-links-opener', function(){
+    $(this).toggleClass('active');
+    $('.property-status-links').slideToggle();
+});
+$(document).on('click', '.property-status-links>li>a', function(){
+    if (screen.width < 1024){
+        $('.property-status-links-opener>.text-container').text($(this).text());
+        $('.property-status-links').slideUp();
+        $('.property-status-links-opener').removeClass('active');
+    }
+});
+$(document).on('click', '.sub-links>li>a', function(){
+    $('.property-for').text($(this).text());
+});
+$(document).on('click', '.searchOpener-Mobile', function(){
+    if (screen.width < 1024){
+        $('.searchByID').slideToggle();
+    }
 });

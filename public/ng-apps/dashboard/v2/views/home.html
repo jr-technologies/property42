@@ -3,6 +3,7 @@
         <a class="sideBar-opener"></a>
         <div class="left-header">
             <a href="#home/listings/all" class="home"><span class="icon-home"></span></a>
+            <a class="searchOpener-Mobile"><span class="icon-search"></span></a>
             <form class="searchByID"  ng-submit="searchProperty()">
                 <input type="search" placeholder="Search by ID" ng-model="propertyId">
                 <button type="submit"><span class="icon-search"></span></button>
@@ -11,7 +12,7 @@
         <div class="right-header">
             <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;" class="mail">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</a>
             <ul class="logout-list text-upparcase">
-                <li><a ng-click="logout()"><span class="icon-avatar"></span><span class="hidden-xs">Logout</span></a></li>
+                <li><a ng-click="logout()"><span class="icon-login"></span><span class="hidden-xs">Logout</span></a></li>
                 <li><a href="#home/properties/add"><span class="hidden-xs">Add property</span><span class="icon-plus-square"></span></a></li>
             </ul>
         </div>
@@ -21,6 +22,7 @@
     <main id="main" role="main">
 
         <aside id="sidebar-dashboard" ng-controller="SidebarController">
+            <a class="sideBar-opener"><span class="icon-cross"></span></a>
             <div class="profile-picture">
                 <div class="image-holder"><img src="{{getUserLogo()}}" alt="user image is broken"></div>
                 <div class="name">
@@ -32,11 +34,9 @@
                 <ul class="alerts">
                     <li>
                         <a href="#"><span class="icon-message"></span></a>
-                        <span class="count">999</span>
                     </li>
                     <li>
                         <a href="#"><span class="icon-email-alerts"></span></a>
-                        <span class="count">99</span>
                     </li>
                 </ul>
             </div>

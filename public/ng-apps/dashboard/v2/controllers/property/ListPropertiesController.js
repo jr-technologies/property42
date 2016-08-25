@@ -14,8 +14,8 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
     $scope.html_title = "Property42 | Add Property";
     $scope.currentRoute = $state.current;
     $scope.propertiesPurpose = $state.current.name.split(".")[2];
-    $scope.propertiesLimit = '20';
     $scope.searchPropertiesParams = data.searchPropertiesParams;
+    $scope.propertiesLimit = '1';
     $scope.activeStatus = 1;
     $scope.properties = data.properties;
     $scope.deletingPropertyId = 0;
@@ -251,5 +251,8 @@ app.controller("ListPropertiesController",["$q", "data", "$CustomHttpService", "
         }, function errorCallback(response) {
 
         });
+        if (screen.width < 1024){
+            //$('.property-status-links').slideUp();
+        }
     };
 }]);

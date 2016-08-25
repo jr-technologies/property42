@@ -1,14 +1,15 @@
 <div class="property-listing-page" ng-init="initialize()">
     <ul class="sorting-filtering">
         <li>
-            <label for="show_total">View</label>
+            <label for="show-properties">View</label>
             <div class="input-holder">
                 <span class="fake-select">
-                 <select ng-model="params.limit" ng-change="limitChanged()" id="show_total">
-                     <option>20</option>
-                     <option>20</option>
-                     <option>20</option>
-                 </select>
+                   <select id="show-properties" ng-model="params.limit" ng-change="limitChanged()">
+                       <option value="10">10</option>
+                       <option value="20">20</option>
+                       <option value="50">50</option>
+                       <option value="100">100</option>
+                   </select>
                 </span>
             </div>
         </li>
@@ -50,18 +51,5 @@
                 </ul>
             </div>
         </li>
-    </ul>
-    <ul class="pager">
-        <li><a href="#" class="first"><span class="icon-arrow1-left"></span></a></li>
-        <li><a href="#" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">7</a></li>
-        <li><a href="#" class="next"><span class="icon-bold-arrow-right"></span></a></li>
-        <li><a href="#" class="last"><span class="icon-arrow1-right"></span></a></li>
     </ul>
 </div>
