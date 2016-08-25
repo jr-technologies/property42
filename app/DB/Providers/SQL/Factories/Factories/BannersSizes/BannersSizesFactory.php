@@ -22,7 +22,14 @@ class BannersSizesFactory extends SQLFactory implements SQLFactoriesInterface
         $this->model = new BannerSize();
         $this->tableGateway = new BannersSizesQueryBuilder();
     }
-
+    public function deleteBannerSize($bannerId)
+    {
+        return $this->tableGateway->deleteWhere(['banner_id'=>$bannerId]);
+    }
+    public function getByBanner($bannerId)
+    {
+        return $this->tableGateway->getByBanner($bannerId);
+    }
     public function all()
     {
         return $this->mapCollection($this->tableGateway->all());
@@ -51,7 +58,7 @@ class BannersSizesFactory extends SQLFactory implements SQLFactoriesInterface
         $finalRecord = [];
         foreach($area as $key=>$value)
         {
-            $finalRecord[] = ['banner_id'=>$bannerId,'area'=>LandArea::convert('marla','square feet',$value),'unit'=>$unit,'created_at' =>date('Y-m-d h:i:s')];
+            $finalRecord[] = ['banner_id'=>$bannerId,'area'=>LandArea::convert($unit,'square feet',$value),'unit'=>$unit,'created_at' =>date('Y-m-d h:i:s')];
         }
         return $this->tableGateway->insertMultiple($finalRecord);
     }

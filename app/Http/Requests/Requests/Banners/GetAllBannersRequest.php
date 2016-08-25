@@ -11,7 +11,7 @@ namespace App\Http\Requests\Requests\Banners;
 
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\BannersValidators\GetAllBannersValidator;
+use App\Http\Validators\Validators\BannerValidators\GetAllBannersValidator;
 use App\Transformers\Request\Banners\GetAllBannersTransformer;
 
 

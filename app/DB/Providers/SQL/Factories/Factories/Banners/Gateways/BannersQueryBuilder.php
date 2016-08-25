@@ -30,11 +30,11 @@ class BannersQueryBuilder extends QueryBuilder
         $bannerLimit = $this->getBannersLimit($params);
 
 
-         $query =  DB::table($this->table)
+        $query =  DB::table($this->table)
             ->leftjoin($bannerSocietiesTable,$this->table.'.id','=',$bannerSocietiesTable.'.banner_id')
             ->leftjoin($bannerSizeTable,$this->table.'.id','=',$bannerSizeTable.'.banner_id')
-             ->leftjoin($bannerPages,$this->table.'.id','=',$bannerPages.'.banner_id')
-             ->leftjoin($pagesTable,$bannerPages.'.page_id','=',$pagesTable.'.id')
+            ->leftjoin($bannerPages,$this->table.'.id','=',$bannerPages.'.banner_id')
+            ->leftjoin($pagesTable,$bannerPages.'.page_id','=',$pagesTable.'.id')
             ->select($this->table.'.*');
 
         $query = $query->orWhere(function ($query)  use ($bannerSocietiesTable, $bannerSizeTable, $landUnit, $params) {
@@ -49,22 +49,29 @@ class BannersQueryBuilder extends QueryBuilder
             });
             return $query;
         });
-        if(isset($params['bannerType']) && $params['bannerType'] !=null && $params['bannerType'] !="")
-          $query =  $query->where($this->table.'.banner_type','=',$params['bannerType']);
+
+        $query = $query->orWhere(function ($query)  use ($params) {
+            $query =  $query->where($this->table.'.banner_type','=','fix');
+            return $query;
+        });
+
+
+        if(isset($params['position']) && $params['position'] !=null && $params['position'] !="")
+            $query =  $query->where($this->table.'.position','=',$params['position']);
 
         if(isset($params['page']) && $params['page'] !=null && $params['page'] !="")
             $query =  $query->where($pagesTable.'.page','=',$params['page']);
 
         $query = $query->orderBy($this->table.'.banner_priority', 'DESC');
         $query = $query->skip(0)->take($bannerLimit);
-         $query = $query->groupBy($this->table.'.id');
-         $query = $query->get();
+        $query = $query->groupBy($this->table.'.id');
+        $query = $query->get();
         return $query;
     }
     public function getLandUnit($params)
     {
         if(isset($params['landUnitId']) && $params['landUnitId'] !=null && $params['landUnitId'] !="")
-        return config('constants.LAND_UNITS')[$params['landUnitId']];
+            return config('constants.LAND_UNITS')[$params['landUnitId']];
         return null;
     }
     public function getBannersLimit($params)
@@ -72,6 +79,36 @@ class BannersQueryBuilder extends QueryBuilder
         if(isset($params['position']) && $params['position'] !=null && $params['position'] !="")
             return config('constants.Banners_Limit')[$params['page']][$params['position']];
 
-            return  config('constants.defaultBannerLimit');
+        return  config('constants.defaultBannerLimit');
+    }
+
+    public function getAllBanners($params)
+    {
+        return DB::table($this->table)
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'))
+            ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
+            ->get();
+    }
+    public function bannerCount()
+    {
+        return DB::select('select FOUND_ROWS() as total_records');
+    }
+    private function computePagination($params)
+    {
+        $pagination = [
+            'start' => 0,
+            'limit' => config('constants.PROPERTIES_LIMIT')
+        ];
+        if(isset($params['page']) ){
+            $page = intval($params['page']);
+            $page = ($page < 1)?1: $page;
+            $limit = intval($params['limit']);
+            $limit = ($limit < 1)?config('constants.defaultBannerLimit'):$limit;
+            $start = $limit*($page-1);
+
+            $pagination['start'] = $start;
+            $pagination['limit'] = $limit;
+        }
+        return $pagination;
     }
 }

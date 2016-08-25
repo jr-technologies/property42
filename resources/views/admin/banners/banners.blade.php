@@ -25,7 +25,7 @@
                 <td>
                     <label>select society</label>
                     <select name="society_id[]" multiple>
-                        <option value="">Please Select Society</option>
+                        <option value="" selected>All Societies</option>
                         @foreach($response['data']['societies'] as $society)
 
                             <option value="{{$society->id }}">{{$society->name}}</option>
@@ -52,20 +52,20 @@
                 <td>
                     <label>select Land area</label>
                     <select name="area[]" multiple>
-                        <option value="">Please Select Land Area</option>
+                        <option value="" selected>All Sizes</option>
                         @for($i =1; $i <=100; $i++)
-                        <option value="{{$i}}">{{$i}}</option>
+                            <option value="{{$i}}">{{$i}}</option>
                         @endfor
-                      </select><br/><br/>
+                    </select><br/><br/>
                     Hold Ctrl button and Select Multiple
                 </td>
                 <td>
-                <label>select Land Unit</label>
-                <select name="unit" >
-                    <option value="">Please Select Unit</option>
-                    <option value="marla">Marla</option>
-                    <option value="kanal">Kanal</option>
-                 </select><br/><br/>
+                    <label>select Land Unit</label>
+                    <select name="unit" >
+                        <option value="">Please Select Unit</option>
+                        <option value="marla">Marla</option>
+                        <option value="kanal">Kanal</option>
+                    </select><br/><br/>
                 </td>
             </tr>
             <tr>
@@ -109,7 +109,7 @@
             <tr>
                 <td><br/><br/>
                     <label>Post Banner Link</label>
-                    <input type="text" name="banner_link" value="" placeholder="please Enter Banner Link" required><br/><br/>
+                    <input type="text" name="banner_link" value="" placeholder="please Enter Banner Link"><br/><br/>
                     <button type="submit">Add Banner</button>
                 </td>
 

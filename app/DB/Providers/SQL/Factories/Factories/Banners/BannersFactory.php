@@ -22,41 +22,46 @@ class BannersFactory extends SQLFactory implements SQLFactoriesInterface
         $this->model = new Banner();
         $this->tableGateway = new BannersQueryBuilder();
     }
-    /**
-     * @return array Country::class
-     **/
+
+    public function getAllBanners($params)
+    {
+        return $this->mapCollection($this->tableGateway->getAllBanners($params));
+    }
     public function all()
     {
-        return $this->mapCollection($this->tableGateway->all());
+        $this->tableGateway->all();
+    }
+    public function delete($bannerId)
+    {
+        return $this->tableGateway->delete($bannerId);
+    }
+    public function bannerCount()
+    {
+        return $this->tableGateway->bannerCount();
     }
 
-    /**
-     * @param string $id
-     * @return Block::class
-     **/
     public function find($id)
     {
         return $this->map($this->tableGateway->find($id));
     }
     public function getBanners($params)
     {
-        $collection = collect($this->tableGateway->getBanners($params));
-        $bannerType = $collection->groupBy('banner_type');
-        $fixedBanners = (isset($bannerType['fix']))?$bannerType['fix']:[];
-        $groupedRelevantBanners = (isset($bannerType['relevant']))?$bannerType['relevant']->groupBy('position'):[];
-        return [
-            'fixBanners' => $fixedBanners,
-            'relevantBanners' =>$groupedRelevantBanners
-        ];
-    }
-    public function getBlocksWithSociety()
-    {
-        return $this->tableGateway->getBlocksWithSociety();
+        return $this->tableGateway->getBanners($params);
+//        $collection = collect($this->tableGateway->getBanners($params));
+//        $bannerType = $collection->groupBy('banner_type');
+//        $fixedBanners = (isset($bannerType['fix']))?$bannerType['fix']:[];
+//        $groupedRelevantBanners = (isset($bannerType['relevant']))?$bannerType['relevant']->groupBy('position'):[];
+//        return [
+//            'fixBanners' => $fixedBanners,
+//            'relevantBanners' =>$groupedRelevantBanners
+//        ];
     }
 
-    public function updateWhere(array $where, array $data)
+
+
+    public function updateBanner(Banner $banner)
     {
-        return $this->tableGateway->updateWhere($where, $data);
+        $this->tableGateway->updateWhere(['id'=>$banner->id],$this->mapBannerOnTable($banner));
     }
     public function getTable()
     {
@@ -69,7 +74,7 @@ class BannersFactory extends SQLFactory implements SQLFactoriesInterface
     public function store(Banner $banner)
     {
         $banner->updatedAt = date('Y-m-d h:i:s');
-        return $this->tableGateway->insert($this->mapBlockOnTable($banner));
+        return $this->tableGateway->insert($this->mapBannerOnTable($banner));
     }
 
     public function map($result)
@@ -85,7 +90,7 @@ class BannersFactory extends SQLFactory implements SQLFactoriesInterface
         $banner->updatedAt = $result->updated_at;
         return $banner;
     }
-    private function mapBlockOnTable(Banner $banner)
+    private function mapBannerOnTable(Banner $banner)
     {
         return [
             'position'     => $banner->position,

@@ -105,6 +105,46 @@ Route::post('maliksajidawan786@gmail.com/add/banner',
     ]
 );
 
+Route::get('maliksajidawan786@gmail.com/banners/listing',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAllBannersRequest'
+            ],
+        'uses'=>'Admin\BannersController@bannersListing'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/banner',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@deleteBanner'
+    ]
+);
+
+Route::post('get/update/banner/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@getUpdateBannerForm'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/update/banner',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@updateBanner'
+    ]
+);
+
 Route::get('maliksajidawan786@gmail.com/societies',
     [
         'middleware'=>

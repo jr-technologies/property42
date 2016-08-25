@@ -92,7 +92,7 @@ class PropertiesController extends Controller
         $properties = $this->properties->search($request->getParams());
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
-        $banners = $this->banners->getBanners($params);
+        $banners = $this->getPropertyListingPageBanners($params);
         return $this->response->setView('frontend.v2.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
@@ -106,17 +106,53 @@ class PropertiesController extends Controller
             'banners'=>$banners
         ]]);
     }
-
+    public function getPropertyListingPageBanners($params)
+    {
+        $leftBanners = $this->banners->getBanners([
+            'bannerType'=>'relevant',
+            'position'=>'left',
+            'page'=>'property_listing',
+            'landUnitId'=>$params['landUnitId'],
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+        $topBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'top',
+            'page'=>'property_listing',
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+        $betweenBanners  = $this->banners->getBanners([
+            'bannerType'=>'relevant',
+            'position'=>'between',
+            'page'=>'property_listing',
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+        return $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners,
+            'between'=>$betweenBanners
+        ];
+    }
+    public function getIndexPageBanners()
+    {
+        $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
+        $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
+        return $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners
+        ];
+    }
     public function index(IndexRequest $request)
     {
         $agents = $this->users->getTrustedAgentsWithPriority(['limit'=>36]);
         $importantSocieties = $this->societies->getImportantSocieties();
-        $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
-        $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
-        $banners = [
-            'leftBanners'=>$leftBanners,
-            'topBanners'=>$topBanners
-        ];
+        $banners = $this->getIndexPageBanners();
         $saleAndRentCount = $this->propertiesRepo->countSaleAndRendProperties();
         return $this->response->setView('frontend.v2.index')->respond(['data' => [
             'societies'=>$this->societies->all(),

@@ -1,5 +1,11 @@
 @extends('frontend.v2.frontend')
 @section('content')
+
+    @if(isset($response['data']['banners']['leftBanners']))
+    @foreach($response['data']['banners']['leftBanners'] as $banner)
+        <a @if($banner->banner_link !="")href="{{$banner->banner_link}}" @endif><img src="{{$banner->image}}"></a>
+        @endforeach
+    @endif
 <section class="generic-section">
         <div class="container">
             <h1>News <span>Update</span></h1>

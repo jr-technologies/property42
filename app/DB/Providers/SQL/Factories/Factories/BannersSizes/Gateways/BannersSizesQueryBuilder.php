@@ -16,5 +16,11 @@ class BannersSizesQueryBuilder extends QueryBuilder
     {
         $this->table = 'banners_targeted_sizes';
     }
-
+    public function getByBanner($bannerId)
+    {
+       return DB::table($this->table)
+            ->select($this->table.'.*')
+            ->where($this->table.'.banner_id','=',$bannerId)
+            ->get();
+    }
 }

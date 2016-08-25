@@ -51,7 +51,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
                                                 </div>
-                                                <button type="submit">Go</button>
+
                                             </div>
                                         </div>
                                     </li>
@@ -65,7 +65,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                                 </div>
-                                                <button type="submit">Go</button>
+
                                             </div>
                                             <span class="calculatedPrice">Please enter the price.</span>
                                         </div>
@@ -226,10 +226,10 @@
                                 </article>
                                 <?php
                                 if(($count %3) == 0)
-                                if(isset($response['data']['banners']['relevantBanners']['between']) && isset($response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]))
+                                if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 
                                 { ?>
-                                <li><a href="{{$response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]->banner_link}}"><img src="{{$response['data']['banners']['relevantBanners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a></li>
+                                <li><a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a></li>
                                 <?php
                                 $betweenCountIndex++;
                                 }
@@ -310,9 +310,9 @@
                 </div>
                 <ul class="Ads">
 
-                    @if(isset($response['data']['banners']['relevantBanners']['left']))
-                        @foreach($response['data']['banners']['relevantBanners']['left'] as $leftBanner)
-                            <li><a href="{{$response['data']['banners']['relevantBanners']['left'][$betweenCountIndex]->banner_link}}"><img src="{{$leftBanner->image}}"></a></li>
+                    @if(isset($response['data']['banners']['leftBanners']))
+                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner)
+                            <li><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}"></a></li>
                         @endforeach
                     @endif
                 </ul>

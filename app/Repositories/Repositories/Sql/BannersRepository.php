@@ -26,10 +26,26 @@ class BannersRepository extends SqlRepository implements BannersRepoInterface
     public function __construct()
     {
          $this->factory = new BannersFactory();
-        $this->bannerSociety = new BannersSocietiesFactory();
-        $this->bannerSizes = new BannersSizesFactory();
-        $this->bannerPages = new BannersPagesFactory();
+        $this->bannerSocietyFactory = new BannersSocietiesFactory();
+        $this->bannerSizesFactory = new BannersSizesFactory();
+        $this->bannerPagesFactory = new BannersPagesFactory();
 
+    }
+    public function delete($bannerId)
+    {
+        return $this->factory->delete($bannerId);
+    }
+    public function getBanner($bannerId)
+    {
+        return $this->factory->find($bannerId);
+    }
+    public function getAllBanners($params)
+    {
+        return $this->factory->getAllBanners($params);
+    }
+    public function bannerCount()
+    {
+        return $this->factory->bannerCount();
     }
     public function getBanners($params)
     {
@@ -41,14 +57,18 @@ class BannersRepository extends SqlRepository implements BannersRepoInterface
     }
     public function saveSocieties( $societies,$bannerId)
     {
-        return $this->bannerSociety->saveSocieties( $societies,$bannerId);
+        return $this->bannerSocietyFactory->saveSocieties( $societies,$bannerId);
     }
     public function saveBannerSizes($bannerId,$area,$unit)
     {
-        return $this->bannerSizes->saveBannerSizes($bannerId,$area,$unit);
+        return $this->bannerSizesFactory->saveBannerSizes($bannerId,$area,$unit);
+    }
+    public function updateBanner(Banner $banner)
+    {
+        $this->factory->updateBanner($banner);
     }
     public function saveBannerPages($bannerId,$pageIds)
     {
-        return $this->bannerPages->saveBannerPages($bannerId,$pageIds);
+        return $this->bannerPagesFactory->saveBannerPages($bannerId,$pageIds);
     }
 }

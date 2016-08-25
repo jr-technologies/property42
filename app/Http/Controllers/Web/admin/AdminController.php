@@ -183,7 +183,6 @@ class AdminController extends Controller
 
     public function societies(GetAllSocietiesRequest $request)
     {
-        //dd('d');
         return $this->response->setView('admin.society.society-listing')->respond(['data' => [
             'societies' => $this->factoryRepo->all()
         ]]);

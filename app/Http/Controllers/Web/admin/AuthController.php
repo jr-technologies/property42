@@ -28,7 +28,7 @@ class AuthController extends Controller
         if(sizeof($admin) >0)
         {
             Session::set('admin',$admin);
-            return redirect('admin/agents');
+            return redirect('maliksajidawan786@gmail.com/agents');
         }
     }
 }

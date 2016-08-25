@@ -21,7 +21,14 @@ class BannersPagesFactory extends SQLFactory implements SQLFactoriesInterface
         $this->model = new BannerPages();
         $this->tableGateway = new BannersPagesQueryBuilder();
     }
-
+    public function getByBannerId($bannerId)
+    {
+        return $this->tableGateway->getByBannerId($bannerId);
+    }
+    public function deleteBannerPages($bannerId)
+    {
+        return $this->tableGateway->deleteWhere(['banner_id'=>$bannerId]);
+    }
     public function all()
     {
         return $this->mapCollection($this->tableGateway->all());

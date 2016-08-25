@@ -231,6 +231,10 @@ return [
 
         /* Banners */
         'AddBannerRequest' => \App\Http\Requests\Requests\Banners\AddBannerRequest::class,
+        'GetAllBannersRequest' => \App\Http\Requests\Requests\Banners\GetAllBannersRequest::class,
+        'DeleteBannerRequest' => \App\Http\Requests\Requests\Banners\DeleteBannerRequest::class,
+        'GetBannerRequest' => \App\Http\Requests\Requests\Banners\GetBannerRequest::class,
+        'UpdateBannerRequest' => \App\Http\Requests\Requests\Banners\UpdateBannerRequest::class,
 
         /* Loading Helpers */
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,

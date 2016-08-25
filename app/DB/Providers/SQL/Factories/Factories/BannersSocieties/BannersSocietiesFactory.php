@@ -28,13 +28,19 @@ class BannersSocietiesFactory extends SQLFactory implements SQLFactoriesInterfac
     {
         return $this->mapCollection($this->tableGateway->all());
     }
-
+    public function getByBanner($bannerId)
+    {
+        return $this->tableGateway->getByBanner($bannerId);
+    }
     public function find($id)
     {
         return $this->map($this->tableGateway->find($id));
     }
 
-
+    public function deleteBannerSocieties($bannerId)
+    {
+        return $this->tableGateway->deleteWhere(['banner_id'=>$bannerId]);
+    }
     public function updateWhere(array $where, array $data)
     {
         return $this->tableGateway->updateWhere($where, $data);
@@ -76,7 +82,7 @@ class BannersSocietiesFactory extends SQLFactory implements SQLFactoriesInterfac
     private function mapBlockOnTable(BannerSocieties $bannerSocieties)
     {
         return [
-            'banner_id'     => $bannerSocieties->bannerId,
+            'banner_id'  => $bannerSocieties->bannerId,
             'society_id'=> $bannerSocieties->societyId,
 
             'updated_at'=> $bannerSocieties->createdAt,

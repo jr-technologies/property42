@@ -16,5 +16,11 @@ class BannersSocietiesQueryBuilder extends QueryBuilder
     {
         $this->table = 'banners_targeted_societies';
     }
-
+    public function getByBanner($bannerId)
+    {
+       return DB::table($this->table)
+            ->select($this->table.'.society_id')
+            ->where($this->table.'.banner_id','=',$bannerId)
+            ->get();
+    }
 }

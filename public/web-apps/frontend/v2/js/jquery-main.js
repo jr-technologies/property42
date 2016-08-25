@@ -15,11 +15,9 @@ $(document).ready(function() {
 	}
 	$('.addPro-type:first').trigger('change');
 	$('.registration-form').find('.role-listing').hide();
-
-	if($('.agent-slide').length > 5){
-		$('.agent-societies').find('.btn-prev, .btn-next').css({
-			'display':'block'
-		});
+	if($('.Ads li').length == 0){
+		$('.Ads').remove();
+		$('.page-holder').addClass('no-ads');
 	}
 });
 
@@ -137,12 +135,29 @@ function initCarousel() {
 		step:1,
 		animSpeed: 600
 	});
+
+	jQuery('.agent-logos').scrollGallery({
+		mask: '.mask',
+		slider: '.slideset',
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		circularRotation: true,
+		pauseOnHover: true,
+		autoRotation: true,
+		maskAutoSize: false,
+		stretchSlideToMask: true,
+		switchTime: 2000,
+		step:1,
+		animSpeed: 600
+	});
 }
 
 // initialize fixed blocks on scroll
 function initFixedScrollBlock() {
 	jQuery('#wrapper').fixedScrollBlock({
-		slideBlock: '#header, #nav'
+		slideBlock: '#header'
 	});
 	jQuery('#main').fixedScrollBlock({
 		slideBlock: '#fixed-block',
@@ -242,6 +257,10 @@ $(document).on('click', '.navigation-toggler', function(){
 	$('html').toggleClass('nav-active');
 });
 
+$(document).on('click', '.togglerSearchButton', function(){
+	$('html').toggleClass('filters-active');
+});
+
 $(document).on('click', '.filters-links-opener', function(){
 	$(this).closest('li').toggleClass('active');
 
@@ -251,9 +270,6 @@ $(document).on('click', '.filters-links-opener', function(){
 	else {
 		$(this).closest('li').find('.slide').slideUp();
 	}
-});
-$(document).on('click', '.aside-opener-filters', function(){
-	$('#aside').slideToggle('active');
 });
 
 $(document).on('focusin', '.PriceField', function(){

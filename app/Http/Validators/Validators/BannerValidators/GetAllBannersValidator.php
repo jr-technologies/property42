@@ -6,7 +6,7 @@
  * Time: 4:15 PM
  */
 
-namespace App\Http\Validators\Validators\BannersValidators;
+namespace App\Http\Validators\Validators\BannerValidators;
 
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
