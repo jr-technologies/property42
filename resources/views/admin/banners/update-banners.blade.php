@@ -65,8 +65,8 @@
                 <label>select Land Unit</label>
                 <select name="unit" >
                     <option value="">Please Select Unit</option>
-                    <option value="marla" <?= (($response['data']['bannersSize']['unit'][0]) == 'marla')?'selected':''?>>Marla</option>
-                    <option value="kanal" <?= (($response['data']['bannersSize']['unit'][0]) == 'kanal')?'selected':''?>>Kanal</option>
+                    <option value="marla" <?= ((!emptyArray($response['data']['bannersSize']['unit']) && $response['data']['bannersSize']['unit'][0]) == 'marla')?'selected':''?>>Marla</option>
+                    <option value="kanal" <?= ((!emptyArray($response['data']['bannersSize']['unit']) && $response['data']['bannersSize']['unit'][0]) == 'kanal')?'selected':''?>>Kanal</option>
                  </select><br/><br/>
                 </td>
             </tr>

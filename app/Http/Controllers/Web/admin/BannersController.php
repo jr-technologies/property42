@@ -96,15 +96,15 @@ class BannersController extends Controller
     public function addBanner(AddBannerRequest $request)
     {
         $bannerId = $this->saveBanner($request);
-        if($request->get('societiesIds') !=null && $request->get('societiesIds')!="")
+        if($request->get('societiesIds')[0] !=null && $request->get('societiesIds')[0] != "")
         {
             $this->saveBannerSocieties($request->get('societiesIds'),$bannerId);
         }
-        if($request->get('area') !=null && $request->get('area')!="")
+        if($request->get('area')[0] !=null && $request->get('area')[0] != "")
         {
             $this->saveBannerSizes($bannerId,$request->get('area'),$request->get('unit'));
         }
-        if($request->get('pagesIds') !=null && $request->get('pagesIds')!="")
+        if($request->get('pagesIds')[0] !=null && $request->get('pagesIds')[0] !="")
         {
             $this->saveBannerPages($bannerId,$request->get('pagesIds'));
         }

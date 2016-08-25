@@ -51,7 +51,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
                                                 </div>
-
+                                                <button type="submit">Go</button>
                                             </div>
                                         </div>
                                     </li>
@@ -65,7 +65,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                                 </div>
-
+                                                <button type="submit">Go</button>
                                             </div>
                                             <span class="calculatedPrice">Please enter the price.</span>
                                         </div>

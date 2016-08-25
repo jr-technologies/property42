@@ -21,17 +21,17 @@
     </div>
 </div>
 <div id="wrapper">
+    <div class="w1-holder">
+        <div class="w1">
     <div class="main-bg-holder {{(Route::getCurrentRoute()->getPath() !='/')?'byDefault-fixed':''}}">
         <header id="header">
             <div class="top-bar">
-                <ul class="social-icons">
-                    <li><a target="_blank" href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
-                    <li><a target="_blank" href="https://plus.google.com/115605703040474791286"><span class="icon-google-plus-symbol"></span></a></li>
-                    <li><a target="_blank" href="https://www.linkedin.com/in/propertyfortytwo-pk-275899124"><span class="icon-linkedin"></span></a></li>
-                    <li><a target="_blank" href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
-                    <li><a target="_blank" href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
-                </ul>
-                <a href="#" class="navigation-toggler nav-opener"><span></span></a>
+
+                <a class="navigation-toggler nav-opener"><span></span><strong class="hidden-xs">menu</strong></a>
+                {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
+                <input type="search" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
+                <button type="submit"><span class="icon-search"></span></button>
+                {{Form::close()}}
                 <div class="right-sideTop text-right">
                     <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;</a>
                     <ul class="loginRegister text-upparcase text-left">
@@ -168,6 +168,8 @@
     <footer id="footer">
         <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
     </footer>
+        </div>
+    </div>
     <a href="#feedback" class="feedBack lightbox">Feedback</a>
     <div class="popup-holder">
         <div id="feedback" class="lightbox generic-lightbox">
