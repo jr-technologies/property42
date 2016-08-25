@@ -34,6 +34,7 @@ app.factory("$ResourceLoader", function ($rootScope, $http, $AuthService) {
                 $rootScope.resourceLoading = false;
                 $rootScope.please_wait_class = '';
                 $rootScope.loading_resources_class = '';
+                $('.page-loader').fadeOut();
                 return response;
             }, function errorCallback(response) {
                 $rootScope.resourceLoading = false;

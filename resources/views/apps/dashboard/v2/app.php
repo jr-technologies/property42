@@ -58,7 +58,12 @@
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/controllers/HeaderController.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/routes.js"></script>
 </head>
-<body class="loading-page sideBar-active">
+<body class="loading-page sideBar-active  {{loading_resources_class}}">
+<div class="page-loader">
+    <div class="page-loader-holder">
+        <img src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/assets/images/loader.gif" alt="Property42 loading">
+    </div>
+</div>
 
 <div class="" ng-controller="ParentController">
     <ui-view></ui-view>

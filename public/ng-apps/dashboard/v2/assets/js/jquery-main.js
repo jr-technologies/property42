@@ -1,5 +1,4 @@
 jQuery(window).load(function(){
-    $('.page-loader').fadeOut();
     $('body').removeClass('loading-page');
 });
 
