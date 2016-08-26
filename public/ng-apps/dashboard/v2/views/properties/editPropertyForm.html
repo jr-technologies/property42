@@ -1,7 +1,7 @@
 <div class="addProperty-form container {{please_wait_class}}" ng-init="initialize()">
     <span class="global-success" ng-show="propertySaved == true">Property Updated Successfully, It will be reviewed by our staff within 24 hours.</span>
     <div class="add-form-holder">
-        <h1>Add <span>Property</span></h1>
+        <h1>Update <span>Property</span></h1>
         <div class="main-form">
             <ul class="error">
                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
@@ -10,13 +10,13 @@
                 <strong class="add-pro-heading"><span>property for</span></strong>
                 <ul class="radio-checks-holder text-center">
                     <li>
-                        <label for="for-sale" class="custom-withouChecks transparent">
+                        <label for="sale" class="custom-withouChecks transparent">
                             <input type="radio" ng-model="form.data.propertyPurpose" value="1" name="propertyPurpose" id="sale">
                             <span class="fake-label">For Sale</span>
                         </label>
                     </li>
                     <li>
-                        <label for="for-rent" class="custom-withouChecks transparent">
+                        <label for="rent" class="custom-withouChecks transparent">
                             <input type="radio" ng-model="form.data.propertyPurpose" value="2" name="propertyPurpose" id="rent">
                             <span class="fake-label">For Rent</span>
                         </label>

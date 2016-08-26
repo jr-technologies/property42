@@ -48,7 +48,7 @@
                 <ul class="sideBar-links" filter-list="search">
                     <li><a href="#"><span class="icon-home-dash"></span>DASHBOARD</a></li>
                     <li ng-class="{'active':activeLink === 'home.properties.all'}">
-                        <a href="#home/listings/all"><span class="icon-list"></span>LISTINGS <span class="badge">{{propertiesCounts | filterByCountParam: undefined}}</span></a>
+                        <a href="#home/listings/all"><span class="icon-list"></span>LISTINGS <span class="total-tag">{{propertiesCounts | filterByCountParam: undefined}}</span></span></a>
                         <ul class="sub-links">
                             <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="total-tag">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
                         </ul>

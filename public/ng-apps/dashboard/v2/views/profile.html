@@ -78,17 +78,17 @@
         </ul>
         <strong class="registerNow-heading smaller">
             <span>
-                Are you an Agent ? <b>Yes</b>
+                Are you an Agent ? <b>No</b>
                 <label for="agent" class="agent-check">
                     <input type="checkbox" ng-disabled="userWasAgent == true" ng-model="userIsAgent" class="hidden-checkfield agent-brokerCheckbox" id="agent">
                     <span class="fake-checkbox">
                         <span class="fake-button"></span>
                     </span>
                 </label>
-                <b>No</b>
+                <b>Yes</b>
             </span>
         </strong>
-        <div class="agent-information">
+        <div class="agent-information" ng-show="userIsAgent == true">
             <strong class="registerNow-heading">Agent Information</strong>
             <div class="layout two first-small">
                 <div class="layout-holder">
@@ -127,7 +127,6 @@
                     <div class="input-holder" ng-class="{'error' : errors.societies.length > 0}">
                         <input type="text" placeholder="Select Societies You Deal In" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
                         <span class="error-text">{{errors.societies[0]}}</span>
-                        <span class="calculatedSocieties">{{form.data.societies.length}} selected</span>
                     </div>
                 </div>
                 <div class="layout-holder">
