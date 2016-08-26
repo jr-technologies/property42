@@ -22,7 +22,7 @@ $(document).ready(function() {
     }
     if (screen.width < 1024){
         $('body').removeClass('sideBar-active');
-        $(document).on('click', '.sideBar-links li a', function(){
+        $(document).on('click', '.sideBar-links li', function(){
             $('body').removeClass('sideBar-active');
         });
     }
@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 // page init
 jQuery(function(){
-    //initLightbox();
+    initLightbox();
     //initCarousel();
 });
 function initCarousel() {
@@ -244,7 +244,6 @@ $('.hidden-checkfield').change(function(){
 
     } else {
         $('.registration-form').removeClass("agent-info");
-        $('.company-logo').removeClass('hover');
         $('.agent-information').slideUp();
         $('.picture-holder').css({
             'display':'none'
@@ -253,7 +252,7 @@ $('.hidden-checkfield').change(function(){
 });
 
 $(document).on('click', '.role-opener', function(){
-    $('.registration-form').find('.role-listing').slideToggle();
+    //$('.registration-form').find('.role-listing').slideToggle();
     $(this).toggleClass('active');
 });
 
@@ -294,7 +293,7 @@ $(document).on('change', '.agent-brokerCheckbox', function(){
 function companyLogoUploader(file, target)
 {
     previewFile(file, target);
-    $(file).closest('.company-logo').find('.picture-holder').css({
+    $(file).closest('.company-logo').find('.picture-holder, .image-loaded').css({
         'display':'block'
     });
     $(file).closest('.company-logo').addClass('hover');
@@ -304,7 +303,7 @@ $(document).on('click', '.company-logo-delete', function(){
     $(this).closest('.company-logo').find('.company-profileP').attr('src', '');
     $(this).closest('.company-logo').find('.company-profileP').attr('alt', '');
     $(this).closest('.company-logo').removeClass('hover');
-    $(this).closest('.company-logo').find('.picture-holder').css({
+    $(this).closest('.company-logo').find('.picture-holder, .image-loaded').css({
         'display':'none'
     });
 });

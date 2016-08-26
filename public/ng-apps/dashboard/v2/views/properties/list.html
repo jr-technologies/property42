@@ -7,6 +7,9 @@
             </a>
         </li>
     </ul>
+    <ul class="multipal-actions">
+        <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="multipal-delete"><span class="icon-bin-delete"></span></a></li>
+    </ul>
     <ul class="sorting-filtering">
         <li ng-show="totalProperties > searchPropertiesParams.limit">
             <label for="show-properties">View</label>
@@ -66,7 +69,7 @@
                 <div class="pro-date border"><p>18 Apr 2016</p></div>
                 <div class="pro-controls border">
                     <ul class="control-link">
-                        <li><a href="#"><span class="icon-search-doc"></span></a></li>
+                        <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.active"><a href="{{domain}}property?propertyId={{property.id}}" target="_blank"><span class="icon-search-doc"></span></a></li>
                         <li ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted"><a href="#/home/properties/edit/{{property.id}}" ><span class="icon-pencil"></span></a></li>
                         <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted"><a ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-loop"></span></a></li>
                         <li><a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
