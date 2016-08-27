@@ -85,6 +85,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller: "AddPropertyController",
             auth: true
         })
+        .state('home.properties.add2', {
+            url: "/add2",
+            templateUrl: views+"/properties/addPropertyForm2.html",
+            controller: "AddPropertyController",
+            auth: true
+        })
 
         .state('home.properties.edit', {
             url: "/edit/{propertyId}",
