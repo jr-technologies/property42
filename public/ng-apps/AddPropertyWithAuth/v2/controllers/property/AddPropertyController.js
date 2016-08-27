@@ -63,6 +63,22 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
+
+    /*----------- testing phase -------------*/
+    $scope.onFileSelect = function($file, image) {
+        if($file.length == 0)
+            return;
+
+        Upload.upload({
+            url: apiPath+'image-test',
+            file: $file,
+            progress: function(e){}
+        }).then(function(data, status, headers, config) {
+            console.log('uploaded '+image);
+        });
+    };
+    /*--------------------------------------------*/
+
     $scope.searchSocieties = function ($select) {
         $scope.societies = [];
         if($select.search.length < 2){
