@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('image-test',function(){
+    $file = request()->file('file')[0];
+    return $file->move(storage_path('app/'), $file->getClientOriginalName());
+});
 
 
 Route::get('app/dashboard/resources',

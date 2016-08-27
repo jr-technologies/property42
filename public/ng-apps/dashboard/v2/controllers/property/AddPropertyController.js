@@ -63,6 +63,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
+    
     $scope.searchSocieties = function ($select) {
         $scope.societies = [];
         if($select.search.length < 2){
