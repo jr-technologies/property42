@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('image-test',function(){
-    $file = request()->file('file')[0];
+    $file = request()->file('file');
     return $file->move(storage_path('app/'), $file->getClientOriginalName());
 });
 

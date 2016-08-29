@@ -2,7 +2,7 @@
 
 Route::get('foo',function()
 {
-
+phpinfo();
     $statusesSeeder = new PropertyStatusTableSeeder();
     $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();
     $statuses = $statusesSeeder->getAllStatusIds();

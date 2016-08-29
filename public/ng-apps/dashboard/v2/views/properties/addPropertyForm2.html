@@ -139,6 +139,7 @@
                 <strong class="add-pro-heading"><span>Attachments</span></strong>
                 <ul class="image-uploading-area">
                     <li>
+                        <progress value="{{progress}}" max="100"></progress>
                         <div class="file-uploader">
                             <input type="file" ngf-select="onFileSelect($files, 1)" ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
                             <div class="image-holder">

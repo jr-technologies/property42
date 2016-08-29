@@ -63,7 +63,36 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         society: {id:0},
         block: {id:0}
     };
-    
+    $scope.progress = 0;
+    $scope.onFileSelect = function($files, num){
+        var fd = new FormData();
+        fd.append("file", $files[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", apiPath+"image-test");
+        xhr.send(fd)
+    };
+    var uploadProgress = function (evt) {
+        $scope.$apply(function(){
+            if (evt.lengthComputable) {
+                $scope.progress = Math.round(evt.loaded * 100 / evt.total)
+            } else {
+                $scope.progress = 'unable to compute'
+            }
+        })
+    };
+    var uploadComplete = function (event) {
+        console.log(event.currentTarget.status);
+    };
+    var uploadFailed = function (event) {
+        console.log('failed');
+    };
+    var uploadCanceled = function (event) {
+        console.log('canceled');
+    };
     $scope.searchSocieties = function ($select) {
         $scope.societies = [];
         if($select.search.length < 2){
