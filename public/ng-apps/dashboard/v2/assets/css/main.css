@@ -3112,6 +3112,7 @@ input[type='submit'] {
     right: 0;
     z-index: 500;
     display: none;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.45);
   }
 }
 
@@ -3305,7 +3306,6 @@ input[type='submit'] {
   letter-spacing: -4px;
   font-family: "Open Sans", "Arial", sans-serif;
   margin: 0 -10px;
-  padding: 20px 0 0;
 }
 
 .property-listing-page .sorting-filtering > * {
@@ -3331,7 +3331,7 @@ input[type='submit'] {
 .property-listing-page .sorting-filtering li {
   color: #555;
   width: 33.33%;
-  padding: 0 10px 15px;
+  padding: 20px 10px 15px;
   font-size: 0;
   line-height: 0;
   letter-spacing: -4px;
@@ -3347,7 +3347,7 @@ input[type='submit'] {
 
 @media (max-width: 767px) {
   .property-listing-page .sorting-filtering li {
-    padding: 0 5px 5px;
+    padding: 10px 5px 5px;
     width: 50%;
     font-size: 0;
     line-height: 0;
@@ -3524,6 +3524,19 @@ input[type='submit'] {
   content: 'Deleting...';
 }
 
+@media (max-width: 1199px) {
+  .property-listing-page .listing-pro li.t-d.deleting:after {
+    text-align: right;
+    padding: 15px 40px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .listing-pro li.t-d.deleting:after {
+    content: '';
+  }
+}
+
 .property-listing-page .listing-pro li.t-d.deleting:before {
   margin: 10px 0 0 -70px;
   content: "\e937";
@@ -3533,9 +3546,35 @@ input[type='submit'] {
   animation: deleting 1.5s ease infinite;
 }
 
+@media (max-width: 1199px) {
+  .property-listing-page .listing-pro li.t-d.deleting:before {
+    left: 100%;
+    margin: 13px 0 0 -180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .listing-pro li.t-d.deleting:before {
+    margin: 13px 0 0 -100px;
+  }
+}
+
 .property-listing-page .listing-pro li.t-d.restoring:after {
   background: #30ce20;
   content: 'Restoring...';
+}
+
+@media (max-width: 1199px) {
+  .property-listing-page .listing-pro li.t-d.restoring:after {
+    text-align: right;
+    padding: 15px 40px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .listing-pro li.t-d.restoring:after {
+    content: '';
+  }
 }
 
 .property-listing-page .listing-pro li.t-d.restoring:before {
@@ -3545,6 +3584,19 @@ input[type='submit'] {
   -moz-animation: restoring 1.5s ease infinite;
   -webkit-moz-animation: restoring 1.5s ease infinite;
   animation: restoring 1.5s ease infinite;
+}
+
+@media (max-width: 1199px) {
+  .property-listing-page .listing-pro li.t-d.restoring:before {
+    left: 100%;
+    margin: 13px 0 0 -180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .property-listing-page .listing-pro li.t-d.restoring:before {
+    margin: 13px 0 0 -100px;
+  }
 }
 
 .property-listing-page .listing-pro li.t-d:after {
@@ -5308,6 +5360,12 @@ h1 {
   }
 }
 
+@media (max-width: 1023px) {
+  .searchByID {
+    margin: 0 0 0 30px;
+  }
+}
+
 @media (max-width: 767px) {
   .searchByID {
     margin: 0;
@@ -5811,7 +5869,7 @@ h1 span {
 
 #header .left-header {
   width: 25%;
-  margin: 17px 0 0;
+  margin: 21px 0 0;
   position: relative;
 }
 
@@ -5870,6 +5928,12 @@ h1 span {
   }
 }
 
+@media (max-width: 1023px) {
+  #header .left-header .home.hidden-xs {
+    display: none;
+  }
+}
+
 #header .left-header .searchOpener-Mobile {
   margin: 5px 3px 0;
 }
@@ -5906,6 +5970,8 @@ h1 span {
   width: 100%;
   max-width: 215px;
   margin: 0 auto;
+  position: relative;
+  right: 70px;
 }
 
 @media (max-width: 1539px) {
@@ -6001,14 +6067,14 @@ h1 span {
   border-radius: 0 20px 20px 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .sideBar-opener.Main {
     left: 10px;
     width: 30px;
     height: 20px;
     border: 0;
     border-radius: 0;
-    top: 20px;
+    top: 40px;
     bottom: auto;
     text-align: center;
   }
@@ -6039,6 +6105,12 @@ h1 span {
   }
 }
 
+@media (max-width: 767px) {
+  .sideBar-opener.Main {
+    top: 20px;
+  }
+}
+
 .sideBar-opener:after {
   position: absolute;
   top: 50%;
@@ -6066,9 +6138,14 @@ h1 span {
 
 @media (max-width: 1023px) {
   #sidebar-dashboard {
+    background: #a7afb4;
+  }
+}
+
+@media (max-width: 767px) {
+  #sidebar-dashboard {
     width: 100%;
     left: -100%;
-    background: #a7afb4;
   }
 }
 
@@ -7393,7 +7470,7 @@ h1 span {
 .loading-content:before {
   background: url("../images/ring1.gif") no-repeat;
   position: absolute;
-  top: 15%;
+  top: 30%;
   left: 50%;
   margin: 0 0 0 -25px;
   z-index: 790;

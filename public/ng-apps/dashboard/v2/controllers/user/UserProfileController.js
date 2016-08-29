@@ -18,6 +18,13 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             return $scope.user.agencies[0].societies;
         return [];
     };
+
+    $scope.deleteSelectedSociety = function (societyId) {
+        delSocietyIndex = $scope.form.data.societies.indexOf(societyId);
+        if (delSocietyIndex > -1) {
+            $scope.form.data.societies.splice(delSocietyIndex, 1);
+        }
+    };
     var getUserRolesIds = function () {
         var ids = [];
         angular.forEach($scope.user.roles, function (role, key) {

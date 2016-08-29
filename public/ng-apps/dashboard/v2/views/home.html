@@ -1,8 +1,7 @@
 <div id="wrapper">
     <header id="header" ng-controller="HeaderController">
-        <a class="sideBar-opener"></a>
+        <a class="sideBar-opener Main"><span></span></a>
         <div class="left-header">
-            <a href="#home/listings/all" class="home"><span class="icon-home"></span></a>
             <a class="searchOpener-Mobile"><span class="icon-search"></span></a>
             <form class="searchByID"  ng-submit="searchProperty()">
                 <input type="search" placeholder="Search by ID" ng-model="propertyId">
@@ -12,7 +11,7 @@
         <div class="right-header">
             <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;" class="mail">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</a>
             <ul class="logout-list text-upparcase">
-                <li><a ng-click="logout()"><span class="icon-login"></span><span class="hidden-xs">Logout</span></a></li>
+                <li class="hidden-xs"><a ng-click="logout()"><span class="icon-login"></span><span class="hidden-xs">Logout</span></a></li>
                 <li><a href="#home/properties/add"><span class="hidden-xs">Add property</span><span class="icon-plus-square"></span></a></li>
             </ul>
         </div>
@@ -20,7 +19,6 @@
     </header>
 
     <main id="main" role="main">
-
         <aside id="sidebar-dashboard" ng-controller="SidebarController">
             <a class="sideBar-opener"><span class="icon-cross"></span></a>
             <div class="profile-picture">
@@ -56,6 +54,7 @@
                     <li ng-class="{'active':activeLink==='home.properties.favourites'}"><a href="#home/properties/favourites"><span class="icon-star"></span>FAVORITES<span class="total-tag">{{favouritesCount}}</span></a></li>
                     <li ng-class="{'active':activeLink==='home.profile'}"><a href="#home/profile"><span class="icon-profile2"></span>My Profile</a></li>
                     <li ng-class="{'active':activeLink==='home.change-password'}"><a href="#home/change-password"><span class="icon-chabbi"></span>Change Password</a></li>
+                    <li ng-click="logout()"><a href="#"><span class="icon-login"></span>LOGout</a></li>
                 </ul>
             </div>
             <ul class="social-icons">

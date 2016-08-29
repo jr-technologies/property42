@@ -7,9 +7,6 @@
             </a>
         </li>
     </ul>
-    <ul class="multipal-actions">
-        <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="multipal-delete"><span class="icon-bin-delete"></span></a></li>
-    </ul>
     <ul class="sorting-filtering">
         <li ng-show="totalProperties > searchPropertiesParams.limit">
             <label for="show-properties">View</label>
@@ -37,6 +34,9 @@
         <!--</li>-->
     </ul>
     <strong class="property-for">{{propertiesPurpose}}</strong>
+    <ul class="multipal-actions">
+        <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="multipal-delete"><span class="icon-bin-delete"></span></a></li>
+    </ul>
     <div class="table-responsive">
         <ul class="listing-pro">
             <li class="t-h text-upparcase text-center">

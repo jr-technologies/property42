@@ -127,13 +127,13 @@
                     <div class="input-holder" ng-class="{'error' : errors.societies.length > 0}">
                         <input type="text" placeholder="Select Societies You Deal In" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
                         <span class="error-text">{{errors.societies[0]}}</span>
-                        <span>({{form.data.societies.length}} Selected)</span>
+                        <span ng-show="form.data.societies.length > 0">({{form.data.societies.length}} Selected)</span>
                     </div>
                 </div>
                 <div class="layout-holder">
                     <ul class="packetData-list">
                         <li ng-repeat="society in getSelectedSocieties()">
-                            <strong class="packetData">{{society.name}}<a class="delete" data-target="society{{society.id}}"><span class="icon-cross"></span></a></strong>
+                            <strong class="packetData">{{society.name}}<a class="delete" ng-click="deleteSelectedSociety(society.id)" data-target="society{{society.id}}"><span class="icon-cross"></span></a></strong>
                         </li>
                     </ul>
                 </div>
