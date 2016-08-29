@@ -22,7 +22,7 @@
                                         <div class="slide">
                                             <ul class="filterChecks">
                                                 <li>
-                                                    <select class="js-example-basic-single filter-form-input" name="society_id">
+                                                    <select class="js-example-basic-single filter-form-input" name="society_id" id="society">
                                                         <option  value="">All Societies</option>
                                                         @foreach($response['data']['societies'] as $society)
                                                             <option value="{{$society->id}}" @if($response['data']['oldValues']['societyId'] == $society->id) selected @endif>{{$society->name}}</option>
@@ -30,7 +30,7 @@
                                                     </select>
                                                 </li>
                                                 <li>
-                                                    <select class="js-example-basic-single filter-form-input " @if(sizeof($response['data']['blocks']) == 0) disabled @endif name="block_id">
+                                                    <select class="js-example-basic-single filter-form-input " id="blocks" @if(sizeof($response['data']['blocks']) == 0) disabled @endif name="block_id">
                                                         <option  value="">All Blocks</option>
                                                         @foreach($response['data']['blocks'] as $block)
                                                             <option value="{{$block->id}}" @if($response['data']['oldValues']['blockId'] == $block->id) selected @endif>{{$block->name}}</option>
