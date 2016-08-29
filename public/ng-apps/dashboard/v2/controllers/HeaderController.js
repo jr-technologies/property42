@@ -12,8 +12,4 @@ app.controller("HeaderController",["$scope", "$rootScope", "$location", "$state"
             alert($scope.propertyId+' is not a valid property id.');
     };
 
-    $scope.logout = function () {
-        $AuthService.setAppToken(null);
-        window.location.href = $rootScope.domain+'logout';
-    }
 }]);

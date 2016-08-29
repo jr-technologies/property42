@@ -1,5 +1,5 @@
 <div class="property-listing-page" ng-init="initialize()">
-    <a class="property-status-links-opener"><span class="text-container">active</span><span class="lines"></span></a>
+    <a class="property-status-links-opener"><span class="text-container">Property Listings</span><span class="lines"></span></a>
     <ul class="property-status-links">
         <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active':searchPropertiesParams.status_id == propertyStatus.id}">
             <a ng-click="setPropertyStatus(propertyStatus.id)" href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?status={{propertyStatus.id}}" class="{{propertyStatus.name | lowercase}}">
