@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property42</title>
+    <title>Lahore Largest Property website | Property42.pk</title>
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-96x96.png" sizes="96x96">
@@ -126,7 +126,7 @@
             </div>
         @endif
         <nav id="nav">
-            {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
+            {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID hidden')) }}
             <input type="search" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
             <button type="submit"><span class="icon-search"></span></button>
             {{Form::close()}}
@@ -134,22 +134,22 @@
                 <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
                 <ul class="main-navigation text-upparcase">
                     <li class="">
-                        <a href="{{URL::to('/')}}"><span class="middle-align"><span class="icon-home"></span>HOME</span></a>
+                        <a href="{{URL::to('/')}}">HOME</a>
                     </li>
                     <li>
-                        <a href="{{URL::to('/')}}/search"><span class="middle-align"><span class="icon-d-building"></span>Properties</span></a>
+                        <a href="{{URL::to('/')}}/search">Properties</a>
                     </li>
                     <li>
-                        <a href="{{URL::to('agents')}}"><span class="middle-align"><span class="icon-male-close-up-silhouette-with-tie"></span>AGENTS</span></a>
+                        <a href="{{URL::to('agents')}}">AGENTS</a>
                     </li>
                     <li>
-                        <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}"><span class="middle-align"><span class="icon-light-bulb"></span>ABOUT</span></a>
+                        <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}">ABOUT</a>
                     </li>
                     <li>
-                        <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#contact-us':'#contact-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}"><span class="middle-align"><span class="icon-close-envelope"></span>CONTACT</span></a>
+                        <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#contact-us':'#contact-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}">CONTACT</a>
                     </li>
                 </ul>
-                <div class="mobile-content text-center hidden">
+                <div class="mobile-content text-center">
                     <ul class="social-icons">
                         <li><a target="_blank" href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
                         <li><a target="_blank" href="https://plus.google.com/115605703040474791286"><span class="icon-google-plus-symbol"></span></a></li>

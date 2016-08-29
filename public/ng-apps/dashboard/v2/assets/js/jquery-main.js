@@ -1,5 +1,5 @@
 jQuery(window).load(function(){
-    $('body').removeClass('loading-page');
+    //$('body').removeClass('loading-page');
 });
 
 $(document).ready(function() {

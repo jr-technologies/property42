@@ -426,3 +426,8 @@ $(document).on('click', '.packetData>.delete', function(){
 $(document).on('click', '.btn-close-working', function(){
 	$('.weAreWorking').addClass('hide');
 });
+$(document).on('click', '.main-navigation li a', function(){
+
+	$('html').removeClass('nav-active');
+
+});
