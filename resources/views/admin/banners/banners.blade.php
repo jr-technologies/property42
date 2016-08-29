@@ -82,6 +82,7 @@
                         <option value="" selected >Please Select Position</option>
                         <option value="top">Top</option>
                         <option value="left">Left</option>
+                        <option value="right">Right</option>
                         <option value="between">Between</option>
                     </select>
                 </td>

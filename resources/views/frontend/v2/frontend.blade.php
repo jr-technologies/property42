@@ -242,7 +242,7 @@
     @if(Route::getCurrentRoute()->getPath() =='/')
         <div class="weAreWorking">
             <p>We are working on it, and we will appreciate your <a href="#feedback" class="lightbox">FEEDBACK</a></p>
-            <a class="btn-close-working got-it">Got it.</a>
+            <a class="btn-close-working got-it" >Got it.</a>
             <a class="btn-close-working close"><span class="icon-cross"></span></a>
         </div>
     @endif

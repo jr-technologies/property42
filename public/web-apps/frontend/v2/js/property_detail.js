@@ -2,6 +2,16 @@
  * Created by jrpro_000 on 8/1/2016.
  */
 
+$(document).on('click','.got-it',function(cname, cvalue){
+    localStorage.setItem("gotIt", "true");
+});
+
+$(document).ready(function(){
+   if((localStorage.getItem("gotIt")) =="true"){
+       $('.weAreWorking').addClass('hide');
+   }
+});
+
 $(document).on('click','.add-to-favorite',function(){
     var addedClass = $(this).hasClass( "added" );
     if(addedClass == true)

@@ -17,11 +17,29 @@ return [
     'Banners_Limit' => [
         'property_listing'=>[
             'left'=>10,
+            'right'=>10,
             'between'=>4,
+            'top'=>4
+        ],
+        'agent-profile'=>[
+            'left'=>10,
+            'right'=>10,
+            'between'=>4,
+            'top'=>4
+        ],
+        'property_detail'=>[
+            'left'=>10,
+            'right'=>10,
+            'top'=>4
+        ],
+        'agent_listing'=>[
+            'left'=>10,
+            'right'=>10,
             'top'=>4
         ],
         'index'=>[
             'left'=>10,
+            'right'=>10,
             'between'=>4,
             'top'=>4
         ],

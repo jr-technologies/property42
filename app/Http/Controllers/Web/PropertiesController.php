@@ -125,6 +125,12 @@ class PropertiesController extends Controller
             'landAreaFrom'=>$params['landAreaFrom'],
             'landAreaTo'=>$params['landAreaTo']
         ]);
+        $rightBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'right',
+            'page'=>'property_listing',
+
+        ]);
         $betweenBanners  = $this->banners->getBanners([
             'bannerType'=>'relevant',
             'position'=>'between',
@@ -136,6 +142,7 @@ class PropertiesController extends Controller
         return $banners = [
             'leftBanners'=>$leftBanners,
             'topBanners'=>$topBanners,
+            'rightBanners'=>$rightBanners,
             'between'=>$betweenBanners
         ];
     }
@@ -143,9 +150,11 @@ class PropertiesController extends Controller
     {
         $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
         $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
+        $rightBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'right','page'=>'index']);
         return $banners = [
             'leftBanners'=>$leftBanners,
-            'topBanners'=>$topBanners
+            'topBanners'=>$topBanners,
+            'rightBanners'=>$rightBanners
         ];
     }
     public function index(IndexRequest $request)
@@ -181,6 +190,7 @@ class PropertiesController extends Controller
                    'loggedInUser' => $loggedInUser,
                    'user' => $this->users->find($property->owner->id),
                    'propertyOwner' => $propertyOwner,
+                   'banners'=>$this->getPropertyDetailPageBanners(),
                    'propertyId' => $request->get('propertyId')
                ]]);
            }else {
@@ -196,5 +206,29 @@ class PropertiesController extends Controller
        }
     }
 
+        public function getPropertyDetailPageBanners()
+        {
+            $leftBanners = $this->banners->getBanners([
+                'bannerType'=>'fix',
+                'position'=>'left',
+                'page'=>'property_detail'
 
+            ]);
+
+            $topBanners  = $this->banners->getBanners([
+                'bannerType'=>'fix',
+                'position'=>'top',
+                'page'=>'property_detail'
+            ]);
+            $rightBanners  = $this->banners->getBanners([
+                'bannerType'=>'fix',
+                'position'=>'right',
+                'page'=>'property_detail'
+            ]);
+            return $banners = [
+                'leftBanners'=>$leftBanners,
+                'topBanners'=>$topBanners,
+                'rightBanners'=>$rightBanners,
+            ];
+        }
 }

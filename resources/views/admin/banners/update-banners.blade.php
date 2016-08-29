@@ -28,7 +28,7 @@
                 <td>
                     <label>select society</label>
                     <select name="society_id[]" multiple>
-                        <option value="">Please Select Society</option>
+                        <option value="" <?= (sizeof($response['data']['bannerSocieties'])) ==0 ? 'selected':'' ?> >All Society</option>
                         @foreach($response['data']['societies'] as $society)
                             <option value="{{$society->id }}" <?= (in_array($society->id,$response['data']['bannerSocieties']))? 'selected':'' ?>  >{{$society->name}}</option>
                         @endforeach
@@ -54,7 +54,7 @@
                 <td>
                     <label>select Land area</label>
                     <select name="area[]" multiple>
-                        <option value="">Please Select Land Area</option>
+                        <option value="" <?= (sizeof($response['data']['bannersSize']['area'])) ==0 ? 'selected':'' ?> >All Land Area</option>
                         @for($i =1; $i <=100; $i++)
                         <option value="{{$i}}" <?= (in_array($i,$response['data']['bannersSize']['area']))? 'selected':'' ?>>{{$i}}</option>
                         @endfor
@@ -86,6 +86,7 @@
                         <option value="" selected >Please Select Position</option>
                         <option value="top" <?= (($response['data']['banner']->position) == 'top')?'selected':''?> >Top</option>
                         <option value="left" <?= (($response['data']['banner']->position) == 'left')?'selected':''?>>Left</option>
+                        <option value="right" <?= (($response['data']['banner']->position) == 'left')?'selected':''?>>Right</option>
                         <option value="between" <?= (($response['data']['banner']->position) == 'between')?'selected':''?>>Between</option>
                     </select>
                 </td>

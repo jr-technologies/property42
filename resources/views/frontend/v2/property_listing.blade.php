@@ -3,6 +3,14 @@
     <div class="page-holder">
         <div class="listing-page">
             <div class="add-holder-page">
+                <ul class="Ads">
+
+                    @if(isset($response['data']['banners']['leftBanners']))
+                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner)
+                            <li><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}"></a></li>
+                        @endforeach
+                    @endif
+                </ul>
                 <div class="container-holder">
                     <div class="container">
                         <a class="aside-opener-filters">Search Filters (Land, Area, ...)<span class="button"><b></b></span></a>
@@ -51,7 +59,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
                                                 </div>
-                                                <button type="submit">Go</button>
+
                                             </div>
                                         </div>
                                     </li>
@@ -65,7 +73,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                                 </div>
-                                                <button type="submit">Go</button>
+
                                             </div>
                                             <span class="calculatedPrice">Please enter the price.</span>
                                         </div>
@@ -147,6 +155,7 @@
                                     </li>
 
                                 </ul>
+                                <button type="submit">Apply Filter</button>
                             </form>
                         </aside>
                         <section id="content">
@@ -310,8 +319,8 @@
                 </div>
                 <ul class="Ads">
 
-                    @if(isset($response['data']['banners']['leftBanners']))
-                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner)
+                    @if(isset($response['data']['banners']['rightBanners']))
+                        @foreach($response['data']['banners']['rightBanners'] as $leftBanner)
                             <li><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}"></a></li>
                         @endforeach
                     @endif

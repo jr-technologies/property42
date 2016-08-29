@@ -74,17 +74,31 @@ class BannersController extends Controller
     }
     public function updateBanner(UpdateBannerRequest $request)
     {
+
         $this->bannersRepo->updateBanner($request->getBannerModel());
         $bannerId = $request->get('id');
-        if($request->get('societiesIds') !=null && $request->get('societiesIds')!="")
+        if($request->get('societiesIds') !=null)
         {
-            $this->bannersSocieties->deleteBannerSocieties($bannerId);
-            $this->saveBannerSocieties($request->get('societiesIds'),$bannerId);
+            if( $request->get('societiesIds')[0] =="")
+            {
+                $this->bannersSocieties->deleteBannerSocieties($bannerId);
+            }
+             else
+             {
+                $this->bannersSocieties->deleteBannerSocieties($bannerId);
+                $this->saveBannerSocieties($request->get('societiesIds'),$bannerId);
+             }
         }
-        if($request->get('area') !=null && $request->get('area')!="")
+        if($request->get('area') !=null )
         {
+            if($request->get('area')[0] =="")
             $this->bannerSize->deleteBannerSize($bannerId);
-            $this->saveBannerSizes($bannerId,$request->get('area'),$request->get('unit'));
+
+            else{
+                $this->bannerSize->deleteBannerSize($bannerId);
+                $this->saveBannerSizes($bannerId,$request->get('area'),$request->get('unit'));
+            }
+
         }
         if($request->get('pagesIds') !=null && $request->get('pagesIds')!="")
         {

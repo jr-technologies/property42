@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\User\SearchUsersRequest;
 use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Helpers\Helper;
+use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
@@ -29,6 +30,7 @@ class UsersController extends Controller
     public $societies = null;
     public $rand= "";
     public $properties = "";
+    public $banners ="";
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
         $this->response = $webResponse;
@@ -37,6 +39,7 @@ class UsersController extends Controller
         $this->societies = (new SocietiesRepoProvider())->repo();
         $this->userTransformer = $userTransformer;
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
+        $this->banners = (new BannersRepoProvider())->repo();
         $this->rand = new Helper();
     }
 
@@ -74,6 +77,7 @@ class UsersController extends Controller
             'allAgents' => $this->usersJsonRepo->getAllTrustedAgents(),
             'societies'=>$this->societies->all(),
             'params'=>$request->all(),
+            'banners'=>$this->getAgentListingPageBanners(),
             'totalAgentsFound' => $totalAgentsFound[0]->count,
         ]]);
     }
@@ -83,7 +87,8 @@ class UsersController extends Controller
         $userPropertiesState = $this->properties->userPropertiesState($request->get('userId'));
         return $this->response->setView('frontend.v2.agent-profile')->respond(['data' => [
             'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId'))),
-            'userPropertiesState' => $userPropertiesState
+            'userPropertiesState' => $userPropertiesState,
+            'banners'=>$this->getAgentDetailPageBanners()
         ]]);
     }
     public function makeTrustedAgent(TrustedAgentRequest $request)
@@ -91,5 +96,55 @@ class UsersController extends Controller
         $user = $request->getUserModel();
         return $this->response->setView('frontend.agent-profile')->respond(['data' => [
             'trustedAgent'=>$this->users->makeTrustedAgent($user)]]);
+    }
+    public function getAgentListingPageBanners()
+    {
+        $leftBanners = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'left',
+            'page'=>'agent_listing'
+
+        ]);
+
+        $topBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'top',
+            'page'=>'agent_listing'
+        ]);
+        $rightBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'right',
+            'page'=>'agent_listing'
+        ]);
+        return $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners,
+            'rightBanners'=>$rightBanners
+        ];
+    }
+    public function getAgentDetailPageBanners()
+    {
+        $leftBanners = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'left',
+            'page'=>'agent-profile'
+        ]);
+
+        $topBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'top',
+            'page'=>'agent-profile'
+        ]);
+
+        $rightBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'right',
+            'page'=>'agent-profile'
+        ]);
+        return $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners,
+            'rightBanners'=>$rightBanners,
+        ];
     }
 }
