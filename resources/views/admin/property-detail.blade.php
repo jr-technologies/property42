@@ -128,6 +128,8 @@
                                     <dd>{{$response['data']['property']->id}}</dd>
                                     <dt>Type:</dt>
                                     <dd>{{$response['data']['property']->type->parentType->name}}</dd>
+                                    <dt>SubType:</dt>
+                                    <dd>{{$response['data']['property']->type->subType->name}}</dd>
                                     @foreach($heightPriorityFeatures as $heightPriorityFeature)
                                         <dt>{{$heightPriorityFeature->name}}:</dt>
                                         <dd>{{$heightPriorityFeature->value}}</dd>
@@ -189,35 +191,7 @@
                             @endforeach
                         @endif
                     @endif
-                    <ul class="property-qucikLinks">
-                        <li><a onclick="window.print()"><span class="icon-printer"></span>Print this Ad</a></li>
-                        <li class="popup-holder">
-                            <a class="popup-opener"><span class="icon-envelope"></span>Email to friend</a>
 
-                            <div class="popup">
-                                {{Form::open(array('url'=>'property-to-friend','method'=>'POST','class'=>'email-popup'))}}
-                                <strong class="form-heading">Send Email</strong>
-
-                                <div class="input-field">
-                                    <label for="from1">To:</label>
-
-                                    <div class="input-holder"><input type="text" required name="to" required id="to">
-                                    </div>
-                                </div>
-                                <div class="input-field">
-                                    <label for="msg1">Message:</label>
-
-                                    <div class="input-holder"><textarea id="msg" required name="message"
-                                                                        required></textarea></div>
-                                </div>
-                                <div class="input-field"><input type="submit" value="Send"></div>
-                                {{Form::close()}}
-                                <a class="popup-close"><span class="icon-cross"></span></a>
-                            </div>
-                        </li>
-
-
-                    </ul>
 
                 </div>
             </div>

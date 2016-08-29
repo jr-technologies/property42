@@ -11,9 +11,40 @@ return [
     'ERROR_MESSAGE'=>'Request Failed',
 
     'PROPERTY_PURPOSES' => [1 => 'for sale',2 => 'rent',3 => 'wanted'],
-    'LAND_UNITS'=>['1'=>'square feet','2'=>'square yards','3'=>'marla','4'=>'kanal','5'=>'square meters'],
+    'LAND_UNITS'=>['3'=>'square feet','4'=>'square yards','1'=>'marla','2'=>'kanal','5'=>'square meters'],
     'PROPERTIES_LIMIT' => 10,
     'AGENTS_LIMIT' => 10,
+    'Banners_Limit' => [
+        'property_listing'=>[
+            'left'=>10,
+            'right'=>10,
+            'between'=>4,
+            'top'=>4
+        ],
+        'agent-profile'=>[
+            'left'=>10,
+            'right'=>10,
+            'between'=>4,
+            'top'=>4
+        ],
+        'property_detail'=>[
+            'left'=>10,
+            'right'=>10,
+            'top'=>4
+        ],
+        'agent_listing'=>[
+            'left'=>10,
+            'right'=>10,
+            'top'=>4
+        ],
+        'index'=>[
+            'left'=>10,
+            'right'=>10,
+            'between'=>4,
+            'top'=>4
+        ],
+    ],
+    'defaultBannerLimit'=>10,
     'Pagination' => 10,
     'PROPERTIES_SortOn' => 'id',
     'PROPERTIES_SortBy' => 'asc',

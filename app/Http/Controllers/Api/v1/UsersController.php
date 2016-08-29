@@ -106,13 +106,16 @@ class UsersController extends ApiController
     {
         $user = $request->getUserModel();
         $this->users->update($user);
+
         if($this->userWasAgent($user->id))
         {
             $this->updateUserAgency($request, $user->id);
+
         }
         else if($request->userIsAgent())
         {
             $this->saveUserAgency($request, $user->id);
+
         }
         $this->updateUserRoles($request->getUserRoles(), $user->id);
         Event::fire(new UserUpdated($user));
@@ -175,7 +178,10 @@ class UsersController extends ApiController
         }
         $existingAgency->logo = $logoPath;
         $this->agencies->updateAgency($existingAgency);
+
+
         $this->agencySocieties->update($existingAgency->id, $request->get('societies'));
+
     }
     private function saveUserAgency(UpdateUserRequest $request, $userId)
     {

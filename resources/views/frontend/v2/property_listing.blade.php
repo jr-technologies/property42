@@ -3,6 +3,14 @@
     <div class="page-holder">
         <div class="listing-page">
             <div class="add-holder-page">
+                <ul class="Ads">
+
+                    @if(isset($response['data']['banners']['leftBanners']))
+                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner)
+                            <li><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}"></a></li>
+                        @endforeach
+                    @endif
+                </ul>
                 <div class="container-holder">
                     <div class="container">
                         <a class="aside-opener-filters">Search Filters (Land, Area, ...)<span class="button"><b></b></span></a>
@@ -51,7 +59,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
                                                 </div>
-                                                <button type="submit">Go</button>
+
                                             </div>
                                         </div>
                                     </li>
@@ -65,7 +73,7 @@
                                                 <div class="field-holder">
                                                     <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                                 </div>
-                                                <button type="submit">Go</button>
+
                                             </div>
                                             <span class="calculatedPrice">Please enter the price.</span>
                                         </div>
@@ -147,6 +155,7 @@
                                     </li>
 
                                 </ul>
+                                <button type="submit">Apply Filter</button>
                             </form>
                         </aside>
                         <section id="content">
@@ -154,6 +163,10 @@
                                 <strong class="no-heading">sorry, no property found</strong>
                                 <p>Maybe your search was to specific, please try searching with another term.</p>
                             </div>
+                            <?php
+                            $count = 0;
+                            $betweenCountIndex=0;
+                            ?>
                             @foreach($response['data']['properties'] as $property)
                                 <?php
                                 $image = url('/')."/assets/imgs/no.png";
@@ -164,6 +177,7 @@
                                         $image = url('/').'/temp/'.$document->path;
                                     }
                                 }
+                                $count++
                                 ?>
                                 <article class="publicProperty-post">
                                     <div class="image-holder">
@@ -219,7 +233,18 @@
                                         </div>
                                     </div>
                                 </article>
+                                <?php
+                                if(($count %3) == 0)
+                                if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
+
+                                { ?>
+                                <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a>
+                                <?php
+                                $betweenCountIndex++;
+                                }
+                                ?>
                             @endforeach
+
                         </section>
                         <?php
                         $for_previous_link = $_GET;
@@ -293,7 +318,12 @@
                     </div>
                 </div>
                 <ul class="Ads">
-                    <li><a ><img src="{{url('/')}}/assets/imgs/42_ads/add1.png"></a></li>
+
+                    @if(isset($response['data']['banners']['rightBanners']))
+                        @foreach($response['data']['banners']['rightBanners'] as $leftBanner)
+                            <li><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}"></a></li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </div>

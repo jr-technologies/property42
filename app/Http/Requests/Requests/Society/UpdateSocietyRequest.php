@@ -34,6 +34,7 @@ class UpdateSocietyRequest extends Request implements RequestInterface
         $society->id = $this->get('id');
         $society->name = $this->get('society');
         $society->cityId = $this->get('cityId');
+        $society->priority = $this->get('priority');
         return $society;
     }
 }

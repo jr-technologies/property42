@@ -21,7 +21,9 @@ class UpdateSocietyTransformer extends RequestTransformer
         return [
                 'id'=>$this->request->input('society_id'),
                 'cityId'=>$this->request->input('city_id'),
-                'society'=>$this->request->input('society_name')
+                'society'=>$this->request->input('society_name'),
+                 'priority'=>$this->request->input('priority')
+
         ];
     }
 }

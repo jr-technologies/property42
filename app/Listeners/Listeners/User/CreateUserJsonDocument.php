@@ -7,8 +7,7 @@ use App\Libs\Json\Creators\Creators\User\UserJsonCreator;
 use App\Listeners\Interfaces\ListenerInterface;
 use App\Listeners\Listeners\Listener;
 use App\Repositories\Repositories\Sql\UsersJsonRepository;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 
 class CreateUserJsonDocument extends Listener implements ListenerInterface
 {
@@ -31,8 +30,15 @@ class CreateUserJsonDocument extends Listener implements ListenerInterface
      */
     public function handle(UserCreated $event)
     {
+        $user = $event->user;
         $userJsonCreator = new UserJsonCreator($event->user);
         $userJson = $userJsonCreator->create();
-        return $this->usersJsonRepository->store($userJson);
+        $this->usersJsonRepository->store($userJson);
+        return Mail::send('frontend.mail.register_mail',['user' => $user], function($message) use($user)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
+            $message->to($user->email)->subject('Property42');
+        });
+
     }
 }

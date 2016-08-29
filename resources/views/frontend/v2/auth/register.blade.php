@@ -3,9 +3,9 @@
 
     <div class="registerNow container">
         <?php
-            if(\Session::has('validationErrors')){
-                $validationErrors = \Session::get('validationErrors');
-            }
+        if(\Session::has('validationErrors')){
+            $validationErrors = \Session::get('validationErrors');
+        }
         ?>
         <form class="registration-form" method="post" action="{{route('register')}}" enctype="multipart/form-data">
             <h1>Register <span>Now</span></h1>
@@ -202,19 +202,20 @@
             <div class="layout two">
                 <div class="layout-holder">
                     <ul class="agree-with-terms">
+
+                        <li class="input-holder @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
+                            <label class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
+                                <input type="checkbox" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif>
+                                <span class="fake-checkbox "></span>
+                                <span>I have read and agree to Property42.pk <a href="#terms-of-user" class="termsOfUse lightbox">Terms and Conditions</a></span>
+                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
+                            </label>
+                        </li>
                         <li>
                             <label class="customCheckbox" for="newslatter" class="customCheckbox">
                                 <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif >
                                 <span class="fake-checkbox"></span>
                                 <span class="fake-label">I want to receive notifications for promotions, newsletters and website updates.</span>
-                            </label>
-                        </li>
-                        <li class="input-holder @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
-                            <label class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
-                                <input type="checkbox" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif checked>
-                                <span class="fake-checkbox hidden"></span>
-                                <span>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></span>
-                                <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
                             </label>
                         </li>
                     </ul>

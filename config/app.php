@@ -229,7 +229,12 @@ return [
         'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
         'IndexRequest' => \App\Http\Requests\Requests\IndexRequest::class,
 
-
+        /* Banners */
+        'AddBannerRequest' => \App\Http\Requests\Requests\Banners\AddBannerRequest::class,
+        'GetAllBannersRequest' => \App\Http\Requests\Requests\Banners\GetAllBannersRequest::class,
+        'DeleteBannerRequest' => \App\Http\Requests\Requests\Banners\DeleteBannerRequest::class,
+        'GetBannerRequest' => \App\Http\Requests\Requests\Banners\GetBannerRequest::class,
+        'UpdateBannerRequest' => \App\Http\Requests\Requests\Banners\UpdateBannerRequest::class,
 
         /* Loading Helpers */
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
@@ -269,6 +274,8 @@ return [
         /* Society Requests */
         'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
+        'GetUpdateSocietyFormRequest' => \App\Http\Requests\Requests\Society\GetUpdateSocietyFormRequest::class,
+
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
         'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,
         'GetAllSocietiesForMapsRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesForMapsRequest::class,
@@ -282,6 +289,7 @@ return [
         /* Block Requests */
         'AddBlockRequest' => \App\Http\Requests\Requests\Block\AddBlockRequest::class,
         'UpdateBlockRequest' => \App\Http\Requests\Requests\Block\UpdateBlockRequest::class,
+        'GetUpdateBlockFormRequest' => \App\Http\Requests\Requests\Block\GetUpdateBlockFormRequest::class,
         'DeleteBlockRequest' => \App\Http\Requests\Requests\Block\DeleteBlockRequest::class,
         'GetAllBlocksRequest' => \App\Http\Requests\Requests\Block\GetAllBlocksRequest::class,
         'GetBlocksBySocietyRequest' => \App\Http\Requests\Requests\Block\GetBlocksBySocietyRequest::class,

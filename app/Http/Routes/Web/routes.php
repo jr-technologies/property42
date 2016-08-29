@@ -2,16 +2,23 @@
 
 Route::get('foo',function()
 {
+   // DB::table('properties')->delete();
+    $lastProperty =  DB::table('properties')
+                    ->orderBy('properties.id','DESC')
+                    ->skip(0)->take(1)->get();
+    $lastId = $lastProperty[0]->id;
     $statusesSeeder = new PropertyStatusTableSeeder();
-    $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();
-    $statuses = $statusesSeeder->getAllStatusIds();
+    $PropertyFactory = (new \App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory());
+    $activeStatus = $statusesSeeder->getActiveStatusId();
+
+
     for($b = 1; $b<=2; $b++) {
         $allProperties = [];
-        for ($a = 1; $a <= 1000; $a++) {
+        for ($a = 1; $a <= 200; $a++) {
             $temp = [];
             $temp['purpose_id'] = rand(1, 2);
             $temp['property_sub_type_id'] = rand(1, 19);
-            $temp['block_id'] = rand(1, 10557);
+            $temp['block_id'] = rand(1, 11045);
             $temp['title'] = 'This is my property';
             $temp['description'] = 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.' . rand(1, 200002);
             $temp['price'] = rand(2000000, 250000000);
@@ -20,7 +27,8 @@ Route::get('foo',function()
             $temp['contact_person'] = 'ab' . rand(1, 100000);
             $temp['phone'] = '0321450405' . rand(1, 3);
             $temp['mobile'] = '0321450405' . rand(1, 10);
-            $temp['property_status_id'] = $statuses[rand(0, (sizeof($statuses) - 1))];
+            $temp['wanted'] = rand(0,1);
+            $temp['property_status_id'] = $activeStatus;
             $temp['total_views'] = rand(1, 100000);
             $temp['rating'] = rand(1, 10);
             $temp['total_likes'] = rand(1, 100000);
@@ -34,7 +42,7 @@ Route::get('foo',function()
         }
         DB::table('properties')->insert($allProperties);
     }
-    $allProperties = $propertyRepo->all();
+    $allProperties = $PropertyFactory->mapCollection( DB::table('properties')->select('properties.*')->where('properties.id','>',$lastId)->get());
     $finalResult =[];
     foreach($allProperties as $property)
     {
@@ -42,6 +50,28 @@ Route::get('foo',function()
         $finalResult[] = ['property_id' => $property->id, 'json'=> json_encode($propertyJson)];
     }
     DB::table('property_json')->insert($finalResult);
+    return view('frontend.foo');
+
+});
+
+Route::get('foo/blocks',function(){
+    $societyTable = (new \App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory())->getTable();
+    $blocks = DB::table('blocks')
+        ->select('blocks.society_id')
+        ->groupBy('blocks.society_id')
+        ->where('blocks.block','other')
+        ->get();
+     $blocks = (new \App\Libs\Helpers\Helper())->propertyToArray($blocks,'society_id');
+     $societies = DB::table($societyTable)
+        ->select($societyTable.'.*')
+        ->whereNotIn($societyTable.'.id', $blocks)
+        ->get();
+    $insertBlocks =[];
+    foreach($societies as $society)
+    {
+        $insertBlocks[] = ['society_id'=>$society->id,'block'=>'other'];
+    }
+    DB::table('blocks')->insert($insertBlocks);
 });
 
 Route::get('print-societies/12345',function(){
@@ -53,6 +83,184 @@ Route::get('print-societies/12345',function(){
            ],<br />';
         }
     }
+);
+
+Route::get('maliksajidawan786@gmail.com/banners',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'Admin\BannersController@banners'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/add/banner',
+    [
+        'middleware'=>
+            [
+                'webValidate:addBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@addBanner'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/banners/listing',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAllBannersRequest'
+            ],
+        'uses'=>'Admin\BannersController@bannersListing'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/banner',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@deleteBanner'
+    ]
+);
+
+Route::post('get/update/banner/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@getUpdateBannerForm'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/update/banner',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateBannerRequest'
+            ],
+        'uses'=>'Admin\BannersController@updateBanner'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/societies',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAllSocietiesRequest'
+            ],
+        'uses'=>'Admin\AdminController@societies'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/blocks',
+    [
+        'middleware'=>
+            [],
+        'uses'=>'Admin\AdminController@getBlocks'
+    ]
+);
+
+Route::get('get/blocks',
+    [
+        'middleware'=>
+            [
+                'webValidate:getBlocksBySocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@getBlocksBySociety'
+    ]
+);
+
+Route::post('add/blocks',
+    [
+        'middleware'=>
+            [
+               'webValidate:addBlockRequest'
+            ],
+        'uses'=>'Admin\AdminController@addBlock'
+    ]
+);
+
+Route::post('delete/blocks',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteBlockRequest'
+            ],
+        'uses'=>'Admin\AdminController@deleteBlock'
+    ]
+);
+
+Route::post('update/blocks',
+    [
+        'middleware'=>
+            [
+               'webValidate:updateBlockRequest'
+            ],
+        'uses'=>'Admin\AdminController@updateBlock'
+    ]
+);
+
+Route::post('get/update/block/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getUpdateBlockFormRequest'
+            ],
+        'uses'=>'Admin\AdminController@getBlockUpdateForm'
+    ]
+);
+
+Route::post('delete/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteSocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@deleteSociety'
+    ]
+);
+
+Route::post('update/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateSocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@updateSociety'
+    ]
+);
+
+Route::post('get/update/society/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getUpdateSocietyFormRequest'
+            ],
+        'uses'=>'Admin\AdminController@getUpdateSocietyForm'
+    ]
+);
+
+Route::post('add/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:addSocietyRequest'
+            ],
+        'uses'=>'Admin\AdminController@addSociety'
+    ]
+);
+
+Route::get('get/society/form',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'Admin\AdminController@getSocietyForm'
+    ]
 );
 
 Route::get('admin',

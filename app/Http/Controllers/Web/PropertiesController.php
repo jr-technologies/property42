@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\DB\Providers\SQL\Factories\Factories\Banners\BannersFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\IndexRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
@@ -11,6 +12,7 @@ use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
+use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
@@ -43,6 +45,7 @@ class PropertiesController extends Controller
     public $propertiesRepo = null;
     public $userRepo = null;
     public $status = null;
+    public $banners = null;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
@@ -60,8 +63,8 @@ class PropertiesController extends Controller
         $this->userRepo = (new UsersRepoProvider())->repo();
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
         $this->status = new \PropertyStatusTableSeeder();
+        $this->banners = (new BannersRepoProvider())->repo();
     }
-
     public function addProperty(RouteToAddPropertyRequest $request)
     {
         if($request->isNotAuthentic()){
@@ -78,6 +81,10 @@ class PropertiesController extends Controller
             ->respond($this->PropertyTransformer->transform($request->all()));
     }
 
+    /**
+     * @param SearchPropertiesRequest $request
+     * @return $this
+     */
     public function search(SearchPropertiesRequest $request)
     {
         $params = $request->getParams();
@@ -85,6 +92,7 @@ class PropertiesController extends Controller
         $properties = $this->properties->search($request->getParams());
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
+        $banners = $this->getPropertyListingPageBanners($params);
         return $this->response->setView('frontend.v2.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
@@ -95,13 +103,65 @@ class PropertiesController extends Controller
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
             'oldValues'=>$request->all(),
+            'banners'=>$banners
         ]]);
     }
+    public function getPropertyListingPageBanners($params)
+    {
+        $leftBanners = $this->banners->getBanners([
+            'bannerType'=>'relevant',
+            'position'=>'left',
+            'page'=>'property_listing',
+            'landUnitId'=>$params['landUnitId'],
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+        $topBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'top',
+            'page'=>'property_listing',
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+        $rightBanners  = $this->banners->getBanners([
+            'bannerType'=>'fix',
+            'position'=>'right',
+            'page'=>'property_listing',
 
+        ]);
+        $betweenBanners  = $this->banners->getBanners([
+            'bannerType'=>'relevant',
+            'position'=>'between',
+            'page'=>'property_listing',
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+        return $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners,
+            'rightBanners'=>$rightBanners,
+            'between'=>$betweenBanners
+        ];
+    }
+    public function getIndexPageBanners()
+    {
+        $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
+        $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
+        $rightBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'right','page'=>'index']);
+        return $banners = [
+            'leftBanners'=>$leftBanners,
+            'topBanners'=>$topBanners,
+            'rightBanners'=>$rightBanners
+        ];
+    }
     public function index(IndexRequest $request)
     {
         $agents = $this->users->getTrustedAgentsWithPriority(['limit'=>36]);
         $importantSocieties = $this->societies->getImportantSocieties();
+        $banners = $this->getIndexPageBanners();
         $saleAndRentCount = $this->propertiesRepo->countSaleAndRendProperties();
         return $this->response->setView('frontend.v2.index')->respond(['data' => [
             'societies'=>$this->societies->all(),
@@ -110,7 +170,8 @@ class PropertiesController extends Controller
             'landUnits'=>$this->landUnits->all(),
             'agents'=>$this->releaseUsersAgenciesLogo($agents),
             'importantSocieties'=>$importantSocieties,
-            'saleAndRentCount'=>$saleAndRentCount
+            'saleAndRentCount'=>$saleAndRentCount,
+            'banners'=>$banners
         ]]);
     }
     public function getById(GetPropertyRequest $request)
@@ -129,6 +190,7 @@ class PropertiesController extends Controller
                    'loggedInUser' => $loggedInUser,
                    'user' => $this->users->find($property->owner->id),
                    'propertyOwner' => $propertyOwner,
+                   'banners'=>$this->getPropertyDetailPageBanners(),
                    'propertyId' => $request->get('propertyId')
                ]]);
            }else {
@@ -144,5 +206,29 @@ class PropertiesController extends Controller
        }
     }
 
+        public function getPropertyDetailPageBanners()
+        {
+            $leftBanners = $this->banners->getBanners([
+                'bannerType'=>'fix',
+                'position'=>'left',
+                'page'=>'property_detail'
 
+            ]);
+
+            $topBanners  = $this->banners->getBanners([
+                'bannerType'=>'fix',
+                'position'=>'top',
+                'page'=>'property_detail'
+            ]);
+            $rightBanners  = $this->banners->getBanners([
+                'bannerType'=>'fix',
+                'position'=>'right',
+                'page'=>'property_detail'
+            ]);
+            return $banners = [
+                'leftBanners'=>$leftBanners,
+                'topBanners'=>$topBanners,
+                'rightBanners'=>$rightBanners,
+            ];
+        }
 }

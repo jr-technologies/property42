@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdmins extends Migration
+class CreatePagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,14 @@ class CreateAdmins extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('role_id');
-            $table->string('access_token');
-            $table->string('email');
-            $table->string('password');
+            $table->string('page');
             $table->timestamps();
+
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -29,6 +27,6 @@ class CreateAdmins extends Migration
      */
     public function down()
     {
-        Schema::drop('admins');
+        Schema::drop('pages');
     }
 }

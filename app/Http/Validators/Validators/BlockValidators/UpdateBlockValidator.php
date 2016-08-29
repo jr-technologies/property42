@@ -21,7 +21,7 @@ class UpdateBlockValidator extends BlockValidator implements ValidatorsInterface
     {
         return[
             'id' => 'required',
-            'block'=>'required|min:5|max:25',
+            'block'=>'required|min:1|max:25',
             'societyId' => 'required'
         ];
     }
