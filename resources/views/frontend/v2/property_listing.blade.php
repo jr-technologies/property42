@@ -215,9 +215,10 @@
                                                     <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
                                                 @endif
                                             </div>
+
                                             <div class="links-right">
                                                 <ul class="quick-links">
-                                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->phone}}"><span class="icon-phone"></span></a></li>
+                                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span></a></li>
                                                     <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                                 </ul>
                                                 <?php

@@ -22,6 +22,7 @@ class UserJsonQueryBuilder extends QueryBuilder{
     private $agentPrimaryKey = 3;
     public function __construct(){
         $this->table = "user_json";
+        $this->roleId = (new \RoleTableSeeder());
     }
 
     public function findByUser($id)
@@ -82,7 +83,7 @@ class UserJsonQueryBuilder extends QueryBuilder{
            ->join($this->table,$userTable.'.id','=',$this->table.'.user_id')
            ->leftjoin($userRoleTable,$userTable.'.id','=',$userRoleTable.'.user_id')
            ->select($this->table.'.json')
-            ->where($userRoleTable.'.role_id','=',3)
+            ->where($userRoleTable.'.role_id','=',$this->roleId->getAgentBroker())
            ->where($userTable.'.trusted_agent','=',0)
            ->get();
     }

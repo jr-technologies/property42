@@ -285,8 +285,7 @@
                                                     <ul class="feature-list">
                                                         @foreach($features as $feature)
                                                             <li>
-                                                    <span class="text-feature"><span
-                                                                class="icon-bed"></span>{{$feature->name}}</span>
+                                                    <span class="text-feature">{{$feature->name}}</span>
                                                                 @if($feature->htmlStructure->name =='checkbox')
                                                                     <span class="stataus">yes</span>
                                                                 @else
