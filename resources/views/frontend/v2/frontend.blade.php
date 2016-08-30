@@ -56,7 +56,7 @@
         @if(Route::getCurrentRoute()->getPath() =='/')
             <div class="main-visualSection">
                 <div class="container">
-                    <strong class="main-heading text-upparcase"><span class="blue">LIST</span> <span class="black">yOUR</span> PROPERTY</strong>
+                    <strong class="main-heading text-upparcase"><span class="blue">Best</span> <span class="black">property website</span> in Lahore</strong>
                     <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                     <ul class="number-of-properties text-upparcase">
                         @foreach($response['data']['saleAndRentCount'] as $saleRent)
