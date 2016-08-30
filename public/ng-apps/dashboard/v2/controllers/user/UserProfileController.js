@@ -96,7 +96,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     });
     $scope.$watch('userIsAgent', function (userIsAgent) {
         if(userIsAgent){
-            var index = $scope.form.data.userRoles.indexOf($scope.idForAgentBroker);
+            var index = $scope.form.data.userRoles.indexOf($scope.idForAgentBroker+"");
             if (index <= -1) {
                 $scope.form.data.userRoles.push($scope.idForAgentBroker);
             }
@@ -132,7 +132,6 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             userRoles : getUserRolesIds(),
             companyLogoDeleted: false
         };
-        console.log(data1);
         if(user.agencies.length > 0){
             var agency = user.agencies[0];
             data1.agencyId = agency.id;

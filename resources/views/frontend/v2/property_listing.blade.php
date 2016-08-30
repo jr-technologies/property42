@@ -13,7 +13,7 @@
                 </ul>
                 <div class="container-holder">
                     <div class="container">
-                        <a class="aside-opener-filters">Search Filters (Land, Area, ...)<span class="button"><b></b></span></a>
+                        <a class="aside-opener-filters togglerSearchButton">Search Filters (Land, Area, ...)<span class="button"><b></b></span></a>
                         <aside id="aside" class="hideOnMobile">
                             <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                                 <ul class="filters-links text-upparcase">
