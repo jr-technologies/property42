@@ -11,6 +11,7 @@ namespace App\Libs\Helpers;
 class LandArea extends Helper
 {
     public static function convert($from, $to, $area){
+        $to = strtolower($to);
         if($from == $to)
             return $area;
 

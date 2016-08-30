@@ -182,7 +182,8 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->mobile =  $result->mobile;
         $property->fax =  $result->fax;
         $property->email =  $result->email;
-        $property->wanted = $result->wanted;
+        if(isset($result->wanted))
+            $property->wanted = $result->wanted;
         $property->ownerId = $result->owner_id;
 
         $property->statusId = $result->property_status_id;

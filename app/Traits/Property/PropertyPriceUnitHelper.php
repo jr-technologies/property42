@@ -32,7 +32,7 @@ trait PropertyPriceUnitHelper
     }
     public function convertPropertyAreaToActualUnit(PropertyJsonPrototype $property)
     {
-        $property->land->area = LandArea::convert('square feet',config('constants.LAND_UNITS')[$property->land->unit->id], $property->land->area);
+        $property->land->area = LandArea::convert('square feet',$property->land->unit->name, $property->land->area);
         return $property;
     }
 }
