@@ -14,6 +14,8 @@ app.factory("$ErrorResponseHandler", function ($rootScope, $http, $AuthService) 
                     break;
                 case 429:
                     alert('Too many requests. please wait for a minute and try again.');
+                    $AuthService.setAppToken(null);
+                    window.location.href = domain+'logout';
                     break;
                 default :
                     break;

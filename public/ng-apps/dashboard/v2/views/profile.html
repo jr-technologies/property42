@@ -1,4 +1,4 @@
-<div class="updatePro" ng-init="initialize()">
+<div class="updatePro" ng-init="initialize()" ng-class="{'loading-content' : userUpdating == true}">
     <span class="global-success" ng-show="profileUpdated == true">Profile Updated</span>
     <form class="registration-form" ng-submit="updateUser()" ng-class="{'agent-info' : userIsAgent == true}">
         <h1>Update <span>Profile</span></h1>

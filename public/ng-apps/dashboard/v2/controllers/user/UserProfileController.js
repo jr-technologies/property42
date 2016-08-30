@@ -11,6 +11,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.userIsAgent = false;
     $scope.userWasAgent = false;
     $scope.profileUpdated = false;
+    $scope.userUpdating = false;
     $scope.searchSocieties = '';
 
     $scope.getSelectedSocieties = function () {
@@ -55,7 +56,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.updateUser = function () {
         $scope.profileUpdated = false;
         $scope.errors = {};
-        $rootScope.loading_content_class = 'loading-content';
+        $scope.userUpdating = true;
         var upload = Upload.upload({
             url: apiPath+'user/update',
             data: $scope.form.data,
@@ -66,7 +67,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
 
         upload.then(function (response) {
             $scope.errors = {};
-            $rootScope.loading_content_class = '';
+            $scope.userUpdating = false;
             $window.scrollTo(0, 0);
             $scope.profileUpdated = true;
             $scope.formSubmitStatus = '';
@@ -75,7 +76,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             $rootScope.authUser = angular.copy(response.data.data.user);
         }, function (response) {
             $scope.profileUpdated = false;
-            $rootScope.loading_content_class = '';
+            $scope.userUpdating = false;
             $scope.errors = response.data.error.messages;
             $rootScope.$broadcast('error-response-received',{status:response.status});
             $window.scrollTo(0, 0);
