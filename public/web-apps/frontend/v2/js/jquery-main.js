@@ -36,7 +36,24 @@ jQuery(function(){
 
 // slideshow init
 function initSlideShow() {
+
 	jQuery('.news-slideshow').fadeGallery({
+		useSwipe: true,
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		switchSimultaneously: true,
+		disableWhileAnimating: false,
+		generatePagination: '.pagination',
+		autoRotation: true,
+		autoHeight: true,
+		pauseOnHover: true,
+		circularRotation: false,
+		switchTime: 5000,
+		animSpeed: 600
+	});
+
+	jQuery('.ads-slideshow').fadeGallery({
 		useSwipe: true,
 		slides: '.slide',
 		currentNumber: 'span.cur-num',
@@ -84,6 +101,7 @@ function initCarousel() {
 		autoRotation: false,
 		maskAutoSize: false,
 		stretchSlideToMask: true,
+		generatePagination: '.pagination',
 		switchTime: 2000,
 		animSpeed: 600
 	});
@@ -426,8 +444,7 @@ $(document).on('click', '.packetData>.delete', function(){
 $(document).on('click', '.btn-close-working', function(){
 	$('.weAreWorking').addClass('hide');
 });
+
 $(document).on('click', '.main-navigation li a', function(){
-
 	$('html').removeClass('nav-active');
-
 });

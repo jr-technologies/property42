@@ -64,7 +64,6 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
                 Authorization: $AuthService.getAppToken()
             }
         });
-
         upload.then(function (response) {
             $scope.errors = {};
             $scope.userUpdating = false;
@@ -119,7 +118,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     };
 
     var mapUsrOnScope = function (user) {
-        var data = {
+        var data1 = {
             userId: user.id,
             fName : user.fName,
             lName : user.lName,
@@ -133,23 +132,24 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             userRoles : getUserRolesIds(),
             companyLogoDeleted: false
         };
+        console.log(data1);
         if(user.agencies.length > 0){
             var agency = user.agencies[0];
-            data.agencyId = agency.id;
-            data.agencyName = agency.name;
+            data1.agencyId = agency.id;
+            data1.agencyName = agency.name;
             if(agency.logo != '')
-                data.companyLogo = domain+'temp/'+agency.logo;
+                data1.companyLogo = domain+'temp/'+agency.logo;
             else
-                data.companyLogo = '';
-            data.agencyDescription = agency.description;
-            data.societies = getSocietyIds();
-            data.companyPhone = agency.phone;
-            data.companyMobile = agency.mobile;
-            data.companyAddress = agency.address;
-            data.companyEmail = agency.email;
+                data1.companyLogo = '';
+            data1.agencyDescription = agency.description;
+            data1.societies = getSocietyIds();
+            data1.companyPhone = agency.phone;
+            data1.companyMobile = agency.mobile;
+            data1.companyAddress = agency.address;
+            data1.companyEmail = agency.email;
         }
 
-        return data;
+        return data1;
 
     };
 

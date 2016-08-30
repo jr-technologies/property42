@@ -30,7 +30,7 @@
                                                     </select>
                                                 </li>
                                                 <li>
-                                                    <select class="js-example-basic-single filter-form-input " id="blocks" @if(sizeof($response['data']['blocks']) == 0) disabled @endif name="block_id">
+                                                    <select class="js-example-basic-single filter-form-input " id="blocks" @if(sizeof($response['data']['blocks']) == 0) @endif name="block_id">
                                                         <option  value="">All Blocks</option>
                                                         @foreach($response['data']['blocks'] as $block)
                                                             <option value="{{$block->id}}" @if($response['data']['oldValues']['blockId'] == $block->id) selected @endif>{{$block->name}}</option>
@@ -217,7 +217,7 @@
                                             </div>
                                             <div class="links-right">
                                                 <ul class="quick-links">
-                                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->phone}}"><span class="icon-phone"></span></a></li>
+                                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span></a></li>
                                                     <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                                 </ul>
                                                 <?php
