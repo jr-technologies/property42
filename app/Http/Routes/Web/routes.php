@@ -115,6 +115,17 @@ Route::get('maliksajidawan786@gmail.com/banners/listing',
     ]
 );
 
+Route::post('get/page/banners',
+    [
+        'middleware'=>
+            [
+              'webValidate:getPageBannersRequest'
+            ],
+        'uses'=>'Admin\BannersController@pageBanners'
+    ]
+);
+
+
 Route::post('maliksajidawan786@gmail.com/delete/banner',
     [
         'middleware'=>

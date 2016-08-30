@@ -8,6 +8,7 @@ use App\Http\Requests\Requests\Banners\AddBannerRequest;
 use App\Http\Requests\Requests\Banners\DeleteBannerRequest;
 use App\Http\Requests\Requests\Banners\GetAllBannersRequest;
 use App\Http\Requests\Requests\Banners\GetBannerRequest;
+use App\Http\Requests\Requests\Banners\GetPageBannersRequest;
 use App\Http\Requests\Requests\Banners\UpdateBannerRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Helpers\Helper;
@@ -53,6 +54,17 @@ class BannersController extends Controller
         $bannerCount = ($this->bannersRepo->bannerCount()[0]->total_records);
         return $this->response->setView('admin.banners.banners-listing')->respond(['data'=>[
             'banners'=>$banners,
+            'pages'=>$this->pagesRepo->all(),
+            'bannerCounts'=>$bannerCount
+        ]]);
+    }
+    public function pageBanners(GetPageBannersRequest $request)
+    {
+        $banners =$this->bannersRepo->getPageBanners($request->all());
+        $bannerCount = ($this->bannersRepo->bannerCount()[0]->total_records);
+        return $this->response->setView('admin.banners.banners-listing')->respond(['data'=>[
+            'banners'=>$banners,
+            'pages'=>$this->pagesRepo->all(),
             'bannerCounts'=>$bannerCount
         ]]);
     }

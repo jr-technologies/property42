@@ -55,3 +55,33 @@ $(document).on('click','.add-to-favorite',function(){
         })
     }
 });
+
+
+$(document).on('change', '#society', function(){
+    var society_id = $(this).val();
+    if(society_id !="") {
+        $('#blocks').closest('.fake-select').addClass('loading');
+        $.ajax({
+            url: apiPath.concat("society/blocks"),
+            data: {
+                society_id: society_id
+            },
+            success: function (response) {
+                $('#blocks').empty();
+                $('#blocks').append($('<option>').text('select a block').attr('value', ''));
+                $.each(response.data.blocks, function (i, block) {
+                    $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
+                });
+                $('#blocks').closest('.fake-select').removeClass('loading');
+                $('#blocks').trigger('loaded');
+            }
+        })
+    }
+    else
+    {
+        $('#blocks').empty();
+        $('#blocks').append($('<option>').text('All block').attr('value',''));
+        $('#blocks').closest('.fake-select').removeClass('loading');
+    }
+});
+

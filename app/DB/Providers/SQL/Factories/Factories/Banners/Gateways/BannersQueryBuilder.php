@@ -20,6 +20,19 @@ class BannersQueryBuilder extends QueryBuilder
     {
         $this->table = 'banners';
     }
+    public function getPageBanners($params)
+    {
+        $bannerPage = (new BannersPagesFactory())->getTable();
+        $page = (new PagesFactory())->getTable();
+        return DB::table($this->table)
+            ->leftjoin($bannerPage,$this->table.'.id','=',$bannerPage.'.banner_id')
+            ->leftjoin($page,$bannerPage.'.page_id','=',$page.'.id')
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'.','.$page.'.page'))
+            ->where($bannerPage.'.page_id','=',$params['pageId'])
+            ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
+            ->get();
+    }
+
     public function getBanners($params)
     {
         $bannerSocietiesTable = (new BannersSocietiesFactory())->getTable();
@@ -84,8 +97,12 @@ class BannersQueryBuilder extends QueryBuilder
 
     public function getAllBanners($params)
     {
+        $bannerPage = (new BannersPagesFactory())->getTable();
+        $page = (new PagesFactory())->getTable();
         return DB::table($this->table)
-            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'))
+            ->leftjoin($bannerPage,$this->table.'.id','=',$bannerPage.'.banner_id')
+            ->leftjoin($page,$bannerPage.'.page_id','=',$page.'.id')
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'.','.$page.'.page'))
             ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
             ->get();
     }

@@ -8,11 +8,21 @@
         }
     </style>
     <div style="max-width: 1200px; margin: 0 0 0 -200px; position: relative; left: 50%;">
-
+        <br/>
+        {{ Form::open(array('url'=>'get/page/banners','method'=>'POST')) }}
+        <select name="page_id">
+            <option value="">Please Select Page</option>
+            @foreach($response['data']['pages'] as $page)
+                <option value="{{$page->id}}">{{$page->page}}</option>
+            @endforeach
+        </select>
+        <button><span type="submit"> </span>Get Page Banner</button>
+        {{Form::close()}}
         <table style="width:50%">
 
               <tr>
                 <th>Banner ID</th>
+                <th>Banner Page</th>
                 <th>Block type</th>
                 <th>Image</th>
                 <th>Banner Position</th>
@@ -22,6 +32,7 @@
                     @foreach($response['data']['banners'] as $banner)
                 <tr>
                     <td>{{$banner->id}}</td>
+                    <td>{{$banner->page}}</td>
                     <td>{{$banner->bannerType}}</td>
                     <td><img src="{{ url('/').'/'.$banner->image}}" width="100px" height="100px"></td>
                     <td>{{$banner->position}}</td>

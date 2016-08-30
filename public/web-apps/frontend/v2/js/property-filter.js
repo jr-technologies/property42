@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 $(document).on('change', '.filter-form-input', function () {
-	$("#properties-filter-form").submit();
+	//$("#properties-filter-form").submit();
 });
 
 
