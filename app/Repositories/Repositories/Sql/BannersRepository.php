@@ -35,6 +35,10 @@ class BannersRepository extends SqlRepository implements BannersRepoInterface
     {
         return $this->factory->delete($bannerId);
     }
+    public function getPageBanners($params)
+    {
+        return $this->factory->getPageBanners($params);
+    }
     public function getBanner($bannerId)
     {
         return $this->factory->find($bannerId);

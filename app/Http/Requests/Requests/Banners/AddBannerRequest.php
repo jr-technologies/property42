@@ -46,8 +46,8 @@ class AddBannerRequest extends Request implements RequestInterface{
         if(isset($originalName)) {
             $extension = $originalName->getClientOriginalExtension();
             $imageName = md5($originalName->getClientOriginalName()) . '.' . $extension;
-            $originalName->move(public_path() . '\assets\imgs', $imageName);
-            return 'assets/imgs/' . $imageName;
+            $originalName->move(public_path() . '\assets\imgs\42_ads', $imageName);
+            return 'assets/imgs/42_ads/' . $imageName;
         }
         return '';
     }
