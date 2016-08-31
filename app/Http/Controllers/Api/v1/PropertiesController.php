@@ -13,7 +13,6 @@ use App\DB\Providers\SQL\Models\User;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyUpdated;
-use App\Http\Middleware\Authenticator\ApiAuthenticator;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest;
@@ -40,11 +39,9 @@ use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use App\Traits\Property\PropertyPriceUnitHelper;
-use App\Traits\PropertyFilesReleaser;
 use App\Transformers\Response\PropertyJson\PropertyJsonTransformer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Request;
 
 class PropertiesController extends ApiController
 {

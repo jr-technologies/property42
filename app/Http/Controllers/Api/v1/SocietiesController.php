@@ -7,15 +7,12 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\Requests\Society\GetAllSocietiesForMapsRequest;
-use App\Http\Requests\Requests\Society\GetBlocksBySocietyRequest;
 use App\Http\Requests\Requests\Society\AddSocietyRequest;
 use App\Http\Requests\Requests\Society\DeleteSocietyRequest;
 use App\Http\Requests\Requests\Society\GetAllSocietiesRequest;
 use App\Http\Requests\Requests\Society\UpdateSocietyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
-use App\Repositories\Repositories\Sql\SocietiesRepository;
 
 class SocietiesController extends ApiController
 {

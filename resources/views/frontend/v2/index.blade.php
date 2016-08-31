@@ -116,9 +116,7 @@
 
                 <section class="generic-section agents">
                     <div class="layout">
-                        <div class="left-side">
-                            <h1>Featured <span>Agents</span></h1>
-                        </div>
+                        <h1>Featured <span>Agents</span></h1>
                         <div class="agent-slider">
                             <div class="mask">
                                 <div class="slideset">

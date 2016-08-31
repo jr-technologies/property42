@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\DB\Providers\SQL\Models\Agency;
-use App\Events\Events\Agency\AgencyUpdated;
-use App\Events\Events\User\UserCreated;
 use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Requests\Requests\Auth\LoginRequest;
 use App\Http\Requests\Requests\Auth\RegistrationRequest;
@@ -13,7 +11,6 @@ use App\Libs\Auth\Api as Authenticator;
 use App\Repositories\Repositories\Sql\AgenciesRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Transformers\Response\UserTransformer;
-use Illuminate\Support\Facades\Event;
 
 class AuthController extends ApiController
 {

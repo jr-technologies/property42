@@ -162,10 +162,8 @@ class AdminController extends Controller
 
     public function getAgents()
     {
-        $agents = $this->users->getPendingAgents();
         return $this->response->setView('admin.pending-Agents')->respond(['data' => [
-            'agents' => $agents,
-            'agentsCount' => count($agents)
+            'agents' => $this->users->getPendingAgents(),
         ]]);
     }
 

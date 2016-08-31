@@ -7,7 +7,6 @@ use App\Http\Requests\Requests\PropertyLike\DeletePropertyLikeRequest;
 use App\Http\Requests\Requests\PropertyLike\GetAllPropertyLikeRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\PropertyLikesRepoProvider;
-use App\Repositories\Repositories\Sql\PropertyLikeRepository;
 use App\Transformers\Response\CityTransformer;
 
 class PropertyLikeController extends ApiController

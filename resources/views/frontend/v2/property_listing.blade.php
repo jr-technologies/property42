@@ -190,7 +190,7 @@
                                                 <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.'
                                              '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                                              ' '.$property->location->society->name}}</a></h1>
-                                                <p>{{str_limit($property->description,170) }}</p>
+                                                <p>{{str_limit($property->description,148) }}</p>
                                             </div>
                                             <div class="right-area">
                                                 <strong class="price"><span>Rs</span> {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</strong>
@@ -215,6 +215,7 @@
                                                     <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Verified</span>
                                                 @endif
                                             </div>
+
                                             <div class="links-right">
                                                 <ul class="quick-links">
                                                     <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span></a></li>

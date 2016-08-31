@@ -10,8 +10,6 @@ use App\Http\Requests\Requests\City\GetCitiesBySocietyRequest;
 use App\Http\Requests\Requests\City\UpdateCityRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\CitiesRepoProvider;
-use App\Repositories\Repositories\Sql\CitiesRepository;
-use App\Transformers\Request\City\GetCitiesByCountryTransformer;
 use App\Transformers\Response\CityTransformer;
 
 class CitiesController extends ApiController

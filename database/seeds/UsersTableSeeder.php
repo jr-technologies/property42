@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                     "fax" => "",
                     "address" => "654564564",
                     "zipcode" => "54564564",
-                    "trusted_agent" => 1,
+                    "trusted_agent" => rand(0,1),
                     "country_id" => 1,
                     "notification_settings" => 1,
                     "membership_plan_id" => 1
