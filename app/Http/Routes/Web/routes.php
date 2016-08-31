@@ -569,7 +569,6 @@ Route::post('/login',
     ]
 );
 
-
 Route::get('/',
     [
         'middleware'=>
