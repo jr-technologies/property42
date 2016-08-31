@@ -190,7 +190,7 @@
                                                 <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.'
                                              '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
                                              ' '.$property->location->society->name}}</a></h1>
-                                                <p>{{str_limit($property->description,170) }}</p>
+                                                <p>{{str_limit($property->description,148) }}</p>
                                             </div>
                                             <div class="right-area">
                                                 <strong class="price"><span>Rs</span> {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</strong>

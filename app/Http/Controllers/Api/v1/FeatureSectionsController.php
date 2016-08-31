@@ -14,7 +14,6 @@ use App\Http\Requests\Requests\FeatureSection\GetAllFeatureSectionRequest;
 use App\Http\Requests\Requests\FeatureSection\UpdateFeatureSectionRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\FeatureSectionsRepoProvider;
-use App\Repositories\Repositories\Sql\FeatureSectionRepository;
 use Illuminate\Support\Facades\Event;
 
 class FeatureSectionsController extends ApiController

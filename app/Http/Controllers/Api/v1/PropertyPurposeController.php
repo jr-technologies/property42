@@ -14,7 +14,6 @@ use App\Http\Requests\Requests\PropertyPurposes\GetAllPropertyPurposesRequest;
 use App\Http\Requests\Requests\PropertyPurposes\UpdatePropertyPurposeRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
-use App\Repositories\Repositories\Sql\PropertyPurposeRepository;
 
 
 class PropertyPurposeController extends ApiController

@@ -8,7 +8,6 @@ use App\Http\Requests\Requests\PropertyDocument\GetAllPropertyDocumentsRequest;
 use App\Http\Requests\Requests\PropertyDocument\UpdatePropertyDocumentRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\PropertyDocumentsRepoProvider;
-use App\Repositories\Repositories\Sql\PropertyDocumentRepository;
 
 class PropertyDocumentsController extends ApiController
 {

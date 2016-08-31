@@ -7,7 +7,6 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Api\V1\ApiController;
 use App\Http\Requests\Requests\PropertySubType\AssignFeatureRequest;
 use App\Http\Requests\Requests\PropertySubType\GetSubTypesByTypeRequest;
 use App\Http\Requests\Requests\PropertySubType\AddPropertySubTypeRequest;

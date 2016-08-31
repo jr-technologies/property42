@@ -130,7 +130,4 @@ class AddPropertyRequest extends Request implements RequestInterface{
         return $this->validator->validate();
     }
 
-    /**
-     * @return City::class
-     * */
 } 

@@ -11,7 +11,6 @@ use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\Http\Requests\Requests\AppsResources\GetDashboardResourcesRequest;
 
 use App\Http\Responses\Responses\ApiResponse;
-use App\Libs\Helpers\AuthHelper;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
