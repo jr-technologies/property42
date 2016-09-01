@@ -56,7 +56,7 @@
         @if(Route::getCurrentRoute()->getPath() =='/')
             <div class="main-visualSection">
                 <div class="container">
-                    <strong class="main-heading text-upparcase"><span class="blue">Best</span> <span class="black">property website</span> in Lahore</strong>
+                    <strong class="main-heading text-upparcase"><span class="blue">Find</span> <span class="black">Your</span> Property</strong>
                     <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                     <ul class="number-of-properties text-upparcase">
                         @foreach($response['data']['saleAndRentCount'] as $saleRent)
@@ -131,7 +131,7 @@
             <button type="submit"><span class="icon-search"></span></button>
             {{Form::close()}}
             <div class="nav-holder">
-                <a href="#" class="navigation-toggler close"><span class="icon-cross"></span></a>
+                <a class="navigation-toggler close"><span class="icon-cross"></span></a>
                 <ul class="main-navigation text-upparcase">
                     <li class="">
                         <a href="{{URL::to('/')}}">HOME</a>

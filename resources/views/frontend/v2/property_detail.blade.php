@@ -124,14 +124,14 @@
                                                                     class="path3"></span><span class="path4"></span><span
                                                                     class="path5"></span><span class="path6"></span><span
                                                                     class="path7"></span><span class="path8"></span></span>Trusted</span>
+                                                    <ul class="star-rating">
+                                                        <li><a href="#" class="one-star">star</a></li>
+                                                        <li><a href="#" class="two-stars">star</a></li>
+                                                        <li><a href="#" class="three-stars">star</a></li>
+                                                        <li><a href="#" class="four-stars">star</a></li>
+                                                        <li><a href="#" class="five-stars">star</a></li>
+                                                    </ul>
                                                 @endif
-                                                <ul class="star-rating">
-                                                    <li><a href="#" class="one-star">star</a></li>
-                                                    <li><a href="#" class="two-stars">star</a></li>
-                                                    <li><a href="#" class="three-stars">star</a></li>
-                                                    <li><a href="#" class="four-stars">star</a></li>
-                                                    <li><a href="#" class="five-stars">star</a></li>
-                                                </ul>
                                             </div>
 
                                             <div class="pull-right">

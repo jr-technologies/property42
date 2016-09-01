@@ -14,7 +14,11 @@
                 <div class="container-holder">
                     <div class="container">
                         <a class="aside-opener-filters togglerSearchButton">Search Filters (Land, Area, ...)<span class="button"><b></b></span></a>
-                        <aside id="aside" class="hideOnMobile">
+                        <aside id="aside">
+                            <div class="top-head">
+                                <p>Search Filters</p>
+                                <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
+                            </div>
                             <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                                 <ul class="filters-links text-upparcase">
                                     <li class="active">
@@ -239,7 +243,7 @@
                                 if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 
                                 { ?>
-                                <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" width="100" height="100"></a>
+                                <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" ></a>
                                 <?php
                                 $betweenCountIndex++;
                                 }

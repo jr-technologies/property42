@@ -11,7 +11,11 @@
                 <div class="container-holder">
                     <div class="container">
                         <a class="aside-opener-filters togglerSearchButton">Search Filters<span class="button"><b></b></span></a>
-                        <aside id="aside" class="hideOnMobile">
+                        <aside id="aside">
+                            <div class="top-head">
+                                <p>Search Filters</p>
+                                <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
+                            </div>
                             {{ Form::open(array('url' => 'agents','method' => 'GET','class'=>'filter-form')) }}
                             <ul class="filters-links text-upparcase">
                                 <li class="active">

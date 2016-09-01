@@ -120,7 +120,7 @@
                         <div class="agent-slider">
                             <div class="mask">
                                 <div class="slideset">
-                                    @foreach(array_chunk($response['data']['agents'], 12) as $agents)
+                                    @foreach(array_chunk($response['data']['agents'], 9) as $agents)
                                         <div class="slide">
                                             <ul class="agents-logo">
                                                 <?php

@@ -55,13 +55,15 @@
                                                             <div class="agent-slideset">
                                                                 @foreach($response['data']['agent']->agencies[0]->societies as $society )
                                                                     @if($society != null)
-                                                                        <div class="agent-slide"><a href="#">
+                                                                        <div class="agent-slide">
+                                                                            <a>
                                                                                 @if( isset($society->path) && $society->path !=null)
                                                                                     <img src="{{url('/').'/' .$society->path}}" alt="image description">
                                                                                 @else
-                                                                                    <span class="image-description">{{$society->name}}</span></a>
+                                                                                    <span class="image-description">{{$society->name}}</span>
+                                                                                @endif
+                                                                            </a>
                                                                         </div>
-                                                                    @endif
                                                                     @endif
                                                                 @endforeach
                                                             </div>
