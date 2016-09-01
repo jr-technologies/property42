@@ -191,8 +191,9 @@
                                     <div class="caption text-left">
                                         <div class="layout">
                                             <div class="left-area">
-                                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.'
-                                             '.$property->purpose->name.' in '.$property->location->block->name.' Block'.
+                                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.
+                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                                 in '.$property->location->block->name.' Block'.
                                              ' '.$property->location->society->name}}</a></h1>
                                                 <p>{{str_limit($property->description,148) }}</p>
                                             </div>

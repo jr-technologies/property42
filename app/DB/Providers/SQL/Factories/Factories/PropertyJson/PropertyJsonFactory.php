@@ -178,6 +178,8 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->isHot = $propertyJson->isHot;
         $property->land = $propertyJson->land;
         $property->isFeatured = $propertyJson->isFeatured;
+        if(isset($propertyJson->wanted))
+            $property->wanted = $propertyJson->wanted;
         $property->isDeleted = $propertyJson->isDeleted;
         $property->features = $propertyJson->features;
         $property->description = $propertyJson->description;
