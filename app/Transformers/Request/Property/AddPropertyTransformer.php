@@ -29,26 +29,27 @@ class AddPropertyTransformer extends RequestTransformer
        //$files = [$this->request->file('file')];
         return [
            /* property info */
-           'ownerId' => $this->request->input('owner'),
-           'purposeId' => $this->request->input('propertyPurpose'),
-           'subTypeId' => $this->request->input('propertySubType'),
-           'blockId' => $this->request->input('block'),
-           'title' => $this->request->input('propertyTitle'),
-           'description' => $this->request->input('propertyDescription'),
-           'price' => $this->request->input('price'),
-           'landArea' => $this->request->input('landArea'),
-           'landUnitId' => $this->request->input('landUnit'),
+            'wanted' => $this->request->input('wanted'),
+            'ownerId' => $this->request->input('owner'),
+            'purposeId' => $this->request->input('propertyPurpose'),
+            'subTypeId' => $this->request->input('propertySubType'),
+            'blockId' => $this->request->input('block'),
+            'title' => $this->request->input('propertyTitle'),
+            'description' => $this->request->input('propertyDescription'),
+            'price' => $this->request->input('price'),
+            'landArea' => $this->request->input('landArea'),
+            'landUnitId' => $this->request->input('landUnit'),
 
             /* contact information */
-           'contactPerson' => $this->request->input('contactPerson'),
-           'phone' => $this->request->input('phone'),
-           'mobile' => $this->request->input('cell'),
-           'email' => $this->request->input('email'),
-           'fax' => $this->request->input('fax'),
-           'wanted' => $this->request->input('wanted'),
+            'contactPerson' => $this->request->input('contactPerson'),
+            'phone' => $this->request->input('phone'),
+            'mobile' => $this->request->input('cell'),
+            'email' => $this->request->input('email'),
+            'fax' => $this->request->input('fax'),
+            'wanted' => $this->request->input('wanted'),
 
-           'features' => $this->request->input('features'),
-           'files' => $files,
+            'features' => $this->request->input('features'),
+            'files' => $files,
         ];
     }
 

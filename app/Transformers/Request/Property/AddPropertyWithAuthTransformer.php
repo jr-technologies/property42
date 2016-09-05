@@ -29,6 +29,7 @@ class AddPropertyWithAuthTransformer extends RequestTransformer
        //$files = [$this->request->file('file')];
         return [
            /* property info */
+            'wanted' => $this->request->input('wanted'),
             'ownerId' => $this->request->input('owner'),
             'purposeId' => $this->request->input('propertyPurpose'),
             'subTypeId' => $this->request->input('propertySubType'),

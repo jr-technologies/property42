@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg">
+    <meta property="og:url" content="http://property42.pk/public">
+    <meta property="og:title" content="Lahore Largest Property Website">
+
     <title>Lahore Largest Property website | Property42.pk</title>
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-160x160.png" sizes="160x160">
@@ -33,7 +38,7 @@
                 <button type="submit"><span class="icon-search"></span></button>
                 {{Form::close()}}
                 <div class="right-sideTop text-right">
-                    <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#099;&#111;&#109;</a>
+                    <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;"></a>
                     <ul class="loginRegister text-upparcase text-left">
                         @if(session()->get('authUser') ==null)
                         <li><a href="{{ URL::to('/login') }}"><span class="icon-avatar hidden"></span><span class="hidden-xs">Login / Register</span></a></li>
@@ -56,7 +61,7 @@
         @if(Route::getCurrentRoute()->getPath() =='/')
             <div class="main-visualSection">
                 <div class="container">
-                    <strong class="main-heading text-upparcase"><span class="blue">Find</span> <span class="black">Your</span> Property</strong>
+                    <strong class="main-heading text-upparcase"><span class="blue">Best</span> <span class="black">Property</span> Website In Lahore</strong>
                     <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                     <ul class="number-of-properties text-upparcase">
                         @foreach($response['data']['saleAndRentCount'] as $saleRent)

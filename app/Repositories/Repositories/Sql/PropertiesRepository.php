@@ -38,25 +38,26 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         $this->factory = new PropertyFactory();
         $this->favouriteFactory = new FavouritePropertyFactory();
         $this->propertySubTypeFactory = new PropertySubTypeFactory();
-
     }
 
     public function store(Property $property)
     {
         $propertyId = $this->factory->store($property);
         $property->id = $propertyId;
-        //Event::fire(new PropertyCreated($property));
         return $propertyId;
     }
+
     public function countSaleAndRendProperties()
     {
         return $this->factory->countSaleAndRendProperties();
     }
+
     public function IncrementViews($propertyId)
     {
         $this->factory->IncrementViews($propertyId);
         Event::fire(new UpdatePropertyTotalView($this->factory->find($propertyId)));
     }
+
     public function getById($id)
     {
         return $this->factory->find($id);
