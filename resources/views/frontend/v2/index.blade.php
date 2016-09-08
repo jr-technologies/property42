@@ -34,7 +34,7 @@
             <div class="container-holder">
                 <section class="generic-section">
                     <div class="container">
-                        <h1>News <span>Update</span></h1>
+                        <h1>Latest <span>Update</span></h1>
                         <div class="news-sliderHolder">
                             <div class="news-slideshow">
                                 <div class="mask">
@@ -57,7 +57,7 @@
                                                 </div>
                                                 <div class="caption">
                                                     <p><b>{{$project->title}}</b> <br />{{str_limit($project->description,400)}}</p>
-                                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
+                                                    {{--<a href="#" class="btn-default text-upparcase">Learn More</a>--}}
                                                 </div>
                                             </div>
                                         </div>
