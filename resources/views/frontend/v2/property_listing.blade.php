@@ -159,7 +159,10 @@
                                     </li>
 
                                 </ul>
-                                <button type="submit">Apply Filter</button>
+                                <ul class="filter-btn">
+                                    <li><button type="submit">Search</button></li>
+                                    <li><button type="reset">Reset</button></li>
+                                </ul>
                             </form>
                         </aside>
                         <section id="content">
@@ -176,7 +179,7 @@
                                 $image = url('/')."/assets/imgs/no.png";
                                 foreach($property->documents as $document)
                                 {
-                                    if($document->type == 'image' && $document->main == true)
+                                    if($document->type == 'image' && $document->main == true && $document->path != "")
                                     {
                                         $image = url('/').'/temp/'.$document->path;
                                     }

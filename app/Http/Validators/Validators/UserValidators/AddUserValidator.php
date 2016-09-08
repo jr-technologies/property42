@@ -36,7 +36,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'lName.max' => 'Last name must be less then 56 chars',
             'passwordAgain.required' => 'Password Again is required',
             'passwordAgain.conform_password' => 'Your password is not matching',
-            'phone.required' => 'Phone is required',
+            'mobile.required' => 'Mobile is required',
             'userRoles.required' => 'please select atleast one role',
             'termsConditions.required' => $termsConditionsMessage,
             'termsConditions.equals' => $termsConditionsMessage,
@@ -60,7 +60,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:5|max:15',
             'passwordAgain' => 'required|conform_password|min:5|max:15',
-            'phone' => 'required|min:5|max:15',
+            'mobile' => 'required|min:5|max:15',
             'userRoles' => 'required',
             'termsConditions' => 'required|equals:1'
         ];

@@ -4,7 +4,7 @@ jQuery(window).load(function(){
 
 $(document).ready(function() {
 	$(".js-example-basic-single").select2();
-	if (screen.width < 768){
+	if ($(window).width() < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');
 			$(this).attr('href', 'tel:'+mobileNumber)
@@ -18,12 +18,29 @@ $(document).ready(function() {
 	if($('.Ads li').length == 0){
 		$('.page-holder').addClass('no-ads');
 	}
+
+	$('.news-slideshow .slide').each(function(){
+		if($(this).find('.news-slide').length == 1){
+			$(this).find('.news-pagination').remove();
+		}
+	});
+	$(window).trigger('scroll');
+});
+
+$( window ).resize(function() {
+	if ($(window).width() > 1024){
+		searchBtnFix();
+	}
+});
+$(window).scroll(function(evt) {
+	activateBackToTop();
+	if ($(window).width() > 1024){ handleSearchBtnPosition(); }
 });
 
 // page init
 jQuery(function(){
 
-	if(screen.width >= 768){
+	if($(window).width() >= 768){
 		initFixedScrollBlock();
 	}
 
@@ -193,6 +210,9 @@ function initAccordion() {
 }
 // smooth anchor links
 function initAnchors() {
+	new SmoothScroll({
+		anchorLinks: '.back-to-top'
+	});
 	// common case:
 	new SmoothScroll({
 		extraOffset: $('#header').height() || 20,
@@ -201,6 +221,44 @@ function initAnchors() {
 		wheelBehavior: 'ignore',
 		animDuration: 800
 	});
+}
+function searchBtnFix()
+{
+	var asideFromLeft = $('#aside').position().left;
+	$('.filter-btn').css({
+		'left':asideFromLeft+13,
+		'width':$('#aside').width()
+	});
+}
+function searchBtnUnFix()
+{
+	var asideFromLeft = $('#aside').position().left;
+	$('.filter-btn').css({
+		'left':0,
+		'width':'auto'
+	});
+}
+function handleSearchBtnPosition(evt){
+	if(!$('.listing-page').length)
+		return;
+
+	if($(window).scrollTop()+$(window).height()-50 >= $('#aside').height()+$('#aside').offset().top){
+		$('.filter-btn').removeClass('srchBtnFxd');
+		searchBtnUnFix();
+	}else{
+		$('.filter-btn').addClass('srchBtnFxd');
+		searchBtnFix();
+	}
+}
+function activateBackToTop(){
+	var scroll = $(window).scrollTop();
+
+	if (scroll >= 200) {
+		$('.back-to-top').addClass('active')
+	}
+	else {
+		$('.back-to-top').removeClass('active')
+	}
 }
 
 
@@ -224,7 +282,7 @@ $(document).mouseup(function (e)
 	}
 });
 
-$(document).on('click', '.generic-lightbox>.close, .fancybox-close', function(){
+$(document).on('click', '.generic-lightbox>.close, .fancybox-close, .got-it, .btn-close-working .close', function(){
 	$('#wrapper').removeClass('fancy-overlay');
 });
 
@@ -232,6 +290,7 @@ $(document).keyup(function(e) {
 	if (e.keyCode === 27){
 		$('.fancybox-overlay-fixed').hide();
 		$('#wrapper').removeClass('fancy-overlay');
+		$('html').removeClass('nav-active');
 	}   // esc
 });
 
@@ -301,7 +360,7 @@ $(document).on('click', '.call-agent-btn', function(){
 	var phoneNumber = $(this).attr('data-tel');
 	var placeToGo = $('.call-agent').find('p').text(phoneNumber);
 
-	if (screen.width < 768){
+	if ($(window).width() < 768){
 		$('#wrapper').removeClass('fancy-overlay');
 	}
 });

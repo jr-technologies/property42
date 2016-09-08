@@ -27,6 +27,7 @@ use App\Traits\Property\PropertyFilesReleaser;
 use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Traits\Property\ShowAddPropertyFormHelper;
 use App\Transformers\Response\PropertyTransformer;
+use Illuminate\Support\Facades\Redirect;
 
 class PropertiesController extends Controller
 {
@@ -68,9 +69,9 @@ class PropertiesController extends Controller
     public function addProperty(RouteToAddPropertyRequest $request)
     {
         if($request->isNotAuthentic()){
-            die(header('Location: '.url('/').'/app/add-property#/'));
+            return Redirect::to(url('/').'/app/add-property#/');
         }else{
-            die(header('Location: '.url('/').'/dashboard#/home/properties/add'));
+            return Redirect::to(url('/').'/dashboard#/home/properties/add');
         }
     }
 

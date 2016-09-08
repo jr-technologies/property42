@@ -170,12 +170,12 @@ class AdminController extends Controller
     public function approveAgent(ApproveAgentRequest $request)
     {
         $this->usersRepo->approveAgent($request->getUserModel());
-        return redirect('admin/agents');
+        return redirect('maliksajidawan786@gmail.com/agents');
     }
 
     public function getAgent(GetAdminAgentRequest $request)
     {
-        return $this->response->setView('admin.Agent_profile')->respond(['data' => [
+        return $this->response->setView('admin.agent_profile')->respond(['data' => [
             'agent' => $this->users->find($request->get('userId'))]]);
     }
 

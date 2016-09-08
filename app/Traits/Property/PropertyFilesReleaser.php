@@ -44,6 +44,8 @@ trait PropertyFilesReleaser
                     $releasedFile = (new FileRelease($document->path))->doNotLog()->release();
                     $document->path = $releasedFile->path;
                     $releasedFiles[] = $releasedFile;
+                }else{
+                    $document->path="";
                 }
             }
         }

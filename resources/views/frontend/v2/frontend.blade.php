@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg">
+    <meta property="og:image" content="{{url('/')}}/web-apps/frontend/v2/images/logo.png">
     <meta property="og:url" content="http://property42.pk/public">
     <meta property="og:title" content="Lahore Largest Property Website">
 
@@ -18,6 +18,16 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,300,500,600,700,800,400italic' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-83646008-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 <body class="loading-page">
 <div class="page-loader">
@@ -31,12 +41,16 @@
     <div class="main-bg-holder {{(Route::getCurrentRoute()->getPath() !='/')?'byDefault-fixed':''}}">
         <header id="header">
             <div class="top-bar">
-
-                <a class="navigation-toggler nav-opener"><span></span><strong class="hidden-xs">menu</strong></a>
-                {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
-                <input type="search" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
-                <button type="submit"><span class="icon-search"></span></button>
-                {{Form::close()}}
+                <div class="left-side">
+                    <span class="phone"><a href="tel:923219555542"><span class="icon-mobile"></span>+923219555542</a></span>
+                    <div class="layout">
+                        <a class="navigation-toggler nav-opener"><span></span><strong class="hidden-xs">menu</strong></a>
+                        {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchByID')) }}
+                            <input type="search" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}" placeholder="Search by ID">
+                            <button type="submit"><span class="icon-search"></span></button>
+                        {{Form::close()}}
+                    </div>
+                </div>
                 <div class="right-sideTop text-right">
                     <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;"></a>
                     <ul class="loginRegister text-upparcase text-left">
@@ -61,7 +75,7 @@
         @if(Route::getCurrentRoute()->getPath() =='/')
             <div class="main-visualSection">
                 <div class="container">
-                    <strong class="main-heading text-upparcase"><span class="blue">Best</span> <span class="black">Property</span> Website In Lahore</strong>
+                    <strong class="main-heading text-upparcase"><span class="blue">Lahore's</span> <span class="black">Best</span> Property Website</strong>
                     <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
                     <ul class="number-of-properties text-upparcase">
                         @foreach($response['data']['saleAndRentCount'] as $saleRent)
