@@ -130,8 +130,8 @@
                 <section class="generic-section about-us" id="about-us">
                     <div class="container text-center">
                         <h1>About <span>Us</span></h1>
-                        <p>PROPERTY42.PK is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
-                        <p>PROPERTY42.PK is providing flexible search for user which will provide potential clients with a better overall online experience.
+                        <p>Property42.PK is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
+                        <p>Property42.PK is providing flexible search for user which will provide potential clients with a better overall online experience.
                             With modern housing and societies services and a growing population, PROPERT42.PK is a unique regional center and offers plenty of lifestyle and investment opportunity.
                             PROPERTY42.PK is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
                     </div>
