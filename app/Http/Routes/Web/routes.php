@@ -2,10 +2,10 @@
 
 Route::get('foo',function()
 {
-   // DB::table('properties')->delete();
+    // DB::table('properties')->delete();
     $lastProperty =  DB::table('properties')
-                    ->orderBy('properties.id','DESC')
-                    ->skip(0)->take(1)->get();
+        ->orderBy('properties.id','DESC')
+        ->skip(0)->take(1)->get();
     $lastId = $lastProperty[0]->id;
     $statusesSeeder = new PropertyStatusTableSeeder();
     $PropertyFactory = (new \App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory());
@@ -61,8 +61,8 @@ Route::get('foo/blocks',function(){
         ->groupBy('blocks.society_id')
         ->where('blocks.block','other')
         ->get();
-     $blocks = (new \App\Libs\Helpers\Helper())->propertyToArray($blocks,'society_id');
-     $societies = DB::table($societyTable)
+    $blocks = (new \App\Libs\Helpers\Helper())->propertyToArray($blocks,'society_id');
+    $societies = DB::table($societyTable)
         ->select($societyTable.'.*')
         ->whereNotIn($societyTable.'.id', $blocks)
         ->get();
@@ -75,15 +75,182 @@ Route::get('foo/blocks',function(){
 });
 
 Route::get('print-societies/12345',function(){
-        $allSocieties = (new \App\Repositories\Repositories\Sql\SocietiesRepository())->all();
-        foreach($allSocieties as $society)
-        {
-            echo '(object)[
+    $allSocieties = (new \App\Repositories\Repositories\Sql\SocietiesRepository())->all();
+    foreach($allSocieties as $society)
+    {
+        echo '(object)[
                "id"=>'.$society->id.' ,"name"=>'."'".$society->name."'".'
            ],<br />';
-        }
     }
+}
 );
+
+Route::get('maliksajidawan786@gmail.com/project',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'admin\ProjectsController@project'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/add/project',
+    [
+        'middleware'=>
+            [
+                'webValidate:addProjectRequest'
+            ],
+        'uses'=>'admin\ProjectsController@addProject'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/project/listing',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAllProjectsRequest'
+            ],
+        'uses'=>'admin\ProjectsController@getAllProjects'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/project',
+    [
+        'middleware'=>
+            [
+              'webValidate:deleteProjectRequest'
+            ],
+        'uses'=>'admin\ProjectsController@deleteProject'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/update/project',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateProjectRequest'
+            ],
+        'uses'=>'admin\ProjectsController@updateProject'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/image',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteProjectImageRequest'
+            ],
+        'uses'=>'admin\ProjectsController@deleteProjectImage'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/get/project/images',
+    [
+        'middleware'=>
+            [
+                'webValidate:getProjectImagesRequest'
+            ],
+        'uses'=>'admin\ProjectsController@getProjectImages'
+    ]
+);
+
+Route::post('get/update/project/form',
+    [
+        'middleware'=>
+            [
+              'webValidate:getProjectRequest'
+            ],
+        'uses'=>'admin\ProjectsController@getProject'
+    ]
+);
+
+
+
+Route::get('maliksajidawan786@gmail.com/news',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'admin\NewsController@news'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/add/news',
+    [
+        'middleware'=>
+            [
+                'webValidate:addNewsRequest'
+            ],
+        'uses'=>'admin\NewsController@addNews'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/news/listing',
+    [
+        'middleware'=>
+            [
+                'webValidate:getAllNewsRequest'
+            ],
+        'uses'=>'admin\NewsController@getAllNews'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/news',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteNewsRequest'
+            ],
+        'uses'=>'admin\NewsController@deleteNews'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/update/news',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateNewsRequest'
+            ],
+        'uses'=>'admin\NewsController@updateNews'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/news/image',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteNewsImageRequest'
+            ],
+        'uses'=>'admin\NewsController@deleteNewsImage'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/get/news/images',
+    [
+        'middleware'=>
+            [
+                'webValidate:getNewsImagesRequest'
+            ],
+        'uses'=>'admin\NewsController@getNewsImages'
+    ]
+);
+
+Route::post('get/update/news/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getNewsRequest'
+            ],
+        'uses'=>'admin\NewsController@getNews'
+    ]
+);
+
+
+
+
+
 
 Route::get('maliksajidawan786@gmail.com/banners',
     [
@@ -91,9 +258,11 @@ Route::get('maliksajidawan786@gmail.com/banners',
             [
 
             ],
-        'uses'=>'Admin\BannersController@banners'
+        'uses'=>'admin\BannersController@banners'
     ]
 );
+
+
 
 Route::post('maliksajidawan786@gmail.com/add/banner',
     [
@@ -101,7 +270,7 @@ Route::post('maliksajidawan786@gmail.com/add/banner',
             [
                 'webValidate:addBannerRequest'
             ],
-        'uses'=>'Admin\BannersController@addBanner'
+        'uses'=>'admin\BannersController@addBanner'
     ]
 );
 
@@ -111,7 +280,7 @@ Route::get('maliksajidawan786@gmail.com/banners/listing',
             [
                 'webValidate:getAllBannersRequest'
             ],
-        'uses'=>'Admin\BannersController@bannersListing'
+        'uses'=>'admin\BannersController@bannersListing'
     ]
 );
 
@@ -119,9 +288,9 @@ Route::post('get/page/banners',
     [
         'middleware'=>
             [
-              'webValidate:getPageBannersRequest'
+                'webValidate:getPageBannersRequest'
             ],
-        'uses'=>'Admin\BannersController@pageBanners'
+        'uses'=>'admin\BannersController@pageBanners'
     ]
 );
 
@@ -132,7 +301,7 @@ Route::post('maliksajidawan786@gmail.com/delete/banner',
             [
                 'webValidate:deleteBannerRequest'
             ],
-        'uses'=>'Admin\BannersController@deleteBanner'
+        'uses'=>'admin\BannersController@deleteBanner'
     ]
 );
 
@@ -142,7 +311,7 @@ Route::post('get/update/banner/form',
             [
                 'webValidate:getBannerRequest'
             ],
-        'uses'=>'Admin\BannersController@getUpdateBannerForm'
+        'uses'=>'admin\BannersController@getUpdateBannerForm'
     ]
 );
 
@@ -152,7 +321,7 @@ Route::post('maliksajidawan786@gmail.com/update/banner',
             [
                 'webValidate:updateBannerRequest'
             ],
-        'uses'=>'Admin\BannersController@updateBanner'
+        'uses'=>'admin\BannersController@updateBanner'
     ]
 );
 
@@ -162,7 +331,7 @@ Route::get('maliksajidawan786@gmail.com/societies',
             [
                 'webValidate:getAllSocietiesRequest'
             ],
-        'uses'=>'Admin\AdminController@societies'
+        'uses'=>'admin\AdminController@societies'
     ]
 );
 
@@ -170,7 +339,7 @@ Route::get('maliksajidawan786@gmail.com/blocks',
     [
         'middleware'=>
             [],
-        'uses'=>'Admin\AdminController@getBlocks'
+        'uses'=>'admin\AdminController@getBlocks'
     ]
 );
 
@@ -180,7 +349,7 @@ Route::get('get/blocks',
             [
                 'webValidate:getBlocksBySocietyRequest'
             ],
-        'uses'=>'Admin\AdminController@getBlocksBySociety'
+        'uses'=>'admin\AdminController@getBlocksBySociety'
     ]
 );
 
@@ -188,9 +357,9 @@ Route::post('add/blocks',
     [
         'middleware'=>
             [
-               'webValidate:addBlockRequest'
+                'webValidate:addBlockRequest'
             ],
-        'uses'=>'Admin\AdminController@addBlock'
+        'uses'=>'admin\AdminController@addBlock'
     ]
 );
 
@@ -200,7 +369,7 @@ Route::post('delete/blocks',
             [
                 'webValidate:deleteBlockRequest'
             ],
-        'uses'=>'Admin\AdminController@deleteBlock'
+        'uses'=>'admin\AdminController@deleteBlock'
     ]
 );
 
@@ -208,9 +377,9 @@ Route::post('update/blocks',
     [
         'middleware'=>
             [
-               'webValidate:updateBlockRequest'
+                'webValidate:updateBlockRequest'
             ],
-        'uses'=>'Admin\AdminController@updateBlock'
+        'uses'=>'admin\AdminController@updateBlock'
     ]
 );
 
@@ -220,7 +389,7 @@ Route::post('get/update/block/form',
             [
                 'webValidate:getUpdateBlockFormRequest'
             ],
-        'uses'=>'Admin\AdminController@getBlockUpdateForm'
+        'uses'=>'admin\AdminController@getBlockUpdateForm'
     ]
 );
 
@@ -230,7 +399,7 @@ Route::post('delete/society',
             [
                 'webValidate:deleteSocietyRequest'
             ],
-        'uses'=>'Admin\AdminController@deleteSociety'
+        'uses'=>'admin\AdminController@deleteSociety'
     ]
 );
 
@@ -240,7 +409,7 @@ Route::post('update/society',
             [
                 'webValidate:updateSocietyRequest'
             ],
-        'uses'=>'Admin\AdminController@updateSociety'
+        'uses'=>'admin\AdminController@updateSociety'
     ]
 );
 
@@ -250,7 +419,7 @@ Route::post('get/update/society/form',
             [
                 'webValidate:getUpdateSocietyFormRequest'
             ],
-        'uses'=>'Admin\AdminController@getUpdateSocietyForm'
+        'uses'=>'admin\AdminController@getUpdateSocietyForm'
     ]
 );
 
@@ -260,7 +429,7 @@ Route::post('add/society',
             [
                 'webValidate:addSocietyRequest'
             ],
-        'uses'=>'Admin\AdminController@addSociety'
+        'uses'=>'admin\AdminController@addSociety'
     ]
 );
 
@@ -270,7 +439,7 @@ Route::get('get/society/form',
             [
 
             ],
-        'uses'=>'Admin\AdminController@getSocietyForm'
+        'uses'=>'admin\AdminController@getSocietyForm'
     ]
 );
 
@@ -280,7 +449,7 @@ Route::get('admin',
             [
 
             ],
-        'uses'=>'Admin\AuthController@getLoginPage'
+        'uses'=>'admin\AuthController@getLoginPage'
     ]
 );
 
@@ -292,7 +461,7 @@ Route::post('admin/login',
                 // 'webAuthenticate:adminLoginRequest',
                 'webValidate:adminLoginRequest'
             ],
-        'uses'=>'Admin\AuthController@login'
+        'uses'=>'admin\AuthController@login'
     ]
 );
 
@@ -302,7 +471,7 @@ Route::get('get/property',
             [
                 'webValidate:getAdminPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@getById'
+        'uses'=>'admin\AdminController@getById'
     ]
 );
 
@@ -312,7 +481,7 @@ Route::get('get/maliksajidawan786@gmail.com/active/property',
             [
                 'webValidate:getAdminActivePropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@getActiveProperties'
+        'uses'=>'admin\AdminController@getActiveProperties'
     ]
 );
 
@@ -322,7 +491,7 @@ Route::get('get/maliksajidawan786@gmail.com/expired/property',
             [
                 'webValidate:getAdminExpiredPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@getExpiredProperties'
+        'uses'=>'admin\AdminController@getExpiredProperties'
     ]
 );
 
@@ -332,7 +501,7 @@ Route::get('get/maliksajidawan786@gmail.com/rejected/property',
             [
                 'webValidate:getAdminRejectedPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@getRejectedProperties'
+        'uses'=>'admin\AdminController@getRejectedProperties'
     ]
 );
 
@@ -342,7 +511,7 @@ Route::get('get/maliksajidawan786@gmail.com/deleted/property',
             [
                 'webValidate:getAdminDeletedPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@getDeletedProperties'
+        'uses'=>'admin\AdminController@getDeletedProperties'
     ]
 );
 
@@ -352,7 +521,7 @@ Route::get('get/maliksajidawan786@gmail.com/pending/property',
             [
                 'webValidate:getAdminPendingPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@getPendingProperties'
+        'uses'=>'admin\AdminController@getPendingProperties'
     ]
 );
 
@@ -362,7 +531,7 @@ Route::get('get/agent',
             [
                 'webValidate:getAdminAgentRequest'
             ],
-        'uses'=>'Admin\AdminController@getAgent'
+        'uses'=>'admin\AdminController@getAgent'
     ]
 );
 
@@ -378,7 +547,7 @@ Route::post('maliksajidawan786@gmail.com/property/reject',
             [
                 'webValidate:RejectPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@rejectProperty'
+        'uses'=>'admin\AdminController@rejectProperty'
     ]
 );
 
@@ -388,7 +557,7 @@ Route::post('maliksajidawan786@gmail.com/property/verify',
             [
                 'webValidate:verifyPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@VerifyProperty'
+        'uses'=>'admin\AdminController@VerifyProperty'
     ]
 );
 
@@ -398,7 +567,7 @@ Route::post('maliksajidawan786@gmail.com/property/deActive',
             [
                 'webValidate:deActivePropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@deActiveProperty'
+        'uses'=>'admin\AdminController@deActiveProperty'
     ]
 );
 
@@ -408,7 +577,7 @@ Route::post('maliksajidawan786@gmail.com/property/deVerify',
             [
                 'webValidate:deVerifyPropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@deVerifyProperty'
+        'uses'=>'admin\AdminController@deVerifyProperty'
     ]
 );
 
@@ -418,7 +587,7 @@ Route::post('maliksajidawan786@gmail.com/property/approve',
             [
                 'webValidate:ApprovePropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@approveProperty'
+        'uses'=>'admin\AdminController@approveProperty'
     ]
 );
 
@@ -435,7 +604,7 @@ Route::get('maliksajidawan786@gmail.com/agents',
         'middleware'=>
             [
             ],
-        'uses'=>'Admin\AdminController@getAgents'
+        'uses'=>'admin\AdminController@getAgents'
     ]);
 
 
@@ -445,7 +614,7 @@ Route::post('admin/property/approve',
             [
                 'webValidate:ApprovePropertyRequest'
             ],
-        'uses'=>'Admin\AdminController@approveProperty'
+        'uses'=>'admin\AdminController@approveProperty'
     ]
 );
 
@@ -456,7 +625,7 @@ Route::post('admin/agent/approve',
 //                'webAuthenticate:getAdminsPropertiesRequest',
                 'webValidate:approveAgentRequest'
             ],
-        'uses'=>'Admin\AdminController@approveAgent'
+        'uses'=>'admin\AdminController@approveAgent'
     ]
 );
 
@@ -531,7 +700,7 @@ Route::get('maliksajidawan786@gmail.com/properties',
             [
                 'webAuthenticate:getAdminsPropertiesRequest',
             ],
-        'uses'=>'Admin\AdminController@getProperties'
+        'uses'=>'admin\AdminController@getProperties'
     ]);
 
 Route::get('maliksajidawan786@gmail.com/agents',
@@ -540,7 +709,7 @@ Route::get('maliksajidawan786@gmail.com/agents',
             [
                 //'webAuthenticate:getAdminsPropertiesRequest',
             ],
-        'uses'=>'Admin\AdminController@getAgents'
+        'uses'=>'admin\AdminController@getAgents'
     ]);
 Route::get('society',
     [
@@ -548,7 +717,7 @@ Route::get('society',
             [
                 'webValidate:getSocietyRequest'
             ],
-        'uses'=>'Admin\PropertiesController@getSociety'
+        'uses'=>'admin\PropertiesController@getSociety'
     ]
 );
 
@@ -669,12 +838,12 @@ Route::get('agent',
 
 Route::get('agent/mail',
     [
-    'middleware'=>
-        [
-            'webValidate:agentMailRequest'
-        ],
-    'uses'=>'MailController@mailAgent'
-]);
+        'middleware'=>
+            [
+                'webValidate:agentMailRequest'
+            ],
+        'uses'=>'MailController@mailAgent'
+    ]);
 
 Route::post('mail-to-agent',
     [
@@ -714,7 +883,7 @@ Route::post('property-to-friend',
 
 /**
 trusted-agent route is not redirect on right path its temporary
-**/
+ **/
 
 Route::post('trusted-agent',
     [

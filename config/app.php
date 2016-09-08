@@ -229,6 +229,27 @@ return [
         'ApproveAgentRequest' => \App\Http\Requests\Requests\User\ApproveAgentRequest::class,
         'IndexRequest' => \App\Http\Requests\Requests\IndexRequest::class,
 
+        /* Project */
+        'AddProjectRequest' => \App\Http\Requests\Requests\Project\AddProjectRequest::class,
+        'GetAllProjectsRequest' => \App\Http\Requests\Requests\Project\GetAllProjectsRequest::class,
+        'DeleteProjectRequest' => \App\Http\Requests\Requests\Project\DeleteProjectRequest::class,
+        'DeleteProjectImageRequest' => \App\Http\Requests\Requests\Project\DeleteProjectImageRequest::class,
+        'GetProjectRequest' => \App\Http\Requests\Requests\Project\GetProjectRequest::class,
+        'GetProjectImagesRequest' => \App\Http\Requests\Requests\Project\GetProjectImagesRequest::class,
+        'UpdateProjectRequest' => \App\Http\Requests\Requests\Project\UpdateProjectRequest::class,
+
+
+        /* News */
+        'AddNewsRequest' => \App\Http\Requests\Requests\News\AddNewsRequest::class,
+        'GetAllNewsRequest' => \App\Http\Requests\Requests\News\GetAllNewsRequest::class,
+        'DeleteNewsRequest' => \App\Http\Requests\Requests\News\DeleteNewsRequest::class,
+        'DeleteNewsImageRequest' => \App\Http\Requests\Requests\News\DeleteNewsImageRequest::class,
+        'GetNewsRequest' => \App\Http\Requests\Requests\News\GetNewsRequest::class,
+        'GetNewsImagesRequest' => \App\Http\Requests\Requests\News\GetNewsImagesRequest::class,
+        'UpdateNewsRequest' => \App\Http\Requests\Requests\News\UpdateNewsRequest::class,
+
+
+
         /* Banners */
         'AddBannerRequest' => \App\Http\Requests\Requests\Banners\AddBannerRequest::class,
         'GetAllBannersRequest' => \App\Http\Requests\Requests\Banners\GetAllBannersRequest::class,
@@ -345,7 +366,7 @@ return [
         'DeleteToFavouritePropertyRequest' => \App\Http\Requests\Requests\AddToFavourite\DeleteToFavouritePropertyRequest::class,
         'DeleteMultiFavouritePropertyRequest' => \App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest::class,
 
-        /* Admin Requests */
+        /* admin Requests */
         'GetAdminPropertyRequest' => \App\Http\Requests\Requests\Property\GetAdminPropertyRequest::class,
         'GetAdminsPropertiesRequest' => \App\Http\Requests\Requests\Property\GetAdminsPropertiesRequest::class,
         'RejectPropertyRequest' => \App\Http\Requests\Requests\Property\RejectPropertyRequest::class,

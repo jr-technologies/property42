@@ -19,7 +19,7 @@
     <header id="header">
         <a href="{{URL::to('/')}}" class="logo"><span class="hidden-xs">Property</span>42</a>
         <a class="sideBar-opener"><span></span></a>
-        <a href="{{url('admin/logout')}}" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
+        <a href="{{url('admin')}}" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
     </header>
     <main id="main" role="main">
         <aside id="sidebar-dashboard">
@@ -45,6 +45,10 @@
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/blocks')}}"><span class="icon-list"></span>Blocks </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/banners')}}"><span class="icon-list"></span>Banners </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/banners/listing')}}"><span class="icon-list"></span>Banners Listing</a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/project')}}"><span class="icon-list"></span>Project</a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/project/listing')}}"><span class="icon-list"></span>Project Listing</a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/news')}}"><span class="icon-list"></span>News</a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/news/listing')}}"><span class="icon-list"></span>News Listing</a></li>
             </ul>
         </aside>
         @yield('content')

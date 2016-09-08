@@ -16,7 +16,7 @@
 <!-- main container of all the page elements -->
 <div id="wrapper">
     <div class="login-Admin">
-        {{Form::open(array('url'=>'admin/login','method'=>'POST','class'=>'login-Admin-Form'))}}
+        {{Form::open(array('url'=>'admin','method'=>'POST','class'=>'admin'))}}
           <strong class="heading-profile">Admin login</strong>
             <div class="input-holder error full-width">
                 <label class="icon-envelope" for="email"></label>

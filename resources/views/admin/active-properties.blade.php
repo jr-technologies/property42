@@ -56,11 +56,11 @@
                             <div class="t-data by-view">{{$property->totalViews}}</div>
                             <div class="t-data">
                                 @if($property->propertyStatus->id != 5)
-                                {{Form::open(array('url'=>'admin/property/approve','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                {{Form::open(array('url'=>'admin','method'=>'POST','class'=>'rejectApprove-form'))}}
                                     <input hidden name="propertyId" value="{{$property->id}}">
                                  <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
                                 {{Form::close()}}
-                                    @else{{Form::open(array('url'=>'admin/property/deActive','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                    @else{{Form::open(array('url'=>'admin','method'=>'POST','class'=>'rejectApprove-form'))}}
                                 <input hidden name="propertyId" value="{{$property->id}}">
                                 <button ><span  type="submit"></span>DA</button>
                                 {{Form::close()}}
@@ -72,13 +72,13 @@
                                 {{Form::close()}}
 
                                     @else
-                                        {{Form::open(array('url'=>'admin/property/deVerify','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                        {{Form::open(array('url'=>'admin','method'=>'POST','class'=>'rejectApprove-form'))}}
                                         <input hidden name="propertyId" value="{{$property->id}}">
                                         <button><span type="submit" ></span>DV</button>
                                         {{Form::close()}}
                                     @endif
                                     @if($property->propertyStatus->id != 15)
-                                        {{Form::open(array('url'=>'admin/property/reject','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                        {{Form::open(array('url'=>'admin','method'=>'POST','class'=>'rejectApprove-form'))}}
                                     <input hidden name="propertyId" value="{{$property->id}}">
                                 <button class="delete" title="Delete the property" type="submit"><span class="icon-sign"></span></button>
                                 {{Form::close()}}

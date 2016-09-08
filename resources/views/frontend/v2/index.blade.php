@@ -39,14 +39,16 @@
                             <div class="news-slideshow">
                                 <div class="mask">
                                     <div class="slideset">
+                                      @foreach($response['data']['projects'] as $project)
                                         <div class="slide">
+
                                             <div class="layout">
                                                 <div class="news-carousel">
                                                     <div class="news-mask">
                                                         <div class="news-slideset">
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
+                                                            @foreach($project->images as $image)
+                                                              <div class="news-slide"><a href="#"><img src="{{url('/').'/'.$image->image}}" width="495" height="363" alt="image description"></a></div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                     <div class="news-pagination"></div>
@@ -54,34 +56,12 @@
                                                     <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
                                                 </div>
                                                 <div class="caption">
-                                                    <p>{{str_limit("Real Estate elected committee meet with Finance Minister Ishaq Dar today at
-                                        Islamabad regarding recently imposed property evolution tax. Real estate agents
-                                         and investors protested against the increase in taxes on Saturday, expecting that
-                                         the government would take some decisions in their favor.",400)}}</p>
+                                                    <p><b>{{$project->title}}</b> <br />{{str_limit($project->description,400)}}</p>
                                                     <a href="#" class="btn-default text-upparcase">Learn More</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="slide">
-                                            <div class="layout">
-                                                <div class="news-carousel">
-                                                    <div class="news-mask">
-                                                        <div class="news-slideset">
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="news-pagination"></div>
-                                                    <a href="#" class="news-btn-prev"><span class="icon-left-arrow"></span></a>
-                                                    <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
-                                                </div>
-                                                <div class="caption">
-                                                    <p>{{str_limit("After the protest of real estate agents protest Prime Minister take an action and ask to finance minister to discuss the matter with real estate stakeholder.",400)}}</p>
-                                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      @endforeach
                                     </div>
                                 </div>
                                 <div class="pagination hidden"></div>

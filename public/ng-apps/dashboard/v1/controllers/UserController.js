@@ -7,7 +7,7 @@ app.controller("UserController",["$scope", "$rootScope", "$AuthService", "$locat
     function ($scope, $rootScope, $AuthService, $location) {
     $scope.user = {
         name: "Noman Tufail",
-        role: "Admin, Editor"
+        role: "admin, Editor"
     };
 
     $scope.logout = function () {

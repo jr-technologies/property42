@@ -63,8 +63,7 @@ trait RequestHelper
         $authenticator->setAccessToken($this->getAccessToken());
         return $authenticator;
     }
-
-    /*
+     /*
      * return Authorization token within the
      * incoming request.
      */
