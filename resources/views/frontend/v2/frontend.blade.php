@@ -265,6 +265,47 @@
             <a class="btn-close-working close"><span class="icon-cross"></span></a>
         </div>
     @endif
+    <nav id="nav">
+        <a class="navigation-toggler close"><span class="icon-cross"></span></a>
+        <form class="searchByID hidden">
+            <input type="search" placeholder="Search by ID">
+            <button type="submit"><span class="icon-search"></span></button>
+        </form>
+        <ul class="main-navigation text-upparcase">
+            <li class="active">
+                <a href="#">HOME</a>
+            </li>
+            <li>
+                <a href="#">Properties</a>
+            </li>
+            <li>
+                <a href="#">AGENTS</a>
+            </li>
+            <li>
+                <a href="#about-us" class="scroll">ABOUT</a>
+            </li>
+            <li>
+                <a href="#contact-us" class="scroll">CONTACT</a>
+            </li>
+        </ul>
+        <div class="mobile-content text-center">
+            <ul class="social-icons">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+            <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+        </div>
+    </nav>
+    <div class="nav-blur-area">
+        <div class="logo-holder"><img src="images/logo.png" alt="Property42"></div>
+        <ul class="bottom-links">
+            <li><a href="#">www.property42.pk</a></li>
+            <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</li>
+        </ul>
+    </div>
     </div>
 <script type="text/javascript" src="{{url('/')}}/assets/js/helper.js"></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
