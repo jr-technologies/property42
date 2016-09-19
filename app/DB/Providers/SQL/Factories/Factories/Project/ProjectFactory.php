@@ -82,6 +82,8 @@ class ProjectFactory extends SQLFactory implements SQLFactoriesInterface
         $project->id = $result->id;
         $project->title = $result->title;
         $project->description = $result->description;
+        $project->cityId = $result->city_id;
+        $project->societyId = $result->society_id;
         $project->createdAt = $result->created_at;
         $project->updatedAt = $result->updated_at;
         return $project;
@@ -91,17 +93,21 @@ class ProjectFactory extends SQLFactory implements SQLFactoriesInterface
         $project = new ProjectDetail();
         $project->id = $result->id;
         $project->title = $result->title;
+        $project->cityId = $result->city_id;
+        $project->societyId = $result->society_id;
         $project->description = $result->description;
         $project->images = $this->projectImages->getProjectImages($result->id);
         return $project;
     }
 
-    private function mapProjectOnTable(Project $banner)
+    private function mapProjectOnTable(Project $project)
     {
         return [
-            'title'     => $banner->title,
-            'description'=> $banner->description,
-            'created_at'=> $banner->createdAt,
+            'title'     => $project->title,
+            'description'=> $project->description,
+            'city_id'=>$project->cityId,
+            'society_id'=>$project->societyId,
+            'created_at'=> $project->createdAt,
         ];
     }
 }

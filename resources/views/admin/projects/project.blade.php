@@ -35,7 +35,27 @@
                 </td>
 
             </tr>
+            <tr>
+                <td>
+                    <label>Project City</label>
+                    <select name="city_id" id="cityId">
+                        <option value="">Please Select</option>
+                      @foreach($response['data']['cities'] as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                      @endforeach
+                    </select>
+                </td>
 
+            </tr>
+            <tr>
+                <td>
+                    <label>Project Society</label>
+                    <select name="society_id" id="societies">
+                        <option value="">Select Societies</option>
+                    </select>
+                </td>
+
+            </tr>
             <tr>
                 <td><br/><br/>
                     <label>select Image</label>

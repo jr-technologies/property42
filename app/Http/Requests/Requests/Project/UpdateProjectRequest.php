@@ -40,6 +40,8 @@ class UpdateProjectRequest extends Request implements RequestInterface{
         $project = $this->projectRepo->getProject($this->get('projectId'));
         $project->id = $this->get('projectId');
         $project->title = $this->get('title');
+        $project->cityId = $this->get('cityId');
+        $project->societyId = $this->get('societyId');
         $project->description = $this->get('description');
         return $project;
     }

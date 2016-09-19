@@ -36,6 +36,8 @@ class AddProjectRequest extends Request implements RequestInterface{
         $project = new Project();
         $project->title = $this->get('title');
         $project->description = $this->get('description');
+        $project->cityId = $this->get('cityId');
+        $project->societyId = $this->get('societyId');
         return $project;
     }
     public function getProjectImageModel()

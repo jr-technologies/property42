@@ -151,13 +151,11 @@ class PropertiesController extends Controller
     }
     public function getIndexPageBanners()
     {
-        $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
-        $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
-        $rightBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'right','page'=>'index']);
         return $banners = [
-            'leftBanners'=>$leftBanners,
-            'topBanners'=>$topBanners,
-            'rightBanners'=>$rightBanners
+            'sliderBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'slider','page'=>'index']),
+            'leftBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']),
+            'topBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']),
+            'rightBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'right','page'=>'index'])
         ];
     }
     public function index(IndexRequest $request)
@@ -180,6 +178,7 @@ class PropertiesController extends Controller
     }
     public function getById(GetPropertyRequest $request)
     {
+     dd(Decrypt(request()->ip()));
        try {
            $property = $this->properties->getById($request->get('propertyId'));
            if($property->propertyStatus->id == ($this->status->getActiveStatusId()))

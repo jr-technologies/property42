@@ -14,6 +14,8 @@ class ProjectDetail
     public $id = 0;
     public $title ="";
     public $description ="";
+    public $cityId = 0;
+    public $societyId = 0;
     public $images =[];
 
 

@@ -297,6 +297,7 @@ return [
         'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,
         'GetUpdateSocietyFormRequest' => \App\Http\Requests\Requests\Society\GetUpdateSocietyFormRequest::class,
+        'GetSocietiesByCityRequest' => \App\Http\Requests\Requests\Society\GetSocietiesByCityRequest::class,
 
         'DeleteSocietyRequest' => \App\Http\Requests\Requests\Society\DeleteSocietyRequest::class,
         'GetAllSocietiesRequest' => \App\Http\Requests\Requests\Society\GetAllSocietiesRequest::class,

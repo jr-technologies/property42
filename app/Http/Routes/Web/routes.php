@@ -125,6 +125,17 @@ Route::post('maliksajidawan786@gmail.com/delete/project',
     ]
 );
 
+
+Route::post('city/society',
+    [
+        'middleware'=>
+            [
+                'webValidate:'
+            ],
+        'uses'=>'admin\ProjectsController@updateProject'
+    ]
+);
+
 Route::post('maliksajidawan786@gmail.com/update/project',
     [
         'middleware'=>
@@ -161,7 +172,7 @@ Route::post('get/update/project/form',
             [
               'webValidate:getProjectRequest'
             ],
-        'uses'=>'admin\ProjectsController@getProject'
+        'uses'=>'admin\ProjectsController@updateProjectForm'
     ]
 );
 

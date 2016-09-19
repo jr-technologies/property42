@@ -21,6 +21,8 @@ class UpdateProjectTransformer extends RequestTransformer
             'images'=>$this->request->file('fileToUpload'),
             'description'=>$this->request->input('description'),
             'title'=>$this->request->input('title'),
+            'societyId'=>$this->request->input('society_id'),
+            'cityId'=>$this->request->input('city_id'),
         ];
     }
 }

@@ -97,5 +97,7 @@
 <!-- include custom JavaScript -->
 <script type="text/javascript" src="{{url('/')}}/web-apps/admin/js/dashboard.js" defer></script>
 <script type="text/javascript" src="{{url('/')}}/web-apps/admin/js/jquery.main.js" defer></script>
+<script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
+<script type="text/javascript" src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" defer></script>
 </body>
 </html>

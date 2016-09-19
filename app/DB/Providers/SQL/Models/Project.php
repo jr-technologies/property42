@@ -14,6 +14,8 @@ class Project
     public $id = 0;
     public $title ="";
     public $description ="";
+    public $societyId = 0;
+    public $cityId =0;
 
 
     public $createdAt = '0000-00-00 00:00:00';

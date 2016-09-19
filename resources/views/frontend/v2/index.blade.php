@@ -1,5 +1,12 @@
 @extends('frontend.v2.frontend')
 @section('content')
+    <ul class="Ads">
+        @if(isset($response['data']['banners']['sliderBanners']))
+            @foreach($response['data']['banners']['sliderBanners'] as $banner)
+                <li><a @if($banner->banner_link !="")href="{{$banner->banner_link}}" @endif><img src="{{$banner->image}}" alt="Image description"></a></li>
+            @endforeach
+        @endif
+    </ul>
     <div class="page-holder">
         <div class="index-page">
         <div class="agent-logos container">

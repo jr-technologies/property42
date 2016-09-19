@@ -36,7 +36,30 @@
                 </td>
 
             </tr>
+            <tr>
+                <td>
+                    <label>Project City</label>
+                    <select name="city_id" id="cityId">
+                        <option value="">Please Select</option>
+                        @foreach($response['data']['cities'] as $city)
+                            <option value="{{$city->id}}" @if($response['data']['project']->cityId == $city->id) selected @endif>{{$city->name}}</option>
+                        @endforeach
+                    </select>
+                </td>
 
+            </tr>
+            <tr>
+                <td>
+                    <label>Project Society</label>
+                    <select name="society_id" id="societies">
+                        <option value="">Select Societies</option>
+                       @foreach($response['data']['societies'] as $society)
+                         <option value="{{$society->id}}" @if($response['data']['project']->societyId == $society->id ) selected @endif>{{$society->name}}</option>
+                       @endforeach
+                    </select>
+                </td>
+
+            </tr>
             <tr>
 
 
@@ -56,4 +79,9 @@
             {{Form::close()}}
         </table>
     </div>
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
 @endsection

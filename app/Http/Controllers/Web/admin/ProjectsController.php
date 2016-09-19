@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Http\Controllers\Api\V1\CitiesController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Project\AddProjectRequest;
 use App\Http\Requests\Requests\Project\DeleteProjectImageRequest;
@@ -11,22 +12,29 @@ use App\Http\Requests\Requests\Project\GetProjectImagesRequest;
 use App\Http\Requests\Requests\Project\GetProjectRequest;
 use App\Http\Requests\Requests\Project\UpdateProjectRequest;
 use App\Http\Responses\Responses\WebResponse;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\ProjectsRepoProvider;
+use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 
 
 class ProjectsController extends Controller
 {
     public $response = null;
     public $projectRepo = null;
+    public $cities = null;
+    public $societies = null;
     public function __construct(WebResponse $webResponse)
     {
         $this->response = $webResponse;
+        $this->cities = (new CitiesRepoProvider())->repo();
         $this->projectRepo = (new ProjectsRepoProvider())->repo();
+        $this->societies = (new SocietiesRepoProvider())->repo();
     }
     public function project()
     {
-        return $this->response->setView('admin.projects.project')->respond([
-        ]);
+        return $this->response->setView('admin.projects.project')->respond(['data'=>[
+            'cities'=>$this->cities->all(),
+        ]]);
     }
     public function addProject(AddProjectRequest $request)
     {
@@ -52,10 +60,13 @@ class ProjectsController extends Controller
         $this->projectRepo->deleteProject($request->get('projectId'));
         return redirect('maliksajidawan786@gmail.com/project/listing');
     }
-    public function getProject(GetProjectRequest $request)
+    public function updateProjectForm(GetProjectRequest $request)
     {
+        $project = $this->projectRepo->getProject($request->get('projectId'));
         return $this->response->setView('admin.projects.update-project')->respond(['data'=>[
-            'project'=>$this->projectRepo->getProject($request->get('projectId')),
+            'project'=>$project,
+            'cities'=>$this->cities->all(),
+            'societies'=>$this->societies->getByCity($project->cityId)
          ]]);
     }
     public function updateProject(UpdateProjectRequest $request)
