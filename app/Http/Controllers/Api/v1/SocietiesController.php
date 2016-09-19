@@ -7,9 +7,11 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\Requests\City\GetCitiesBySocietyRequest;
 use App\Http\Requests\Requests\Society\AddSocietyRequest;
 use App\Http\Requests\Requests\Society\DeleteSocietyRequest;
 use App\Http\Requests\Requests\Society\GetAllSocietiesRequest;
+use App\Http\Requests\Requests\Society\GetSocietiesByCityRequest;
 use App\Http\Requests\Requests\Society\UpdateSocietyRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
@@ -43,12 +45,14 @@ class SocietiesController extends ApiController
             'societies'=>$this->society->all()
         ]]);
     }
+
     public function delete(DeleteSocietyRequest $request)
     {
         return $this->response->respond(['data'=>[
             'society'=>$this->society->delete($request->getSocietyModel())
         ]]);
     }
+
     public function update(UpdateSocietyRequest $request)
     {
         $society = $request->getSocietyModel();
@@ -58,5 +62,10 @@ class SocietiesController extends ApiController
         ]]);
     }
 
-
+    public function getByCity(GetSocietiesByCityRequest $request)
+    {
+        return $this->response->respond(['data'=>[
+         'societies'=> $this->society->getByCity($request->get('cityId'))
+    ]]);
+    }
 }

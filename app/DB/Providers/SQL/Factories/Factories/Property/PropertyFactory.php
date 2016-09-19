@@ -45,7 +45,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     public function delete(Property $property)
     {
         $property->statusId = $this->statusesSeeder->getDeletedStatusId();
-        return  $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
+        return $this->tableGateway->updateWhere(['id'=>$property->id],$this->mapPropertyOnTable($property));
     }
     public function countSaleAndRendProperties()
     {
@@ -59,15 +59,13 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->deleteByIds($propertyIds);
     }
-
-
     public function forceDeleteByIds($propertyIds)
     {
         return $this->tableGateway->forceDeleteByIds($propertyIds);
     }
     public function forceDelete(Property $property)
     {
-        return  $this->tableGateway->delete($property->id);
+        return $this->tableGateway->delete($property->id);
     }
 
     function all()
@@ -144,7 +142,6 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'land_area' => $property->landArea,
             'land_unit_id' => $property->landUnitId,
             'property_status_id' => $property->statusId,
-
             'contact_person' => $property->contactPerson,
             'phone' => $property->phone,
             'wanted'=>$property->wanted,

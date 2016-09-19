@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="t-data by-view">@if($agent->trustedAgent !=1) Pending @endif</div>
                                 <div class="t-data">
-                                    {{Form::open(array('url'=>'admin/agent/approve','method'=>'POST','class'=>'rejectApprove-form'))}}
+                                    {{Form::open(array('url'=>'admin/agent/approve','method'=>'POST'))}}
                                     <input hidden name="userId" value="{{$agent->id}}">
                                     <button class="accept" title="Accept"><span class="icon-checkmark" type="submit"></span></button>
                                     {{Form::close()}}

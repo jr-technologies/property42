@@ -15,6 +15,7 @@ use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\ProjectsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
@@ -47,6 +48,7 @@ class PropertiesController extends Controller
     public $userRepo = null;
     public $status = null;
     public $banners = null;
+    public $projectRepo;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
@@ -65,6 +67,7 @@ class PropertiesController extends Controller
         $this->assignedFeaturesJson = (new AssignedFeatureJsonRepoProvider())->repo();
         $this->status = new \PropertyStatusTableSeeder();
         $this->banners = (new BannersRepoProvider())->repo();
+        $this->projectRepo = (new ProjectsRepoProvider())->repo();
     }
     public function addProperty(RouteToAddPropertyRequest $request)
     {
@@ -149,13 +152,11 @@ class PropertiesController extends Controller
     }
     public function getIndexPageBanners()
     {
-        $leftBanners = $this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']);
-        $topBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']);
-        $rightBanners  = $this->banners->getBanners(['bannerType'=>'fix','position'=>'right','page'=>'index']);
         return $banners = [
-            'leftBanners'=>$leftBanners,
-            'topBanners'=>$topBanners,
-            'rightBanners'=>$rightBanners
+            'sliderBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'slider','page'=>'index']),
+            'leftBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'left','page'=>'index']),
+            'topBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'top','page'=>'index']),
+            'rightBanners'=>$this->banners->getBanners(['bannerType'=>'fix','position'=>'right','page'=>'index'])
         ];
     }
     public function index(IndexRequest $request)
@@ -172,11 +173,13 @@ class PropertiesController extends Controller
             'agents'=>$this->releaseUsersAgenciesLogo($agents),
             'importantSocieties'=>$importantSocieties,
             'saleAndRentCount'=>$saleAndRentCount,
+            'projects'=>$this->projectRepo->getAllProjects(),
             'banners'=>$banners
         ]]);
     }
     public function getById(GetPropertyRequest $request)
     {
+     dd(Decrypt(request()->ip()));
        try {
            $property = $this->properties->getById($request->get('propertyId'));
            if($property->propertyStatus->id == ($this->status->getActiveStatusId()))

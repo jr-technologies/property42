@@ -85,3 +85,32 @@ $(document).on('change', '#society', function(){
     }
 });
 
+
+$(document).on('change', '#cityId', function(){
+    var city_id = $(this).val();
+    if(city_id !="") {
+        $.ajax({
+           url: apiPath.concat("city/society"),
+            data:{
+                city_id: city_id
+            },
+            success: function (response)
+            {
+                $('#societies').empty();
+                $('#societies').append($('<option>').text('select a Society').attr('value', ''));
+                $.each(response.data.societies, function (i, society) {
+                    $('#societies').append($('<option>').text(society.name).attr('value', society.id));
+                });
+
+            }
+        })
+    }
+    else
+    {
+        $('#societies').empty();
+        $('#societies').append($('<option>').text('All Societies').attr('value',''));
+
+    }
+});
+
+

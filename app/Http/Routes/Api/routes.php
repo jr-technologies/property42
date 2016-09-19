@@ -380,6 +380,17 @@ Route::get('society/blocks',
     ]
 );
 
+Route::get('city/society',
+    [
+        'middleware'=>
+            [
+                'apiValidate:getSocietiesByCityRequest'
+            ],
+
+        'uses'=>'SocietiesController@getByCity'
+    ]
+);
+
 Route::post('block/update',
     [
         'middleware'=>

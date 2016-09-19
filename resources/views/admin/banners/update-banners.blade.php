@@ -84,6 +84,7 @@
                     <label>Banner Position</label>
                     <select name="position" required>
                         <option value="" selected >Please Select Position</option>
+                        <option value="slider" <?= (($response['data']['banner']->position) == 'slider')?'selected':''?> >Slider</option>
                         <option value="top" <?= (($response['data']['banner']->position) == 'top')?'selected':''?> >Top</option>
                         <option value="left" <?= (($response['data']['banner']->position) == 'left')?'selected':''?>>Left</option>
                         <option value="right" <?= (($response['data']['banner']->position) == 'left')?'selected':''?>>Right</option>

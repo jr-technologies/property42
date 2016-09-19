@@ -50,12 +50,10 @@ class BannersController extends Controller
     }
     public function bannersListing(GetAllBannersRequest $request)
     {
-        $banners = $this->bannersRepo->getAllBanners($request->all());
-        $bannerCount = ($this->bannersRepo->bannerCount()[0]->total_records);
         return $this->response->setView('admin.banners.banners-listing')->respond(['data'=>[
-            'banners'=>$banners,
-            'pages'=>$this->pagesRepo->all(),
-            'bannerCounts'=>$bannerCount
+            'banners'=>$this->bannersRepo->getAllBanners($request->all()),
+            'bannerCounts'=>($this->bannersRepo->bannerCount()[0]->total_records),
+            'pages'=>$this->pagesRepo->all()
         ]]);
     }
     public function pageBanners(GetPageBannersRequest $request)

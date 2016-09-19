@@ -1,5 +1,12 @@
 @extends('frontend.v2.frontend')
 @section('content')
+    <ul class="Ads">
+        @if(isset($response['data']['banners']['sliderBanners']))
+            @foreach($response['data']['banners']['sliderBanners'] as $banner)
+                <li><a @if($banner->banner_link !="")href="{{$banner->banner_link}}" @endif><img src="{{$banner->image}}" alt="Image description"></a></li>
+            @endforeach
+        @endif
+    </ul>
     <div class="page-holder">
         <div class="index-page">
         <div class="agent-logos container">
@@ -34,19 +41,21 @@
             <div class="container-holder">
                 <section class="generic-section">
                     <div class="container">
-                        <h1>News <span>Update</span></h1>
+                        <h1>Latest <span>Update</span></h1>
                         <div class="news-sliderHolder">
                             <div class="news-slideshow">
                                 <div class="mask">
                                     <div class="slideset">
+                                      @foreach($response['data']['projects'] as $project)
                                         <div class="slide">
+
                                             <div class="layout">
                                                 <div class="news-carousel">
                                                     <div class="news-mask">
                                                         <div class="news-slideset">
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
+                                                            @foreach($project->images as $image)
+                                                              <div class="news-slide"><a href="#"><img src="{{url('/').'/'.$image->image}}" width="495" height="363" alt="image description"></a></div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                     <div class="news-pagination"></div>
@@ -54,34 +63,12 @@
                                                     <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
                                                 </div>
                                                 <div class="caption">
-                                                    <p>{{str_limit("Real Estate elected committee meet with Finance Minister Ishaq Dar today at
-                                        Islamabad regarding recently imposed property evolution tax. Real estate agents
-                                         and investors protested against the increase in taxes on Saturday, expecting that
-                                         the government would take some decisions in their favor.",400)}}</p>
-                                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
+                                                    <p><b>{{$project->title}}</b> <br />{{str_limit($project->description,400)}}</p>
+                                                    {{--<a href="#" class="btn-default text-upparcase">Learn More</a>--}}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="slide">
-                                            <div class="layout">
-                                                <div class="news-carousel">
-                                                    <div class="news-mask">
-                                                        <div class="news-slideset">
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n1.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n2.jpg" width="495" height="363" alt="image description"></a></div>
-                                                            <div class="news-slide"><a href="#"><img src="{{url('/')}}/web-apps/frontend/v2/images/n3.jpg" width="495" height="363" alt="image description"></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="news-pagination"></div>
-                                                    <a href="#" class="news-btn-prev"><span class="icon-left-arrow"></span></a>
-                                                    <a href="#" class="news-btn-next"><span class="icon-right-arrow"></span></a>
-                                                </div>
-                                                <div class="caption">
-                                                    <p>{{str_limit("After the protest of real estate agents protest Prime Minister take an action and ask to finance minister to discuss the matter with real estate stakeholder.",400)}}</p>
-                                                    <a href="#" class="btn-default text-upparcase">Learn More</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      @endforeach
                                     </div>
                                 </div>
                                 <div class="pagination hidden"></div>
@@ -151,10 +138,10 @@
                 <section class="generic-section about-us" id="about-us">
                     <div class="container text-center">
                         <h1>About <span>Us</span></h1>
-                        <p>PROPERTY42.PK is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
-                        <p>PROPERTY42.PK is providing flexible search for user which will provide potential clients with a better overall online experience.
-                            With modern housing and societies services and a growing population, PROPERT42.PK is a unique regional center and offers plenty of lifestyle and investment opportunity.
-                            PROPERTY42.PK is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
+                        <p>Property42.PK is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
+                        <p>Property42.PK is providing flexible search for user which will provide potential clients with a better overall online experience.
+                            With modern housing and societies services and a growing population, Property42.PK is a unique regional center and offers plenty of lifestyle and investment opportunity.
+                            Property42.PK is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
                     </div>
                 </section>
                 <section class="generic-section questions" id="contact-us">

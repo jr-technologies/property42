@@ -80,6 +80,7 @@
                     <label>Banner Position</label>
                     <select name="position" required>
                         <option value="" selected >Please Select Position</option>
+                        <option value="slider">Slider</option>
                         <option value="top">Top</option>
                         <option value="left">Left</option>
                         <option value="right">Right</option>

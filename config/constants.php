@@ -38,6 +38,7 @@ return [
             'top'=>4
         ],
         'index'=>[
+            'slider'=>10,
             'left'=>10,
             'right'=>10,
             'between'=>4,

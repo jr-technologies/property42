@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="layout-holder">
-                    <label class="required-field" for="m-number">Mobile Number</label>
+                    <label  for="m-number">Mobile Number</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('mobile')) error @endif">
                         <input type="tel" placeholder="Enter Your Cell / Mobile Number" value="{{old('mobile')}}" name="mobile" id="cell" required>
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('mobile')) {{$validationErrors->first('mobile')}} @endif</span>
@@ -67,7 +67,7 @@
             </div>
             <div class="layout two">
                 <div class="layout-holder phone-num">
-                    <label for="p-number">Phone Number</label>
+                    <label class="required-field" for="p-number">Phone Number</label>
                     <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('phone')) error @endif">
                         <input type="tel" placeholder="Enter Your Phone Number" name="phone" value="{{old('phone')}}" id="p-number" >
                         <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('phone')) {{$validationErrors->first('phone')}} @endif</span>
